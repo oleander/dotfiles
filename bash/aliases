@@ -1,15 +1,80 @@
 . ~/.zsh/aliases
 
-# changing directory to code project
-function c { cd ~/code/$1; }
+alias gp='git push origin master'
+alias gph='git push heroku master'
+alias gs='git status'
+alias cr='cd /Users/linus/Documents/Projekt/'
+alias r='cr && cd Rubyfy'
+alias gph='git push heroku master'
+alias l='heroku logs | tail -n 100 | mate'
+alias start='rvmsudo passenger start -p 80 --user=linus'
+alias deploy='rake deploy:origin'
+alias b='bundle install'
+alias m='cr && cd Movify'
+alias k='kill -9'
+alias gc='git checkout'
+alias gcp='git cherry-pick'
+alias gd='git diff --stat'
+alias gpo='git push origin'
+alias gb='git branch'
+alias ee='mvim'
+alias cs='nohup coffee -wco public/javascripts/ app/coffeescripts/*.coffee | noty > /dev/null & echo $! > tmp/pids/coffee.pid'
+alias kcs='kill -9 `cat tmp/pids/coffee.pid` && echo "CoffeeScript pid `cat tmp/pids/coffee.pid` dödad"'
+alias flush='dscacheutil -flushcache'
+alias pull='git pull origin master'
+alias m='pp Movify'
+alias ua='pp UndertexterApp'
+alias v='ruby -v'                            
 
-# alternative to "rails" command to use templates
-function railsapp {
-  template=$1
-  appname=$2
-  shift 2
-  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
+# Laddar om alla inställningar
+alias s='source ~/.bash_profile'
+alias e='mate ~/.bash_profile'
+
+# SSH-inloggningar
+alias chalmers="ssh -Y oleander@remote1.student.chalmers.se"
+alias macmini="ssh linus@banan.olf.sgsnet.se"
+
+# Uppdaterar databasen för {local}
+alias update='sudo /usr/libexec/locate.updatedb'
+
+function pp() {
+  cr && cd $*
 }
 
-# misc
-alias reload='. ~/.bash_profile'
+function gg() {
+  git add . && git commit -v -a -m "$*"
+}
+
+function burn(){
+  avrdude -p m88 -c stk500 -P /dev/cu.PL2303-00004006 -e -U flash:w:main.rom
+}
+
+function compile(){
+  avr-gcc -O1 main.c -mmcu=atmega88 -o main.rom -I /usr/local/CrossPack-AVR/include/simulavr/
+}
+
+# Skapar en mapp, hoppar sedan vidare till den
+function take(){
+  mkdir $1
+  cd $1
+}
+
+function cb(){
+  compile && burn
+}
+
+function not(){
+  growlnotify -m "$*"
+}
+
+# Togglar mellan de olika ruby-versionerna
+function tt(){
+  if [[ `ruby -v` == *1.9.2* ]]
+  then
+    rvm use 1.8.7 >> /dev/null
+    echo "==> 1.8.7"
+  else
+    rvm use 1.9.2 >> /dev/null;
+    echo "==> 1.9.2";
+  fi
+}
