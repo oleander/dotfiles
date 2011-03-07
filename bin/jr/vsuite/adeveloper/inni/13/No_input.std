@@ -1,0 +1,3 @@
+got memberOp st x == 1
+got memberOp by length
+got memberOp with st and by

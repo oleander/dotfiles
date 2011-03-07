@@ -1,0 +1,73 @@
+public class Main{
+    public static void main(String[] args) {
+      op void f();
+      cap void () c;
+      cap void () d;
+
+      // they do compare equally, when "local"
+      c = null;
+      d = null;
+      System.out.println("c==c? "+(c==c));
+      System.out.println("c==d? "+(c==d));
+      System.out.println("f==f? "+(f==f));
+      System.out.println("c==f? "+(c==f));
+      System.out.println("d==f? "+(d==f));
+
+      // they do compare equally, when "local"
+      c = noop;
+      d = noop;
+      System.out.println("c==c? "+(c==c));
+      System.out.println("c==d? "+(c==d));
+      System.out.println("f==f? "+(f==f));
+      System.out.println("c==f? "+(c==f));
+      System.out.println("d==f? "+(d==f));
+
+      // they do compare equally, when "local"
+      c = f;
+      d = f;
+      System.out.println("c==c? "+(c==c));
+      System.out.println("c==d? "+(c==d));
+      System.out.println("f==f? "+(f==f));
+      System.out.println("c==f? "+(c==f));
+      System.out.println("d==f? "+(d==f));
+
+
+      op void g();
+      c = g;
+      d = g;
+      System.out.println("c==c? "+(c==c));
+      System.out.println("c==d? "+(c==d));
+      System.out.println("f==f? "+(f==f));
+      System.out.println("c==f? "+(c==f));
+      System.out.println("d==f? "+(d==f));
+
+      remote C w = new remote C() on new vm();
+
+      System.out.println("w.compare(c,c)? "+ w.compare(c,c));
+      System.out.println("w.compare(c,d)? "+ w.compare(c,d));
+      System.out.println("w.compare(f,f)? "+ w.compare(f,f));
+      System.out.println("w.compare(null,null)? "+ w.compare(null,null));
+      System.out.println("w.compare(noop,noop)? "+ w.compare(noop,noop));
+      System.out.println("w.compare(noop,null)? "+ w.compare(noop,null));
+      System.out.println("w.compare(null,noop)? "+ w.compare(null,noop));
+      System.out.println("w.compare(c,null)? "+ w.compare(c,null));
+      System.out.println("w.compare(c,noop)? "+ w.compare(c,noop));
+      System.out.println("w.compare(f,null)? "+ w.compare(f,null));
+      System.out.println("w.compare(f,noop)? "+ w.compare(f,noop));
+
+      System.out.println("w.staticCompare(c,c)? "+ w.staticCompare(c,c));
+      System.out.println("w.staticCompare(c,d)? "+ w.staticCompare(c,d));
+      System.out.println("w.staticCompare(f,f)? "+ w.staticCompare(f,f));
+      System.out.println("w.staticCompare(null,null)? "+ w.staticCompare(null,null));
+      System.out.println("w.staticCompare(noop,noop)? "+ w.staticCompare(noop,noop));
+      System.out.println("w.staticCompare(noop,null)? "+ w.staticCompare(noop,null));
+      System.out.println("w.staticCompare(null,noop)? "+ w.staticCompare(null,noop));
+      System.out.println("w.staticCompare(c,null)? "+ w.staticCompare(c,null));
+      System.out.println("w.staticCompare(c,noop)? "+ w.staticCompare(c,noop));
+      System.out.println("w.staticCompare(f,null)? "+ w.staticCompare(f,null));
+      System.out.println("w.staticCompare(f,noop)? "+ w.staticCompare(f,noop));
+
+
+	System.out.println("done");
+    }
+}

@@ -1,0 +1,47 @@
+import javax.swing.*;
+import java.awt.*;
+import java.lang.*;
+
+//writer class derived from Usr, used to represent writers in the program
+public class Writer extends User {
+	//constructor just sets User attributes with User constructor
+    public Writer (int id, int uid, int amid, int iter, cap void (int) end_write, Color color, cap void (User) send_start) {
+        super(id, uid, amid, iter, end_write, color, send_start);
+    }
+	
+	//function that simulates a writer writing to database, requests a start and when aknowledged(call gets a return),
+	//waits for 3 seconds and finishes writing
+    process write {
+		for(cur_iter = 0; cur_iter < iter; cur_iter++) {
+			call send_start(this);
+			Nap.nap(3000);
+			call end(uid);
+		}
+    }
+
+	//swing drawing functionality, draws a square with writer ID, and iterations remaining
+	public void mydraw(Graphics2D g2, int index, int offset) {
+		FontMetrics metrics = g2.getFontMetrics(new Font("Dialog", Font.PLAIN, 9));
+		g2.setFont(new Font("Dialog", Font.PLAIN, 9));
+
+		g2.setColor(color.darker());
+		g2.fillRect(offset,(index + 1)*(size + 2) + 15,size,size);
+		g2.setColor(Color.white);
+
+		mystring = "ID: " + (new Integer(uid)).toString();
+		int width = metrics.stringWidth(mystring);
+		int height = metrics.getHeight();
+		deltax = (size-width)/2;
+		deltay = (size+height)/2;
+		g2.drawString(mystring, offset+deltax, (index + 1)*(size + 2) + deltay + 9);
+
+		mystring = (new Integer(getIter())).toString();
+		width = metrics.stringWidth(mystring);
+		height = metrics.getHeight();
+		deltax = (size-width)/2;
+		deltay = (size+height)/2;
+		g2.drawString(mystring, offset+deltax, (index + 1)*(size + 2) + deltay + 19);
+	}
+
+}
+

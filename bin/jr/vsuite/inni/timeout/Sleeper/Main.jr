@@ -1,0 +1,46 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+    static op void joo();
+
+ public static void main(String [] args )
+ {
+
+     try {
+        JR.registerQuiescenceAction(done);
+     } catch(Exception e) {e.printStackTrace();}
+
+
+     int ITIMEOUT = Integer.parseInt(args[0]);
+   
+     int UTIMEOUT = Integer.parseInt(args[1]);
+
+     int XTIMEOUT = 4 * UTIMEOUT;
+
+     send u(UTIMEOUT);
+
+     inni void joo(){ 
+          System.out.println("in joo");
+	  // sleep long enough for u to finish
+	  try {
+	      Thread.sleep(XTIMEOUT);
+	  } catch(Exception e) {e.printStackTrace();}
+          System.out.println("in joo after sleep");
+     }
+     [] elseafter ITIMEOUT { 
+         System.out.println("in elseafter"); 
+	 receive joo();
+         System.out.println("got joo in elseafter"); 
+     }
+ }
+    static op void u(int nap) {
+     try {
+	Thread.sleep(nap);
+     } catch(Exception e) {e.printStackTrace();}
+     send joo();
+    }
+    public static op void done() {
+	System.out.println("Quiescence!");
+    }
+
+}

@@ -1,0 +1,16 @@
+public class ResourceAllocator {
+
+  static int unusedstatic;
+  int alsounused;
+
+  // this one is OK
+  // make sure we didn't break this in making our fix.
+  int unit, unused;
+  private process server {
+    System.out.println(unit);
+  }
+
+  public static void main(String[] args) {
+    new ResourceAllocator();
+  }
+}

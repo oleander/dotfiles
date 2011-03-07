@@ -1,0 +1,12 @@
+Elevator.jr:40: incompatible types
+found   : B
+required: C
+	c = foyer[0][0]();
+                       ^
+Elevator.jr:42: incompatible types
+found   : B
+required: C
+	c = foyer[0][1]();
+                       ^
+Not generating jrGen/Elevator.java due to errors.
+2 errors

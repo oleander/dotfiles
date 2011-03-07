@@ -1,0 +1,20 @@
+main.jr:11: op int test(char) is already defined in main(java.lang.String[])
+	op int test(char);
+               ^
+main.jr:14: cannot find symbol
+symbol  : method test(int)
+location: class main
+	call test(1);
+             ^
+main.jr:16: cannot find symbol
+symbol  : method test(int)
+location: class main
+	test(2);
+        ^
+main.jr:17: cannot find symbol
+symbol  : method test(int)
+location: class main
+	send test(3);
+             ^
+Not generating jrGen/main.java due to errors.
+4 errors

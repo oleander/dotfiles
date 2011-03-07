@@ -1,0 +1,8 @@
+import edu.ucdavis.jr.JR;
+public class main {
+  private static final int N = 20; // number of processes
+
+  public static void main(String [] args) {
+    workers ws = new workers(N);
+    }
+}

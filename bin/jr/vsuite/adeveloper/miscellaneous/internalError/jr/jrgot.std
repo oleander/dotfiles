@@ -1,0 +1,18 @@
+Main.jr:4: cannot find symbol
+symbol  : variable iii
+location: class Main
+      window = new Window(iii);
+                          ^
+Main.jr:4: internal error; cannot instantiate Window.<init> at Window to ()
+      window = new Window(iii);
+               ^
+Main.jr:6: cannot find symbol
+symbol  : variable iii
+location: class Main
+      rWindow = new remote Window(iii);
+                                  ^
+Main.jr:6: internal error; cannot instantiate Window.<init> at Window to ()
+      rWindow = new remote Window(iii);
+                ^
+Not generating jrGen/Main.java due to errors.
+4 errors

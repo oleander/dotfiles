@@ -1,0 +1,5 @@
+main.jr:9: A static method may only be matched by a static op.  Matching op on line 14 not declared static.
+    public static void test(char x)	{
+                       ^
+Not generating jrGen/main.java due to errors.
+1 error

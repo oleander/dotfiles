@@ -1,0 +1,55 @@
+import edu.ucdavis.jr.JR;
+
+public class coquant {
+
+    public static op int f(int n);
+    public static sem go1;
+    public static sem go2;
+    public static final int N = 6;
+
+    public static void main(String [] args)	{
+
+	int x = 8888;
+
+	co ((int i = 1; i <= N; i++)) x = f(i) {
+	    // first one forces others to get serviced completely
+	    // before it continues
+	    // (idea is to ensure that x's value within ppc remains
+	    // same despite any servicing; this test helps confirm that,
+	    // but the timing isn't guaranteed to test everything
+	    // that one would want
+	    // (e.g., the specific copy back in generated code)
+	    // so we put in a sleep to nudge it in that direction...)
+	    if (i == 1) {
+		V(go1);
+		P(go2);
+		try {
+		    Thread.sleep(200);
+		} catch (Exception e) {e.printStackTrace();}
+	    }
+	    System.out.println("done with f(" + i + "), x is: " + x);
+	}
+	System.out.println("done with co");
+
+    }
+
+    private static process myprocess	{
+	// ensure that f(1) is serviced first
+	inni int f(int x) st x == 1 {
+	    System.out.println("inside inni1: x " + x);
+	    return x+1;
+	}
+	// ensure that f(1)'s return value is received first by co
+	P(go1);
+	// now service rest of invocations
+	for (int i = 1; i <= N-1; i++) {
+	    inni int f(int x) {
+		System.out.println("inside inni2: x " + x);
+		return x+1;
+	    }
+	}
+	// let invoker resume
+	V(go2);
+	System.out.println("done with myprocess");
+    }
+}

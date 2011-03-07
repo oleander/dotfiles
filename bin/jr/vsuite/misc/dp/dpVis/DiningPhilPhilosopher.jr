@@ -1,0 +1,224 @@
+
+
+public abstract class DiningPhilPhilosopher 
+{
+	// *****************************************************************
+	// Constructor 
+	// with id , # of philosopher, # of session
+	// remote reference of container
+	// a "postman" cap to deliver a permitted cap to control the flow
+	// boolean indicating this is a local mode or client mode
+	protected ClientWindow displayWindow;
+	DiningPhilPhilosopher(int id, int numPhil, int session, remote DiningDesktopPane container, cap void (cap void (int)) controller, boolean localOnly)
+	{
+		// initialize variables
+		this.id = id; 
+		this.session = session;
+		pause = true;
+		done = false;
+		speedRatio = 2;
+		timeConstant = 10000; 
+		waitEat = false;
+		waitThink = false;
+		isManualControl = false;
+		
+		// give the main frame permission to control the flow
+		send controller(sol_control);
+	   
+	   //setup the calculation for the location of the local image displaying on frame
+		int center_x = DiningEnvironmentConstant.FRAME_WIDTH / 2;
+		int center_y = DiningEnvironmentConstant.FRAME_HEIGHT / 2;
+		double radius = DiningEnvironmentConstant.TABLE_WIDTH;
+		double angle = 2 * Math.PI / numPhil * id;
+		int pos_x = center_x + (int)(Math.cos(angle) * radius) - 50;
+		int pos_y = center_y + (int)(Math.sin(angle) * radius) - 60;
+
+		 // create the local image for the local frame
+		send container.addImageOp(pos_x, pos_y, imageOp, id);
+		receive imageOp(image_updater);		
+	
+		// create the remote image for the remote frame
+		if ( ! localOnly )
+		{
+			PhilImage thisImage = new PhilImage(id, 80, 80, imageOp, container.getTheme());
+			displayWindow = new ClientWindow("Philosopher " + id, thisImage, this, container.getTheme());
+			receive imageOp(image_updater_r);	
+		}
+		else
+		{
+			image_updater_r = null_image_updater;
+			displayWindow = null;
+		}
+		
+		// subscribe the speed channel in order to get the latest speed ratio
+		send container.subscribe(speedChannel);
+	}
+	
+
+	// *****************************************************************
+	// for the philosopher identity and # of sessoins
+	protected int id, session;
+	
+	
+	// *****************************************************************
+	// for the Thread.sleep	
+	protected double speedRatio;
+	protected int timeConstant;
+	protected op void speedChannel(double ratio, int tc)
+	{
+		speedRatio = ratio;
+		timeConstant = tc * 1000;
+	}
+	protected void checkThreadSleep(double ratio, String reason)
+	{
+		long sleepTime;
+		if ( ! isManualControl )
+		{	
+			try {
+				sleepTime = (long)(Math.random() * timeConstant / ratio * speedRatio);
+				System.out.println("Philosopher "+id+" is "+reason+" for " + sleepTime + "ms");
+				if ( displayWindow != null ) displayWindow.setMessage(reason + " for " + sleepTime + "ms");
+				Thread.sleep(sleepTime); // make more interesting...
+				if ( displayWindow != null ) displayWindow.setMessage("");
+			} catch (Exception e) {e.printStackTrace();}
+		}
+	}
+	
+	// *****************************************************************
+	// for changing the image states in both main frame and client window
+	protected op void null_image_updater(int mode)  {}
+	protected cap void (int mode) image_updater;
+	protected cap void (int mode) image_updater_r;
+	protected op void imageOp(cap void (int));
+	protected op void updateImage(int mode)
+	{
+		send image_updater(mode);
+		send image_updater_r(mode);
+	}
+	
+	
+	// *****************************************************************	
+	// for control the flow or eliminate philosopher's process	
+	protected boolean pause;
+	protected boolean done;
+	protected sem resume = 0;	
+	protected op void sol_control(int mode)
+	{
+		switch ( mode )
+		{
+			case SolutionControlConstant.PAUSE : // pause
+				if ( displayWindow != null ) displayWindow.setMessage("Main Frame gives a \"pause\" signal");
+		 		pause = true;
+		 		break;
+		 	case SolutionControlConstant.RESUME : // resume
+				if ( displayWindow != null ) displayWindow.setMessage("");
+		 		pause = false;
+		 		V(resume);
+		 		break;
+		 	case SolutionControlConstant.DESTROY : // destroy
+		 		//System.out.println("try to stop philosopher " + id + " now...");
+		 		done = true;
+		 		pause = false;
+		 		V(resume);
+		 		if ( displayWindow != null ) displayWindow.dispose();
+		 		break;		 		
+		}
+	}
+	public void checkPause()
+	{
+		if ( pause ) P(resume);
+	}
+	
+	// *****************************************************************
+	// for handling the action from remote frames
+   protected boolean isManualControl;
+	public op void remoteControl(int mode)
+	{
+		switch ( mode )
+		{
+			case DiningEnvironmentConstant.STATE_THINK :
+				V(flagThinking);
+				break;
+			case DiningEnvironmentConstant.STATE_HUNGRY :
+				V(flagEating);
+				break;
+			case DiningEnvironmentConstant.STATE_DONE :
+				done = true;
+				pause = false;
+				isManualControl = false;
+				V(resume);
+				V(flagThinking);
+				V(flagEating);
+				break;
+		}
+	}
+	public op void setManualControl(boolean manual)
+	{
+		isManualControl = manual;
+		if ( ! isManualControl )
+		{
+			if ( waitThink ) V(flagThinking);
+			if ( waitEat ) V(flagEating);
+		}
+	}
+
+	// *****************************************************************
+	// for flags on eating and thinking
+   protected boolean waitEat;
+   protected boolean waitThink;
+   protected sem flagEating = 0;
+   protected sem flagThinking = 0;
+   public boolean isWaitEat ()
+   {
+   	return waitEat;
+   }
+   public boolean isWaitThink ()
+   {
+   	return waitThink;
+   }
+   protected void checkManualEat()
+   {
+   	if ( isManualControl )
+		{
+			displayWindow.setCanEat(true);
+			displayWindow.setMessage("Are you hungry?");
+			waitEat = true;
+			P(flagEating);
+			waitEat = false;
+			displayWindow.setMessage("");
+			displayWindow.setCanEat(false);
+		}
+   }
+	protected void checkManualThink()
+   {
+   	if ( isManualControl )
+		{
+			displayWindow.setCanThink(true);
+			displayWindow.setMessage("Do you want to think for awhile?");
+			waitThink = true;
+			P(flagThinking);
+			waitThink = false;
+			displayWindow.setMessage("");
+			displayWindow.setCanThink(false);
+		}
+   }
+   
+	// *****************************************************************
+	// for simpify process begin and ending
+	protected void beginProcess()
+	{
+		System.out.println("starting phil "+id);
+		checkPause();
+		try
+		{
+			Thread.sleep((long)(Math.random() * 1000));
+		}
+		catch ( Exception e ) {}
+	}		
+	protected void endProcess()
+	{
+		done = true;
+		send updateImage(DiningEnvironmentConstant.STATE_DONE);
+		System.out.println("Philosopher " + id + " stops...");	
+	}
+}

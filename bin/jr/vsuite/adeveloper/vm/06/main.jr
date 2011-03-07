@@ -1,0 +1,11 @@
+public class main
+{
+  public static void main(String [] arg)
+  {
+    System.out.println("hi");
+    new vm();
+    new vm() on "localhost";
+    System.out.println("bye");
+  }
+}
+

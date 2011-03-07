@@ -1,0 +1,3 @@
+0 jrfindmain > jrfindmain.out 2>&1
+0 cmp jrfindmain.std jrfindmain.out
+0 rm -rf jrGen core *.out

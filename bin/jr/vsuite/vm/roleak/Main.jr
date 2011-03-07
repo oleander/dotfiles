@@ -1,0 +1,20 @@
+// run this program and monitor memory usage (e.g., via ps)
+// to see if remote objects are garbage collected.
+// don't run this as part of vsuite -- it has infinite loop.
+// run w/o arg, creates all on local  vm, which works fine.
+// run w/  arg, creates all on remote vm, which has leak.
+public class Main {
+  static remote Worker wref;
+  public static void main(String [] args) {
+      vm v;
+      if (args.length > 0 ) v = new vm();
+      else v = vm.thisvm;
+      while (true) {
+	  wref = new remote Worker(8) on v;
+          try {
+	      Thread.sleep(1000);
+          }
+	  catch (Exception e) { e.printStackTrace(); }
+      }
+  }
+}

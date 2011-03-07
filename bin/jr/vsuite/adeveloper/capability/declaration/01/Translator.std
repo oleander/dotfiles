@@ -1,0 +1,32 @@
+main.jr:5: '(' expected
+    public static cap void test;
+                           ^
+main.jr:5: illegal start of type
+    public static cap void test;
+                               ^
+main.jr:6: illegal start of type
+    public static cap (int) test1, test2, test3 [];
+                      ^
+main.jr:6: '(' expected
+    public static cap (int) test1, test2, test3 [];
+                                                  ^
+main.jr:10: '(' expected
+	cap int localtest;
+                ^
+main.jr:10: illegal start of type
+	cap int localtest;
+                         ^
+main.jr:10: not a statement
+	cap int localtest;
+        ^
+main.jr:11: illegal start of type
+	cap (char, char) localtest1, localtest2, localtest3 [];
+            ^
+main.jr:11: '(' expected
+	cap (char, char) localtest1, localtest2, localtest3 [];
+                                                              ^
+main.jr:11: not a statement
+	cap (char, char) localtest1, localtest2, localtest3 [];
+        ^
+Not generating any jrGen files due to errors.
+10 errors

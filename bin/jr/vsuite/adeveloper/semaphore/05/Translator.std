@@ -1,0 +1,34 @@
+main.jr:24: cannot find symbol
+symbol  : method x()
+location: class main
+      P(x);
+        ^
+main.jr:25: op void myWrongOp(int) in main cannot be applied to ()
+      P(myWrongOp);
+        ^
+main.jr:26: A semaphore 'P' operation may only be invoked on semaphores and operations not associated with methods.
+      P(p);
+        ^
+main.jr:27: A semaphore 'P' operation may only be invoked on semaphores and operations not associated with methods.
+      P(q);
+        ^
+main.jr:28: A semaphore 'P' operation may only be invoked on semaphores and operations not associated with methods.
+      P(test);
+        ^
+main.jr:28: WARNING: Invoking Semaphore P() operation with non-void (int) return type.
+      P(test);
+        ^
+main.jr:31: cannot find symbol
+symbol  : method x()
+location: class main
+      V(x);
+        ^
+main.jr:32: op void myWrongOp(int) in main cannot be applied to ()
+      V(myWrongOp);
+        ^
+main.jr:35: WARNING: Invoking Semaphore V() operation with non-void (int) return type.
+      V(test);
+        ^
+Not generating jrGen/main.java due to errors.
+7 errors
+2 warnings

@@ -1,0 +1,53 @@
+public class Philosopher
+{
+
+    private op void start();
+    //public op void init( remote Servant xs);
+
+    // (former resource parameters)
+    remote Servant s;
+    int id, t;
+    cap void () done;
+
+// 2000-03-07 can't yet pass cap to constructor
+//    public Philosopher(remote Servant xs, int xid, int xt)
+    public Philosopher(remote Servant xs, int xid, int xt, cap void () xdone)
+    {
+        s = xs;
+        id = xid;
+	t = xt;
+	done = xdone;
+            send start();  // start the client thread
+    }
+
+// ** hack to fix above problem
+// (could have combined w/ links, but this way should be easier to
+// yank out later.)
+
+/*
+    public void init(remote Servant xs)
+    {
+        s = xs;
+        try {
+            send start();  // start the client thread
+        }
+	catch (Exception e) {}
+    }
+*/
+
+    private void start()
+    {
+        System.out.println("starting phil "+id);
+
+	// t sessions
+	for( int i = 1; i <= t; i++ ) {
+	        call s.getforks();
+	        System.out.println("Philosopher "+id+" is eating");
+	        call s.relforks();
+	        System.out.println("Philosopher "+id+" is thinking");
+	}
+
+	    send done();
+    }
+
+}

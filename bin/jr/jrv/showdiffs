@@ -1,0 +1,27 @@
+#!/bin/csh -f
+
+# run in directory you want to use in comparisons
+set suffix1 = "out"
+set suffix2 = "std"
+
+# you can set this variable to another diff tool if you prefer
+# e.g., "diff --side-by-side" or "sdiff" or even just plain "diff"
+# (to quit tkdiff, type q or click on File and then Exit.)
+set nicediff = "/home/olsson/pkg/tkdiff/bin/tkdiff"
+
+# cheat: use suffix2 (std rather than suffix 1)
+# to avoid jrvcmp.out files that jrv creates.
+set raw = `find . -name "*.$suffix2" -print`
+foreach i ($raw)
+	echo ==== $i ====
+	## echo $i
+	set subpath = $i:h
+	set b = `basename $i .$suffix2`
+	## echo $b
+	set c1 = $subpath/$b.$suffix1
+	set c2 = $subpath/$b.$suffix2
+	## maybe this should be before echo $i?  or should output "not found"?
+	if ( -e $c1 ) then
+		cmp -s $c2 $c1 || $nicediff $c2 $c1
+	endif
+end

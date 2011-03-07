@@ -1,0 +1,16 @@
+main.jr:14: A 'send' statement's exception handler must be an object.
+	send print() handler x;
+                             ^
+main.jr:19: unexpected type
+required: value
+found   : operation
+	send print(1, 'a') handler print;
+                                   ^
+main.jr:21: A 'send' statement's exception handler must be an object.
+	send print() handler print(1, 'a');
+                                  ^
+main.jr:23: A 'send' may only be invoked on an operation or operation capability.  This method expression does not correspond to either.
+	send test();
+             ^
+Not generating jrGen/main.java due to errors.
+4 errors

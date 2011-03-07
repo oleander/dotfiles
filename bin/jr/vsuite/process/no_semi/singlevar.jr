@@ -1,0 +1,29 @@
+public class singlevar
+{
+    static sem done;
+    // until 2001-03-01 missing ; was an error; legal now.
+    static process p( (int i = 0; i < 10; i++ ),
+	       (int j = 0; j < 10; j++; j != i),
+	       (int k = 38; k <= 39; k++; ) )
+    {
+	System.out.println("process: " + i + " : " + j + " : " + k);
+	    V (done);
+    }
+
+    public static void main(String [] args)
+    {
+    	    for (int i = 0; i < 10; i++)
+	    {
+	        for (int j = 0; j < 10; j++)
+		{
+		    if (!(j != i))
+			continue;
+		    for ( int k = 38; k <= 39; k++ )
+		    {
+			P (done);
+		    }
+		}
+	    }
+	    edu.ucdavis.jr.JR.exit(0);
+    }
+}

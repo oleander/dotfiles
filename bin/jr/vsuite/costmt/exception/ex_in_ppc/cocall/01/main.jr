@@ -1,0 +1,39 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+	try {
+	    co GO(1) {
+		System.out.println("ppc1");
+		if (true)
+			throw new java.io.EOFException();
+		System.out.println("after exception thrown");
+	    }
+	    [] GO(2) {
+		// this should not be executed
+		System.out.println("ppc2");
+	    }
+	    [] GO(3);
+	    [] GO(4);
+        }
+        catch (Exception e){
+            System.err.println("Oops.  The JR world isn't so wonderful ;-(");
+        }
+	System.out.println("After co");
+    }
+
+    private static op String GO(int n);
+
+    private static process MYPROCESS	{
+	int n = 1;
+	while(true)	{
+		inni String GO(int x) st x == n { // service in order: deter.
+			System.out.println("received GO: " + x);
+			reply "HI";
+			n++;
+		}
+	}
+    }
+
+}

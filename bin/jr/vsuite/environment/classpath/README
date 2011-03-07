@@ -1,0 +1,12 @@
+these tests have dependencies:
+
+  mypkg/Script creates mypkg.jar
+  testcode[a-y]* programs use it
+  testcodezend/Script removes it
+
+assumptions:
+
+  directory naming: jrv executes these tests in alphabetic order.
+
+  the name mypkg is hardcoded into some of the Scripts, so update all
+  Scripts if you rename it.

@@ -1,0 +1,30 @@
+2002-04-17 modified Script to use scmp rather than cmp.
+           removed sleeps and flushes from .jr code,
+           which were an attempt to get order correct, but weren't
+           guaranteed to work (as discovered on a Windows system).
+	   having to use scmp is a bit unfortunate (it defeats the
+           purpose of some of the fancy code in main).
+
+
+----------------------------------------------------------------------
+
+
+From keen@cs.ucdavis.edu  Mon Dec 18 14:32:54 2000
+Date: Mon, 18 Dec 2000 14:31:31 -0800 (PST)
+From: Aaron Keen <keen@cs.ucdavis.edu>
+To: olsson@cs.ucdavis.edu
+Subject: Re: vsuite/vm/many
+
+
+  >I think we discussed previously, but output from this test comes out
+  >in different order, despite flushing.  That's OK, but I just want to
+  >verify why that is.  (I guess that, despite the explicit flush, the VM
+  >doesn't really flush its output back until sometime later, but I'm not
+  >sure when that is or what would motivate it (to anthropomorphize a bit
+  >much) to do so.)
+
+	This is because there is currently a different print thread
+for each VM.  That thread simply reads a line and then prints that
+line.  The scheduling of the threads is likely causing the different
+orderings.
+

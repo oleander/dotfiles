@@ -1,0 +1,18 @@
+Andrew Gallagher	agall@ucdavis.edu
+Appu Goundan		asgoundan@ucdavis.edu
+
+Info:
+	Readers/Writers Program.  This is a visualization of database accesses by readers and writers using multiple scheduling algorithms.  This visualization can span multiple VMs using a centralized implementation.
+	
+Compile and start using:
+	jrgo
+
+Running:
+	When started use the options menu to create a new VM on a machine on the network.  This will create a new assistant window on the VM you supplied.  From this assistant you can add readers and writers and change their iterations.  ALso from the manager you can change the Allocator scheduling scheme.  From there on its pretty simple.  Also, the system can be paused and resumed by the Mamager.
+
+References:
+	Kang98, S. Kang and H. Lee,
+    "Analysis and Solution of Non-preemptive Policies for Scheduling Readers and Writers".
+	Operating Systems Review, July 1998 vol 32 num 3, pages 30-50
+
+	- used to implement the AEP, NWP CALP, CAP, RAND, ALT, WP, RP, WRP, WWP, and TFE allocators.

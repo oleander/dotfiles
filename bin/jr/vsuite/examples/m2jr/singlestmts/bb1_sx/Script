@@ -1,0 +1,23 @@
+# works for all, but essentially same as ../bb1
+# so run only for SX (which doesn't work in ../bb1)
+
+# output from _print non-deterministic
+# (so eliminate it)
+
+0 m2jr -sc bounded_buffer.m
+0 jrc *.jr
+
+0 m2jr -sw bounded_buffer.m
+0 jrc *.jr
+
+0 m2jr -su bounded_buffer.m
+0 jrc *.jr
+
+0 m2jr -sx bounded_buffer.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sx.out 2>&1
+0 grep "Printing" sx.out >/dev/null
+0 grep -v "Printing" sx.out > gsx.out
+0 scmp gall.std gsx.out
+0 rm -rf jrGen core *.out bounded_buffer.jr m_condvar.jr

@@ -1,0 +1,19 @@
+public class MyHandler implements edu.ucdavis.jr.Handler	{
+
+	public handler void handleNoOfflineMsgException(NoOfflineMsgException e)
+	{
+		System.out.println("No offline message");
+	}
+
+	public handler void handleNoNotificationException(NoNotificationException e)
+	{
+		System.out.println("No new notification");
+	}
+
+	public handler void handleUserOfflineException(UserOfflineException e)
+	{
+		System.out.println("User is currently offline, message will be sent when user is online");
+	}
+
+}
+

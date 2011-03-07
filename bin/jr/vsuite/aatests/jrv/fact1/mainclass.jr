@@ -1,0 +1,51 @@
+public class mainclass
+{
+    public mainclass()
+    {
+	factorial fc = new factorial();
+	System.out.println("A Program to Compute Factorials");
+	int n;
+	System.out.print("how many numbers?  ");
+	n = 0;
+	try{
+	if (Main.args.length > 0)
+	{
+	    n = Integer.valueOf(Main.args[0]).intValue();
+	}
+	} catch (Exception e) {e.printStackTrace();}
+	System.out.println();
+
+	int [][] a = new int[n][2];
+
+	cap void (int) [] myanswer = new cap void (int) [n];
+	for (int i = 0; i < n; i++)
+	{
+	    myanswer[i] = new op void (int);
+	}
+
+	System.out.println("enter " +  n + " numbers, separated by whitespace");
+	for (int i = 0; i < n; i++)
+	{
+	try{
+	    if (Main.args.length > (i + 1))
+	    a[i][0] = Integer.valueOf(Main.args[i + 1]).intValue();
+	    else
+		a[i][0] = 0;
+	} catch (Exception e) {e.printStackTrace(); a[i][0] = 0; }
+	}
+
+	System.out.println();
+	for (int i = 0; i < n; i++)
+	{
+	        send fc.fact(a[i][0], myanswer[i]);
+	}
+	for (int i = 0; i < n; i++)
+	{
+	        receive myanswer[i](a[i][1]);
+	}
+	for (int i = 0; i < n; i++)
+	{
+	    System.out.println(a[i][0] + " factorial is " + a[i][1]);
+	}
+    }
+}

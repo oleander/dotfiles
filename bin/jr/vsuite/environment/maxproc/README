@@ -1,0 +1,57 @@
+You can use these tests to see how many processes you can create on
+your system for Java and JR.  JR processes (and operations) consume
+more memory than Java threads, so you won't be able to create as many.
+Note too that the JR program will take quite a long time for lots of
+processes.
+
+**** Caution: running these programs with too many threads might cause
+**** your system to hang, either for just yourself or for all users.
+**** So, don't run these in an environment where doing so might affect
+**** others!
+
+To run them use, e.g., for JR
+
+  jrgo 200
+
+or for Java
+
+  jgo  200
+
+  (or standard javac and java commands).
+
+For either of these, if you try to create too many threads, you'll get
+something output to stderr like
+
+    Exception in thread "main" java.lang.OutOfMemoryError: unable to
+    create new native thread
+            at java.lang.Thread.start(Native Method)
+
+To see more easily whether you get that message you might redirect
+stdout to a file or /dev/null, e.g.,
+
+  jrgo 200 > /dev/null
+
+
+On some UNIX systems, you might need to change the "maxproc" parameter
+if you want to run lots of processes.  E.g., in csh, type
+
+  limit
+
+to see (all) settings.  Then type, e.g.,
+
+  limit maxproc 400
+
+(You should pick a number that doesn't exceed your system's hard
+limit, which you can see with "limit -h".)
+
+In sh, bash, or ksh, use
+
+  ulimit -a
+
+and
+
+  ulimit -u 400
+
+Of course, changing this limit doesn't ensure you'll actually be able
+to create that many processes or threads because of other constraints
+such as memory, other processes running, etc.

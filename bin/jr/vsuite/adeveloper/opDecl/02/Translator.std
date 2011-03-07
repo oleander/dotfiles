@@ -1,0 +1,38 @@
+main.jr:9: test(int,char) is already defined in main
+    public static void test(int x, char y) {}
+                       ^
+main.jr:13: op void test2(int,char) is already defined in main
+    public static op void test2(int, char);
+                          ^
+main.jr:17: op void test3(int,char) is already defined in main
+    public static op void test3(int, char);
+                          ^
+main.jr:20: Missing identifier in the argument list of this op-method
+    public static op void test4(int, char) {}
+                                   ^
+main.jr:20: Missing identifier in the argument list of this op-method
+    public static op void test4(int, char) {}
+                                         ^
+main.jr:20: op void test4(int,char) is already defined in main
+    public static op void test4(int, char) {}
+                          ^
+main.jr:27: test6(int,char) is already defined in main
+    public static void test6(int x, char y) {}
+                       ^
+main.jr:31: op void test7(int,char) is already defined in main
+    public static op void test7(int x, char y);
+                          ^
+main.jr:35: op void test8(int,char) is already defined in main
+    public static op void test8(int x, char y);
+                          ^
+main.jr:38: op void test9(int,char) is already defined in main
+    public static op void test9(int x, char y) {}
+                          ^
+main.jr:49: op void test12(int,char) is already defined in main(java.lang.String[])
+	op void test12(int x, char y);
+                ^
+main.jr:50: op void test12(int,char) is already defined in main(java.lang.String[])
+	op int test12(int, char);
+               ^
+Not generating jrGen/main.java due to errors.
+12 errors

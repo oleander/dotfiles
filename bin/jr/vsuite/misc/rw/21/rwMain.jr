@@ -1,0 +1,50 @@
+import edu.ucdavis.jr.JR;
+
+public class rwMain
+{
+    static final int r_iters = 3;
+    static final int w_iters = 1;
+
+    public static void main(String [] args)
+    {
+        op void done(); // create a local op
+
+        // parse command line arguments to
+        // determine #readers, #writers and Server destination host 
+
+        int readers = 4;
+        int writers = 3;
+
+        if ( args.length == 2 ) {
+            // convert to ints
+            readers = Integer.parseInt(args[0]);
+            writers = Integer.parseInt(args[1]);
+        }
+        else if ( args.length != 0 ) {
+            System.err.println("need exactly 2 args");
+                JR.exit(1); // Where n is exit value, currently ignored
+        }
+        
+
+////    could change aboe code to read optional machine name too
+////    vm servVM = new vm() on args[0]; // create on specified host
+            vm servVM = new vm();
+
+            remote Server serv = new remote Server() on servVM;
+
+            for (int i = 0; i < readers; i++)
+                new Reader(r_iters, serv, done);
+
+            for (int i = 0; i < writers; i++)
+                new Writer(w_iters, serv, done);
+
+            int waitfor = readers + writers;
+            while (waitfor > 0) // wait for each R and W to signal completion
+            {
+System.out.println("main before receive done, waitfor="+waitfor);
+                receive done(); // simple form of an "in" statement
+                waitfor--;
+            }
+                JR.exit(0); // Where n is exit value, currently ignored
+    }
+}

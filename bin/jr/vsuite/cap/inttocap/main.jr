@@ -1,0 +1,14 @@
+// 2004-05-25
+// Before, jrc wouldn't complain, but java would; now, jrc complains.
+
+public class main {
+
+    public static void main(String [] args) {
+	int a = 999;
+	cap int () f;
+	f = a;
+	f = bbbb;
+	f = a+1;
+        System.out.println("Welcome to the wonderful world of JR!");
+    }
+}

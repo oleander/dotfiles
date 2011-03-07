@@ -1,0 +1,84 @@
+import edu.ucdavis.jr.JR;
+
+public class m {
+
+    public static op void call2();
+    public static op void call3();
+    public static op void nothing();
+
+    public static op void p();
+    public static void p() {
+	    System.out.println("awaiting callback 2");
+	    receive call2();
+	    System.out.println("awaiting callback 3");
+	    inni void call3() {
+		    System.out.println("got callback 3");
+		    reply;
+	    };
+    }
+    
+    public static void nothing() {
+	System.out.println("nothing here");
+    }
+    
+    public m() {}
+    
+    public static void main(String[] args) {
+	
+	send p();
+	System.out.println("creating #2");
+	vm vm1 = new vm();
+	remote r r2 = new remote r() on vm1;
+	r2.constructor(2, call2);
+	
+	System.out.println("creating #3");
+	vm vm2 = new vm();
+	remote r r3 = new remote r() on vm2;
+	r3.constructor(3, call3);
+	
+	System.out.println("creating #4");
+	vm vm3 = new vm();
+	remote r r4 = new remote r() on vm3;
+	r4.constructor(4, nothing);
+	
+	r2.hello("call");
+	r3.hello("call");
+	send r4.hello("send");
+	
+	remote r ra[] = new remote r [3];
+	ra[0] = r2;
+	ra[1] = r3;
+	ra[2] = r4;
+	
+	int[] hn = new int[3];
+	
+	for (int i=0; i<3; i++) {
+	    hn[i] = ra[i].hello("cocall"); // sort of
+	}
+	
+	for (int i=0; i<3; i++) {
+	    send ra[i].hello("cosend"); // sort of
+	}
+	
+    // following tests correct resource parentage of remote invocations
+    // should hang in Scheduler awaiting request
+	try {
+	Thread.sleep(500);
+	} catch (Exception e) {
+	    System.err.println("Exception in m.main() ...\n");
+	    e.printStackTrace();
+	}
+	
+
+	remote Scheduler sched;
+	sched = new remote Scheduler();
+	remote Client c;
+	vm vm4 = new vm();
+	c = new remote Client() on vm4;
+	c.client(sched);
+	
+	JR.exit(1); // never gets here
+	
+    }
+
+}

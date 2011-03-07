@@ -1,0 +1,68 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+	public static cap void() [] memberCap = new cap void()[10];
+
+	public static cap void() [][] memberCap2 = new cap void()[2][2];
+
+	static {
+		for (int i = 0; i < 10; i++)
+			memberCap[i] = new op void();
+		for (int i = 0; i < 2; i++)
+			for (int j = 0; j < 2; j++)
+				memberCap2[i][j] = new op void();
+	}
+
+	public static void main(String [] args) {
+		cap void() [] localCap = new cap void()[10];
+
+		cap void() [][] localCap2 = new cap void()[2][2];
+
+		for (int i = 0; i < 10; i++)
+			localCap[i] = new op void();
+
+		for (int i = 0; i < 2; i++)
+			for (int j = 0; j < 2; j++)
+				localCap2[i][j] = new op void();
+
+		for (int i = 0; i < 10; i++) {
+			send memberCap[i]();
+			send localCap[i]();
+		}
+
+		for (int i = 0; i < 10; i++) {
+			inni void memberCap[i]() {
+				System.out.println("got memberCap[" + i + "]");
+			}
+		}
+
+		for (int i = 0; i < 10; i++) {
+			inni void localCap[i]() {
+				System.out.println("got localCap[" + i + "]");
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				send memberCap2[i][j]();
+				send localCap2[i][j]();
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				inni void memberCap2[i][j]() {
+					System.out.println("got memberCap2[" + i + "][" + j + "]");
+				}
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				inni void localCap2[i][j]() {
+					System.out.println("got localCap2[" + i + "][" + j + "]");
+				}
+			}
+		}
+	}
+}

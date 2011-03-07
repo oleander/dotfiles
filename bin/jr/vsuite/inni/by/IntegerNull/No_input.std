@@ -1,0 +1,17 @@
+1111
+3333
+8888
+9999
+0.1
+0.2
+0.3
+0.4
+0.5
+jrvm exception: value of inni arm's by expression is null
+java.lang.NullPointerException: value of inni arm's by expression is null
+	at b.<init>(b.java:355)
+	at Main.main(Main.java:21)
+	at edu.ucdavis.jr.jrx.jrvm.startmain(jrvm.java:325)
+	at edu.ucdavis.jr.jrx.jrvm.main(jrvm.java:429)
+	at edu.ucdavis.jr.jrx.jrvm_wrap.startmain(jrvm_wrap.java:67)
+	at edu.ucdavis.jr.jrx.jrvm_wrap.main(jrvm_wrap.java:124)

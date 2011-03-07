@@ -1,0 +1,6 @@
+ResourceAllocatorA.jr:8: WARNING: [unchecked] unchecked cast
+found   : java.lang.Object
+required: E
+      E ret = (E) new Object();
+                  ^
+1 warning

@@ -1,0 +1,28 @@
+public class Main {
+  private static int N;
+  public static void main(String [] args){
+    N = Integer.parseInt(args[0]);
+    int [][] a = new int[N][N];
+    System.out.println("begin");
+    print(a);
+    int ijsum = 0;
+    co ((int i = 0; i < N; i++),(int j = 0; j < N; j++)) a[i][j] = p(i,j) {
+      ijsum += i+j;
+    }
+    System.out.println("ijsum= "+ijsum);
+    System.out.println("done");
+    print(a);
+  }
+
+  private static op int p(int i, int j) {
+    return N*i+j;
+  }
+  private static op void print(int [][] a) {
+    for( int r = 0; r < N; r++ ) {
+      for( int c = 0; c < N; c++ ) {
+	System.out.print(a[r][c]+" ");
+      }
+      System.out.println();
+    }
+  }
+}

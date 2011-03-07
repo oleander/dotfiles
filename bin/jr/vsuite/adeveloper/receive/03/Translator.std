@@ -1,0 +1,5 @@
+main.jr:15: op void test2(double) in main cannot be applied to (char)
+	receive test2(b);
+                ^
+Not generating jrGen/main.java due to errors.
+1 error

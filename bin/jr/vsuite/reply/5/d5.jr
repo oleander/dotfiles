@@ -1,0 +1,37 @@
+/* resource d5 */
+/* SR version 2.3.1, December 1995 */
+
+
+public class d5 {
+
+   public op void rep (int);
+   public op void worker (cap void (int) rep, int);
+
+   d5() {
+	    call worker(rep, 33);
+	    System.out.println(("before rep"));
+
+	    inni void rep(int z) {
+   		{
+      		System.out.println(("got") + " " + (z));
+      		}
+   	    }
+	   
+// no automatic termination
+// so sleep enough to ensure worker completes after sending to rep
+// so we get all the output...
+////	    Thread.sleep(1000);
+   }
+
+   public void worker(cap void (int) rep, int n) {
+        int v;
+        v=7777;
+
+   	    System.out.println(("worker before reply") + " " + (n) + " " + (v));
+   	    reply;
+   	    System.out.println(("worker after reply") + " " + (n) + " " + (v));
+   	    send rep(n + v);
+   	    System.out.println(("worker after send rep") + " " + (n) + " " + (v));
+   }
+}
+

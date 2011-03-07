@@ -1,0 +1,21 @@
+/* test comments */
+_resource foo {
+
+  public int a;
+
+// this form too
+  public int b;
+
+/* this one should be // okay too */
+
+  public int c;
+
+
+
+  public int d;
+
+}
+
+/* multi-line
+ * comments
+ * are groovy -- oops, but forgot to terminate it on this line

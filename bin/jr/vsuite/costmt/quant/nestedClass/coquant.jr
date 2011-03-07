@@ -1,0 +1,30 @@
+import edu.ucdavis.jr.JR;
+
+public class coquant {
+
+	public static class myclass {
+		public static int count = 0;
+	}
+	public static op void f(int n, int m);
+
+	public static void main(String [] args)	{
+
+		System.out.println("------- Begin execution ----------");
+
+		co ((int i = 0; i < 2; i++),(myclass j = null; myclass.count < 2; myclass.count++)) call f(i, myclass.count) {
+			System.out.println("done with f(" + i + ")");
+		}
+		System.out.println("done with co");
+
+	}
+
+	private static process MYPROCESS	{
+		while (true)	{
+			inni ((int i = 0; i < 2; i++)) void f(int x, int y) {
+				System.out.println("inside inni: x " + x + " i " + i + " y " + y);
+			}
+		}
+	}
+
+}
+

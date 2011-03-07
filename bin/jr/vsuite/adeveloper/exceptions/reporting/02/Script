@@ -1,0 +1,14 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+
+# separate stdout and stderr to compare
+1 jrrun Main > No_input.out1 2> No_input.out2
+
+0 cmp No_input.std1 No_input.out1
+
+# details of No_input.out2 depends on Java implementation (e.g., line #s)
+# BUT, we want to check that got the correct line in the message
+# so if change implementation, will need to change this test
+0 grep "edu.ucdavis.jr.jrRuntimeError: Unhandled exception: java.lang.NullPointerException at Main.assignintbktTovoid(Main.java:229)" No_input.out2 > /dev/null 2>&1
+
+0 rm -rf jrGen core *.out*

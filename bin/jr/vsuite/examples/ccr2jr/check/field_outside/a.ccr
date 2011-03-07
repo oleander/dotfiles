@@ -1,0 +1,100 @@
+/* test nesting of region statements for
+ * different elements of array of CCRs.
+ */
+
+import edu.ucdavis.jr.JR;
+
+public class a {
+
+  // must be even
+  private static final int NN = 8;
+
+   // would-be processes
+   private static op void depositer();
+   private static op void fetcher(int);
+
+   // the CCRs
+   private static buffer [] mybb = new buffer [NN];
+   static {
+       for (int k = 0; k < NN; k++) {
+           mybb[k] = new buffer();
+       }
+   }
+
+   private static sem done;
+
+   public static void main(String [] args) {
+        try {
+
+	    // start up processes
+	    send depositer();
+	    for (int i = 1; i <= NN; i += 2) {
+	        send fetcher(i);
+	    }
+
+	    // wait for all processes to finish
+            P(done);
+	    for (int i = 1; i <= NN; i += 2) {
+	        P(done);
+	    }
+	    JR.exit(0);
+
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+    /* fill up the buffer */
+    private static void depositer() {
+        try {
+            for (int k = NN-1; k >= 0; k--) {
+                int data = 1000+k;
+int foo = mybb[k].    slot;
+                    _region buffer _with b = mybb[k] _when !b.full {
+                        b.slot = data;
+                        b.full = true;
+                    }
+            }
+	    V(done);
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+    /* each fetcher switch adjacent members
+     * fetcher 0 prints them all out at end
+     */
+    private static void fetcher(int i) {
+        try {
+	    int h = i-1;
+            Thread.sleep(10);
+                    _region buffer _with b = mybb[h] _when b.full {
+                        _region buffer _with c = mybb[h+1] _when c.full {
+                            int t = b.slot;
+                            b.slot = c.slot;
+                            c.slot = t;
+                            c.okay = true;
+                        }
+                        b.okay = true;
+                    }
+boolean goo = mybb[k].    full;
+            if (h==0) {
+                for (int k = 0; k < NN; k++) {
+                    _region buffer _with b = mybb[k] _when b.okay {
+                        System.out.println("slot " + k +" is " + b.slot);
+                    }
+                }
+            }
+	    V(done);
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+}

@@ -1,0 +1,28 @@
+#!/bin/sed -f
+# delete all
+#
+#    0 cd jrGen
+#    0 jr_rmic
+#    0 cd ..
+#
+# instances from a Script file in the vsuite.
+#
+# to apply this command, call it XXX, to all Script files in subtree, e.g.,
+#
+# find . -name Script -exec XXX {} \;
+# (first advise to make copy of entire subtree, just in case)
+#
+
+# had problems with single -e expression within csh script
+# and sed -i on above, so used this sed script using another csh script.
+
+#### N.B., not perfect: should probably match entire lines
+#### and below seems to use "or" rather than "and"
+#### should fix, but was still useful as was and needed to fix
+#### only a few Scripts
+
+# build up buffer
+# then delete entire buffer, once have whole multi-line pattern.
+/cd jrGen/N
+/jr_rmic/N
+/cd ../d

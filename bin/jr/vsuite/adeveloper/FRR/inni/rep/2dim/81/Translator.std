@@ -1,0 +1,12 @@
+Elevator.jr:21: incompatible types
+found   : A
+required: B
+	    reply new A(2);
+                  ^
+Elevator.jr:24: incompatible types
+found   : A
+required: B
+	    reply new A(1);
+                  ^
+Not generating jrGen/Elevator.java due to errors.
+2 errors

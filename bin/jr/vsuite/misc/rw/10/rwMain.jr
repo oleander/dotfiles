@@ -1,0 +1,42 @@
+import edu.ucdavis.jr.JR;
+
+public class rwMain
+{
+    static final int r_iters = 3;
+    static final int w_iters = 1;
+
+    static op void done(); // create op at class level
+
+    public static void main(String [] args)
+    {
+        // parse command line arguments to
+        // determine #readers, #writers and Server destination host 
+//////////////        ...
+int readers = 4;
+int writers = 3;
+
+////    vm servVM = new vm() on args[0]; // create on specified host
+        vm servVM = new vm();
+
+//        remote Server serv = new remote Server() on servVM;
+        remote PrefServer serv = new remote PrefServer() on servVM;
+
+
+        for (int i = 0; i < readers; i++)
+            new Reader(r_iters, serv, done);
+
+        for (int i = 0; i < writers; i++)
+            new Writer(w_iters, serv, done);
+
+        int waitfor = readers + writers;
+        while (waitfor > 0) // wait for each R and W to signal completion
+        {
+System.out.println("main before receive done, waitfor="+waitfor);
+            receive done(); // simple form of an "in" statement
+            waitfor--;
+        }
+    JR.exit(0);  // Where n is the exit value which is currently ignored
+
+
+    }
+}

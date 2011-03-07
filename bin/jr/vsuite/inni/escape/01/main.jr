@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    public static op void a();
+    public static op void b();
+
+    static int i;
+
+    public static void a()
+    {
+	while (true)
+	{
+	    inni void b()
+	    {
+		if (i == 0)
+		{
+		    System.out.println("Breaking");
+		    break;
+		}
+		System.out.println("Did not break");
+	    }
+	    System.out.println("Did not break");
+	}
+    }
+
+    public static void main(String [] args)
+    {
+	i = 0;
+	send b();
+	a();
+	JR.exit(0);
+    }
+}

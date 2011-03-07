@@ -1,0 +1,24 @@
+import edu.ucdavis.jr.JR;
+import java.io.*;
+
+public class main {
+
+    public static int x;
+
+    public static op void test(double x) {}
+    public static op void test(char x);
+
+    public static void main(String [] args) {
+	System.out.println("Welcome to the wonderful world of JR!");
+
+	op int test(double) throws java.io.EOFException;
+	op int test(char);
+
+	{
+	  call test(1.0);
+	}
+	test(2.0);
+	send test(3.0);
+    }
+
+}

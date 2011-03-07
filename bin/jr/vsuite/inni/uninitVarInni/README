@@ -1,0 +1,6 @@
+2007-09-22 
+
+	JR translator needs to initialize local variables
+	since some inni's control flow in the generated code
+        confuses javac to think local variable isn't initialized.
+        sigh.

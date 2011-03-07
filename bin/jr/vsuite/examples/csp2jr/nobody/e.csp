@@ -1,0 +1,16 @@
+_program e {
+  _specs {
+    A {}
+  }
+
+  _process A {
+    System.out.println("start of A");
+    for (int k = 1; k <= 4; k++) {
+      System.out.println("A "+k);
+      _if
+      _fi
+    }
+    System.out.println("done A");
+  }
+
+}

@@ -1,0 +1,8 @@
+_program a {
+  _specs {
+    A [4][3][2] {}
+  }
+  _process A (i,j,k){
+    System.out.println("fooled ya!");
+  }
+}

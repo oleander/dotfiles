@@ -1,0 +1,94 @@
+/*
+ * Created on 2004/7/31
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+
+/**
+ * @author William
+ *
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+import javax.swing.JComponent;
+import java.util.LinkedList;
+import java.text.DecimalFormat;
+
+public abstract class DiningPhilSolution {
+	
+	//*********************************************
+	// constructor
+	public DiningPhilSolution()
+	{
+		once = 1;
+	}
+	
+	//*********************************************
+	// function called by MainFrame to control the Solution
+	public op void start(DiningDesktopPane, boolean, LinkedList);
+	public op void pause()
+	{
+		for ( int i = 0; i < numPhil; i++)
+		{
+			try
+			{
+				send phil_handler[i](SolutionControlConstant.PAUSE);
+			} catch ( Exception e ) {}
+		}
+	}
+	public op void resume()
+	{
+		for ( int i = 0; i < numPhil; i++)
+		{
+			try
+			{
+				send phil_handler[i](SolutionControlConstant.RESUME);
+			} catch ( Exception e ) {}
+		}
+	}
+	public op void destroy()
+	{
+		if ( phil_handler == null ) 
+		{
+			return;
+		}
+		for ( int i = 0; i < numPhil; i++)
+		{
+			try
+			{
+				send phil_handler[i](SolutionControlConstant.DESTROY);
+			} catch ( Exception e ) { }
+		}
+		P(sMutex);
+		for ( int i = 0; i < s.length; i++ )
+		{
+			try
+			{
+				send s[i].endProcess();
+			} catch ( Exception e ) {}
+		}
+		V(sMutex);
+		once = 1;
+	}
+	// n = # of philosophers , t = # of sessions
+	public op void setNumber(int n, int t) 
+	{
+		if ( n >= 3 && t >= 0 )
+		{
+			numPhil = n;
+			session = t;
+		}
+	}
+	
+	//**********************************************
+	// some variables
+	protected int numPhil, session;
+	protected int once = 0;
+	protected op void retriver(cap void (int));
+	protected cap void(int) phil_handler [];
+	protected remote DiningPhilServant [] s;
+	protected sem sMutex = 1;
+	protected static DecimalFormat percent = new DecimalFormat("#0.0");
+	protected DiningDesktopPane container;
+}

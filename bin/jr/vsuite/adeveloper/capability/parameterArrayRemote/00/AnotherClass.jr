@@ -1,0 +1,6 @@
+import edu.ucdavis.jr.JR;
+
+// a class that MainClass will instantiate remotely
+public class AnotherClass {
+   public AnotherClass (cap void (int) arrayCap[]) { }
+}

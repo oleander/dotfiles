@@ -1,0 +1,5 @@
+main.jr:4: A 'call' may only be invoked on a method, operation or operation capability.
+      System.out.println("a" (1==1?"b":"c"));
+                             ^
+Not generating jrGen/main.java due to errors.
+1 error

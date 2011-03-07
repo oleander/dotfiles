@@ -1,0 +1,57 @@
+// SR version used var parameters
+// no (easy) JR equivalent of var parameters,
+// so this code uses just value parameters (with different results).
+
+/* resource rep3 */
+
+/* SR version 2.3.1, December 1995 */
+import edu.ucdavis.jr.JR;
+
+public class rep3 {
+   public int a;
+   public int b;
+   
+   private op int p1(int x);
+   private op int p2(int x);
+
+   rep3() {
+
+         a = 1;  
+         b = 2;
+         a = p1(b);
+ 
+         System.out.println("after p1" + " " + a + " " + b); 
+         a = 7;
+         b = 8;
+         a = p2(b);
+         System.out.println("after p2" + " " + a + " " + b);
+   }
+
+   private int p1(int x) {
+      int z=0;
+      ProcBody: {
+         System.out.println(x);
+         x = x + 100;
+         z = 99999;
+         reply z;
+         System.out.println(777);
+         z = 44444;
+         reply z;
+         inni int p2(int y) {
+               System.out.println(y);
+               y = y + 200;
+               z = 88888888;
+               reply z;
+               System.out.println(888);
+               reply z;
+               z = 5555555;
+               System.out.println(999);
+               System.out.println(-y);
+            return z;
+         }
+        
+      } 
+      return z;
+   }  
+}
+

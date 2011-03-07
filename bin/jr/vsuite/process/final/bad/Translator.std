@@ -1,0 +1,14 @@
+multivar.jr:7: final parameter i may not be assigned
+	i++; i--; // not allowed
+        ^
+multivar.jr:7: final parameter i may not be assigned
+	i++; i--; // not allowed
+             ^
+multivar.jr:8: final parameter k may not be assigned
+	k++; k--; // not allowed
+        ^
+multivar.jr:8: final parameter k may not be assigned
+	k++; k--; // not allowed
+             ^
+Not generating jrGen/multivar.java due to errors.
+4 errors

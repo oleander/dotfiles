@@ -1,0 +1,35 @@
+import edu.ucdavis.jr.JR;
+
+import java.io.*;
+
+public class main {
+
+    public static op void test1() throws java.io.EOFException {
+      reply handler (new MyHandler());
+      System.out.println("after reply in test1");
+      throw new java.io.EOFException();
+    }
+
+    public static op void test2() throws NullPointerException {
+      reply;
+      System.out.println("after reply in test2");
+      throw new NullPointerException();
+    }
+
+    public static op void test3() throws java.io.EOFException;
+    public static void test3() throws java.io.EOFException {
+      MyHandler mh = new MyHandler();
+      reply handler mh;
+      System.out.println("after reply in test3");
+      throw new java.io.EOFException();
+    }
+
+    public static void main(String [] args) {
+      try {
+        test1();
+	test3();
+      } catch (Exception e) {}
+      test2();
+    }
+
+}

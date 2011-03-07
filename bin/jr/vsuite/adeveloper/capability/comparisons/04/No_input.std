@@ -1,0 +1,19 @@
+-----------------
+localtest1 = null
+localtest2 = noop
+-----------------
+test of ==
+test1 == myop: true
+myop == localop: false
+myop == test1: true
+localtest1 == myop: false
+myop == lcoaltest1: false
+myop == myop: true
+test of !=
+test1 != myop: false
+myop != localop: true
+myop != test1: false
+lcoaltest1 != myop: true
+myop != localtest1: true
+myop != myop: false
+bye

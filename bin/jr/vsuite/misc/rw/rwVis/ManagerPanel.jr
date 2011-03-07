@@ -1,0 +1,81 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+import edu.ucdavis.jr.JR;
+import java.lang.*;
+
+// the main swing class for the main Manager's view, it's a swing JPanel that shows the reader and writer queues
+// and the active user queue
+public class ManagerPanel extends JPanel {
+
+	//caps to call manager functions
+	private cap void () redraw;
+	public cap java.util.List () getUsers;
+	public cap java.util.List () getActive;
+
+	//function that sends redraw to manager when it gets a redraw
+	process redrawPanel {
+		while(true)	inni void redraw () { repaint(); }
+	}
+				
+	//the constructor that creates the panel and sets its attributes
+	public ManagerPanel(Manager manager) {
+		super(new GridLayout(1,1));
+
+		this.redraw = manager.repaintManager;
+		this.getUsers = manager.getUsers;
+		this.getActive = manager.getActive;
+
+		setPreferredSize(new Dimension(240, 370));
+		setBackground(Color.black);
+		setVisible(true);
+	}
+
+	//swing functionality to draw the panel with readers, writers and active users
+	public void paintComponent (Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		int wcount = 0;
+		int rcount = 0;
+		int count = 0;
+
+		java.util.List users = Collections.synchronizedList(new ArrayList());
+		java.util.List active = Collections.synchronizedList(new ArrayList());
+
+		try{
+			users = getUsers();
+			active = getActive();
+		} catch (java.lang.OutOfMemoryError e) { System.out.println("PaintComponent: OutOfMemoryError"); e.printStackTrace();}
+		catch (edu.ucdavis.jr.jrCommunicationException e) { System.out.println("PaintComponent: Communication"); e.printStackTrace(); }
+
+		synchronized (users) {
+			Iterator itr = users.iterator();
+			while (itr.hasNext()) {
+				User u = (User) itr.next();
+				if(u instanceof Writer)
+					u.mydraw(g2, wcount++, 80);
+				else	
+					u.mydraw(g2, rcount++, 20);
+			}
+		}
+
+		synchronized (active) {
+			Iterator itr = active.iterator();
+			while (itr.hasNext()) {
+				User u = (User) itr.next();
+				u.mydraw(g2, count++, 190);
+			}
+		}
+
+		g2.setColor(Color.white);
+
+		g2.setFont(new Font("Dialog", Font.BOLD, 14));
+		g2.drawString("Queued", 30, 17);
+		g2.drawString("Active", 175, 23);
+
+		g2.setFont(new Font("Dialog", Font.PLAIN, 9));
+		g2.drawString("Readers", 12, 29);
+		g2.drawString("Writers", 73, 30);
+	}
+}

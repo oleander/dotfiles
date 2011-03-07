@@ -1,0 +1,12 @@
+A list of shapes: 
+MyShape square
+MyShape triangle
+MyShape rectangle
+changing triangle to equilateral triangle...
+shape just changed: equilateral triangle
+Now the list of shapes becomes: 
+MyShape square
+MyShape equilateral triangle
+MyShape rectangle
+send serviced by inni: hihi
+send serviced by receive: hihi

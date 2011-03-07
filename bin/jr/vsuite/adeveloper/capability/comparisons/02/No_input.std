@@ -1,0 +1,21 @@
+-----------------
+cap1 = myop
+cap2 = noop
+localcap1 = null
+localcap2 = noop
+-----------------
+test of ==
+cap1 == myop: true
+myop == localop: false
+myop == cap1: true
+localcap1 == myop: false
+myop == lcoalcap1: false
+myop == myop: true
+test of !=
+cap1 != myop: false
+myop != localop: true
+myop != cap1: false
+lcoalcap1 != myop: true
+myop != localcap1: true
+myop != myop: false
+bye

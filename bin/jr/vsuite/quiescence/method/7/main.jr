@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    static final int N = 2;
+    static vm virt [] = new vm [N];
+    static remote other [] oth = new remote other [N];
+    public static void main(String [] args)
+    {
+        try
+        {
+            JR.registerQuiescenceAction(foo);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+            for (int i = 0; i < N; i++) {
+                virt[i] = new vm();
+                oth[i] = new remote other((i+1)*5) on virt[i];
+            }
+    }
+
+    public static op void foo()
+    {
+            System.out.println("main's foo");
+
+
+            for (int i = 0; i < N; i++) {
+                oth[i].foo();
+            }
+    }
+}

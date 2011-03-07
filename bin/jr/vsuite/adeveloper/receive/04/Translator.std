@@ -1,0 +1,8 @@
+main.jr:17: variable c might already have been assigned
+	c = 10;
+        ^
+main.jr:18: variable c might already have been assigned
+	c = 20;
+        ^
+Not generating jrGen/main.java due to errors.
+2 errors

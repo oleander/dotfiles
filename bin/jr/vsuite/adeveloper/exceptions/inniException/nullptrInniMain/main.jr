@@ -1,0 +1,19 @@
+public class main {
+
+
+    public static void main(String [] args) {
+
+	op void f();
+
+	send f();
+	inni void f() {
+
+	    int [] a = null;
+	    System.out.println("a.length="+a.length);
+	    System.out.println("okay");
+	}
+
+	System.out.println("done");
+    }
+
+}

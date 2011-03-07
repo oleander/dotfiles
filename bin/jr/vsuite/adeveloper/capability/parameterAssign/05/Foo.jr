@@ -1,0 +1,15 @@
+public class Foo {
+  cap void () c;
+  public Foo() {
+  }
+  public void set(cap void() c) {
+    this.c = c;
+  }
+  public void go() {
+    System.out.println("starting p");
+    send c();
+  }
+  public op void writex() {
+    System.out.println("writex");
+  }
+}

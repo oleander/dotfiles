@@ -1,0 +1,35 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static cap void(int) test1 = null;
+    public static cap void(char) test2 = noop;
+
+    public static op void myop(cap void(int) x) {
+	System.out.println("myop -- int");
+    }
+
+    public static op void myop(cap void(char) x) {
+	System.out.println("myop -- char");
+    }
+
+    public static op void myop(cap void(double) x) {
+	System.out.println("myop -- double");
+    }
+
+    public static void main(String [] args) {
+
+	cap void(int) localtest1 = null;
+
+	op void localop(int x);
+	op void lcoalop(char x);
+	op void localop(double x);
+
+	myop(test1);
+	myop(test2);
+
+	myop(localtest1);
+	myop(localop);
+    }
+
+}

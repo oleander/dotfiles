@@ -1,0 +1,27 @@
+import edu.ucdavis.jr.JR;
+
+public class A {
+
+    public op void foo();
+    public op void goo(int);
+    public op void hoo();
+
+    private int id;
+
+    public A(int xid) {
+        id = xid;
+    }
+
+    public void hoo() {
+// code removed to make output deterministic
+//            System.out.println("enter hoo "+id);
+//            System.out.println("exit  hoo "+id);
+//        try{
+//	    Thread.sleep(400); // let print thread do its thing
+//        }
+//      catch (Exception e){
+//            System.err.println("Oops.");
+//        }
+    }
+
+}

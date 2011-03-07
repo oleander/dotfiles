@@ -1,0 +1,5 @@
+main.jr:8: A 'reply' statement's exception handler must be an object.
+      reply handler 'a';
+                    ^
+Not generating jrGen/main.java due to errors.
+1 error

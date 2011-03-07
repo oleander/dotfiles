@@ -1,0 +1,20 @@
+// quantifiers in input statements
+// note: output deterministic
+
+public class inquant {
+    public inquant() {
+
+	    op void p(char);
+
+	    send p('x');
+	    send p('c');
+
+	    inni ((int i = 0; i <= 1; i++)) void p(char x) st i == 1 {
+		System.out.println(x + " " + i);
+	    }
+	    inni ((int i = 0; i <= 1; i++)) void p(char x) st i == 0 {
+		System.out.println(x + " " + i);
+	    }
+
+    }
+}

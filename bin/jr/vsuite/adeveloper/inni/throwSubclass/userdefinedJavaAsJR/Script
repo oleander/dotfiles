@@ -1,0 +1,9 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun main > No_input.out 2>&1
+# these line numbers depend on Java implementation
+# (also removed manually from .std)
+0 grep -v "java.lang.reflect.Method.invoke" No_input.out > No_inputgg.out
+0 grep -v "sun.reflect" No_inputgg.out > No_inputg.out
+0 cmp No_input.std No_inputg.out
+0 rm -rf jrGen core *.out

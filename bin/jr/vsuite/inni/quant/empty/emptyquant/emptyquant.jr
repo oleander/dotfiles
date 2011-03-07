@@ -1,0 +1,39 @@
+import edu.ucdavis.jr.JR;
+
+// dynamic arrays of ops
+
+public class emptyquant
+{
+  cap void (int) [] test;
+
+  public emptyquant()
+  {
+  	try{
+	JR.registerQuiescenceAction(done);
+	} catch(Exception e){}
+	
+	test = new cap void (int) [5];
+
+	for (int i = 0; i < 5; i++)
+	{
+		test[i] = new op void(int);
+	}
+
+	send test[1](10);
+
+	// 2004-05-13
+	// this empty quantifier is legal; probably shouldn't be
+	inni () void test[1](int x) 
+	{
+		System.out.println("received:");
+		System.out.println("x: " + x);
+	}
+
+	System.out.println("done");
+  }
+
+  public static op void done()
+  {
+  	System.out.println("Quiescence!");
+  }
+}

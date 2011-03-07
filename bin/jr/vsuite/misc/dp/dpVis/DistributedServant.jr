@@ -1,0 +1,19 @@
+public class DistributedServant extends DiningPhilServant {
+  public op void getfork();
+  public op void relfork();
+  int id;
+  public DistributedServant(int id) {
+  	 super();
+    this.id = id;
+  }
+  process server {
+    System.out.println("starting up Servant"+id);
+    while (!destroy) {
+      inni void getfork() {}
+      [] void endProcess() { destroy = true; }
+      if ( destroy ) break;
+      inni void relfork() {}
+      [] void endProcess() { destroy = true; }
+    }
+  }
+}

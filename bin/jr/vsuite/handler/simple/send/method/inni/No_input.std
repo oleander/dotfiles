@@ -1,0 +1,3 @@
+Caught java.io.EOFException through handler object
+Caught through call to p2 with try/catch
+Caught through call to p with try/catch

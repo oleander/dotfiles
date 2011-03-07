@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# (name is from previous name, which was tack (sed attempt;
+# a sed expert could probably write a simple sed script),
+# but this is the awk version)
+
+# assumes
+# -- file is well-formed, i.e.,
+#    -- full line comes before error line
+#    -- error appears on 1 line, not multiple lines
+
+awk '
+  BEGIN { \
+    have1 = 0; \
+  } \
+  { \
+  if (have1) { \
+    if (substr($0,1,1) == " ") { \
+      print line1$0; \
+      have1 = 0; \
+    }\
+    else { print line1; line1 = $0; } \
+  } \
+  else { have1 = 1 ; line1 = $0 } \
+  } \
+  END { \
+  if (have1) print line1; \
+  \
+  } \
+  '

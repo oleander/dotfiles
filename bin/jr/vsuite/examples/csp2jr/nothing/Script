@@ -1,0 +1,19 @@
+0 csp2jr -ti a.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+# gets exception, so jrvm's exits with status 1
+1 jrrun a > ti.out 2>&1
+# details depend on Java implementation, so just check 
+0 grep "jrvm exception: " ti.out > /dev/null 2>&1
+0 grep "java.lang.ClassNotFoundException: a" ti.out > /dev/null 2>&1
+0 rm -rf jrGen core *.out csp_*.jr a.jr
+
+0 csp2jr -te a.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+# gets exception, so jrvm's exits with status 1
+1 jrrun a > te.out 2>&1
+# details depend on Java implementation, so just check 
+0 grep "jrvm exception: " te.out > /dev/null 2>&1
+0 grep "java.lang.ClassNotFoundException: a" te.out > /dev/null 2>&1
+0 rm -rf jrGen core *.out csp_*.jr a.jr

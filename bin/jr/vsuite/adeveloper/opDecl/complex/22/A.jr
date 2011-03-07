@@ -1,0 +1,12 @@
+public class A {
+
+    public static op void test(double x)
+    {
+      System.out.println("static op method double: " + x);
+    }
+    public static op void test(char x)
+    {
+      System.out.println("static op method char: " + x);
+    }
+
+}

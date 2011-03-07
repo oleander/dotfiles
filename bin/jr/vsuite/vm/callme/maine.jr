@@ -1,0 +1,31 @@
+/* resource maine */
+/* SR version 2.3.1, December 1995 */
+
+public class maine {
+   // original SR program read num and seq as command-line args;
+   // we won't bother with that.
+   private final int nvm = 4;
+   private final String seq = "41323421";
+
+   maine() {
+	    // declare one larger so can use original SR subscripts;
+	    // [0] unused in both.
+	    vm virt [] = new vm [nvm+1];
+	    remote spud [] mach = new remote spud [nvm+1];
+
+	    for (int i = 1; (i<=nvm); i+=1) {
+	        virt[(i)] = new vm();
+		mach[(i)] = new remote spud(i, nvm) on virt[(i)];
+	    }
+
+	    for (int i = 1; (i<=nvm); i+=1) {
+	        call mach[(i)].spud_init(mach);
+            }
+
+	    int i = 
+Integer.valueOf(seq.substring(0,1)).intValue();
+////System.out.println("X i "  + "X  " + i);
+
+		call mach[(i)].msg(0, seq);
+   }
+}

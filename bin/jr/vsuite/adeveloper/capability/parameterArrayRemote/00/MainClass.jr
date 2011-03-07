@@ -1,0 +1,23 @@
+import edu.ucdavis.jr.JR;
+
+// an example for remote objects that does NOT work
+public class MainClass {
+
+   public MainClass () {
+      int n = 5;                      			  // number of operations to create
+      cap void (int) arrayCap[] = new cap void (int)[n];  // an array of caps, ptrs to operations
+       
+      for (int i=0; i<n; i++)
+         arrayCap[i] = new op void (int);
+         
+      //      vm virtualMachine = new vm() on "localhost";        // where to place another object
+
+      remote AnotherClass arrayClass =                    // will fail here trying to instantiate
+         new remote AnotherClass (arrayCap);
+   }
+   
+
+   public static void main(String[] args) {
+      new MainClass();
+   }
+ }

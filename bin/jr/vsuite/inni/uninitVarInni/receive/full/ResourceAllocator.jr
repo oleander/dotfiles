@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class ResourceAllocator<E> {
+
+  public op E allocate();
+  public op void release(E e);
+
+  private Queue<E> units = new LinkedList<E>();
+
+  private process server {
+
+    while (true) {
+      System.out.println("Server starting new loop.");
+      inni E allocate() {
+	E unit;
+	System.out.println("Inside allocate...");
+	if (units.isEmpty()) {
+	  System.out.println("Waiting for a unit...");
+	  receive release(unit);
+	}
+	else
+	  unit = units.remove();
+	return unit;
+      }
+      [] void release(E unit) {
+	System.out.println("Released: "+unit);
+	units.add(unit);
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    final ResourceAllocator<Integer> ra = new ResourceAllocator<Integer>();
+
+    System.out.println("Sleeping...");
+    System.out.println("About to release 42.");
+    ra.release(42);
+    System.out.println("Released 42.");
+
+    System.out.println("Allocating...");
+    int unit = ra.allocate();
+    System.out.println("Allocated unit: "+unit);
+    send ra.release(unit);
+  }
+}

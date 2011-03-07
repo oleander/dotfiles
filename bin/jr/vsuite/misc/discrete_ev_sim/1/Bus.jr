@@ -1,0 +1,91 @@
+public class Bus
+{
+
+    public op void seize();
+    public op void release();
+    public op void print();
+
+    private op void try_seize(cap void () go_ahead);
+    private op void bus_manager();
+
+    private remote Scheduler sched;
+
+//// 2000-06-12 since constructors can't (yet) take cap arguments
+/*
+    public op void init(remote Scheduler sched);
+    public void init(remote Scheduler sched) {
+        this.sched = sched;
+    }
+*/
+
+    public Bus(remote Scheduler sched) {
+        this.sched = sched;
+	    send bus_manager();
+    }
+
+    private void bus_manager() {
+        int nreq = 0;
+	double bus_time = 0.0;
+	double wait_time = 0.0;
+	boolean free = true;
+
+	op void block_list( cap void () go_ahead );
+
+	    while( true ) {
+////System.out.println("bus_manager top loop...");
+	        inni void try_seize(cap void() go_ahead) {
+////System.out.println("bus_manager try_sieze...");
+		    nreq++;
+		    if (free) {
+////System.out.println("bus_manager try_sieze free...");
+		        free = false;
+////System.out.println("bus_manager try_sieze before sched.time...");
+			bus_time -= sched.time();
+////System.out.println("bus_manager try_sieze after  sched.time...");
+			send go_ahead();
+		    }
+		    else {
+////System.out.println("bus_manager try_sieze not free...");
+			wait_time -= sched.become_inactive();
+			send block_list(go_ahead);
+		    }
+////System.out.println("bus_manager try_sieze end...");
+		}
+		[] void release() {
+////System.out.println("bus_manager release...");
+		    if (block_list.length() > 0) {
+		        wait_time += sched.become_active();
+			cap void () go_ahead;
+			receive block_list(go_ahead);
+			send go_ahead();
+		    }
+		    else {
+		        free = true;
+			bus_time += sched.time();
+		    }
+		}
+		[] void print() {
+////System.out.println("bus_manager print...");
+		    double now = sched.time();
+		    double avg_wait, pct_bus;
+		    avg_wait = (wait_time+now*block_list.length())/nreq;
+		    if (free) {
+		        pct_bus = 100*bus_time/now;
+		    }
+		    else {
+		        pct_bus = 100*(bus_time+now)/now;
+		    }
+		    System.out.println("avg_wait="+avg_wait
+                                       +" pct_bus="+pct_bus);
+
+		}
+	
+	    }
+    }
+
+    public void seize() {
+        op void go_ahead();
+	    send try_seize(go_ahead);
+	    receive go_ahead();
+    }
+}

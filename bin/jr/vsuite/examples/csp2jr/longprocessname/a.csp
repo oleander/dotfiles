@@ -1,0 +1,28 @@
+_program a {
+
+  _specs {
+    AAAAAAAAAAAAAAAAAAAA { o1(int); }
+    BBBBBBBBBBBBBBBBBBBB { o2(int); }
+  }
+
+  _process AAAAAAAAAAAAAAAAAAAA {
+    int x;
+    System.out.println("start of A " + AAAAAAAAAAAAAAAAAAAA + " " + BBBBBBBBBBBBBBBBBBBB);
+    _i BBBBBBBBBBBBBBBBBBBB?o1(x);
+    System.out.println("in middle of A");
+    _o BBBBBBBBBBBBBBBBBBBB!o2(17);
+    System.out.println("end A " + x);
+  }
+
+  _process BBBBBBBBBBBBBBBBBBBB {
+    int x;
+    System.out.println("start of B " + BBBBBBBBBBBBBBBBBBBB + " " + AAAAAAAAAAAAAAAAAAAA);
+    _o AAAAAAAAAAAAAAAAAAAA!o1(3);
+    System.out.println("in middle of B");
+    _i AAAAAAAAAAAAAAAAAAAA o2(x); // note that  (and !) are optional
+    // make it hang
+    _i AAAAAAAAAAAAAAAAAAAA o2(x);
+    System.out.println("end B " + x);
+  }
+
+}

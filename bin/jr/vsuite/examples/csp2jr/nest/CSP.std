@@ -1,0 +1,6 @@
+csp2jr: nest.csp, line 15:           _i [j = 0 _to N-1] (j==k) A[j]!foo(x) { // contradictory
+csp2jr: near: "foo(x) { // contradictory"
+csp2jr: warning: contradictory _i and !; using _i
+csp2jr: nest.csp, line 30:           _o [j = 0 _to N-1] (j==k) A[j]?foo(i*100) { // contradictory
+csp2jr: near: "foo(i*100) { // contradictory"
+csp2jr: warning: contradictory _o and ?; using _o

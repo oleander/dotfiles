@@ -1,0 +1,29 @@
+Welcome to the wonderful world of JR!
+foo.length=0
+goo.length=0
+hoo.length=0
+foo.length=1
+goo.length=0
+hoo.length=0
+enter hoo
+foo.length=2
+goo.length=1
+hoo.length=0
+exit  hoo
+foo.length=2
+goo.length=1
+hoo.length=0
+fun.length=2
+fun.length=0
+foo.length=1
+goo.length=1
+hoo.length=0
+foo.length=1
+goo.length=0
+hoo.length=0
+foo.length=0
+goo.length=0
+hoo.length=0
+foo.length=3
+goo.length=0
+hoo.length=0

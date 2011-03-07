@@ -1,0 +1,80 @@
+import edu.ucdavis.jr.JR;
+import javax.swing.JComponent;
+import java.util.LinkedList;
+
+	
+/*
+ * Created on 2004/7/31
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+
+/**
+ * @author William
+ *
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+ 
+import javax.swing.JComponent;
+import java.util.LinkedList;
+
+public class CentralizedSolution extends DiningPhilSolution 
+{
+	private CentralizedSolution()
+	{
+		super();
+	}
+	
+	public static DiningPhilSolution instance()
+	{
+		if ( thisInstance == null )
+		{
+			thisInstance = new CentralizedSolution();
+			thisInstance.session = 3;
+			thisInstance.numPhil = 3;
+		}
+		return thisInstance;
+	}
+	
+	public process solutionServer 
+	{
+		while ( true )
+		{
+			inni void start(DiningDesktopPane pane, boolean localOnly, LinkedList vmList) st once == 1
+			{
+			   once = 0;
+			   this.container = pane;
+				send container.removeAllOp();
+			   // create the Servants
+			   P(sMutex);
+			   s = new remote DiningPhilServant[1];
+			   s[0] = new remote CentralizedServant(numPhil);
+				V(sMutex);
+			   System.out.println("Create philosophers....");
+			   for(int i = 0; i < numPhil; i++) {
+			      new remote CentralizedPhilosopher((remote CentralizedServant)s[0], i, numPhil, session, container.remote, retriver, localOnly) on container.getVm(i);
+  					container.setMessage("Create philosophers...." + percent.format((i+1.0)/numPhil * 100) + "%");
+			   }
+			   
+			   phil_handler = new cap void (int) [numPhil];
+			   for (int i = 0; i < numPhil; i++)
+			   {
+			   	receive retriver(phil_handler[i]);
+			   }
+			   // pause every philosopher initially, and resume(start) them once they are all initialized at this point
+			   resume();
+			   container.setMessage("");
+			}
+		}
+	}
+
+	public String toString()
+	{
+		return "Centralized Solution";
+	}
+
+	private static CentralizedSolution thisInstance;
+	
+}

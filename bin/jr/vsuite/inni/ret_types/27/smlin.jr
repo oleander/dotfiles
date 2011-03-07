@@ -1,0 +1,19 @@
+// OK: float declared return type, int inni return type
+public class smlin
+{
+    public static op float a(String, int, int);
+    public static process b
+    {
+	    float chan = a("a", 3, 4);
+	    System.out.println(chan);
+    }
+    public static void main(String [] args)
+    {
+	inni int a(Object i, int j, float f)
+	{
+	    System.out.println("Howdy "+i+" "+j+" "+f);
+	    return 7;
+	}
+
+    }
+}

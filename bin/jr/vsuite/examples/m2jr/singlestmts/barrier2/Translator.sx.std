@@ -1,0 +1,14 @@
+barrier.jr:192: Invalid expression statement.
+        /*-- 20--*/  ERROR "_signal_all is not defined for signal and exit discipline" 
+                     ^
+barrier.jr:192: ';' expected.
+        /*-- 20--*/  ERROR "_signal_all is not defined for signal and exit discipline" 
+                          ^
+barrier.jr:214: Invalid expression statement.
+       /*-- 42--*/  ERROR "_signal_all is not defined for signal and exit discipline" ;
+                    ^
+barrier.jr:214: ';' expected.
+       /*-- 42--*/  ERROR "_signal_all is not defined for signal and exit discipline" ;
+                         ^
+error: Not generating jrGen/barrier.java due to errors.
+5 errors

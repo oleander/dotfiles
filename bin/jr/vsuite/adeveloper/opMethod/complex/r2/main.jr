@@ -1,0 +1,27 @@
+import edu.ucdavis.jr.JR;
+
+public class main  {
+
+    public static int x;
+
+    public static void main(String [] args) {
+	System.out.println("Welcome to the wonderful world of JR!");
+	System.out.println(print(0));
+	call print();
+	System.out.println(print(4));
+	print();
+    }
+
+    public static op int print(int x)	{
+	System.out.println("Successful "+x);
+	print();
+	int ret;
+	if(x==0) ret = 1;
+	else ret = x * print(x-1);
+	return ret;
+    }
+
+    public static op void print()  {
+	System.out.println("Successful 2");
+    }
+}

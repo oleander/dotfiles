@@ -1,0 +1,9 @@
+public class Main {
+
+  public static void main(String [] args)
+  {
+    MyParser p = new MyParser();
+
+  } // main()
+
+} // class Main

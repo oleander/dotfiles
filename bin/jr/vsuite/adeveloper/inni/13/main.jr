@@ -1,0 +1,27 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op void memberOp();
+
+    public static int x = 1;
+
+    public static void main(String [] args) {
+	send memberOp();
+	send memberOp();
+	send memberOp();
+
+        inni void memberOp() st x == 1 {
+	    System.out.println("got memberOp st x == 1");
+	}
+
+	inni void memberOp() by memberOp.length() {
+	    System.out.println("got memberOp by length");
+	}
+
+	inni void memberOp() st x == 1 by memberOp.length() {
+	    System.out.println("got memberOp with st and by");
+	}
+    }
+
+}

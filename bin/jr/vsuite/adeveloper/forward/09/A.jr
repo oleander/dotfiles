@@ -1,0 +1,8 @@
+public class A {
+
+    public static op char test2(boolean x) {
+	System.out.println("A's test2 at start "+x);
+	return x?'W':'Q';
+    }
+
+}

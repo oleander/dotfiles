@@ -1,0 +1,8 @@
+public class B extends A {
+    public B(int y) {
+	super(y);
+    }
+    public String toString() {
+	return "B "+id;
+    }
+}

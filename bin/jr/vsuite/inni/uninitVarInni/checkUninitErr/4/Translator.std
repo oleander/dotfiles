@@ -1,0 +1,5 @@
+ResourceAllocator.jr:10: cannot assign a value to final variable unit
+    unit = 12;
+    ^
+Not generating jrGen/ResourceAllocator.java due to errors.
+1 error

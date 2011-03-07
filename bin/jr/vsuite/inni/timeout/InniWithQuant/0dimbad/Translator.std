@@ -1,0 +1,8 @@
+Main.jr:19: illegal start of type
+     [] ((int j=0; j<3; j++)) elseafter {
+                              ^
+Main.jr:22: <identifier> expected
+  }
+  ^
+Not generating any jrGen files due to errors.
+2 errors

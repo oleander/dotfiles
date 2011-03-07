@@ -1,0 +1,32 @@
+// semi-interesting program
+// shows that index in quantifier is not available
+// within input/output command (due to the way code is generated).
+// actually, it is available, but it's always the last value in loop,
+// not the value of process with which corresponded.
+// can access that index when input/output command used within _if or _do.
+// (as part of code body.)
+
+_program Sum {
+  _specs {
+    p [2] {}
+    q { add(int); }
+  }
+  _process p (i) {
+    // generate a number, x
+    int x;
+    x = 9-i;
+    _o q!add(x);
+  }
+  _process q {
+    int sum = 0;
+    int x;
+    int which = 0;
+    _i [i = 0 _to 1] p[which=i]?add(x);
+System.out.println("which="+which);
+    sum += x;
+    _i [i = 0 _to 1] p[which=i]?add(x);
+System.out.println("which="+which);
+    sum += x;
+    System.out.println(sum);
+  }
+}

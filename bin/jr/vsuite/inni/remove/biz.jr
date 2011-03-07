@@ -1,0 +1,100 @@
+// see comments in SR vsuite about this convoluted program.
+// not particularly relevant to JR for those purposes, anyway.
+/* resource biz */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class biz {
+   op void a(int);
+   op boolean ugh1(int);
+   op boolean ugh2(int);
+   op void go();
+   op void p3();
+   op void done();
+
+   int count = 0;
+
+public biz() {
+   send a(11);
+   try {
+   Thread.sleep(2);
+   } catch (Exception e) {e.printStackTrace();}
+   // above formerly, but don't know why: for (int i = 0; i < 100000; i++);
+   send a(12);
+   send p1();
+   send p2();
+   receive done();
+}
+
+op void p1();
+void p1()  {
+{
+   inni void a(int x) st ugh1(x) {
+      {
+         System.out.println(("oops") + " " + (x));
+         }
+      }
+  
+   }
+}
+
+op void p2();
+void p2()  {
+{
+   receive go();
+   receive go();
+   inni void a(int x) st ugh2(x) {
+      {
+         System.out.println(("ok") + " " + (x));
+         }
+      }
+  
+   inni void a(int x) st ugh1(x) {
+      {
+         System.out.println(("oops") + " " + (x));
+         }
+      }
+  
+   }
+}
+
+boolean ugh1(int x) {
+boolean z = false;
+try{
+ProcBody:{
+   z=(x<0);
+   count++;
+   if ((count==5)){
+      send p3();
+      Thread.sleep(10000); // probably excessive, but OK for testing...
+      }
+   send go();
+   }
+} catch (Exception e) {e.printStackTrace();}
+return z;
+}
+
+boolean ugh2(int x) {
+boolean z = false;
+ProcBody:{
+   send a(1000 + x);
+   z=true;
+   }
+return z;
+}
+
+void p3() {
+ProcBody:{
+   System.out.println(("hi"));
+   inni void a(int x){
+      {
+         System.out.println(("p3") + " " + (x));
+         }
+      }
+  
+   send done();
+   }
+}
+}
+

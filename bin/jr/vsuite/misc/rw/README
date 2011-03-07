@@ -1,0 +1,21 @@
+01 - basic
+02 - 01 but w/ done op at class level (rather than local) -- shouldn't compile
+03 - 02 but w/ static
+
+04+05+06 --- weren't interesting enough; subsumed by other tests
+
+07 - 06 w/ inheritance to get PrefServer
+08 - 07 w/ protected start in PrefServer
+09 - 08 w/ protected start in Server
+
+10 - 09 w/ st in instmt
+
+21 - 01, but uses instmt with st rather than ifs and instmts
+     (when 01 was written, st wasn't yet functional;
+      01 remains a good test.)
+
+**** note that 08 and 09 create 2 servers (inheritance anomaly).
+**** perhaps those tests should be simplified and moved elsewhere
+**** since they're not R/W in traditional sense.
+**** (their behavior is also quite non-deterministic.)
+

@@ -1,0 +1,28 @@
+import edu.ucdavis.jr.JR;
+
+/* test of default handler that does not handle exception thrown in operation */
+
+public class main {
+
+    public static void main(String [] args) {
+	try {
+	    MyHandler mh = new MyHandler();
+	    co handler mh over
+	       GO(1) {System.out.println("ppc1");}
+	    [] GO(2) {System.out.println("ppc2");}
+        }
+        catch (Exception e){
+	    e.printStackTrace();
+            System.err.println("Oops.  The JR world isn't so wonderful ;-(");
+        }
+		
+    }
+
+    private static op String GO(int x) throws java.io.EOFException {
+	System.out.println("received GO: " + x);
+	if (x == 1)
+		throw new java.io.EOFException();
+	return "HI";
+    }
+
+}

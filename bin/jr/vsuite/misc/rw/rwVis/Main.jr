@@ -1,0 +1,10 @@
+import edu.ucdavis.jr.JR;
+import java.util.*;
+
+// main just creates a new manager, manager is the real heart of program
+// it creates manager on the local machine
+public class Main {
+	public static void main (String [] args) {
+		new Manager();
+	}
+}

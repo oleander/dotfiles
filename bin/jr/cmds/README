@@ -1,0 +1,18 @@
+The code and Makefile are structured so as to generate code that
+
+(1) contains exactly the subroutines needed for each j command
+    (to reduce Perl interpretation time)
+
+(2) use our subroutines vs. equivalent system()
+    (former is faster).
+
+There's probably a simpler way to do all this, but this wasn't too
+bad.
+
+
+Could extend this idea to jr_rmic, but am keeping that separate for
+now at least.
+
+Note: u_init needs to be first alphabetically among those that use the
+global variables it defines.  (Could really ensure that by moving
+globals to u_aaaaaa or somesuch...)

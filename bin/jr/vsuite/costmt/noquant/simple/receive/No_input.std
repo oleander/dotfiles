@@ -1,0 +1,6 @@
+after co1
+process received GO: 1
+process received GO: 2
+process received GO: 3
+process received GO: 4
+after co2

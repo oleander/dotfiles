@@ -1,0 +1,39 @@
+public class fun
+{
+    int iters;
+
+    private op void start();
+    public op int f(int);
+    public op int g(int);
+
+    public fun(int iters)
+    {
+        this.iters = iters;
+        send start();  // start the client thread
+    }
+
+    private void start()
+    {
+        while (iters > 0) {
+System.out.println("iters="+iters);
+	    iters--;
+        }
+    }
+    public int f(int x)
+
+    {
+        System.out.println("in f x="+x);
+        forward g(x*10);
+      	x = 444;
+        System.out.println("in f after forward x="+x);
+        return x+20;
+    }
+
+    public int g(int x)
+
+    {
+        System.out.println("in g x="+x);
+        return x+10000;
+    }
+}
+

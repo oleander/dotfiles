@@ -1,0 +1,41 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    static final int iters = 3;
+
+    public static op int fff(int);
+    public static op int h(int);
+
+//    static String where; // hack
+
+    public static void main(String [] args) {
+        System.out.println("before try");
+	    // where = args[0];
+
+	    int y;
+	    y = fff(3);
+	    System.out.println("after y="+y);
+    }
+
+    public static int fff(int z) {
+        z += 200;
+//	    vm ffVM = new vm() on where;
+	    vm ffVM = new vm();
+	    remote fun ff = new remote fun(iters, h) on ffVM;
+
+	    //call ff.init(h);
+
+	    int y;
+	    y = z;
+	    forward ff.f(z+10);
+	    System.out.println("after y="+y+" "+z);
+	    return 7777777;
+    }
+
+    public static int h(int zz) {
+	zz += 200000;
+	return zz+40000;
+    }
+
+}

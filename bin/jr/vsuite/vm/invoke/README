@@ -1,0 +1,33 @@
+2001-03-07 now works; below describes problem...
+
+----------------------------------------------------------------------
+From keen@cs.ucdavis.edu  Mon Dec 18 12:57:58 2000
+Date: Mon, 18 Dec 2000 12:56:35 -0800 (PST)
+From: Aaron Keen <keen@cs.ucdavis.edu>
+To: olsson@cs.ucdavis.edu
+Subject: Re: ~/vsuite/vm/invoke
+
+  >I'm not clear.  The client doesn't return from the call because the
+  >scheduler doesn't get the go_ahead.  So, the program should hang. I'm
+  >confused about the VM "dies while returning from the call" -- I don't
+  >see that it is.  Isn't it an implementation problem, not a user
+  >problem?  (Is that what you meant above?)
+
+	Yes, I believe that it is an implementation problem.  Here's
+what I think is happening.
+
+	1)  There is an outstanding RMI call to the client method.
+	2)  The timer goes off signaling a shutdown.
+	3)  JR.exit is called so it begins to notify each of the
+		VM's to kill itself.
+	4)  The VM on which the client object resides kills itself
+		before the calling VM.
+	5)  The calling VM, which is waiting for the reply from the
+		RMI call, receives a truncated (perhaps completely
+		empty) response.  (Probably a broken pipe or some
+		such system-level error signaling a broken connection).
+	 5a) This broken connection triggers an exception before that
+		VM terminates itself.
+
+	This is mostly speculation but it's my best guess at present.
+

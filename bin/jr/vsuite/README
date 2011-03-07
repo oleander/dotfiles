@@ -1,0 +1,50 @@
+Much of the JR vsuite is based on the SR vsuite.  We have retained
+much of the same directory structure.
+
+Some of the programs were translated automatically by the SR->JR
+translator and then cleaned up by hand; unfortunately, these programs
+are not so readable by themselves and the original comments were
+stripped.  If necessary, see the original SR code for cleaner code and
+comments.
+
+Some of the SR tests have been eliminated -- especially those tests of
+purely sequential SR features.  Given that JR is built on Java, we
+don't need to test those features (we hope!).
+
+Some of the tests have been modified to better suit JR.
+
+Some new JR tests have been added, e.g., of operation inheritance.
+
+In creating the vsuite, we discovered some additional nondeterminism
+in the original SR tests and have therefore modified the programs or
+test Script accordingly.  (Additional unintended nondeterminism might
+still remain.)
+
+Most of the JR vsuite was developed in December 2000, before the
+process abbreviation was added (January 2001).  We did convert some of
+the tests to use the process abbreviation, but left most of using the
+the usual (but messier) op,proc,send.
+
+One unimplemented features affected the vsuite tests: no automatic
+termination.  Our tests used a timer or exlicit done messages.  (For
+those with a timer, we think we picked a large enough timeout for most
+reasonable systems; but if the program doesn't run on your system, a
+larger timeout might be needed.)  Should rewrite some of the tests
+when automatic termination is implemented.
+
+(The co statement and quantifiers on input statements also aren't
+implemented and had a smaller effect on the vsuite tests.)
+
+
+It would be nice to have some installation-indepent way to test VM
+creation on several platforms, but that's not so easy.  (If we had a
+"install script", it could get the name of 2nd system and, if one
+exists, write name to file that's used by vsuite test.  But, we don't
+have any such script like that.)
+
+
+----------------------------------------------------------------------
+2001-03-07  cleaned up most of those problems.
+
+2000-12-20  some problems/questions remain and are indicated by files
+	    with obvious names; do a `ls -R'.

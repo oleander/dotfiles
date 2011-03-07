@@ -1,0 +1,23 @@
+2001-03-07 all OK now
+
+
+
+----------------------------------------------------------------------
+From keen@cs.ucdavis.edu  Sat Dec 16 19:52:16 2000
+Date: Sat, 16 Dec 2000 19:50:48 -0800 (PST)
+From: Aaron Keen <keen@cs.ucdavis.edu>
+To: olsson@cs.ucdavis.edu
+Subject: Re: vsuite/in/else/7 invocation ordering
+
+
+  >Works fine with IBM, but with JDK gets wrong invocation ordering on
+  >2nd instmt.
+  >(Correct is in N*std; wrong is as in execution file.)
+  >
+  >If eliminate first or last instmt (bugjr/{52,53}, then 2nd is OK.
+
+	The tests where it works fine should be flukes.  The message
+ordering isn't perfect at the moment.  The timestamp is currently
+only based on the clock.  As such, messages sent to two different
+ops and may have the same timestamp in the queue.
+

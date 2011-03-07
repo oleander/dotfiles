@@ -1,0 +1,11 @@
+0 javac *.java
+# this one had better work!
+0 java main >No_input.out 2>&1
+0 cmp No_input.std No_input.out
+# see whether CLASSPATH set to something reasonable.
+# if this test fails, then multi-VM programs mightn't work.
+0 CPuseoriginal
+0 java main >No_input.out 2>&1
+0 cmp No_input.std No_input.out
+0 CPrestore
+0 rm -rf *.class *.out

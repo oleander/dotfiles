@@ -1,0 +1,35 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public process p {
+	op void memberOp2();
+	cap void() memberCap = memberOp2;
+
+	send memberOp2();
+	inni void memberOp2() {
+	    System.out.println("got memberOp2....");
+	}
+
+	send memberOp2();
+	inni void memberCap() {
+	    System.out.println("got memberCap....");
+	}
+
+	send memberCap();
+	inni void memberOp2() {
+	    System.out.println("got memberOp2....");
+	}
+
+	send memberCap();
+	inni void memberCap() {
+	    System.out.println("got memberCap....");
+	}
+	System.out.println("done");
+    }
+
+
+    public static void main(String [] args) {
+	new main();
+    }
+}

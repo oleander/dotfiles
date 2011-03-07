@@ -1,0 +1,20 @@
+test1 in middle
+test2 true
+true: T
+test1 at end
+test1 in middle
+test1 at end
+test3 true
+test2 false
+test3 false
+false: F
+test1 in middle
+test1 at end
+test3 false
+test2 true
+true: T
+test1 in middle
+test1 at end
+test3 true
+test2 false
+false: F

@@ -1,0 +1,8 @@
+Test.jr:9: Variable multiple defined in class A is not accessible through a remote reference.
+	 two = a.multiple[0];
+                ^
+Test.jr:10: Variable multiple defined in class A is not accessible through a remote reference.
+         three = a.multiple[1];
+                  ^
+Not generating jrGen/Test.java due to errors.
+2 errors

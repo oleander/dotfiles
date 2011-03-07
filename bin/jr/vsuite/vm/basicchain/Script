@@ -1,0 +1,7 @@
+# best run with 2 different hostnames as arguments
+# but can't do that (since don't have that info), so just run locally.
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun Main > No_input.out 2>&1
+0 scmp No_input.std No_input.out
+0 rm -rf jrGen core *.out

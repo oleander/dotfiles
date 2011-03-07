@@ -1,0 +1,46 @@
+//  test of remote uses of dynamic operations and input from cap
+
+
+
+//  remote resource
+
+public class rmt
+{
+    public op void s();
+    public op void t();		// semaphores
+    public op void o1(char);		// sent here, received in main
+    public op int o2(int);		// called here, serviced in main
+    public op void drain (cap void (int)); // called from main to service a cap on main
+
+  process some_name
+  {
+    receive s();			// wait for go-ahead from main
+    for (char c = 'a'; c <= 'f'; c++)   // load o1's queue
+    {
+	send o1(c);
+    }
+    send t();				// signal readiness
+
+    for (int i = 1; i <= 9; i++)   // call o2, serviced by main, several times
+    {
+    	System.out.println("o2 returned: " +o2(i)); //write result to ensure that
+    }					// data goes both ways correctly
+  }
+
+
+//  drain(opcap) -- drain the queue of an op, with diagnostics
+
+  public void drain(cap void (int) q)
+  {
+    System.out.println("drain: qsize " + q.length());
+    while (true)
+    {
+	inni void q(int j) System.out.println("drain: " + j);
+	[] else break;
+
+    }
+    System.out.println("drain: qsize " + q.length());
+    System.out.println("drain: destroying op");
+    // destroy (q)
+  }
+}

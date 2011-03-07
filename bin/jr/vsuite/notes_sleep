@@ -1,0 +1,52 @@
+2003-08-15 removed lots of sleeps from vsuite and jrbook/new/code.
+           a few remain that can't easily be changed w/o affecting
+           specific behavior (e.g., testing on inni "new process list")
+
+used quiescence
+./examples/m2jr/returnmissing/test.jr
+./examples/m2jr/twod/test.jr
+./examples/m2jr/twod_sx/test.jr
+./inni/cap/noop/Main.jr
+./inni/cap/nullandnoop/basic.jr
+./forward/05/main.jr
+./forward/06/main.jr
+./forward/08/main.jr
+./forward/09/main.jr
+./process/quant_nonstatic/main.jr
+./misc/bag_of_tasks/parallel/1/AQ.jr
+./misc/bag_of_tasks/parallel/2/AQ.jr
+./misc/bag_of_tasks/parallel/3/AQ.jr
+./misc/bag_of_tasks/parallel/4/AQ.jr
+./misc/inherit/4/main.jr
+./reply/3/rep3.jr
+./reply/5/d5.jr
+./reply/side_effect/fun.jr
+./sem/1/sem1.jr
+./sem/2/sem2.jr
+./sem/3/sem3.jr
+./sem/4/sem4.jr
+./sem/blocked/blocked.jr
+./sem/init_noinit/initsem.jr
+./vm/callme/spud.jr
+./vm/invoke/m.jr
+./vm/vmonvm/r.jr
+./vm/vmonvm/Main.jr
+./handler/other/replytwice/main.jr
+./quiescence/method/8/main.jr
+
+./rendezvous/SJN/SJN.jr
+./concurrent/mmparagain/MMMain.jr
+./tsp/Exercises/norodist/Soln/TSPDist.jr
+
+rewrote using sem
+./asynmsgpass/order/Order.jr
+./rpc/Exercises/rewrite3/Rewrite3.jr
+
+
+----------------------------------------------------------------------
+
+check bug
+./inni/cap/noop/Main.jr
+
+class java.rmi.RemoteException
+CSIF too with: (Fri Aug 1 21:48:46 PDT 2003)

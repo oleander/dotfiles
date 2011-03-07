@@ -1,0 +1,34 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	//System.out.println("hi");
+    }
+
+    static int NF = 4;
+
+    static cap void () foyer[][] =
+	    new cap void () [NF][2];
+    static {
+	for (int f = 0; f <NF; f++) {
+	    for (int d = 0; d<2; d++) {
+		foyer[f][d] = new op void ();
+	    }
+	}
+    }
+
+    static process controller {
+	inni void foyer[1][1]() {
+	    reply;
+	}
+	inni void foyer[0][0]() {
+	    reply;
+	}
+    }
+    static process go {
+	foyer[1][1]();
+	System.out.println(88);
+	foyer[0][0]();
+	System.out.println(89);
+    }
+
+}

@@ -1,0 +1,14 @@
+A Program to Compute Factorials
+how many numbers?  
+enter 10 numbers, separated by whitespace
+
+7 factorial is 5040
+6 factorial is 720
+5 factorial is 120
+-4 factorial is -1
+10 factorial is 3628800
+20 factorial is -2102132736
+40 factorial is 0
+5 factorial is 120
+2 factorial is 2
+1 factorial is 1

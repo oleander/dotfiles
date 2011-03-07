@@ -1,0 +1,50 @@
+before try
+after jcap
+starting up Servant 0
+starting phil 0
+starting up Servant 1
+starting phil 1
+starting up Servant 2
+starting phil 2
+starting up Servant 3
+starting phil 3
+starting up Servant 4
+before start computation
+starting phil 4
+before start forks
+main after distributed forks
+Servant got initial forks and links 3
+Servant got initial forks and links 0
+Servant got initial forks and links 1
+Servant got initial forks and links 2
+Servant got initial forks and links 4
+Philosopher 0 is eating
+Philosopher 0 is thinking
+Philosopher 1 is eating
+Philosopher 1 is thinking
+Philosopher 2 is eating
+Philosopher 0 is eating
+Philosopher 2 is thinking
+Philosopher 0 is thinking
+Philosopher 1 is eating
+Philosopher 1 is thinking
+Philosopher 0 is eating
+Philosopher 3 is eating
+Philosopher 0 is thinking
+Philosopher 3 is thinking
+Philosopher 4 is eating
+Philosopher 2 is eating
+Philosopher 2 is thinking
+Philosopher 1 is eating
+Philosopher 1 is thinking
+Philosopher 4 is thinking
+Philosopher 3 is eating
+Philosopher 3 is thinking
+Philosopher 2 is eating
+Philosopher 2 is thinking
+Philosopher 4 is eating
+Philosopher 4 is thinking
+Philosopher 3 is eating
+Philosopher 3 is thinking
+Philosopher 4 is eating
+Philosopher 4 is thinking

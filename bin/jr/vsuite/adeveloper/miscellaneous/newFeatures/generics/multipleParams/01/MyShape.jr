@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class MyShape<E,F>
+{
+	protected E id;
+	protected F fid;
+
+	public MyShape(E id, F fid)
+	{
+		this.id = id;
+		this.fid = fid;
+	}
+
+	public op void print()
+	{
+		System.out.println("MyShape " + id + " " + fid);
+	}
+}

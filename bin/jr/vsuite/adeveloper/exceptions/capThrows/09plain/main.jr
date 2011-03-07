@@ -1,0 +1,15 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    op String go (int);
+
+    public static void main(String [] args) {}
+
+    process z {
+	int y = 4;
+	cap String(int) c = go;
+	int x = 3;
+    }
+
+}

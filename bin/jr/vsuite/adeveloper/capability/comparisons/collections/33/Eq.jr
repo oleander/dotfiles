@@ -1,0 +1,19 @@
+import edu.ucdavis.jr.*;
+import java.util.HashSet;
+
+public class Eq {
+
+  public static void main(String[] a){
+    System.out.println("Starting...");
+    cap void() aa;
+    cap void() bb;
+    aa = noop;
+    bb = null;
+    System.out.println(aa == bb);
+    HashSet<cap void()> hs = new HashSet<cap void()>();
+    hs.add(aa);
+    System.out.println(hs.remove(bb));
+    System.out.println(hs.remove(aa));
+    System.out.println("Main complete.");
+  }
+}

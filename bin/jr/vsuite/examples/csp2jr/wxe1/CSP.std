@@ -1,0 +1,3 @@
+csp2jr: g.csp, line 26:       _i (more) WEST!die() {
+csp2jr: near: "die() {"
+csp2jr: warning: contradictory _i and !; using _i

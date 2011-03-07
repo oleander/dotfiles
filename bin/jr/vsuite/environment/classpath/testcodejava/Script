@@ -1,0 +1,11 @@
+0 CPprepend ../mypkg.jar
+0 javac main.java
+0 java main > No_input.out 2>&1
+0 scmp No_input.std No_input.out
+0 javac main2.java
+0 java main2 > No_input.out 2>&1
+0 scmp No_input.std No_input.out
+0 CPrestore
+# more a test that jrv is really doing a CPrestore
+1 javac main.java
+0 rm -rf *.class core *.out

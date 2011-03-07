@@ -1,0 +1,12 @@
+import edu.ucdavis.jr.JR;
+
+public class test {
+
+   // the monitor
+   private static no_proc np = new no_proc("np");
+
+   public static void main(String [] args) {
+ 	    System.out.println("done");
+    }
+
+}

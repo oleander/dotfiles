@@ -1,0 +1,4 @@
+ResourceAllocatorM.jr:9: WARNING: Receive from operation with non-void (java.util.Set<E>) return type.
+    receive allocate(); 
+    ^
+1 warning

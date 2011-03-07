@@ -1,0 +1,32 @@
+0 eating 1
+0 eating 2
+1 eating 1
+2 eating 1
+2 eating 2
+2 eating 3
+2 eating 4
+3 eating 1
+3 eating 2
+3 eating 3
+3 eating 4
+4 eating 1
+4 eating 2
+4 eating 3
+4 eating 4
+0 eating 3
+0 eating 4
+1 eating 2
+1 eating 3
+1 eating 4
+csp2jr: all user processes have terminated or are blocked; shutting down.
+csp2jr: process status: 10 total = 0 alive + 5 blocked + 5 dead.
+   0 BLOCKED  waiter [   0]
+   1 BLOCKED  waiter [   1]
+   2 BLOCKED  waiter [   2]
+   3 BLOCKED  waiter [   3]
+   4 BLOCKED  waiter [   4]
+   5 DEAD       phil [   0]
+   6 DEAD       phil [   1]
+   7 DEAD       phil [   2]
+   8 DEAD       phil [   3]
+   9 DEAD       phil [   4]

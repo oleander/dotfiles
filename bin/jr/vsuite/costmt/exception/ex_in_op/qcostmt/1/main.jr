@@ -1,0 +1,33 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+	MyHandler [] mh = new MyHandler[3];
+	for (int i = 0; i <= 2; i++)
+		mh[i] = new MyHandler();
+	    co
+	    ((int i = 1; i <= 3; i++)) GO(i) handler mh[i-1] : {
+		System.out.println("ppc" + i);
+	    }
+	    [] ((int i = 6; i <= 8; i++)) GO(i) handler mh[i-6] : {
+		System.out.println("ppc" + i);
+	    }
+	System.out.println("After co");
+
+    }
+
+    private static op String GO(int n) throws java.io.EOFException;
+
+    private static process MYPROCESS	{
+	while(true)	{
+		inni String GO(int x) throws java.io.EOFException	{
+			System.out.println("received GO: " + x);
+			if (x > 2)
+				throw new java.io.EOFException();
+			return "HI";
+		}
+	}
+    }
+
+}

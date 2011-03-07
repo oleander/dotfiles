@@ -1,0 +1,11 @@
+import edu.ucdavis.jr.JR;
+import java.io.*;
+
+public interface base  {
+
+    public static int x = 0;
+
+    public static op int print(int x, char y) throws java.io.EOFException;
+
+    public static op void print() throws java.io.EOFException;
+}

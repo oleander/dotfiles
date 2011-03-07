@@ -1,0 +1,16 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    static op void memberOp(int x) {
+	System.out.println("in member");
+    }
+
+    public static void main(String [] args) {
+	cap void(int) memberOp = new op void(int);
+
+	send memberOp(1);
+	System.out.println("hello world");
+    }
+
+}

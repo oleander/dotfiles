@@ -1,0 +1,18 @@
+// 2007-03-16
+// bug with forward
+// java.lang.NullPointerException
+// at
+// edu.ucdavis.jr.trans.sun.tools.javac.comp.Attr.visitForward(Attr.java:1771)
+// ...
+
+// cause: forwarded within
+// an inni whose op is a 1-dim (or 2-dim, etc.) array.
+// we hadn't used or tested that ;-(  so we do now ;-)
+
+// no bug if used workaround with cap, e.g.,
+// cap void (int, int, int) xx = foyer[0][0];
+// inni void xx(int id, int src, int dst) {
+
+// similar bug with reply
+
+// so here are a bunch of tests for forward, reply, and return

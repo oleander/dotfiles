@@ -1,0 +1,290 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+import edu.ucdavis.jr.JR;
+import java.lang.*;
+import java.net.*;
+
+// the main window for the manager contains the two panels (the queues and the vmlist)
+// and the buttons and menu items for the manager
+public class ManagerWindow extends JFrame implements ActionListener {
+	//caps to the functions in the manager that the window can call
+	private cap void (String) selectAllocator;
+	private cap void (String) newVM;
+	private cap void () pause;
+	private cap void () resume;
+	private cap boolean () checkVMS;
+	
+	JMenuItem allocatorMenuItem1, allocatorMenuItem2, allocatorMenuItem3, allocatorMenuItem4, allocatorMenuItem5;
+	JMenuItem allocatorMenuItem6, allocatorMenuItem7, allocatorMenuItem8, allocatorMenuItem9, allocatorMenuItem10;
+	JMenuItem allocatorMenuItem11, allocatorMenuItem12, allocatorMenuItem13, allocatorMenuItem14, allocatorMenuItem15;
+	JMenuItem optionMenuItem1, optionMenuItem2, optionMenuItem3, optionMenuItem4;
+
+	//the constructor sets up the whole window with menus, title and help bubbles on mouseover, and 
+	//sets the action listeners so they can be handled later
+	public ManagerWindow(Manager manager) {
+		this.selectAllocator = manager.selectAllocator;
+		this.newVM = manager.newVM;
+		this.pause = manager.pause;
+		this.resume = manager.resume;
+		this.checkVMS = manager.checkVMS;
+
+		Container contentPane = getContentPane();
+
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		JMenu optionMenu = new JMenu("File");
+		menuBar.add(optionMenu);
+		optionMenuItem1 = new JMenuItem("Add VM");
+		optionMenuItem1.setAccelerator(KeyStroke.getKeyStroke('V', InputEvent.CTRL_MASK));
+		optionMenuItem2 = new JMenuItem("Pause");
+		optionMenuItem2.setAccelerator(KeyStroke.getKeyStroke('P', InputEvent.CTRL_MASK));
+		optionMenuItem3 = new JMenuItem("Resume");
+		optionMenuItem3.setAccelerator(KeyStroke.getKeyStroke('P', InputEvent.CTRL_MASK));
+		optionMenuItem4 = new JMenuItem("Exit");
+		optionMenuItem4.setAccelerator(KeyStroke.getKeyStroke('Q', InputEvent.CTRL_MASK));
+		optionMenuItem1.addActionListener(this);
+		optionMenuItem2.addActionListener(this);
+		optionMenuItem3.addActionListener(this);
+		optionMenuItem4.addActionListener(this);
+		
+		optionMenuItem3.setEnabled(false);
+		optionMenu.add(optionMenuItem1);
+		optionMenu.add(new JSeparator());
+		optionMenu.add(optionMenuItem2);
+		optionMenu.add(optionMenuItem3);
+		optionMenu.add(new JSeparator());
+		optionMenu.add(optionMenuItem4);
+		pack();
+
+		JMenu allocatorMenu = new JMenu("Allocator");
+		menuBar.add(allocatorMenu);
+		allocatorMenuItem1 = new JRadioButtonMenuItem("FCFS");
+		allocatorMenuItem1.addActionListener(this);
+		allocatorMenuItem1.setSelected(true);
+		allocatorMenuItem2 = new JRadioButtonMenuItem("RP");
+		allocatorMenuItem2.addActionListener(this);
+		allocatorMenuItem3 = new JRadioButtonMenuItem("WP");
+		allocatorMenuItem3.addActionListener(this);
+		allocatorMenuItem4 = new JRadioButtonMenuItem("WRP");
+		allocatorMenuItem4.addActionListener(this);
+		allocatorMenuItem5 = new JRadioButtonMenuItem("WWP");
+		allocatorMenuItem5.addActionListener(this);
+		allocatorMenuItem6 = new JRadioButtonMenuItem("ALT");
+		allocatorMenuItem6.addActionListener(this);
+		allocatorMenuItem7 = new JRadioButtonMenuItem("RAND");
+		allocatorMenuItem7.addActionListener(this);
+		allocatorMenuItem8 = new JRadioButtonMenuItem("AEP");
+		allocatorMenuItem8.addActionListener(this);
+		allocatorMenuItem9 = new JRadioButtonMenuItem("TFE");
+		allocatorMenuItem9.addActionListener(this);
+		allocatorMenuItem10 = new JRadioButtonMenuItem("NWP");
+		allocatorMenuItem10.addActionListener(this);
+		allocatorMenuItem11 = new JRadioButtonMenuItem("CAP");
+		allocatorMenuItem11.addActionListener(this);
+		allocatorMenuItem12 = new JRadioButtonMenuItem("CALP");
+		allocatorMenuItem12.addActionListener(this);
+		allocatorMenuItem13 = new JRadioButtonMenuItem("TIME");
+		allocatorMenuItem13.addActionListener(this);
+		allocatorMenuItem14 = new JRadioButtonMenuItem("RTS");
+		allocatorMenuItem14.addActionListener(this);
+		allocatorMenuItem15 = new JRadioButtonMenuItem("FCFSRP");
+		allocatorMenuItem15.addActionListener(this);
+
+		allocatorMenuItem1.setToolTipText("<html>First Come First Serve: Readers/Writers are admitted<br>"
+										 +"according to their arrival times.</html>");
+		allocatorMenuItem2.setToolTipText("<html>Reader Preference: All readers are admitted before<br>"
+										 +"any writers.</html>");
+		allocatorMenuItem3.setToolTipText("<html>Writer Preference: All writers are admitted before<br>"
+										 +"any readers.</html>");
+		allocatorMenuItem4.setToolTipText("<html>Weak Reader Preference: Same as with Reader Preference<br>"
+										 +"except that at the exit of a writer, readers or a writer<br>"
+										 +"are randomly selected to enter next.</html>");
+		allocatorMenuItem5.setToolTipText("<html>Weak Writer Preference: Same as with Writer Preference<br>" 
+										 +"except that at the exit of readers, readers or a writer are<br>" 
+										 +"randomly selected to enter next.</html>");
+		allocatorMenuItem6.setToolTipText("<html>Alternating: Readers and a writer are alternatingly<br>" 
+										 +"scheduled.</html>");
+		allocatorMenuItem7.setToolTipText("<html>Random: Readers and a writer are randomly selected at<br>" 
+										 +"the exit of a writer or readers.</html>");
+		allocatorMenuItem8.setToolTipText("<html>Alternating Exhaustive Priority: All readers and all<br>" 
+										 +"writers are alternatingly scheduled.  When all readers or<br>" 
+										 +"all writers have been processed, then the allocator switches<br>"
+										 +"to process the other.</html>");
+		allocatorMenuItem9.setToolTipText("<html>Threshold Fastest Emptying: All readers are processed<br>" 
+										 +"until the numbers of waiting writers passes a given threshold<br>"  
+										 +"value (5), at which point writers are processed.</html>");
+		allocatorMenuItem10.setToolTipText("<html>N-Weighted Writer Preference: Readers or a writer are<br>" 
+										 +"processed based upon a weight.  Reader weight is the number<br>" 
+										 +"of readers; writer weight is the number of writers time some<br>" 
+										 +"weight-factor N (5).</html>");
+		allocatorMenuItem11.setToolTipText("<html>Counter-Based Adaptive Priority: Readers or a writer<br>"
+										 +"are processed based upon a weight.  Reader weight is determine<br>"
+										 +"by reader aging and number of waiting readers; writer weight is<br>"
+										 +"determined by number of writers multiplied by the number of<br>"
+										 +"previously scheduled readers.</html></html>");
+		allocatorMenuItem12.setToolTipText("<html>Counter-Based Adaptive Lottery Priority: Similar to CAP<br>" 
+										 +"except that scheduling is based upon a lottery using reader<br>"
+										 +"and writer weights.</html>");
+		allocatorMenuItem13.setToolTipText("<html>Time Slice: Readers and writers are alternatingly given<br>"
+										 +"a fixed amount of access time (10 seconds).</html>");
+		allocatorMenuItem14.setToolTipText("<html>Random Time Slice: Readers and writers are alternatingly<br>" 
+										 +"given a random amount of time to acess the database (5-10 seconds).</html>");
+		allocatorMenuItem15.setToolTipText("<html>First Come First Serve Reader Preference: Readers and<br>" 
+										 +"writers are admitted based on their arrival times.  However,<br>" 
+										 +"once a reader has been admitted, all readers are exhaustively<br>"
+										 +"processed.</html>");
+
+		ButtonGroup allocatorGroup = new ButtonGroup();
+		allocatorGroup.add(allocatorMenuItem1);
+		allocatorGroup.add(allocatorMenuItem2);
+		allocatorGroup.add(allocatorMenuItem3);
+		allocatorGroup.add(allocatorMenuItem4);
+		allocatorGroup.add(allocatorMenuItem5);
+		allocatorGroup.add(allocatorMenuItem6);
+		allocatorGroup.add(allocatorMenuItem7);
+		allocatorGroup.add(allocatorMenuItem8);
+		allocatorGroup.add(allocatorMenuItem9);
+		allocatorGroup.add(allocatorMenuItem10);
+		allocatorGroup.add(allocatorMenuItem11);
+		allocatorGroup.add(allocatorMenuItem12);
+		allocatorGroup.add(allocatorMenuItem13);
+		allocatorGroup.add(allocatorMenuItem14);
+		allocatorGroup.add(allocatorMenuItem15);
+
+		allocatorMenu.add(allocatorMenuItem1);
+		allocatorMenu.add(allocatorMenuItem2);
+		allocatorMenu.add(allocatorMenuItem3);
+		allocatorMenu.add(allocatorMenuItem4);
+		allocatorMenu.add(allocatorMenuItem5);
+		allocatorMenu.add(allocatorMenuItem6);
+		allocatorMenu.add(allocatorMenuItem7);
+		allocatorMenu.add(allocatorMenuItem8);
+		allocatorMenu.add(allocatorMenuItem9);
+		allocatorMenu.add(allocatorMenuItem10);
+		allocatorMenu.add(allocatorMenuItem11);
+		allocatorMenu.add(allocatorMenuItem12);
+		allocatorMenu.add(allocatorMenuItem13);
+		allocatorMenu.add(allocatorMenuItem14);
+		allocatorMenu.add(allocatorMenuItem15);
+		pack();
+
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		setContentPane(panel);
+
+		ManagerPanel pan = new ManagerPanel(manager);
+		panel.add(pan);
+		
+		ManagerPanelVMList pan2 = new ManagerPanelVMList(manager);
+		panel.add(pan2);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                JR.exit(0);
+            }
+        });
+
+		setSize(380,440);
+		setTitle("Writers/Readers Manager");
+		setVisible(true);
+	}
+
+	// handles window events such as exit, pause, resume, allocator changing and adding new vms(assistant managers)
+	// does some error checking on the adding new vms part
+	public void actionPerformed(ActionEvent e) {
+		String string = (String) e.getActionCommand();
+
+		if(string == "Exit") {
+			dispose();
+			JR.exit(0);
+		}
+		if(string == "Pause") {
+			optionMenuItem2.setEnabled(false);
+			optionMenuItem3.setEnabled(true);
+			send pause();
+		}
+		if(string == "Resume") {
+			optionMenuItem3.setEnabled(false);
+			optionMenuItem2.setEnabled(true);
+			send resume();
+		}
+		if(string == "FCFS") {
+			send selectAllocator(string);
+		}
+		else if(string == "RP") {
+			send selectAllocator(string);
+		}
+		else if(string == "WP") {
+			send selectAllocator(string);
+		}
+		else if(string == "WRP") {
+			send selectAllocator(string);
+		}
+		else if(string == "WWP") {
+			send selectAllocator(string);
+		}
+		else if(string == "ALT") {
+			send selectAllocator(string);
+		}
+		else if(string == "RAND") {
+			send selectAllocator(string);
+		}
+		else if(string == "AEP") {
+			send selectAllocator(string);
+		}
+		else if(string == "TFE") {
+			send selectAllocator(string);
+		}
+		else if(string == "NWP") {
+			send selectAllocator(string);
+		}
+		else if(string == "CAP") {
+			send selectAllocator(string);
+		}
+		else if(string == "CALP") {
+			send selectAllocator(string);
+		}
+		else if(string == "TIME") {
+			send selectAllocator(string);
+		}
+		else if(string == "RTS") {
+			send selectAllocator(string);
+		}
+		else if(string == "FCFSRP") {
+			send selectAllocator(string);
+		}
+		else if(string == "Add VM") {
+			if (!checkVMS()) {
+				JOptionPane.showMessageDialog(this, "VM limit reached");
+				return;
+			}
+
+			String machine = "";
+			boolean validInput;
+			try {
+				Object ret = JOptionPane.showInputDialog("Name of host: ");
+				if ( ret == null ) {
+					return;
+				}
+				else {
+					machine = (String) ret;
+					if(machine == "")
+						validInput = false;
+					else
+						validInput = true;
+				}
+			} catch ( Exception ex ) { validInput = false; }
+			if ( validInput ) {
+				try{
+					InetAddress.getAllByName(machine);
+					newVM(machine);
+				} catch (Exception e2) { JOptionPane.showMessageDialog(this, "Invalid hostname"); }
+			}
+			return;
+		}
+	}
+}

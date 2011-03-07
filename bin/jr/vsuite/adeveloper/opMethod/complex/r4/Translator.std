@@ -1,0 +1,8 @@
+main.jr:10: op int print(int) in main cannot be applied to ()
+	call print();
+             ^
+main.jr:12: op int print(int) in main cannot be applied to ()
+	print();
+        ^
+Not generating jrGen/main.java due to errors.
+2 errors

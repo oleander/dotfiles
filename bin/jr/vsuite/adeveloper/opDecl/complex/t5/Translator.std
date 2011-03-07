@@ -1,0 +1,14 @@
+main.jr:14: unreported exception java.io.EOFException; must be caught or declared to be thrown
+      if (x>0) throw new java.io.EOFException();
+               ^
+main.jr:39: Exception java.io.EOFException not handled by an exception handler.  An exception handler must be provided to handle the exceptions thrown by an operation invoked via a 'send' statement.
+      send test2(6);
+      ^
+main.jr:34: unreported exception java.io.EOFException; must be caught or declared to be thrown
+      test2(2);
+           ^
+main.jr:37: unreported exception java.io.EOFException; must be caught or declared to be thrown
+      call test2(4);
+                ^
+Not generating jrGen/main.java due to errors.
+4 errors

@@ -1,0 +1,76 @@
+/* resource r */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class r {
+   public op void o(int);
+   public r() {
+
+   inni void o(int a) st (p(a)>15) {
+   {
+      System.out.println(("?!?! a=") + " " + (a));
+      }
+   }
+[] else {
+   }
+inni void o(int a) by p(a) {
+   {
+      System.out.println(("?!?! a=") + " " + (a));
+      }
+   }
+[] else {
+   }
+
+send o(14);
+send o(17);
+send o(15);
+send o(12);
+send o(16);
+send o(13);
+
+L1: while(true) {
+   if (true){
+      inni void o(int a) st (p(a)>15) {
+         {
+            System.out.println(("st:") + " " + (a));
+            }
+         }
+      [] else {
+         break;
+         }
+     
+      }
+   else break L1;
+   }
+System.out.println(("------"));
+
+L2: while(true) {
+   if (true){
+      inni void o(int a) by p(a) {
+         {
+            System.out.println(("by:") + " " + (a));
+            }
+         }
+ // 2000-12-17 RAO added since no implicit termination
+      [] else { 	edu.ucdavis.jr.JR.exit(0); }
+     
+      }
+   else break L2;
+   }
+System.out.println(("done"));
+
+}
+public op int p(int);
+public int p(int a) {
+int b;
+ProcBody:{
+   b=a;
+
+   reply b;
+
+   }
+return b;
+}
+}
+

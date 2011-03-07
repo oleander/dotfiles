@@ -1,0 +1,8 @@
+initial a2
+initial a1: 5
+process a1: 5
+in 5 1
+in 5 2
+in 5 3
+in 5 4
+in 5 5

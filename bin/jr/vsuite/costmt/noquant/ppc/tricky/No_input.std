@@ -1,0 +1,7 @@
+GO received: 1
+GO received: 2
+co arm 1 1
+after co
+GO received: 1
+GO received: 2
+co arm 1 2

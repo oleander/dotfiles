@@ -1,0 +1,24 @@
+_region                    "_region"
+_region                    "_region"
+_region                    "_region"
+_region                    "_region"
+boolean "goo = mybb[k].    full;
+boolean "goo = mybb[k].    full;
+boolean "goo = mybb[k].    full;
+boolean "goo = mybb[k].    full;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+int foo = mybb[k].    slot;
+slot 0 is "1001"
+slot 1 is "1000"
+slot 2 is "1003"
+slot 3 is "1002"
+slot 4 is "1005"
+slot 5 is "1004"
+slot 6 is "1007"
+slot 7 is "1006"

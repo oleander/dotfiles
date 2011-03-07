@@ -1,0 +1,5 @@
+ResourceAllocator.jr:10: variable unit might not have been initialized
+    System.out.println(unit);
+                       ^
+Not generating jrGen/ResourceAllocator.java due to errors.
+1 error

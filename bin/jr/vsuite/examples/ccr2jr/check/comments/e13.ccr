@@ -1,0 +1,24 @@
+/* test comments */
+_resource foo {
+
+  public int a;
+
+// this form too
+  public int b;
+
+/* this one should be // okay too */
+
+/* /*  public int ccc; * / _resource_end */
+
+// here's _region within a comment
+
+  public int c;
+
+/* multi-line
+ * comments
+ * are groovy
+ */
+
+  public int d;
+
+}

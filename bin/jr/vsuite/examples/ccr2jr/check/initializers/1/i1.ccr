@@ -1,0 +1,27 @@
+import edu.ucdavis.jr.JR;
+
+_resource mutex {
+   public boolean xfree;
+   { xfree = false; }
+}
+
+public class i1 {
+   // the CCR
+   private static mutex mtx = new mutex();
+
+   public static void main(String [] args) {
+        try {
+
+            _region mutex _with m = mtx {
+	        System.out.println(m.xfree);
+            }
+	    JR.exit(0);
+
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+}

@@ -1,0 +1,4 @@
+# former translator bug (NullPointerException): just compile it
+1 jrc *.jr
+0 cmp Translator.std Translator.out
+0 rm -rf jrGen core *.out

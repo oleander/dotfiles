@@ -1,0 +1,5 @@
+main.jr:14: An 'inni' arm may only receive from an operation or operation capability that is not associated with a method.
+            inni void localOp() {
+                 ^
+Not generating jrGen/main.java due to errors.
+1 error

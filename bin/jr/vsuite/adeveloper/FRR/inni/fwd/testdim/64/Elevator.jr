@@ -1,0 +1,37 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	//System.out.println("hi");
+    }
+
+    static int NF = 4;
+
+    static process controller {
+	op void getOff();
+	// getOn's get scattered to appropriate foyer
+	cap int () foyer[] =
+	    new cap int () [NF];
+	for (int f = 0; f <NF; f++) {
+	    foyer[f] = new op int ();
+	}
+
+	send foyer[0]();
+	inni int foyer[0]() {
+	    forward foyer[1]();
+	}
+	inni int foyer[1]() {
+	    forward foyer[0]();
+	}
+	inni int foyer[0]() {
+	    forward foyer[1]();
+	}
+	inni int foyer[1]() {
+	    forward foyer[0]();
+	}
+	inni int foyer[0]() {
+	    System.out.println("got it");
+	    return 55;
+	}
+    }
+
+}

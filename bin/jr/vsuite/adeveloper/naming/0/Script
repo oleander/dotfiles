@@ -1,0 +1,14 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun RollerCoaster > No_input.out 2>&1
+
+# output is nondeterministic:
+#   e.g., it's possible that one car doesn't get to run all of
+#   its iterations due to timing: say car 6 gets behind,
+#   then when wagon isn't full, quiescence, which then shuts things
+#   before car 6's final iteration
+# 0 scmp No_input.std No_input.out
+# so do a very weak test:
+0 grep "l'attraction est termine" No_input.out > /dev/null 2>&1
+
+0 rm -rf jrGen core *.out

@@ -1,0 +1,5 @@
+main.jr:15: A 'receive' may only be invoked on an operation or operation capability that is not associated with a method.
+	    receive worker();
+                          ^
+Not generating jrGen/main.java due to errors.
+1 error

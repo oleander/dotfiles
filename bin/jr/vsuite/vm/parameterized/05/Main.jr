@@ -1,0 +1,16 @@
+// test for wrong arguments
+
+import edu.ucdavis.jr.JR;
+
+public class Main	{
+
+	public static void main(String [] args)	{
+
+			vm vm0 = new Myvm("hi");
+
+			remote Foo f = new remote Foo(100) on vm0;
+
+			System.out.println("f: ");
+			f.print();
+	}
+}

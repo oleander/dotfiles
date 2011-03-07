@@ -1,0 +1,28 @@
+/* resource factorial */
+
+/* SR version 2.3.1, December 1995 */
+
+public class factorial {
+   factorial() {
+   }
+
+public op void fact(int k, cap void (int) ans);
+public void fact(int k, cap void (int) ans) {
+ProcBody:{
+   op void myanswer(int);
+   int kfact;
+   if ((k<0)){
+      send ans(-1);
+      }
+   else if (((k==0) || (k==1))){
+      send ans(1);
+      }
+   else {
+      send fact(k - 1, myanswer);
+      receive myanswer(kfact);
+      send ans(k * kfact);
+      }
+   }
+}
+}
+

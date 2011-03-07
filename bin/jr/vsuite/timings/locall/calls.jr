@@ -1,0 +1,47 @@
+/****
+# timing for a local proc call
+# An empty proc is called many times.
+****/
+
+
+public class calls {
+  
+   private op void dummy();
+
+   // would-be process
+   private op void test();
+
+   private int limit;
+   private int factor;
+   private int base;
+   private int trials;
+
+   public calls(int factor, int base, int trials) {
+
+      this.factor = factor;
+      this.base   = base;
+      this.trials = trials;
+
+      limit = factor * base;
+
+         call test(); // should be send,
+		      // but don't want to shutdown program until done.
+   }
+
+   private void dummy() {
+   }
+
+   private void test() {
+      long start, finish;
+
+         for (int t = 1; t <= trials; t++ ) {
+	    start = System.currentTimeMillis();
+	    for (int i = 1; i<=limit ; i++) {
+	       call dummy();
+            }
+            finish =System.currentTimeMillis();
+            System.out.println(limit + " times   " + (finish-start) + " ms");
+         }
+   }
+
+}

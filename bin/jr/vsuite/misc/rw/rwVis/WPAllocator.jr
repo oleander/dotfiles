@@ -1,0 +1,34 @@
+/* Writer Preference Allocator: processes all writer in system before readers */
+
+public class WPAllocator extends Allocator {
+	process allocate {
+		receive begin();
+
+		int nr = 0, nw = 0;		// active readers and writers
+		while (true) {
+			inni void kill() { break; }				// kill allocator
+			[] void pause () { setPaused(true); }	// pause and resume manager
+			[] void resume () { setPaused(false); }
+			// start a read given no active or waiting writers
+			[] void start_read(int id) st ((nw == 0) && (start_write.length() == 0) && pause_check()) {
+				nr++;
+				forward activate(id);
+			}
+			// end a read
+			[] void end_read(int id) {
+				nr--;
+				send removeUser(id);
+			}
+			// start a write given no active readers or writers
+			[] void start_write(int id) st ((nw == 0) && (nr == 0) && pause_check()) {
+				nw++;
+				forward activate(id);
+			}
+			// end a write
+			[] void end_write(int id) {
+				nw--;
+				send removeUser(id);
+			}
+		}
+	}
+}

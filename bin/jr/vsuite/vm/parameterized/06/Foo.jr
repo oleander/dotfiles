@@ -1,0 +1,14 @@
+public class Foo	{
+	private int Foo_id;
+
+	public Foo(int i)	{
+		Foo_id = i;
+	}
+
+	public op void print()	{
+		System.out.println("Foo id is: " + Foo_id);
+		System.out.println("vm id is: " + ((Myvm)(vm.thisvm)).id);
+		System.out.println("hoho is: " + ((Myvm)(vm.thisvm)).hoho);
+		System.out.println("hoho is: " + Myvm.hoho);
+	}
+}

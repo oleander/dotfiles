@@ -1,0 +1,9 @@
+public class MyHandler implements edu.ucdavis.jr.Handler	{
+
+	public handler void handleNullPointer(java.lang.NullPointerException e)
+	{
+		System.out.println("Oops.  The JR world isn't so wonderful :-(");
+	}
+
+}
+

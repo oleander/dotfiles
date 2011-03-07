@@ -1,0 +1,3 @@
+public class UserOfflineException extends java.lang.Exception	{
+}
+

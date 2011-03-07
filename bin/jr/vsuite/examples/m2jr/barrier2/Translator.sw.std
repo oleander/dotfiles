@@ -1,0 +1,14 @@
+barrier.jr:181: Invalid expression statement.
+        /*-- 20--*/  ERROR "_signal_all is not defined for signal and wait discipline" 
+                     ^
+barrier.jr:181: ';' expected.
+        /*-- 20--*/  ERROR "_signal_all is not defined for signal and wait discipline" 
+                          ^
+barrier.jr:203: Invalid expression statement.
+       /*-- 42--*/  ERROR "_signal_all is not defined for signal and wait discipline" ;
+                    ^
+barrier.jr:203: ';' expected.
+       /*-- 42--*/  ERROR "_signal_all is not defined for signal and wait discipline" ;
+                         ^
+error: Not generating jrGen/barrier.java due to errors.
+5 errors

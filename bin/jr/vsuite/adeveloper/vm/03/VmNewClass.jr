@@ -1,0 +1,28 @@
+public class VmNewClass
+{
+    public static void main(String [] args)
+    {
+	vm theVm1 = null;
+	vm theVm2 = new vm();
+
+	String vmHostName = "localhost";
+
+
+	vm [] theVmArray1;
+	vm [] theVmArray2 = new vm[10];
+	theVmArray2[0] = new vm();
+
+	theVmArray2[1] = new vm() on "localhost";
+
+	theVmArray2[4] = new vm() on vmHostName;
+	
+	MyVm newVm1a = new MyVm("jojo 1");
+	MyVm newVm1b = new MyVm("jojo 2") on "localhost";
+
+	MyVm newVm1e = new MyVm("jojo 5") on vmHostName;
+
+	MyVm2 newVM2 = new MyVm2("happy", 45);
+
+	edu.ucdavis.jr.JR.exit(0);
+    }
+}

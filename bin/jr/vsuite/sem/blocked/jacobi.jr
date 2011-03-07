@@ -1,0 +1,32 @@
+public class jacobi {
+
+    public op void worker(int);
+
+    private sem arrive;
+    private sem continuesem;
+
+        // would-be process
+        private op void coord();
+
+        public jacobi() {
+
+                send coord();
+        }
+
+        private void coord() {
+	        while(true) {
+		    P(arrive);
+		    System.out.println("coord");
+		    V(continuesem);
+		}
+        }
+
+        public void worker(int who) {
+	        while(true) {
+		    V(arrive);
+		    P(continuesem);
+		    System.out.println(who + " continuing");
+		    break; // yup, short loop ;-)
+		}
+        }
+}

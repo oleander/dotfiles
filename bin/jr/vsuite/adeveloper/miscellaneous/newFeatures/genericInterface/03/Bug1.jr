@@ -1,0 +1,25 @@
+interface Foo<T> {
+    T foo();
+}
+
+public class Bug1 {
+
+       Foo<Integer> bar() {
+	   return new Foo<Integer>(){
+	       int i = 5;
+	       
+	       // intentionally forget to override foo
+	       public int foo() {
+		 i++;
+		   return i;
+	       }
+	   };
+       }
+
+  public static void main(String [] args) {
+    Bug1 b = new Bug1();
+    Foo<Integer> f = b.bar();
+    System.out.println(f.foo());
+  }
+
+}

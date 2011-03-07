@@ -1,0 +1,43 @@
+public class Main
+{
+    public static void main(String [] args)
+    {
+	int counts[] = new int[10];
+	long strt, end;
+
+      try
+      {
+        for (int i = 0; (i < args.length) && (i < counts.length); i++)
+        {
+	    counts[i] = Integer.parseInt(args[i]);
+        }
+      } catch (Exception e) { e.printStackTrace(); }
+	for (int i = 0; i < counts[0]; i++)
+	    send randomServer.random_0();
+	for (int i = 0; i < counts[1]; i++)
+	    send randomServer.random_1(0);
+	for (int i = 0; i < counts[2]; i++)
+	    send randomServer.random_2(0, 0);
+	for (int i = 0; i < counts[3]; i++)
+	    send randomServer.random_3(0, 0, 0);
+	for (int i = 0; i < counts[4]; i++)
+	    send randomServer.random_4(0, 0, 0, 0);
+	for (int i = 0; i < counts[5]; i++)
+	    send randomServer.random_5(0, 0.0f);
+	for (int i = 0; i < counts[6]; i++)
+	    send randomServer.random_6(0, 0.0f, 0);
+	for (int i = 0; i < counts[7]; i++)
+	    send randomServer.random_7(0.0f, 0);
+	for (int i = 0; i < counts[8]; i++)
+	    send randomServer.random_8(0.0f, 0, 0.0f);
+	for (int i = 0; i < counts[9]; i++)
+	    send randomServer.random_9(0.0f);
+
+	//strt = System.currentTimeMillis();
+	V(randomServer.hold);
+	P(randomServer.mainGo);
+	//end = System.currentTimeMillis();
+        //System.out.println("Time: " + (end - strt) + " ms");
+	edu.ucdavis.jr.JR.exit(0);
+    }
+}

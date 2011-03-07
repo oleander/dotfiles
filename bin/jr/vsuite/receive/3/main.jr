@@ -1,0 +1,21 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+	static op void p( int x);
+	static op void semop();
+	static int z;
+
+	public static void main(String [] args)
+	{
+			System.out.println("1111");
+			send semop();
+			send p(3333);
+			System.out.println("2222");
+			receive p(z);
+			receive semop();
+			System.out.println(z);
+
+			JR.exit(0);
+	}
+}

@@ -1,0 +1,7 @@
+Main.jr:8: cannot find symbol
+symbol  : class Elevator
+location: class Main
+    public void foo( remote Elevator v ) {
+                            ^
+Not generating jrGen/Main.java due to errors.
+1 error

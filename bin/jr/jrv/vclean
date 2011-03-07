@@ -1,0 +1,185 @@
+#!/usr/bin/perl
+#
+#  vclean - clean junk out of the vsuite
+#
+# (usually, the Scripts clean up after themselves, but if a Script fails
+# it does leave around garbage files.)
+#
+# (based loosely on SR's vclean for top-level Makefile)
+#
+# be sure you know what this is going to do before you run it!
+# run without any argument, it just shows garbage.
+# run with    any argument, it actually removes garbage.
+#
+# should be executed in vsuite directory;
+# will work elsewhere (e.g., subdirectory of vsuite), though,
+# (with errors reported for ./examples/..., but won't be harmful).
+
+use strict;
+
+my $cmdu; # command to execute for deleting a file
+my $cmdr; # command to execute for deleting a directory (and all within it)
+my $pick; # hack so can print name relative to directory from which
+          # this command is issued
+          # (find apparently cd's to directory (despite no_chdir=>1)
+          # and unlink and rmtree need names relative to that directory.)
+
+main();
+
+sub main {
+
+  if (! @ARGV) {
+    print "just showing the garbage -- not actually removing it\n";
+    $cmdu = $cmdr = "println";
+    $pick = 1;
+  }
+  else {
+    $cmdu = "unlink";
+    use File::Path; # for rmtree
+    $cmdr = "rmtree";
+    $pick = 0;
+  }
+
+## print "$cmdr $cmdu \n";
+
+  # remove all jrGen directories
+  use File::Find;
+  &finddepth(\&dwanted, '.');
+
+  # remove all junk files
+  use File::Find;
+  &find(\&fwanted, '.');
+
+  # *carefully* remove .jr files created by preprocessors
+  #
+  # ccr2jr -- generates .jr for given .ccr
+  #           can remove all .jr files
+  # csp2jr -- generates .jr for given .csp; copies csp_*.jr
+  #           can remove all .jr files
+  # m2jr   -- generates .jr for given .m; copies m_*.jr
+  #           BUT, test files are also .jr files!
+  #           be careful NOT to remove test .jr files!!
+  #
+  # code below is somewhat conservative
+  #
+  # it removes csp_*.jr, m_*.jr, and only those other .jr files
+  # generated from .ccr, .csp, or .m files.
+
+    # remove all copied files
+    &find(\&csp_wanted, './examples/csp2jr');
+    &find(\&m_wanted,   './examples/m2jr');
+
+    # remove all generated .jr files
+    &find(\&gen_ccr, './examples/ccr2jr');
+    &find(\&gen_csp, './examples/csp2jr');
+    &find(\&gen_m,   './examples/m2jr');
+
+  exit 0;
+}
+
+# have the wanted routines execute the commands (using eval)
+# (so have println function that takes same parameter as unlink and rmtree
+# (no \n otherwise those functions won't work)).
+# alternative: have the wanted routines return lists of files or directories
+# and delete or print at higher level.
+sub dwanted {
+  my $p;
+  (    /^jrGen$/
+   )
+  && ($p = pickfun($_, $File::Find::name))
+  && (eval ("$cmdr " . "\"$p\""));
+}
+
+# not sure what all these suffixes are
+# (from SR Makefile), but we'll use them too.
+# (suffixes out1 and out2 used only in sem/init_negative/*.)
+sub fwanted {
+  my $p;
+##   print "enter: $File::Find::name\n";
+
+  (    /^.*~$/
+    || /^.*%$/
+    || /^\.[BC]K\..*$/
+    || /^.*%$/
+    || /^\.emacs_.*$/
+    || /^\.nfs.*$/
+    || /^\.purify.*$/   # what's this for?
+    || /^.*_pure_.*$/   # what's this for?
+    || /^.*\.orig$/
+    || /^.*\.org$/
+    || /^.*\.old$/
+    || /^.*\.bak$/
+    || /^.*\.new$/
+    || /^.*\.dif$/
+    || /^.*\.out$/
+    || /^.*\.out1$/
+    || /^.*\.out2$/
+    || /^.*\.raw$/
+    || /^.*\.rej$/
+    || /^.*\.tmp$/
+    || /^.*\.v[0-9].*$/
+    || /^core$/
+    || /^x.?$/
+   )
+  && ($p = pickfun($_, $File::Find::name))
+  && (eval ("$cmdu " . "\"$p\""));
+}
+sub csp_wanted {
+  my $p;
+  (    /^csp_.*\.jr$/
+   )
+  && ($p = pickfun($_, $File::Find::name))
+  && (eval ("$cmdu " . "\"$p\""));
+}
+sub m_wanted {
+  my $p;
+  (    /^m_.*\.jr$/
+   )
+  && ($p = pickfun($_, $File::Find::name))
+  && (eval ("$cmdu " . "\"$p\""));
+}
+sub gen_ccr {
+  my $suffix = ".ccr";
+  (    /^.*$suffix$/
+   )
+  && gen_doit($_, $File::Find::name, $suffix);
+}
+sub gen_csp {
+  my $suffix = ".csp";
+  (    /^.*$suffix$/
+   )
+  && gen_doit($_, $File::Find::name, $suffix);
+}
+sub gen_m {
+  my $suffix = ".m";
+  (    /^.*$suffix$/
+   )
+  && gen_doit($_, $File::Find::name, $suffix);
+}
+sub gen_doit {
+  my $cn = shift(@_); # $_ in invoker (name within this directory)
+  my $sn = shift(@_); # $File::Find::name in invoker
+                      # (name relative to starting directory)
+  my $suffix = shift(@_);
+  my $cj = $cn;
+  $cj =~ s/$suffix$/\.jr/;
+##println( "$cj  from $cn aka $sn");
+  if ( -e "$cj" ) {
+##println( "$cj found*******************");
+    my $sj = $sn;
+    $sj =~ s/$suffix$/\.jr/;
+    my $p = pickfun($cj, $sj);
+    eval ("$cmdu " . "\"$p\"");
+  }
+}
+
+# returns arg1 or arg2.
+sub pickfun {
+  return $_[$pick];
+}
+
+# just output (assumed) single argument plus a newline
+sub println {
+  my $o = shift(@_);
+  print "$o\n";
+}

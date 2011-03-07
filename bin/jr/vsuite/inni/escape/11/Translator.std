@@ -1,0 +1,5 @@
+main.jr:32: Return required within 'inni' statement servicing op int foo(int).  'break' statement on line 33 exits 'inni' statement before return/reply/forward.
+	            inni int foo(int x) {
+                         ^
+Not generating jrGen/main.java due to errors.
+1 error

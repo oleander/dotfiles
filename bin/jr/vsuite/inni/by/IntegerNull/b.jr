@@ -1,0 +1,77 @@
+/* resource b */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class b {
+
+   public b() {
+   op void p(int);
+   op void q(float);
+   op void r(Integer);
+
+   send p(8888);
+send p(9999);
+send p(3333);
+send p(1111);
+{
+   int n;
+   
+L1: for (n = 1; (n<=4); n+=1) {
+      {
+         inni void p(int i) by i {
+            {
+               System.out.println((i));
+               }
+            }
+        
+         }
+      }
+   }
+send q( (float) 4.000000000000000e-01);
+send q( (float) 3.000000000000000e-01);
+send q( (float) 5.000000000000000e-01);
+send q( (float) 1.000000000000000e-01);
+send q( (float) 2.000000000000000e-01);
+{
+   int n;
+   
+L2: for (n = 1; (n<=5); n+=1) {
+      {
+         inni void q(float x) by x {
+            {
+               System.out.println((x));
+               }
+            }
+        
+         }
+      }
+   }
+send r(5);
+ send r(new Integer(98));
+send r(-3);
+send r(null);
+send p(3142);
+{
+   int n;
+   
+L3: for (n = 1; (n<=5); n+=1) {
+      {
+         inni void r(Integer c) by c {
+            {
+               System.out.println((c));
+               }
+            }
+         [] void p(int i){
+            {
+               System.out.println((i));
+               }
+            }
+        
+         }
+      }
+   }
+
+}
+}
+

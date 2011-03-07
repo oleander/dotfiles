@@ -1,0 +1,67 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+  public static void main(String [] args )
+  {
+     try {
+        JR.registerQuiescenceAction(done);
+     } catch(Exception e) {e.printStackTrace();}
+
+     int FLAG = Integer.parseInt(args[0]);
+
+     op void joo(int);
+     op void foo(int);
+     op void boo();
+     op void moo();
+     op void koo();
+     op void goo();
+     op void zoo();
+
+     if ( FLAG == 0 ) {
+       send joo(10);
+     } 
+     else if ( FLAG == 1) {
+        send foo(5);
+        send boo();
+     }
+     else if( FLAG == 2 ) {
+        send foo(10);
+     }
+     else if( FLAG == 3 ) {
+        send moo();
+     }
+
+     inni void joo(int x ) {
+        inni void goo() {
+            System.out.println("in goo");
+        }
+        [] elseafter 5 {
+            System.out.println("in elseafter of goo inni");
+        }
+     }
+     [] void foo(int y) {
+        inni void zoo(){
+           System.out.print("in zoo");
+        }
+        [] void boo() {
+            inni void koo() {
+               System.out.println("in koo");
+            }
+            [] else {
+               System.out.println("in else of boo ");
+            }
+        }
+        [] elseafter 4 {
+             System.out.println("in elseafter of zoo");
+        }
+     }
+     [] elseafter 5+5 {
+        System.out.println("in elseafter of outer inni.");
+     }  
+  }
+
+  public static op void done() {
+     System.out.println("Quiescence!");
+  }
+}
+

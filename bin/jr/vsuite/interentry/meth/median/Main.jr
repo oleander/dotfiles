@@ -1,0 +1,98 @@
+import java.util.Random;
+
+public class Main
+{
+    static Random rand;
+    public static void main(String [] args)
+    {
+	int num;
+	int vals[];
+	long strt, end;
+
+      try
+      {
+	if (args.length == 0)
+	    num = 1;
+	else
+	    num = Integer.parseInt(args[0]);
+      } catch (Exception e) { e.printStackTrace(); num = 1;}
+	rand = new Random(num);
+	if (num < 0)
+	    num = 1;
+	else if ((num % 2) == 0)
+	    num++;
+
+
+	vals = new int[num];
+
+	for (int i = 0; i < vals.length; i++)
+	{
+	    vals[i] = i;
+	}
+
+	shuffle(vals);
+/*
+	for (int i = 0; i < vals.length; i++)
+	{
+	    System.out.print(vals[i] + " ");
+	}
+	System.out.println();
+*/
+
+	for (int i = 0; i < vals.length; i++)
+	{
+	    switch (i % 10)
+	    {
+		case 0:
+			send medianServer.task0(vals[i]);
+			break;
+		case 1:
+			send medianServer.task1(vals[i], 0);
+			break;
+		case 2:
+			send medianServer.task2(vals[i], 0.0f);
+			break;
+		case 3:
+			send medianServer.task3(vals[i], 0, 0);
+			break;
+		case 4:
+			send medianServer.task4(vals[i], 0, 0.0f);
+			break;
+		case 5:
+			send medianServer.task5(vals[i], 0.0f, 0);
+			break;
+		case 6:
+			send medianServer.task6(vals[i], 0.0f, 0.0f);
+			break;
+		case 7:
+			send medianServer.task7(vals[i], 0, 0, 0);
+			break;
+		case 8:
+			send medianServer.task8(vals[i], 0, 0, 0.0f);
+			break;
+		case 9:
+			send medianServer.task9(vals[i], 0, 0.0f, 0);
+			break;
+	    }
+	}
+
+	//strt = System.currentTimeMillis();
+	V(medianServer.hold);
+	P(medianServer.mainGo);
+	//end = System.currentTimeMillis();
+        //System.out.println("Time: " + (end - strt) + " ms");
+	edu.ucdavis.jr.JR.exit(0);
+    }
+
+    protected static void shuffle(int [] array)
+    {
+	int tmp, swp;
+	for (int i = 0; i < array.length; i++)
+	{
+	    swp = rand.nextInt(array.length);
+	    tmp = array[swp];
+	    array[swp] = array[i];
+	    array[i] = tmp;
+	}
+    }
+}

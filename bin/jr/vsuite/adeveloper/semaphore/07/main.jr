@@ -1,0 +1,21 @@
+public class main {
+
+    private static op void s1();
+
+    private static sem s2 = 1;
+
+    public static void main(String [] args) {
+
+      System.out.println("Welcome to the wonderful world of JR!");
+
+      V(s1);
+      P(s1);
+
+      P(s2);
+      V(s2);
+
+      System.out.println("Goodbye!");
+
+    }
+
+}

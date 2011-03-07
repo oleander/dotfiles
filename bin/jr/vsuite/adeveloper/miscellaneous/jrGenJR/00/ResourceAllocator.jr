@@ -1,0 +1,21 @@
+import java.util.*;
+
+import edu.ucdavis.jr.JR;
+
+public class ResourceAllocator {
+
+  public static void main(String[] args) {
+    System.out.println("Allocating...");
+
+    String w = (new Object() {
+	public String toString() {
+	  JR.nap(1);
+	  System.out.println("About to release 42.");
+	  return "hohoho";
+	}
+      }).toString();
+    System.out.println(w);
+
+    System.out.println("Done");
+  }
+}

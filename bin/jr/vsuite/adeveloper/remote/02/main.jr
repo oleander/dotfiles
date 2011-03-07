@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main (String [] args) {
+	remote A a1 = noop;
+	remote A a2 = null;
+	remote B b1 = noop;
+	remote B b2 = null;
+	remote B b3 = (remote B) noop;
+	remote B b4 = (remote B) null;
+	remote B b5 = (remote C) noop;
+	remote B b6 = (remote C) null;
+	remote C c1 = noop;
+	remote C c2 = null;
+	remote C c3 = (remote B) noop;
+	remote C c4 = (remote B) null;
+	remote C c5 = (remote C) noop;
+	remote C c6 = (remote C) null;
+
+	a1 = noop;
+	b1 = noop;
+	b1 = c1;
+	c1 = b1;
+    }
+
+}
+
+class A {}
+
+interface B {}
+
+class C implements B {}
+

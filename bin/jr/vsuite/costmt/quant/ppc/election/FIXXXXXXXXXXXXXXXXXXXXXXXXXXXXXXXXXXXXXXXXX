@@ -1,0 +1,7 @@
+change so reads command line args
+
+and checks different scenarios?
+  early quit for yes, for no, wait for all...
+
+make command line args be pairs:
+  (yes or no vote, time to delay before responding to vote)

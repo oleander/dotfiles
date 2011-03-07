@@ -1,0 +1,5 @@
+0 javac Main.java
+0 java Main  > No_input.out 2>&1
+# yup, don't want output to match!
+1 cmp No_input.std No_input.out
+0 rm -rf *.class core *.out

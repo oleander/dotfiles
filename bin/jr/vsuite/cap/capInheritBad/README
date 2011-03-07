@@ -1,0 +1,13 @@
+2005-09-19
+
+./1 caused problem for JR 1.00061
+edu.ucdavis.jr.trans.sun.tools.java.CompilerError: checkOverride(),
+expected method
+        at
+	edu.ucdavis.jr.trans.sun.tools.java.MemberDefinition.checkOverride(MemberDefinition.java:583)
+...
+
+./2 fine.
+
+
+Problems don't occur in JR 2.00000x so didn't bother trying to fix old code.

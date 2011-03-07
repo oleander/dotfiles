@@ -1,0 +1,16 @@
+a1: 11
+a2: 12
+a1: 13
+a2: 14
+b3: A
+b4: B
+b3: C
+b4: D
+harpo 3
+chico 5
+   harpo 5 7
+   fwd
+chico 10
+   harpo 10 12
+fini
+done

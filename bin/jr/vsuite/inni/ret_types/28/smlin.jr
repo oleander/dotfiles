@@ -1,0 +1,19 @@
+// bad: int declared return type, float inni return type
+public class smlin
+{
+    public static op int a(String, int, int);
+    public static process b
+    {
+	    int chan = a("a", 3, 4);
+	    System.out.println(chan);
+    }
+    public static void main(String [] args)
+    {
+	inni float a(Object i, int j, float f)
+	{
+	    System.out.println("Howdy "+i+" "+j+" "+f);
+	    return 7;
+	}
+
+    }
+}

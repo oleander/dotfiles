@@ -1,0 +1,46 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+   public static cap void(int, char...) memberCap[] = new cap void(int, char...)[2];
+
+   public static void main(String [] args) {
+	cap void (int, char...) mycap[] = new cap void(int, char...)[2];
+	cap boolean (int, char...) mycap2[] = new cap boolean(int, char...)[2];
+
+	for (int i = 0; i < 2; i++) {
+	    memberCap[i] = new op void(int, char...);
+	    mycap[i] = new op void(int, char...);
+	    mycap2[i] = new op boolean(int, char...);
+	    A.otherCap[i] = new op boolean(int, char...);
+	}
+
+	for (int i = 0; i < 2; i++) {
+	    send mycap[i](i, (char)(i+65));
+	    send mycap2[i](i+2, (char)(i+67));
+	    send memberCap[i](i+4, (char)(i+69));
+	    send A.otherCap[i](i+6, (char)(i+71));
+	}
+
+	int x;
+	char [] y;
+
+	for (int i = 0; i < 2; i++) {
+	    receive mycap[i](x, y);
+	    System.out.println("received mycap: " + x + " " + y[0]);
+	}
+	for (int i = 0; i < 2; i++) {
+	    receive mycap2[i](x, y);
+	    System.out.println("received mycap2: " + x + " " + y[0]);
+	}
+	for (int i = 0; i < 2; i++) {
+	    receive memberCap[i](x, y);
+	    System.out.println("received memberCap: " + x + " " + y[0]);
+	}
+	for (int i = 0; i < 2; i++) {
+	    receive A.otherCap[i](x, y);
+	    System.out.println("received A.otherCap: " + x + " " + y[0]);
+	}
+   }
+
+}

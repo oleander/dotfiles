@@ -1,0 +1,50 @@
+/* Weak Reader Preference Allocator: process all readers in system before processing *
+ * a writer.  At the exit of a writer scheduling is randomly picked between readers  *
+ * and a writer                                                                      */
+
+import java.util.Random;
+
+public class WRPAllocator extends Allocator {
+	private static final int ANY = 2;
+	private int select = ANY;
+
+	process allocate {
+		receive begin();
+
+		int nr = 0, nw = 0;			// active readers and writers
+		Random rand = new Random();	// randomizer
+
+		while (true) {
+			inni void kill() { break; }					// kills the allocator
+			[] void pause () { setPaused(true); }		// pause and resume the manager
+			[] void resume () { setPaused(false); }
+			// starts a read given writer not selected and no active writers
+			[] void start_read(int id) st ((nw == 0) && (select != WRITER) && pause_check()){
+				nr++;
+				forward activate(id);
+				select = ANY;
+			}
+			// ends a read
+			[] void end_read(int id) {
+				nr--;
+				send removeUser(id);
+			}
+			// starts a write given reader not selected dn no active readers or writers
+			[] void start_write(int id) st ((nw == 0) && (nr == 0) && (select != READER) && pause_check()) {
+				nw++;
+				forward activate(id);
+				select = ANY;
+			}
+			// ends a write then randomly reschedules a writer or readers
+			[] void end_write(int id) {
+				nw--;
+				send removeUser(id);
+
+				if ( (start_write.length() != 0) && (start_read.length() != 0) )
+					select = rand.nextInt(2);
+				else
+					select = ANY;
+			}
+		}
+	}
+}

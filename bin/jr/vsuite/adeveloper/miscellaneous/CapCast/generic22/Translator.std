@@ -1,0 +1,8 @@
+GenericsCapMain.jr:8: op java.lang.String get() in MyShape<java.lang.String> cannot be applied to (int)
+	d = (cap String(int)) (sq.get); // wrong
+                                 ^
+GenericsCapMain.jr:8: illegal start of type
+	d = (cap String(int)) (sq.get); // wrong
+                              ^
+Not generating jrGen/GenericsCapMain.java due to errors.
+2 errors

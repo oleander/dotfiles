@@ -1,0 +1,19 @@
+// bad: float actual to int formal
+public class smlin
+{
+    public static op int a(String, int, int);
+    public static process b
+    {
+	    int chan = a("a", 3, 4.0f);
+	    System.out.println(chan);
+    }
+    public static void main(String [] args)
+    {
+	inni int a(String i, int j, int f)
+	{
+	    System.out.println("Howdy "+i+" "+j+" "+f);
+	    return 7;
+	}
+
+    }
+}

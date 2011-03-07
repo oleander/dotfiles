@@ -1,0 +1,5 @@
+b.jr:22: ``by' expression has a class type; that class must implement Comparable.
+         inni void r(X c) by c {
+              ^
+Not generating jrGen/b.java due to errors.
+1 error

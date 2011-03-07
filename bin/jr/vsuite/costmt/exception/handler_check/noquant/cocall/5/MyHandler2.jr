@@ -1,0 +1,9 @@
+public class MyHandler2 implements edu.ucdavis.jr.Handler	{
+
+	public handler void handleEOF(java.io.EOFException e)
+	{
+		System.out.println("Handler 2");
+	}
+
+}
+

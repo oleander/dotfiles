@@ -1,0 +1,26 @@
+// test whether expression in a second reply actually is evaluated
+// (as it should)
+import edu.ucdavis.jr.JR;
+public class fun {
+  private static op int f(int);
+  private static int y = 0;
+  private static process p {
+    int z;
+    z = 11;
+      z = f(10);
+    System.out.println(z);
+  }
+  private static int f(int x) {
+      reply x+8;
+    return (y++)+x*10;
+  }
+
+  public static void main(String [] args) {
+    try {
+	JR.registerQuiescenceAction(done);
+    } catch (Exception e) {e.printStackTrace();}
+  }
+  public static op void done() {
+    System.out.println(y);
+  }
+}

@@ -1,0 +1,41 @@
+import edu.ucdavis.jr.JR;
+
+// test of mixed type of exceptions
+
+public class main {
+
+    public static void main(String [] args) {
+	try	{
+		co GO(1) {
+			System.out.println("ppc1");
+			int x = 1;
+			if (x == 1)
+				throw new java.io.EOFException();
+			else
+				throw new NullPointerException();
+		}
+		[] GO(2) {
+			System.out.println("ppc2");
+		}
+		[] GO(3);
+		[] GO(4);
+	} catch (Exception e) {
+		System.out.println("catch block");
+	}
+	System.out.println("After co");
+    }
+
+    private static op String GO(int n);
+
+    private static process MYPROCESS	{
+	int n = 1;
+	while(true)	{
+		inni String GO(int x) st x == n { // service in order: deter.
+			System.out.println("received GO: " + x);
+			reply "HI";
+			n++;
+		}
+	}
+    }
+
+}

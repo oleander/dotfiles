@@ -1,0 +1,9 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+# note: redirect stderr separately
+1 jrrun Main > No_input.out 2> No_input.err
+0 cmp No_input.std No_input.out
+# 2004-10-25 following was too specific; didn't work on Itaniums, so changed.
+# 0 grep "jrvm exception: null" No_input.err 2>/dev/null
+0 grep "jrvm exception" No_input.err 2>/dev/null
+0 rm -rf jrGen core *.out *.err

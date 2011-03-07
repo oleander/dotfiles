@@ -1,0 +1,21 @@
+/* resource b */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class b {
+   op void done();
+   op void main(cap void());
+   public b() {
+   send main(null);
+   receive done();
+}
+
+void main(cap void() c) {
+ProcBody:{
+   System.out.println(("main called"));
+   send done();
+   }
+}
+}
+

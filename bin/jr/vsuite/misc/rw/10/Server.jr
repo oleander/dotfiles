@@ -1,0 +1,35 @@
+public class Server
+{
+    public op void readRequest();
+    public op void readRelease();
+    public op void writeRequest();
+    public op void writeRelease();
+/////////*******    private op void start();
+    protected op void start();
+
+    public Server() {
+        send start();  // create a thread to execute the start method
+////////////////*** make start non-private to get dynamic binding
+
+    }
+    protected void start() {
+        int nw = 0, nr = 0;
+
+        while (true) { // on each iteration, service a R or W request or release
+System.out.println("Server top of loop");
+            if ((nw == 0) && (nr == 0)) {
+                inni void readRequest() { nr++; }
+                [] void writeRequest() { nw++; }
+               
+            } else if (nw > 0) {
+                inni void writeRelease() { nw--; }
+               
+            } else if (nr > 0) {
+
+                inni void readRequest() { nr++; }
+                [] void readRelease() { nr--; }
+               
+            }
+        }
+    }
+}

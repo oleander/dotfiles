@@ -1,0 +1,45 @@
+// 2004-09-15 was a bug; now OK.
+
+public class main {
+
+    public static void main(String [] args) {
+        System.out.println("start");
+	cap int (int) f = poo;
+	{
+	    int z = f(1);
+	    System.out.println(" " + z);
+	}
+	{   // this one is fine.
+	    Object o = f;
+	    f = (cap int (int)) o;
+	    int z = f(2);
+	    System.out.println(" " + z);
+	}
+	{
+	    // this one should be fine in 5.0
+	    Object o = f;
+	    f = o;
+	    int z = f(2);
+	    System.out.println(" " + z);
+	}
+	{   // this one should be, but isn't.
+	    Object o = f;
+	    int z = ((cap int (int)) o)(3);
+	    System.out.println(" " + z);
+	}
+	{   // this one should be, but isn't.
+	    Object o = f;
+	    int z = 9;
+	    call ((cap int (int)) o)(3);
+	    System.out.println(" " + z);
+	}
+      }
+
+    public static op int poo(int x) {
+	int y;
+	y = -x;
+	return y;
+    }
+
+
+}

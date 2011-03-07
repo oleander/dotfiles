@@ -1,0 +1,92 @@
+/*
+ * Created on 2004/7/31
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+
+/**
+ * @author William
+ *
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+ 
+import javax.swing.JComponent;
+import java.util.LinkedList;
+
+public class DecentralizedSolution extends DiningPhilSolution {
+
+	private DecentralizedSolution()
+	{
+		super();
+	}
+	
+	public static DiningPhilSolution instance()
+	{
+		if ( thisInstance == null )
+		{
+			thisInstance = new DecentralizedSolution();
+			thisInstance.session = 3;
+			thisInstance.numPhil = 3;
+		}
+		return thisInstance;
+	}
+	
+	public process solutionServer 
+	{
+		while ( true )
+		{
+			inni void start(DiningDesktopPane pane, boolean localOnly, LinkedList vmList) st once == 1
+			{
+			   once = 0;
+			   container = pane;
+				send container.removeAllOp();
+
+			   // create the Servant and Philosophers
+			   System.out.println("Create servants and philosophers....");
+			   P(sMutex);
+				s = new remote DiningPhilServant[numPhil];
+				for(int i = 0; i < numPhil; i++) {
+			      s[i] = new remote DecentralizedServant(i) on container.getVm();
+			      new remote DecentralizedPhilosopher((remote DecentralizedServant)s[i], i, numPhil, session, container.remote, retriver, localOnly) on container.getVm(i);
+  					container.setMessage("Create servants and philosophers...." + percent.format((i+1.0)/numPhil * 100) + "%");
+			   }
+			   V(sMutex);
+
+		    	// give each Servant capabilities for
+		    	// its two neighboring Servants
+		    	for (int i = 0; i < numPhil; i++) {
+		      	int left = (i-1<0?numPhil-1:i-1), right = (i+1>numPhil-1?0:i+1);
+		      	send ((remote DecentralizedServant)s[i]).links((remote DecentralizedServant)s[left],(remote DecentralizedServant)s[right]);
+		    	}
+			   
+		    	// initialize each Servant's forks;
+		    	// initialization is asymmetric to prevent deadlock;
+		    	// see Servant class for parameters' meanings.
+		    	send ((remote DecentralizedServant)s[0]).forks(true, true, true, true);
+		    	for (int i = 1; i < numPhil-1; i++) {
+		      	send ((remote DecentralizedServant)s[i]).forks(false, false, true, false);
+		    	}
+		    	send ((remote DecentralizedServant)s[numPhil-1]).forks(false, false, false, false);
+
+			   phil_handler = new cap void (int) [numPhil];
+			   for (int i = 0; i < numPhil; i++)
+			   {
+			   	receive retriver(phil_handler[i]);
+			   }
+			   // pause every philosopher initially, and resume(start) them once they are all initialized at this point
+			   resume();
+			   container.setMessage("");
+			}
+		}
+	}
+	
+	public String toString()
+	{
+		return "Decentralized Solution";
+	}
+
+	private static DecentralizedSolution thisInstance;
+	
+}

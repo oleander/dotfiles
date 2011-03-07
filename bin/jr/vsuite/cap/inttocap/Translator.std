@@ -1,0 +1,17 @@
+main.jr:9: cannot find symbol
+symbol  : method a()
+location: class main
+	f = a;
+            ^
+main.jr:10: cannot find symbol
+symbol  : method bbbb()
+location: class main
+	f = bbbb;
+            ^
+main.jr:11: incompatible types
+found   : int
+required: cap int()
+	f = a+1;
+          ^
+Not generating jrGen/main.java due to errors.
+3 errors

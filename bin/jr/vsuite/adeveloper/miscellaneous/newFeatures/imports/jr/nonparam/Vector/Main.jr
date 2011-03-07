@@ -1,0 +1,8 @@
+public class Main {
+  public static void main(String[] args) {
+    A av = new A();
+    av.add(3);
+    av.add("x");
+    System.out.println(av);
+  }
+}

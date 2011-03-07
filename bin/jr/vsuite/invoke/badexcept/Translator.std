@@ -1,0 +1,5 @@
+simple.jr:26: exception java.rmi.RemoteException is never thrown in body of corresponding try statement
+        catch (java.rmi.RemoteException e)
+        ^
+Not generating jrGen/simple.java due to errors.
+1 error

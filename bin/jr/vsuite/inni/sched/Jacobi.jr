@@ -1,0 +1,77 @@
+/* resource Jacobi */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class Jacobi {
+   private static final int blksize = 4;
+   private static final int nloops = 5;
+
+   // would-be processes
+   private static op void sender(int);
+   private static op void coordinator();
+
+   private static op void terminate(int);
+   private static op void done();
+
+
+   Jacobi() {
+          // start up processes
+	  for (int i = 1; i <= blksize; i++) {
+	     send sender(i);
+	  }
+	  send coordinator();
+
+	  // wait for processes to finish
+	  for (int i = 1; i <= blksize+1; i++) {
+	     receive done();
+	  }
+
+
+
+   }
+
+   private static void sender(int i) {
+{
+   {
+L1: for (int h = 1; (h<=nloops); h+=1) {
+         {
+            call terminate(i);
+            }
+         }
+	 send done();
+      }
+   }
+}
+
+   private static void coordinator() {
+{
+   
+L1: for (int h = 1; (h<=nloops); h+=1) {
+         inni void terminate(int delta) st (terminate.length()==blksize)
+                                     by -delta {
+            {
+               System.out.println(("begin inner loop; ?terminate =") +
+	       " "
+               + (terminate.length()));
+               System.out.println(("  delta =") + " " + (delta));
+               {
+                  int i;
+                  
+L3: for (i = 2; (i<=blksize); i+=1) {
+                        inni void terminate(int delta2){
+                              System.out.println(("  delta =") + " " + (delta2));
+                           }
+                       
+
+                     }
+                  }
+               }
+            }
+        
+      }
+      send done();
+       }
+}
+}
+

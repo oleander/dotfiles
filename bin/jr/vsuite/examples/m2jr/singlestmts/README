@@ -1,0 +1,11 @@
+these tests make sure that extra semicolons aren't generated
+
+such causes problems with 1 stmt ifs
+e.g.,
+
+if (...) _signal(...)
+else _signal(...)
+
+
+perhaps these tests should just replace regular ones, but those are
+examples of "good" programs whereas these aren't.

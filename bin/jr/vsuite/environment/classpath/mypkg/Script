@@ -1,0 +1,6 @@
+# note: mypkg directory hardcoded in below
+0 javac *.java
+0 cd ..
+0 jar cf mypkg.jar mypkg/*.class
+0 cd mypkg
+0 rm -rf core *.out *.class

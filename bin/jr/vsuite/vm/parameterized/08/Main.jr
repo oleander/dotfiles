@@ -1,0 +1,13 @@
+// 2005-05-24 bug discovered by William
+// MyVm2.jr:3: No constructor matching MyVm() found in class MyVm.
+//    public MyVm2(String name, int id) {}
+//           ^
+
+public class Main {
+
+    public static void main(String [] args) {
+        System.out.println("Welcome to the wonderful world of JR!");
+	new MyVm("hi");
+	new MyVm2("ho", 3);
+    }
+}

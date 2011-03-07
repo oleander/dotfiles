@@ -1,0 +1,17 @@
+public class main {
+
+
+    public static void main(String [] args) {
+
+	send f();
+    }
+
+    static op void f(){
+
+	int [] a = null;
+	System.out.println("a.length="+a.length);
+	System.out.println("okay");
+    }
+
+}
+

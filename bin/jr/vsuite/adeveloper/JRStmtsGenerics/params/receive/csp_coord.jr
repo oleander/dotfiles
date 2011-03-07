@@ -1,0 +1,126 @@
+import java.util.ArrayList;
+import edu.ucdavis.jr.JR;
+
+public class csp_coord {
+
+    public static void main(String [] args) { new csp_coord(); }
+
+    public op void csp_match(ArrayList<Integer>);
+
+    private ArrayList<ArrayList<Integer>> defer;
+    int csp_np = 10;
+
+    private sem xxxx = 5;
+
+    public csp_coord() {
+
+	defer = new ArrayList<ArrayList<Integer>>();
+	for (int k = 0; k < csp_np; k++) {
+	    defer.add(new ArrayList<Integer>());
+	    ArrayList<Integer> x = defer.get(k);
+	    for (int h = 0; h<10-k; h++) {x.add(h);}
+	}
+	int OK = 3;
+	System.out.println (defer.get(OK).size());
+    }
+
+    private process xx {
+	while(true) {
+	    ArrayList<Integer> x = null;
+	    receive csp_match(x);
+	    System.out.println("got ");
+	    for (Integer h: x) {
+		System.out.println("  "+h);
+	    }
+	}
+    }
+
+    private process coordinator {
+	int OK2 = 3;
+	System.out.println (defer.get(OK2).size());
+
+	int OK3 = 3;
+	ArrayList<Integer> zzz = defer.get(OK3);
+	System.out.println (zzz.size());
+
+	// 1 arm
+	co csp_match(defer.get(7)) {
+	    System.out.println (defer.size());
+
+	    sem wwww = 5;
+
+
+	    int OK4 = 3;
+	    ArrayList<Integer> zz = defer.get(OK4);
+	    /// works:	ArrayList zz = ((ArrayList)defer.get(OK4));
+	    System.out.println (zz.size());
+	    System.out.println (defer.get(OK4).size());
+	    System.out.println (((ArrayList)defer.get(1)).size());
+
+	}
+
+	// 2 arms
+	co csp_match(defer.get(5)) {
+	    System.out.println (defer.size());
+
+	    sem wwww = 5;
+
+
+	    int OK4 = 3;
+	    ArrayList<Integer> zz = defer.get(OK4);
+	    /// works:	ArrayList zz = ((ArrayList)defer.get(OK4));
+	    System.out.println (zz.size());
+	    System.out.println (defer.get(OK4).size());
+	    System.out.println (((ArrayList)defer.get(1)).size());
+
+	}
+	[] csp_match(defer.get(6)) {
+	    System.out.println (defer.size());
+
+	    sem wwww = 5;
+
+
+	    int OK4 = 3;
+	    ArrayList<Integer> zz = defer.get(OK4);
+	    /// works:	ArrayList zz = ((ArrayList)defer.get(OK4));
+	    System.out.println (zz.size());
+	    System.out.println (defer.get(OK4).size());
+	    System.out.println (((ArrayList)defer.get(1)).size());
+
+	}
+
+
+	// nested
+	co csp_match(defer.get(3)) {
+	    co csp_match(defer.get(4)) {
+		System.out.println (defer.size());
+
+		sem wwww = 5;
+
+
+		int OK4 = 3;
+		ArrayList<Integer> zz = defer.get(OK4);
+		/// works:	ArrayList zz = ((ArrayList)defer.get(OK4));
+		System.out.println (zz.size());
+		System.out.println (defer.get(OK4).size());
+		System.out.println (((ArrayList)defer.get(1)).size());
+
+	    }
+
+	    System.out.println (defer.size());
+
+	    sem wwww = 5;
+
+
+	    int OK4 = 3;
+	    ArrayList<Integer> zz = defer.get(OK4);
+	    /// works:	ArrayList zz = ((ArrayList)defer.get(OK4));
+	    System.out.println (zz.size());
+	    System.out.println (defer.get(OK4).size());
+	    System.out.println (((ArrayList)defer.get(1)).size());
+
+	}
+
+    }
+
+}

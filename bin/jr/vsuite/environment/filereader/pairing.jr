@@ -1,0 +1,137 @@
+/**** This file is given as part of the programming assignment. *****/
+
+//  usage: jr Main [fname]
+// input format: number of nodes, then adjacency array
+
+import edu.ucdavis.jr.JR;
+import java.io.*;
+import java.text.*;
+
+public class pairing {
+
+   // number of nodes
+   private static int N;
+
+   // adjacency matrix
+   private static boolean [][] connect;
+
+   // the node "processes"
+   private static op void node(int me);
+
+   // done message
+   private static op void done();
+
+   // for output:  process i puts who it's paired with in pair[i]
+   private static int [] pair;
+   public static void main(String [] args) {
+      try {
+         BufferedReader br;
+         if (args.length == 0 ) {
+            InputStreamReader isr = new InputStreamReader(System.in);
+            br = new BufferedReader(isr);
+	 }
+	 else {
+            FileReader fr = new FileReader(args[0]);
+            br = new BufferedReader(fr);
+         }
+
+         String s = br.readLine();
+         N = Integer.parseInt(s);
+
+	 // effect 1:N subscripting by
+	 // declaring 1 element larger
+	 // row 0 and col 0 aren't used.
+         connect = new boolean [N+1][N+1];
+         pair    = new int [N+1];
+
+         // error checking not perfect, but better than nothing...
+         // (I'm sure the's a better way to do this, but below is simple.)
+         for( int r = 1; r <= N; r++ ) {
+            s = br.readLine();
+            // now check for too long or short a string.
+            if (s.length() != 2*N && s.length() != 2*N-1) {
+                System.err.println("bad input line (too short|long)" + s +
+                                      " (row)=("+r+")");
+                JR.exit(1);
+            }
+            // add sentinel to ensure substring and equals work.
+            s +=  " ";
+            for( int c = 1; c <= N; c++ ) {
+// System.err.println("loop1 input |" + s.substring(2*(c-1),2*c) + "|");
+                String torf = s.substring(2*(c-1),2*c);
+                if ( torf.equals("t ") ) {
+                   connect[r][c] = true;
+                }
+                else if ( torf.equals("f ") ) {
+                   connect[r][c] = false;
+                }
+                else {
+                   System.err.println("bad input field " + torf +
+                                      " (row,col)=("+r+","+c+")");
+                   JR.exit(1);
+                }
+            }
+         }
+
+         for( int r = 1; r <= N; r++ ) {
+            for( int c = 1; c <= N; c++ ) {
+               if ( connect[r][c] != connect[c][r] ) {
+                  System.err.println(
+                     "insane! adjacency matrix not symmetric "
+                     + r + " " + c);
+                  JR.exit(1);
+               }
+            }
+         }
+
+         print();
+
+         // start up nodes
+         for (int i = 1; i <= N; i++ ) {
+            send node(i);
+         }
+
+         // wait for them to finish
+         for (int i = 1; i <= N; i++ ) {
+            receive done();
+         }
+
+         // print out pairings
+         for( int i = 1; i <= N; i++ ) {
+            System.out.println(i + " " + pair[i]);
+         }
+
+         JR.exit(0);
+
+      } catch (java.io.IOException e) {e.printStackTrace(); JR.exit(1); }
+    }
+
+    // prints adjacency matrix; formatting assumes < 10 rows and < 10 cols.
+    private static void print() {
+       if (N == 0) return;
+       System.out.print("  ");
+       for (int c = 1; c <= N; c++) {
+	  System.out.print(c+" ");
+       }
+       System.out.println();
+
+       for (int r = 1; r <= N; r++) {
+	  System.out.print(r+" ");
+          for (int c = 1; c <= N; c++) {
+	     System.out.print(connect[r][c]?"t ":"f ");
+	  }
+	  System.out.println();
+       }
+       System.out.println();
+    }
+
+   static private void node ( int me ) {
+////	  System.out.println("node "+me);
+         // record with whom I have pairing
+            pair[me] = 9999; //////// something else goes here after
+                             //////// computing it somehow somewhere above ;-)
+         // announce that I'm done
+            send done();
+   }
+
+}

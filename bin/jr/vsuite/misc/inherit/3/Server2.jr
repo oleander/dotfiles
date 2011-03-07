@@ -1,0 +1,16 @@
+import edu.ucdavis.jr.JR;
+
+public class Server2 extends Server
+{
+    private op void start();
+
+    public Server2(){
+	    System.out.println("Server2 starting constructor");
+	    send start();
+	    System.out.println("Server2 finishing constructor");
+     }
+
+    private void start() {
+    }
+
+}

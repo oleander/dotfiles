@@ -1,0 +1,25 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+   public static cap void(int, char) memberCap = new op void(int, char);
+
+   public static void main(String [] args) {
+	cap void (int, char) mycap = new op void(int, char);
+	cap boolean (int, char) mycap2 = new op boolean(int, char);
+
+	send mycap(1, 'a');
+	send mycap2(2, 'b');
+	send memberCap(3, 'c');
+
+	int x;
+	char y;
+	receive mycap(x, y);
+	System.out.println("received mycap: " + x + " " + y);
+	receive mycap2(x, y);
+	System.out.println("received mycap2: " + x + " " + y);
+	receive memberCap(x, y);
+	System.out.println("received memberCap: " + x + " " + y);
+   }
+
+}

@@ -1,0 +1,14 @@
+public class B {
+  public op void Bop(int, String);
+  int myint;  String mystr;
+  public B(int myint, String mystr) {
+    this.myint = myint;  this.mystr = mystr;
+  }
+  process Bserver {
+      while (true) {
+        int fromint;  String fromstr;
+        receive Bop(fromint, fromstr);
+        System.out.println(myint +" "+ mystr +" "+ fromint +" "+ fromstr);
+      }
+  }
+}

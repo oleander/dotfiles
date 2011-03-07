@@ -1,0 +1,35 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static int x;
+
+    public static op int test1();
+
+    public static op void test2();
+    public static void test2(){}
+
+    public static op int test3() {}
+
+    public static op void test4(int x);
+
+    public static void main(String [] args) {
+	receive x;
+	receive test1();
+	receive test2();
+	receive test3();
+	receive test4();
+        double a;
+	char b;
+        receive test4(a);
+	receive test4(b);
+
+	receive test4(1);
+	receive test4(1.0);
+	receive test4('a');
+
+	final int c = 10;
+	receive test4(c);
+    }
+
+}

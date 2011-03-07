@@ -1,0 +1,29 @@
+0 m2jr -sc no_cv.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sc.out 2>&1
+0 grep "java.lang.RuntimeException: reached end of non-void _proc" sc.out \
+  > /dev/null 2>&1
+
+0 m2jr -sw no_cv.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sw.out 2>&1
+0 grep "java.lang.RuntimeException: reached end of non-void _proc" sw.out \
+  > /dev/null 2>&1
+
+0 m2jr -su no_cv.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > su.out 2>&1
+0 grep "java.lang.RuntimeException: reached end of non-void _proc" su.out \
+  > /dev/null 2>&1
+
+0 m2jr -sx no_cv.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sx.out 2>&1
+0 grep "java.lang.RuntimeException: reached end of non-void _proc" sx.out \
+  > /dev/null 2>&1
+
+0 rm -rf jrGen core *.out no_cv.jr m_condvar.jr

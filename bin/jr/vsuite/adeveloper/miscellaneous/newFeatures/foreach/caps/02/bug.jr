@@ -1,0 +1,33 @@
+import edu.ucdavis.jr.JR;
+import java.util.*;
+
+public class bug {
+   public static void main(String args[]) {
+
+     op void a();
+     op void b();
+
+
+      ArrayList<cap void()>  outEvent= new ArrayList<cap void()>();
+
+      outEvent.add(a);
+      outEvent.add(b);
+      outEvent.add(a);
+
+
+      for(cap void() whenOut:outEvent){
+	         op void whenFinishOut();
+		 //	         send whenOut(whenFinishOut);
+	         send whenOut();
+      }
+
+      while (a.length() > 0 || b.length() > 0) {
+	inni void a() {
+	  System.out.println("got a");
+	}
+	[] void b() {
+	  System.out.println("got b");
+	}
+      }
+   }
+}

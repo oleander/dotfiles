@@ -1,0 +1,6 @@
+0 ccr2jr mutex.ccr a.ccr
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun a > No_input.out 2>&1
+0 scmp No_input.std No_input.out
+0 rm -rf jrGen core *.out *.jr

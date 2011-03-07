@@ -1,0 +1,60 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    private static remote A a1, a2, a3, a4;
+
+    public static void main(String [] args) {
+
+	    System.out.println("before creation");
+	    a1 = new remote A(1);
+            vm vm2 = new vm();
+	    a2 = new remote A(2) on vm2;
+            vm vm3 = new vm();
+	    a3 = new remote A(3) on vm3;
+	    a4 = new remote A(4) on vm2;
+	    System.out.println("after  creation");
+
+	    out();
+	    send a1.foo();
+	    out();
+	    send a1.foo();
+	    send a2.goo(3);
+	    send a3.foo();
+	    call a3.hoo();
+	    out();
+	    cap void () fun;
+	    fun = a1.foo;
+	    System.out.println("fun.length="+fun.length());
+	    fun = a3.hoo;
+	    System.out.println("fun.length="+fun.length());
+	    receive a1.foo();
+	    out();
+	    int x;
+	    receive a2.goo(x);
+	    out();
+	    receive a3.foo();
+	    out();
+	    send a4.foo();
+	    send a4.foo();
+	    send a4.foo();
+	    out();
+
+            JR.exit(0);
+    }
+
+    private static void out() {
+	    System.out.println("a1.foo.length="+a1.foo.length());
+	    System.out.println("a1.goo.length="+a1.goo.length());
+	    System.out.println("a1.hoo.length="+a1.hoo.length());
+	    System.out.println("a2.foo.length="+a2.foo.length());
+	    System.out.println("a2.goo.length="+a2.goo.length());
+	    System.out.println("a2.hoo.length="+a2.hoo.length());
+	    System.out.println("a3.foo.length="+a3.foo.length());
+	    System.out.println("a3.goo.length="+a3.goo.length());
+	    System.out.println("a3.hoo.length="+a3.hoo.length());
+	    System.out.println("a4.foo.length="+a4.foo.length());
+	    System.out.println("a4.goo.length="+a4.goo.length());
+	    System.out.println("a4.hoo.length="+a4.hoo.length());
+    }
+}

@@ -1,0 +1,11 @@
+jrvm exception: op initialized with a negative value
+edu.ucdavis.jr.jrRuntimeError: op initialized with a negative value
+	at InOp_voidTovoid_impl.<init>(InOp_voidTovoid_impl.java:26)
+	at initsem.<init>(initsem.java:278)
+	at main.main(main.java:11)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at edu.ucdavis.jr.jrx.jrvm.startmain(jrvm.java:247)
+	at edu.ucdavis.jr.jrx.jrvm.main(jrvm.java:299)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at edu.ucdavis.jr.jrx.jrvm_wrap.startmain(jrvm_wrap.java:50)
+	at edu.ucdavis.jr.jrx.jrvm_wrap.main(jrvm_wrap.java:87)

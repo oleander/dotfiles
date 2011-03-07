@@ -1,0 +1,5 @@
+1 -- compiles now (2004-01-12 didn't when needed explicit except. handling)
+
+2 -- shouldn't compile (caused problems at one time)
+
+3 -- should compile and run

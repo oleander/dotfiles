@@ -1,0 +1,42 @@
+//  test of remote uses of dynamic operations and input from cap
+
+//  main resource
+
+public class mainclass
+{
+    char c;
+    int j;
+
+  public mainclass()
+  {
+    remote rmt rc = new remote rmt() on new vm();
+
+    send rc.s();				// signal that we're ready
+    receive rc.t();				// wait for ack
+
+    System.out.println("o1 qsize: " + rc.o1.length());	// check remote query
+    receive rc.o1(c);			// simple receive
+    System.out.println("received: " + c);		
+    System.out.println("o1 qsize: " + rc.o1.length());
+    while (true)
+    {
+	inni void rc.o1(char c) System.out.println("from o1: " + c);
+             // simple input
+	[] else {System.out.println("no more o1"); break;} // check else branch
+
+    }
+    System.out.println("o1 qsize: " + rc.o1.length());
+
+    for (int i = 1; i <= 9; i++)
+    {
+	inni int rc.o2(int j) return 11 * j;	// check call and return value
+
+    }
+
+    cap void (int) o = new op void (int);	// create dynamic op
+    for (int i = 1; i <= 5; i++) send o(i);	// load its queue
+    rc.drain (o);			// pass to remote machine for servicing
+
+    System.out.println("done");
+  }
+}

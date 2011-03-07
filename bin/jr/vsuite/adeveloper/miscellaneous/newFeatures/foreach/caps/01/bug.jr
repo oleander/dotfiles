@@ -1,0 +1,47 @@
+import edu.ucdavis.jr.JR;
+import java.util.*;
+
+public class bug {
+
+  static op void a(cap void());
+  static op void b(cap void());
+  static op void go(int);
+
+   public static void main(String args[]) {
+
+      ArrayList<cap void(cap void())>  outEvent= new ArrayList<cap void(cap void())>();
+
+      outEvent.add(a);
+      outEvent.add(b);
+      outEvent.add(a);
+
+      send go(outEvent.size());
+
+	//      for(cap void(cap void()) whenOut:outEvent){
+      for(int k = 0; k < outEvent.size(); k++) {
+	cap void(cap void()) whenOut = outEvent.get(k);
+	op void whenFinishOut();
+	send whenOut(whenFinishOut);
+	inni void whenFinishOut() {
+	  System.out.println("got whenFinishOut "+k);
+	}
+      }
+
+   }
+
+  static process looper {
+    int len;
+    receive go(len);
+      while (len > 0) {
+	inni void a(cap void() w) {
+	  System.out.println("got a");
+	  send w();
+	}
+	[] void b(cap void() w) {
+	  System.out.println("got b");
+	  send w();
+	}
+	len--;
+      }
+  }
+}

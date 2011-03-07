@@ -1,0 +1,7 @@
+escape.jr:9: cannot find symbol
+symbol  : class boid
+location: class escape
+		inni boid g() {}
+                     ^
+Not generating jrGen/escape.java due to errors.
+1 error

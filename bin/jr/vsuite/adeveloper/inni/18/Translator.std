@@ -1,0 +1,11 @@
+main.jr:15: missing return statement
+	}
+        ^
+main.jr:18: missing return statement
+	}
+        ^
+main.jr:22: missing return statement
+	}
+        ^
+Not generating jrGen/main.java due to errors.
+3 errors

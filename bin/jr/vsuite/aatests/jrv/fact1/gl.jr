@@ -1,0 +1,10 @@
+/* resource gl */
+
+/* SR version 2.3.1, December 1995 */
+
+
+class gl {
+   static {
+   }
+}
+

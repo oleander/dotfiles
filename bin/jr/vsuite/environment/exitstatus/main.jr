@@ -1,0 +1,18 @@
+import edu.ucdavis.jr.JR;
+
+// note: in jdk1.2.2 (and possibly before), jvm on Linux seems to
+//              return 0 exitstatus some of the time!
+//       on jdk1.3, jvm returns what JR.exit tells it to.
+
+
+public class main
+{
+
+    public static void main(String [] args)
+    {
+
+        System.out.println("before try ");
+            System.out.println("after");
+            JR.exit(12);
+    }
+}

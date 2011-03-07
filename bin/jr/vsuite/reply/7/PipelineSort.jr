@@ -1,0 +1,15 @@
+public class PipelineSort {
+  public static void main(String [] args) {
+      System.out.println(worker(1));
+      System.out.println(worker(0));
+  }
+  private static op int worker (int m) {
+    reply 3;
+    if (m == 1) {
+      System.out.println("m is 1");
+    }
+    else {
+      System.out.println("m isn't 1");
+    }
+  }
+}

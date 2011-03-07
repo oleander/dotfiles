@@ -1,0 +1,12 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+   public static void main(String[] args) {
+      // get args
+      int factor = Integer.parseInt(args[0]);
+      int base   = Integer.parseInt(args[1]);
+      int trials = Integer.parseInt(args[2]);
+      new context(factor, base, trials);
+         JR.exit(0);
+   }
+}

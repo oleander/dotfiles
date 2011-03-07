@@ -1,0 +1,9 @@
+_resource c {
+}
+_resource c { // deliberately duplicate
+}
+
+_region c _with t = x {
+  _region c _with u = y {
+  }
+}

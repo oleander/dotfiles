@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class RA<E> {
+
+  public enum Request {Allocate, Release};
+
+  public op void request(cap void(E), Request, E);
+
+  private Queue<E> units = new LinkedList<E>();
+  private Queue<cap void(E)> pending = new LinkedList<cap void(E)>();
+
+  public void add(E unit) {
+    units.add(unit);
+  }
+
+  private process server {
+    cap void(E) r;
+    Request action;
+    E unit;
+
+    while (true) {
+      receive request(r, action, unit);
+      if (action == Request.Allocate)
+	if (units.isEmpty())
+	  pending.add(r);
+	else
+	  send r(units.remove());
+      else
+	if (pending.isEmpty())
+	  units.add(unit);
+	else {
+	  //r = pending.remove();
+	  //send r(unit);
+	  send (pending.remove())(unit);
+	}
+    }
+  }
+
+  public static void main(String[] args) {
+    RA<Integer> ra = new RA<Integer>();
+    ra.add(42);
+
+    op void ret(Integer);
+    int unit;
+
+    send ra.request(ret, Request.Allocate, null);
+    receive ret(unit);
+    System.out.println("Allocated unit: "+unit);
+    send ra.request(null, Request.Release, unit);
+  }
+}

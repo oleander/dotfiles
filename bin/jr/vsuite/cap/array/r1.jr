@@ -1,0 +1,46 @@
+/* resource r1 */
+
+/* SR version 2.3.1, December 1995 */
+
+public class r1 {
+   public remote r2[] a;
+public r1() {
+   a = new remote r2[10 - 1 + 1];
+{
+
+   int i;
+   
+L1: for (i = 1; (i<=10); i+=1) {
+      {
+         a[(i) - 1]=new remote r2(i);
+         }
+      }
+   }
+call a[(3) - 1].print(17);
+call a[(7) - 1].print(10005);
+call p1(a[(4) - 1].print);
+call p2(a[(6) - 1]);
+{
+   int i;
+   
+L2: for (i = 10; (i>=1); i+= -1) {
+      {
+         a[(i) - 1] = null;
+         }
+      }
+   }
+}
+
+public void p1(cap void(int) x) {
+ProcBody:{
+   call x(-19);
+   }
+}
+
+public void p2(remote r2 x) {
+ProcBody:{
+   call x.print(-27);
+   }
+}
+}
+

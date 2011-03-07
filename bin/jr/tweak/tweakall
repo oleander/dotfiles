@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# typical usage:  tweakall /usr/local/bin/perl
+# or (from csh):  tweakall `which perl`
+
+# (better to use:  tweakall "`which perl` -w"
+#  if you're developing JR and trying to debug these scripts)
+
+
+# sanity check
+if [ $# -ne 1 ]
+then
+   echo "usage: $0 pathname_for_perl"
+   exit 1
+fi
+
+# pretend we have arrays ;-)
+# d and f
+d_1=bin
+f_1="ccr2jr clean_jrGen csp2jr \
+            jfindmain jgo jgox jr \
+            jrc jrfindmain jrgo jrgox jrrun m2jr "
+d_2=jrv
+f_2="jrv ruf vclean"
+
+# pretend we have subscripting of arrays ;-)
+for n in 1 2
+do
+  dir=`eval echo "$"d_$n`
+  echo tweaking in directory $dir
+  cd $dir
+  files=`eval echo "$"f_$n`
+  for file in $files
+  do
+    echo "  tweaking $file"
+
+    # quick and dirty
+    tmp=tmp.$file
+    mv $file $tmp
+    echo "#!$1" > $file
+    tail -n +2 $tmp >> $file
+    chmod +x $file
+    rm $tmp
+
+    done
+
+    cd ..
+done

@@ -1,0 +1,36 @@
+import edu.ucdavis.jr.JR;
+
+public class captest {
+
+   // not particularly interesting function
+   private static op int fun1(int x) {
+      return x;
+   }
+
+  // x squared...
+   private static op int fun2(int x) {
+      return x*x;
+   }
+
+   private static op void func_invoker(cap int (int) fa[]) {
+      for (int i = 0; i < fa.length; i++)
+         System.out.printf("fa[%d](%d) = %d\n", i, 3, fa[i](3));
+   }
+
+   // program entry point - no parameter checking
+   public static void main(String [] args) {
+
+      cap int (int) funcs[] = new cap int (int)[2];
+ 
+      funcs[0] = fun1; funcs[1]=fun2;
+
+      System.out.printf("fun1(%d) = %d\n", 3, fun1(3));
+      System.out.printf("fun1(%d) = %d\n", 3, funcs[0](3));
+      System.out.printf("fun2(%d) = %d\n", 3, fun2(3));
+      System.out.printf("fun2(%d) = %d\n", 3, funcs[1](3));
+
+      System.out.println("now via func_invoker");
+      func_invoker(funcs);
+
+   }
+}

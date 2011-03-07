@@ -1,0 +1,40 @@
+_program d {
+  private static final int N = 10;
+  _specs {
+    A [N][N] { goo(); }
+    B        { foo(int,int,int,int); }
+  }
+
+  _process A (i, j) {
+    System.out.println("start of A " + i + " " + j);
+    _o B!foo(-i,i,-j,j);
+    _i B?goo();
+  }
+
+// intentionally leave some processes hanging
+  _process B {
+    // give all A's a chance to run and block at B!foo
+    // (to make output deterministic)
+    try {
+      Thread.sleep(1000);
+    } catch (Exception oops) {oops.printStackTrace();}
+    System.out.println("start of B");
+    // values of ii irrelevant -- it just drives loop
+    for (int ii = 1; ii <= (N-2)*(N-6); ii++) {
+        int xi, whichi, xj, whichj;
+        // in general, this is non-deterministic,
+        // but in our implementation, it is deterministic which gets
+        // paired and in what order.
+        // (assuming that all A's get to go before B gets here)
+        _i [i = 0 _to N-3][j = 2 _to N-1] A[i][j]?foo(xi, whichi, xj, whichj);
+        System.out.println(xi+" "+xj);
+        _o A[whichi][whichj]!goo();
+    }
+    // give all A's a chance to run and block at B!foo or terminate
+    // (to make output deterministic)
+    try {
+      Thread.sleep(200);
+    } catch (Exception oops) {oops.printStackTrace();}
+  }
+
+}

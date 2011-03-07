@@ -1,0 +1,18 @@
+public class RA<E> {
+
+  public op void request(E);
+
+  private process server {
+    E unit;
+
+    inni void request(E u) { unit = u;
+      E x;
+      x = u;
+      E y = u;
+}
+    
+  }
+
+  public static void main(String[] args) {
+  }
+}

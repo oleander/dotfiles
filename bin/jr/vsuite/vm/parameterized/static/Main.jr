@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class Main	{
+	public static op void myOp(int x);
+	public static cap void (int) myCap;
+
+	public static void main(String [] args)	{
+			myCap = myOp;
+
+			// test capability
+			vm vm1 = new Myvm(10, "vm1", new MyObj(999), myCap);
+
+			// test operation
+			vm vm2 = new Myvm(20, "vm2", new MyObj(888), myOp);
+
+			remote Foo f = new remote Foo(100) on vm1;
+			remote Foo g = new remote Foo(200) on vm2;
+
+			System.out.println("f: ");
+			f.print();
+			System.out.println("g: ");
+			g.print();
+
+			System.out.println("---------------");
+
+			inni void myOp(int x)	{
+				System.out.println("receive from Foo id: " + x);
+			}
+			inni void myOp(int x)	{
+				System.out.println("receive from Foo id: " + x);
+			}
+
+	}
+}

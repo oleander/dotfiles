@@ -1,0 +1,20 @@
+This is the JR programming language from the University of California, Davis.
+
+Information about JR is available from
+http://www.cs.ucdavis.edu/~olsson/research/jr.
+
+We thank the SR Project at The University of Arizona
+(http://www.cs.arizona.edu/sr/), from which we borrowed ideas, words,
+and code.
+
+The JR system is in the public domain and you may use and distribute
+it as you wish.  We ask that you retain credits referencing the
+University of California, Davis and that you identify any changes you
+make.
+
+We can't provide a warranty with JR; it's up to you to determine its
+suitability and reliability for your needs.  We do intend to continue
+to develop and maintain JR as resources permit, and would like to hear
+of any problems.
+
+Via email, contact jr-project@cs.ucdavis.edu.

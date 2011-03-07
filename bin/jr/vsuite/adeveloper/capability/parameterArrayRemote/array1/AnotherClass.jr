@@ -1,0 +1,10 @@
+import edu.ucdavis.jr.JR;
+
+// a class that MainClass will instantiate remotely
+public class AnotherClass {
+   public AnotherClass (Integer arrayInt[]) {
+     for( Integer x: arrayInt) {
+       System.out.println(x);
+     }
+   }
+}

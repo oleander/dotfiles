@@ -1,0 +1,9 @@
+public class K extends J {
+
+  public K() {
+  }
+
+  public int whoAmI() {
+    return getId();
+  }
+}

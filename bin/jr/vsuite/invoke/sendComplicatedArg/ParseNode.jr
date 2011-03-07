@@ -1,0 +1,17 @@
+import java.util.*;
+import java.net.*;
+import java.io.*;
+import edu.ucdavis.jr.JR;
+
+public class ParseNode{
+
+        public ParseNode(){};
+        public ParseNode(String u){
+           myURL = u;
+           myChildrenURL = new ArrayList<String>();
+
+        }
+        public String myURL;
+        public ArrayList<String> myChildrenURL;
+
+}

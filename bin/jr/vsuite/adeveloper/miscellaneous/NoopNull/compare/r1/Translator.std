@@ -1,0 +1,24 @@
+AA1 17 54 23 16 13
+AA1 17 17
+AA1 17 54 23 16 13
+AA1 10 8
+AA1 17 54 23 16 13
+AA1 17 17
+Main.jr:9: incomparable types: remote A and remote B
+	System.out.println("a == b? "+ (a==b));
+                                         ^
+AA1 17 54 23 16 13
+AA1 10 8
+AA1 17 54 23 16 13
+AA1 17 17
+Main.jr:10: incomparable types: remote B and remote A
+	System.out.println("b == a? "+ (b==a));
+                                         ^
+AA1 17 54 23 16 13
+AA1 10 8
+AA1 17 54 23 16 13
+AA1 17 17
+AA1 17 54 23 16 13
+AA1 10 8
+Not generating jrGen/Main.java due to errors.
+2 errors

@@ -1,0 +1,10 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun Main > No_input.out 2>&1
+0 scmp No_input.std No_input.out
+# localhost should work on all systems
+0 jrrun Main localhost > No_input.out 2>&1
+0 scmp No_input1.std No_input.out
+0 jrrun Main TESTthisvmHACK > No_input.out 2>&1
+0 scmp No_input2.std No_input.out
+0 rm -rf jrGen core *.out

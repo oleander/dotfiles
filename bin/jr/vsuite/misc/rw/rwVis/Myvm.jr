@@ -1,0 +1,19 @@
+// a class to implement identifyable virtual machines,
+// they are identified by an id number or a name
+public class Myvm extends vm {
+	int id;
+	String name;
+
+	public Myvm(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public op int getID() {
+		return id;
+	}
+
+	public op String getName() {
+		return name;
+	}
+}

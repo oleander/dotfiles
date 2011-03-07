@@ -1,0 +1,8 @@
+public class C{
+  public static op boolean staticCompare(cap void () a, cap void () b) {
+    return a == b;
+  }
+  public op boolean compare(cap void () a, cap void () b) {
+    return a == b;
+  }
+}

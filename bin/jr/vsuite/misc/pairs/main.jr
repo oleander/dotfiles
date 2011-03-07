@@ -1,0 +1,13 @@
+import edu.ucdavis.jr.JR;
+
+public class main 
+{
+ public static void main(String [] args)
+  {
+         remote pairs inp = new remote pairs();
+  
+
+ JR.exit(0);
+}
+
+}

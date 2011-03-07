@@ -1,0 +1,18 @@
+main.jr:5: incompatible types
+found   : cap void()
+required: cap void(int)
+    public static cap void(int) memberCap1 = new sem;
+                                                    ^
+main.jr:6: incompatible types
+found   : boolean
+required: int
+    public static cap void() memberCap2 = new sem(true);
+                                                  ^
+main.jr:13: memberCap1 in main cannot be applied to ()
+	V(memberCap1);
+          ^
+main.jr:14: memberCap1 in main cannot be applied to ()
+	P(memberCap1);
+          ^
+Not generating jrGen/main.java due to errors.
+4 errors

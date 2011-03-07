@@ -1,0 +1,50 @@
+import edu.ucdavis.jr.JR;
+
+public class administrator
+{
+    public op void bag(double, double, double, double);
+    public op void result(double);
+    public op void outstanding(); // for termination
+
+    public administrator() {
+    }
+
+    // noted: code for f is repeated in worker.
+    private double f(double x) {
+        return Math.pow(x,3.0);
+    }
+
+    private process start {
+        double area = 0.0;
+        double l = 0.0, r = 4.0;
+
+	    send bag(l,r,f(l),f(r));
+
+            int stillneed = 1; // number of initial sends to bag.
+	    // stillneed is number of areas for which still need answer,
+	    // i.e., it's the number of areas still being computed.
+
+            do {
+// sequence of values received is nondet, so comment out this output.
+//	        System.out.println("administrator top of loop, area="+area+
+//                                   " "+stillneed);
+		// note: don't need to ensure preference
+		// of outstanding over result
+		// because new outstanding invocations are call invocations
+		// and will be handled before any results for that
+		// area (both parts) are sent.
+  		inni void result(double part) {
+		    area += part;
+		    stillneed--;
+		}
+		[] void outstanding() {
+		    stillneed++;
+		}
+	
+            }
+	    while (stillneed > 0 );
+            System.out.println("administrator done loop, area="+area+
+                                   " "+stillneed);
+    }
+}
+

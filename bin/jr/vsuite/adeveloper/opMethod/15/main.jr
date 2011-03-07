@@ -1,0 +1,40 @@
+import edu.ucdavis.jr.JR;
+import java.io.*;
+
+public class main  {
+
+    public static int x;
+
+    public static void main(String [] args) {
+	MyHandler mh = new MyHandler();
+
+	System.out.println("Welcome to the wonderful world of JR!");
+
+	send print(1, 'a') handler mh;
+	send print() handler x;
+	send print() handler mh;
+	send print() handler new MyHandler();
+	send print() handler mh = new MyHandler();
+
+	send print(1, 'a') handler print;
+	send print() handler print();
+	send print() handler print(1, 'a');
+
+	send test();
+    }
+
+    public static void test() {
+	System.out.println("test");
+	return;
+    }
+
+    public static op int print(int x, char y) {
+	System.out.println("Successful");
+	return x;
+    }
+
+    public static op Object print() {
+	System.out.println("Successful 2");
+	return new Integer(1);
+    }
+}

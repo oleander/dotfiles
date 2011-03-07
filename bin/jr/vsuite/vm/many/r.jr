@@ -1,0 +1,5 @@
+public class r {
+    public r(int n) {
+	System.out.println("\t\thello from "+n);
+    }
+}

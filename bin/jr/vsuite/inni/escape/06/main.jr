@@ -1,0 +1,43 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    public static op int a();
+    public static op int b();
+    public static op int c();
+
+    static int i, j;
+
+    public static int a()
+    {
+	label:while (true)
+	{
+	    inni int b()
+	    {
+		  reply 7;
+		  inni int c()
+		  {
+		    reply 3;
+		    continue label;
+		  }
+	    }
+	    break;
+	}
+// note: never get here.
+	System.out.println("Leaving a");
+	return 0;
+    }
+
+    public static void main(String [] args)
+    {
+	i = j = 0;
+	// do it once for output
+	send a();
+	System.out.println("should be 7 then 3 " + b() + c());
+	// do it again for fun (and clean termination)
+	// note: only need one a since it continues.
+	send c();
+	b();
+	JR.exit(0);
+    }
+}

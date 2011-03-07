@@ -1,0 +1,85 @@
+import java.util.*;
+import java.awt.*;
+
+public class AssistantManager {
+	//private variables for the number of reader iterations, writer iterations, assistant manager ID,
+	//and color associated with the vm
+	private int riter = 5, witer = 5, amid;
+	private Color color;// = Colors.get( ((Myvm)(vm.thisvm)).getID() );
+
+	//ops for assistant manager components to link to, to access assistant manager functions
+	public op void change_iter(char, int);
+	public op void addReader ();
+	public op void addWriter ();
+	public op void kill_am ();
+	public op int getRiter() { return riter; }
+	public op int getWiter() { return witer; }
+	public op void dispose ();
+
+	//caps used to access main manager functions, and vm managing functions
+	public cap int () getCount;
+	public cap int () getRCount;
+	public cap int () getWCount;
+	public cap java.util.List (String) getList;
+	public cap java.util.List () getUsers;
+	public cap java.util.List () getActive;
+	public cap void (String) selectAllocator;
+	public cap void () repaint;
+	public cap void (int) end_read;
+	public cap void (int) end_write;
+	public cap void (String) newVM;
+	public cap int () getSize;
+	public cap void (User) send_start;
+	public cap void () deleteVM;
+
+	//constructor for assistant manager that creates a new assistant manager window, who's manager
+	//is this assistant manager, and sets all the necessary caps
+	public AssistantManager(remote Manager manager, remote VMEntry vmEntry) {
+		this.amid				= ((Myvm)(vm.thisvm)).getID();
+		this.selectAllocator 	= manager.selectAllocator;
+		this.getUsers 			= manager.getUsers;
+		this.getActive 			= manager.getActive;
+		this.end_read 			= manager.end_read;
+		this.end_write 			= manager.end_write;
+		this.getCount 			= manager.getCount;
+		this.getRCount 			= manager.getRCount;
+		this.getWCount 			= manager.getWCount;
+		this.newVM 				= manager.newVM;
+		this.getSize 			= manager.getSize;
+		this.send_start 		= manager.send_start;
+		this.repaint 			= vmEntry.repaint;
+		this.getList 			= vmEntry.list;
+		this.deleteVM 			= vmEntry.removeVM;
+		this.color 				= vmEntry.getColor();
+
+		new Window(this);
+	}
+
+	/*process that manages various options and functions of the assistant manager:
+	 * change_iter : changes writer and reader iterations
+	 * addReader : add a reader to the main manager user list
+	 * addWriter : add a writer to the main manager user list
+	 * kill_am : destroy assistant manager, send appropriate process stopping signals
+	*/
+	process manage {
+		while (true) {
+			inni void change_iter(char a, int iter) {
+				if(a == 'r') 
+					this.riter = iter;
+				else if(a == 'w')
+					this.witer = iter;
+			}
+			[] void addReader () {
+				try{
+					new Reader(getRCount(), getCount(), amid, riter, end_read, color, send_start);
+				} catch (java.lang.OutOfMemoryError e) { System.out.println("Out of memory: can't create Reader"); e.printStackTrace(); }
+			}
+			[] void addWriter () {
+				try {
+					new Writer(getWCount(), getCount(), amid, witer, end_write, color, send_start);
+				} catch (java.lang.OutOfMemoryError e) { System.out.println("Out of memory: can't create Writer"); e.printStackTrace(); }
+			}
+			[] void kill_am () { call dispose(); send deleteVM(); break; }
+		}
+	}
+}

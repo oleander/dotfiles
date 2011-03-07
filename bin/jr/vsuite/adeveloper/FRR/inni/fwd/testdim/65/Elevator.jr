@@ -1,0 +1,20 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	System.out.println("hi");
+    }
+
+    int NF = 4;
+
+    process controller {
+	op void getOff();
+	// getOn's get scattered to appropriate foyer
+	op int foyer ();
+
+	inni int foyer() {
+	    forward foyer[1]();
+	}
+    }
+
+}
+

@@ -1,0 +1,52 @@
+class Handler2 implements edu.ucdavis.jr.Handler
+{
+    public handler void method(java.lang.Exception e)
+    {
+        System.out.println("Caught java.lang.Exception " +
+			   "through Handler2 object: " + e.toString());
+    }
+}
+
+
+public class main {
+
+
+    public static void main(String [] args) {}
+
+    static op void f(int x) throws Exception;
+    static op void g(int x) throws Exception;
+
+    static process p1 {
+	for (int k = -8; k <= -4 ; k+=2) {
+	System.out.println("p1 starting "+k);
+	try {
+	    call f(k);
+	} catch(Exception e) {
+	    System.out.println("gotcha "+k);
+	}
+		 }
+    }
+
+    static process p2 {
+	for (int k = 1; k <= 3; k++) {
+	inni void f(int x) throws Exception {
+
+	    System.out.println("before fwd");
+	    Handler2 h = new Handler2();
+	    forward g(x+10) handler h;
+	    System.out.println("after fwd");
+	}
+
+	inni void g(int x) throws Exception {
+
+	    System.out.println("g before throw");
+	    if (x==4) throw new Exception();
+	    System.out.println("g after throw");
+	}
+
+	System.out.println("p2 done "+k);
+	}
+    }
+
+}
+

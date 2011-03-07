@@ -1,0 +1,5 @@
+fwd1.jr:31: A 'forward' may only be invoked on an operation or operation capability with a return type matching that of the current method/in arm: int differs from double.
+   forward p2();
+   ^
+Not generating jrGen/fwd1.java due to errors.
+1 error

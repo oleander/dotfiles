@@ -1,0 +1,128 @@
+/* the JR class for monitor condition variables.
+ *
+ * only SC uses signal_all; no others should invoke it.
+ *
+ * idea for handling signal_all is:
+ *   first awaken any and all waiting processes
+ *   (m_wait and ?m_signal_all arm once for each waiting process).
+ *   then grab the signal_all (m_signal_all arm once).
+ *
+ * (could use forward instead of some sends below...)
+ *
+ * code takes advantage of fact that order of invocations
+ * of m_wait_ranks does not matter since always access "by rank"
+ * except when just scanning list.
+ *
+ * for printing, as print each, copy it to order operation; then copy back
+ * order of m_wait_ranks changed, but that does not
+ * matter since always grab using by rank.
+ * (instead of copying back, could use an array and swap "current" index.)
+ */
+
+public class m_condvar {
+    public op void m_wait(cap void (), int);
+    public op void m_wait_ranks(int);
+    public op boolean m_signal();
+    public op void m_signal_all();
+    public op boolean m_empty();
+    public op int m_minrank();
+    public op void m_print();
+
+    private String name;
+
+    // would-be process
+    private op void start();
+
+    public m_condvar(String name) {
+	this.name = name;
+	send start();
+    }
+
+    private void start() {
+	while(true) {
+	        inni void m_wait(cap void () return_to_caller, int rank)
+		  st m_signal.length() != 0 by rank {
+                    inni void m_wait_ranks(int rrank) by rrank {
+			// do nothing with it -- just gobble one up
+		    }
+                    inni boolean m_signal() {
+                        // call back to monitor so it can update
+		        return true;
+		    }
+		    send return_to_caller();
+		}
+                [] boolean m_signal() st m_wait.length() == 0 {
+		    return false;
+		}
+                [] void m_wait(cap void () return_to_caller, int rank)
+		   st m_signal_all.length() != 0 by rank {
+                        inni void m_wait_ranks(int rrank) by rrank {
+	   	            // do nothing -- just gobble one up
+		        }
+                        send return_to_caller();
+		}
+                [] void m_signal_all() st m_wait.length() == 0 {
+                    // do nothing
+                }
+                [] boolean m_empty() {
+		    boolean ret = false;
+                        ret = (m_wait.length() == 0);
+                    return ret;
+                }
+                [] int m_minrank() {
+		    // ret is initialized only to quiet Java translator
+		    int ret = -99999;
+                    if (m_wait_ranks.length() != 0) {
+                            inni void m_wait_ranks(int rank) by rank {
+				send m_wait_ranks( rank);
+				ret = rank;
+                            }
+		    }
+                    else {
+                        System.out.println("\t**** minrank called on empty Q ****");
+		        System.out.flush();
+                        ret = 999999;
+                    }
+		    return ret;
+                }
+                [] void m_print() {
+		    // keep output from m_print together
+		    // so build it up in a buffer and print from that.
+                    int x = m_wait.length();
+                    String buffer = "\t**** Printing for " + name + " **** "
+                                    + x + " waiting process(es)";
+                    if (x > 0) {
+		        int r, minr;
+			boolean same = true;
+                        receive m_wait_ranks(minr);
+		        send m_wait_ranks(minr);
+		        for (int i = 2; i <= x; i++) {
+		             receive m_wait_ranks(r);
+			     send m_wait_ranks(r);
+			     same = same && (r == minr);
+		        }
+		        if (same) {
+		             buffer += ", all with rank " + minr;
+		       	}
+                        else {
+			    op void order(int);
+			    buffer += ", with ranks:";
+			    for (int i = 1; i <= x; i++) {
+			        inni void m_wait_ranks(int rank) by rank {
+				    buffer += " " + rank;
+				    send order( rank);
+				}
+			    }
+			    for (int i = 1; i <= x; i++) {
+			        inni void order(int rank) {
+				    send m_wait_ranks( rank);
+				}
+			    }
+			}
+		    }
+		    System.out.println(buffer);
+		}
+	    }
+    }
+
+}

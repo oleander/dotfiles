@@ -1,0 +1,40 @@
+import edu.ucdavis.jr.JR;
+
+// dynamic arrays of ops
+
+public class outofrange
+{
+  cap void (int) [] test;
+
+  public outofrange(int A)
+  {
+  	try{
+        System.out.println("outofrange sees "+A);
+	JR.registerQuiescenceAction(done);
+  	}
+	catch(Exception e){ e.printStackTrace();}
+	
+	test = new cap void (int) [5];
+
+	for (int i = 0; i < 5; i++)
+	{
+		test[i] = new op void(int);
+	}
+
+	send test[0](10);
+
+	inni ((int v=8; v<A; v++)) void test[v](int x) 
+	{
+		System.out.println("received:");
+		System.out.println("x: " + x);
+		System.out.println("v: " + v);
+	}
+
+	System.out.println("done");
+  }
+
+  public static op void done()
+  {
+  	System.out.println("Quiescence!");
+  }
+}

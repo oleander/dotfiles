@@ -1,0 +1,5 @@
+_resource r {
+  public int rear = 0;
+  public int turn = global.ND;
+}
+

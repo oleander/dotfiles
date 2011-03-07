@@ -1,0 +1,78 @@
+// output designed to be deterministic, but nondeterministic in order
+// so can just use sort to compare.
+// (that's a not entirely accurate because should ensure that fetch X
+// occurred after deposit X) 
+import edu.ucdavis.jr.JR;
+
+public class a {
+
+   private static int N = 10;
+   // would-be processes
+   private static op void depositer(int);
+   private static op void fetcher(int);
+
+   // the CCR
+   private static bb mybb = new bb();
+
+   private static sem done;
+
+   public static void main(String [] args) {
+        try {
+
+	    // start up processes
+	    for (int i = 1; i <= N; i++) {
+	        send depositer(i);
+	    }
+	    for (int i = 1; i <= N; i++) {
+	        send fetcher(i);
+	    }
+
+	    // wait for all processes to finish
+	    for (int i = 1; i <= 2*N; i++) {
+	        P(done);
+	    }
+	    JR.exit(0);
+
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+    private static void depositer(int i) {
+        try {
+            Thread.sleep(10-i);
+            _region bb _with thisbb = mybb _when thisbb.count<bb.N {
+                System.out.println("depositer "+i);
+                Thread.sleep(1);
+                thisbb.buf[thisbb.rear] = i*100;
+                thisbb.rear = (thisbb.rear+1) % bb.N;
+                thisbb.count++;
+            }
+	    V(done);
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+    private static void fetcher(int i) {
+        try {
+            if (i<4) Thread.sleep(4-i);
+            _region bb _with thisbb = mybb _when thisbb.count>0 {
+                System.out.println("fetcher "+i);
+                System.out.println("fetch "+thisbb.buf[thisbb.front]);
+                Thread.sleep(1);
+                thisbb.front = (thisbb.front+1) % bb.N;
+                thisbb.count--;
+            }
+	    V(done);
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+}

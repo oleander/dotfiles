@@ -1,0 +1,7 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 cd jrGen
+0 jr_rmic
+0 cd ..
+0 run Main
+0 rm -rf jrGen core *.out

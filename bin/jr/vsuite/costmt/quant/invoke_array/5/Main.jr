@@ -1,0 +1,33 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+
+    private static final int Na = 10;
+    private static cap void (int) [] a = new cap void (int) [Na];
+
+    static {
+	for (int i=0;i<Na;i++) {
+	    a[i] = new op void (int);
+	}
+    }
+
+    public static void main(String[] args) {
+	co ((int i = Na-1; i >= 0; i--)) a[i](i * 100);
+	System.out.println("co 1 done");
+	// these sends never get serviced
+	co ((int i = Na-1; i >= 0; i--)) send a[i](i * 100);
+	System.out.println("co 2 done");
+    }
+
+    private static process p {
+	for (int i = 0; i < Na; i++) {
+	    inni void a[i](int j){
+		System.out.println(333 + " " + i + " " + j);
+            }
+	    [] void a[Na-1-i](int j){
+		System.out.println(444 + " " + i + " " + j);
+            }
+	}
+    }
+
+}

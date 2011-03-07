@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class MyShape<E>
+{
+	protected E id;
+
+	public MyShape(E id)
+	{
+		this.id = id;
+	}
+
+	public op E get()
+	{
+		return id;
+	}
+
+	public op void set(E id)
+	{
+		this.id = id;
+	}
+
+	public op void print()
+	{
+		System.out.println("MyShape " + id);
+	}
+
+	public String toString() {
+		return id.toString();
+	}
+
+	public static void main(String [] args)
+	{
+		ArrayList<MyShape> shapes = new ArrayList<MyShape>();
+
+		cap String() mycap = new op String();
+		MyShape<cap String()> square = new MyShape<cap String()>(mycap);
+	}
+}

@@ -1,0 +1,35 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+	public static void main(String [] args) {
+
+		for (int i = 0; i < 10; i++) {
+			send A.memberCap[i]();
+		}
+
+		for (int i = 0; i < 10; i++) {
+			inni void A.memberCap[i]() {
+				System.out.println("got memberCap[" + i + "]");
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				send A.memberCap2[i][j]();
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				inni void A.memberCap2[i][j]() {
+					System.out.println("got memberCap2[" + i + "][" + j + "]");
+				}
+			}
+		}
+
+		send A.memberCap3();
+		inni void A.memberCap3() {
+			System.out.println("got memberCap3");
+		}
+	}
+}

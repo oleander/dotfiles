@@ -1,0 +1,27 @@
+// 2005-12-12
+// was a bug:
+// jrGen//InOp_javadotlangdotStringXjavadotlangdotObjectbktTovoid_impl.java:117: reference to send is ambiguous, both method send(long,edu.ucdavis.jr.RemoteHandler,java.lang.String,java.lang.Object...) in InOp_javadotlangdotStringXjavadotlangdotObjectbktTovoid_impl and method send(long,Op_voidTovoid.JRProxyOp,edu.ucdavis.jr.RemoteHandler,java.lang.Exception,java.lang.String,java.lang.Object...) in InOp_javadotlangdotStringXjavadotlangdotObjectbktTovoid_impl match
+// send(JRtimestamp, null, null, thrown, null);
+//        ^
+//    jrGen//InOp_javadotlangdotStringXjavadotlangdotObjectbktTovoid_impl.java:199: warning: non-varargs call of varargs method with inexact argument type for last parameter;
+// cast to java.lang.Object for a varargs call
+// cast to java.lang.Object[] for a non-varargs call and to suppress this warning
+//    return cosend(JRtimestamp, null, null, thrown, null, null);
+//                                                             ^
+// 1 error
+// 1 warning
+//
+
+public class VarArgTest {
+    public static op void broadcast(String type, Object ... info) {
+	System.out.println("get type = " + type);
+	System.out.println("get info = ");
+	for ( Object o : info )
+	    System.out.print(o);
+	System.out.println();
+    }
+    public static void main(String [] arg)
+    {
+	call VarArgTest.broadcast("DONE", "SUCCESS ", "Test Case :" , 1);
+    }
+}

@@ -1,0 +1,14 @@
+inside inni1: x 1
+inside inni2: x 2
+inside inni2: x 3
+inside inni2: x 4
+inside inni2: x 5
+inside inni2: x 6
+done with myprocess
+done with f(1), x is: 2
+done with f(2), x is: 3
+done with f(3), x is: 4
+done with f(4), x is: 5
+done with f(5), x is: 6
+done with f(6), x is: 7
+done with co

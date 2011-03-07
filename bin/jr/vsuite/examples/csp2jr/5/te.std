@@ -1,0 +1,236 @@
+start of A 0 0
+start of A 0 1
+start of A 0 2
+start of A 0 3
+start of A 0 4
+start of A 0 5
+start of A 0 6
+start of A 0 7
+start of A 0 8
+start of A 0 9
+start of A 1 0
+start of A 1 1
+start of A 1 2
+start of A 1 3
+start of A 1 4
+start of A 1 5
+start of A 1 6
+start of A 1 7
+start of A 1 8
+start of A 1 9
+start of A 2 0
+start of A 2 1
+start of A 2 2
+start of A 2 3
+start of A 2 4
+start of A 2 5
+start of A 2 6
+start of A 2 7
+start of A 2 8
+start of A 2 9
+start of A 3 0
+start of A 3 1
+start of A 3 2
+start of A 3 3
+start of A 3 4
+start of A 3 5
+start of A 3 6
+start of A 3 7
+start of A 3 8
+start of A 3 9
+start of A 4 0
+start of A 4 1
+start of A 4 2
+start of A 4 3
+start of A 4 4
+start of A 4 5
+start of A 4 6
+start of A 4 7
+start of A 4 8
+start of A 4 9
+start of A 5 0
+start of A 5 1
+start of A 5 2
+start of A 5 3
+start of A 5 4
+start of A 5 5
+start of A 5 6
+start of A 5 7
+start of A 5 8
+start of A 5 9
+start of A 6 0
+start of A 6 1
+start of A 6 2
+start of A 6 3
+start of A 6 4
+start of A 6 5
+start of A 6 6
+start of A 6 7
+start of A 6 8
+start of A 6 9
+start of A 7 0
+start of A 7 1
+start of A 7 2
+start of A 7 3
+start of A 7 4
+start of A 7 5
+start of A 7 6
+start of A 7 7
+start of A 7 8
+start of A 7 9
+start of A 8 0
+start of A 8 1
+start of A 8 2
+start of A 8 3
+start of A 8 4
+start of A 8 5
+start of A 8 6
+start of A 8 7
+start of A 8 8
+start of A 8 9
+start of A 9 0
+start of A 9 1
+start of A 9 2
+start of A 9 3
+start of A 9 4
+start of A 9 5
+start of A 9 6
+start of A 9 7
+start of A 9 8
+start of A 9 9
+start of B
+0 -2
+0 -3
+0 -4
+0 -5
+0 -6
+0 -7
+0 -8
+0 -9
+-1 -2
+-1 -3
+-1 -4
+-1 -5
+-1 -6
+-1 -7
+-1 -8
+-1 -9
+-2 -2
+-2 -3
+-2 -4
+-2 -5
+-2 -6
+-2 -7
+-2 -8
+-2 -9
+-3 -2
+-3 -3
+-3 -4
+-3 -5
+-3 -6
+-3 -7
+-3 -8
+-3 -9
+csp2jr: all user processes have terminated or are blocked; shutting down.
+csp2jr: process status: 101 total = 0 alive + 68 blocked + 33 dead.
+   0 BLOCKED  A [   0][   0]
+   1 BLOCKED  A [   0][   1]
+   2 DEAD     A [   0][   2]
+   3 DEAD     A [   0][   3]
+   4 DEAD     A [   0][   4]
+   5 DEAD     A [   0][   5]
+   6 DEAD     A [   0][   6]
+   7 DEAD     A [   0][   7]
+   8 DEAD     A [   0][   8]
+   9 DEAD     A [   0][   9]
+  10 BLOCKED  A [   1][   0]
+  11 BLOCKED  A [   1][   1]
+  12 DEAD     A [   1][   2]
+  13 DEAD     A [   1][   3]
+  14 DEAD     A [   1][   4]
+  15 DEAD     A [   1][   5]
+  16 DEAD     A [   1][   6]
+  17 DEAD     A [   1][   7]
+  18 DEAD     A [   1][   8]
+  19 DEAD     A [   1][   9]
+  20 BLOCKED  A [   2][   0]
+  21 BLOCKED  A [   2][   1]
+  22 DEAD     A [   2][   2]
+  23 DEAD     A [   2][   3]
+  24 DEAD     A [   2][   4]
+  25 DEAD     A [   2][   5]
+  26 DEAD     A [   2][   6]
+  27 DEAD     A [   2][   7]
+  28 DEAD     A [   2][   8]
+  29 DEAD     A [   2][   9]
+  30 BLOCKED  A [   3][   0]
+  31 BLOCKED  A [   3][   1]
+  32 DEAD     A [   3][   2]
+  33 DEAD     A [   3][   3]
+  34 DEAD     A [   3][   4]
+  35 DEAD     A [   3][   5]
+  36 DEAD     A [   3][   6]
+  37 DEAD     A [   3][   7]
+  38 DEAD     A [   3][   8]
+  39 DEAD     A [   3][   9]
+  40 BLOCKED  A [   4][   0]
+  41 BLOCKED  A [   4][   1]
+  42 BLOCKED  A [   4][   2]
+  43 BLOCKED  A [   4][   3]
+  44 BLOCKED  A [   4][   4]
+  45 BLOCKED  A [   4][   5]
+  46 BLOCKED  A [   4][   6]
+  47 BLOCKED  A [   4][   7]
+  48 BLOCKED  A [   4][   8]
+  49 BLOCKED  A [   4][   9]
+  50 BLOCKED  A [   5][   0]
+  51 BLOCKED  A [   5][   1]
+  52 BLOCKED  A [   5][   2]
+  53 BLOCKED  A [   5][   3]
+  54 BLOCKED  A [   5][   4]
+  55 BLOCKED  A [   5][   5]
+  56 BLOCKED  A [   5][   6]
+  57 BLOCKED  A [   5][   7]
+  58 BLOCKED  A [   5][   8]
+  59 BLOCKED  A [   5][   9]
+  60 BLOCKED  A [   6][   0]
+  61 BLOCKED  A [   6][   1]
+  62 BLOCKED  A [   6][   2]
+  63 BLOCKED  A [   6][   3]
+  64 BLOCKED  A [   6][   4]
+  65 BLOCKED  A [   6][   5]
+  66 BLOCKED  A [   6][   6]
+  67 BLOCKED  A [   6][   7]
+  68 BLOCKED  A [   6][   8]
+  69 BLOCKED  A [   6][   9]
+  70 BLOCKED  A [   7][   0]
+  71 BLOCKED  A [   7][   1]
+  72 BLOCKED  A [   7][   2]
+  73 BLOCKED  A [   7][   3]
+  74 BLOCKED  A [   7][   4]
+  75 BLOCKED  A [   7][   5]
+  76 BLOCKED  A [   7][   6]
+  77 BLOCKED  A [   7][   7]
+  78 BLOCKED  A [   7][   8]
+  79 BLOCKED  A [   7][   9]
+  80 BLOCKED  A [   8][   0]
+  81 BLOCKED  A [   8][   1]
+  82 BLOCKED  A [   8][   2]
+  83 BLOCKED  A [   8][   3]
+  84 BLOCKED  A [   8][   4]
+  85 BLOCKED  A [   8][   5]
+  86 BLOCKED  A [   8][   6]
+  87 BLOCKED  A [   8][   7]
+  88 BLOCKED  A [   8][   8]
+  89 BLOCKED  A [   8][   9]
+  90 BLOCKED  A [   9][   0]
+  91 BLOCKED  A [   9][   1]
+  92 BLOCKED  A [   9][   2]
+  93 BLOCKED  A [   9][   3]
+  94 BLOCKED  A [   9][   4]
+  95 BLOCKED  A [   9][   5]
+  96 BLOCKED  A [   9][   6]
+  97 BLOCKED  A [   9][   7]
+  98 BLOCKED  A [   9][   8]
+  99 BLOCKED  A [   9][   9]
+ 100 DEAD     B 

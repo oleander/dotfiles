@@ -1,0 +1,24 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+   public static String[]args;
+   private static op void timer();
+
+   public static void main(String[] args) {
+	Main.args= args;
+        send timer();
+        new deadlock();
+	JR.exit(0);
+      }
+
+   private static void timer() {
+      try{
+         // long enough even on slow systems?
+	 // (see also sleep in deadlock.jr)
+         Thread.sleep(10*1000);
+ 	 JR.exit(0);
+
+      }catch(Exception e){e.printStackTrace();}
+   }
+
+}

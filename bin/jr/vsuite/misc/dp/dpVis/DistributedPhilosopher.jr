@@ -1,0 +1,57 @@
+import javax.swing.JComponent;
+
+public class DistributedPhilosopher extends DiningPhilPhilosopher {
+
+	public DistributedPhilosopher(remote DistributedServant l, remote DistributedServant r, int id, int numPhil, int session, remote DiningDesktopPane container, cap void (cap void (int)) controller, boolean localOnly) 
+	{
+		super(id, numPhil, session, container, controller, localOnly);
+		this.l = l; this.r = r; 
+	}
+
+	private process phil 
+	{
+		beginProcess();
+	
+		for ( int i = 1; ( i <= session || isManualControl ) && (! done) ; i++	)
+		{
+			
+			checkPause();
+			checkManualEat();		
+			if ( done ) break;
+			
+			send updateImage(DiningEnvironmentConstant.STATE_HUNGRY); // hungry
+			
+			checkPause();
+			if ( done ) { break; }
+
+			call l.getfork(); 
+			send updateImage(DiningEnvironmentConstant.STATE_WAIT); // waiting
+			
+			checkPause();
+			if ( done ) { send l.relfork(); break; }
+			
+			call r.getfork();
+			send updateImage(DiningEnvironmentConstant.STATE_EAT); // eating
+			
+			checkPause();
+			if ( done ) { send l.relfork(); send r.relfork(); break; }
+			
+			checkThreadSleep(2.0, "eating");
+			
+			checkPause();
+			checkManualThink();
+			if ( done ) { send l.relfork(); send r.relfork(); break; }
+
+			send l.relfork(); send r.relfork();
+			send updateImage(DiningEnvironmentConstant.STATE_THINK); // thinking image
+				
+			checkPause();
+			if ( done ) break;
+			
+			checkThreadSleep(1.0, "thinking");
+		}
+		endProcess();
+	}
+
+	remote DistributedServant l, r;
+}

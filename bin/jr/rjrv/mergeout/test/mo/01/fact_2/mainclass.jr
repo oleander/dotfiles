@@ -1,0 +1,65 @@
+/* resource main */
+
+/* SR version 2.3.1, December 1995 */
+
+public class mainclass {
+   public remote factorial fc;
+public int n;
+public int[][] a;
+public mainclass() {
+{
+   op void myanswer(int, int);
+   fc=new remote factorial();
+System.out.println(("A Program to Compute Factorials"));
+System.out.print(("how many numbers?  "));
+;
+System.out.println();
+n = Integer.valueOf(Main.args[0]).intValue();
+a = new int[n - 1 + 1][2 - 1 + 1];
+System.out.println(("enter") + " " + (n) + " " + ("numbers, separated by whitespace"));
+{
+   int i;
+   
+L1: for (i = 1; (i<=n); i+=1) {
+      {
+         a[i - 1][0] = Integer.valueOf(Main.args[i]).intValue();
+         }
+      }
+   }
+System.out.println();
+{
+   int i;
+   
+L2: for (i = 1; (i<=n); i+=1) {
+      {
+         send fc.fact(i, a[(i) - 1][(1) - 1], myanswer);
+         }
+      }
+   }
+{
+   int i;
+   
+L3: for (i = 1; (i<=n); i+=1) {
+      {
+         inni void myanswer(int index, int value){
+            {
+               a[(index) - 1][(2) - 1]=value;
+               }
+            }
+        
+         }
+      }
+   }
+{
+   int i;
+   
+L4: for (i = 1; (i<=n); i+=1) {
+      {
+         System.out.println((a[(i) - 1][(1) - 1]) + "" + (" factorial is ") + "" + (a[(i) - 1][(2) - 1]));
+         }
+      }
+   }
+}
+}
+}
+

@@ -1,0 +1,26 @@
+_program a {
+
+  _specs {
+    A { o1(int); }
+    B { o2(int); }
+  }
+
+  _process A {
+    int x;
+    System.out.println("start of A " + A + " " + B);
+    _i B?o1(x);
+    System.out.println("in middle of A");
+    _o B!o2(17);
+    System.out.println("end A " + x);
+  }
+
+  _process B {
+    int x;
+    System.out.println("start of B " + B + " " + A);
+    _o A!o1(3);
+    System.out.println("in middle of B");
+    _i A o2(x); // note that  (and !) are optional
+    System.out.println("end B " + x);
+  }
+
+}

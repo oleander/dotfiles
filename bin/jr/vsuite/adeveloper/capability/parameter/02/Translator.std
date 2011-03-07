@@ -1,0 +1,24 @@
+main.jr:18: op void myop(cap void()) in main cannot be applied to (operation void(int))
+	send myop(param);
+             ^
+main.jr:19: op void myop(cap void()) in main cannot be applied to (operation char())
+	send myop(localparam);
+             ^
+main.jr:20: op void myop(cap void()) in main cannot be applied to (operation int(int,char))
+	send myop(A.otherparam);
+             ^
+main.jr:21: op void myop(cap void()) in main cannot be applied to (cap void(int,char))
+	send myop(mycap);
+             ^
+main.jr:22: cannot find symbol
+symbol  : variable func
+location: class main
+	send myop(func);
+                  ^
+main.jr:23: cannot find symbol
+symbol  : variable func
+location: class A
+	send myop(A.func);
+                   ^
+Not generating jrGen/main.java due to errors.
+6 errors

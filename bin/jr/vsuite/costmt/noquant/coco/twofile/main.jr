@@ -1,0 +1,20 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+    static op void p(int a, int b) {
+	System.out.println("in p: "+a+" "+b);
+    }
+    static op void q() {
+	System.out.println("in q");
+    }
+    public static void main(String [] args){
+	int x = -5, y = -6;
+	new A();
+	System.out.println("begin");
+	co p(x,y)     { System.out.println("after p(x,y)"); }
+	[] p(-44,-55) { System.out.println("after p(-44,-55)"); }
+	[] p(-77,-88) { System.out.println("after p(-77,-88)"); }
+	[] q();
+	System.out.println("after co: "+x+" "+y);
+    }
+}

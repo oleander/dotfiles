@@ -1,0 +1,55 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+import edu.ucdavis.jr.JR;
+import java.lang.*;
+
+//class that's part of manager display, it's a panel that displays the current list of vms (assistant managers)
+public class ManagerPanelVMList extends JPanel {
+	//caps to manager functions
+	private cap void () redraw;
+	private cap java.util.List () getVMList;
+
+	private boolean firstmydraw;
+
+	//function that calls manager's redraw when its redraw is called
+	process redrawPanel {
+		while(true)
+			inni void redraw () { repaint(); }
+	}
+				
+	//constructor that sets up the panel's attributes
+	public ManagerPanelVMList(Manager manager) {
+		super(new GridLayout(1,2));
+
+		this.redraw = manager.repaintManagerVMList;
+		this.getVMList = manager.getVMList;
+
+		setPreferredSize(new Dimension(90, 370));
+		setBackground(Color.black);
+		setVisible(true);
+	}
+
+	//swing functionality to write the list of vms to the screen
+	public void paintComponent (Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		int i = 2;
+		if(firstmydraw) {
+			firstmydraw = false;
+			FontMetrics metrics = g2.getFontMetrics();
+		}
+
+		g2.setFont(new Font("Dialog", Font.BOLD, 14));
+		g2.setColor(Color.white);
+		g2.drawString("VM List", 15, 20);
+
+		java.util.List vmList = getVMList();
+		Iterator itr = vmList.iterator();
+		while(itr.hasNext()) {
+			VMEntry ent = (VMEntry) itr.next();
+			ent.drawString(g2, 10, 15*(i++) + 8);
+		}
+	}
+}

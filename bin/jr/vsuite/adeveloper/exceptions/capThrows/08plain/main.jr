@@ -1,0 +1,17 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    // op void go(int);
+    static op void go(int);
+
+    public static void main(String [] args) {}
+
+    // process z {
+    static process z {
+	int y = 4;
+	cap void(int) c = go;
+	int x = 3;
+    }
+
+}

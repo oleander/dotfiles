@@ -1,0 +1,28 @@
+/*
+ * request record contains:
+ *   wwith   -- process id with whom trying to communicate
+ *              (was with, but that's a keyword 2001-08-14)
+ *   io      -- input (true) or output (false)
+ *   ioty    -- type of message (represented as an int)
+ *   arm     -- arm number within if or do stmt
+ *   q1, q2  -- quantifier values
+ *              (so can use those values in "user" code)
+ */
+
+public class csp_rr {
+    public int wwith;
+    public boolean io;
+    public int ioty;
+    public int arm;
+    public int q1;
+    public int q2;
+
+    public csp_rr(int wwith, boolean io, int ioty, int arm, int q1, int q2) {
+        this.wwith = wwith;
+	this.io   = io;
+	this.ioty = ioty;
+	this.arm  = arm;
+	this.q1   = q1;
+	this.q2   = q2;
+    }
+}

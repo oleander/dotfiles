@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static cap void(int) memberCap1 = new sem;
+    public static cap void() memberCap2 = new sem(true);
+
+    public static void main(String [] args) {
+	cap void() localCap1 = new sem;
+	cap void() localCap2 = new sem(1);
+
+	System.out.println("Welcome to the wonderful world of JR!");
+	V(memberCap1);
+	P(memberCap1);
+
+	P(memberCap2);
+	V(memberCap2);
+
+	V(localCap1);
+	P(localCap1);
+
+	P(localCap2);
+	V(localCap2);
+
+	V(A.otherCap1);
+	P(A.otherCap1);
+
+	P(A.otherCap2);
+	V(A.otherCap2);
+
+	System.out.println("Bye");
+    }
+
+}

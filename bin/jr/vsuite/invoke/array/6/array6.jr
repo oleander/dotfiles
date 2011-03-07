@@ -1,0 +1,39 @@
+/* resource array6 */
+
+/* SR version 2.3.1, December 1995 */
+
+// send to and receive from an array of local operations.
+class array6 {
+
+   array6() {
+   System.out.println("starting");
+   final int Na = 10;
+   cap void (int) [] myanswer = new cap void (int) [Na];
+
+   for (int i=0;i<Na;i++)   
+    { myanswer[i] = new op void (int);
+   }
+
+   System.out.println("sending");
+
+ for (int i = 1; (i<=10); i+= 1) {
+         send myanswer[(i) - 1](i * 100);
+   }
+   
+   System.out.println("receiving");
+ for (int i = 6; (i<=10); i+= 1) {
+         int j;
+	 receive myanswer[i-1](j);
+         System.out.println((i) + " " + (j));
+   }
+
+ for (int i = 5; (i>=1); i--) {
+         int j;
+	 receive myanswer[i-1](j);
+         System.out.println((i) + " " + (j));
+   }
+}
+
+
+}
+

@@ -1,0 +1,12 @@
+before try
+before vm and cap ff
+between vm and cap ff
+iters=3
+iters=2
+iters=1
+after vm and cap ff
+after y=203 203
+in f x=213
+in f after forward x=444
+in g x=2130
+after y=12130

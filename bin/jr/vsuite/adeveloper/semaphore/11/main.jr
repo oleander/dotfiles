@@ -1,0 +1,33 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op void s1(int);
+
+    public static void s2(int x) {}
+
+    public static void main(String [] args) {
+
+      op void s1(int);
+
+      sem s2 = 1;
+
+      sem s3, s4;
+
+      System.out.println("Welcome to the wonderful world of JR!");
+
+      V(s1);
+      P(s1);
+
+      P(s2);
+      V(s2);
+
+      P(s3);
+      P(s4);
+      P(s5);
+
+      System.out.println("Goodbye!");
+
+    }
+
+}

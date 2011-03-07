@@ -1,0 +1,4 @@
+1 ccr2jr mutex.ccr a.ccr
+0 grep "outside region" CCR.out >/dev/null
+0 grep "xfree" CCR.out >/dev/null
+0 rm -rf jrGen core *.out *.jr

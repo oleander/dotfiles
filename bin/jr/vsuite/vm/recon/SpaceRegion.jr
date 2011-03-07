@@ -1,0 +1,9 @@
+// 2005-10-28 caused trouble for JR 2.x
+public class SpaceRegion
+{
+    public SpaceRegion(String title, int others, remote SpaceRegion master) {
+	System.out.println("outer Space!");
+    }
+
+
+}

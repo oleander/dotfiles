@@ -1,0 +1,20 @@
+import edu.ucdavis.jr.JR;
+
+// reminder: Java semantics don't guarantee that yield yields,
+// but it does in implementations we've seen.
+// but on a multiprocessor, below could still be interleaved...
+
+public class Main{
+    public static void main(String [] args ) {}
+    static sem m = 0;
+    static process p1 {
+     System.out.println("hi");
+     V(m);
+     JR.yield();
+     System.out.println("bye");
+    }
+    static process p2 {
+     P(m);
+     System.out.println("mid");
+    }
+}

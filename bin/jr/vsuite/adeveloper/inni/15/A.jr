@@ -1,0 +1,19 @@
+import edu.ucdavis.jr.JR;
+
+public class A {
+
+    public static cap void() [] memberCap = new cap void()[10];
+
+    public static cap void() [][] memberCap2 = new cap void()[2][2];
+
+    public static cap void() memberCap3 = new op void();
+
+    static {
+	for (int i = 0; i < 10; i++)
+	    memberCap[i] = new op void();
+	for (int i = 0; i < 2; i++)
+	    for (int j = 0; j < 2; j++)
+		memberCap2[i][j] = new op void();
+    }
+
+}

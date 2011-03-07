@@ -1,0 +1,19 @@
+public class Main{
+    public static void main(String[] args) {
+	System.out.println((String)null);
+	System.out.println((String)null+"abc");
+	remote C c = new remote C();
+	System.out.println(c);
+	c = null;
+	System.out.println(c);
+	c = noop;
+	System.out.println(c);
+	remote C d = new remote C();
+	System.out.println(d);
+	d = null;
+	System.out.println(d);
+	d = noop;
+	System.out.println(d);
+	System.out.println("done");
+    }
+}

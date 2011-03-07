@@ -1,0 +1,11 @@
+Direction.jr:90: missing return statement
+	}
+        ^
+Direction.jr:27: missing return statement
+	}
+        ^
+Direction.jr:69: missing return statement
+	}
+        ^
+Not generating jrGen/Direction.java due to errors.
+3 errors

@@ -1,0 +1,40 @@
+import edu.ucdavis.jr.JR;
+
+public class other
+{
+    public static int num, result = 1;
+    public other(int x)
+    {
+        try
+        {
+            num = x;
+            System.out.println(num + "!  = ");
+            JR.registerQuiescenceAction(foo);
+        }
+        catch (edu.ucdavis.jr.QuiescenceRegistrationException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static op void foo()
+    {
+        if (num <= 1)
+        {
+            System.out.println(result);
+        }
+        else
+        {
+            try
+            {
+                result *= num;
+                num--;
+                JR.registerQuiescenceAction(foo);
+            }
+            catch (edu.ucdavis.jr.QuiescenceRegistrationException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+}

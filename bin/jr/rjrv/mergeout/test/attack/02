@@ -1,0 +1,20 @@
+./adeveloper/capability/invocations/11:
+   oops1
+./adeveloper/capability/invocations/13:
+./inni/quant/empty/emptyrange:
+./inni/quant/object:
+./inni/quant/originaltests/quant0:
+./inni/quant/originaltests/quant1:
+./inni/quant/originaltests/quant2:
+./inni/quant/originaltests/quant_noquant1:
+noise1
+./inni/quant/twoD/multiSend:
+   oops2
+./inni/quant/twoD/multiHuH:
+   oops2.5
+./inni/quant/twoD/one_quant:
+./inni/quant/twoD/processes:
+./inni/quant/twoD/three_quant:
+./inni/quant/twoD/two_quant:
+./inni/quant/twoVar:
+   oops3

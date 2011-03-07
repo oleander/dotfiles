@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Needed for proper sorting:
+lc="$LC_ALL"
+export LC_ALL="C"
+
+if [ -z "$1" -o "$1" = "-h" ]; then
+	if [ -z "$1" ]; then echo -e "$0: Error: Directory expected as argument\n" 1>&2; fi
+	echo "Usage: mergeout dir"
+	echo "Merges rjrv output files into a single file that is just like jrv -i."
+	exit
+fi
+
+dir=$1
+
+files=$dir/pc*
+
+# find line numbers of relevant part of each file:
+# it's all lines between the 1st DATE line and 2nd DATE line.
+# (do it this way to avoid hard-coded number,
+# although one could argue that hard-coded DATE isn't good either)
+
+# just pick any file:
+samplefile=`ls -1 $files | head -n 1`
+echo $samplefile
+
+# linenum1 is location of first  DATE from beginning of file
+# linenum2 is location of second DATE from beginning of file
+# linenum3 is location of second DATE from end       of file
+linenum1=`grep -h -n DATE $samplefile | head -n 1 | cut -d: -f 1`
+linenum2=`grep -h -n DATE $samplefile | tail -n 1 | cut -d: -f 1`
+length=`wc -l < $samplefile`
+linenum3=$(($length-$linenum2+1))
+# line past first DATE
+linenum4=$(($linenum1+1))
+
+echo linenums are: $linenum1 $linenum2 $length $linenum3
+
+for f in $files
+do
+    echo $f
+    # grab relevant part of file
+    # head strips off bottom stuff
+    # tail strips off top    stuff
+#head -n -$linenum3 $f | tail -n +$linenum4 |wc -l
+    
+    # OK, but also includes DATE lines
+    ## sed -n -e '/^DATE/,/^DATE/ p'
+
+    # first sed outputs all between the two DATE, including the DATE lines.
+    # second sed removes the DATE lines.
+    # probably a way to do this with a single sed command,
+    # but I'll leave that to the experts.
+    sed -n -e '/^DATE/,/^DATE/ p' $f | sed -e '/^DATE/d' | wc -l
+    
+
+done
+
+
+exit
+
+
+
+
+errors=`egrep -h "^\..*:$|expected" $dir/pc*`
+errors="$errors ."
+errors=`echo $errors | sed -e 's,[^. ][^ ]*: [^e],,g' -e 's, \.$,,g'`
+merged=`egrep -h "^\..*:$" $dir/pc* | sed 's,:,,g' | sort | sed 's,$,:,g'`
+
+while [ "$errors" != "." ]; do
+	line=""
+
+	while [ -z "`echo $line | grep :`" ]; do
+		line="$line.`echo $errors | cut -d. -f2`"
+		errors=".`echo $errors | cut -d. -f3-`"
+	done
+
+	line=`echo $line | sed 's/,/@/g'`		# Hard to escape commas inside a variable, so just change it temporarily.
+	leaf="\\`echo $line | sed 's,:.*,:,g'`"		# Get the directory and escape the leading dot.
+	merged=`echo $merged | sed "s,$leaf,$line,g"`	# Replace the directory with the directory plus the error.
+done
+
+merged=`echo "$merged" | sed 's/@/,/g'`				# Put the commas back.
+merged=`echo "$merged" | sed 's,: ,:\n,g'`			# Add an endline after each directory.
+merged=`echo "$merged" | sed 's,\([^:]\) \./,\1\n\./,g'`	# Add an endline after each error message.
+merged=`echo "$merged" | sed 's,expected,    expected,g'`	# Tab each error message in by 4 spaces.
+
+LC_ALL="$lc"
+echo "$merged" > $dir/merged

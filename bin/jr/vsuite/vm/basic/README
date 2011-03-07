@@ -1,0 +1,9 @@
+since don't know machine names, can run only as part of vsuite only on
+local.  But, test this one by hand on remote host, e.g.,
+
+  on pc34, run both:
+
+  jrgo
+
+  jrgo pc59
+

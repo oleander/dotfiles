@@ -1,0 +1,9 @@
+hi
+jrvm exception: nanosecond timeout value out of range
+java.lang.IllegalArgumentException: nanosecond timeout value out of range
+	at edu.ucdavis.jr.JR.nap(JR.java:56)
+	at Main.main(Main.java:31)
+	at edu.ucdavis.jr.jrx.jrvm.startmain(jrvm.java:325)
+	at edu.ucdavis.jr.jrx.jrvm.main(jrvm.java:429)
+	at edu.ucdavis.jr.jrx.jrvm_wrap.startmain(jrvm_wrap.java:67)
+	at edu.ucdavis.jr.jrx.jrvm_wrap.main(jrvm_wrap.java:124)

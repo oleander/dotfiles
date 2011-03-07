@@ -1,0 +1,72 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static cap boolean(int, char) [] memberCap = new cap boolean(int, char)[10];
+    public static cap boolean(int, char) [][] memberCap2 = new cap boolean(int, char)[2][2];
+
+    static {
+	for (int i = 0; i < 10; i++)
+	    memberCap[i] = new op boolean(int, char);
+	for (int i = 0; i < 2; i++)
+	    for (int j = 0; j < 2; j++)
+		memberCap2[i][j] = new op boolean(int, char);
+    }
+
+    public static void main(String [] args) {
+        cap int (int, char) localCap[] = new cap int(int, char)[10];
+	cap int (int, char) localCap2[][] = new cap int(int, char)[2][2];
+
+	for (int i = 0; i < 10; i++)
+	    localCap[i] = new op int(int, char);
+	for (int i = 0; i < 2; i++)
+	    for (int j = 0; j < 2; j++)
+		localCap2[i][j] = new op int(int, char);
+
+	for (int i = 0; i < 10; i++) {
+	    send memberCap[i](i, 'a');
+	    send localCap[i](i, 'b');
+	}
+
+	for (int i = 0; i < 10; i++) {
+	    inni int localCap[i](int x, char y) {
+	        System.out.println("localCap [" + i + "] " + x + " " + y);
+	        return x;
+	    }
+	}
+	for (int i = 0; i < 10; i++) {
+	    inni boolean memberCap[i](int x, char y) {
+	        System.out.println("memberCap [" + i + "] " + x + " " + y);
+	        return true;
+	    }
+	}
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+		send memberCap2[i][j](i, 'c');
+		send localCap2[i][j](i, 'd');
+	    }
+	}
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                inni int localCap2[i][j](int x, char y) {
+                    System.out.println("localCap2 [" + i + "][" + j + "] " + x + " " + y);
+                    return x;
+		}
+            }
+        }
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+		inni boolean memberCap2[i][j](int x, char y) {
+		    System.out.println("memberCap2 [" + i + "][" + j + "] " + x + " " + y);
+		    return true;
+		}
+            }
+        }
+
+
+    }
+
+}

@@ -1,0 +1,13 @@
+import edu.ucdavis.jr.JR;
+
+public class Main {
+
+    public static void main (String [] args) {
+      // JR1.61
+      // Main.jr:10: Incompatible type for null. Can't convert null to noop.
+        System.out.println("null == noop? "+ (null==noop));
+        System.out.println("noop == null? "+ (noop==null));
+        System.out.println("null != noop? "+ (null!=noop));
+        System.out.println("noop != null? "+ (noop!=null));
+    }
+}

@@ -1,0 +1,24 @@
+main.jr:8: Incompatible type for remote object cast.  Can't convert noop to interface remote B.
+	remote B b1 = noop;
+                 ^
+main.jr:10: Incompatible type for remote object cast.  Can't convert noop to interface remote B.
+	remote B b3 = (remote B) noop;
+                      ^
+main.jr:16: Incompatible type for remote object cast.  Can't convert noop to interface remote B.
+	remote C c3 = (remote B) noop;
+                      ^
+main.jr:17: incompatible types
+found   : remote B
+required: remote C
+	remote C c4 = (remote B) null;
+                      ^
+main.jr:22: Incompatible type for remote object cast.  Can't convert noop to interface remote B.
+	b1 = noop;
+           ^
+main.jr:24: incompatible types
+found   : remote B
+required: remote C
+	c1 = b1;
+             ^
+Not generating jrGen/main.java due to errors.
+6 errors

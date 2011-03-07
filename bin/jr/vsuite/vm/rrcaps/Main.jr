@@ -1,0 +1,32 @@
+public class Main {
+  static remote Worker wref[] = new remote Worker[2];
+  public static void main(String [] args) {
+    for (int i = 0; i < wref.length; i++) {
+      wref[i] = new remote Worker(i) on new vm();
+    }
+    print();
+    remote Worker temp = wref[0];
+    wref[0] = noop;
+    print();
+    wref[0] = temp;
+    print();
+    cap int() tc = wref[0].g;
+    wref[0].g = wref[1].g;
+    wref[1].g = tc;
+    print();
+    wref[0].f = noop;
+    wref[1].g = fours;
+    print();
+    wref[1] = noop;
+    wref[1].g = null;
+    print();
+  }
+  public static op int fours() { return 444; }
+  public static void print() {
+    System.out.println("----");
+    for (int i = 0; i < wref.length; i++) {
+      System.out.println(wref[i].f(8));
+      System.out.println(wref[i].g());
+    }
+  }
+}

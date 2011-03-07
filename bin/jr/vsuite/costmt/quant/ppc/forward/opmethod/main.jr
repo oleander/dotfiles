@@ -1,0 +1,16 @@
+// tests forward from within co-call
+
+public class main {
+    public static void main(String [] args){
+	co ((int j = 1; j <= 2; j++)) call p(j);
+	[] ((int j = 3; j <= 6; j++)) call q(j);
+    }
+    private static op void q(int i) {
+	if (i == 4) return;
+	if (i == 5) reply;
+	if (i == 6) forward p(i);
+    }
+    private static op void p(int i) {
+	System.out.println("   p "+i);
+    }
+}

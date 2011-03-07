@@ -1,0 +1,298 @@
+/* Counter-based Adaptive Lottery Priority Allocator:  Using reader aging which *
+*  increases a reader weight by the total time readers have been waiting and a  *
+*  N-weighted writer weight decided by N * # of writers                         */
+
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.awt.*;
+
+public class CALPAllocator extends Allocator {
+	private static final int ANY = 2;
+	private double N = 5;						// writer weighting
+	private int dynamic_writer_weight = 0;		// not used
+	private int nr = 0, nw = 0, qr = 0;			// acitve readers, active writers, scheduled readers(not used)
+	private int select = ANY, prev_sel = ANY;	// used to schedule writers, readers of any; not used
+
+	private float reader_weight, writer_weight;	// the calulated reader and writer weights for scheduling
+	private int reader_waiting_time;			// time readers spend waiting
+	private int sr, old_sr;						// number of scheduled readers and previous number of scheduled readers
+
+	private java.util.Date current_date = new Date();	// current_date stored the current time, used for reader aging
+	private Random rand = new Random();					// used to generate randomness for the lottery
+
+	private op void start_read2(java.util.Date, int);	// an added start_read queue to store a record the reader waiting time (aging)
+	private op void start_write2(int);					// an added stat_write queue to maintain order of readers/writers on allocator swithes
+	private op void kill_assign_date ();				// kill process which assigns dates to readers entering the queue
+	private op void begin2 ();							// used to initiate the assign_date process
+
+	process allocate {
+		receive begin();		// intiate allocator
+		call begin2();			// tell the assign date process to start
+
+		while (true) {
+			inni with CAPselect over			// use CAPselect as selection method for inni	
+			// kills this allocator and forwards the readers and writers back to the manager's queues
+			void kill() {
+				call kill_assign_date();
+				while (start_read2.length() + start_write2.length() > 0) {
+					inni void start_read2(java.util.Date d, int id) { forward start_read(id); }
+					[] void start_write2(int id) { forward start_write(id); }
+				}
+				break;
+			}
+			[] void start_read2(java.util.Date d, int id) {		// begins a read and allows a reader to enter the database
+				forward activate(id);
+			}
+			[] void end_read(int id) {							// ends a read, a reader leaves the database
+				send removeUser(id);
+			}
+			[] void start_write2(int id) {						// begins a write, a writer enters the database
+				forward activate(id);
+			}
+			[] void end_write(int id) {							// ends a write, a writer exits the database
+				send removeUser(id);
+			}
+			[] void pause () { setPaused(true); }				// pause and resume the manager
+			[] void resume () { setPaused(false); }
+		}
+	}
+
+	// process to forward readers to a queue which stores date info for aging
+	// and also forwards writers to maintain order
+	process assign_date {
+		receive begin2();
+
+		while (true) {
+			inni void kill_assign_date () { break; }
+			[] void start_read (int id) { forward start_read2(new java.util.Date(),id); }
+		}
+	}
+
+	// checks if reader weight is greater than writer weight
+	private op boolean reader_check () {
+		return reader_weight > writer_weight;
+	}
+
+	// checks that writer weight is greater than or equal to reader weight
+	private op boolean writer_check () {
+		return reader_weight <= writer_weight;
+	}
+
+	// checks that if readers are scheduled there are more readers scheduled to enter the database
+	private boolean check() {
+		if ( (select == READER) && (sr == 0) )
+			return false;
+		return true;
+	}
+
+	// method to control schedule entry into the databse
+	// the CALP algorith is implemented here
+	private Invocation CAPselect(ArmEnumeration armEnum) {
+		// checks the for pause and resume invocations, respectively, and if any returns them
+		for (int i = 0; i < 5; i++) armEnum.nextElement();
+		InvocationEnumeration pause_enum = (InvocationEnumeration) armEnum.nextElement();
+		InvocationEnumeration resume_enum = (InvocationEnumeration) armEnum.nextElement();
+		if(pause_enum.hasMoreElements())
+			return (Invocation)pause_enum.nextElement();
+		if(resume_enum.hasMoreElements())
+			return (Invocation)resume_enum.nextElement();
+		armEnum.reset();	// resets armEnum
+
+		// locates which invocation enumeration contain the start_write and end_write queues
+		InvocationEnumeration start_write_invocation;		//find start_write and end_write invocation enumerations
+		InvocationEnumeration end_write_invocation;
+		for (int i = 0; i < 3; i++) armEnum.nextElement();
+		start_write_invocation = (InvocationEnumeration) armEnum.nextElement();
+		end_write_invocation = (InvocationEnumeration) armEnum.nextElement();
+		armEnum.reset();	// resets the ArmEnumeration armEnum
+
+		// adds invocation and timestamp pairs of first invocations to a vector for sorting and searching
+    	Vector v = new Vector();
+		while (armEnum.hasMoreElements()) {
+			InvocationEnumeration invocEnum = (InvocationEnumeration) armEnum.nextElement();
+			if(invocEnum.size() > 0)
+				v.add(new Element(invocEnum, ((Invocation)invocEnum.nextElement()).getTimestamp()));
+		}
+
+		// converts the vector to an array of objects then sorts them by their timestamps (increasing order)
+    	Object arms [];
+		arms = v.toArray();
+    	if (arms.length == 0) return null;
+    	Arrays.sort(arms, Element.comparator);
+
+		// intializes variables and locates the start_read2 queue, records date at this time
+		int new_reader_wait = 0;    
+		armEnum.reset();
+		armEnum.nextElement();
+		InvocationEnumeration start_read_invocation = (InvocationEnumeration) armEnum.nextElement();
+		start_read_invocation.reset();
+		java.util.Date new_date = new Date();
+
+
+		// iterators through the start_read queue and calculates the reader age by using the
+		// current date and the reader dates in start_read2
+		while (start_read_invocation.hasMoreElements()) {
+			Invocation i = (Invocation) start_read_invocation.nextElement();
+
+			view i
+			as (java.util.Date d, int id) {
+				if (d.getTime() > current_date.getTime())
+					new_reader_wait += new_date.getTime() - d.getTime();
+				else
+					new_reader_wait += new_date.getTime() - current_date.getTime();
+			}
+		}
+
+
+		// iterates through all invocation enumeration ordered by arrival time
+    	for(int i = 0; i < arms.length; i++){
+        	int min = 0;
+        	Invocation cur = null;
+        	InvocationEnumeration invocEnum = ((Element)arms[i]).getInvocationEnumeration();
+        	invocEnum.reset();
+
+			// iterates through invocations of the current invocation enumeration
+        	while(invocEnum.hasMoreElements()){
+				//System.out.println("Weights: " + reader_weight + ", " + writer_weight);
+
+            	Invocation invoc = (Invocation) invocEnum.nextElement();
+                                                                          
+				// grabs parameters of current invocations                                                            
+            	view invoc
+            	as () {													//kill
+                	cur = invoc;
+        	    }
+				as (int id) {
+					// if invocation is a start_write invocation then allow entry based on
+					// checks and set the date that the writer entered
+					if (invocEnum == start_write_invocation) {			//start_write
+						if( (nw == 0) && (nr == 0) && (select != READER) && (!getPaused()) ) {
+							nw++;
+							current_date = new Date();
+							cur = invoc;
+						}
+					}
+					// if invocation is a end_write invocation then exit writer, increment reader wait time
+					// and schedule next entry
+					else if (invocEnum == end_write_invocation) {		//end_write
+						nw--;
+						reader_waiting_time += new_reader_wait;
+
+						cur = invoc;
+
+						//reschedule
+						reader_weight = ((float)reader_waiting_time)/1000 + (float)(start_read2.length());
+						writer_weight = old_sr*start_write2.length();
+
+						if ( (start_read2.length() != 0) && (start_write2.length() != 0) ) {
+							float total_weight = reader_weight + writer_weight;
+							float random_float = rand.nextFloat()*total_weight;
+
+							if (random_float <= writer_weight) {
+								select = WRITER;
+							}
+							else {
+								select = READER;
+								old_sr = sr = start_read2.length();
+							}
+						}
+						else if (start_read2.length() != 0) {
+							select = READER;
+							old_sr = sr = start_read2.length();
+						}
+						else if (start_write2.length() != 0) {
+							select = WRITER;
+						}
+						else {
+							old_sr = sr = 0;
+							select = ANY;
+						}
+
+					}
+					// if an end read then exit a reader and if no more readers then reschedule
+					else {												//end_read
+						nr--;
+						cur = invoc;
+
+						// find weights and choose scheduling based on comparison
+						if ( ((select == READER) && (nr == 0)) || (select == ANY) ) {
+							writer_weight = old_sr*start_write2.length();
+							reader_weight = ((float)reader_waiting_time)/1000 + (float)(start_read2.length());
+
+							if ( (start_read2.length() != 0) && (start_write2.length() != 0) ) {
+								float total_weight = reader_weight + writer_weight;
+								float random_float = rand.nextFloat()*total_weight;
+
+								if (random_float <= writer_weight) {
+									select = WRITER;
+								}
+								else {
+									select = READER;
+									old_sr = sr = start_read2.length();
+								}
+							}
+							else if (start_read2.length() != 0) {
+								select = READER;
+								old_sr = sr = start_read2.length();
+							}
+							else if (start_write2.length() != 0) {
+								select = WRITER;
+							}
+							else {
+								old_sr = sr = 0;
+								select = ANY;
+							}
+						}
+					}
+        	    }
+				// if start read then check for allowing entry
+				as (java.util.Date d, int id) {							//start_read
+					if( (nw == 0) && (select != WRITER) && check() && (!getPaused()) ) {
+						if (select == READER) sr--;
+						reader_waiting_time = 0;
+						nr++;
+						cur = invoc;
+					}
+				}
+        		if(cur != null)
+            		return cur;
+        	}
+                                                                                                             
+        	if(cur != null)
+            	return cur;
+		}
+		return null;
+		// return nulls if can't return other
+	}
+
+	// Element class to provide sorting of invocs based on timestamps
+	static class Element {
+    	private InvocationEnumeration invoc;
+    	private Timestamp ts;
+                                                                                                                                             
+    	public static final Comparator comparator = new Comparator() {
+    		public int compare(Object o1, Object o2) {
+        		return ((Element)o1).ts.compareTo(((Element)o2).ts);
+      		}
+                                                                                                                                             
+      		public boolean equals(Object o1, Object o2) {
+        		return o1.equals(o2);
+      		}
+    	};
+                                                                                                                                             
+    	public Element(InvocationEnumeration invoc, Timestamp ts) {
+    		this.invoc = invoc;
+    		this.ts = ts;
+    	}
+                                                                                                                                             
+    	public InvocationEnumeration getInvocationEnumeration() {
+    		return invoc;
+    	}
+                                                                                                                                             
+    	public boolean equals(Object o2) {
+      		return ((o2 instanceof Element) &&
+              		(this.ts.equals(((Element)o2).ts)) &&
+              		(this.invoc.equals(((Element)o2).invoc)));
+		}
+	}
+}

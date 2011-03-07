@@ -1,0 +1,31 @@
+// 2004-10-06 problem
+class A {
+  public op void foo() {
+    System.out.println("foo");
+  }
+}
+
+class B extends A {
+  public op void goo() {
+    System.out.println("goo start");
+    foo();
+    // this one's fine
+    cap void() y = foo;
+    send hoo(y);
+    // this one isn't
+    send hoo(foo);
+    System.out.println("goo end");
+  }
+  public op void hoo(cap void() x) {
+    System.out.println("hoo start");
+    x();
+    System.out.println("hoo end");
+  }
+}
+
+public class C {
+  public static void main(String [] args) {
+    B b = new B();
+    b.goo();
+  }
+}

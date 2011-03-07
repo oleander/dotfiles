@@ -1,0 +1,28 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op void myop(cap void());
+
+    public static op void param(int);
+
+    public static int func() {}
+
+    public static void main(String [] args) {
+	op char localparam();
+
+        send myop(null);
+	send myop(noop);
+	cap void(int, char) mycap = noop;
+
+	send myop(param);
+	send myop(localparam);
+	send myop(A.otherparam);
+	send myop(mycap);
+	send myop(func);
+	send myop(A.func);
+
+	System.out.println("Bye");
+    }
+
+}

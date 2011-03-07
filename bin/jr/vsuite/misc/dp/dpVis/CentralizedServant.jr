@@ -1,0 +1,36 @@
+public class CentralizedServant extends DiningPhilServant {
+  // operations invoked by philosophers
+  public op void getforks(int);
+  public op void relforks(int);
+  int n;
+  boolean [] eating; // status of philosophers
+  public CentralizedServant(int n) {
+  	 super();
+    this.n = n;
+    eating = new boolean [n];
+    for (int i = 0; i < n ; i++) {
+      eating[i] = false;
+    }
+  }
+  process server {
+    System.out.println("starting up Servant");
+    while (!destroy) {
+      inni void getforks(int id) st oktoeat(id) {
+        eating[id] = true;
+      }
+      [] void relforks(int id) {
+        eating[id] = false;
+      }
+      [] void endProcess()
+      {
+      	destroy = true;
+      }
+    }
+  }
+  // check whether either philosopher that neighbors
+  //  philosopher id is eating.  (add in n so that
+  // remainder (%) returns non-negative result.)
+  private boolean oktoeat(int id) {
+    return !eating[((id+n)+1)%n] && !eating[((id+n)-1)%n];
+  }
+}

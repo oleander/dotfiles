@@ -1,0 +1,121 @@
+/* resource deadlock */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class deadlock {
+   public op void a();
+   public op void b();
+   public op void c();
+   public op void d();
+   public op void e();
+   public op void hang();
+   public op void hi(String);
+   public op void bye(String);
+   public op boolean opt(char);
+   public String options = "";
+public deadlock() {
+   if ((Main.args != null) && (Main.args.length > 0))
+     options = Main.args[1 - 1];
+call hi("main");
+send hang();
+receive hang();
+send a();
+send b();
+send c();
+send d();
+send e();
+// enough time for above threads to run and complete or hang
+// (see also sleep in Main.jr)
+try{
+Thread.sleep(3*1000);
+}catch (Exception e){e.printStackTrace();}
+if (opt('m')){
+   receive hang();
+   }
+System.out.println(("main done"));
+}
+
+public boolean opt(char c) {
+boolean b;
+ProcBody:{
+   b=false;
+   {
+      int i;
+      
+L1: for (i = 1; (i<=options.length()); i+=1) {
+         {
+            if ((options.charAt((i) - 1)==c)){
+               b=true;
+               break ProcBody;
+               }
+            }
+         }
+      }
+   }
+return b;
+}
+
+public void hi(String s) {
+ProcBody:{
+   System.out.println(("hello from") + " " + (s));
+   }
+}
+
+public void bye(String s) {
+ProcBody:{
+   System.out.println((s) + " " + ("done"));
+   }
+}
+
+public void a() {
+ProcBody:{
+   call hi("a");
+   if (opt('a')){
+      receive hang();
+      }
+   call bye("a");
+   }
+}
+
+public void b() {
+ProcBody:{
+   call hi("b");
+   if (opt('b')){
+      receive hang();
+      }
+   call bye("b");
+   }
+}
+
+public void c() {
+ProcBody:{
+   call hi("c");
+   if (opt('c')){
+      receive hang();
+      }
+   call bye("c");
+   }
+}
+
+public void d() {
+ProcBody:{
+   call hi("d");
+   if (opt('d')){
+      receive hang();
+      }
+   call bye("d");
+   }
+}
+
+public void e() {
+ProcBody:{
+   call hi("e");
+   if (opt('e')){
+      receive hang();
+      }
+   call bye("e");
+   }
+}
+}
+

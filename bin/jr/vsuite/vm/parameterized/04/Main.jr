@@ -1,0 +1,24 @@
+// test array of vm
+
+import edu.ucdavis.jr.JR;
+
+public class Main	{
+
+	public static void main(String [] args)	{
+			vm vm0 = new Myvm(10);
+			vm [] vm1 = new vm[2];
+			vm1[0] = new Myvm(20);
+			vm1[1] = new Myvm(30);
+
+			remote Foo f = new remote Foo(100) on vm0;
+			remote Foo g = new remote Foo(200) on vm1[0];
+			remote Foo h = new remote Foo(300) on vm1[1];
+
+			System.out.println("f: ");
+			f.print();
+			System.out.println("g: ");
+			g.print();
+			System.out.println("h: ");
+			h.print();
+	}
+}

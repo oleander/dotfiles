@@ -1,0 +1,6 @@
+public class A {
+
+    private static op boolean otherOp(int, char);
+
+    private static cap boolean(int, char) otherCap = otherOp;
+}

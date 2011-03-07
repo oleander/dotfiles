@@ -1,0 +1,13 @@
+main.jr:22: WARNING: Invoking Semaphore V() operation with non-void (char) return type.
+      V(s3);
+        ^
+main.jr:23: WARNING: Invoking Semaphore P() operation with non-void (char) return type.
+      P(s3);
+        ^
+main.jr:25: WARNING: Invoking Semaphore V() operation with non-void (int) return type.
+      V(s4);
+        ^
+main.jr:26: WARNING: Invoking Semaphore P() operation with non-void (int) return type.
+      P(s4);
+        ^
+4 warnings

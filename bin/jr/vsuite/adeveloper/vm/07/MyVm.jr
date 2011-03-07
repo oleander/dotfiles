@@ -1,0 +1,7 @@
+import edu.ucdavis.jr.JR;
+                                                                                
+public class MyVm extends vm {
+                                                                                
+    public static op void test();
+                                                                                
+}

@@ -1,0 +1,95 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+
+    public static op boolean terminate(double);
+
+        // default values, eventually read as args
+        static int N = 8;
+    	static int PR = 2;
+	static int S = N/PR;
+
+	static double l, t, r, b, epsilon;
+
+    public static void main(String [] args)
+    {
+
+        // eventually read as input
+	l = 1; t = 2.1; r = 3.3; b = 4.9;
+        epsilon = 0.3;
+
+
+
+        // ****** for now
+	if ( PR <= 1 ) {
+	    System.out.println("need PR > 1; PR is " + PR);
+	        JR.exit(0);  // Where n is the exit value currently ignored
+        }
+
+	// create instances of jacobi
+        remote jacobi jcap[] = new remote jacobi[PR];
+        System.out.println("before try");
+
+            jcap[0] = new remote jacobi(1,N,PR,S,l,t,r,0.0);
+	    System.out.println("after jcap");
+	    for( int i = 1; i <= PR-2; i++ ) {
+                jcap[i] = new remote jacobi(i+1,N,PR,S,l,0.0,r,0.0);
+	    }
+            jcap[PR-1] = new remote jacobi(PR,N,PR,S,l,0.0,r,b);
+
+	// start the computation
+        System.out.println("before start computation");
+// 2000-03-06  noop not allowed for remote
+// so change code in jacobi where send up.bottomrow and down.toprow
+
+//	    send jcap[0].compute(noop, jcap[1], terminate);
+	    send jcap[0].compute(jcap[0], jcap[1], terminate);
+	    for( int i = 1; i <= PR-2; i++ ) {
+                send jcap[i].compute(jcap[i-1],jcap[i+1],terminate);
+	    }
+//          send jcap[PR-1].compute(jcap[PR-2],noop, terminate);
+            send jcap[PR-1].compute(jcap[PR-2],jcap[0], terminate);
+
+
+	// do termination checks until convergence
+// 2000-03-06 no st or by on inni, so simulate it with recursion
+// ugh or elegant ;-)
+        System.out.println("before convergence check");
+	    int iters = 0;
+	    while ( true ) {
+	        iters++;
+	        if (terminate_check() )
+		    break;
+	    }
+	    System.out.println("iters="+iters);
+
+
+	    JR.exit(0);  // Where n is the exit value currently ignored
+    }
+
+
+    private static int tlevel = 0;
+    private static boolean tans = true;
+    private static boolean terminate_check() {
+        boolean tc_ans = false; // initialize to keep Java quiet
+            inni boolean terminate(double diff) {
+	        tans &= (diff <= epsilon);
+		tlevel++;
+//        System.out.println("terminate tlevel="+tlevel+" diff="+diff);
+		if (tlevel == PR) { // have seen all PR diffs.
+		    tc_ans = tans;
+		    // initialize for next time
+		    tans = true;
+		    tlevel = 0;
+		    return tc_ans;
+		}
+		else {
+		    tc_ans = terminate_check();
+		    return tc_ans;
+		}
+	    }
+	   
+        return tc_ans;
+    }
+}

@@ -1,0 +1,4 @@
+# just make sure it gives error
+1 jrc *.jr
+0 cmp Translator.out Translator.std
+0 rm -rf jrGen core *.out

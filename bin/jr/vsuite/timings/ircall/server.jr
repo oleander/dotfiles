@@ -1,0 +1,10 @@
+public class server {
+   public op void dummy();
+
+   public server() {
+   }
+
+   public void dummy() {
+   }
+
+}

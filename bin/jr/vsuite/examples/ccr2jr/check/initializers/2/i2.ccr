@@ -1,0 +1,37 @@
+import edu.ucdavis.jr.JR;
+
+_resource buffer {
+   static final int foo = 11;
+   static final int goo;
+   static { 
+    goo=foo+1;
+   }
+
+   public int slot = -9999;
+   public boolean full = false;
+   public boolean okay = false;
+}
+
+public class i2 {
+   // the CCR
+   private static buffer buf = new buffer();
+
+   public static void main(String [] args) {
+        try {
+
+            _region buffer _with m = buf {
+	        System.out.println(m.foo);
+	        System.out.println(m.slot);
+	        System.out.println(m.full);
+	        System.out.println(m.okay);
+            }
+	    JR.exit(0);
+
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+}

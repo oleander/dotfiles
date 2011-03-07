@@ -1,0 +1,46 @@
+/* resource y */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class y {
+   op void e();
+   op void f(int);
+   op void done();
+   public y() {
+   System.out.println(("hi from initial"));
+   send q();
+   send r();
+   receive done();
+}
+
+op void q();
+void q()  {
+{
+   System.out.println(("hi from process q"));
+   call f(56);
+   call e();
+   }
+}
+
+op void r();
+void r()  {
+{
+   System.out.println(("hi from process r"));
+   inni void f(int x){
+      {
+         System.out.println((x));
+         }
+      }
+  
+   inni void e(){
+      {
+         System.out.println(("got e"));
+         }
+      }
+  
+   }
+  send done();
+}
+}
+

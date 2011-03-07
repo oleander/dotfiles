@@ -1,0 +1,13 @@
+main.jr:8: unexpected type
+required: variable
+found   : operation
+      s1 = 2;
+      ^
+main.jr:27: A semaphore 'P' operation may only be invoked on semaphores and operations not associated with methods.
+      P(s3);
+        ^
+main.jr:30: A semaphore 'P' operation may only be invoked on semaphores and operations not associated with methods.
+      P(s4);
+        ^
+Not generating jrGen/main.java due to errors.
+3 errors

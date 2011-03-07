@@ -1,0 +1,8 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+   public static void main(String[] args) {
+      	    new maine();
+	    JR.exit(0);
+   }
+}

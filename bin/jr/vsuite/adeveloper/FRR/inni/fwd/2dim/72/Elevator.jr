@@ -1,0 +1,45 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	//	System.out.println("hi");
+    }
+
+    static int NF = 4;
+
+    static op B getOff(int);
+    static cap B () foyer[][] =
+	    new cap B () [NF][2];
+    static {
+	for (int f = 0; f <NF; f++) {
+	    for (int d = 0; d<2; d++) {
+		foyer[f][d] = new op B ();
+	    }
+	}
+    }
+
+    static process controller {
+	inni B foyer[0][0]() {
+	    forward getOff(2); // reply to invoker later
+	}
+	inni B foyer[0][1]() {
+	    forward getOff(1); // reply to invoker later
+	}
+    }
+    static process offer {
+	inni B getOff(int y) {
+	    System.out.println(y);
+	    return new B(y);
+	}
+	inni B getOff(int y) {
+	    System.out.println(y);
+	    return new B(y);
+	}
+    }
+    static process invoker {
+	B b;
+	b = foyer[0][0]();
+	System.out.println("b ="+b);
+	b = foyer[0][1]();
+	System.out.println("b ="+b);
+    }
+}

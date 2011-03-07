@@ -1,0 +1,36 @@
+1 releasing after 40
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 0 waiting process(es)
+	**** Printing for scan[1] **** 0 waiting process(es)
+3 releasing after 30
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 1 waiting process(es), all with rank 35
+	**** Printing for scan[1] **** 1 waiting process(es), all with rank 20
+2 releasing after 35
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 1 waiting process(es), all with rank 50
+	**** Printing for scan[1] **** 1 waiting process(es), all with rank 20
+3 releasing after 50
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 1 waiting process(es), all with rank 60
+	**** Printing for scan[1] **** 1 waiting process(es), all with rank 20
+2 releasing after 60
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 0 waiting process(es)
+	**** Printing for scan[1] **** 1 waiting process(es), all with rank 20
+1 releasing after 20
+on release, current scan; next scan:
+	**** Printing for scan[1] **** 0 waiting process(es)
+	**** Printing for scan[0] **** 2 waiting process(es), with ranks: 5 10
+3 releasing after 5
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 1 waiting process(es), all with rank 10
+	**** Printing for scan[1] **** 0 waiting process(es)
+2 releasing after 10
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 0 waiting process(es)
+	**** Printing for scan[1] **** 0 waiting process(es)
+2 releasing after 80
+on release, current scan; next scan:
+	**** Printing for scan[0] **** 0 waiting process(es)
+	**** Printing for scan[1] **** 0 waiting process(es)

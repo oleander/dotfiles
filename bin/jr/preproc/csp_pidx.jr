@@ -1,0 +1,23 @@
+/*
+ * process indices
+ *   pd      -- index into pdecls
+ *              (i.e, from what process declaration comes this process;
+ *               used only to make csp_status output pretty.)
+ *   i1      -- index for 1st dimension
+ *   i2      -- index for 2nd dimension
+ *
+ * (this class could be inner class in generated code, but a bit
+ * simpler and easy to read this way.)
+ */
+
+public class csp_pidx {
+    public int pd;
+    public int i1;
+    public int i2;
+
+    public csp_pidx(int pd, int i1, int i2) {
+	this.pd = pd;
+	this.i1 = i1;
+	this.i2 = i2;
+    }
+}

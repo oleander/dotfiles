@@ -1,0 +1,11 @@
+_program g {
+  _specs {
+    WEST {}
+  }
+
+  _process WEST {
+    System.out.println("start of WEST");
+    char c = '';
+  }
+
+}

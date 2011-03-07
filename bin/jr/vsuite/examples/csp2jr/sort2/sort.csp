@@ -1,0 +1,82 @@
+/* parallel sort
+ * like ../sort1, but with extra I/O commands just to test implementation.
+ */
+_program sort {
+  _specs {
+    P1 {
+      pass1(int);
+      print();
+    }
+    P2 {
+      pass2(int);
+    }
+  }
+
+  private static final int N = 10;
+  _process P1 {
+    int [] a = new int [N/2];
+    for (int i = 0; i < N; i +=2) {
+      a[i/2] = i+1;
+    }
+    for (int k = 0; k < N/2; k++) {
+      System.out.println("P1 " + a[k]);
+    }
+    _i P2?print(); /* to sync printing. */
+    final int largest = N/2-1;
+    int got = -9999; // Java can't figure out that got is initialized by _if
+    _if
+      _i (true) P2?pass1(got) { _o P2!pass2(a[largest]); }
+      _o (true) P2!pass2(a[largest]) { _i P2?pass1(got); }
+    _fi
+    while (a[largest] > got) {
+      int k = 0;
+      while (a[k] < got) { k++; } /* k is at most largest-1 */
+      for (int j = largest-1; j >= k; j--) {
+        a[j+1] = a[j];
+      }
+      a[k] = got;
+      _if
+        _i (true) P2?pass1(got) { _o P2!pass2(a[largest]); }
+        _o (true) P2!pass2(a[largest]) { _i P2?pass1(got); }
+      _fi
+    }
+    for (int k = 0; k < N/2; k++) {
+      System.out.println("P1 " + a[k]);
+    }
+    _i P2?print(); /* to sync printing. */
+  }
+
+  _process P2 {
+    int [] a = new int [N/2];
+    for (int i = 0; i < N; i +=2) {
+      a[i/2] = N/2+i-1;
+    }
+    _o P1!print(); /* to sync printing. */
+    for (int k = 0; k < N/2; k++) {
+      System.out.println("P2 " + a[k]);
+    }
+    final int smallest = 0;
+    int got = -9999; // Java can't figure out that got is initialized by _if
+    _if
+      _i (true) P1?pass2(got) { _o P1!pass1(a[smallest]); }
+      _o (true) P1!pass1(a[smallest]) { _i P1?pass2(got); }
+    _fi
+    while (a[smallest] < got) {
+      int k = N/2-1;
+      while (a[k] > got) { k--; } /* k is at least smallest+1 */
+      for (int j = smallest+1; j <= k; j++) {
+        a[j-1] = a[j];
+      }
+      a[k] = got;
+      _if
+        _i (true) P1?pass2(got) { _o P1!pass1(a[smallest]); }
+        _o (true) P1?pass1(a[smallest]) { _i P1?pass2(got); }
+      _fi
+    }
+    _o P1!print(); /* to sync printing. */
+    for (int k = 0; k < N/2; k++) {
+      System.out.println("P2 " + a[k]);
+    }
+  }
+
+}

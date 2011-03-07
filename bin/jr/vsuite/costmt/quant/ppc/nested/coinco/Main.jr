@@ -1,0 +1,28 @@
+import edu.ucdavis.jr.JR;
+
+public class Main {
+
+    private static op void GO(int);
+
+    public static void main(String [] args) {
+    	int x = 0;
+	co ((int i = 1; i <= 3; i = i+2)) GO(i){
+	  co GO(i+1);
+	  x++;
+	}
+	[] GO(8){
+	  co GO(9);
+	  x++;
+	}
+	System.out.println("after co "+x);
+    }
+
+    private static process receiver{
+	while(true){
+	   inni void GO(int x)	{
+	     System.out.println("received GO: " + x);
+	   }
+	}
+    }
+
+}

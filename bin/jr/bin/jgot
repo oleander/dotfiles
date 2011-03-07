@@ -1,0 +1,44 @@
+#!/usr/bin/perl -w
+
+#### reminder: this file (which resides in $JR_HOME/bin or $JR_HOME\bin)
+#### is generated from files in $JR_HOME/cmds,
+#### so you probably don't want to edit this file directly.
+
+use strict;
+
+sub u_findmain($$);
+sub u_init();
+sub u_jfindmain();
+sub u_jgo($);
+sub u_jgot(\@);
+sub u_jgox($);
+sub u_jr(\@);
+sub u_jrc(\@);
+sub u_jrfindmain();
+sub u_jrgo($);
+sub u_jrgot(\@);
+sub u_jrgox($);
+sub u_jrrun(\@);
+sub u_jrt(\@);
+sub u_mysystem($);
+sub u_quote_args(\@);
+
+# runs javac *.java
+
+my $exitstatus;
+$exitstatus = u_jgot(@ARGV);
+exit $exitstatus;
+
+sub u_jgot(\@) {
+  my $A = shift(@_);
+  if ( @$A != 0 ) {
+    print STDERR "jgot ignoring command line arguments\n";
+  }
+  return u_mysystem("javac *.java");
+}
+sub u_mysystem($) {
+  my $s = shift(@_);
+  system($s);
+  return $?>>8;
+}
+

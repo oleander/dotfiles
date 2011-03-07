@@ -1,0 +1,11 @@
+Mon Jan 12 19:25:55 PST 2004
+
+All OK now that don't require explicit try/catch.
+
+----------------------------------------------------------------------
+
+Sat Mar 29 13:42:33 PST 2003
+
+2 and 3 should fail to compile (missing try/catch),
+but they don't...
+

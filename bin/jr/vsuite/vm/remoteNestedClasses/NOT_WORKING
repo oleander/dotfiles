@@ -1,0 +1,24 @@
+2010-07-17
+
+Remote static nested classes make sense for JR.  However, the
+implementation does not presently work.  It wouldn't be too hard to
+fix, I think.  The generated code has the class name, e.g., "Main.A"
+instead of "Main$A".  Quick hand tests with that change seem to work
+fine.  But, since no-one seems to have missed that feature, we're
+leaving it as an implementation deficiency.
+
+Remote inner classes (i.e., non-static) don't make sense in JR.
+Consider creating a remote instance of an inner class.  Instances of
+inner classes need to be associated with an instance of the enclosing
+class. So, what is the enclosing instance in such a case?  The
+implementation currently doesn't work, with same error as that in
+static nested classes.  (If change the string by hand, get a different
+run-time error.)  This should be a compile-time error, but we'll not
+worry about it for now and leave it as an implementation deficiency.
+
+2010-07-18
+
+decided not to test these (moved Scripts out of the way).  Seem to
+give non-det exit status (0 or 1) and on some systems (my laptop
+ibis), had problems with getting error output, as noted in
+inner/main.jr.

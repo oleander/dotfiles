@@ -1,0 +1,7 @@
+Elevator.jr:15: unexpected type
+required: value
+found   : operation
+	    forward foyer[1]();
+                    ^
+Not generating jrGen/Elevator.java due to errors.
+1 error

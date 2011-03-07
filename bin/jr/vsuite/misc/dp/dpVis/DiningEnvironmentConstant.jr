@@ -1,0 +1,97 @@
+
+import java.awt.Color;
+import javax.swing.ImageIcon;
+
+public abstract class DiningEnvironmentConstant
+{
+	public static final int BEGIN_NUMBER_PHIL = 5;
+
+   /**************************************************************
+   *  Main Frame Constant
+   **************************************************************/
+   public static final int FRAME_WIDTH = 600;
+   public static final int FRAME_HEIGHT = 600;
+   public static final int FRAME_BOTTOM_Y = 520;
+   public static final int FRAME_BORDER_SIZE = 30;
+   public static final Color FRAME_BACKGROUND_COLOR = new Color(224,254,244);
+   public static final Color MESSAGE_COLOR = new Color(153,0,0);
+	public static final int TABLE_WIDTH = 150;
+
+   /**************************************************************
+   *   Client Frame Constant
+   **************************************************************/	
+	public static final int CLIENT_FRAME_WIDTH = 250;
+	public static final int CLIENT_FRAME_HEIGHT = 250;
+	
+   /**************************************************************
+   *   Phil Image Constant
+   **************************************************************/
+	public static final int STATE_DONE = 0 ;
+	public static final int STATE_START = 1;
+	public static final int STATE_THINK = 2;
+	public static final int STATE_HUNGRY = 3;
+	public static final int STATE_WAIT = 4;
+	public static final int STATE_EAT = 5;
+	public static final String [] STATUS_STRING = { "Done!", "  ", "thinking", "hungry", "waiting", "eating" };
+
+	/*********************Version 1 Setting************************************
+	public static final String [] ICON_FILENAME = { "javaPhil00.gif" , "javaPhil01.gif" , "javaPhil02.gif" };
+	public static final ImageIcon [] PHIL_ICON = 
+	   { new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0]),
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[2]) };
+	public static final int IMAGE_LABEL_RATIO = 2;
+	***************************************************************************/
+	
+	/*********************Version 2 Setting************************************
+	public static final String [] ICON_FILENAME = { "buddybean_01.gif", "buddybean_05.gif", "buddybean_23.gif", "buddybean_33.gif", "buddybean_41.gif"};
+	public static final ImageIcon [] PHIL_ICON = 
+	   { new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[3]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[3]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[4]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[2]), 
+  	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0]),
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1]) };
+	public static final int IMAGE_LABEL_RATIO = 3;
+	***************************************************************************/
+
+	public static final String [][] ICON_FILENAME = {{ "javaPhil00.gif" , "javaPhil01.gif" , "javaPhil02.gif" } , { "buddybean_01.gif", "buddybean_05.gif", "buddybean_23.gif", "buddybean_33.gif", "buddybean_41.gif"}};
+	public static final ImageIcon [][] PHIL_ICON = 
+	   {{ new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0][0]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0][0]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0][0]),
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0][0]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0][1]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[0][2]) },
+	    { new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1][3]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1][3]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1][4]), 
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1][2]), 
+  	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1][0]),
+	     new ImageIcon(DiningEnvironmentConstant.ICON_FILENAME[1][1]) }};
+	public static final int IMAGE_LABEL_RATIO[] = { 2 , 3 };
+
+
+	
+   /**************************************************************
+   *   ID Label Constant
+   **************************************************************/
+	public static final int IDLABEL_WIDTH = 30;
+	public static final int IDLABEL_HEIGHT = 20;
+	
+	/*********************Version 1 Setting************************************
+	public static final int IDLABEL_OFFSET_X = 31;
+	public static final int IDLABEL_OFFSET_Y = 72;
+	***************************************************************************/
+	/*********************Version 2 Setting************************************
+	public static final int IDLABEL_OFFSET_X = 27;
+	public static final int IDLABEL_OFFSET_Y = 50;
+	***************************************************************************/
+	
+	public static final int [] IDLABEL_OFFSET_X = { 31 , 27 };
+	public static final int [] IDLABEL_OFFSET_Y = { 72 , 50 };
+	
+}

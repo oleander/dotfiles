@@ -1,0 +1,46 @@
+import edu.ucdavis.jr.JR;
+
+public class capAndQuant
+{
+
+	cap void (int) p;
+
+	public capAndQuant()
+	{
+                     try {
+			JR.registerQuiescenceAction(done);
+                     } catch (Exception e) {e.printStackTrace();}
+
+			p = new op void(int);
+
+			send p(10);
+
+			for (int k = 1; k <= 2; k++) {
+
+			inni (
+			      (int u = 0, v = 1;
+			       u < 2;
+			       u++ )
+			      )
+			void p(int x) st v == u
+			{
+				System.out.println("p received " 
+				+ x + " where u, v = " + u + " " + v);
+			}
+			[] else
+			{
+				System.out.println("else "+k);
+			}
+
+			}
+
+			System.out.println("done");
+		
+	}
+
+	public static op void done()
+	{
+		System.out.println("Quiescence!");
+	}
+}
+

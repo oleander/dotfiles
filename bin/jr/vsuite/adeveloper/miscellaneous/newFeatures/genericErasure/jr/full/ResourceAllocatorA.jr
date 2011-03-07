@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class ResourceAllocatorA<E> {
+
+  public op E[] allocate(int n);
+  public op void release(E[] us);
+
+  private Queue<E> units = new ArrayDeque<E>();
+  private op E[] retry(int n);
+
+  private E[] take(int n) {
+    E[] ret = (E[])new Object[n];
+    for(int i=0; i<n; i++)
+      ret[i] = units.remove();
+    return ret;
+  }
+  
+  private process server {
+
+    while (true) {
+      inni E[] allocate(int n) {
+	if (units.size() < n)
+	  forward retry(n);
+	else
+	  return take(n);
+      }
+      [] void release(E[] us) {
+	for(E unit : us)
+	  units.add(unit);
+	while (retry.length()>0)
+	  inni E[] retry(int n) {
+	    forward allocate(n);
+	  }
+      }
+    }
+  }
+  
+  private static ResourceAllocatorA<Integer> ra = new ResourceAllocatorA<Integer>();
+
+  private static process add {
+    edu.ucdavis.jr.JR.nap(2000);
+    System.out.println("One more");
+    Integer[] units = {1};
+    ra.release(units);
+  }
+
+  public static void main(String[] args) {
+    Integer[] units = {42, 15};
+    ra.release(units);
+
+    Integer[] us = ra.allocate(2);
+    System.out.print("Allocated: [");
+    for(Integer unit : us)
+      System.out.print(unit+" ");
+    System.out.print("]");
+    //    System.out.println("Allocated unit: "+ra.allocate(2));
+    //send ra.release(us);
+  }
+}

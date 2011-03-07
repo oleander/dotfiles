@@ -1,0 +1,6 @@
+2004-11-26
+
+these probably should not be legal (extra code in .m file)
+but they work without effort so keep for now
+perhaps should have explicit error checking to disallow
+anything before or after monitor (except imports are needed before)

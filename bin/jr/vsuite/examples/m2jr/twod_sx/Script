@@ -1,0 +1,27 @@
+0 m2jr -sc twod.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sc.out 2>&1
+0 scmp all.std sc.out
+0 rm -rf jrGen core *.out twod.jr m_condvar.jr
+
+0 m2jr -sw twod.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sw.out 2>&1
+0 scmp all.std sw.out
+0 rm -rf jrGen core *.out twod.jr m_condvar.jr
+
+0 m2jr -su twod.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > su.out 2>&1
+0 scmp all.std su.out
+0 rm -rf jrGen core *.out twod.jr m_condvar.jr
+
+0 m2jr -sx twod.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sx.out 2>&1
+0 scmp all.std sx.out
+0 rm -rf jrGen core *.out twod.jr m_condvar.jr

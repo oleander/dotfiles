@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class ResourceAllocatorM<E> {
+
+
+  private process server {
+    op Set<E> allocate();
+    inni Set<E> allocate() {
+      return null;
+    }
+  }
+  
+  public static void main(String[] args) {
+  }
+}

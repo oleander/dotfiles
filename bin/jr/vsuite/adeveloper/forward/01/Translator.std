@@ -1,0 +1,20 @@
+main.jr:8: A 'forward' may only be invoked on an operation or operation capability with a return type matching that of the current method/in arm: void differs from int.
+        forward test2();
+        ^
+main.jr:16: A 'forward' may only be invoked on an operation or operation capability.
+	forward test4();
+                ^
+main.jr:23: A 'forward' may only be invoked on an operation or operation capability.
+	forward x;
+        ^
+main.jr:27: op char test7(char) in main cannot be applied to (int)
+	forward test7(1);
+                ^
+main.jr:35: forward outside op method
+        forward test1();
+        ^
+main.jr:39: A 'forward' statement is only allowed within a method associated with an operation or in statement.
+	forward test1();
+        ^
+Not generating jrGen/main.java due to errors.
+6 errors

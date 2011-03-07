@@ -1,0 +1,251 @@
+.TH CSP2JR 1 "27 November 2007" "University of California, Davis"
+.SH NAME
+csp2jr \- CSP notation to JR code preprocessor
+.SH SYNOPSIS
+\fBcsp2jr
+[\|\-ti\|]
+[\|\-te\|]
+\fRfile.csp
+.br
+.SH DESCRIPTION
+.LP
+.I Csp2jr
+converts a program written in CSP (Communicating Sequential Processes) notation
+into an equivalent one written in the JR language.
+The CSP program named \fIx\fP must be placed in the file \fIx\fP.csp.
+From that,
+.I csp2jr
+produces \fIx\fP.jr program,
+which the user can then translated using the JR and Java translators
+(e.g., \fIjr x\fP).
+(Do not use
+.I csp2jr
+to translate any non-CSP code.)
+.I Csp2jr
+also places several files whose names begin with csp_ in the current directory.
+.B \-t
+options specify which termination discipline is to be used.
+.LP
+The exact syntax of the CSP notation can be discerned
+by examining the CSP programs in the examples directory.
+Each CSP-notation construct begins with an underscore;
+CSP code is mixed with regular JR code.
+.LP
+.I Csp2jr
+translates a CSP program into an equivalent JR class with a main method.
+The translated program's main method
+creates an instance of the JR class.
+First, though,
+it invokes the \fIhook\fP method
+(see details under \fBQUICK REFERENCE\fP below),
+if one was specified.
+The hook method can be used, for example,
+to access command line arguments,
+read data to initialize variables,
+and set the quiescence operation.
+Given that an instance of the JR class is created,
+the CSP program can use static or non-static variables.
+However, static variables are recommended so that they can be used
+within the hook method and the quiescence operation.
+.LP
+The JR generated code uses a slight modification of the
+centralized clearing house technique
+described in Andrews's book.
+The generated code is not necessarily fair;
+i.e., ports are serviced nondeterministically.
+.LP
+.I Csp2jr
+supports implicit (i.e., automatic) or explicit
+termination disciplines.
+The choice is made
+by the corresponding command line option.
+The default is implicit termination.
+If a CSP input/output command that appears as a statement
+(e.g., _i as a separate statement, not one within an _if or _do) fails, the
+entire program terminates.
+A process that attempts to send to or receive from
+itself is detected as a run-time error.
+.LP
+Following are a few restrictions in
+using
+.I csp2jr .
+CSP processes can have 0, 1, or 2 dimensions.
+The subscripts for arrays
+of processes must be integers;
+arrays are 0-based as in Java.
+All specs (for processes and their ports)
+must appear before any process body.
+Code for all members of a process family must be the same.
+Nested processes are not allowed.
+JR operation names are used as CSP constructors
+(i.e., CSP message port types).
+There is no empty constructor.
+Operation names must be unique to a process.
+Parameters must be enclosed in `()' even if there
+are none.
+.LP
+The boolean part of a CSP guard can be only a single boolean expression;
+so, use `&&' to separate parts of a guard (not `;' as in the original CSP
+notation).
+Quantifier variables should not be declared.
+There can be 1 or 2
+quantifiers.
+Variables cannot be declared as part of guards.
+The CSP \fB_if\fP and \fB_do\fP constructs do not allow an else part.
+The CSP \fB_do\fP construct does not allow exit or next statements.
+.LP
+A few limitations exist to ease the implementation.
+Do not use names of JR predefined functions or reserved words
+(e.g., cap) as variable names within CSP code.
+Do not use identifiers beginning with csp_ within CSP code.
+Do not use any other JR synchronization or return/reply within a CSP program.
+.LP
+.I Csp2jr
+generates some JR code at the end of each process.
+If the CSP process code contains an infinite loop
+(e.g.,
+\fBwhile(true){...}\fP),
+then the JR compiler will give an error
+that the code generated after the loop is unreachable.
+To circumvent that error,
+use, e.g.,
+\fBboolean go = true; while(go){...}\fP).
+.LP
+The predefined Java method Thread.sleep,
+which puts the currently executing process to sleep for a while
+and performs a context switch to another process,
+is useful in CSP programs
+to alter the interleaving of process execution.
+For example, it can be used
+with the random number functions to obtain different
+interleavings to test whether a critical section algorithm works.
+See the programs in the examples directory for examples.
+.SH QUICK REFERENCE
+.nf
+.ta 4n 10n 20n 30n
+_program \fIname\fP { \fIcode\fP }
+_program \fIname\fP _main \fIhook\fP { \fIcode\fP }
+	\fIhook\fP will be invoked before any CSP process begins;
+	it is useful for accessing command line arguments and
+	possibly reading global data from a file;
+	it must not be named \fImain\fP;
+	it must be declared static void hook(String [] args) {...}
+.sp .6
+_specs { \fIprocess_specs}\fP }
+	Each \fIprocess_specs\fP specifies a process or process family:
+		\fIname\fP	single CSP process
+		\fIname\fP [\fIs1\fP]	one-dim CSP process array \fIname[s1]\fP
+		\fIname\fP [\fIs1\fP][\fIs2\fP]	two-dim CSP process array \fIname[s1][s2]\fP
+	and a list of ports for that process or process family:
+		{ \fIports\fP }
+	Each \fIports\fP specifies a port:
+		\fIoname\fP(\fIospec\fP);
+	A port declaration is similar to an operation declaration in JR
+	(but it does not specify a return type or void).
+.sp .2
+_dump_pidx	for implementation debugging
+.sp .6
+_process \fIname\fP { \fIcode\fP }
+	body of process \fIname\fP
+_process \fIname\fP (\fIv1\fP) { \fIcode\fP }
+	one-dim body; \fIv1\fP is process id
+_process \fIname\fP (\fIv1\fP,\fIv2\fP) { \fIcode\fP }
+	two-dim body; \fIv1,v2\fP is process id
+.sp .6
+_i \fIpname\fP?\fIouse\fP(\fIargs\fP);
+	input statement
+	\fIpname\fP is source; \fIouse\fP is port name; \fIargs\fP are formals
+_i [\fIv1\fP = \fIl1\fP _to \fIu1\fP] \fIpname\fP?\fIouse\fP(\fIargs\fP);
+	one-dim quantified input statement
+_i [\fIv1\fP = \fIl1\fP _to \fIu1\fP]  [\fIv2\fP = \fIl2\fP _to \fIu2\fP] \fIpname\fP?\fIouse\fP(\fIargs\fP);
+	two-dim quantified input statement
+.sp .6
+_o \fIpname\fP!\fIouse\fP(\fIargs\fP);
+	output statement
+	\fIpname\fP is destination; \fIouse\fP is port name; \fIargs\fP are actuals
+_o [\fIv1\fP = \fIl1\fP _to \fIu1\fP] \fIpname\fP!\fIouse\fP(\fIargs\fP);
+	one-dim quantified output statement
+_o [\fIv1\fP = \fIl1\fP _to \fIu1\fP]  [\fIv2\fP = \fIl2\fP _to \fIu2\fP] \fIpname\fP!\fIouse\fP(\fIargs\fP);
+	two-dim quantified output statement
+.sp .6
+_if		CSP \fBif\fP, for using I/O in guards
+	don't separate guards with []
+_fi
+.sp .6
+_do		CSP \fBdo\fP, for using I/O in guards
+	don't separate guards with []
+_od
+.sp .6
+_g (\fIexpr\fP)	plain boolean guard of \fB_if\fP or \fB_do\fP
+_g [\fIv1\fP = \fIl1\fP _to \fIu1\fP] (\fIexpr\fP)	one-dim quantified guard
+_g [\fIv1\fP = \fIl1\fP _to \fIu1\fP]  [\fIv2\fP = \fIl2\fP _to \fIu2\fP] (\fIexpr\fP)	 two-dim quantified guard
+.sp .6
+_i (\fIexpr\fP) \fIpname\fP?\fIouse\fP(\fIargs\fP) { \fIcode\fP }
+	input guard with block of code
+	\fIpname\fP is source; \fIouse\fP is port name; \fIargs\fP are formals
+_i [\fIv1\fP = \fIl1\fP _to \fIu1\fP] (\fIexpr\fP) \fIpname\fP?\fIouse\fP(\fIargs\fP) { \fIcode\fP }
+	one-dim quantified input guard with block of code
+_i [\fIv1\fP = \fIl1\fP _to \fIu1\fP]  [\fIv2\fP = \fIl2\fP _to \fIu2\fP]  (\fIexpr\fP) \fIpname\fP?\fIouse\fP(\fIargs\fP) { \fIcode\fP }
+	two-dim quantified output guard with block of code
+.sp .6
+_o (\fIexpr\fP) \fIpname\fP!\fIouse\fP(\fIargs\fP) { \fIcode\fP }
+	output guard with block of code
+	\fIpname\fP is destination; \fIouse\fP is port name; \fIargs\fP are actuals
+_o [\fIv1\fP = \fIl1\fP _to \fIu1\fP] (\fIexpr\fP) \fIpname\fP!\fIouse\fP(\fIargs\fP) { \fIcode\fP }
+	one-dim quantified output guard with block of code
+_o [\fIv1\fP = \fIl1\fP _to \fIu1\fP]  [\fIv2\fP = \fIl2\fP _to \fIu2\fP]  (\fIexpr\fP) \fIpname\fP!\fIouse\fP(\fIargs\fP) { \fIcode\fP }
+	two-dim quantified output guard with block of code
+.sp .6
+_csp_status(\fIbrief\fP)
+	output execution status of all CSP processes; useful for debugging.
+	boolean parameter \fIbrief\fP controls level of detail of output.
+.fi
+.SH FILES
+.ta 20n
+file.csp	CSP notation source file
+.br
+file.jr	generated JR source file
+.br
+csp_*.jr	additional JR files
+.SH SEE ALSO
+Ronald A. Olsson and Aaron W. Keen,
+.I "The JR Programming Language: Concurrent Programming in an Extended Java."
+Kluwer Academic Publishing (now part of Springer), 2004, ISBN 1-4020-8085-9.
+(see http://www.cs.ucdavis.edu/~olsson/research/jr).
+.LP
+Gregory R. Andrews and Ronald A. Olsson,
+.I "The SR Programming Language:  Concurrency in Practice."
+Benjamin/Cummings, 1993, ISBN 0-8053-0088-0.
+.LP
+Gregory R. Andrews,
+.I "Concurrent Programming: Principles and Practice."
+Benjamin/Cummings, 1991, ISBN 0-8053-0086-4.
+.LP
+jr(1),
+csp2sr(1),
+ccr2sr(1), m2sr(1)
+ccr2jr(1), m2jr(1)
+.SH DIAGNOSTICS
+Some erroneous CSP code will cause errors from csp2jr.
+These line numbers
+generally correspond to the ones in the .csp
+file.
+.LP
+Other errors in CSP code are detected by the JR or Java compilers.
+The line numbers for these errors
+will not correspond to those in the original source file,
+but they can be mapped back by looking in
+the generated code file.
+The generated code file contains as comments
+the original lines of source code
+along with the source file name and source line number.
+Thus, the line in the original source file can be located fairly easily.
+If, for example, the JR compiler
+reports an error on line 38,
+then look at line 38 of the generated JR file.
+Above that line,
+you might find a comment
+.nf
+// a.csp, line 12  x = y+2;
+.fi
+This is the line that immediately caused the error.

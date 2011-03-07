@@ -1,0 +1,5 @@
+smlin.jr:12: Invalid return type specified.  Cannot implicitly cast float to int.
+	inni float a(Object i, int j, float f)
+             ^
+Not generating jrGen/smlin.java due to errors.
+1 error

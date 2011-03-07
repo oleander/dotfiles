@@ -1,0 +1,5 @@
+before try
+after jcap
+before start computation
+before convergence check
+iters=6

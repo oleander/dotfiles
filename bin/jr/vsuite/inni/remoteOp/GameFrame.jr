@@ -1,0 +1,4 @@
+public class GameFrame {
+    public GameFrame(String s, Server v, int i) {}
+    public op void gameClosed();
+}

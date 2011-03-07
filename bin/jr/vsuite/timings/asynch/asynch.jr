@@ -1,0 +1,48 @@
+/****
+# testing asynchronous message passing.  A send is followed by a
+# receive.  The messages never block.
+****/
+
+public class asynch {
+  
+   public op void dummy();
+
+   // would-be process
+   private op void test();
+
+   private int limit;
+   private int factor;
+   private int base;
+   private int trials;
+
+   public asynch(int factor, int base, int trials) {
+
+      this.factor = factor;
+      this.base   = base;
+      this.trials = trials;
+
+      limit = factor * base;
+
+         call test(); // should be send,
+		      // but don't want to shutdown program until done.
+   }
+
+   private void test() {
+      long start, finish;
+
+         inni void dummy() {} // this prevents implementation as a semaphore
+         [] else {}        // (not (yet) in JR)
+        
+
+         for (int t = 1; t <= trials; t++ ) {
+	    start = System.currentTimeMillis();
+	    for (int i = 1; i<=limit ; i++) {
+	       send dummy();
+	       receive dummy();
+            }
+            finish =System.currentTimeMillis();
+            System.out.println(limit + " times   " + (finish-start) + " ms");
+         }
+   }
+
+}

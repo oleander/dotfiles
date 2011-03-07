@@ -1,0 +1,11 @@
+public class MyShape <E> {
+    protected E id;
+
+    public MyShape (E id) {
+        this.id = id;
+    }
+
+    public op E get() {
+        return id;
+    }
+}

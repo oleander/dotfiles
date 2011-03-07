@@ -1,0 +1,63 @@
+import edu.ucdavis.jr.JR;
+import java.util.Random;
+
+public class main {
+	private static final int voters = 7;
+	private static cap boolean () throws UnregVoterException [] getVote = new cap boolean () throws UnregVoterException [voters];
+	private static op void ready();
+
+	public static void main(String [] args){
+		int yesCount = 0;
+		int noCount = 0;
+		boolean vote = false;
+		boolean elected = false;
+
+		for (int i = 0; i < voters; i++)
+			getVote[i] = new op boolean() throws UnregVoterException;
+		send ready();
+
+		MyHandler mh = new MyHandler();
+
+		co ((int i = 0; i < voters; i++)) vote = getVote[i]() handler mh : {
+			if(vote){
+				if(++yesCount > voters / 2){elected = true; break;}
+			}
+			else
+				if(++noCount > voters / 2) break;
+		}
+
+		System.out.println("votes in favor: " + yesCount);
+		System.out.println("votes against: " + noCount);
+
+		// how to determine the result depends on the election rule
+		// can't get majority vote
+		if ((yesCount > noCount) && !elected)
+			System.out.println("Too many unregistered voters attempted to vote");
+		else	{
+			if(elected)
+				System.out.println("Congratulations!!!");
+			else
+				System.out.println("Sorry. Better luck next time.");
+		}
+	}
+
+	private static process voter	{
+		Random r = new Random();
+		Random rv = new Random();
+		receive ready();
+		for (int j = 0; j < voters; j++)	{
+			inni ((int i = 0; i < voters; i++)) boolean getVote[i]() throws UnregVoterException	{
+				// first check if voter is registered to vote
+				if (rv.nextDouble() > 0.5)	{
+					if(r.nextDouble() > 0.5)
+						return true;
+					return false;
+				}
+				else	{
+					throw new UnregVoterException();
+				}
+			}
+		}
+	}
+
+}

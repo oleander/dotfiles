@@ -1,0 +1,29 @@
+public class main {
+
+
+    public static void main(String [] args) {}
+
+    static op void f(int x) throws Exception;
+
+    static process p1 {
+	try {
+	    call f(4);
+	} catch(Exception e) {
+	    System.out.println("gotcha");
+	}
+    }
+
+    static process p2 {
+	inni void f(int x) throws Exception {
+
+	    System.out.println("before throw");
+	    if (x==4) throw new MyE();
+	    if (x==9) throw new MyE();
+	    System.out.println("after throw");
+	}
+
+	System.out.println("done");
+    }
+
+}
+

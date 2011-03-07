@@ -1,0 +1,13 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    static op void go();
+
+    public static void main(String [] args) {
+	int y = 4;
+	cap void() c = go;
+	int x = 3;
+    }
+
+}

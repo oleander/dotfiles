@@ -1,0 +1,94 @@
+/* N-weighted Writer Preference Allocator: uses a writer weight to determine *
+ * scheduling                                                                */
+
+public class NWPAllocator extends Allocator {
+	private static final int ANY = 2;
+	private double N = 5;				// writer weight
+	private int select = ANY, qr = 0;	// selection choice, scheduled readers
+	private int nr = 0, nw = 0;			// active reader and writers
+
+	private op void kill_weight ();			// kill the weight handling process
+	private op boolean reader_check ();		// reader check op
+	private op boolean writer_check ();		// writer check op
+	public op void setWeight (double);		// sets the weight (not used)
+
+	process allocate {
+		receive begin();			// intiate allocator
+
+		while (true) {
+			inni void kill() { call kill_weight(); break; }		//kill allocator
+			[] void pause () { setPaused(true); }				// pause and resume manager
+			[] void resume () { setPaused(false); }
+			// start a read given checks
+			[] void start_read(int id) st ((nw == 0) && (select != WRITER) && checkReaders() && pause_check()) {
+				nr++;
+				forward activate(id);
+
+				// decrement schedule readers
+				if (select == READER)
+					qr--;
+			}
+			// end a read and reschedule
+			[] void end_read(int id) {
+				nr--;
+				send removeUser(id);
+
+				// reshedule entry
+				if (qr == 0) {
+					if ( (nr == 0) && (start_read.length() != 0) && reader_check()) {
+						select = READER;
+						qr = start_read.length();
+					}
+					else if ( (start_write.length() != 0) && writer_check() )
+						select = WRITER;
+					else
+						select = ANY;
+				}
+			}
+			// start a write given checks
+			[] void start_write(int id) st ((nw == 0) && (nr == 0) && (select != READER) && pause_check()) {
+				nw++;
+				forward activate(id);
+			}
+			// end writes and reschedule
+			[] void end_write(int id) {
+				nw--;
+				send removeUser(id);
+
+				// reschedule entry using writer weight
+				if ( (nr == 0) && (start_read.length() != 0) && reader_check()) {
+					select = READER;
+					qr = start_read.length();
+				}
+				else if ( (start_write.length() != 0) && writer_check() )
+					select = WRITER;
+				else
+					select = ANY;
+			}
+		}
+	}
+
+	// change and access the weight variable (manager changes weight)
+	process weight {
+		while (true) {
+			inni void kill_weight () { break; }
+			[] void setWeight (double N) {
+				this.N = N;
+			}
+			[] boolean reader_check () st setWeight.length() == 0 {
+				return (start_write.length()*N < start_read.length());
+			}
+			[] boolean writer_check () st setWeight.length() == 0 {
+				return (start_write.length()*N >= start_read.length());
+			}
+		}
+	}
+
+	// check for more schedule readers
+	private op boolean checkReaders () {
+		if(select == READER)
+			return (qr != 0);
+		else
+			return true;
+	}
+}

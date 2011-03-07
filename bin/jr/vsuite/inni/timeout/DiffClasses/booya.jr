@@ -1,0 +1,10 @@
+import edu.ucdavis.jr.JR;
+
+public class booya
+{
+  public static op void goo( cap void() myCap )
+  {
+    send myCap();
+  }
+}
+

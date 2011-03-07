@@ -1,0 +1,5 @@
+./foo.java:5: class goo is public, should be declared in a file named "goo.java or goo.jr".
+public class goo {
+       ^
+Not generating jrGen/main.java due to errors.
+1 error

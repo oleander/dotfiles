@@ -1,0 +1,24 @@
+Welcome to the wonderful world of JR!
+process p1
+process p2: 0
+process p2: 1
+process p3: 1 OK
+process p3: 1 hi
+process p3: 1 there
+process p3: 2 OK
+process p3: 2 hi
+process p3: 2 there
+process p4: I'm an A with value 1 OK
+process p4: I'm an A with value 1 hi
+process p4: I'm an A with value 1 there
+process p4: I'm an A with value 4 OK
+process p4: I'm an A with value 4 hi
+process p4: I'm an A with value 4 there
+process p5: I'm an A with value 1
+process p5: I'm an A with value 4
+process p6: OK I'm an A with value 1
+process p6: OK I'm an A with value 4
+process p6: hi I'm an A with value 1
+process p6: hi I'm an A with value 4
+process p6: there I'm an A with value 1
+process p6: there I'm an A with value 4

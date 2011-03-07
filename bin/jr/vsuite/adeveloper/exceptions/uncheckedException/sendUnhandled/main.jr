@@ -1,0 +1,29 @@
+import edu.ucdavis.jr.JR;
+
+/* This exception should be ok because java doesn't not require run time error
+   to be handled */
+
+public class main {
+
+    public static void main(String [] args) {
+	send GO(1);
+	send GO(2);
+	send GO(3);
+	System.out.println("After");
+		
+    }
+
+    private static op String GO(int n) throws NullPointerException;
+
+    private static process MYPROCESS	{
+	while(true)	{
+		inni String GO(int x) throws NullPointerException	{
+			System.out.println("received GO: " + x);
+			if (x == 2)
+				throw new NullPointerException();
+			reply "HI";
+		}
+	}
+    }
+
+}

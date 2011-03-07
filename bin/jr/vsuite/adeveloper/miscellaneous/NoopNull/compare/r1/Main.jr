@@ -1,0 +1,20 @@
+// check out some run-time behavior of noop and null
+import edu.ucdavis.jr.JR;
+
+public class Main {
+
+    public static void main (String [] args) {
+        remote A a = null;
+        remote B b = null;
+	System.out.println("a == a? "+ (a==a));
+	System.out.println("b == b? "+ (b==b));
+	System.out.println("a != a? "+ (a!=a));
+	System.out.println("b != b? "+ (b!=b));
+        a = noop;
+        b = noop;
+	System.out.println("a == a? "+ (a==a));
+	System.out.println("b == b? "+ (b==b));
+	System.out.println("a != a? "+ (a!=a));
+	System.out.println("b != b? "+ (b!=b));
+    }
+}

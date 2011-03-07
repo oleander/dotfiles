@@ -1,0 +1,39 @@
+public class Board {
+
+    private static op Object someMove(char c) {
+      System.out.println("someMove "+c);
+      return null;
+    }
+
+  public static void main(String [] args) {
+      System.out.println("ho ho ho");
+      op Object move (char);
+      Board b = new Board();
+      send b.boxManager(move);
+      Object o;
+      o = move('a'); // o here is noop
+      send ((cap Object (char))o)('b');
+      o = move('z');
+      send ((cap Object (char))o)('y');
+}
+
+  public Board() {
+  }
+
+  public op void boxManager(
+                              cap Object (char) move
+                              ) {
+      inni Object move(char dir) {
+          cap Object (char) prevMove;
+	  prevMove = noop;
+	  //          reply (cap Object (char)) prevMove;
+          reply prevMove;
+      }
+      inni Object move(char dir) {
+          cap Object (char) theMove;
+	  theMove = someMove;
+	  reply (cap Object (char)) theMove;
+      }
+  }
+
+}

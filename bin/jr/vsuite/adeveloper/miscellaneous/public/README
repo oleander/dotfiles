@@ -1,0 +1,5 @@
+note: not checked:
+   can have A.java and A.jr
+   given how usually translate JR, will use the A.jr.
+   would be nice to give error or warning about A.java since that's
+   confusing, but not so simple (or probably necessary) to do.

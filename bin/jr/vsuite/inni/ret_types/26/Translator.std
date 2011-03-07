@@ -1,0 +1,4 @@
+smlin.jr:11: Incompatible type for 'in' operation. Can't convert float to int in a receive statement.
+	inni float a(Object i, int j, int f)
+	                                  ^
+1 error

@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class ResourceAllocatorM {
+
+  private process server {
+    op Set o (int);
+    cap Set(int) oo = o;
+    System.out.println("A");
+    send oo(3);
+    int v;
+    receive oo(v);
+    System.out.println("B "+v);
+  }
+  
+  public static void main(String[] args) {
+    new ResourceAllocatorM();
+  }
+}

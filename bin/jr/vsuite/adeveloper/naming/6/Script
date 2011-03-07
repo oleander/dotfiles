@@ -1,0 +1,4 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 run RollerCoaster
+0 rm -rf jrGen core *.out

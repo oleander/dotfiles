@@ -1,0 +1,29 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	// System.out.println("hi");
+    }
+
+    static int NF = 4;
+
+    static process controller {
+	op void getOff(int id, int src, int dst);
+	// getOn's get scattered to appropriate foyer
+	op void foyer (int id, int src, int dst);
+
+	send foyer(1,2,3);
+	inni void foyer(int id, int src, int dst) {
+	    forward getOff(id, src, dst); // reply to invoker later
+	}
+	send foyer(4,5,6);
+	inni void foyer(int id, int src, int dst) {
+	    forward getOff(id, src, dst); // reply to invoker later
+	}
+	int x, y, z;
+	receive getOff(x,y,z);
+	System.out.println(x+" "+y+" "+z);
+	receive getOff(x,y,z);
+	System.out.println(x+" "+y+" "+z);
+    }
+
+}

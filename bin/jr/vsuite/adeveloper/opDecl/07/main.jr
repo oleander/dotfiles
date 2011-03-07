@@ -1,0 +1,20 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static int x;
+
+    public static void main(String [] args) {
+	System.out.println("Welcome to the wonderful world of JR!");
+
+	op int test(char);
+	op int test(char);
+
+	{
+	call test(1);
+	}
+	test(2);
+	send test(3);
+    }
+
+}

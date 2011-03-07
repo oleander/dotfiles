@@ -1,0 +1,18 @@
+// # test semaphore initialization, including arrays
+
+import edu.ucdavis.jr.JR;
+
+public class initsem {
+
+    private static sem semx =  0; // should    be fine
+    private static sem sema = -3; // shouldn't be fine
+
+        public static void main(String [] args) {
+
+		System.out.println("starting up");
+
+		JR.exit(0);
+
+        }
+
+}

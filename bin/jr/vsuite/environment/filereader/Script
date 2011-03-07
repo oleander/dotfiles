@@ -1,0 +1,22 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun pairing data00 > No_input.out00 2>&1
+0 cmp No_input.std00 No_input.out00
+0 jrrun pairing data01  > No_input.out01 2>&1
+0 cmp No_input.std01 No_input.out01
+0 jrrun pairing data02  > No_input.out02 2>&1
+0 cmp No_input.std02 No_input.out02
+0 jrrun pairing data03  > No_input.out03 2>&1
+0 cmp No_input.std03 No_input.out03
+0 jrrun pairing data04  > No_input.out04 2>&1
+0 cmp No_input.std04 No_input.out04
+0 jrrun pairing data05  > No_input.out05 2>&1
+0 cmp No_input.std05 No_input.out05
+0 jrrun pairing data06  > No_input.out06 2>&1
+0 cmp No_input.std06 No_input.out06
+1 jrrun pairing databad > No_input.outbad 2>&1
+0 cmp No_input.stdbad No_input.outbad
+# and again via stdin
+0 jrrun pairing < data03  > No_input.out03 2>&1
+0 cmp No_input.std03 No_input.out03
+0 rm -rf jrGen core *.out*

@@ -1,0 +1,29 @@
+import edu.ucdavis.jr.JR;
+
+public class Main {
+    private static remote fun thefun;
+
+    public static void main(String [] args) {
+        if (args.length > 0) {
+	    if (args[0].equals("TESTthisvmHACK")) {
+		thefun = new remote fun("-HACK-") on vm.thisvm;
+	    }
+	    else {
+		thefun = new remote fun(args[0]) on new vm() on args[0];
+	    }
+	}
+	else {
+	    thefun = new remote fun("-local-") on new vm();
+	}
+	System.out.println(thefun.f(8.43));
+	// register done as the quiescence operation
+	try {
+		JR.registerQuiescenceAction(done);
+	} catch (edu.ucdavis.jr.QuiescenceRegistrationException e) {
+		e.printStackTrace();
+	}
+    }
+    private static op void done() {
+	System.out.println("quiescence done");
+    }
+}

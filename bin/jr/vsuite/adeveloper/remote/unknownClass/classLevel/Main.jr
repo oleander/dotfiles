@@ -1,0 +1,9 @@
+// 2007-03-16
+// remote X where no X causes nullpointerexception
+// (not a problem if remote X not at class-level.)
+
+public class Main {
+    remote Elevator v;
+    public static void main(String [] args) {
+    }
+}

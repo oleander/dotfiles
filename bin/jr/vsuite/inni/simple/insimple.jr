@@ -1,0 +1,104 @@
+/* resource insimple */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class insimple {
+   op void p(int);
+   op void q(int);
+   op void r();
+   op void f(int);
+   public insimple() {
+   send p(111);
+inni void p(int x){
+   {
+      System.out.println((x));
+      }
+   }
+send q(222);
+inni void q(int x){
+   {
+      System.out.println((x));
+      }
+   }
+[] void r(){
+   {
+      System.out.println((84448));
+      }
+   }
+{
+L1: for (int i = 1; (i<=10); i+=1) {
+      {
+         send f(350 + i);
+         }
+      }
+   }
+{
+L2: for (int i = 1; (i<=10); i+=1) {
+      {
+         System.out.print((330 + i) + " ");
+         inni void f(int x){
+            {
+               System.out.print((x));
+               }
+            }
+        
+         System.out.println(" " + (370 + i));
+         }
+      }
+   }
+System.out.println(("calling a"));
+a();
+System.out.println(("done"));
+}
+
+public void a() {
+	op void w();
+	op void x();
+	op void y();
+	op void z();
+ProcBody:{
+   send w();
+	for (int i = 0; i < 100000; i++);
+   send x();
+   {
+L3: for (int i = 1; (i<=2); i+=1) {
+         {
+            inni void w(){
+               {
+                  System.out.println((" got w()"));
+                  }
+               }
+            [] void x(){
+               {
+                  System.out.println((" got x()"));
+                  }
+               }
+           
+            }
+         }
+      }
+   send y();
+	for (int i = 0; i < 100000; i++);
+   send z();
+   {
+L4: for (int i = 1; (i<=2); i+=1) {
+         {
+            inni void z(){
+               {
+                  System.out.println((" got z()"));
+                  }
+               }
+            [] void y(){
+               {
+                  System.out.println((" got y()"));
+                  }
+               }
+           
+            }
+         }
+      }
+   }
+}
+}
+

@@ -1,0 +1,20 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+        System.out.println("Welcome to the wonderful world of JR!");
+
+            op void f();
+	    send f();
+	    inni void f() {
+               try {
+	          Thread.sleep(40);
+               } catch (Exception e) {}
+                  System.out.println("in inni ni!");
+            }
+            JR.exit(0);
+
+    }
+
+}

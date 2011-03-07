@@ -1,0 +1,19 @@
+inside inni f: x 0 y 1.0
+done with f(0) j is: 1.0
+inside inni f: x 0 y 2.0
+inside inni f: x 0 y 3.0
+done with f(0) j is: 2.0
+inside inni f: x 0 y 4.0
+done with f(0) j is: 3.0
+inside inni f: x 2 y 1.0
+done with f(0) j is: 4.0
+inside inni f: x 2 y 2.0
+done with f(2) j is: 1.0
+inside inni f: x 2 y 3.0
+done with f(2) j is: 2.0
+inside inni f: x 2 y 4.0
+done with f(2) j is: 3.0
+inside inni f: x 200 y 3.14
+done with f(2) j is: 4.0
+second arm done
+done with co

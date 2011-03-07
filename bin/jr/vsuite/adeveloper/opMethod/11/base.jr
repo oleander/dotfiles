@@ -1,0 +1,17 @@
+import edu.ucdavis.jr.JR;
+import java.io.*;
+
+public class base  {
+
+    public static int x = 0;
+
+    public op int print(int x, char y) throws java.io.EOFException {
+	System.out.println("Successful");
+	return x;
+    }
+
+    public op void print() throws java.io.EOFException {
+	System.out.println("Successful 2");
+	return;
+    }
+}

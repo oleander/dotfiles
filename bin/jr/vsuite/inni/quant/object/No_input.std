@@ -1,0 +1,13 @@
+800
+801
+802
+p received 10 where t = 800
+else 2
+done
+900
+901
+902
+q received 22 where t = 900
+else 2
+done
+Quiescence!

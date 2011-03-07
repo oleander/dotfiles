@@ -1,0 +1,7 @@
+2007-05-05
+
+Remote references for same object don't necessarily compare equally.
+What's being compared are the addresses for the proxies, not the
+contents.  (And as a special case, two noop remote references don't
+necessarily compare equally since each noop is a separate object.)  I
+think that's fine, but the book should mention it...

@@ -1,0 +1,42 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static int x;
+
+    public static op int test2(int) throws java.io.EOFException;
+
+    public static op int test(int);
+
+    public static int test(int x)
+    {
+      System.out.println("static op method test: " + x);
+      if (x>0) throw new java.io.EOFException();
+      return x;
+    }
+
+    public static int test2(int x) throws java.io.EOFException
+    {
+      System.out.println("static op method test2: " + x);
+      return x;
+    }
+
+    public static void test2()
+    {
+      System.out.println("static method test2");      
+    }
+
+    public static void main(String [] args)
+    {
+      System.out.println("Welcome to the wonderful world of JR!");
+      test(1);
+      test2();
+      test2(2);
+      call test(3);
+      call test2();
+      call test2(4);
+      send test(5);
+      send test2(6);
+    }
+
+}

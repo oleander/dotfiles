@@ -1,0 +1,18 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 cd jrGen
+0 jr_rmic
+0 cd ..
+0 timeout 360 jrrun Main >none.out
+0 scmp none.std none.out
+0 timeout 360 jrrun Main abcde >abcde.out
+0 scmp abcde.std abcde.out
+0 timeout 360 jrrun Main m >m.out
+0 scmp m.std m.out
+0 timeout 360 jrrun Main f >f.out
+0 scmp f.std f.out
+0 timeout 360 jrrun Main abdf >abdf.out
+0 scmp abdf.std abdf.out
+0 timeout 360 jrrun Main abcdemf >abcdemf.out
+0 scmp abcdemf.std abcdemf.out
+0 rm -rf jrGen *.out

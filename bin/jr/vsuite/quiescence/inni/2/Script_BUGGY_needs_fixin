@@ -1,0 +1,8 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 cd jrGen
+0 jr_rmic
+0 cd ..
+0 jrrun main > No_input.out 2>&1
+0 scmp No_input.std No_input.out
+0 rm -rf jrGen core *.out

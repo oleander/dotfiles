@@ -1,0 +1,5 @@
+b.jr:58: ``by' expression has a primitive type; that type must be an ordered type (boolean is not ordered).
+         inni void r(boolean c) by c {
+              ^
+Not generating jrGen/b.java due to errors.
+1 error

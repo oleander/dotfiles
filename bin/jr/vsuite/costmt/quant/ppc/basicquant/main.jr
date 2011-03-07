@@ -1,0 +1,14 @@
+public class main {
+    public static void main(String [] args){
+	System.out.println("begin");
+	co ((int i = 1; i <= 4; i++),(int j = 2; j <= 3; j++)) call p(i,j) {
+		System.out.println("after: "+i+" "+j);
+	}
+	System.out.println("done");
+    }
+
+    // prints both args
+    private static op void p(int i, int j) {
+	System.out.println("p: "+i+" "+j);
+    }
+}

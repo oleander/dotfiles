@@ -1,0 +1,8 @@
+public class C{
+    public C() {
+	System.out.println("C");
+    }
+    public String toString() {
+	return "See -- I'm really a C" + super.toString();
+    }
+}

@@ -1,0 +1,27 @@
+import edu.ucdavis.jr.JR;
+public class basic {
+  private static op int square(int);
+  private static int square(int x) {
+    System.out.println("in square "+x);
+    return x*x;
+  }
+  public static void main(String [] args) {
+   try {
+      System.out.println(square(23));
+      square(41);
+      call square(41);
+      cap int(int) foo = square;
+      foo(11);
+
+      foo = noop;
+      System.out.println("xxxx");
+      System.out.println(foo(12)*10); // undefined on this one
+      System.out.println("yyyy");
+
+      foo = null;
+      System.out.println("aaaa");
+      System.out.println(foo(12)*10); // error on this one
+      System.out.println("bbbb");
+   } catch (NullPointerException e) { e.printStackTrace(); }
+  }
+}

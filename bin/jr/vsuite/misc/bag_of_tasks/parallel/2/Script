@@ -1,0 +1,7 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun main > No_input.out 2>&1
+# actually do see roundoff error on different executions
+# so just grep output for prefix of answer
+0 grep "area=937024.1600" No_input.out > /dev/null 2>&1
+0 rm -rf jrGen core *.out

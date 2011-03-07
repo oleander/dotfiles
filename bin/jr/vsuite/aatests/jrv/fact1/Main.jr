@@ -1,0 +1,8 @@
+
+public class Main{
+   public static String [] args = {"10", "7", "6", "5", "-4", "10", "20", "40", "5", "2", "1"};
+   public static void main(String[] args) {
+      new mainclass();
+	edu.ucdavis.jr.JR.exit(0);
+      }
+   }

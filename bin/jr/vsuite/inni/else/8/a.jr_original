@@ -1,0 +1,136 @@
+/* resource a */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class a {
+	public op void bozo(int);
+	public op void hoho(int, int);
+	public op boolean blocker();
+	op void f(int);
+	op void done();
+
+   public int[][] control = {{29, 28, 27, 26, 25}, {24, 0, 23, 0, 22}, {21, 0, 0, 20, 19}, {0, 0, 0, 0, 0}, {0, 0, 18, 17, 0}};
+public int[][] output = {{-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}};
+public a() {
+try{
+   {
+L1: for (int t = 1; (t<=5); t+=1) {
+      {
+         System.out.println(("****Try") + " " + (t));
+         send f(9999);
+         {
+L2: for (int i = 1; (i<=5); i+=1) 
+            if ((control[(t) - 1][(i) - 1]!=0)){
+               {
+                  send f(control[(t) - 1][(i) - 1]);
+		  for (int m = 0; m < 100000; m++);
+                  }
+               }
+            }
+         call bozo(t);
+         {
+L3: for (int i = 1; (i<=5); i+=1) {
+               {
+                  call hoho(t, i);
+                  }
+               }
+            }
+         {
+L4: for (int k = 1; (k<=5); k+=1) {
+               {
+                  receive done();
+                  }
+               }
+            }
+         }
+      }
+   }
+{
+L5: for (int k = 1; (k<=5); k+=1) {
+      {
+         {
+L6: for (int l = 1; (l<=5); l+=1) {
+               {
+                  System.out.print((output[(k) - 1][(l) - 1]));
+                  if ((l==5)){
+                     System.out.println();
+                     }
+                  else {
+                     System.out.print((" "));
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+{
+L7: for (int k = 1; (k<=5); k+=1) {
+L8: for (int l = 1; (l<=5); l+=1) 
+      if ((control[(k) - 1][(l) - 1]!=output[(k) - 1][(l) - 1])){
+         {
+            System.out.println(("oops") + " " + (k) + " " + (l));
+            //System.exit();
+		edu.ucdavis.jr.JR.exit(1);
+            }
+         }
+      }
+   }
+}catch (Exception e){e.printStackTrace();}
+}
+
+public void bozo(int t) {
+try{
+ProcBody:{
+   System.out.println(("bozo") + " " + (t));
+   reply;
+   instmt f(int x) st blocker() {
+      {
+         }
+      }
+   ni
+   }
+}catch (Exception e){e.printStackTrace();}
+}
+
+public void hoho(int t, int i) {
+try{
+ProcBody:{
+   reply;
+   if ((control[(t) - 1][(i) - 1]==0)){
+      instmt f(int x) st (x== -98765) {
+         {
+            output[(t) - 1][(i) - 1]=x;
+            }
+         }
+      [] else {
+         output[(t) - 1][(i) - 1]=0;
+         }
+      ni
+      }
+   else {
+      instmt f(int x){
+         {
+            output[(t) - 1][(i) - 1]=x;
+            }
+         }
+      ni
+      }
+   send done();
+   }
+}catch (Exception e){e.printStackTrace();}
+}
+
+public boolean blocker() {
+boolean b;
+ProcBody:{
+   b=true;
+try{
+   Thread.sleep(10000);
+}catch (Exception e){e.printStackTrace();}
+   }
+return b;
+}
+}
+

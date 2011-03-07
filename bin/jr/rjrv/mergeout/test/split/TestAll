@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for f in ??
+do
+  $JR_HOME/rjrv/mergeout/moutils/split < $f > $f.out
+  cmp $f.correct $f.out
+done

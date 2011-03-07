@@ -1,0 +1,8 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+  public static void main(String [] args) {
+      remote d6 inp = new remote d6();
+      JR.exit(0);
+  }
+}

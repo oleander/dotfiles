@@ -1,0 +1,14 @@
+0 csp2jr -ti b.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+1 jrrun b > ti.out 2>&1
+0 scmp ti.std ti.out
+0 rm -rf jrGen core *.out csp_*.jr b.jr
+
+0 csp2jr -te b.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun b > te.out 2>&1
+0 scmp te.std te.out
+0 rm -rf jrGen core *.out csp_*.jr b.jr
+

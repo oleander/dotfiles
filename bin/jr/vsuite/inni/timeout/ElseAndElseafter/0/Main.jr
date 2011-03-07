@@ -1,0 +1,36 @@
+/**
+Purpose:
+This file tests inni with else and elseafter arms.
+
+outcome:
+The JR compiler should fail/complain.
+
+**/
+
+import edu.ucdavis.jr.JR;
+
+public class Main{
+ public static void main( String [] args )
+ {
+     op void goo();
+
+    // else before elseafter
+    inni void joo(){}
+    [] else { 
+         System.out.println("in else of first inni");
+    }
+    [] elseafter 123 { 
+         System.out.println("in elseafter of first inni"); 
+    }
+
+   // elseafter before else
+   inni void foo() {}
+   [] elseafter 123 {
+         System.out.println("in elseafter of second inni");
+   }
+   [] else {
+         System.out.println("in else of second inni");
+   }
+ }
+}
+

@@ -1,0 +1,90 @@
+/* output nondeterministic,
+ * but should be all readers followed by writers
+ */
+import edu.ucdavis.jr.JR;
+
+public class a {
+
+   private static int N = 4;
+   // would-be processes
+   private static op void reader(int);
+   private static op void writer(int);
+
+   // the CCR
+   private static rw myrw = new rw();
+
+   private static sem done;
+
+   public static void main(String [] args) {
+        try {
+
+	    // start up processes
+	    for (int i = 1; i <= N; i++) {
+	        send reader(i);
+	    }
+	    for (int i = 1; i <= N; i++) {
+	        send writer(i);
+	    }
+
+	    // wait for all processes to finish
+	    for (int i = 1; i <= 2*N; i++) {
+	        P(done);
+	    }
+	    JR.exit(0);
+
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+    private static void reader(int i) {
+        try {
+//System.out.println("begin reader "+i); Thread.sleep(100);
+            for (int k = 1; k <= 5; k++) {
+//System.out.println("top reader "+i + " " + k); Thread.sleep(100);
+                /* obtain access */
+                    _region rw _with t = myrw _when t.nw==0 {
+                        t.nr++;
+                    }
+                /* read database */
+                    System.out.println("reader "+i); Thread.sleep(100);
+                /* release access */
+                    _region rw _with t = myrw {
+                        t.nr--;
+                    }
+            }
+	    V(done);
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+
+    private static void writer(int i) {
+        try {
+            Thread.sleep(10);
+//System.out.println("begin writer "+i); Thread.sleep(100);
+            for (int k = 1; k <= 5; k++) {
+//System.out.println("top writer "+i + " " + k); Thread.sleep(100);
+                /* obtain access */
+                    _region rw _with t = myrw _when t.nw==0 && t.nr==0 {
+                        t.nw++;
+                    }
+                /* write database */
+                    System.out.println("writer "+i); Thread.sleep(100);
+                /* release access */
+                    _region rw _with t = myrw {
+                        t.nw--;
+                    }
+            }
+	    V(done);
+        }
+        catch (Exception oops) {
+            System.err.println("Exception while...\n");
+            oops.printStackTrace();
+        }
+    }
+}

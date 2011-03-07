@@ -1,0 +1,11 @@
+// 2002-05-03 this type mismatch wasn't detected until now!
+
+public class escape
+{
+	public op void g();
+
+	public process sub
+	{
+		inni boid g() {}
+	}
+}

@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class SendTest
+{
+
+    private static String [] myargs;
+    public static void main(String [] args)
+    {
+      myargs = args;
+      new SendTest();
+    }
+
+    public SendTest()
+    {
+      send foo0();
+      foo1("happy");
+      foo1("happy again", "to me");
+      foo1(myargs);
+    }
+
+    private op void foo0()
+    {
+      System.out.println("foo 0 is called");
+    }
+
+    private op void foo1(String... str)
+    {
+      for (String s:str)
+      {
+        System.out.println("foo 1 gets " + s);
+      }
+    }
+
+}

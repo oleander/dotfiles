@@ -1,0 +1,28 @@
+/* Sieve of Eratosthenes: pipeline algorithm
+ */
+_program sieve {
+  private static final int L = 25, N = 100;
+  _specs { Sieve[L] {pass(int);} }
+
+  _process Sieve(i) {
+    if (i == 0) {
+      System.out.println(2);
+      for (int k = 3; k <= N; k += 2) {
+        _o Sieve[1]!pass(k);
+      }
+    }
+    else {
+      int p, candidate;
+      _i Sieve[i-1]?pass(p);
+      System.out.println(p);
+      _do
+        _i (true) Sieve[i-1]?pass(candidate) {
+          if (candidate % p != 0) {
+            _o Sieve[i+1]!pass(candidate);
+          }
+        }
+      _od
+    }
+  }
+
+}

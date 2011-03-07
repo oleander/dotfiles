@@ -1,0 +1,143 @@
+/* resource a */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class a {
+  op void f(int);
+  op void g();
+  op void h(int);
+public a() {
+   send f(100);
+send g();
+{
+L1: for (int i = 1; (i<=4); i+=1) {
+      {
+         inni void f(int x){
+            {
+               System.out.println(("f1") + " " + (i) + " " + (x));
+               }
+            }
+         [] else {
+            System.out.println(("else1") + " " + (i));
+            send f(1000 + i);
+            inni void g(){
+               {
+                  System.out.println(("g1"));
+                  }
+               }
+            [] void h(int x){
+               {
+                  System.out.println(("h1") + " " + (x));
+                  }
+               }
+            [] else {
+               System.out.println(("else11"));
+               }
+           
+            }
+        
+         }
+      }
+   }
+{
+L2: for (int i = 1; (i<=5); i+=1) {
+      {
+         send f(2000 + i);
+         }
+      }
+   }
+   int n = f.length() + 2;
+{
+L3: for (int i = 1; (i<=n); i+=1) {
+      {
+         inni void f(int x) st (x % 2==0)  by -x {
+            {
+               System.out.println(("f2") + " " + (i) + " " + (x));
+               inni void g(){
+                  {
+                     System.out.println(("g2"));
+                     }
+                  }
+               [] void h(int y){
+                  {
+                     System.out.println(("h2") + " " + (y));
+                     }
+                  }
+               [] else {
+                    System.out.println(("else21"));
+                    send h(9999);
+                  }
+              
+             }
+            }
+         [] else {
+            System.out.println(("else2") + " " + (i));
+            inni void g(){
+               {
+                  System.out.println(("g3"));
+                }
+               }
+            [] void h(int x){
+               {
+                  System.out.println(("h3") + " " + (x));
+                  send g();
+                }
+               }
+            [] else {
+               System.out.println(("else31"));
+               }
+           
+         }
+       }
+      }
+   }
+send g();
+n= f.length() + 2;
+{
+L4: for (int i = 1; (i<=n); i+=1) {
+      {
+         inni void f(int x) by -x {
+            {
+               System.out.println(("f3") + " " + (i) + " " + (x));
+               inni void g(){
+                  {
+                     System.out.println(("g4"));
+                     send h(8888);
+                   }
+                  }
+               [] void h(int y){
+                  {
+                     System.out.println(("h4") + " " + (y));
+                     }
+                  }
+               [] else {
+                  System.out.println(("else41"));
+                  }
+              
+             }
+            }
+         [] else {
+            System.out.println(("else3") + " " + (i));
+            inni void g(){
+               {
+                  System.out.println(("g5"));
+                  }
+               }
+            [] void h(int x){
+               {
+                  System.out.println(("h5") + " " + (x));
+                  }
+               }
+            [] else {
+               System.out.println(("else51"));
+               }
+           
+            }
+        
+         }
+      }
+   }
+}
+}
+

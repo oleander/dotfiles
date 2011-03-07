@@ -1,0 +1,7 @@
+Board.jr:9: unexpected type
+required: method
+found   : class
+    mycaptain = (remote Soldier(new remote Captain(leftSide, soldiers)));
+                        ^
+Not generating jrGen/Board.java due to errors.
+1 error

@@ -1,0 +1,36 @@
+import edu.ucdavis.jr.JR;
+
+public class test {
+
+   private static int n = 4;
+   private static int rounds = 10;
+
+   // would-be processes
+   private static op void tester(int);
+
+   // the monitor
+   private static barrier bar = new barrier("bar");
+
+   public static void main(String [] args) {
+            bar.setn(n);
+
+	    // start up processes
+	    for (int i = 1; i <= n; i++) {
+	        send tester(i);
+	    }
+    }
+
+
+    private static void tester(int i) {
+            for (int j = 1; j <= rounds; j++) {
+                // try to make intervals
+		// long enough to make output deterministic
+                try {
+                Thread.sleep(200*(n-i+1));
+                } catch (Exception e) {}
+	        bar.arrive(i);
+            }
+    }
+
+}
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# yeah, here's some laziness (test only lowercase names)
+for d in [a-z]*
+do
+  cd $d
+  echo testing $d
+  ./TestAll
+  cd ..
+done

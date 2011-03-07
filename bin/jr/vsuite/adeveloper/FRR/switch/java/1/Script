@@ -1,0 +1,3 @@
+1 javac *.java
+0 cmp Compiler.std Compiler.std
+0 rm -rf *.class core *.out

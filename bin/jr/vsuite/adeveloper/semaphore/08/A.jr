@@ -1,0 +1,6 @@
+public class A {
+    private static op void s1();
+
+    private static sem s2 = 1;
+
+}

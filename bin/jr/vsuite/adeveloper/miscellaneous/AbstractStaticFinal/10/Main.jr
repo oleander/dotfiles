@@ -1,0 +1,15 @@
+import edu.ucdavis.jr.JR;
+
+public class Main {
+
+  public static void main(String [] args) {
+    System.out.println("+Main");
+    K k1 = new K();
+    K k2 = new K();
+    K k3 = new K();
+    System.out.println(k2.getId());
+    System.out.println(k3.getId());
+    System.out.println(k1.getId());
+    System.out.println("-Main");
+  }
+}

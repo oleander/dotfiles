@@ -1,0 +1,30 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op boolean memberOp(int, char);
+
+    public static cap boolean(int, char) memberCap = memberOp;
+
+    public static void main(String [] args) {
+	op boolean localOp(int, char);
+	cap boolean(int, char) localCap = localOp;
+
+	send memberCap(1, 'a');
+	send localCap(2, 'b');
+	send A.otherCap(3, 'c');
+
+	int x;
+	char y;
+
+	receive memberCap(x, y);
+	System.out.println("received memberCap: " + x + " " + y);
+
+	receive localCap(x, y);
+	System.out.println("received localCap: " + x + " " + y);
+
+	receive A.otherCap(x, y);
+	System.out.println("received A.otherCap: " + x + " " + y);
+    }
+
+}

@@ -1,0 +1,189 @@
+/* resource primes */
+
+/* SR version 2.3.1, December 1995 */
+
+
+class primes {
+   public int max = 100000;
+public int outcol = 10;
+public char[] s;
+public int limit = 1000;
+public int last;
+public int nleft;
+public int col;
+public boolean verbose = true;
+primes() {
+   s = new char[max + 2 / 3 + 1 - 1 + 1];
+call setup();
+call calc();
+call print();
+}
+
+public void setup() {
+ProcBody:{
+   int i;
+   if ((==1)){
+      limit=i;
+      }
+   if ((limit<0)){
+      verbose=false;
+      limit= -limit;
+      }
+   if ((limit>max)){
+      System.out.println(("maximum limit is") + " " + (max));
+      System.exit();
+      }
+   last=call num(limit - 2 / 3);
+   if ((limit % 6==1)){
+      last=last + 2;
+      }
+   {
+      int i;
+      
+L1: for (i = 1; (i<=call ind(last) + 1); i+=1) {
+         {
+            s[(i) - ]=;
+            }
+         }
+      }
+   nleft=call ind(last) + 2;
+   }
+}
+
+public void calc() {
+ProcBody:{
+   int p;
+   int q;
+   int x;
+   p=5;
+   
+L2: while(true) {
+      if ((p * p<=last)){
+         q=p;
+         
+L3: while(true) {
+            if ((p * q<=last)){
+               x=p * q;
+               
+L4: while(true) {
+                  if ((x<=last)){
+                     call remove(x);
+                     x=p * x;
+                     }
+                  else break L4;
+                  }
+               q=call succ(q);
+               }
+            else break L3;
+            }
+         p=call succ(p);
+         }
+      else break L2;
+      }
+   }
+}
+
+public void print() {
+ProcBody:{
+   int p;
+   col=0;
+   System.out.println((nleft) + " " + ("primes from 1 to") + " " + (call pred(call num(call ind(last) + 1))));
+   if (verbose){
+      call prt(2);
+      call prt(3);
+      p=5;
+      
+L5: while(true) {
+         if ((p<=last)){
+            call prt(p);
+            p=call succ(p);
+            }
+         else break L5;
+         }
+      System.out.println();
+      }
+   }
+}
+
+public void prt(int n) {
+ProcBody:{
+   call puti(n, 4);
+   col=col + 1;
+   if ((col<outcol)){
+      System.out.print((" "));
+      }
+   else {
+      System.out.print(("\n"));
+      col=0;
+      }
+   }
+}
+
+public void puti(int n, int w) {
+ProcBody:{
+   int n10 = n / 10;
+   if (((w>1) || (n10>0))){
+      call puti(n10, w - 1);
+      }
+   if ((n==0)){
+      System.out.print((" "));
+      }
+   else {
+      System.out.print(());
+      }
+   }
+}
+
+public int num(int i) {
+int n;
+ProcBody:{
+   n=3 * i + i % 2 + 1;
+   }
+return n;
+}
+
+public int ind(int n) {
+int i;
+ProcBody:{
+   i=n / 3;
+   }
+return i;
+}
+
+public int pred(int n) {
+int p;
+ProcBody:{
+   int i;
+   i=call ind(n);
+   p=call num(i - );
+   }
+return p;
+}
+
+public int succ(int n) {
+int sc;
+ProcBody:{
+   int i;
+   i=call ind(n);
+   sc=call num(i + );
+   }
+return sc;
+}
+
+public void remove(int n) {
+ProcBody:{
+   int i;
+   int d;
+   int pr;
+   int sc;
+   i=call ind(n);
+   pr=i - ;
+   sc=i + ;
+   d=sc - pr;
+   s[(pr) - ]=;
+   s[(sc - 1) - ]=;
+   nleft=nleft - 1;
+   }
+}
+}
+

@@ -1,0 +1,67 @@
+/****
+# context switch using semaphores
+# Two processes run simultaneously.  p1 blocks until p2 releases.
+# p2 then blocks waiting for p1 to release.  Blocking is done by
+# semaphores.  The reported number of times is twice the loop limit
+# because two context switches occur on each pass.
+****/
+
+
+public class context {
+  
+   public sem up;
+   public sem down;
+
+   // would-be processes
+   private op void p1();
+   private op void p2();
+
+   // to control shutdown
+   private sem done;
+
+   private int limit;
+   private int factor;
+   private int base;
+   private int trials;
+
+   public context(int factor, int base, int trials) {
+
+      this.factor = factor;
+      this.base   = base;
+      this.trials = trials;
+
+      limit = factor * base / 2;
+
+         send p1();
+         send p2();
+	 // don't want to shutdown program until done.
+	 P(done);
+	 P(done);
+   }
+
+   private void p1() {
+      long start, finish;
+
+         for (int t = 1; t <= trials; t++ ) {
+	    start = System.currentTimeMillis();
+	    for (int i = 1; i<=limit ; i++) {
+	       V(up);
+	       P(down);
+            }
+            finish =System.currentTimeMillis();
+            System.out.println(2*limit + " times   " + (finish-start) + " ms");
+         }
+	 V(done);
+   }
+
+   private void p2() {
+         for (int t = 1; t <= trials; t++ ) {
+	    for (int i = 1; i<=limit ; i++) {
+	       P(up);
+	       V(down);
+            }
+         }
+	 V(done);
+   }
+
+}

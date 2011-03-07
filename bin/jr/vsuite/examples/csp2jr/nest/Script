@@ -1,0 +1,21 @@
+# output too non-deterministic to compare.
+# but good test of nesting, so still run.
+
+0 csp2jr -ti nest.csp
+# check warning messages
+0 cmp CSP.std CSP.out
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun nest > ti.out 2>&1
+0 grep "7 dead" ti.out >/dev/null
+0 rm -rf jrGen core *.out csp_*.jr nest.jr
+
+0 csp2jr -te nest.csp
+# check warning messages
+0 cmp CSP.std CSP.out
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun nest > te.out 2>&1
+0 grep "6 dead" te.out >/dev/null
+0 grep "1 blocked" te.out >/dev/null
+0 rm -rf jrGen core *.out csp_*.jr nest.jr

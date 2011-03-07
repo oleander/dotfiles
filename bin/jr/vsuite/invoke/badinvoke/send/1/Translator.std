@@ -1,0 +1,8 @@
+main.jr:4: A 'call' may only be invoked on a method, operation or operation capability.
+      send 4 (5);
+             ^
+main.jr:5: A 'call' may only be invoked on a method, operation or operation capability.
+      send "" ("b");
+              ^
+Not generating jrGen/main.java due to errors.
+2 errors

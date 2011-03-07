@@ -1,0 +1,21 @@
+import edu.ucdavis.jr.JR;
+
+public class Main {
+
+    public cap cap void() () mycap = new op cap void() ();
+
+    process p {
+        while (true) {
+            inni cap void() mycap () {
+                System.out.println("in mycap");
+                return noop;
+            }
+        }
+    }
+
+    public static void main (String [] args) {
+        Main gc = new Main();
+        cap void() test = null;
+        test = gc.mycap();
+    }
+}

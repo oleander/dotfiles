@@ -1,0 +1,71 @@
+public class node
+{
+
+    public op void neighbors(remote node [] links, int [] indices);
+    public op int [][] initiate();
+    public op void probe ( int, cap void (int [][]) );
+
+    private int n;
+    private int myid;
+    private int[] indices;
+    private remote node [] links;
+    private int[][] empty_top;
+
+    public node(int n, int myid) {
+        this.n = n;
+        this.myid = myid;
+        empty_top = new int[n+1][n+1];
+    }
+
+    public void neighbors(remote node links[], int indices[]) {
+        this.links = links;
+        this.indices = indices;
+    }
+
+    public int [][] initiate() {
+        op void echo(int [][]);
+        int [][] ret = null;
+        send probe(myid, echo);
+        receive echo(ret);           
+        return ret;
+    }
+
+    process probe_handler {
+      while(true) {
+            inni void probe ( int from, cap void (int [][]) echo_back ) {
+                int mytop [][] = new int [n+1][n+1];
+                for (int k = 1; k <= n; k++ ){
+                    mytop[myid][k] = indices[k];
+                }
+                op void echo(int [][]);
+                int probed = 0;
+
+                for( int k = 1; k <= n; k++ ) {
+                    if( k != from && indices[k] !=  0) {
+                        send links[k].probe(myid,echo);
+                        probed++;
+                    }
+                }
+
+                while(probed>0) {
+                    inni void echo(int othertop [][]) {
+                        for( int i = 1; i<= n; i++ ) {
+                            for( int j = 1; j<= n; j++ ) {
+                                if( mytop[i][j] == 0 && othertop[i][j] != 0 ) {
+                                    mytop[i][j] = othertop[i][j];
+                                }
+                            }
+                        }
+                        probed--;
+                    }
+                    []  void probe (int from2, cap void (int [][]) echo_back2){
+                            send echo_back2(empty_top);
+                    }
+                   
+
+                }
+                send echo_back(mytop);
+          }
+      }
+    }
+}

@@ -1,0 +1,48 @@
+import edu.ucdavis.jr.JR;
+import java.util.Random;
+
+public class main {
+	private static final int voters = 7;
+	private static cap boolean () [] getVote = new cap boolean () [voters];
+	private static op void ready();	
+
+	public static void main(String [] args){
+		int yesCount = 0;
+		int noCount = 0;
+		boolean vote = false;
+		boolean elected = false;
+
+		for(int i = 0; i < voters; i++)
+			getVote[i] = new op boolean ();
+		send ready();
+
+		co ((int i = 0; i < voters; i++)) vote = getVote[i](){
+			if(vote){
+				if(++yesCount > voters / 2){elected = true; break;}
+			}
+			else
+				if(++noCount > voters / 2) break;
+		}
+
+		System.out.println("votes in favor: " + yesCount);
+		System.out.println("votes against: " + noCount);
+
+		if(elected)
+			System.out.println("Congratulations!!!");
+		else
+			System.out.println("Sorry. Better luck next time.");
+	}
+
+	private static process voter{
+		Random r = new Random();
+		receive ready();
+		for (int j = 0; j < voters; j++) {
+		  inni ((int i = 0; i < voters; i++))
+		  boolean getVote[i](){
+			if(r.nextDouble() > 0.5)
+				return true;
+			return false;
+		  }
+		}
+	}
+}

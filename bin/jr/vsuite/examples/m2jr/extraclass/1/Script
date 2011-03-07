@@ -1,0 +1,4 @@
+0 m2jr Good.m
+0 jrgo > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+0 rm -rf jrGen core *.out Good.jr m_condvar.jr

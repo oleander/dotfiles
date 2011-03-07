@@ -1,0 +1,10 @@
+before try
+after vm
+iters=3
+iters=2
+iters=1
+in f x=203
+in f after forward x=444
+in g x=2030
+after y=12030 203
+after y=7777777

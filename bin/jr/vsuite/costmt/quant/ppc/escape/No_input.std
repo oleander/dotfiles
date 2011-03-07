@@ -1,0 +1,56 @@
+begin: -5 -6
+in p: 11 11
+in p: 22 22
+in p: 33 33
+in p: 44 44
+in p: 55 55
+exiting first co
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+in p: -5 -6
+after quantified p(x,y):  1 2
+in p: 1 2
+in p: -1 -2
+after quantified p(x,y):  1 3
+in p: 1 3
+in p: -1 -3
+after quantified p(x,y):  2 2
+in p: 2 2
+in p: -2 -2
+after quantified p(x,y):  2 3
+in p: 2 3
+in p: -2 -3
+after quantified p(x,y):  3 2
+in p: 3 2
+after quantified p(x,y):  3 3
+in p: 3 3
+in p: -3 -3
+after quantified p(x,y):  4 2
+in p: 4 2
+after quantified p(x,y):  4 3
+in p: 4 3
+after quantified p(x,y):  5 2
+in p: 5 2
+after quantified p(x,y):  5 3
+in p: 5 3
+in p: -5 -6
+after simple p(x,y)
+in p: 3 -1111
+testing i: 3
+didn't pass: 3
+in p: 2 -1111
+testing i: 2
+didn't pass: 2
+in p: 1 -1111
+testing i: 1
+in p: 0 -1111
+testing i: 0
+didn't pass: 0
+done: -5 -6

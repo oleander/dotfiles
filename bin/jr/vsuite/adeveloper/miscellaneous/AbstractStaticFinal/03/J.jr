@@ -1,0 +1,14 @@
+import javax.swing.*;  import java.awt.*;  import java.lang.*;
+
+ public class J implements java.io.Serializable {
+
+ public static final int Jid = 0;
+  
+   private int id;
+
+   public J(){
+      id = Jid;
+   }
+
+}
+

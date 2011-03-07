@@ -1,0 +1,12 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op void myop();
+
+    public static void main(String [] args) {
+	cap void() mycap = myop;
+	Object myob = mycap;
+    }
+
+}

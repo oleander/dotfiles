@@ -1,0 +1,21 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static int x;
+
+    public static op void test(int);
+
+    public static void main(String [] args) {
+        double a;
+	int b;
+	final int c;
+        receive test(a);
+	receive test(b);
+	receive test(c);
+
+	c = 10;
+	c = 20;
+    }
+
+}

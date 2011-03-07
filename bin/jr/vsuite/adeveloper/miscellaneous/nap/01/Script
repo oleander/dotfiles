@@ -1,0 +1,37 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+
+1 jrrun Main -5 0 > No_input0.out 2>&1
+# these line numbers depend on Java implementation
+# (also removed manually from .std)
+0 grep -v "java.lang.reflect.Method.invoke" No_input0.out > No_inputg.outa
+0 grep -v "java.lang.Thread.sleep" No_inputg.outa > No_inputgg.out
+0 grep -v "sun.reflect" No_inputgg.out > No_inputg.out
+0 cmp No_input0.std No_inputg.out
+
+0 jrrun Main  0 0 > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+
+0 jrrun Main  5 2 > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+
+0 jrrun Main  5 999999 > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+
+1 jrrun Main  5 1000000 > No_input1.out 2>&1
+# these line numbers depend on Java implementation
+# (also removed manually from .std)
+0 grep -v "java.lang.reflect.Method.invoke" No_input1.out > No_inputg.outa
+0 grep -v "java.lang.Thread.sleep" No_inputg.outa > No_inputgg.out
+0 grep -v "sun.reflect" No_inputgg.out > No_inputg.out
+0 cmp No_input1.std No_inputg.out
+
+1 jrrun Main  5 -4 > No_input1.out 2>&1
+# these line numbers depend on Java implementation
+# (also removed manually from .std)
+0 grep -v "java.lang.reflect.Method.invoke" No_input1.out > No_inputg.outa
+0 grep -v "java.lang.Thread.sleep" No_inputg.outa > No_inputgg.out
+0 grep -v "sun.reflect" No_inputgg.out > No_inputg.out
+0 cmp No_input1.std No_inputg.out
+
+0 rm -fr jrGen core *.out*

@@ -1,0 +1,15 @@
+public class RollerCoaster{
+	static op boolean isOpen();
+	
+	private static process manager {
+		boolean isOpen = true;
+		inni boolean isOpen(){
+		    return isOpen;
+		}
+	}
+	
+	
+	public static void main(String[] args){
+	    System.out.println(isOpen());
+	}
+}

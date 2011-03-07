@@ -1,0 +1,36 @@
+import edu.ucdavis.jr.JR;
+
+public class sem3 {
+
+    private static sem sema;
+    private static sem semb;
+
+        // would-be processes
+        private static op void a();
+        private static op void b();
+
+        public static void main(String [] args) {
+                send a();
+                send b();
+
+//// lazy automatic termination ;-)
+//Thread.sleep(1000);
+//JR.exit(0);
+
+        }
+
+
+        private static void a() {
+	    	System.out.println(1111);
+		send semb();
+		receive sema();
+		System.out.println(2222);
+        }
+
+
+        private static void b() {
+	    	receive semb();
+		System.out.println(3333);
+		send sema();
+        }
+}

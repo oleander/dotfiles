@@ -1,0 +1,5 @@
+public class MyVm extends vm {
+    public MyVm(String name) {
+	System.out.println("MyVm: " + name);
+    }
+}

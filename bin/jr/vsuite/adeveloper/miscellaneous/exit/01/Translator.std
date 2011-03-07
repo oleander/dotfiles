@@ -1,0 +1,5 @@
+main.jr:9: exit(int) in edu.ucdavis.jr.JR cannot be applied to ()
+	JR.exit();
+          ^
+Not generating jrGen/main.java due to errors.
+1 error

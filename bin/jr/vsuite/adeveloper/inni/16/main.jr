@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op boolean memberOp(int, char);
+
+    public static void main(String [] args) {
+        op int localOp(int, char);
+
+	send memberOp(1, 'a');
+	send localOp(2, 'b');
+
+	inni void localOp(int x, char y) {
+	    System.out.println("localOp " + x + " " + y);
+	}
+	inni void memberOp(int x, char y) {
+	    System.out.println("memberOp " + x + " " + y);
+	}
+	inni int memberOp(int x, char y) {
+	    System.out.println("memberOp " + x + " " + y);
+	}
+	inni boolean localOp(int x, char y) {
+	    System.out.println("localOp " + x + " " + y);
+	}
+
+	inni boolean memberOp(int x, char y) {
+	    System.out.println("memberOp " + x + " " + y);
+	}
+	inni int localOp(int x, char y) {
+	    System.out.println("localOp " + x + " " + y);
+	}
+    }
+
+}

@@ -1,0 +1,3 @@
+2008-03-24 discovered that 2.00006 has bug in handling multiple vars
+	   in single quantifier (e.g., (int i = 0, k = 200)) on co arm
+	   didn't bother fixing that since redoing co handling.

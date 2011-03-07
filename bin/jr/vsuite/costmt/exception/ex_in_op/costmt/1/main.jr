@@ -1,0 +1,24 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+	MyHandler mh = new MyHandler();
+	co send GO(1) handler mh : {System.out.println("ppc1");}
+	[] send GO(2) handler mh : {System.out.println("ppc2");}
+	[] GO(3) {System.out.println("ppc3");}
+    }
+
+    private static op void GO(int n) throws NullPointerException;
+
+    private static process MYPROCESS	{
+	while(true)	{
+		inni void GO(int x) throws NullPointerException	{
+			System.out.println("received GO: " + x);
+			if (x == 1)
+				throw new NullPointerException();
+		}
+	}
+    }
+
+}

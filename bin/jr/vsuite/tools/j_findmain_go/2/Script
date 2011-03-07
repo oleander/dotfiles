@@ -1,0 +1,3 @@
+0 jfindmain > jfindmain.out 2>&1
+0 cmp jfindmain.std jfindmain.out
+0 rm -rf *.class core *.out

@@ -1,0 +1,28 @@
+/* resource a1 */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class a1 {
+   cap void() done;
+   public a1(cap void() done) {
+	this.done = done;
+	send p();
+   }
+
+op void p();
+void p()  {
+{
+   System.out.println(("in p"));
+   q(1000);
+   send done();
+   }
+}
+
+void q(int y) {
+ProcBody:{
+   System.out.println(("in q") + " " + (y));
+   }
+}
+}
+

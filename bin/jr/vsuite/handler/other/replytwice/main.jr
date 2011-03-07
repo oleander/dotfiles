@@ -1,0 +1,75 @@
+// a second reply by itself has no effect,
+// but one with a handler does establish that handler.
+
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    static op int p2(int) throws java.io.EOFException;
+
+    static process run
+    {
+	  while(true)
+	  {
+	    inni int p2(int i) throws java.io.EOFException
+	    {
+		    Handler2 bozo =  new Handler2();
+		    reply 1234 handler bozo;
+		    if( i > 3 ) {
+		        Handler3 clown =  new Handler3();
+		        reply 5678 handler clown;
+		    }
+		throw new java.io.EOFException();
+	    }
+	  }
+    }
+
+
+    public static void main(String [] args)
+    {
+	    send p2(3) handler new Handler();
+	    try
+	    {
+		int hohoho = p2(4);
+		System.out.println("Ho Ho Ho " + hohoho);
+
+	    }
+	    catch (java.io.EOFException e)
+	    {
+		System.out.println("Caught through call to p2 with try/catch");
+	    }
+            //try {
+            //Thread.sleep(1000); // make sure get all output before terminate.
+	    //} catch (Exception e) {e.printStackTrace();}
+
+	    //JR.exit(0);
+    }
+}
+
+class Handler implements edu.ucdavis.jr.Handler
+{
+    public handler void method(java.io.EOFException e)
+    {
+	System.out.println("Caught java.io.EOFException " +
+				"through handler object");
+    }
+}
+
+class Handler2 implements edu.ucdavis.jr.Handler
+{
+    public handler void method(java.io.EOFException e)
+    {
+	System.out.println("Caught java.io.EOFException " +
+				"through Handler2 object");
+    }
+}
+
+class Handler3 implements edu.ucdavis.jr.Handler
+{
+    public handler void method(java.io.EOFException e)
+    {
+	System.out.println("Caught java.io.EOFException " +
+				"through Handler3 object");
+    }
+}
+

@@ -1,0 +1,6 @@
+public class A {
+
+    public static op int otherparam(int, char);
+
+    public static void func() {}
+}

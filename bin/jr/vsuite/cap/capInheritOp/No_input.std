@@ -1,0 +1,9 @@
+goo start
+foo
+goo end
+hoo start
+hoo start
+foo
+foo
+hoo end
+hoo end

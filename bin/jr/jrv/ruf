@@ -1,0 +1,79 @@
+#!/usr/bin/perl
+#
+# ruf - repeat until fail
+#
+# usage: ruf [-b bound] [-i] [-x exitstatus] cmd
+#
+# repeats command until it fails (its exit status is nonzero)
+#
+# -b bound specifies maximum number of iterations
+# -i inverts usual comparison
+# -x exitstatus specifies exitstatus of when to stop
+# -c output iteration count on each iteration
+#
+# examples:
+#   # run a.out until it fails
+#   ruf a.out
+#   # run "a.out -foo" until it fails (i.e., use -- if command itself has args)
+#   ruf -- a.out -foo
+#   # run a.out until it fails or at most 10 times
+#   ruf -b 10 a.out
+#   # run a.out until it succeeds
+#   ruf -i a.out
+#   # run a.out until it exits with exitstatus other than 4
+#   ruf -x 4 a.out
+#   # run a.out until it exits with exitstatus 4
+#   ruf -i -x 4 a.out
+#
+#   typical use with jrv to stop after intermittent failure in zrandom test
+#   ~/pkg/jr/jrv/ruf -c  -- ~/pkg/jr/jrv/jrv -i -s -d . zrandom
+#
+#   typical use with jrv to stop after first (intermittent) failure in zdir
+#   where zdir is a directory containing several tests
+#   ~/pkg/jr/jrv/ruf -c  -- ~/pkg/jr/jrv/jrv -i -f -s -d . zdir
+#
+#   # command can be list of commands (unlike for shell's repeat command)
+#   # but not an alias or shell builtin command
+#   ruf "date; sleep 4"
+#
+# possible extensions (no need for them now):
+#   change -b to min and max
+#   allow expression as command line arg for full generality
+
+use strict;
+
+use Getopt::Long;
+
+# process command-line options.
+my $ub = 0; # upper bound
+my $invert = 0;  # invert
+my $exitstatus = 0;
+my $count = 0;
+
+GetOptions('b=i' => \$ub,
+           'c' => \$count,
+           'i' => \$invert,
+           'x=i' => \$exitstatus)
+|| die "$0: problem processing command line options\n";
+
+# the command and its args
+my @cmd = @ARGV;
+
+## print "@cmd\n";
+
+my $countiterations = $ub>0;
+my $iterations = 0;
+
+while ( !( $countiterations && ($iterations >= $ub ) ) ) {
+    $iterations++;
+    if ($count) {
+	print "$0 iteration: " . $iterations . "\n";
+    }
+    system(@cmd);
+    my $result = $?>>8;
+#    print "$result\n";
+    if ( ($invert == 0 && $result != $exitstatus)
+         || ($invert != 0 && $result == $exitstatus) ) {
+	last;
+    }
+}

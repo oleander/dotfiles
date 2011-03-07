@@ -1,0 +1,133 @@
+public class Servant
+{
+
+// 2000-03-07 no call/send op restrictions
+    // to simulate processes
+    private op void start();
+    // operations invoked by associated philosopher
+    public op void getforks();
+    public op void relforks();
+    // operations invoked by neighboring servants
+    public op void needL();
+    public op void needR();
+    public op void passL();
+    public op void passR();
+    // initialization operations invoked by Main
+    public op void links(remote Servant l, remote Servant r);
+    public op void forks(boolean haveL,  boolean haveR,
+                         boolean dirtyL, boolean dirtyR);
+
+    // (former resource parameters)
+    int id;
+
+    public Servant(int xid)
+    {
+        id = xid;
+            send start();  // start the client thread
+    }
+
+    private boolean haveL, dirtyL, haveR, dirtyR;
+    private remote Servant l, r;
+    private op void hungry();
+    private op void eat();
+
+    public void getforks() {
+	    send hungry();
+	    receive eat();
+    }
+
+    private void start() // process server in SR code
+    {
+        System.out.println("starting up Servant "+id);
+
+	    receive links(l,r);
+	    receive forks(haveL, dirtyL, haveR, dirtyR);
+
+        System.out.println("Servant got initial forks and links "+id);
+
+	while( true ) {
+	        inni void hungry() {
+		    // ask for forks I don't have; I ask my
+		    // right neighbor for its left fork,
+		    // and my left neighbor for its right fork
+		    if (!haveR) {
+		        send r.needL();
+		    }
+		    if (!haveL) {
+		        send l.needR();
+		    }
+		    // wait until I have both forks
+		    while( !(haveL && haveR) ) {
+// 2000-03-07 no st on in
+// **** ugh ****
+			if ( dirtyR && dirtyL ) {
+		            inni void passR() {
+			        haveR = true; dirtyR = false;
+			    }
+		            [] void passL() {
+			        haveL = true; dirtyL = false;
+			    }
+		            [] void needR() { // st dirtyR
+			        haveR = false; dirtyR = false;
+				send r.passL(); send r.needL();
+			    }
+		            [] void needL() { // st dirtyL
+			        haveL = false; dirtyL = false;
+				send l.passR(); send l.needR();
+			    }
+			   
+			}
+			else if ( dirtyR && !dirtyL ) {
+		            inni void passR() {
+			        haveR = true; dirtyR = false;
+			    }
+		            [] void passL() {
+			        haveL = true; dirtyL = false;
+			    }
+		            [] void needR() { // st dirtyR
+			        haveR = false; dirtyR = false;
+				send r.passL(); send r.needL();
+			    }
+			   
+			}
+			else if ( !dirtyR && dirtyL ) {
+		            inni void passR() {
+			        haveR = true; dirtyR = false;
+			    }
+		            [] void passL() {
+			        haveL = true; dirtyL = false;
+			    }
+		            [] void needL() { // st dirtyL
+			        haveL = false; dirtyL = false;
+				send l.passR(); send l.needR();
+			    }
+			   
+			}
+			else { // if ( !dirtyR && !dirtyL )
+		            inni void passR() {
+			        haveR = true; dirtyR = false;
+			    }
+		            [] void passL() {
+			        haveL = true; dirtyL = false;
+			    }
+			   
+			}
+		    }
+                    // give go-ahead
+		    send eat(); dirtyL = true; dirtyR = true;
+		    receive relforks(); // wait until Philosopher is done
+	        }
+	        [] void needR() {
+		    // neighbor needs my right fork (its left)
+		    haveR = false; dirtyR = false;
+		    send r.passL();
+	        }
+	        [] void needL() {
+		    // neighbor needs my left fork (its right)
+		    haveL = false; dirtyL = false;
+		    send l.passR();
+	        }
+	}
+    }
+}
+

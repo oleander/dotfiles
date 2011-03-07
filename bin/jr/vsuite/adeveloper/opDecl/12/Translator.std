@@ -1,0 +1,11 @@
+main.jr:21: Exception java.io.EOFException not handled by an exception handler.  An exception handler must be provided to handle the exceptions thrown by an operation invoked via a 'send' statement.
+	send test(3.0);
+        ^
+main.jr:18: unreported exception java.io.EOFException; must be caught or declared to be thrown
+	  call test(1.0);
+                   ^
+main.jr:20: unreported exception java.io.EOFException; must be caught or declared to be thrown
+	test(2.0);
+            ^
+Not generating jrGen/main.java due to errors.
+3 errors

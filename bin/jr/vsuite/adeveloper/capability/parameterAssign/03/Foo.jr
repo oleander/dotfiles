@@ -1,0 +1,13 @@
+public class Foo {
+  cap void () c;
+  public Foo(cap void() c) {
+    this.c = c;
+  }
+  private process p {
+    System.out.println("starting p");
+    send c();
+  }
+  public op void writex() {
+    System.out.println("writex");
+  }
+}

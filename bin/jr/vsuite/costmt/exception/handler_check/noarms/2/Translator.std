@@ -1,0 +1,5 @@
+main.jr:6: illegal start of expression
+	co handler mh over;
+                          ^
+Not generating any jrGen files due to errors.
+1 error

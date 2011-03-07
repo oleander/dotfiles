@@ -1,0 +1,28 @@
+main.jr:6: cannot reply a value from op method whose result type is void
+        reply 1;
+        ^
+main.jr:14: missing reply value
+	reply;
+        ^
+main.jr:18: possible loss of precision
+found   : double
+required: int
+        reply 1.0;
+              ^
+main.jr:22: A 'reply' statement is only allowed within a method associated with an operation or an in statement.
+	reply 1;
+        ^
+main.jr:26: A 'reply' statement is only allowed within a method associated with an operation or an in statement.
+	reply 'a';
+        ^
+main.jr:30: A 'reply' statement is only allowed within a method associated with an operation or an in statement.
+	reply;
+        ^
+main.jr:34: reply outside op method
+        reply;
+        ^
+main.jr:38: A 'reply' statement is only allowed within a method associated with an operation or an in statement.
+	reply;
+        ^
+Not generating jrGen/main.java due to errors.
+8 errors

@@ -1,0 +1,11 @@
+main.jr:13: op void p1() is already defined in main
+    process p1 {
+            ^
+main.jr:17: process p2 is already defined in main
+    process p2 ((int i = 0; i < 2; i++)) {
+            ^
+main.jr:21: process p2 is already defined in main
+    process p2 ((char a = 'a'; a < 'c'; a++)) {
+            ^
+Not generating jrGen/main.java due to errors.
+3 errors

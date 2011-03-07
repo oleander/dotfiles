@@ -1,0 +1,11 @@
+main.jr:14: unreachable statement
+	    System.out.println("should complain");
+            ^
+main.jr:18: unreachable statement
+	    System.out.println("should complain");
+            ^
+main.jr:24: unreachable statement
+	System.out.println("should complain");
+        ^
+Not generating jrGen/main.java due to errors.
+3 errors

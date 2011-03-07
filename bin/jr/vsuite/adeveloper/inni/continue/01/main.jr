@@ -1,0 +1,24 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+	op void localOp();
+	int x = 1;
+
+        send localOp();
+
+	while (true) {
+	    inni void localOp() {
+	        System.out.println("got localOp");
+		if (x == 1)
+		  continue;
+		System.out.println("not printed");
+	    }
+	    [] else {
+	        break;
+	    }
+	}
+    }
+
+}

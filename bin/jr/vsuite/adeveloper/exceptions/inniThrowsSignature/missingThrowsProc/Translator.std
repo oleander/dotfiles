@@ -1,0 +1,8 @@
+main.jr:12: Invalid throws specified.  Exception java.lang.Exception not specified in throws clause of matched operation GO(int).
+    private static String GO(int n) {
+                          ^
+main.jr:19: Invalid throws specified.  Exception java.lang.Exception not specified in throws clause of matched operation HO(int).
+    private static String HO(int n) throws Exception {
+                          ^
+Not generating jrGen/main.java due to errors.
+2 errors

@@ -1,0 +1,3 @@
+public interface Port<T> {
+    public op T read();
+}

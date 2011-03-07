@@ -1,0 +1,39 @@
+/* resource b */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class b {
+
+   public b() {
+   op void r(X);
+   op void p(int);
+
+ send r(new X(5, 98));
+ send r(new X(23, -3));
+ send r(new X(2, 5));
+ send r(new X(24, 57));
+ send p(3);
+{
+   int n;
+   
+L3: for (n = 1; (n<=5); n+=1) {
+      {
+         inni void r(X c) by c {
+            {
+               System.out.println((c));
+               }
+            }
+         [] void p(int i){
+            {
+               System.out.println((i));
+               }
+            }
+        
+         }
+      }
+   }
+
+}
+}
+

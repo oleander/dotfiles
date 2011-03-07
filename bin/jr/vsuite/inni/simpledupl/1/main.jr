@@ -1,0 +1,30 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+        System.out.println("Welcome to the wonderful world of JR!");
+
+	op void f();
+	op void g();
+
+	    send f();
+	    send g();
+	    int cnt = 0;
+
+	    inni void f() {cnt = cnt+10;}
+            [] void g()	{cnt = cnt+1000;}
+            [] void g()	{cnt = cnt+1000;}
+            [] void g()	{cnt = cnt+1000;}
+            [] void g() {cnt = cnt+1000;}
+	    System.out.println("after inni "+cnt);
+
+	    inni void f() {cnt = cnt+10;}
+            [] void g()	{cnt = cnt+1000;}
+            [] void g()	{cnt = cnt+1000;}
+            [] void g()	{cnt = cnt+1000;}
+            [] void g() {cnt = cnt+1000;}
+	    System.out.println("after inni "+cnt);
+
+    }
+}

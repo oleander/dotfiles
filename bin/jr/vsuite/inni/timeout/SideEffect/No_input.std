@@ -1,0 +1,21 @@
+before x : 0
+in foo
+after  x : 1
+in elseafter
+after  x : 2
+in elseafter
+after  x : 3
+in elseafter
+after  x : 4
+in elseafter
+after  x : 5
+in elseafter
+after  x : 6
+in elseafter
+after  x : 7
+in elseafter
+after  x : 8
+in elseafter
+after  x : 9
+in elseafter
+after  x : 10

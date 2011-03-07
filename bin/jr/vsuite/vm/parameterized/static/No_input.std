@@ -1,0 +1,13 @@
+f: 
+Foo id is: 100
+vm id is: 10
+vm name is: vm1
+vm MyObj is: 999
+g: 
+Foo id is: 200
+vm id is: 20
+vm name is: vm2
+vm MyObj is: 888
+---------------
+receive from Foo id: 100
+receive from Foo id: 200

@@ -1,0 +1,5 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun Main 10 10 1 >No_input.out 2>&1
+0 grep times No_input.out >/dev/null
+0 rm -rf jrGen core *.out

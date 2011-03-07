@@ -1,0 +1,74 @@
+public class DecentralizedServant extends DiningPhilServant {
+  // operations invoked by associated philosopher
+  public op void getforks();
+  public op void relforks();
+  // operations invoked by neighboring servants
+  public op void needL();
+  public op void needR();
+  public op void passL();
+  public op void passR();
+  // initialization operations invoked by Main
+  public op void links(remote DecentralizedServant l, remote DecentralizedServant r);
+  public op void forks(boolean haveL,  boolean haveR,
+                       boolean dirtyL, boolean dirtyR);
+  int id;
+  public DecentralizedServant(int id) {
+    super();
+    this.id = id;
+  }
+  private op void hungry();
+  private op void eat();
+  public void getforks() {
+    send hungry(); // tell server Philosopher is hungry
+    receive eat(); // wait for permission to eat
+  }
+  process server {
+    System.out.println("starting up Servant"+id);
+    remote DecentralizedServant l, r;
+    receive links(l,r);
+    boolean haveL, dirtyL, haveR, dirtyR;
+    receive forks(haveL, dirtyL, haveR, dirtyR);
+    while (!destroy) {
+      inni void hungry() {
+        // ask for forks I don't have; I ask my
+        // right neighbor for its left fork,
+        // and my left neighbor for its right fork
+        if (!haveR) { send r.needL(); }
+        if (!haveL) { send l.needR(); }
+        // wait until I have both forks
+        while( !(haveL && haveR) && !destroy) {
+          inni void passR() {
+            haveR = true; dirtyR = false;
+          }
+          [] void passL() {
+            haveL = true; dirtyL = false;
+          }
+          [] void needR() st dirtyR {
+            haveR = false; dirtyR = false;
+            send r.passL(); send r.needL();
+          }
+          [] void needL() st dirtyL {
+            haveL = false; dirtyL = false;
+            send l.passR(); send l.needR();
+          }
+          [] void endProcess() { destroy = true; }
+        }
+        // let my Philosopher eat;
+        // then wait for it to finish
+        send eat(); dirtyL = true; dirtyR = true;
+        receive relforks();
+      }
+      [] void needR() {
+        // neighbor needs my right fork (its left)
+        haveR = false; dirtyR = false;
+        send r.passL();
+      }
+      [] void needL() {
+        // neighbor needs my left fork (its right)
+        haveL = false; dirtyL = false;
+        send l.passR();
+      }
+      [] void endProcess() { destroy = true; }
+    }               
+  }
+}

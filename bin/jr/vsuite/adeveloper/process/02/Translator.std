@@ -1,0 +1,12 @@
+main.jr:9: illegal start of expression
+    static process p2 (()) {
+                        ^
+main.jr:15: ';' expected
+^
+main.jr:16: illegal start of expression
+}
+^
+main.jr:17: '}' expected
+^
+Not generating any jrGen files due to errors.
+4 errors

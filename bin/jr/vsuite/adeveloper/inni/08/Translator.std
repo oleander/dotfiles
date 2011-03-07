@@ -1,0 +1,14 @@
+main.jr:31: Invalid throws specified.  Exception java.lang.NullPointerException not specified in throws clause of matched operation op void localOp1().
+	inni void localOp1() throws NullPointerException {
+             ^
+main.jr:33: Invalid throws specified.  Exception java.io.EOFException not specified in throws clause of matched operation op void localOp2().
+	inni void localOp2() throws java.io.EOFException {
+             ^
+main.jr:35: Invalid throws specified.  Exception java.io.EOFException not specified in throws clause of matched operation op void memberOp1().
+	inni void memberOp1() throws java.io.EOFException {
+             ^
+main.jr:37: Invalid throws specified.  Exception java.lang.NullPointerException not specified in throws clause of matched operation op void memberOp2().
+	inni void memberOp2() throws NullPointerException {
+             ^
+Not generating jrGen/main.java due to errors.
+4 errors

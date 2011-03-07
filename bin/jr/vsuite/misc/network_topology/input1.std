@@ -1,0 +1,16 @@
+above loop: 2
+i=1
+j=2
+in loop: 1 2
+catcher: 
+after read in loop: 2
+    Topology shown as 2 x 2 adjacency matrix
+1:  0 2 
+2:  1 0 
+
+before try
+at end
+    Topology shown as 2 x 2 adjacency matrix
+1:  0 2 
+2:  1 0 
+

@@ -1,0 +1,15 @@
+Date: Thu, 8 Mar 2001 10:27:15 -0800
+From: Aaron Keen <keen@cs.ucdavis.edu>
+To: olsson@cs.ucdavis.edu
+Subject: Re: 2 problems CSIF vsuite
+
+  >~/pkg/jr/vsuite/vm/callme gives different ordered output on CSIFs,
+  >despite my efforts to force same order (which I think used to work and
+  >still works on pi).  Any ideas or should I just give up and compare
+  >sorted output?
+
+  I believe that the problem might be due to the jvm on CSIF using
+green threads.  At least, that's my best guess.  Even when I change
+the seq string, the threads still print in order.  Unfortunately,
+there is no way to yield to the print threads from the user JRVM's
+because the print threads run within JRX.

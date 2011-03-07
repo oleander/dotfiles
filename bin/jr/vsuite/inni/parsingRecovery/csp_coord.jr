@@ -1,0 +1,36 @@
+/*
+ * 2006-12-04
+ * causes JR 2.00001 and JR 2.00002 (didn't test JR 1.x)
+ * to enter infinite loop ;-(  after errors (ignoring line numbers)
+ *
+   csp_coord.jr:11: invalid operation declaration; return type required
+        inni f(int x) {
+             ^
+   csp_coord.jr:16: illegal start of type
+        inni void csp_match() {
+        ^
+ */
+
+public class csp_coord {
+
+    public static void main(String [] args) { }
+
+    public op void csp_match();
+
+    public csp_coord() { }
+
+    private process coordinator {
+	op int f(int);
+	inni f(int x) {
+	    inni void csp_match() {
+	    }
+	    return 55;
+	}
+	inni void csp_match() {
+	}
+	// inni as keyword above seems significant
+	// e.g., the following there works fine
+	// if(true) {
+	// }
+    }
+}

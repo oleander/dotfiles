@@ -1,0 +1,36 @@
+import edu.ucdavis.jr.JR;
+
+public class smlin
+{
+static	op float m(long);
+    public static op cap float (long) b(int, int, float);
+    public static cap float (long) b(int i, int j, float f)
+    {
+	return m;
+    }
+
+    public static op cap float (long) a(int, int, float);
+    public static process b
+    {
+	    cap float (long) chan = a(3, 3, 4.0f);
+	    send chan(7);
+    }
+    public static void main(String [] args)
+    {
+	inni cap float (long) a(int i, int j, float f)
+	{
+	        System.out.println("Howdy");
+	        forward b(i, j, f);
+	    return null; // needed
+	}
+
+	inni float m(long l)
+	{
+	    System.out.println(l);
+	    return 7.0f;
+	}
+
+	new String();
+	JR.exit(0);
+    }
+}

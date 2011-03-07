@@ -1,0 +1,18 @@
+main.jr:15: otherCap has private access in A
+	send A.otherCap(3, 'c');
+              ^
+main.jr:20: WARNING: Receive from operation with non-void (boolean) return type.
+	receive memberCap(x, y);
+        ^
+main.jr:23: WARNING: Receive from operation with non-void (boolean) return type.
+	receive localCap(x, y);
+        ^
+main.jr:26: otherCap has private access in A
+	receive A.otherCap(x, y);
+                 ^
+main.jr:26: WARNING: Receive from operation with non-void (boolean) return type.
+	receive A.otherCap(x, y);
+        ^
+Not generating jrGen/main.java due to errors.
+2 errors
+3 warnings

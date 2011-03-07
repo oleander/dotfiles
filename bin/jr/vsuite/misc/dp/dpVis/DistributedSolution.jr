@@ -1,0 +1,87 @@
+/*
+ * Created on 2004/7/31
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+
+/**
+ * @author William
+ *
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+ 
+import edu.ucdavis.jr.JR;
+import javax.swing.JComponent;
+import java.util.LinkedList;
+
+public class DistributedSolution extends DiningPhilSolution {
+
+	
+	private DistributedSolution()
+	{
+		super();
+	}
+	
+	public process solutionServer 
+	{
+		while ( true )
+		{
+			inni void start(DiningDesktopPane pane, boolean localOnly, LinkedList vmList) st once == 1
+			{
+		
+			   once = 0;
+			   container = pane;
+				send container.removeAllOp();
+			   // create the Servants
+			   System.out.println("Create servants....");
+			   P(sMutex);
+			   s = new remote DiningPhilServant[numPhil];
+			   for(int i = 0; i < numPhil; i++) {
+					s[i] = new remote DistributedServant(i) on container.getVm(i);
+  					container.setMessage("Creating servants...." + percent.format((i+1.0)/numPhil * 100) + "%");
+			   }
+			   V(sMutex);
+			   // create the Philosophers; to prevent deadlock,
+			   // they are passed capabilities for their servants
+			   // in an asymmetric fashion
+			   System.out.println("Create philosophers....");
+			   for(int i = 0; i < numPhil-1; i++) {
+			     new remote DistributedPhilosopher((remote DistributedServant)s[i], (remote DistributedServant)s[i+1], i, numPhil, session, container.remote, retriver, localOnly) on container.getVm(i);
+			     container.setMessage("Creating philosophers...." + percent.format((i+1.0)/numPhil * 100) + "%");
+			   }
+			   new remote DistributedPhilosopher((remote DistributedServant)s[0], (remote DistributedServant)s[numPhil-1], numPhil-1, numPhil, session, container.remote, retriver, localOnly) on container.getVm();
+				container.setMessage("Creating philosophers....100%");
+			   phil_handler = new cap void (int) [numPhil];
+				//container.setMessage("waiting all philosophers.... # of philosophers left : " + numPhil);
+			   for (int i = 0; i < numPhil; i++)
+			   {
+			   	receive retriver(phil_handler[i]);
+  					//container.setMessage("waiting all philosophers.... # of philosophers left : " + (numPhil-(i+1)));
+			   }
+			   // pause every philosopher initially, and resume(start) them once they are all initialized at this point
+			   resume();
+			   container.setMessage(""); 
+			}
+		}
+	}
+
+	public String toString()
+	{
+		return "Distributed Solution";
+	}
+	
+	public static DiningPhilSolution instance()
+	{
+		if ( thisInstance == null )
+		{
+			thisInstance = new DistributedSolution();
+			thisInstance.session = 3;
+			thisInstance.numPhil = 3;
+		}
+		return thisInstance;
+	}
+
+	private static DistributedSolution thisInstance;
+}

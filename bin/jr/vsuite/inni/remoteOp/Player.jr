@@ -1,0 +1,5 @@
+public class Player implements java.io.Serializable {
+		public String myMachine;
+		public int PlayerNumber;
+}
+

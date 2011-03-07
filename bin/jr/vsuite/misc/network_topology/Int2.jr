@@ -1,0 +1,8 @@
+public class Int2 {
+    public int i,j;
+
+    public Int2(int i, int j) {
+	this.i = i;
+	this.j = j;
+    }
+}

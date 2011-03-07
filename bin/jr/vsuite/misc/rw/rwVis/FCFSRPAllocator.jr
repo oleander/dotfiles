@@ -1,0 +1,26 @@
+/* First Come First Server Preference Allocator: process writers and readers as *
+ * they arrive.  However, readers are allowed to enter the database if there is *
+ * already currently active readers, allowing for starvation                    */
+
+public class FCFSRPAllocator extends Allocator {
+	process allocate {
+		int nr = 0, nw = 0;				// active readers and writers
+		while (true) {
+			inni void kill() { break; }					// kill allocator
+			[] void pause () { setPaused(true); }		// pause and resume allocator
+			[] void resume () { setPaused(false); }
+			[] void start_read(int id)	st (nw == 0) { 	// if no active writers then allow reader access
+				nr++; send activate(id); 
+			}
+			[] void end_read(int id) { 					// reader exits
+				nr--; send removeUser(id); 
+			}
+			[] void start_write(int id) st ((nw == 0) && (nr == 0))	{ 	// if no active readers or writers then allow writer
+				nw++; send activate(id); 
+			}
+			[] void end_write(int id) { 				// writer exits
+				nw--; send removeUser(id); 
+			}
+		}
+	}
+}

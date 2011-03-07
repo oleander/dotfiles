@@ -1,0 +1,11 @@
+main.jr:5: Array type not allowed for semaphore.
+    public static sem a[], b = 2, c;
+                      ^
+main.jr:6: ';' expected
+    public static sem s1{}, s2;
+                        ^
+main.jr:7: ';' expected
+    public static sem d();
+                       ^
+Not generating any jrGen files due to errors.
+3 errors

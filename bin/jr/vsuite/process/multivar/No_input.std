@@ -1,0 +1,217 @@
+process q: 5 : 8 : 8.0
+process q: 5 : 8 : 5.0
+process q: 6 : 9 : 0.0
+process q: 5 : 8 : 2.0
+process q: 4 : 7 : 5.0
+process q: 7 : 10 : 1.0
+process q: 6 : 9 : 9.0
+process q: 6 : 9 : 2.0
+process q: 5 : 8 : 9.0
+process q: 5 : 8 : 6.0
+process q: 8 : 11 : 1.0
+process q: 5 : 8 : 3.0
+process q: 5 : 8 : 0.0
+process q: 4 : 7 : 6.0
+process q: 4 : 7 : 3.0
+process q: 4 : 7 : 0.0
+process q: 1 : 4 : 9.0
+process q: 1 : 4 : 5.0
+process q: 8 : 11 : 2.0
+process q: 1 : 4 : 2.0
+process q: 1 : 4 : 0.0
+process q: 8 : 11 : 5.0
+process q: 0 : 3 : 6.0
+process q: 6 : 9 : 8.0
+process q: 8 : 11 : 6.0
+process q: 0 : 3 : 1.0
+process q: 0 : 3 : 2.0
+process q: 8 : 11 : 4.0
+process q: 7 : 10 : 6.0
+process q: 0 : 3 : 8.0
+process q: 1 : 4 : 4.0
+process q: 4 : 7 : 8.0
+process q: 7 : 10 : 8.0
+process q: 7 : 10 : 2.0
+process q: 7 : 10 : 3.0
+process q: 0 : 3 : 0.0
+process q: 7 : 10 : 5.0
+process q: 6 : 9 : 4.0
+process q: 7 : 10 : 9.0
+process q: 4 : 7 : 9.0
+process q: 0 : 3 : 3.0
+process q: 4 : 7 : 2.0
+process q: 4 : 7 : 4.0
+process q: 7 : 10 : 0.0
+process q: 8 : 11 : 8.0
+process q: 5 : 8 : 4.0
+process q: 8 : 11 : 9.0
+process q: 9 : 12 : 2.0
+process q: 9 : 12 : 3.0
+process q: 5 : 8 : 1.0
+process q: 6 : 9 : 1.0
+process q: 6 : 9 : 3.0
+process q: 0 : 3 : 9.0
+process q: 0 : 3 : 5.0
+process q: 0 : 3 : 4.0
+process q: 1 : 4 : 1.0
+process q: 1 : 4 : 8.0
+process q: 4 : 7 : 1.0
+process q: 7 : 10 : 4.0
+process q: 1 : 4 : 3.0
+process q: 8 : 11 : 0.0
+process q: 8 : 11 : 3.0
+process q: 6 : 9 : 6.0
+process q: 6 : 9 : 5.0
+process q: 1 : 4 : 6.0
+process q: 9 : 12 : 1.0
+process q: 9 : 12 : 0.0
+process q: 9 : 12 : 4.0
+process q: 9 : 12 : 6.0
+process q: 9 : 12 : 5.0
+process q: 9 : 12 : 8.0
+process q: 9 : 12 : 9.0
+myid: -88 process p: 100 : 203 : 400.0
+myid: -88 process p: 100 : 203 : 401.0
+myid: -88 process p: 100 : 203 : 402.0
+myid: -88 process p: 100 : 203 : 403.0
+myid: -88 process p: 100 : 203 : 404.0
+myid: -88 process p: 100 : 203 : 405.0
+myid: -88 process p: 100 : 203 : 406.0
+myid: -88 process p: 100 : 203 : 408.0
+myid: -88 process p: 100 : 203 : 409.0
+myid: -88 process p: 101 : 204 : 400.0
+myid: -88 process p: 101 : 204 : 401.0
+myid: -88 process p: 101 : 204 : 402.0
+myid: -88 process p: 101 : 204 : 403.0
+myid: -88 process p: 101 : 204 : 404.0
+myid: -88 process p: 101 : 204 : 405.0
+myid: -88 process p: 101 : 204 : 406.0
+myid: -88 process p: 101 : 204 : 408.0
+myid: -88 process p: 101 : 204 : 409.0
+myid: -88 process p: 104 : 207 : 400.0
+myid: -88 process p: 104 : 207 : 401.0
+myid: -88 process p: 104 : 207 : 402.0
+myid: -88 process p: 104 : 207 : 403.0
+myid: -88 process p: 104 : 207 : 404.0
+myid: -88 process p: 104 : 207 : 405.0
+myid: -88 process p: 104 : 207 : 406.0
+myid: -88 process p: 104 : 207 : 408.0
+myid: -88 process p: 104 : 207 : 409.0
+myid: -88 process p: 105 : 208 : 400.0
+myid: -88 process p: 105 : 208 : 401.0
+myid: -88 process p: 105 : 208 : 402.0
+myid: -88 process p: 105 : 208 : 403.0
+myid: -88 process p: 105 : 208 : 404.0
+myid: -88 process p: 105 : 208 : 405.0
+myid: -88 process p: 105 : 208 : 406.0
+myid: -88 process p: 105 : 208 : 408.0
+myid: -88 process p: 105 : 208 : 409.0
+myid: -88 process p: 106 : 209 : 400.0
+myid: -88 process p: 106 : 209 : 401.0
+myid: -88 process p: 106 : 209 : 402.0
+myid: -88 process p: 106 : 209 : 403.0
+myid: -88 process p: 106 : 209 : 404.0
+myid: -88 process p: 106 : 209 : 405.0
+myid: -88 process p: 106 : 209 : 406.0
+myid: -88 process p: 106 : 209 : 408.0
+myid: -88 process p: 106 : 209 : 409.0
+myid: -88 process p: 107 : 210 : 400.0
+myid: -88 process p: 107 : 210 : 401.0
+myid: -88 process p: 107 : 210 : 402.0
+myid: -88 process p: 107 : 210 : 403.0
+myid: -88 process p: 107 : 210 : 404.0
+myid: -88 process p: 107 : 210 : 405.0
+myid: -88 process p: 107 : 210 : 406.0
+myid: -88 process p: 107 : 210 : 408.0
+myid: -88 process p: 107 : 210 : 409.0
+myid: -88 process p: 108 : 211 : 400.0
+myid: -88 process p: 108 : 211 : 401.0
+myid: -88 process p: 108 : 211 : 402.0
+myid: -88 process p: 108 : 211 : 403.0
+myid: -88 process p: 108 : 211 : 404.0
+myid: -88 process p: 108 : 211 : 405.0
+myid: -88 process p: 108 : 211 : 406.0
+myid: -88 process p: 108 : 211 : 408.0
+myid: -88 process p: 108 : 211 : 409.0
+myid: -88 process p: 109 : 212 : 400.0
+myid: -88 process p: 109 : 212 : 401.0
+myid: -88 process p: 109 : 212 : 402.0
+myid: -88 process p: 109 : 212 : 403.0
+myid: -88 process p: 109 : 212 : 404.0
+myid: -88 process p: 109 : 212 : 405.0
+myid: -88 process p: 109 : 212 : 406.0
+myid: -88 process p: 109 : 212 : 408.0
+myid: -88 process p: 109 : 212 : 409.0
+myid: -44 process p: 100 : 203 : 400.0
+myid: -44 process p: 100 : 203 : 401.0
+myid: -44 process p: 100 : 203 : 402.0
+myid: -44 process p: 100 : 203 : 403.0
+myid: -44 process p: 100 : 203 : 404.0
+myid: -44 process p: 100 : 203 : 405.0
+myid: -44 process p: 100 : 203 : 406.0
+myid: -44 process p: 100 : 203 : 408.0
+myid: -44 process p: 100 : 203 : 409.0
+myid: -44 process p: 101 : 204 : 400.0
+myid: -44 process p: 101 : 204 : 401.0
+myid: -44 process p: 101 : 204 : 402.0
+myid: -44 process p: 101 : 204 : 403.0
+myid: -44 process p: 101 : 204 : 404.0
+myid: -44 process p: 101 : 204 : 405.0
+myid: -44 process p: 101 : 204 : 406.0
+myid: -44 process p: 101 : 204 : 408.0
+myid: -44 process p: 101 : 204 : 409.0
+myid: -44 process p: 104 : 207 : 400.0
+myid: -44 process p: 104 : 207 : 401.0
+myid: -44 process p: 104 : 207 : 402.0
+myid: -44 process p: 104 : 207 : 403.0
+myid: -44 process p: 104 : 207 : 404.0
+myid: -44 process p: 104 : 207 : 405.0
+myid: -44 process p: 104 : 207 : 406.0
+myid: -44 process p: 104 : 207 : 408.0
+myid: -44 process p: 104 : 207 : 409.0
+myid: -44 process p: 105 : 208 : 400.0
+myid: -44 process p: 105 : 208 : 401.0
+myid: -44 process p: 105 : 208 : 402.0
+myid: -44 process p: 105 : 208 : 403.0
+myid: -44 process p: 105 : 208 : 404.0
+myid: -44 process p: 105 : 208 : 405.0
+myid: -44 process p: 105 : 208 : 406.0
+myid: -44 process p: 105 : 208 : 408.0
+myid: -44 process p: 105 : 208 : 409.0
+myid: -44 process p: 106 : 209 : 400.0
+myid: -44 process p: 106 : 209 : 401.0
+myid: -44 process p: 106 : 209 : 402.0
+myid: -44 process p: 106 : 209 : 403.0
+myid: -44 process p: 106 : 209 : 404.0
+myid: -44 process p: 106 : 209 : 405.0
+myid: -44 process p: 106 : 209 : 406.0
+myid: -44 process p: 106 : 209 : 408.0
+myid: -44 process p: 106 : 209 : 409.0
+myid: -44 process p: 107 : 210 : 400.0
+myid: -44 process p: 107 : 210 : 401.0
+myid: -44 process p: 107 : 210 : 402.0
+myid: -44 process p: 107 : 210 : 403.0
+myid: -44 process p: 107 : 210 : 404.0
+myid: -44 process p: 107 : 210 : 405.0
+myid: -44 process p: 107 : 210 : 406.0
+myid: -44 process p: 107 : 210 : 408.0
+myid: -44 process p: 107 : 210 : 409.0
+myid: -44 process p: 108 : 211 : 400.0
+myid: -44 process p: 108 : 211 : 401.0
+myid: -44 process p: 108 : 211 : 402.0
+myid: -44 process p: 108 : 211 : 403.0
+myid: -44 process p: 108 : 211 : 404.0
+myid: -44 process p: 108 : 211 : 405.0
+myid: -44 process p: 108 : 211 : 406.0
+myid: -44 process p: 108 : 211 : 408.0
+myid: -44 process p: 108 : 211 : 409.0
+myid: -44 process p: 109 : 212 : 400.0
+myid: -44 process p: 109 : 212 : 401.0
+myid: -44 process p: 109 : 212 : 402.0
+myid: -44 process p: 109 : 212 : 403.0
+myid: -44 process p: 109 : 212 : 404.0
+myid: -44 process p: 109 : 212 : 405.0
+myid: -44 process p: 109 : 212 : 406.0
+myid: -44 process p: 109 : 212 : 408.0
+myid: -44 process p: 109 : 212 : 409.0
+process q: 88 : 97 : 3.1415925

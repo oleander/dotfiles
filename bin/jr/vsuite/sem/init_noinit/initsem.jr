@@ -1,0 +1,110 @@
+// # test semaphore initialization, including arrays
+//// 2000-11-15 sem init not yet working, so not such an interesting test?
+
+import edu.ucdavis.jr.JR;
+
+public class initsem {
+
+    private static sem sema;
+//// 2000-11-15 sem init not yet working, so init in main.
+
+    private static sem semb;
+    private static sem semc;
+
+        // would-be processes
+        private static op void a();
+        private static op void b();
+
+        public static void main(String [] args) {
+//// init sema := 3
+		send sema();
+                V(sema);
+                send sema();
+
+                send a();
+                send b();
+
+                P(semc);
+
+		sem s;
+//// init s := 3
+		V(s);
+		V(s);
+		V(s);
+
+		System.out.println(s.length());
+
+		// sem t[5] := (2,7,1,8,3)
+		cap void ()t[] = new cap void()[5];
+		for (int i = 0; i < 5 ; i++ ) {
+		    t[i] = new sem;
+		}
+		V(t[0]); V(t[0]);
+		V(t[1]); V(t[1]); V(t[1]); V(t[1]); V(t[1]); V(t[1]); V(t[1]);
+		V(t[2]);
+		V(t[3]); V(t[3]); V(t[3]); V(t[3]);
+		 V(t[3]); V(t[3]); V(t[3]); V(t[3]);
+		V(t[4]); V(t[4]); V(t[4]);
+
+
+	        for (int i = 0; i < 5; i++) {
+		    System.out.print(t[i].length()+" ");
+		}
+		System.out.println("");
+
+		cap void ()u[][] = new cap void()[3][2];
+		for (int i = 0; i < 3 ; i++ ) {
+		    for (int j = 0; j < 2 ; j++ ) {
+		        u[i][j] = new sem;
+		    }
+		}
+		V(u[0][0]); V(u[0][0]); V(u[0][0]);
+		V(u[0][1]);
+		V(u[1][0]); V(u[1][0]); V(u[1][0]); V(u[1][0]);
+		V(u[1][1]);
+		V(u[2][0]); V(u[2][0]); V(u[2][0]); V(u[2][0]); V(u[2][0]);
+		V(u[2][1]); V(u[2][1]); V(u[2][1]); V(u[2][1]); V(u[2][1]);
+		 V(u[2][1]); V(u[2][1]); V(u[2][1]); V(u[2][1]);
+
+		for (int i = 0; i < 3 ; i++ ) {
+		    System.out.print(u[i][0].length()+" "+
+		                     u[i][1].length()+" ");
+		}
+		System.out.println("");
+
+		while(s.length()!=0) { P(s); }
+		for (int i = 0; i < 3 ; i++ ) {
+		    while(t[i].length()!=0) { P(t[i]); }
+		    for (int j = 0; j < 2 ; j++ ) {
+		        while(u[i][j].length()!=0) { P(u[i][j]); }
+		    }
+		}
+		System.out.println("done");
+
+//// lazy automatic termination ;-)
+//Thread.sleep(1000);
+//JR.exit(0);
+        }
+
+
+        private static void a() {
+		P(sema);
+		P(sema);
+		P(sema);
+	    	System.out.println(1111);
+		V(semb);
+		P(sema);
+		System.out.println(2222);
+		V(semb);
+        }
+
+
+        private static void b() {
+	    	P(semb);
+		System.out.println(3333);
+		V(sema);
+	    	P(semb);
+		System.out.println(4444);
+		V(semc);
+        }
+}

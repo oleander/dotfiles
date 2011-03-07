@@ -1,0 +1,7 @@
+csp_coord.jr:50: cannot find symbol
+symbol  : method add(java.lang.Boolean)
+location: class java.util.ArrayList<java.lang.Integer>
+	    zz.add(new Boolean(true)); // not OK -- make sure catch this one
+              ^
+Not generating jrGen/csp_coord.java due to errors.
+1 error

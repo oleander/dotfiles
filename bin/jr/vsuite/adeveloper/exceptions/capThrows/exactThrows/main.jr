@@ -1,0 +1,29 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static void main(String [] args) {
+    }
+
+    private static op String GO(int n) throws Exception;
+
+    private static process q {
+	String s;
+	try {
+	    cap String (int n) throws Exception scap;
+	    scap = GO;
+	    s = scap(3);
+	    System.out.println(s);
+	} catch (Exception e) {
+	    System.out.println("caught");
+	}
+    }
+
+    private static process MYPROCESS	{
+	inni String GO(int x) throws Exception {
+	    System.out.println("received GO: " + x);
+	    return "HI";
+	}
+    }
+
+}

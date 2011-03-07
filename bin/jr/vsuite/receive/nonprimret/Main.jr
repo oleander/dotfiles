@@ -1,0 +1,13 @@
+// 2004-01-28 return of non-primitive once caused problems
+public class Main {
+    public static void main(String[] args) {}
+    private static op String p();
+    private static process oo {
+	call p();
+	System.out.println("done");
+    }
+    private static process qq {
+	receive p();
+	System.out.println("done");
+    }
+}

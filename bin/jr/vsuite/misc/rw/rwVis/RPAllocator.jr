@@ -1,0 +1,34 @@
+/* Reader Preference Allocator: all readers a processed before a write */
+
+public class RPAllocator extends Allocator {
+	process allocate {
+		receive begin();
+
+		int nr = 0, nw = 0;		// active readers and writers
+		while (true) {
+			inni void kill() { break; }					// kill allocator
+			[] void pause () { setPaused(true); }		// pause and resume manager
+			[] void resume () { setPaused(false); }
+			// start a reader given no active writers and not paused
+			[] void start_read(int id) st ((nw == 0) && pause_check()){
+				nr++;
+				forward activate(id);
+			}
+			// end a read
+			[] void end_read(int id) {
+				nr--;
+				send removeUser(id);
+			}
+			// start a write given no active writers and readers and no waiting readers
+			[] void start_write(int id) st ((nw == 0) && (nr == 0) && (start_read.length() == 0) && pause_check()) {
+				nw++;
+				forward activate(id);
+			}
+			// end a write
+			[] void end_write(int id) {
+				nw--;
+				send removeUser(id);
+			}
+		}
+	}
+}

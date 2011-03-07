@@ -1,0 +1,21 @@
+ResourceAllocatorM.jr:23: incompatible types
+found   : operation java.util.Set<E>(int)
+required: cap java.util.List<E>(int)
+    d = allocate;
+      ^
+ResourceAllocatorM.jr:24: incompatible types
+found   : cap java.util.List<E>(int)
+required: cap java.util.Set<E>(int)
+    c = d;
+      ^
+ResourceAllocatorM.jr:32: incomparable types: cap java.util.Set<E>(int) and cap java.util.List<E>(int)
+    if (c == d)        System.out.println("oops5");
+          ^
+ResourceAllocatorM.jr:34: incomparable types: cap java.util.List<E>(int) and operation java.util.Set<E>(int)
+    if (d == allocate) System.out.println("oops7");
+          ^
+ResourceAllocatorM.jr:36: incomparable types: operation java.util.Set<E>(int) and cap java.util.List<E>(int)
+    if (allocate == d) System.out.println("oops9");
+                 ^
+Not generating jrGen/ResourceAllocatorM.java due to errors.
+5 errors

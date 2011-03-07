@@ -1,0 +1,29 @@
+class Foo<T> {
+  T foo() {System.out.println("I'm foo"); return null;}
+}
+
+public class Bug1 {
+
+  Foo<Integer> f = null;
+  /***
+new Foo<Integer>(){
+	       public Integer foo() {
+		 Integer w = new Integer(5);
+		 return w;
+		 //		 return 5;
+	       }
+	   };
+
+  **/
+
+       Foo<Integer> bar() {
+	 return null;
+       }
+
+  public static void main(String [] args) {
+    Bug1 b = new Bug1();
+    Foo<Integer> f = b.bar();
+    System.out.println(f.foo());
+  }
+
+}

@@ -1,0 +1,46 @@
+import edu.ucdavis.jr.JR;
+
+// dynamic arrays of ops
+
+public class twoDoneQ
+{
+  cap void (int) [][] p;
+
+  public twoDoneQ()
+  {
+  	try{
+		JR.registerQuiescenceAction(done);
+  	}
+	catch(Exception e){}
+
+    		p = new cap void (int) [5][5];
+
+		for (int i = 0; i < 5; i++)
+		{
+			p[i] = new cap void (int) [5];
+			for (int j = 0; j < 5; j++)
+				p[i][j] = new op void(int);
+		}
+
+		send p[1][1](10);
+
+		for (int k = 1; k <= 2; k++) {
+
+		inni ((int i = 0; i < 5; i++)) void p[i][i](int x)
+		{
+			System.out.println("p[" + i + "][" + i + "] received " + x);
+		}
+		[] else
+		{
+			System.out.println("else "+k);
+		}
+		}
+
+		System.out.println("done");
+  }
+
+  public static op void done()
+  {
+  	System.out.println("Quiescence!");
+  }
+}

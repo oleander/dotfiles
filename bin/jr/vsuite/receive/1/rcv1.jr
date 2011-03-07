@@ -1,0 +1,19 @@
+import edu.ucdavis.jr.JR;
+
+public class rcv1 {
+
+  public static void main(String [] args) {
+    op void p(int);
+    int z;
+    int i = 3333;
+
+      System.out.println("1111");
+      send p(i);
+      System.out.println("2222");
+      receive p(z);
+      System.out.println(z);
+      JR.exit(0);
+
+  }
+
+}

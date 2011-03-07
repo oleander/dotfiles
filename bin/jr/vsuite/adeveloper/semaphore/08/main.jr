@@ -1,0 +1,17 @@
+public class main {
+
+    public static void main(String [] args) {
+
+      System.out.println("Welcome to the wonderful world of JR!");
+
+      V(A.s1);
+      P(A.s1);
+
+      P(A.s2);
+      V(A.s2);
+
+      System.out.println("Goodbye!");
+
+    }
+
+}

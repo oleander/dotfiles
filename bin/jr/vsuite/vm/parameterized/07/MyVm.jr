@@ -1,0 +1,3 @@
+public class MyVm extends vm {
+    public MyVm(String name) {}
+}

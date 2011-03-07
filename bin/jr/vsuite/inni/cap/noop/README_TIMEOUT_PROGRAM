@@ -1,0 +1,5 @@
+needs timeout program, which is written in C,
+which we don't want to insist that users have.
+
+Since we have a "self-timed" version of Main.jr, we'll not use
+Main.jr_notimeout.  But, keep it around for possible later use.

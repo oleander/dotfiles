@@ -1,0 +1,11 @@
+public class pair
+{
+	cap void (int) store;
+	cap void (cap void (int)) sendup;
+
+	pair(cap void (int) a, cap void (cap void (int)) b)
+	{
+		store = a;
+		sendup = b;
+	}
+}

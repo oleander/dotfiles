@@ -1,0 +1,10 @@
+after forward in test1
+EOF encountered
+test4
+after forward in test3
+EOF encountered
+after forward in test3
+after forward in test2
+EOF encountered
+Null Pointer encountered
+test4

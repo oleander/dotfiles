@@ -1,0 +1,2 @@
+./c3:
+    expected 0, got 255 from cmp

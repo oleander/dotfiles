@@ -1,0 +1,35 @@
+public class main {
+
+
+    public static void main(String [] args) {}
+
+    static	op void f();
+
+    static process p1 {
+
+	System.out.println("before going to co f");
+	co call f();
+	[] call f();
+	[] call f();
+	System.out.println("back from co f");
+    }
+
+    static process p2 {
+
+	for (int k = 1; k <= 3; k++) {
+	    inni void f() {
+
+		System.out.println("got f "+k);
+		if (k == 2) {
+		    int [] a = null;
+		    System.out.println("doing bad stuff "+k);
+		    System.out.println("a.length="+a.length);
+		    System.out.println("okay");
+		}
+	    }
+	    System.out.println("done "+k);
+	}
+    }
+
+}
+

@@ -1,0 +1,26 @@
+public class plenty {
+    private final int n;
+    private final cap void () done;
+    // note: uses a non-reusable barrier
+    private sem mutex = 1;
+    private sem sleep = 0;
+    private int count = 0;
+    public plenty(int n, cap void () done) {
+	this.n = n;
+	this.done = done;
+    }
+    process p( (int i = 1; i <= n; i++) ) {
+	System.out.println("start "+i);
+	P(mutex);
+	count++;
+	if (count < n) {
+	    V(mutex);
+	    P(sleep);
+	}
+	else { // last one to arrive
+	    for (int k = 1; k <= n-1; k++) { V(sleep); }
+	}
+	System.out.println("end "+i);
+	V(done);
+    }
+}

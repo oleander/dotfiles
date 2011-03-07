@@ -1,0 +1,17 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op void myop(int, char...);
+
+    public static void main(String [] args) {
+	send myop(1, 'a');
+
+	int x;
+	char [] y;
+
+	receive myop(x, y);
+	System.out.println("received: " + x + " " + y[0]);
+    }
+
+}

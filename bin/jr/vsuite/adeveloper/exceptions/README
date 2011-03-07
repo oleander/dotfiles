@@ -1,0 +1,8 @@
+2007-01-25 RAO added these tests of exceptions for revamping of
+           exception handling (2.00003)
+
+           note that capThrows tests don't get used;
+           they might be useful in future as tests
+           for checking that caps throw what they get assigned
+           e.g., cap c = o;
+           c and o throw exactly same (or c throws superset)

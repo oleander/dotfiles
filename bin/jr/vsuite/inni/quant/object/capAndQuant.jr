@@ -1,0 +1,73 @@
+import java.util.*;
+import edu.ucdavis.jr.JR;
+
+public class capAndQuant
+{
+    static java.util.List myIntegers;
+    static Iterator ti;
+    static {
+	myIntegers = new ArrayList();
+	for (int k = 800; k <= 803; k++) {
+	    myIntegers.add(new Integer(k));
+	}
+	ti = myIntegers.iterator();
+
+	// not a correct way to iterate through all:
+	//    assumes nonempty
+	//    skips last
+	for ( java.lang.Integer t = (Integer) ti.next();
+	      ti.hasNext();
+	      t = (Integer) ti.next() ) {
+	    System.out.println(t);
+	}
+    }
+
+    // for use below -- not very pretty...
+    Integer hohoho() {
+	ti = myIntegers.iterator();
+	return (Integer) ti.next();
+    }
+
+
+	cap void (int) p;
+
+	public capAndQuant()
+	{
+		try
+		{
+			JR.registerQuiescenceAction(done);
+		}
+		catch(Exception e){}
+
+			p = new op void(int);
+
+			send p(10);
+
+			for (int k = 1; k <= 2; k++) {
+
+			inni (
+			      (java.lang.Integer t = hohoho();
+			       ti.hasNext();
+			       t = (Integer) ti.next())
+			      )
+			void p(int x) st t.intValue() %2 == 0
+			{
+				System.out.println("p received " 
+				+ x + " where t = " + t);
+			}
+			[] else
+			{
+				System.out.println("else "+k);
+			}
+
+			}
+
+			System.out.println("done");
+	}
+
+	public static op void done()
+	{
+		System.out.println("Quiescence!");
+	}
+}
+

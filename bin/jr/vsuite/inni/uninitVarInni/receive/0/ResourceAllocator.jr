@@ -1,0 +1,18 @@
+public class ResourceAllocator {
+
+  public op void release(int);
+
+  static int unusedstatic;
+  int alsounused;
+
+  private process server {
+    send release(3);
+    int unit, unused;
+    receive release(unit);
+    System.out.println(unit);
+  }
+
+  public static void main(String[] args) {
+    new ResourceAllocator();
+  }
+}

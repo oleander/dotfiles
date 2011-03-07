@@ -1,0 +1,10 @@
+import edu.ucdavis.jr.JR;
+
+public class Main{
+   public static String[]args;
+   public static void main(String[] args) {
+	Main.args= args;
+      new deadlock();
+	JR.exit(0);
+      }
+   }

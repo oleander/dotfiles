@@ -1,0 +1,11 @@
+import edu.ucdavis.jr.JR;
+
+public class A {
+
+    public static int x;
+
+    public static op void testop() {
+	System.out.println("in A.testop()");
+    }
+
+}

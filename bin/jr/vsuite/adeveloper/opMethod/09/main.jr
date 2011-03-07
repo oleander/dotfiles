@@ -1,0 +1,16 @@
+import edu.ucdavis.jr.JR;
+import java.io.*;
+
+public class main  {
+
+    public static int x;
+
+    public static void main(String [] args) {
+	System.out.println("Welcome to the wonderful world of JR!");
+	try	{
+		call child.print(1, 'a');
+		call child.print();
+	} catch (Exception e) {e.printStackTrace();}
+    }
+
+}

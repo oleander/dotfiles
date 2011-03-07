@@ -1,0 +1,37 @@
+_program d {
+  private static final int N = 100;
+  _specs {
+    A [N] { goo(); }
+    B     { foo(int,int); }
+  }
+
+  _process A (i) {
+    System.out.println("start of A " + i);
+    // following expressions just to test () matching
+    // _o B!foo(-i,i);
+    _o B!foo((9-10)*i,(3-2)*i+(9-(8+1)));
+    _i B?goo();
+  }
+
+// intentionally leave some processes hanging
+  _process B {
+    // give all A's a chance to run and block at B!foo
+    // (to make output deterministic)
+    try {
+      Thread.sleep(1000);
+    } catch (Exception oops) {oops.printStackTrace();}
+    System.out.println("start of B");
+    for (int ii = 0; ii < N-2; ii++) {
+      int x, which;
+      _i [i = 0 _to N-3] A[i]?foo(x, which);
+      System.out.println(x);
+      _o A[which]!goo();
+    }
+    // give all A's a chance to run and block at B!foo or terminate
+    // (to make output deterministic)
+    try {
+      Thread.sleep(200);
+    } catch (Exception oops) {oops.printStackTrace();}
+  }
+
+}

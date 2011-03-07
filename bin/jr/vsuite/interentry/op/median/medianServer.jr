@@ -1,0 +1,194 @@
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Enumeration;
+import edu.ucdavis.jr.Invocation;
+import edu.ucdavis.jr.InvocationEnumeration;
+import edu.ucdavis.jr.ArmEnumeration;
+
+public class medianServer
+{
+    public static op void task0(int val);
+    public static op void task1(int val, int);
+    public static op void task2(int val, float);
+    public static op void task3(int val, int, int);
+    public static op void task4(int val, int, float);
+    public static op void task5(int val, float, int);
+    public static op void task6(int val, float, float);
+    public static op void task7(int val, int, int, int);
+    public static op void task8(int val, int, int, float);
+    public static op void task9(int val, int, float, int);
+
+    public static sem hold, mainGo;
+
+    protected static process server
+    {
+            P(hold);
+            while ((task0.length() +
+                task1.length() +
+                task2.length() +
+                task3.length() +
+                task4.length() +
+                task5.length() +
+                task6.length() +
+                task7.length() +
+                task8.length() +
+                task9.length()) != 0)
+            {
+                inni with median_select over
+		void task0(int val) 
+                {
+                    System.out.println("task0: " + val);
+                }
+                [] void task1(int val, int i) 
+                {
+                    System.out.println("task1: " + val);
+                }
+                [] void task2(int val, float f) 
+                {
+                    System.out.println("task2: " + val);
+                }
+                [] void task3(int val, int i, int j) 
+                {
+                    System.out.println("task3: " + val);
+                }
+                [] void task4(int val, int i, float f) 
+                {
+                    System.out.println("task4: " + val);
+                }
+                [] void task5(int val, float f, int i) 
+                {
+                    System.out.println("task5: " + val);
+                }
+                [] void task6(int val, float f, float g) 
+                {
+                    System.out.println("task6: " + val);
+                }
+                [] void task7(int val, int i, int j, int k) 
+                {
+                    System.out.println("task7: " + val);
+                }
+                [] void task8(int val, int i, int j, float f) 
+                {
+                    System.out.println("task8: " + val);
+                }
+                [] void task9(int val, int i, float f, int j) 
+                {
+                    System.out.println("task9: " + val);
+                }
+            }
+            V(mainGo);
+    }
+
+    static op Invocation median_select(ArmEnumeration aEnum);
+    static Invocation median_select(ArmEnumeration aEnum)
+    {
+	Vector v = new Vector();
+	while (aEnum.hasMoreElements())
+	{
+	    InvocationEnumeration invoc_enum =
+				(InvocationEnumeration) aEnum.nextElement();
+	    if (invoc_enum == null) continue;
+	    while (invoc_enum.hasMoreElements())
+	    {
+		Invocation invoc = (Invocation) invoc_enum.nextElement();
+		view invoc
+		as (int val)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, int i)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, float f)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, int i, int j)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, int i, float f)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, float f, int i)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, float f, float g)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, int i, int j, int k)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, int i, int j, float f)
+		{
+		    v.add(new Element(invoc, val));
+		}
+		as (int val, int i, float f, int j)
+		{
+		    v.add(new Element(invoc, val));
+		}
+	    }
+	}
+
+	Object invocations [];
+	invocations = v.toArray();
+
+	// select the median invocation from the array and return it
+	try{
+	    Arrays.sort(invocations, Element.comparator);
+	    return (((Element)invocations[
+			invocations.length / 2]).getInvocation());
+	} catch (Exception e) { e.printStackTrace(); }
+
+	return null;
+    }
+
+    static class Element
+    {
+	protected Invocation invoc;
+	protected int i;
+
+	public static Comparator comparator = new Comparator()
+		{
+		    public int compare(Object o1, Object o2)
+		    {
+			Element e1 = (Element) o1;
+			Element e2 = (Element) o2;
+
+			if (e1.i == e2.i) return 0;
+			if (e1.i < e2.i) return -1;
+			else return 1;
+		    }
+
+		    public boolean equals(Object o1, Object o2)
+		    {
+			return o1.equals(o2);
+		    }
+		};
+
+	public Element(Invocation invoc, int i)
+	{
+	    this.invoc = invoc;
+	    this.i = i;
+	}
+	
+	public Invocation getInvocation()
+	{
+	    return invoc;
+	}
+
+	public boolean equals(Object o2)
+	{
+	    return ((o2 instanceof Element) &&
+		(this.i == ((Element)o2).i) &&
+		(this.invoc.equals(((Element)o2).invoc)));
+	}
+    }
+}

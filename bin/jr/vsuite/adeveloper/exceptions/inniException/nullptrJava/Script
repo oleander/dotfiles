@@ -1,0 +1,4 @@
+0 javac *.java
+0 java main > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+0 rm -rf *.out *.class

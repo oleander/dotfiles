@@ -1,0 +1,45 @@
+-----------------
+localtest1 = null
+localtest2 = noop
+localtest3 = null
+localtest4 = noop
+-----------------
+test of ==
+lcoaltest1 == null: true
+localtest1 == noop: false
+localtest2 == noop: true
+localtest1 == localtest2 ? false
+localtest1 == localtest3 ? true
+localtest2 == localtest4 ? true
+test1 == localtest1: true
+test1 == localtest2: false
+after assignment: localtest1 == localtest2 ? true
+test1 == null: true
+test2 == null: false
+test1 == noop: false
+test2 == noop: true
+test1 == null: true
+test2 == null: false
+test1 == noop: false
+test2 == noop: true
+test1 == test2: true
+test of !=
+lcoaltest1 != null: false
+localtest1 != noop: true
+localtest2 != noop: false
+localtest1 != localtest2 ? true
+localtest1 != localtest3 ? false
+localtest2 != localtest4 ? false
+test1 != localtest1: false
+test1 != localtest2: true
+localtest1 != localtest2 ? false
+test1 != null: false
+test2 != null: true
+test1 != noop: true
+test2 != noop: false
+test1 != null: false
+test2 != null: true
+test1 != noop: true
+test2 != noop: false
+test1 != test2: false
+bye

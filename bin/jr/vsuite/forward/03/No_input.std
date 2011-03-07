@@ -1,0 +1,14 @@
+initop :  called from mainline 1
+forwarding to fwd1 
+fwd1 :  forwarded by initop 2
+forwarding to fwd2 
+fwd2 :  forwarded by fwd1 3
+fwd2 :  forwarded by fwd2 2
+fwd2 :  forwarded by fwd2 1
+fwd2 :  forwarded by fwd2 0
+4
+1
+20
+30
+2
+3

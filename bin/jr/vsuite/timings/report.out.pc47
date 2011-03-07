@@ -1,0 +1,30 @@
+
+
+
+JR Timing Results
+
+Thu Dec 21 08:48:40 PST 2000
+hostname: pc47.cs.ucdavis.edu
+jrc
+jrc, javac, and java versions needed here
+
+Results are given in microseconds
+
+     times    mean  median  test
+
+   2500000    0.01    0.01  loop control overhead
+
+    500000    0.06    0.05  local call, optimized
+     50000    0.24    0.10  interresource call, no new process
+     10000 20345.10 20373.50  interresource call, new process
+     25000 20071.68 20070.80  process create/destroy
+
+   1000000    4.39    4.34  semaphore P only
+   1000000    8.26    8.32  semaphore V only
+   1000000    6.42    6.29  semaphore pair
+     50000   40.90   38.50  semaphore requiring context switch
+
+     50000    8.62    6.00  asynchronous send/receive
+     25000   43.96   41.00  message passing requiring context switch
+
+     10000 1369.50 1363.00  rendezvous

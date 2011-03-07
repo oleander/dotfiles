@@ -1,0 +1,43 @@
+// quantifiers in input statements
+// note: output deterministic (due to age of invocation)
+
+public class inquant {
+    public inquant() {
+
+	    cap void (char) p[] = new cap void (char)[2];
+	    for (int i = 0; i < 2 ; i++ ) {
+		p[i] = new op void (char);
+	    }
+
+	    send p[0]('x');
+	    send p[1]('c');
+
+	    inni ((int i = 0; i <= 1; i++)) void p[i](char x){
+		System.out.println(x + " " + i);
+	    }
+	    inni ((int i = 0; i <= 1; i++)) void p[i](char x){
+		System.out.println(x + " " + i);
+	    }
+
+	    cap void (char) q[] = new cap void (char)[2];
+	    for (int i = 0; i < 2 ; i++ ) {
+		q[i] = new op void (char);
+	    }
+
+	    System.out.println();
+	    send q[0]('x');
+	    send q[1]('G');
+	    send q[1]('A');
+	    send q[1]('R');
+	    send q[0]('a');
+	    send q[1]('H');
+	    send q[1]('B');
+	    send q[0]('c');
+
+	    for ( int i = 1; i<=8; i++) {
+		inni ((int j = 0; j <= 1; j++)) void q[j](char x) by x {
+		    System.out.println(x + " " + j);
+		}
+	    }
+    }
+}

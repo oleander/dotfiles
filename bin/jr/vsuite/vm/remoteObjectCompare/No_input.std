@@ -1,0 +1,11 @@
+C
+c==c? true
+c==d? true
+C.compare(c,c)? true
+C.compare(c,d)? true
+c.isEqual(c)? false
+c.isEqual(d)? false
+noop
+noop
+e==f? false
+done

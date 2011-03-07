@@ -4,3 +4,5 @@ export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/CrossPack-AVR/bin:~/.rvm/
 export MANPATH="/usr/local/CrossPack-AVR/man:$MANPATH"
 export C_INCLUDE_PATH="/usr/local/CrossPack-AVR/include:$C_INCLUDE_PATH"
 export RUBYOPT="rubygems"
+export JR_HOME="/Users/linus/.dotfiles/bin/jr"
+export JRSH="/bin/bash"

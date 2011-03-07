@@ -1,0 +1,24 @@
+interface Foo<T> {
+    T foo();
+}
+
+public class Bug1 {
+
+       Foo<Integer> bar() {
+	 Foo<Integer> f = new Foo<Integer>(){
+	       public Integer foo() {
+		 Integer w = new Integer(5);
+		 return w;
+		 //		 return 5;
+	       }
+	   };
+	 return f;
+       }
+
+  public static void main(String [] args) {
+    Bug1 b = new Bug1();
+    Foo<Integer> f = b.bar();
+    System.out.println(f.foo());
+  }
+
+}

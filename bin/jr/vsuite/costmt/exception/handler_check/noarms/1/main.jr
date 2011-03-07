@@ -1,0 +1,9 @@
+public class main {
+
+    public static void main(String [] args) {
+	// a co must not consist be just the default handler
+	MyHandler mh = new MyHandler();
+	co handler mh over
+	System.out.println("after co");
+    }
+}

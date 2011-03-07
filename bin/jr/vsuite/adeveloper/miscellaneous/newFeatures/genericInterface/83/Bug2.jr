@@ -1,0 +1,16 @@
+interface C<S,T> {
+    S convert(T t);
+}
+
+public class Bug2 implements C<Integer,String> {
+
+    public Integer convert(String t) {
+      return t.length();
+    }
+
+    public static void main(String [] args) {
+      Bug2 b = new Bug2();
+      System.out.println(b.convert("abc"));
+    }
+
+}

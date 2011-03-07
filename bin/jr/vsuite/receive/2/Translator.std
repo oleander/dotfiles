@@ -1,0 +1,4 @@
+rcv2.jr:22: WARNING: Receive from operation with non-void (int) return type.
+        receive p(z);
+        ^
+1 warning

@@ -1,0 +1,74 @@
+/* resource a */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class a {
+   op void f(int, int);
+   op void done();
+   public a() {
+	send p1();
+	send p2();
+	send p3();
+	send p4();
+	for (int i = 0; i < 4; i++)
+	receive done();
+   }
+
+op void p1();
+void p1(){
+{
+   inni void f(int x, int y){
+      {
+         }
+      }
+   [] else {
+      System.out.println(("p1 else"));
+      }
+  
+   send f(100, 2345);
+send done();
+   }
+}
+
+op void p2();
+void p2()  {
+{
+   inni void f(int x, int y){
+      {
+         System.out.println(("f2") + " " + (x) + " " + (y));
+         }
+      }
+  
+   send f(999, 88);
+send done();
+   }
+}
+
+op void p3();
+void p3()  {
+{
+   inni void f(int x, int y) st (x==999) {
+      {
+         System.out.println(("f3") + " " + (x) + " " + (y));
+         }
+      }
+  
+   send f(998, 87);
+send done();
+   }
+}
+op void p4();
+void p4()  {
+{
+   inni void f(int x, int y) st (x==998) {
+      {
+         System.out.println(("f4") + " " + (x) + " " + (y));
+         }
+      }
+  
+send done();
+   }
+}
+}
+

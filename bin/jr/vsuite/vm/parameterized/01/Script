@@ -1,0 +1,10 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun Main > No_input.out 2>&1
+# check non-host lines
+0 grep -v "vm host" No_input.out > No_inputg.out
+0 cmp No_input.std No_inputg.out
+# check number of host lines (actual contents depend on name of host).
+0 grep -c "vm host" No_input.out > No_inputc.out
+0 cmp No_inputc.std No_inputc.out
+0 rm -rf jrGen core *.out

@@ -1,0 +1,7 @@
+rcv1.jr:13: cannot find symbol
+symbol  : method p(B)
+location: class rcv1
+      receive p(z);
+              ^
+Not generating jrGen/rcv1.java due to errors.
+1 error

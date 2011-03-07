@@ -1,0 +1,3 @@
+# incomplete program that tests that resources precede regions.
+1 ccr2jr e21.ccr
+0 rm -rf jrGen core *.out *.jr

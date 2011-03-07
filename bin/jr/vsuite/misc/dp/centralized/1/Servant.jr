@@ -1,0 +1,41 @@
+public class Servant
+{
+
+    // operations invoked by philosophers
+    public op void getforks(int id);
+    public op void relforks(int id);
+
+    int N;
+
+    public Servant(int xN) {
+        N = xN;
+    }
+
+    // status of philosophers
+    boolean [] eating;
+
+    process server {
+        System.out.println("starting up Servant");
+
+        eating = new boolean[N];
+        for (int i = 0; i < N ; i++ ) {
+           eating[i] = false;
+        }
+
+	while( true ) {
+	        inni void getforks(int id) st oktoeat(id) {
+		    eating[id] = true;
+	        }
+	        [] void relforks(int id) {
+		    eating[id] = false;
+	        }
+	}
+    }
+
+    // check whether either philosopher neighboring philosopher id is eating.
+    // (add in N so that remainder (%) returns non-negative result.)
+    private boolean oktoeat(int id) {
+        return !eating[((id+N)+1)%N] && !eating[((id+N)-1)%N];
+    }
+}
+

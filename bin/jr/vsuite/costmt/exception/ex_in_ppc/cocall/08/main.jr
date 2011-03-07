@@ -1,0 +1,32 @@
+import edu.ucdavis.jr.JR;
+
+// should have no error msg but program terminates because of no catch
+
+public class main {
+
+    public static void main(String [] args) {
+	co GO(1) {
+		System.out.println("ppc1");
+		throw new NullPointerException();
+	}
+	[] GO(2) {
+		System.out.println("ppc2");
+	}
+	[] GO(3);
+	[] GO(4);
+
+	System.out.println("After co");
+    }
+
+    private static op String GO(int n);
+
+    private static process MYPROCESS	{
+	while(true)	{
+		inni String GO(int x)	{
+			System.out.println("received GO: " + x);
+			reply "HI";
+		}
+	}
+    }
+
+}

@@ -1,0 +1,47 @@
+/* resource array1 */
+
+/* SR version 2.3.1, December 1995 */
+
+
+class array1 {
+
+   array1() {
+   final int Na = 10;
+   final int Nb = 6;
+   cap void (int) [] a = new cap void (int) [Na];
+   cap void (int) [] b = new cap void (int) [Nb];
+
+   for (int i=0;i<Na;i++)   
+    { a[i] = new op void (int);
+   }
+
+   for (int i=0;i<Nb;i++)   
+    { b[i] = new op void (int);
+   }
+
+
+ for (int i = 10; (i>=1); i+= -1) {
+         send a[(i) - 1](i * 100);
+   }
+   
+ for (int i = 10; (i>=1); i+= -1) {
+         inni void a[i-1](int j){
+               System.out.println((i) + " " + (j));
+            }
+        
+   }
+   
+ for (int c = 97; (c<=102); c+=1) {
+         send b[(c) - 97 ](c);
+   }
+   
+ for (int c = 102; (c>=97); c-=1) {
+         int i;
+         receive b[c-97](i);
+         System.out.println((i));
+   }
+}
+
+
+}
+

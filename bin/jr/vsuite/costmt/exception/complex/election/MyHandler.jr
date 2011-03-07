@@ -1,0 +1,9 @@
+public class MyHandler implements edu.ucdavis.jr.Handler	{
+
+	public handler void handleUnregVoter(UnregVoterException e)
+	{
+		System.out.println("Unregistered voter attempting to vote");
+	}
+
+}
+

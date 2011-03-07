@@ -1,0 +1,25 @@
+import edu.ucdavis.jr.JR;
+
+public class smlin
+{
+    public static op Object a(int, int, float);
+    public static op void done();
+    public static process b
+    {
+	    Object chan = a(3, 3, 4.0f);
+	    System.out.println(chan);
+	    send done();
+    }
+    public static void main(String [] args)
+    {
+//// leave out return type to see what happens...
+	inni a(int i, int j, float f)
+	{
+	    System.out.println("Howdy");
+	    return "abc";
+	}
+
+	receive done();
+	JR.exit(0);
+    }
+}

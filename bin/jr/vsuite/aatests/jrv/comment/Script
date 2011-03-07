@@ -1,0 +1,24 @@
+0 jrc *.jr
+# here's a comment
+         # here's another one
+
+                  
+				
+# above is some whitespace
+# here's some whitespace with continuations..........
+		\
+\
+          \
+
+# here's some whitespace with continuations leading into a comment
+		\
+\
+          \
+     # here's the promised comment
+# another comment
+# this continuation (within a comment) should be ignored \
+0 javac jrGen/*.java
+0 jrrun Main > No_input.out 2>&1
+# purposely wrong No_input.std to test jrv.
+1 cmp No_input.std No_input.out
+0 rm -rf jrGen core *.out

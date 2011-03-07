@@ -1,0 +1,49 @@
+// try to crash the co statement
+
+public class main {
+    private static int a = -3, b = -4;
+    public static void main(String [] args){
+	int x = -1;
+	int y = -2;
+	int z = -3;
+	for (int i = 1; i <= 5; i++) {
+	    int ii = 1000*i;
+	    co call p1(a,b,ii,y) {
+		System.out.println(-4);
+	    }
+	    [] z =  p2(-1,-4) {
+		System.out.println(z); // -5
+		co call p3(2 * ii) {
+		    co call p3(3 * ii) {
+			System.out.println(-6);
+		    }
+		    [] ((int j = 10; j <= 13; j++)) call p4(4 * ii + j) {
+			System.out.println(-7);
+		    }
+		    [] call p1(-100, -101, 5 * ii, -103) {
+			System.out.println(-8);
+		    }
+		}
+                []  a = p2(y,x); {
+		    System.out.println(-9);
+		}
+	    }
+	}
+    }
+    // prints third arg
+    private static op void p1(int arg1, int arg2, int arg3, int arg4) {
+	System.out.println(arg3);
+    }
+    // returns sum of arguments
+    private static op int p2(int a, int b) {
+	return a + b;
+    }
+    // prints arg
+    private static op void p3(int arg) {
+	System.out.println(arg);
+    }
+    // prints -1000 + argument
+    private static op void p4(int arg) {
+	System.out.println(-1000 + arg);
+    }
+}

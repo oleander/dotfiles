@@ -1,0 +1,5 @@
+0 javac -Xlint ResourceAllocatorA.java
+0 cmp Compiler.std Compiler.out
+1 java ResourceAllocatorA > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+0 rm -rf jrGen core *.out *.class

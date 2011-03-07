@@ -1,0 +1,36 @@
+/* resource iop2 */
+
+/* SR version 2.3.1, December 1995 */
+
+class iop2 {
+   public int x;
+public remote iop1 c;
+public cap int (int) f;
+public cap int (int) g;
+public iop2() {
+   System.out.println((9999));
+f=g=poo;
+x= f(8);
+System.out.println((x));
+x= g(9);
+System.out.println((x));
+c=new remote iop1();
+x= c.foo(3);
+System.out.println((x));
+System.out.println((8888));
+f=c.foo;
+x= f(44);
+System.out.println((x));
+System.out.println((7777));
+}
+
+public op int poo(int x);
+public int poo(int x) {
+int y;
+ProcBody:{
+   y= -x;
+   }
+return y;
+}
+}
+

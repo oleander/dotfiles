@@ -1,0 +1,58 @@
+// JR version of 99 bottles of beer
+// by Aaron Keen 2004-05-05
+//
+// This code is based on the SR code
+// given in http://www.99-bottles-of-beer.net/s.html#SR.
+//
+// (For info on JR, see http://www.cs.ucdavis.edu/~olsson/research/jr.)
+
+public class beer
+{
+    static op void sing_it(int, String);
+
+    // Create 99 processes (or, rather, threads)
+    // for the verses in the song
+    static process swing_it ( (int bottle = 1; bottle <= 99; bottle++) )
+    {
+	String bottle1_str, bottle2_str;
+
+	if (bottle > 2)
+	{
+	    bottle1_str = bottle + " bottles";
+	    bottle2_str = (bottle - 1) + " bottles";
+	}
+        else if (bottle == 2)
+	{
+	    bottle1_str = "2 bottles";
+	    bottle2_str = "1 bottle";
+	}
+	else
+	{
+	    bottle1_str = "1 bottle";
+	    bottle2_str = "No more bottles";
+	}
+             
+	// Send the verse back to the main thread
+	    send sing_it(bottle, 
+		bottle1_str + " of beer on the wall, "
+		+ bottle1_str + " of beer...\n"  
+		+ "Take one down and pass it around\n" 
+		+ bottle2_str + " of beer on the wall\n");
+    }
+
+    public static void main(String [] args)
+    {
+	    // Make sure the verses get printed in the right order
+	    for (int expected = 99; expected >= 1; expected--)
+	    {
+		inni void sing_it(int bottle, String verse) st bottle==expected
+		{
+		    System.out.println(verse);
+		}
+	    }
+
+	    // I guess the bartender sings this one
+	    System.out.println("Go to the store, buy some more!");
+	    System.out.println("99 bottles of beer on the wall");
+    }
+}

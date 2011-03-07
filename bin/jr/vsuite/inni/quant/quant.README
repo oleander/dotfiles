@@ -1,0 +1,4 @@
+quant_noquant1 simulates quantifiers by multiple arms.
+
+other quant tests need quantifiers on inni statements,
+which are now implemented (2003-08-29).

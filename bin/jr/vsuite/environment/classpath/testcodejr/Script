@@ -1,0 +1,23 @@
+0 CPprepend ../mypkg.jar
+0 jrc *.jr
+0 javac jrGen/*.java
+0 run main
+0 CPrestore
+# more a test that jrv is really doing a CPrestore
+1 jrc *.jr
+
+# now that know from above that CLASSPATH doesn't have ../mypkg.jar in it,
+# try various tools that support -classpath.
+0 jrc -classpath ../mypkg.jar *.jr
+# the following works because jrv sets $CLASSPATH.
+# special command needed to handle OS specific separator
+0 CPjavac ../mypkg.jar jrGen/*.java
+0 jrrun -classpath ../mypkg.jar main
+1 jrrun main  > No_input.out 2>&1
+# and just plain jr
+1 jr main  > Translator.out 2>&1
+0 jr main -classpath ../mypkg.jar
+# and jrgo
+1 jrgo > Translator.out 2>&1
+0 jrgo -classpath ../mypkg.jar
+0 rm -rf jrGen *.class core *.out

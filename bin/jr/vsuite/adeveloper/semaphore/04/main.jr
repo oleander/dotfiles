@@ -1,0 +1,19 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static sem a = 2, b;
+    public static sem c, d;
+
+    public static int c;
+
+    public static sem d;
+
+    public static sem e = 'a';
+
+    public static sem f = 0.5;
+
+    public static void main(String [] args) {
+    }
+
+}

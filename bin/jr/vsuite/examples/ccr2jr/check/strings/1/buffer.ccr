@@ -1,0 +1,5 @@
+_resource buffer {
+   public int slot = -9999;
+   public boolean full = false;
+   public boolean okay = false;
+}

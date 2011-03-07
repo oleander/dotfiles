@@ -1,0 +1,31 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static vm myvm1;
+    private static vm myvm2;
+    public static vm myvm3;
+    static vm myvm4;
+
+    public static void main(String [] args) {
+        vm myvm1 = null;
+        vm myvm2, myvm5;
+
+	myvm2 = null;
+	myvm3 = null;
+	myvm4 = myvm5 = null;
+
+        foo(myvm1);
+	foo2(myvm2);
+	foo2(myvm3, myvm4);
+    }
+
+    public static void foo(vm f) {
+	System.out.println("in foo");
+    }
+
+    public static void foo2(vm ... f) {
+	System.out.println("in foo2");
+    }
+
+}

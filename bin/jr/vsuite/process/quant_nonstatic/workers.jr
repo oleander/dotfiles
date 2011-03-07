@@ -1,0 +1,16 @@
+// fixed 2002-05-03
+// bug: Can't make a static reference to non-static variable int N in void
+// worker(int).
+
+import edu.ucdavis.jr.JR;
+public class workers {
+  private int N;
+
+  workers(int N) {
+    this.N = N;
+  }
+
+  process worker( (int i = 0; i < N; i++) ) {
+    System.out.println("hi "+i);
+  }
+}

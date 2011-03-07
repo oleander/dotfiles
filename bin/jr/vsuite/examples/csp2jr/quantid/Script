@@ -1,0 +1,5 @@
+0 csp2jr Sum.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+0 run Sum
+0 rm -rf jrGen core *.out Sum.jr csp_*.jr

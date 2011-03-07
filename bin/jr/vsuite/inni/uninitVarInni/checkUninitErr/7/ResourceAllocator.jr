@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class ResourceAllocator {
+
+  LinkedList<Integer> L = new LinkedList<Integer>();
+
+  private process server {
+    L.add(57);
+    L.add(81);
+    // this one is OK
+    // make sure we didn't break this in making our fix.
+    for (Integer i: L) {
+      System.out.println(i);
+    }
+  }
+
+  public static void main(String[] args) {
+    new ResourceAllocator();
+  }
+}

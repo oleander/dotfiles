@@ -1,0 +1,3 @@
+  file double.jr, line 5
+  file main.jr, line 5
+use `jr name_of_main_class'

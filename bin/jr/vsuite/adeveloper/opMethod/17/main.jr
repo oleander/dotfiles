@@ -1,0 +1,45 @@
+import edu.ucdavis.jr.JR;
+import java.io.*;
+
+public class main  {
+
+    public static int x = 2;
+
+    public static void main(String [] args) {
+	MyHandler mh = new MyHandler();
+
+	System.out.println("Welcome to the wonderful world of JR!");
+
+	send print(1, 'a') handler mh;
+	send print() handler mh;
+
+	send print(1, 'a') handler new MyHandler();
+	send print() handler new MyHandler();
+
+	send print(1, 'a') handler mh = new MyHandler();
+	send print() handler mh = new MyHandler();
+
+	send test();
+	send test() handler mh;
+
+    }
+
+    public static op int print(int x, char y) throws java.io.EOFException {
+	System.out.println("Successful");
+	if (x == 1)
+	  throw new java.io.EOFException();
+	return x;
+    }
+
+    public static op void print() throws java.io.EOFException {
+	System.out.println("Successful 2");
+	if (x == 2)
+	  throw new java.io.EOFException();
+	return;
+    }
+
+    public static op void test() throws NullPointerException {
+	System.out.println("test");
+	return;
+    }
+}

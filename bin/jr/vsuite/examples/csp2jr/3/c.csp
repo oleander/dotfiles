@@ -1,0 +1,23 @@
+_program c {
+
+  _specs {
+    A [4][4] { o1(int,int); }
+  }
+
+  _process A (i, j) {
+    int x = -1;
+    int y = -2;
+    System.out.println("start of A " + i + " " + j);
+    if (i < j) {
+      _i A[j][i]?o1(x,y);
+      _o A[j][i]!o1(i,j);
+    }
+    else if (i > j) {
+      _o A[j][i]!o1(i,j);
+      _i A[j][i]?o1(x,y);
+    }
+    // else i==j, do nothing, so x,y set as initialized.
+    System.out.println(i +" "+ j + " got " + x +" "+ y);
+  }
+
+}

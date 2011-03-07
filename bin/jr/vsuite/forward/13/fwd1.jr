@@ -1,0 +1,64 @@
+/* resource fwd1 */
+
+/* SR version 2.3.1, December 1995 */
+
+
+class fwd1 {
+public int i = 0;
+fwd1() {
+   System.out.println((p1(i)));
+System.out.println((i));
+send p();
+System.out.println((prime()));
+}
+
+public op void p2wait();
+
+public op void p2();
+public void p2() {
+int result;
+ProcBody:{
+   receive p2wait();
+   result=2000;
+   }
+}
+
+public op int p1(int);
+public int p1(int j) {
+int result = 0;
+ProcBody:{
+   forward p2();
+   j=1111;
+   result=1000;
+   send p2wait();
+   }
+return result;
+}
+
+public op int seven();
+public int seven() {
+int n;
+ProcBody:{
+   n=7;
+   }
+return n;
+}
+
+op int prime();
+
+public op void p();
+public void p()  {
+{
+   inni int prime(){
+	int j;
+      {
+         j=3;
+           forward seven();
+         j=11;
+         }
+       return j;
+      }
+   }
+}
+}
+

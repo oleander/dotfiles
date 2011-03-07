@@ -1,0 +1,11 @@
+0 jrfindmain > jrfindmain.out 2>&1
+0 cmp jrfindmain.std jrfindmain.out
+0 rm -rf jrGen core *.out
+0 jrgo "a b  c" Z "d  e f" > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+# now just run it
+0 jrgox "a b  c" Z "d  e f" > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+# now just run it w/o enough args
+1 jrgox > No_input.out 2>&1
+0 rm -rf jrGen core *.out

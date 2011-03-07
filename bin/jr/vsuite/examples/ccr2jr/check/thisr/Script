@@ -1,0 +1,7 @@
+# incomplete programs that test basic use of the thisname variable.
+# based on old tests (which had _region_end(name)
+# these tested for right order of _region_end, no longer relevant.
+# (1 test of good usage here, but a complete program elsewhere also
+# tests that.)
+0 ccr2jr e06.ccr
+0 rm -rf jrGen core *.out *.jr

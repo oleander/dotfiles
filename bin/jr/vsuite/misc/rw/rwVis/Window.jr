@@ -1,0 +1,148 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.*;
+import edu.ucdavis.jr.JR;
+import java.lang.*;
+
+//the main window for the assitant manager contains one panel (queues) and 
+//the buttons and menu itmes for the assistant manager
+public class Window extends JFrame implements ActionListener {
+	//caps to functionality of the assistant manager that the window can use
+	private cap void () addReader;
+	private cap void () addWriter;
+	private cap void (char, int) change_iter;
+	private cap void (String) newVM;
+	private cap int () getRiter; 
+	private cap int () getWiter;
+	private cap void () kill_am;
+	private cap int () getUserSize;
+	
+	JButton buttonA, buttonB;
+	JMenuItem allocatorMenuItem1, allocatorMenuItem2, optionMenuItem1, optionMenuItem2, optionMenuItem3;
+
+	//the constructor sets up the whole window with menus and title and panel, and sets the action
+	//listeners up so that they can be handled later
+	public Window(AssistantManager manager) {
+		this.addReader = manager.addReader;
+		this.addWriter = manager.addWriter;
+		this.change_iter = manager.change_iter;
+		this.newVM = manager.newVM;
+		this.getRiter = manager.getRiter;
+		this.getWiter = manager.getWiter;
+		this.kill_am = manager.kill_am;
+		this.getUserSize = manager.getSize;
+
+		Container contentPane = getContentPane();
+
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		JMenu optionMenu = new JMenu("File");
+		menuBar.add(optionMenu);
+		optionMenuItem1 = new JMenuItem("Writer Iterations"); 
+		optionMenuItem1.addActionListener(this);
+		optionMenuItem1.setAccelerator(KeyStroke.getKeyStroke('W', InputEvent.CTRL_MASK));
+		optionMenuItem2 = new JMenuItem("Reader Iterations");
+		optionMenuItem2.addActionListener(this);
+		optionMenuItem2.setAccelerator(KeyStroke.getKeyStroke('R', InputEvent.CTRL_MASK));
+		optionMenuItem3 = new JMenuItem("Exit");
+		optionMenuItem3.addActionListener(this);
+		optionMenuItem3.setAccelerator(KeyStroke.getKeyStroke('Q', InputEvent.CTRL_MASK));
+
+		optionMenu.add(optionMenuItem1);
+		optionMenu.add(optionMenuItem2);
+		optionMenu.add(new JSeparator());
+		optionMenu.add(optionMenuItem3);
+		pack();
+
+
+
+		buttonA = new JButton("Add Reader");
+		buttonB = new JButton("Add Writer");
+
+		contentPane.add(buttonA);
+		buttonA.addActionListener(this);
+		contentPane.add(buttonB);
+		buttonB.addActionListener(this);
+
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		setContentPane(panel);
+		panel.add(buttonA);
+		panel.add(buttonB);
+
+		Panel pan = new Panel(manager);
+		panel.add(pan);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+				send kill_am();
+                dispose();
+            }
+        });
+
+		setSize(270,400);
+		setTitle("Writers/Readers");
+		setVisible(true);
+	}
+
+	//handles window events such as adding readers/writers, changing reader/writer iterations
+	//and closing the assistant manager. Has some built in error checking
+	public void actionPerformed(ActionEvent e) {
+		String string = e.getActionCommand();
+		if(string == "Add Reader") {
+			if(getUserSize() > 50)
+				JOptionPane.showMessageDialog(this, "User Limit Reached: Reader not Created");
+			else
+				send addReader();
+		}
+		else if(string == "Add Writer") {
+			if(getUserSize() > 50)
+				JOptionPane.showMessageDialog(this, "User Limit Reached: Writer not Created");
+			else
+				send addWriter();
+		}
+		else if(string == "Reader Iterations" || string == "Writer Iterations") {
+			int iterations = 0;
+			boolean validInput;
+			try {
+				Object ret;
+				if(string == "Reader Iterations")  {
+					ret = JOptionPane.showInputDialog("Number of Reader Iterations: ", new Integer(getRiter()));
+				}
+				else {
+					ret = JOptionPane.showInputDialog("Number of Writer Iterations: ", new Integer(getWiter()));
+				}
+				if ( ret == null ) {
+					return;
+				}
+				else {
+					iterations = Integer.parseInt((String)ret);
+					if ( iterations < 1 ) {
+						iterations = 1; // default
+						throw new NumberFormatException();
+					}
+					validInput = true;
+				}
+			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(this,	"Invalid Input : Enter a number greater than 0");
+				validInput = false;
+			} catch ( Exception ex ) {
+				JOptionPane.showMessageDialog(this,	"Invalid Input : Enter a number greater than 0");
+				validInput = false;
+			}
+			if ( validInput ) {
+				if(string == "Reader Iterations") 
+					change_iter('r', iterations);
+				else
+					change_iter('w', iterations);
+			}
+			return;
+		}
+		else if (string == "Exit") {
+			send kill_am();
+			dispose();
+		}
+	}
+}

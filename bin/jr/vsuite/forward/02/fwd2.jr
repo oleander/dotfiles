@@ -1,0 +1,22 @@
+/* resource fwd2 */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class fwd2 {
+   public op void p2wait();
+   public op int p2(int);
+public fwd2() {
+   }
+
+public int p2(int j) {
+int result;
+ProcBody:{
+   j=2222;
+   receive p2wait();
+   result=2000;
+   }
+return result;
+}
+}
+

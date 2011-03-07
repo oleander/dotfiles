@@ -1,0 +1,19 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	//	System.out.println("hi");
+    }
+
+    static int xx = 3;
+    static op B foyer() {
+        xx--; // before forward to avoid race
+	reply new B(xx);
+    }
+    static process invoker {
+	B b;
+	b = foyer();
+	System.out.println("b ="+b);
+	b = foyer();
+	System.out.println("b ="+b);
+    }
+}

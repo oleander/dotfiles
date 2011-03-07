@@ -1,0 +1,8 @@
+start of WEST
+start of X
+start of EAST
+csp2jr: all user processes have terminated or are blocked; shutting down.
+csp2jr: process status: 3 total = 0 alive + 2 blocked + 1 dead.
+   0 DEAD     WEST 
+   1 BLOCKED     X 
+   2 BLOCKED  EAST 

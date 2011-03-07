@@ -1,0 +1,44 @@
+public class multivar
+{
+    final static int z = 999;
+
+    static process q( (int i = 0, k = 3; i < 10; i++, k++; i != 3 && k != 5),
+	       (float j = 0.0F; j < 10.0; j+=1.0; j != 7.0) )
+    {
+	i++; i--; // not allowed
+	k++; k--; // not allowed
+	System.out.println("process q: " + i + " : " + k + " : " + j);
+    }
+
+    process p( (int i = 100, k = 203; i < 110; i++, k++; i != 103 && k != 205),
+	       (float j = 400.0F; j < 410.0; j+=1.0; j != 407.0) )
+    {
+	System.out.println("myid: " + myid +
+	                   " process p: " + i + " : " + k + " : " + j);
+    }
+
+    int myid;
+    multivar(int myid) {
+        this.myid = myid;
+    }
+
+    public static void main(String [] args)
+    {
+	new multivar(-88);
+	new multivar(-44);
+	  for (int r = 1; r <= 3; r++) {
+	    for (int i = 0, k = 3; i < 10; i++, k++)
+	    {
+		if (!(i != 3 && k != 5))
+		    continue;
+	        for (float j = 0.0F; j < 10.0; j+=1.0)
+		{
+		    if (!(j != 7.0))
+			continue;
+		}
+	    }
+	  }
+	    send q(88,97,3.1415926F);
+	    edu.ucdavis.jr.JR.exit(0);
+    }
+}

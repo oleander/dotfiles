@@ -1,0 +1,49 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    public static op void a();
+    public static op void b();
+    public static op void c();
+
+    static int i, j;
+
+    public static void a()
+    {
+	while (true)
+	{
+	    inni void b()
+	    {
+		while (true)
+		{
+		    inni void c()
+		    {
+			if (i == 0)
+			{
+			    System.out.println("Breaking inner");
+			    break;
+			}
+			System.out.println("Did not break inner");
+		    }
+		    System.out.println("Did not break inner");
+		}
+		if (j == 0)
+		{
+		    System.out.println("Breaking outer");
+		    break;
+		}
+		System.out.println("Did not break outer");
+	    }
+	    System.out.println("Did not break outer");
+	}
+    }
+
+    public static void main(String [] args)
+    {
+	i = j = 0;
+	send b();
+	send c();
+	a();
+	JR.exit(0);
+    }
+}

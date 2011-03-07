@@ -1,0 +1,5 @@
+main.jr:8: ')' expected
+	vm theVm3 = new vm(456);
+                           ^
+Not generating any jrGen files due to errors.
+1 error

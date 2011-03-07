@@ -1,0 +1,2 @@
+2010-04-08 comparing caps didn't work within collections
+	   needed to add equals and hashCode to JR's Cap.java

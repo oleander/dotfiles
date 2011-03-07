@@ -1,0 +1,11 @@
+before try
+iters=3
+iters=2
+iters=1
+after y=203 203
+in f x=213
+in f after forward x=444
+in g y,x=1234.5,2130
+in g after forward x=444
+in h zz=21300
+after y=261300 (is that your final answer?)

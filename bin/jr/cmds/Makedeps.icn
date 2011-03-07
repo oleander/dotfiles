@@ -1,0 +1,152 @@
+# one of these days, could rewrite in Perl...
+# but had some of this code around (and Icon is a bit easier)
+
+# lots of assumptions:
+#   single blank between sub and id.
+#   1 definition (sub u_) per line.
+#   1 reference (u_) per line.
+#
+#   does handle entire comment lines, but not partial, e.g.,
+#     $x = $y; # + u_foo();
+#   would be treated as a reference to u_foo.
+#
+# should work for multiple subs per file,
+# although convention here is 1 sub per file.
+
+# chars that make up an identifier
+global wchars
+
+# defined symbols (sub name, file name)
+global defined
+# referenced (file name, set of sub names)
+global sreferenced
+# referenced (file name, set of file names)
+global freferenced
+
+procedure main(argv)
+    local arg
+
+    defined := table()
+    sreferenced := table()
+    wchars := &letters ++ &digits ++ '_'
+    every arg := !argv do {
+	build(arg)
+    }
+#    write("==== initial info")
+#    write_initial_info()
+    freferenced := table()
+    convert_refs()
+#    write("==== freferenced (initial)")
+#    write_refs(freferenced)
+    dependencies(freferenced)
+#    write("==== freferenced (closure)")
+    write_refs(freferenced)
+end
+
+procedure write_initial_info()
+    local d
+    every d := !sort(defined,1) do {
+	write(d[1],"\t",d[2])
+    }
+    write_refs(sreferenced)
+end
+
+procedure write_refs(r)
+    local s
+    every s := !sort(r,1) do {
+	writes(s[1],"\t")
+	writeslist(sort(s[2]))
+	write()
+    }
+end
+
+procedure build(ifile)
+    local rin, line
+    local e, f
+    (rin := open(ifile) | stop("cannot open ", ifile))
+    sreferenced[ifile] := set()
+    while( line := nextline(rin) ) do {
+	if f := find("sub u_",line) then {
+	    # rule out forward sub declaration
+	    if find("{",line) then {
+		f +:= *"sub"+1 # skip over sub and blank
+		e := many(wchars,line,f)
+		name := line[f:e]
+####		write(ifile, " defines sub u_ ", line, "*",name,"*")
+		if \defined[name] then stop("duplicate define ", name)
+		defined[name] := ifile
+	    }
+	}
+	else if f := find("u_", line) then {
+	    e := many(wchars,line,f)
+	    name := line[f:e]
+####	    write(ifile, " references u_ ", line, "*",name,"*")
+	    insert(sreferenced[ifile],name)
+	}
+    }
+end
+
+# converts initial info from references to subs
+# to references to corresponding files
+procedure convert_refs()
+    local x, s
+    every s := key(sreferenced) do {
+	freferenced[s] := set()
+	every x := !sreferenced[s] do {
+	    insert(freferenced[s],defined[x])
+	}
+    }
+end
+
+# compute all direct and indirect dependencies (transitive closure)
+procedure dependencies(f)
+    local changed, file, k, old
+
+    changed := 1
+    while changed ~= 0 do {
+##	write("****", changed)
+	changed := 0
+	every file := key(f) do {
+	    old := copy(f[file]) # f[file] is set of files that file references
+	    every k := !f[file] do { # k is particular file
+		f[file] ++:= f[k] # union in k's set of files
+	    }
+	    if not seteq(old, f[file]) then changed +:= 1
+	}
+    }
+end
+
+#write( "cc", seteq(set(["a","b"]),set(["a","b"])), " cc" )
+#write( "dd", seteq(set(["a","bb"]),set(["a","b"])), " dd" )
+#write( "cc", seteq(set(["a","b"]),set(["b","a"])), " cc" )
+#return
+procedure seteq(s1,s2)
+    return *(s1--s2) = 0 & *(s2--s1) = 0
+end
+
+
+# returns next line in input after skipping over comments and blank lines.
+# fails at EOF according to ret.
+procedure nextline(fin)
+    local line, tline
+    while( line := read(fin) ) do {
+        # trim leading and trailing blanks
+        # skip comment and blank lines
+        tline := trimfb(line)
+        if *tline = 0 | tline[1] === "#" then next
+        return tline
+    }
+    fail
+end
+
+# returns s but with blanks and tabs trimmed from front and back
+procedure trimfb(s)
+    return reverse(trim(reverse(trim(s,' \t')),' \t'))
+end
+
+procedure writeslist(s)
+    local x
+    every x := !s do {
+	writes(x," ")
+    }
+end

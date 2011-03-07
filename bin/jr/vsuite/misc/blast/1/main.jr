@@ -1,0 +1,22 @@
+import edu.ucdavis.jr.JR;
+
+// SR book p146
+
+public class main
+{
+
+    public static void main(String [] args)
+    {
+
+System.out.println("before try ");
+
+System.out.println("after");
+
+
+        remote AQ aq = new remote AQ() ;
+System.out.println("after new remote");
+
+
+////////////	JR.exit(0);
+    }
+}

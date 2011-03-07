@@ -1,0 +1,76 @@
+import edu.ucdavis.jr.JR;
+
+public class AQ
+{
+    private op void bag(double, double, double, double);
+    private op void result(double);
+
+    private op void administrator();
+    private op void worker(int);
+    //    private op void terminator();
+
+    public AQ() {
+        int N = 10;
+	    System.out.println("AQ starting constructor");
+	    send administrator();
+	    for( int i = 1; i <= N; i++ ) {
+		 send worker(i);
+	    }
+	    //	    send terminator();
+	    System.out.println("AQ finishing constructor");
+     }
+
+    private double f(double x) {
+        return Math.pow(x,3.0);
+    }
+
+    private void administrator() {
+        double part, area = 0.0;
+        double l = 0.0, r = 4.0;
+
+	    send bag(l,r,f(l),f(r));
+
+            while (true) {
+	        System.out.println("administrator top of loop, area="+area);
+		receive result(part);
+		area += part;
+	    }
+    }
+
+    private void worker(int i) {
+        double a, b, m, fofa, fofb, fofm;
+	double larea, rarea, tarea, diff;
+
+        while (true) {
+//	        System.out.println("worker "+i+" top of loop");
+		receive bag(a,b,fofa,fofb);
+		m = (a+b)/2;  fofm = f(m);
+		// compute larea, rarea, and tarea
+		// using trapezoidal rule
+		larea = (m - a) * (fofa + fofm) / 2.0;
+		rarea = (b - m) * (fofm + fofb) / 2.0;
+		tarea = (b - a) * (fofa + fofb) / 2.0;
+		diff  = Math.abs(tarea - (larea + rarea));
+		if (diff <= 0.001) { /* diff small enough */
+		    send result(larea + rarea);
+		}
+		else { // diff > 0.001 /* diff too large */
+		    send bag(a, m, fofa, fofm);
+		    send bag(m, b, fofm, fofb);
+		}
+        }
+    }
+
+    // now use quiescence
+    //    private void terminator() {
+    //	try {
+    //       // sleep for 20 seconds, which should be plenty on any
+    //        // reasonable system for rest of program to complete.
+    //	    Thread.sleep(1000*20);
+    //      JR.exit(0);
+    //  }
+    //   catch (Exception e){}
+    //}
+
+}
+

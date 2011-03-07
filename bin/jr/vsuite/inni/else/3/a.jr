@@ -1,0 +1,67 @@
+/* resource a */
+
+/* SR version 2.3.1, December 1995 */
+
+
+public class a {
+   op void f(int);
+public a() {
+   send f(100);
+{
+L1: for (int i = 1; (i<=4); i+=1) {
+      {
+         inni void f(int x){
+            {
+               System.out.println(("f1") + " " + (i) + " " + (x));
+               }
+            }
+         [] else {
+            System.out.println(("else1") + " " + (i));
+            send f(1000 + i);
+            }
+        
+         }
+      }
+   }
+{
+L2: for (int i = 1; (i<=5); i+=1) {
+      {
+         send f(2000 + i);
+         }
+      }
+   }
+   int n = f.length() + 2;
+{
+L3: for (int i = 1; (i<=n); i+=1) {
+      {
+         inni void f(int x) st (x % 2==0)  by -x {
+            {
+               System.out.println(("f2") + " " + (i) + " " + (x));
+               }
+            }
+         [] else {
+            System.out.println(("else2") + " " + (i));
+            }
+        
+         }
+      }
+   }
+n= f.length() + 2;
+{
+L4: for (int i = 1; (i<=n); i+=1) {
+      {
+         inni void f(int x) by -x {
+            {
+               System.out.println(("f3") + " " + (i) + " " + (x));
+               }
+            }
+         [] else {
+            System.out.println(("else3") + " " + (i));
+            }
+        
+         }
+      }
+   }
+}
+}
+

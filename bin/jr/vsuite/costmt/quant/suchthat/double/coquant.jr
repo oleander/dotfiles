@@ -1,0 +1,26 @@
+import edu.ucdavis.jr.JR;
+
+public class coquant {
+
+	public static op void f(int n, double m);
+
+	public static void main(String [] args)	{
+
+		co ((int i = 0; i < 3; i++; i != 1),(double j = 1.0; j < 5.0; j++)) call f(i, j) {
+			System.out.println("done with f(" + i + ")" + " j is: " + j);
+		}
+		[] call f(200, 3.14) {System.out.println("second arm done");}
+		System.out.println("done with co");
+
+	}
+
+	private static process MYPROCESS	{
+		while (true)	{
+			inni void f(int x, double y) {
+				System.out.println("inside inni f: x " + x + " y " + y);
+			}
+		}
+	}
+
+}
+

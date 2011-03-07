@@ -1,0 +1,22 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+    static op String p(int a, int b, String c) {
+	System.out.println("in p: "+a+" "+b+" "+c);
+	return c+c;
+    }
+    static op String q(String x) {
+	System.out.println("in q"+" "+x);
+	return x+x;
+    }
+    public static void main (String [] args){
+	int x = -5, y = -6;
+	System.out.println("begin");
+	String s;
+	co s = p(x,y,"a")     { System.out.println("after p(x,y) "+s); }
+	[] s = p(-44,-55,"b") { System.out.println("after p(-44,-55) "+s); }
+	[] s = p(-77,-88,"c") { System.out.println("after p(-77,-88) "+s); }
+	[] s = q("d");
+	System.out.println("after co: "+x+" "+y);
+    }
+}

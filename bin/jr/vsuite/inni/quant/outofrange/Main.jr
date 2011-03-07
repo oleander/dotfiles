@@ -1,0 +1,7 @@
+public class Main{
+    public static void main(String[] args) {
+try {
+	new outofrange(Integer.parseInt(args[0]));
+} catch (Exception e) {e.printStackTrace();}
+    }
+}

@@ -1,0 +1,6 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+# program output too nondeterministic
+# so just make sure it runs
+0 jrrun rwMain > No_input.out 2>&1
+0 rm -rf jrGen core *.out

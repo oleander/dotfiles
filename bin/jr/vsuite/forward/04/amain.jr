@@ -1,0 +1,7 @@
+
+public class amain{
+   public static void main(String[] args) {
+      main.main(args);
+	edu.ucdavis.jr.JR.exit(0);
+      }
+   }

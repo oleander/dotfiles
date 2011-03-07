@@ -1,0 +1,16 @@
+for i=0 k=200
+for i=1 k=199
+for i=2 k=198
+for i=3 k=197
+for i=4 k=196
+p1[0] [3.0] [100] received 10
+p2[2] [b] [y] received 100
+p1[0] [3.0] [100] received 11
+p2[2] [b] [y] received 100
+p1[0] [3.0] [100] received 12
+p2[2] [b] [y] received 100
+p1[0] [3.0] [100] received 13
+p2[2] [b] [y] received 100
+p1[0] [3.0] [100] received 14
+p2[2] [b] [y] received 100
+Quiescence!

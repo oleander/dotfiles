@@ -1,0 +1,20 @@
+import edu.ucdavis.jr.JR;
+
+public class Main {
+
+    static op void pause();
+
+    public static void main(String [] args) {
+        System.out.println("Welcome to the wonderful world of JR!");
+	    send pause();
+	    send pause();
+    }
+    static process gogo {
+        cap void () aa = pause;
+	    inni void aa() {
+		System.out.println("pausing until hit `p' key");
+		receive aa();
+		System.out.println("got `p' key");
+	    }
+    }
+}

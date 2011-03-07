@@ -1,0 +1,53 @@
+/**** comments from the original SR program
+
+#   A simple sequential program illustrating the "3n+1" problem,
+#   called "wondrous numbers" in Hofstadter's "Godel Escher Bach".
+#
+#   usage:    a.out n       to trace the integer n
+#             a.out m n     to trace all integers from m to n
+#   default:  a.out 2 25
+#
+#   Given a positive integer n, halve it if even, or replace by 3n+1 if odd.
+#   Stop at 1.  The sequences are interesting, and nobody has proved that all
+#   initial values lead to termination.
+#
+#   Try running on 27.
+#
+#   For full details see Jeffrey Lagarias,
+#                        The 3x+1 Problem and Generalizations,
+#			 American Mathematical Monthly, vol.92 no.1
+#			 (January, 1986), pp. 3-25.
+
+****/
+
+class wondrous {
+   public int lb = 2;  // lower bound defaults to 2
+   public int ub = 25; // upper bound defaults to 25
+   public int n;       // n is the working value
+
+   wondrous() {
+      if (Main.args.length > 0) {
+         lb = Integer.valueOf(Main.args[0]).intValue();
+         if (Main.args.length == 1) // one arg set as lower and upper bound
+           ub = lb;
+         else //  (Main.args.length > 1)
+	   ub = Integer.valueOf(Main.args[1]).intValue();
+      }
+
+      for (int i = lb; (i<=ub); i+=1) { // for each integer in selected range:
+         System.out.print((i) + ":");   // print it
+         n=i;
+	 while(n>1){                    // iterate until we hit 1
+               if ((n % 2==1)){
+                  n = 3*n + 1;          // 3n+1 if odd
+               }
+               else {
+                  n = n/2;              // n/2 if even
+               }
+               System.out.print(" " + (n)); // write new value
+         }
+         System.out.println();          // terminate line at end of sequence
+      }
+   }
+
+}

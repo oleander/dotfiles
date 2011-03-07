@@ -1,0 +1,9 @@
+public class A {
+    int me;
+    public A(int i) {
+	me = i*i;
+    }
+    public String toString() {
+	return "I'm an A with value "+me;
+    }
+}

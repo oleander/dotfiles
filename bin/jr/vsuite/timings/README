@@ -1,0 +1,3 @@
+These JR timing tests are faithful versions of the SR timing tests.
+However, some of these don't make much sense; e.g., JR does no
+semaphore optimization (yet?).

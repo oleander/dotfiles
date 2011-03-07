@@ -1,0 +1,5 @@
+emptyquant.jr:26: Empty quantifier on inni not allowed.
+	inni () void test[1](int x) 
+              ^
+Not generating any jrGen files due to errors.
+1 error

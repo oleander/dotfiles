@@ -1,0 +1,51 @@
+import edu.ucdavis.jr.JR;
+
+public class test {
+
+   // would-be processes
+   private static op void cons(int);
+   private static op void prod(int);
+
+   // number of processes
+   private static final int N = 6;
+
+   // the monitor
+   private static bounded_buffer bb = new bounded_buffer("bb");
+
+   private static sem done;
+
+   public static void main(String [] args) {
+	    // start up processes
+	    for (int i = 1; i <= N; i++) {
+	        send cons(i);
+	        send prod(i);
+	    }
+
+	    // wait for all processes to finish
+	    for (int i = 1; i <= N*2; i++) {
+	        P(done);
+	    }
+	    JR.exit(0);
+    }
+
+
+    private static void prod(int i) {
+            for (int j = 1; j <= 1; j++) { // yeah, just 1 iteration for now
+                System.out.println(i + " prod before");
+		bb.deposit(i);
+                System.out.println(i + " prod after");
+            }
+	    V(done);
+    }
+
+    private static void cons(int i) {
+            for (int j = 1; j <= 1; j++) { // yeah, just 1 iteration for now
+                System.out.println(i + " cons before");
+		int got = bb.fetch();
+                System.out.println( got );
+                System.out.println(i + " cons after");
+            }
+	    V(done);
+    }
+
+}

@@ -1,0 +1,5 @@
+Bug1.jr:12: <anonymous Bug1$1> is not abstract and does not override abstract method foo(java.lang.Integer) in Foo
+	       public Integer notfoo(Integer x) {
+                              ^
+Not generating jrGen/Bug1.java due to errors.
+1 error

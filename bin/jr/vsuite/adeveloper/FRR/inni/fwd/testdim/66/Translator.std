@@ -1,0 +1,5 @@
+Elevator.jr:16: array required, but cap int() found
+	    forward foyer[1]();
+                         ^
+Not generating jrGen/Elevator.java due to errors.
+1 error

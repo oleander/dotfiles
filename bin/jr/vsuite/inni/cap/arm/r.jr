@@ -1,0 +1,106 @@
+// input from cap using multiple arms
+
+public class r
+{
+    op void a();
+    op void b();
+    op void c();
+    op void d();
+    op void e();
+    op void f();
+    op void g();
+    op void report(String);
+    cap void() ca;
+    cap void() cb;
+    cap void() cc;
+    cap void() cd;
+    cap void() cx;
+    cap void() ce;
+
+    void never ()
+    {
+	// never called, but forces f into b's class
+	// NOTE: NOT IN JR, must execute to force inclusion
+	inni void b() {}
+	[] void f() {}
+
+    }
+
+  public r()
+  {
+    ca = a;
+    cb = b;
+    cx = new op void();
+    cc = c;
+    cd = d;
+    ce = e;
+
+    send f();	// something in same class to be bypassed
+    send g();	// something in another class
+    send a();	// this one counts
+    send f();	// two more to skip
+    send g();
+    report("here goes");
+    while(true)
+    {
+	inni void a()
+	{
+	    send c();
+	    report ("got a");
+	}
+	[] void b()
+	{
+	    send d();
+	    report ("got b");
+	}
+	[] void c()
+	{
+	    send b();
+	    report ("got c");
+	}
+	[] void cd()
+	{
+	    send cx();
+	    report ("got d via cap");
+	}
+	[] void ce()
+	{
+	    report ("got e via cap");
+	    // no more; take else next time
+	}
+	[] void cx()
+	{
+	    send e();
+	    report ("got x via cap");
+	}
+	[] else
+	{
+	    report ("got nothing");
+	    break;
+	}
+
+    }
+    report ("exit `in'");
+    receive f();
+    receive g();
+    report ("done");
+  }
+
+    void report (String s)
+    {
+	System.out.print(s);
+	for (int i = s.length(); i <= 20; i++)
+	    System.out.print(" ");
+	System.out.println(a.length() + ""
+		+ b.length() + ""
+		+ c.length() + ""
+		+ d.length() + ""
+		+ e.length() + ""
+		+ f.length() + ""
+		+ g.length() + "-  --"
+		+ cc.length() + ""
+		+ cd.length() + ""
+		+ ce.length() + "--"
+		+ cx.length());
+    }
+}

@@ -1,0 +1,10 @@
+# see how comments are handled.
+# for good code, run through jrc to make sure comments stripped OK;
+# not much point in executing these programs since they do nothing.
+0 ccr2jr e12.ccr
+0 jrc *.jr
+0 ccr2jr e13.ccr
+0 jrc *.jr
+1 ccr2jr e14.ccr
+1 ccr2jr e15.ccr
+0 rm -rf jrGen core *.out *.jr

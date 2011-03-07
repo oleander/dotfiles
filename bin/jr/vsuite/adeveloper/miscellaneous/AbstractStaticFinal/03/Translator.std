@@ -1,0 +1,5 @@
+J.jr:10: cannot assign a value to final variable Jid
+      id = Jid++;
+           ^
+Not generating jrGen/J.java due to errors.
+1 error

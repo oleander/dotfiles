@@ -1,0 +1,13 @@
+These tests are useful to test most fundamental things for JR and jrv
+to work.
+
+Right now, they include tests of Java and jrv.
+
+(2005-07-11 Java is included to help make sure CLASSPATH is not set to
+something bogus, e.g., using ":" rather than ";" as separator in
+Windows.  Better to find out early with this test than to find out
+later when run multi-VM programs.  Perhaps this should be in vm/, but
+it's here since it also contains basic Java test and should be run early.)
+
+named so will be first alphabetically in vsuite to ensure that these things
+work before trying other tests...

@@ -1,0 +1,8 @@
+jrv uses grep, sort, etc. defined in ../bin
+
+note that some of those tools are just approximation of standard UNIX
+tools (e.g., see note in grep.pl),
+so be careful what you put in Script files.
+
+It's best to run jrv with standard UNIX tools as a double check.
+(just copy jrv, edit and use that copy.)

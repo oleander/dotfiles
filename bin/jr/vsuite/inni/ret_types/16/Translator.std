@@ -1,0 +1,5 @@
+smlin.jr:20: Invalid return type specified.  Cannot implicitly cast cap float(long) to cap double(int).
+	inni cap float (long) a(int i, int j, float f)
+             ^
+Not generating jrGen/smlin.java due to errors.
+1 error

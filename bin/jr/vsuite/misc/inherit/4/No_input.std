@@ -1,0 +1,11 @@
+before try 
+after
+Server starting constructor
+Server finishing constructor
+Server starting constructor
+Server finishing constructor
+Server2 starting constructor
+Server2 finishing constructor
+main starting creation
+Server f gets 1.0
+server.f  1.0

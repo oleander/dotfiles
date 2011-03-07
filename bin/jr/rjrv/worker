@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Command-line parameters:
+	dir=$1
+shift;	jrv=$1
+shift;	jrv_i=$1
+shift;	jrv_s=$1
+shift;	leaves=$1
+shift;	out=$1
+
+$jrv $jrv_i $jrv_s -d $dir $leaves &> $out

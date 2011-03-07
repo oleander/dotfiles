@@ -1,0 +1,3 @@
+1 jfindmain > jfindmain.out 2>&1
+0 grep "can't find main_class" jfindmain.out >/dev/null 2>&1
+0 rm -rf *.class core *.out

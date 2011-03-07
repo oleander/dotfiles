@@ -1,0 +1,26 @@
+import edu.ucdavis.jr.JR;
+
+public class Server2 extends Server
+{
+    public op double f(double x);
+
+    private op void start();
+
+    public Server2(){
+	    System.out.println("Server2 starting constructor");
+	    send start();
+	    System.out.println("Server2 finishing constructor");
+     }
+
+    private void start() {
+//        System.out.println("Server2 start");
+        while(true){
+            inni double f(double x) {
+                System.out.println("Server2 f gets "+x);
+                return Math.pow(x,4.0);
+            }
+           
+	}
+    }
+
+}

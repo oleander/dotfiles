@@ -1,0 +1,27 @@
+public class Elevator {
+
+    public static void main(String [] args) {
+	//	System.out.println("hi");
+    }
+
+    static int NF = 4;
+
+    static cap B () foyer =
+	    new op B ();
+
+    static process controller {
+	inni B foyer() {
+	    reply new C(2);
+	}
+	inni B foyer() {
+	    reply new C(1);
+	}
+    }
+    static process invoker {
+	B b;
+	b = foyer();
+	System.out.println("b ="+b);
+	b = foyer();
+	System.out.println("b ="+b);
+    }
+}

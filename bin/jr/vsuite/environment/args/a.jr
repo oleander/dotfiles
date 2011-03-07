@@ -1,0 +1,14 @@
+// 2000-12-15 fixed problem passing args that contained spaces
+
+import edu.ucdavis.jr.JR;
+
+public class a {
+
+ public static void main(String [] args) {
+    System.out.println(args.length + " command line args");
+    for (int k = 0; k < args.length; k++) {
+      System.out.println("arg " + k + " " + args[k]);
+    }
+            JR.exit(0);
+  }
+}

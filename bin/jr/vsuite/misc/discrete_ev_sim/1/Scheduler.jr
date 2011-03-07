@@ -1,0 +1,64 @@
+public class Scheduler
+{
+
+    public op double become_active();
+    public op double become_inactive();
+    public op double time();
+    public op void   delay(double);
+
+    private op void event_manager();
+
+    private op void event_list( cap void () go_ahead, double t );
+
+    private double clock = 0.0;
+    private int num_tasks;
+
+    public Scheduler(int num_tasks) {
+	    this.num_tasks = num_tasks;
+	    send event_manager();
+    }
+
+    private void event_manager() {
+        int active = num_tasks;
+
+	    while( true ) {
+	        inni double become_active() {
+		    active++;
+		    return clock;
+		}
+		[] double become_inactive() {
+		    active--;
+		    return clock;
+		}
+		[] double time() {
+		    return clock;
+		}
+		[] void event_list( cap void () go_ahead, double t )
+		             st active == 0 by t {
+		    clock = t;
+		    active++;
+		    send go_ahead();
+		    while(true) {
+		        inni void event_list( cap void () go_ahead2,
+                                              double t2 )
+			                 st t2 == clock {
+			    active++;
+			    send go_ahead2();
+			}
+			[] else {
+			    break;
+			}
+		
+		    }
+		}
+	
+	    }
+    }
+
+    public void delay(double t) {
+        op void go_ahead();
+	    send event_list(go_ahead,t+clock);
+	    send become_inactive();
+	    receive go_ahead();
+    }
+}

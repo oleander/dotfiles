@@ -1,0 +1,7 @@
+MyVm2.jr:3: cannot find symbol
+symbol  : constructor MyVm()
+location: class MyVm
+    public MyVm2(String name, int id) {}
+                                      ^
+Not generating jrGen/MyVm2.java due to errors.
+1 error

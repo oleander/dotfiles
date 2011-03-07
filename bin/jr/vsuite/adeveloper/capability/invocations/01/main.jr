@@ -1,0 +1,42 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op void init(int x, char y) {
+	System.out.println("init -- " + x + " " + y);
+    }
+
+    public static cap void(int, char) mycap1 = init;
+
+    public static op boolean init2(int, char);
+    public static cap boolean(int, char) mycap2 = init2;
+
+    public static op void myop(cap void(int, char) x) {
+	forward x(4, 'd');
+	forward mycap1(4, 'd');
+    }
+
+    public static op cap boolean(int, char) myop2() {
+	cap boolean(int, char) localcap = init2;
+	reply localcap;
+	int a;
+	char b;
+	receive localcap(a, b);
+	System.out.println("myop2 received: " + a + " " + b);
+    }
+
+    public static void main(String [] args) {
+	mycap1(1, 'a');
+	call mycap1(2, 'b');
+	send mycap1(3, 'c');
+	myop(mycap1);
+	send mycap2(5, 'e');
+	int a;
+	char b;
+	receive mycap2(a, b);
+	System.out.println("mycap2 received: " + a + " " + b);
+	cap boolean(int, char) localcap = myop2();
+	send localcap(6, 'f');
+    }
+
+}

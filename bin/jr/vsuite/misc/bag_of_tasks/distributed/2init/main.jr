@@ -1,0 +1,27 @@
+import edu.ucdavis.jr.JR;
+
+// SR book p146
+
+public class main
+{
+
+    public static void main(String [] args)
+    {
+
+        System.out.println("before try ");
+            System.out.println("after");
+            remote administrator admin =
+                                       new remote administrator() ;
+
+
+            int N = 10;
+	    System.out.println("main starting creation");
+
+	    for( int i = 1; i <= N; i++ ) {
+	         remote worker w =
+		     new remote worker(i);
+		 w.init(admin);
+	    }
+	    System.out.println("main finishing creation");
+    }
+}

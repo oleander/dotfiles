@@ -1,0 +1,24 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+    static final int iters = 3;
+
+    public static void main(String [] args)
+    {
+
+
+System.out.println("before try");
+
+System.out.println("after vm");
+
+////        vm ffVM = new vm() on args[0];
+        vm ffVM = new vm();
+
+remote fun ff = new remote fun(iters) on ffVM;
+
+int y;
+y = ff.f(3);
+System.out.println("after y="+y);
+    }
+}

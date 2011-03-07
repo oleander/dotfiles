@@ -1,0 +1,18 @@
+import edu.ucdavis.jr.JR;
+
+public class Client {
+
+    public Client() {}
+
+    public op void client(remote Scheduler sched);
+    public op void init(remote Scheduler sched);
+    
+    public void client(remote Scheduler sched) {
+	System.out.println("Client requests to enter a server");
+	    sched.request();
+    }
+    
+    public void init(remote Scheduler sched) {
+	    send client(sched);
+    }
+}

@@ -1,0 +1,46 @@
+/* pairing problem
+ * to test self-I/O error checking, deliberately send to self.
+ */
+_program pair {
+  private static final int N = 5;
+  _specs {
+    node [N] { pairup();
+               done();
+             }
+  }
+
+  private static final boolean t = true, f = false;
+
+  /* init for N=5 */
+  private static boolean [][] connect
+              = {
+                    {f, t, t, f, t},
+                    {t, f, f, t, f},
+                    {t, f, t, f, f}, // 2 will be self sender/receiver
+                    {f, t, f, f, t},
+                    {t, f, f, t, f}
+                 };
+
+  _process node (i){
+    int p = i;
+    // make it a bit more interesting (longe enough for all others to pair?)
+    if (i==2) {
+      for (int k = 0; k < N; k++) {
+        if (k != 2) { _i node[k]?done(); }
+      }
+      // long enough (I hope) to let other actually terminate
+      // so that process status output will be deterministic.
+      try {
+        Thread.sleep(1000);
+      } catch (Exception oops) {oops.printStackTrace();}
+    }
+    _do
+      _i [j = 0 _to N-1] (p==i && connect[i][j]) node[j]?pairup() { p = j;}
+      _o [j = 0 _to N-1] (p==i && connect[i][j]) node[j]!pairup() { p = j;}
+    _od
+    System.out.println(i + " paired with " + p);
+    // tell 2 that we're done (2 itself shouldn't get here)
+    _o node[2]!done();
+  }
+
+}

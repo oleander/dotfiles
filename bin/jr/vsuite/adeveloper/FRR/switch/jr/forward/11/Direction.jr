@@ -1,0 +1,46 @@
+public class Direction {
+	public static final int NW = 0;
+	public static final int N  = 1;
+	public static final int NE = 2;
+	public static final int W  = 3;
+	public static final int E  = 4;
+	public static final int SW = 5;
+	public static final int S  = 6;
+	public static final int SE = 7;
+	
+	public static final int TOTAL = 8;
+	
+	public int value;
+  
+  public Direction(int v) {
+    value = v;
+  }
+
+  // 2008-03-12 w/o default return, caused bug was treating regular
+  // method as op-method and generating op return code.  below tests
+  // all cases
+
+	public op Direction huh() {
+	  return new Direction(value+100);
+	}
+
+	public op Direction opposite() {
+	  if (value == N)
+	    forward huh();
+	}
+	
+	public op Direction opposite2() {
+		switch(value) {
+			case N:
+			  forward huh();
+			  break;
+			case S:
+			  forward huh();
+			  break;
+		}
+	}
+	
+  public String toString() {
+    return "dir="+value;
+  }
+}

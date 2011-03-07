@@ -1,0 +1,5 @@
+main.jr:16: Exception java.io.EOFException not declared in the throws clause of this operation.  As such, the exception cannot be handled by the originally installed exception handler.
+      forward test3();
+                   ^
+Not generating jrGen/main.java due to errors.
+1 error

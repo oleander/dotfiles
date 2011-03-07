@@ -1,0 +1,3 @@
+public class UnregVoterException extends java.lang.Exception	{
+}
+

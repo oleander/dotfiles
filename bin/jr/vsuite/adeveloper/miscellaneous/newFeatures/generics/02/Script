@@ -1,0 +1,7 @@
+# 2006-08-02: this one works now.
+# 2005-11-08: remember -- this one doesn't work (yet)
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun MyShape > No_input.out 2>&1
+0 cmp No_input.std No_input.out
+0 rm -rf jrGen core* *.out

@@ -1,0 +1,4 @@
+0 jrc *.jr
+0 javac jrGen/*.java
+0 run sem4
+0 rm -rf jrGen core *.out

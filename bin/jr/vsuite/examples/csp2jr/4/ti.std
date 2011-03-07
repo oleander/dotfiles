@@ -1,0 +1,303 @@
+start of A 0
+start of A 1
+start of A 2
+start of A 3
+start of A 4
+start of A 5
+start of A 6
+start of A 7
+start of A 8
+start of A 9
+start of A 10
+start of A 11
+start of A 12
+start of A 13
+start of A 14
+start of A 15
+start of A 16
+start of A 17
+start of A 18
+start of A 19
+start of A 20
+start of A 21
+start of A 22
+start of A 23
+start of A 24
+start of A 25
+start of A 26
+start of A 27
+start of A 28
+start of A 29
+start of A 30
+start of A 31
+start of A 32
+start of A 33
+start of A 34
+start of A 35
+start of A 36
+start of A 37
+start of A 38
+start of A 39
+start of A 40
+start of A 41
+start of A 42
+start of A 43
+start of A 44
+start of A 45
+start of A 46
+start of A 47
+start of A 48
+start of A 49
+start of A 50
+start of A 51
+start of A 52
+start of A 53
+start of A 54
+start of A 55
+start of A 56
+start of A 57
+start of A 58
+start of A 59
+start of A 60
+start of A 61
+start of A 62
+start of A 63
+start of A 64
+start of A 65
+start of A 66
+start of A 67
+start of A 68
+start of A 69
+start of A 70
+start of A 71
+start of A 72
+start of A 73
+start of A 74
+start of A 75
+start of A 76
+start of A 77
+start of A 78
+start of A 79
+start of A 80
+start of A 81
+start of A 82
+start of A 83
+start of A 84
+start of A 85
+start of A 86
+start of A 87
+start of A 88
+start of A 89
+start of A 90
+start of A 91
+start of A 92
+start of A 93
+start of A 94
+start of A 95
+start of A 96
+start of A 97
+start of A 98
+start of A 99
+start of B
+0
+-1
+-2
+-3
+-4
+-5
+-6
+-7
+-8
+-9
+-10
+-11
+-12
+-13
+-14
+-15
+-16
+-17
+-18
+-19
+-20
+-21
+-22
+-23
+-24
+-25
+-26
+-27
+-28
+-29
+-30
+-31
+-32
+-33
+-34
+-35
+-36
+-37
+-38
+-39
+-40
+-41
+-42
+-43
+-44
+-45
+-46
+-47
+-48
+-49
+-50
+-51
+-52
+-53
+-54
+-55
+-56
+-57
+-58
+-59
+-60
+-61
+-62
+-63
+-64
+-65
+-66
+-67
+-68
+-69
+-70
+-71
+-72
+-73
+-74
+-75
+-76
+-77
+-78
+-79
+-80
+-81
+-82
+-83
+-84
+-85
+-86
+-87
+-88
+-89
+-90
+-91
+-92
+-93
+-94
+-95
+-96
+-97
+csp2jr: process with id 98: cannot match output stmt (user error) B!foo((9-10)*i ,(3-2)*i +(9-(8+1)))
+csp2jr: process with id 99: cannot match output stmt (user error) B!foo((9-10)*i ,(3-2)*i +(9-(8+1)))
+csp2jr: process status: 101 total = 2 alive + 0 blocked + 99 dead.
+   0 DEAD     A [   0]
+   1 DEAD     A [   1]
+   2 DEAD     A [   2]
+   3 DEAD     A [   3]
+   4 DEAD     A [   4]
+   5 DEAD     A [   5]
+   6 DEAD     A [   6]
+   7 DEAD     A [   7]
+   8 DEAD     A [   8]
+   9 DEAD     A [   9]
+  10 DEAD     A [  10]
+  11 DEAD     A [  11]
+  12 DEAD     A [  12]
+  13 DEAD     A [  13]
+  14 DEAD     A [  14]
+  15 DEAD     A [  15]
+  16 DEAD     A [  16]
+  17 DEAD     A [  17]
+  18 DEAD     A [  18]
+  19 DEAD     A [  19]
+  20 DEAD     A [  20]
+  21 DEAD     A [  21]
+  22 DEAD     A [  22]
+  23 DEAD     A [  23]
+  24 DEAD     A [  24]
+  25 DEAD     A [  25]
+  26 DEAD     A [  26]
+  27 DEAD     A [  27]
+  28 DEAD     A [  28]
+  29 DEAD     A [  29]
+  30 DEAD     A [  30]
+  31 DEAD     A [  31]
+  32 DEAD     A [  32]
+  33 DEAD     A [  33]
+  34 DEAD     A [  34]
+  35 DEAD     A [  35]
+  36 DEAD     A [  36]
+  37 DEAD     A [  37]
+  38 DEAD     A [  38]
+  39 DEAD     A [  39]
+  40 DEAD     A [  40]
+  41 DEAD     A [  41]
+  42 DEAD     A [  42]
+  43 DEAD     A [  43]
+  44 DEAD     A [  44]
+  45 DEAD     A [  45]
+  46 DEAD     A [  46]
+  47 DEAD     A [  47]
+  48 DEAD     A [  48]
+  49 DEAD     A [  49]
+  50 DEAD     A [  50]
+  51 DEAD     A [  51]
+  52 DEAD     A [  52]
+  53 DEAD     A [  53]
+  54 DEAD     A [  54]
+  55 DEAD     A [  55]
+  56 DEAD     A [  56]
+  57 DEAD     A [  57]
+  58 DEAD     A [  58]
+  59 DEAD     A [  59]
+  60 DEAD     A [  60]
+  61 DEAD     A [  61]
+  62 DEAD     A [  62]
+  63 DEAD     A [  63]
+  64 DEAD     A [  64]
+  65 DEAD     A [  65]
+  66 DEAD     A [  66]
+  67 DEAD     A [  67]
+  68 DEAD     A [  68]
+  69 DEAD     A [  69]
+  70 DEAD     A [  70]
+  71 DEAD     A [  71]
+  72 DEAD     A [  72]
+  73 DEAD     A [  73]
+  74 DEAD     A [  74]
+  75 DEAD     A [  75]
+  76 DEAD     A [  76]
+  77 DEAD     A [  77]
+  78 DEAD     A [  78]
+  79 DEAD     A [  79]
+  80 DEAD     A [  80]
+  81 DEAD     A [  81]
+  82 DEAD     A [  82]
+  83 DEAD     A [  83]
+  84 DEAD     A [  84]
+  85 DEAD     A [  85]
+  86 DEAD     A [  86]
+  87 DEAD     A [  87]
+  88 DEAD     A [  88]
+  89 DEAD     A [  89]
+  90 DEAD     A [  90]
+  91 DEAD     A [  91]
+  92 DEAD     A [  92]
+  93 DEAD     A [  93]
+  94 DEAD     A [  94]
+  95 DEAD     A [  95]
+  96 DEAD     A [  96]
+  97 DEAD     A [  97]
+  98 ALIVE    A [  98]
+  99 ALIVE    A [  99]
+ 100 DEAD     B 

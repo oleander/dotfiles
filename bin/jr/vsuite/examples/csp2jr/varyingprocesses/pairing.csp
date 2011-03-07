@@ -1,0 +1,21 @@
+import edu.ucdavis.jr.JR;
+
+// check that can set number of processes in hook
+// e.g., read from input or, as in this program, from command line.
+
+_program pairing _main hook {
+
+   private static int N;
+
+   public static void hook(String [] args) {
+       N = Integer.parseInt(args[0]);
+    }
+
+  _specs {
+    node [N] { }
+  }
+
+  _process node(i) {
+    System.out.println(i);
+  }
+}

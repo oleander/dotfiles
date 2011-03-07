@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+	echo "$0: Error: Not enough arguments"
+	echo "Usage: timeout interval command"
+	exit 1
+fi
+
+me=$$
+interval=$1
+shift
+
+# run command in background
+exec "$@" &
+childcmd=$!
+trap 'kill -9 $childcmd &> /dev/null; exit 1' 14
+
+# start up an alarm process
+(sleep $interval; kill -s 14 $me) &
+childalarm=$!
+
+# wait for child
+wait $childcmd
+result=$?
+trap 14
+
+# kill the alarm
+kill -9 $childalarm &> /dev/null
+exit $result

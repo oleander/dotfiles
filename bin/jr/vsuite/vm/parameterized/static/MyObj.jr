@@ -1,0 +1,11 @@
+public class MyObj implements java.io.Serializable	{
+	private int MyObj_id = 10;
+
+	public MyObj(int id)	{
+		MyObj_id = id;
+	}
+
+	public int GetObjID()	{
+		return MyObj_id;
+	}
+}

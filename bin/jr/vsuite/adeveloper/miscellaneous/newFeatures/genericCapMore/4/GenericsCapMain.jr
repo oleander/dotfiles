@@ -1,0 +1,12 @@
+public class GenericsCapMain {
+    public static void main(String [] args) {
+        MyShape<String> sq = new MyShape<String>("square");
+	cap String () c;
+	c = sq.get;
+	System.out.println(c());
+        MyShape<Integer> tri = new MyShape<Integer>(55);
+	cap Integer () d;
+	d = tri.get;
+	System.out.println(d());
+    }
+}

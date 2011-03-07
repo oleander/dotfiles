@@ -1,0 +1,3 @@
+# just make sure it translates
+0 jrt
+0 rm -rf jrGen core *.out

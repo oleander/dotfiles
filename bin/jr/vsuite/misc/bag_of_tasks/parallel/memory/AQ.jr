@@ -1,0 +1,70 @@
+import edu.ucdavis.jr.JR;
+
+public class AQ
+{
+    private op void bag(double, double, double, double, int);
+    private op void result(double,int);
+
+    private op void administrator();
+    private op void worker(int);
+
+    public AQ() {
+        int N = 10;
+	    System.out.println("AQ starting constructor");
+	    send administrator();
+	    for( int i = 1; i <= N; i++ ) {
+		 send worker(i);
+	    }
+	    System.out.println("AQ finishing constructor");
+     }
+
+    private double f(double x) {
+        return Math.pow(x,3.0);
+    }
+
+    private void administrator() {
+        double part, area = 0.0;
+        double l = 0.0, r = 44444.0;
+
+            int width = 0x7FFFFFFF; // how much still need to compute.
+	    send bag(l,r,f(l),f(r), width);
+
+            while (width > 0) {
+                int w; // how much computed in this result.
+	        System.out.println("administrator top of loop, area="
+		    +area+" width left="+width);
+		receive result(part,w);
+		area += part;
+		width -= w;
+	    }
+            System.out.println("administrator done, area="
+		    +area+" width left="+width);
+JR.exit(0);  // Where n is the exit value currently ignored
+    }
+
+    private void worker(int i) {
+        double a, b, m, fofa, fofb, fofm;
+	double larea, rarea, tarea, diff;
+        int w;
+
+        while (true) {
+//	        System.out.println("worker "+i+" top of loop");
+		receive bag(a,b,fofa,fofb,w);
+		m = (a+b)/2;  fofm = f(m);
+		// compute larea, rarea, and tarea
+		// using trapezoidal rule
+		larea = (m - a) * (fofa + fofm) / 2.0;
+		rarea = (b - m) * (fofm + fofb) / 2.0;
+		tarea = (b - a) * (fofa + fofb) / 2.0;
+		diff  = Math.abs(tarea - (larea + rarea));
+		if (diff <= 0.001) { /* diff small enough */
+		    send result(larea + rarea,w);
+		}
+		else { // diff > 0.001 /* diff too large */
+		    send bag(a, m, fofa, fofm, w/2);
+		    send bag(m, b, fofm, fofb, w/2);
+		}
+        }
+    }
+}
+

@@ -1,0 +1,28 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op boolean memberOp();
+
+    public static void main(String [] args) {
+        op int localOp();
+
+	send memberOp();
+	send localOp();
+
+	inni void localOp() {
+	    System.out.println("localOp");
+	}
+	inni void memberOp() {
+	    System.out.println("memberOp");
+	}
+	inni int memberOp() {
+	    System.out.println("memberOp");
+	}
+	inni boolean localOp() {
+	    System.out.println("localOp");
+	}
+
+    }
+
+}

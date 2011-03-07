@@ -1,0 +1,14 @@
+SR programs equivalent to the JR progams in 1 and 2
+give same output.
+
+JR differs in how it selects invocations:
+it picks oldest invocation first, and then applies st.
+
+SR does it in opposite order.
+
+JR's approach is easier to implement, especially when operation is
+located remotely.
+
+Probably won't make much of a difference, except in contrived
+programs.
+

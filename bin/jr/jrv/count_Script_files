@@ -1,0 +1,11 @@
+#!/bin/sh
+# 
+# (developers' tool, not users' tool)
+#
+# gives rough idea of how many tests are in the vsuite.
+
+# a "test", though, is not well-defined:
+# each Script file can compile or run several programs on several
+# sets of input data.
+
+find . -name Script | wc

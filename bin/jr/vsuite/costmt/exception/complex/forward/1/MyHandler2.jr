@@ -1,0 +1,13 @@
+public class MyHandler2 implements edu.ucdavis.jr.Handler	{
+
+	public handler void handleNullPointerException(java.lang.NullPointerException e)
+	{
+		System.out.println("Error");
+	}
+
+	public handler void handleEOFException(java.io.EOFException e)
+	{
+		System.out.println("Error");
+	}
+}
+

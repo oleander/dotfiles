@@ -1,0 +1,9 @@
+public class Main1 {
+  public static void main(String [] args) {
+    op void done();
+    Foo foo1;
+    foo1 = new Foo(done);
+    receive done();
+    foo1.writex();
+  }
+}

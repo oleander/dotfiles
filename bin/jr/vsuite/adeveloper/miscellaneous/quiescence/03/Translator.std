@@ -1,0 +1,5 @@
+main.jr:11: exception edu.ucdavis.jr.QuiescenceRegistrationException is never thrown in body of corresponding try statement
+	} catch (edu.ucdavis.jr.QuiescenceRegistrationException e) {
+          ^
+Not generating jrGen/main.java due to errors.
+1 error

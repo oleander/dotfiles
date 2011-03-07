@@ -1,0 +1,18 @@
+
+import javax.swing.*;
+
+public class IDLabel extends JLabel
+{
+	public IDLabel(int x, int y, int id, int themeID)
+	{
+		super();
+
+		if ( id < 10 ) 
+			this.setText("0" + Integer.toString(id));
+		else
+			this.setText(Integer.toString(id));
+
+		this.setBounds(x+DiningEnvironmentConstant.IDLABEL_OFFSET_X[themeID], y+DiningEnvironmentConstant.IDLABEL_OFFSET_Y[themeID], DiningEnvironmentConstant.IDLABEL_WIDTH, DiningEnvironmentConstant.IDLABEL_HEIGHT);
+	}
+}
+

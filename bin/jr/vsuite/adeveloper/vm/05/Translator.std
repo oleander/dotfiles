@@ -1,0 +1,28 @@
+VmNewClass.jr:9: incompatible types
+found   : edu.ucdavis.jr.jrx.VM
+required: java.lang.String
+	String apple = new vm();	// error
+                       ^
+VmNewClass.jr:10: incompatible types
+found   : java.lang.String
+required: edu.ucdavis.jr.jrx.VM
+	theVm1 = "apple";	// error
+                 ^
+VmNewClass.jr:21: cannot find symbol
+symbol  : variable hahaha
+location: class VmNewClass
+	theVmArray2[3] = new vm() on hahaha;	// error
+                                     ^
+VmNewClass.jr:23: Invalid 'on' clause, expecting a String for vm host.
+	theVmArray2[5] = new vm() on vmHostid;	// error	
+                                     ^
+VmNewClass.jr:28: cannot find symbol
+symbol  : variable hahaha
+location: class VmNewClass
+	MyVm newVm1d = new MyVm("jojo 4") on hahaha;	// error
+                                             ^
+VmNewClass.jr:30: Invalid 'on' clause, expecting a String for vm host.
+	MyVm newVm1f = new MyVm("jojo 6") on newVm1a;	// error
+                                             ^
+Not generating jrGen/VmNewClass.java due to errors.
+6 errors

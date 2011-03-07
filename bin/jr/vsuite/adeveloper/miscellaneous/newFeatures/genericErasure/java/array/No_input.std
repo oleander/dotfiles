@@ -1,0 +1,2 @@
+Exception in thread "main" java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.Integer;
+	at ResourceAllocatorA.main(ResourceAllocatorA.java:11)

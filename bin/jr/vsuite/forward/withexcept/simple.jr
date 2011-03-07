@@ -1,0 +1,36 @@
+import edu.ucdavis.jr.JR;
+
+public class simple
+{
+    static op int readFile(java.io.File file) throws java.io.EOFException
+    {
+            return 3;
+    }
+    static op int read(String filename) throws java.io.EOFException
+    {
+        forward readFile(null) handler new IOHandler();
+        throw new java.io.EOFException();
+    }
+
+    public static void main(String [] args)
+    {
+      try {
+          float val = read("abc");
+          System.out.println(val);
+      } catch (java.io.EOFException e) { e.printStackTrace(); }
+    }
+}
+
+class IOHandler implements edu.ucdavis.jr.Handler
+{
+    public handler void method(java.io.EOFException e)
+    {
+        System.out.println("Caught java.io.EOFException " +
+                                "through IOHandler object");
+    }
+    public handler void method(java.io.FileNotFoundException e)
+    {
+        System.out.println("Caught java.io.FileNotFoundException " +
+                                "through IOHandler object");
+    }
+}

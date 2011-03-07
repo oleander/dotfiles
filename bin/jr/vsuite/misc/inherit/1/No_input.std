@@ -1,0 +1,26 @@
+before try 
+after
+Server starting constructor
+Server finishing constructor
+main starting creation
+Server f gets 1.0
+main finishing creation 1.0
+Server f gets 2.0
+main finishing creation 8.0
+Server f gets 3.0
+main finishing creation 27.0
+Server f gets 4.0
+main finishing creation 64.0
+Server f gets 5.0
+main finishing creation 125.0
+Server f gets 6.0
+main finishing creation 216.0
+Server f gets 7.0
+main finishing creation 343.0
+Server f gets 8.0
+main finishing creation 512.0
+Server f gets 9.0
+main finishing creation 729.0
+Server f gets 10.0
+main finishing creation 1000.0
+main finishing creation

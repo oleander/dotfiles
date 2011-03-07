@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# search for string x in (say) vsuite directory, e.g.,
+#
+#    find . -name "*.jr" -exec ../jrv/grepper inni {} \;
+#    find . -name "*.jr" -exec ../jrv/grepper -i main {} \;
+#    find . -name Script -exec ../jrv/grepper scmp {} \;
+#    find . -name "*.jr" -exec $jr/jrv/grepper -e 'process .*()' {} \;
+#
+#    (last one finds any "process name()", now no longer allowed.)
+#
+# same can be done via, e.g.,
+#
+#    grep inni `find . -name "*.jr" -print`
+#
+# but output formatting of that is a bit messy.
+#
+# also, newer versions of grep (after I wrote grepper) allow recursive
+# grepping (cool), so above can use
+#
+#    grep -r --include "*.jr" inni .
+#
+# but output formatting again is a bit messy.
+#
+# note that plain, e.g.,
+# 
+#    find . -name "*.jr" -exec grep inni {} \;
+#
+# works but doesn't print filenames.
+
+if [ $# -lt 2 ]
+then
+   echo "usage: $0 grep_options searchstring filename"
+   exit 1
+fi
+
+# find filename
+# (is there a simpler way to find last arg in sh?)
+# (filename is assigned since $# >= 2)
+for filename do
+    # do nothing
+    continue
+done
+
+# hack: grep twice so get filename output before lines in it...
+grep "$@" 2>/dev/null 1>&2  &&  echo $filename  &&  grep "$@"

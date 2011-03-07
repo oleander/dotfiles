@@ -1,0 +1,11 @@
+public class Board {
+
+  private final boolean leftSide;
+  private remote Soldier mycaptain;
+  private java.util.List soldiers;
+
+  public Board(int W, int H, boolean leftSide, cap void() endgame)
+  {
+    mycaptain = (remote Soldier(new remote Captain(leftSide, soldiers)));
+  }
+}

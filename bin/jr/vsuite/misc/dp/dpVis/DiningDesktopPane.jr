@@ -1,0 +1,202 @@
+
+
+import javax.swing.*;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.awt.*;
+import javax.swing.event.*;
+
+public class DiningDesktopPane extends JDesktopPane implements ChangeListener
+{
+	public DiningDesktopPane(int width, int height, Color bgColor, int theme, boolean isClientWindow)
+	{
+		super();
+		this.width = width;
+		this.height = height;
+		this.theme = theme;
+		this.isClientWindow = isClientWindow;
+		componentColor = bgColor;
+		subscribeList = new LinkedList();		
+		message = new JLabel();
+		message.setForeground(DiningEnvironmentConstant.MESSAGE_COLOR);		
+		
+		this.setBackground(bgColor);
+		
+		if ( ! isClientWindow )
+		{
+			setupMainFramePane();
+		}
+		else
+		{
+			setupClientFramePane();
+		}
+	}
+	
+	private void setupMainFramePane()
+	{
+		int table_x = (width - table.getIcon().getIconWidth())/2 - 20;
+		int table_y = (height - table.getIcon().getIconHeight())/2 - 20;
+		table.setBounds(table_x,table_y,table.getIcon().getIconWidth(),table.getIcon().getIconHeight());
+
+		speedBar.setBounds(DiningEnvironmentConstant.FRAME_BORDER_SIZE, 20, width-DiningEnvironmentConstant.FRAME_BORDER_SIZE*2, 35);
+		speedBar.setPaintLabels(true);
+		speedBar.setPaintTicks(true);
+		speedBar.setSnapToTicks(true);
+		speedBar.setMajorTickSpacing(speedBar.getMaximum()/10);
+		speedBar.setBackground(componentColor);
+		speedBarLabel.put( new Integer( speedBar.getMinimum() ), new JLabel("slowest") );
+		speedBarLabel.put( new Integer( speedBar.getMaximum() ), new JLabel("fastest") );
+		speedBar.setLabelTable( speedBarLabel );
+		speedBar.addChangeListener(this);
+		
+		message.setBounds(DiningEnvironmentConstant.FRAME_BORDER_SIZE, DiningEnvironmentConstant.FRAME_BOTTOM_Y, DiningEnvironmentConstant.FRAME_WIDTH-50, 20);
+
+		
+		add(table);
+		add(speedBar);
+		add(message);
+	}
+	
+	private void setupClientFramePane()
+	{
+		message.setBounds(15, 20, DiningEnvironmentConstant.CLIENT_FRAME_WIDTH-30, 20);
+		
+		add(message);
+	}
+	
+	public void removeAllOp()
+	{
+		super.removeAll();
+		subscribeList.clear();
+		if ( ! isClientWindow )
+		{
+			setupMainFramePane();
+		}
+		else
+		{
+			setupClientFramePane();
+		}
+		send repaintOp();
+	}
+	
+	public void changeSize(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+	}
+	
+	public void changeTimeConstant(int tc)
+	{
+		timeConstant = tc;
+		cap void (double, int) tempCap;
+		double ratio = getSpeedRatio();
+		for ( int i = 0 ; i < subscribeList.size(); i++ )
+		{
+			tempCap = (cap void (double, int)) subscribeList.get(i);
+			send tempCap(ratio, timeConstant);
+		}
+	}
+	
+	public double getSpeedRatio()
+	{
+		return 1000.0 / speedBar.getValue();
+	}
+	
+	public void subscribe(cap void (double, int) subscription)
+	{
+		subscribeList.add(subscription);
+		double ratio = getSpeedRatio();
+		send subscription(ratio, timeConstant);
+	}
+	
+	public void addOp(JComponent comp)
+	{
+		super.add(comp);
+	}
+	
+	public void addImageOp(int x , int y , cap void (cap void (int)) imageCap, int id)
+	{
+		super.add(new IDLabel(x, y, id, theme));
+		super.add(new PhilImage(id, x, y, imageCap, theme));
+	}
+	
+	public void repaintOp()
+	{
+		super.repaint();
+	}
+	
+	public void stateChanged(ChangeEvent e)
+	{
+		cap void (double, int) tempCap;
+		if ( (JSlider)e.getSource() == speedBar )
+		{
+			double ratio = getSpeedRatio();
+			for ( int i = 0 ; i < subscribeList.size(); i++ )
+			{
+				tempCap = (cap void (double, int)) subscribeList.get(i);
+				send tempCap(ratio, timeConstant);
+			}
+			return;
+		}
+	}
+	
+	// two helper functions for transferring vm from MainFrame to other classes
+	public op vm getVm()
+	{
+		if ( MainFrame.isClientOn() )
+		{
+			return MainFrame.retrieveVm();
+		}
+		else
+		{
+			return vm.thisvm;
+		}
+	}
+	public op vm getVm(int i)
+	{
+		if ( MainFrame.isClientOn() )
+		{
+			return MainFrame.retrieveVm(i);
+		}
+		else
+		{
+			return vm.thisvm;
+		}
+	}
+	
+	public op void setTheme(int t)
+	{
+		this.theme = t;
+	}
+	
+	public op int getTheme()
+	{
+		return this.theme;
+	}
+	
+	// for setting the message
+	public op void setMessage(String s)
+	{
+		message.setText(s);
+	}
+	
+	public op void subscribe(cap void (double, int));
+	public op void removeAllOp();
+	public op void repaintOp();
+	public op void addOp(JComponent comp);
+	public op void addImageOp(int, int, cap void (cap void (int)), int);
+
+	public JLabel message = new JLabel();	
+	private static JLabel table = new JLabel(new ImageIcon("littleTable.jpg"));
+	private static JSlider speedBar = new JSlider(100, 1000);
+	private static int timeConstant = 10;
+	private static Hashtable speedBarLabel = new Hashtable();
+	
+	private int theme;
+	
+	private int width, height;
+	private Color componentColor;
+	private LinkedList subscribeList;
+	private LinkedList vmList;
+	private boolean isClientWindow;
+}

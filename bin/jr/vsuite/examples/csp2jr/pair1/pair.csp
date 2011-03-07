@@ -1,0 +1,31 @@
+/* pairing problem
+ */
+_program pair {
+  private static final int N = 5;
+  _specs {
+    node [N] { pairup(); }
+  }
+
+
+  private static final boolean t = true, f = false;
+
+  /* init for N=5 */
+  private static boolean [][] connect
+              = {
+                    {f, t, t, f, t},
+                    {t, f, f, t, f},
+                    {t, f, f, f, f},
+                    {f, t, f, f, t},
+                    {t, f, f, t, f}
+                 };
+
+  _process node (i) {
+    int p = i;
+    _do
+      _i [j = 0 _to N-1] (p==i && connect[i][j]) node[j]?pairup() { p = j;}
+      _o [j = 0 _to N-1] (p==i && connect[i][j]) node[j]!pairup() { p = j;}
+    _od
+    System.out.println(i + " paired with " + p);
+  }
+
+}

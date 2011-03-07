@@ -1,0 +1,52 @@
+/* First Come First Serve Allocator: processes readers and writers in order  *
+ * of their arrival                                                          */
+
+public class FCFSAllocator extends Allocator {
+	process allocate {
+		receive begin();		// intiate allocator
+
+		int nr = 0, nw = 0;		// variables to store active readers and writers
+   		while (true) {
+     		inni void kill() { break; }									// kill the allocator
+			[] void pause () { setPaused(true); }						// pause manager
+			[] void resume () { setPaused(false); }						// resume manager
+			[] void start_read(int id) st pause_check() {				// start a read if not paused
+       			reply;
+				nr++;
+				send activate(id);
+				// while there are still writers in the database
+				while (nr > 0) {
+					// allow readers to enter
+					inni void start_read(int id2) st pause_check() { nr++; forward activate(id2); }
+					// if a writer is up next then wait till current active readers
+					// exit the database and then allow access
+					[] void start_write(int id2) st pause_check() {
+						// wait for readers to exit
+						while (nr > 0) {
+							inni void end_read(int id3) { send removeUser(id3); }
+							nr--;
+						}
+
+						// check for pausing
+						if( pause.length() > 0 ) {
+							inni void pause () { setPaused(true); }
+							inni void resume () { setPaused(false); }
+						}
+
+						reply;
+						forward activate(id2);
+						inni void end_write(int id3) { send removeUser(id3); }
+					}
+					// accept end reads
+					[] void end_read(int id2) { nr--; send removeUser(id2); }
+				}
+			}
+			// if start write then enter writer and wait for writer to exit
+      		[] void start_write(int id) st pause_check() {
+				reply;
+				forward activate(id);
+				inni void end_write(int id2) { send removeUser(id2); }
+			}
+		}
+	}
+}

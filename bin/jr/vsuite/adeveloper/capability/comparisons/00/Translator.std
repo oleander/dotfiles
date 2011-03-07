@@ -1,0 +1,44 @@
+main.jr:34: incomparable types: cap void(int,char) and cap void(char)
+	System.out.println("test1 == localtest1: " + (test1 == localtest1));
+                                                            ^
+main.jr:35: incomparable types: cap void(int,char) and cap void(char)
+	System.out.println("test1 == localtest2: " + (test1 == localtest2));
+                                                            ^
+main.jr:49: op void myop(char) in main cannot be applied to (int,char)
+	test1 = myop;
+                ^
+main.jr:50: op void myop(char) in main cannot be applied to (int)
+	test2 = myop;
+                ^
+main.jr:51: incomparable types: cap void(int,char) and cap void(int)
+	System.out.println("test1 == test2: " + (test1 == test2));
+                                                       ^
+main.jr:52: incomparable types: cap void(int) and operation void(char)
+	System.out.println("test2 == myop: " + (test2 == myop));
+                                                      ^
+main.jr:53: incomparable types: operation void(char) and operation int(char)
+	System.out.println("myop == myop2: " + (myop == myop2));
+                                                     ^
+main.jr:69: incomparable types: cap void(int,char) and cap void(char)
+	System.out.println("test1 != localtest1: " + (test1 != localtest1));
+                                                            ^
+main.jr:70: incomparable types: cap void(int,char) and cap void(char)
+	System.out.println("test1 != localtest2: " + (test1 != localtest2));
+                                                            ^
+main.jr:84: op void myop(char) in main cannot be applied to (int,char)
+        test1 = myop;
+                ^
+main.jr:85: op void myop(char) in main cannot be applied to (int)
+        test2 = myop;
+                ^
+main.jr:86: incomparable types: cap void(int,char) and cap void(int)
+        System.out.println("test1 != test2: " + (test1 != test2));
+                                                       ^
+main.jr:87: incomparable types: cap void(int) and operation void(char)
+	System.out.println("test2 != myop: " + (test2 != myop));
+                                                      ^
+main.jr:88: incomparable types: operation void(char) and operation int(char)
+	System.out.println("myop != myop2: " + (myop != myop2));
+                                                     ^
+Not generating jrGen/main.java due to errors.
+14 errors

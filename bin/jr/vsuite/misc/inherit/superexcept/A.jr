@@ -1,0 +1,22 @@
+public class A
+{
+    public static void main(String [] args) throws Exception
+    {
+        (new B()).foo();
+    }
+
+   public op void foo()
+   {
+        System.out.println("A's foo");
+   }
+}
+
+class B extends A
+{
+   public op void foo()
+   {
+        System.out.println("B's foo");
+        super.foo();
+   }
+}
+

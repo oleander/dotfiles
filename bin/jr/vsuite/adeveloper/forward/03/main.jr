@@ -1,0 +1,32 @@
+import edu.ucdavis.jr.JR;
+
+public class main {
+
+    public static op char test1(boolean x) {
+        forward test2(x);
+	forward test3(x);
+    }
+
+    public static op char test2(boolean x) {
+	if (x)
+	  reply 'T';
+	else
+	  reply 'F';
+    }
+
+    public static op char test3(boolean);
+    public static char test3(boolean x) {
+        if (x)
+	  reply 'F';
+        else
+	  reply 'T';
+    }
+
+    public static void main(String [] args) {
+	System.out.println("true: " + test1(true));
+	System.out.println("false: " + test1(false));
+	System.out.println("true: " + test1(true));
+	System.out.println("false: " + test1(false));
+    }
+
+}

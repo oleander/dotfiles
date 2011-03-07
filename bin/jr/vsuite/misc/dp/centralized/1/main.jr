@@ -1,0 +1,34 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+
+    private static op void done();
+
+    public static void main(String [] args)
+    {
+
+        // default values, eventually read as args
+        int n = 5; // number of philosophers
+	int t = 3; // number of sessions per philosopher
+
+	// create the Servant and Philosophers
+        System.out.println("before try");
+            remote Servant s = new remote Servant(n);
+            for( int i = 0; i < n; i++ ) {
+// 2000-03-07 can't yet pass cap to constructor
+//		new remote Philosopher(s, i, t);
+        remote Philosopher p;
+
+		p = new remote Philosopher(s, i, t, done);
+		//call p.init(s);
+            }
+
+        System.out.println("main after Servant and Philosophers started up");
+	// wait for Philosophers to finish
+	    for ( int i = 1; i <= n; i++ ) {
+		receive done();
+	    }
+	    JR.exit(0);
+    }
+}

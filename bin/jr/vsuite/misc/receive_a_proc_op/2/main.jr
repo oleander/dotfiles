@@ -1,0 +1,22 @@
+import edu.ucdavis.jr.JR;
+
+public class main
+{
+
+    private static op void worker();
+
+    public static void main(String [] args)
+    {
+
+        System.out.println("before try");
+            // create first worker instance and feed to it numbers.
+	    worker();
+
+	    receive worker();
+	    JR.exit(0);  // Where n is the exit value currently ignored
+    }
+
+    private static void worker() {
+       System.err.println("in worker...");
+    }
+}

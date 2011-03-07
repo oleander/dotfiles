@@ -1,0 +1,2 @@
+0 jrc *.jr
+0 rm -rf jrGen *.out

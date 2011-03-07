@@ -1,0 +1,9 @@
+public class fun{
+    public fun (String mach) {
+	System.out.println("fun constructor "+mach);
+    }
+    public op double f(double x) {
+	System.out.println("f "+x);
+	return x*x;
+    }
+}

@@ -1,0 +1,71 @@
+// dynamic arrays of ops
+
+public class r
+{
+  final int d1 = 3;
+  final int d2 = 2;
+
+  cap void () [][] s;
+  cap void (int) [] o;
+  cap void (int) [] p;
+
+  public r()
+  {
+    s = new cap void () [d1][d2];
+    for (int i = 0; i < d1; i++)
+	for (int j = 0; j < d2; j++)
+	    s[i][j] = new op void();
+    o = new cap void (int) [d1];
+    for (int i = 0; i < d1; i++)
+	o[i] = new op void(int);
+    p = new cap void (int) [d2];
+    for (int i = 0; i < d2; i++)
+	p[i] = new op void(int);
+
+    for (int i = 0; i < d1; i++)
+    {
+	for (int j = 0; j < d2; j++)
+	{
+	    send s[i][j]();
+	    send o[i] (100 + 10 * (i + 1) + (j + 1));
+	    send p[j] (200 + 10 * (i + 1) + (j + 1));
+	}
+    }
+
+    for (int i = 0; i < d1; i++)
+	System.out.print(" " + o[i].length());
+    System.out.println("\t(o)");
+    for (int j = 0; j < d2; j++)
+	System.out.print(" " + p[j].length());
+    System.out.println("\t(p)");
+
+    for (int i = 0; i < d1; i++)
+    {
+	for (int j = 0; j < d2; j++)
+	{
+	    System.out.print(" " + s[i][j].length());
+	    receive s[i][j]();
+	    System.out.print("/" + s[i][j].length());
+	}
+    }
+    System.out.println("\t (s)");
+
+    for (int i = 0; i < d1; i++)
+    {
+	for (int j = 0; j < d2; j++)
+	{
+	    int n;
+	    receive o[i](n);
+	    System.out.print(" " + n);
+	    inni void p[j](int x)
+	    {
+		System.out.print(" " + x);
+	    }
+	   
+	}
+    }
+    System.out.println("\t(o&p)");
+
+    System.out.println("done");
+  }
+}

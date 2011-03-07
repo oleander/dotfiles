@@ -1,0 +1,13 @@
+0 csp2jr -ti pair.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun pair > ti.out 2>&1
+0 ndscmp ti.out ti.std*
+0 rm -rf jrGen core *.out csp_*.jr pair.jr
+
+0 csp2jr -te pair.csp
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun pair > te.out 2>&1
+0 ndscmp te.out te.std*
+0 rm -rf jrGen core *.out csp_*.jr pair.jr

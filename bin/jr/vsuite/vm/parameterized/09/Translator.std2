@@ -1,0 +1,8 @@
+MyVm.jr:1: Parameterized vm class must be declared public.
+class MyVm extends vm {
+^
+MyVm2.jr:1: Parameterized vm class must be declared public.
+class MyVm2 extends MyVm
+^
+Not generating jrGen/MyVm2.java due to errors.
+2 errors

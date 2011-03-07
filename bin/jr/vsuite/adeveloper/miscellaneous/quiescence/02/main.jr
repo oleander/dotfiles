@@ -1,0 +1,29 @@
+import edu.ucdavis.jr.JR;
+
+public class main  {
+
+    public static int x;
+
+    public static void main(String [] args) {
+	System.out.println("Welcome to the wonderful world of JR!");
+
+	try  {
+	  JR.registerQuiescenceAction(done);
+          JR.registerQuiescenceAction(x);
+	  JR.registerQuiescenceAction(done2);
+	} catch (edu.ucdavis.jr.QuiescenceRegistrationException e) {
+	  e.printStackTrace();
+	}
+
+    }
+
+    private static op void done(int x) {
+	System.out.println("Bye");
+    }
+
+    private static op int done2() {
+	System.out.println("Bye");
+	return 1;
+    }
+
+}

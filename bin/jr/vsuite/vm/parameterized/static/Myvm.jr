@@ -1,0 +1,27 @@
+public class Myvm extends vm	{
+	public static int vm_id;	// test primitive type
+	private String vm_name;	// test string
+	private MyObj vm_obj;	// test arbitrary object
+	private cap void (int) vm_cap;	// test capability and operation
+
+	public Myvm(int vm_id, String vm_name, MyObj vm_obj,
+		cap void (int) vm_cap)	{
+		this.vm_id = vm_id;
+		this.vm_name = vm_name;
+		this.vm_obj = vm_obj;
+		this.vm_cap = vm_cap;
+	}
+
+	public op String GetName()	{
+		return vm_name;
+	}
+
+	public op int GetObj()	{
+		return vm_obj.GetObjID();
+	}
+
+	public op cap void (int) GetCap()	{
+		return vm_cap;
+	}
+
+}

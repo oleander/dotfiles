@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class RA<E> {
+
+  private Queue<cap void(E)> pending = new LinkedList<cap void(E)>();
+
+  private process server {
+    E unit = null;
+
+    cap void (E) r = pending.remove();
+    call r(unit);
+    String s = "howdy";
+    String t = "wazz";
+    call pending.remove()(unit);
+    send pending.remove()(unit);
+    call ((cap void (E))pending.remove())(unit);
+    send ((cap void (E))pending.remove())(unit);
+
+  }
+
+  public static void main(String[] args) {
+  }
+}

@@ -1,0 +1,19 @@
+# just see that translates in all disciplines
+# and runs in one.
+
+0 m2jr -sc no_proc.m
+0 jrc *.jr
+
+0 m2jr -sw no_proc.m
+0 jrc *.jr
+0 javac jrGen/*.java
+0 jrrun test > sw.out 2>&1
+0 scmp all.std sw.out
+
+0 m2jr -su no_proc.m
+0 jrc *.jr
+
+0 m2jr -sx no_proc.m
+0 jrc *.jr
+
+0 rm -rf jrGen core *.out no_proc.jr m_condvar.jr

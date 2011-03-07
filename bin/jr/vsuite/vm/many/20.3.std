@@ -1,0 +1,59 @@
+(we are vm 1)
+creating vm 2
+		hello from 2
+creating vm 3
+		hello from 3
+creating vm 4
+		hello from 4
+				killing 2
+creating vm 5
+		hello from 5
+				killing 3
+creating vm 6
+		hello from 6
+				killing 4
+creating vm 7
+		hello from 7
+				killing 5
+creating vm 8
+		hello from 8
+				killing 6
+creating vm 9
+		hello from 9
+				killing 7
+creating vm 10
+		hello from 10
+				killing 8
+creating vm 11
+		hello from 11
+				killing 9
+creating vm 12
+		hello from 12
+				killing 10
+creating vm 13
+		hello from 13
+				killing 11
+creating vm 14
+		hello from 14
+				killing 12
+creating vm 15
+		hello from 15
+				killing 13
+creating vm 16
+		hello from 16
+				killing 14
+creating vm 17
+		hello from 17
+				killing 15
+creating vm 18
+		hello from 18
+				killing 16
+creating vm 19
+		hello from 19
+				killing 17
+creating vm 20
+		hello from 20
+				killing 18
+				killing 19
+				killing 20
+done
