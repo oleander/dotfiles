@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!ruby
 
 begin
   require 'hirb' # sudo gem install cldwalker-hirb --source http://gems.github.com

@@ -1,0 +1,2 @@
+#!/usr/bin/env ruby -w
+puts $1 if `rvm-prompt` =~ /(\d{1}\.\d{1}.\d{1})/

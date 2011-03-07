@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!ruby
 
 # Make gems available
 require 'rubygems'
