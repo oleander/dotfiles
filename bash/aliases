@@ -27,7 +27,7 @@ alias v='ruby -v'
 
 # Laddar om alla inställningar
 alias s='source ~/.bash_profile'
-alias e='mate ~/.dotfiles/bash/aliases'
+alias e='mate ~/.dotfiles/'
 
 # SSH-inloggningar
 alias chalmers="ssh -Y oleander@remote1.student.chalmers.se"
