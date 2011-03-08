@@ -4,7 +4,7 @@
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
-# Returns time since last commit. 
+# Prints time since last commit and the amount of untracked files. 
 # Only if the project contains untracked files.
 
 # The ago_in_words method is brought to you by:
@@ -36,14 +36,16 @@ def ago_in_words(time)
     "#{count} h"
   elsif time_between <= a_week
     count = time_between / a_between
-    "#{count} day"
+    unit = "day#{'s' unless count == 1}"
+    "#{count} #{unit}"
   elsif time_between <= a_month
     count = time_between / a_week
-    "#{count} week"
+    unit = "week#{'s' unless count == 1}"
+    "#{count} #{unit}"
   elsif time_between <= a_year
     count = time_between / a_month
     "#{count} month"
   end
 end
 
-puts "[" + ago_in_words(Time.parse(`git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`)) + "]" if not `vcprompt`.empty? and not `git status --porcelain`.empty?
+puts "[UT " + `git status --porcelain`.split("\n").length.to_s + " : AH " + `git status --ignore-submodules -s -b`.match(/ahead (\d+)/).to_a[1].to_s + " : " + ago_in_words(Time.parse(`git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`)) + "]" if not `find . -d -name ".git" -maxdepth 1 2> /dev/null`.empty?
