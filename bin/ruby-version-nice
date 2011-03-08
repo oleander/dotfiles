@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby -w
 
+# Ruby Version Nice, version 0.1, 2011-03-08
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
 # Returns the current version of Ruby in a readable format
 # Example => [1.9.2]
-# Prints the current version if there is any ruby files in the current directory or one lever deeper.
+# Prints the current version if there is any ruby files in the current directory or one level down.
 
 # Example 1 , will be printed
 # -- ruby.rb
