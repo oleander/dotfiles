@@ -1,44 +1,50 @@
 . ~/.zsh/aliases
 
+# Git related stuff
 alias gp='git push'
 alias gph='git push heroku master'
 alias gs='git status --ignore-submodules -s -b'
-alias cr='cd /Users/linus/Documents/Projekt/'
-alias r='cr && cd Rubyfy'
 alias gph='git push heroku master'
-alias l='heroku logs | tail -n 100 | mate'
-alias start='rvmsudo passenger start -p 80 --user=linus'
-alias deploy='rake deploy:origin'
-alias b='bundle install'
-alias m='cr && cd Movify'
-alias k='kill -9'
 alias gc='git checkout'
 alias gcp='git cherry-pick'
 alias gd='git diff --stat'
 alias gb='git branch'
+alias pull='git pull origin master'
+
+# Ruby related stuff
+alias v='ruby -v'                
+alias b='bundle'
+alias deploy='rake deploy:origin'
+alias l='heroku logs | tail -n 100 | mate'
+alias start='rvmsudo passenger start -p 80 --user=linus'
+
+# Other
+alias k='kill -9'
 alias ee='mvim'
 alias cs='nohup coffee -wco public/javascripts/ app/coffeescripts/*.coffee | noty > /dev/null & echo $! > tmp/pids/coffee.pid'
 alias kcs='kill -9 `cat tmp/pids/coffee.pid` && echo "CoffeeScript pid `cat tmp/pids/coffee.pid` dödad"'
 alias flush='dscacheutil -flushcache'
-alias pull='git pull origin master'
-alias m='pp Movify'
-alias ua='pp UndertexterApp'
-alias v='ruby -v'                   
 
-# Laddar om alla inställningar
+# Reloads the all settings
 alias s='source ~/.bash_profile'
-alias e='mate ~/.dotfiles/'
 
-# SSH-inloggningar
+# Edit specific files
+alias ei='mate .gitignore'
+alias e='mate ~/.dotfiles'
+
+# Jumping to a dir
+alias dot='cd ~/.dotfiles'
+alias cr='cd /Users/linus/Documents/Projekt/'
+alias r='cr && cd Rubyfy'
+alias m='cr && cd Movify'
+
+# SSH logins
+# Should be moved to a .ssh/config file
 alias chalmers="ssh -Y oleander@remote1.student.chalmers.se"
 alias macmini="ssh linus@banan.olf.sgsnet.se"
 
-# Uppdaterar databasen för {local}
+# Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
-
-function pp() {
-  cr && cd $*
-}
 
 function gg() {
   git add . && git commit -v -a -m "$*"
