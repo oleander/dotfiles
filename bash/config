@@ -47,4 +47,4 @@ BWHITE='\e[47m'
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-export PS1="\n\w \[$YELLOW\]\$(vcprompt)\[$GREEN\]\$(ruby-version-nice)\[$NO_COLOR\] \n→ "
+export PS1="\n\w \[$YELLOW\]\$(vcprompt)\[$GREEN\]\$(ruby-version-nice)\[$NO_COLOR\]\$(git_time_since) \n→ "
