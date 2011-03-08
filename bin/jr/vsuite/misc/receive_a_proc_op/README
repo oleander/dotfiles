@@ -1,7 +1,0 @@
-1 -- shouldn't compile
-
-2 -- shouldn't compile
-
-3 -- should compile, but get runtime exception
-
-4 -- should compile and run

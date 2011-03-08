@@ -1,6 +1,0 @@
-ResourceAllocatorA.jr:10: WARNING: [unchecked] unchecked cast
-found   : java.lang.Object[]
-required: E[]
-      E[] ret = (E[])new Object[n];
-                     ^
-1 warning

@@ -1,6 +1,0 @@
-public class A {
-
-    public static cap void() otherCap1 = new sem;
-    public static cap void() otherCap2 = new sem(1);
-
-}

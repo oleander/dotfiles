@@ -1,3 +1,0 @@
-_resource mutex {
-   public boolean xfree = true;
-}

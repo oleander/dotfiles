@@ -1,5 +1,0 @@
-main.jr:20: Invalid return type specified.  Cannot implicitly cast double to int.
-	inni double localOp(int x, char y) {
-             ^
-Not generating jrGen/main.java due to errors.
-1 error

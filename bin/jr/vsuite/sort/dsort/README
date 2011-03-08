@@ -1,3 +1,0 @@
-Note: running dsort on input5 can take a long time.
-(Also seems to hang now and then with IBM's Java.)
-Good test though because lots of processes and messages.

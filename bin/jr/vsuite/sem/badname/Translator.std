@@ -1,5 +1,0 @@
-initsem.jr:7: <identifier> expected
-    private static sem continue;
-                       ^
-Not generating any jrGen files due to errors.
-1 error

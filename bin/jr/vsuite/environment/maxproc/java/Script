@@ -1,3 +1,0 @@
-0 jgo 40 > No_input.out
-0 scmp No_input.std No_input.out
-0 rm -rf core *.out *.class

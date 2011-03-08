@@ -1,7 +1,0 @@
-Elevator.jr:19: cannot find symbol
-symbol  : method foyer()
-location: class Elevator
-	    forward foyer();
-                    ^
-Not generating jrGen/Elevator.java due to errors.
-1 error

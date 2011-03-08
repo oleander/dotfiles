@@ -1,5 +1,0 @@
-Elevator.jr:18: array required, but cap int() found
-	inni int foyer[0][0]() {
-                 ^
-Not generating jrGen/Elevator.java due to errors.
-1 error

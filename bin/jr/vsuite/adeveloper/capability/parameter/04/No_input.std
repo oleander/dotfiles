@@ -1,7 +1,0 @@
-memberOp length: 6
-memberCap length: 2
-localparam length: 3
-localCap length: 3
-A.otherparam length: 4
-A.otherCap length: 4
-Bye

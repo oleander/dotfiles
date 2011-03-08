@@ -1,8 +1,0 @@
-jrvm exception: op initialized with a negative value
-edu.ucdavis.jr.jrRuntimeError: op initialized with a negative value
-	at initsem.JRinit(initsem.java:454)
-	at initsem.<init>(initsem.java:9)
-	at main.main(main.java:11)
-	at java.lang.reflect.Method.invoke(Native Method)
-	at edu.ucdavis.jr.jrx.jrvm.startmain(jrvm.java:243)
-	at edu.ucdavis.jr.jrx.jrvm.main(jrvm.java:295)

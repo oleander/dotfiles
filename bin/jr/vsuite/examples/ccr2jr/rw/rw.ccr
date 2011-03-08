@@ -1,3 +1,0 @@
-_resource rw {
-   public int nr = 0, nw = 0;
-}

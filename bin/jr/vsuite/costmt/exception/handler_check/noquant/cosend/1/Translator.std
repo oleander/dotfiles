@@ -1,8 +1,0 @@
-main.jr:9: Exception java.io.EOFException not handled by an exception handler.  An exception handler must be provided to handle the exceptions thrown by an operation invoked via a 'send' statement.
-	    co send GO(1) {System.out.println("ppc1");}
-               ^
-main.jr:10: Exception java.io.EOFException not handled by an exception handler.  An exception handler must be provided to handle the exceptions thrown by an operation invoked via a 'send' statement.
-	    [] send GO(2) {System.out.println("ppc2");}
-               ^
-Not generating jrGen/main.java due to errors.
-2 errors

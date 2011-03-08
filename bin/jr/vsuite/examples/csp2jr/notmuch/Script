@@ -1,7 +1,0 @@
-0 csp2jr -ti a.csp
-1 jrc *.jr
-0 rm -rf jrGen core *.out csp_*.jr a.jr
-
-0 csp2jr -te a.csp
-1 jrc *.jr
-0 rm -rf jrGen core *.out csp_*.jr a.jr

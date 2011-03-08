@@ -1,6 +1,0 @@
-public class A {
-
-    public static op void otherop(int);
-    public static op void otherop(long);
-
-}

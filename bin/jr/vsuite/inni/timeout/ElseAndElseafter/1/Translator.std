@@ -1,5 +1,0 @@
-Main.jr:22: Additional in arms are not allowed after the else arm.
-    [] elseafter 123 { 
-    ^
-Not generating any jrGen files due to errors.
-1 error

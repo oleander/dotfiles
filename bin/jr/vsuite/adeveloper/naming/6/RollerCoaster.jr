@@ -1,8 +1,0 @@
-public class RollerCoaster{
-    op boolean isOpen();
-	
-    public static void main(String[] args){
-	boolean isOpen = true;
-	System.out.println(isOpen);
-    }
-}

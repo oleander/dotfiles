@@ -1,5 +1,0 @@
-main.jr:32: Exception java.lang.Exception not declared in the throws clause of this operation.  As such, the exception cannot be handled by the originally installed exception handler.
-	    forward g(x+10) handler h;
-                     ^
-Not generating jrGen/main.java due to errors.
-1 error

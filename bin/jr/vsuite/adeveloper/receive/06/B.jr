@@ -1,8 +1,0 @@
-public class B extends A {
-    public B(int me) {
-	super(me);
-    }
-    public String toString() {
-	return "B"+super.toString();
-    }
-}

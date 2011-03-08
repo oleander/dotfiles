@@ -1,6 +1,0 @@
-2008-03-14 previously had been always changing type of index variable
-	   in foreach to Object (for type erasure); that doesn't
-	   always work, e.g, in "boolean" context (as in test); now
-	   only change to Object for non-primitives
-
-2010-04-02 and need to handle capabilities specially

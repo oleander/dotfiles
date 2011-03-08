@@ -1,2 +1,0 @@
-1 ccr2jr buffer.ccr f.ccr r.ccr global.ccr a.ccr
-0 rm -rf jrGen core *.out *.jr

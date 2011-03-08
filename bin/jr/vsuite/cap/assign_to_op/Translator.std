@@ -1,7 +1,0 @@
-simple.jr:9: unexpected type
-required: variable
-found   : operation
-      f = g;   // f is an operation; cannot assign to it
-      ^
-Not generating jrGen/simple.java due to errors.
-1 error

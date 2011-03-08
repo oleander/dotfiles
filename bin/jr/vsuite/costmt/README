@@ -1,8 +1,0 @@
-2006-08-02 note that some of these tests depend on our implementation
-           of co stmt:
-
-    -- that replies to co invocations (from same VM) get queued up for
-       handling by ppc in order that they're generated (and are indeed
-       handled in that order).
-
-    -- that co-send PPCs are executed in lexical order (top->bottom)

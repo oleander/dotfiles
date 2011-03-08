@@ -1,9 +1,0 @@
-// 2000-12-29 this test once caused problems for jrc 
-
-import edu.ucdavis.jr.JR;
-
-public class initsem {
-
-    private static sem continue;
-
-}

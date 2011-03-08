@@ -1,6 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun amain > No_input.out 2>&1
-# purposely have WRONG No_input.std, just to make sure scmp works...
-1 scmp No_input.std No_input.out
-0 rm -rf jrGen core *.out

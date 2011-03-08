@@ -1,7 +1,0 @@
-0 jr main
-0 rm -rf jrGen
-0 jrt > jrt1.out 2>&1
-0 cmp jrt1.std jrt1.out
-0 jrt main > jrt2.out 2>&1
-0 cmp jrt2.std jrt2.out
-0 rm -rf jrGen *.out

@@ -1,8 +1,0 @@
-public class Main{
-   static String [] args;
-   public static void main(String[] args) {
-      Main.args = args;
-      new wondrous();
-	edu.ucdavis.jr.JR.exit(0);
-      }
-   }

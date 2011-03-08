@@ -1,9 +1,0 @@
-public class A {
-    int id;
-    public A(int y) {
-	id = y;
-    }
-    public String toString() {
-	return "A "+id;
-    }
-}

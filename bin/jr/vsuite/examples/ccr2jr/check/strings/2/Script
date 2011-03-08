@@ -1,3 +1,0 @@
-1 ccr2jr a.ccr
-0 cmp CCR.std CCR.out
-0 rm -rf jrGen core *.out *.jr

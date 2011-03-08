@@ -1,4 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 run GenericCap
-0 rm -rf jrGen core *.out

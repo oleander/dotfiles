@@ -1,9 +1,0 @@
-public class A {
-    private int me;
-    public A(int me) {
-	this.me = me;
-    }
-    public String toString() {
-	return ""+me;
-    }
-}

@@ -1,6 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun main > No_input.out 2>&1
-0 grep -c "votes" No_input.out > No_inputc.out
-0 cmp No_inputc.std No_inputc.out
-0 rm -rf jrGen core *.out

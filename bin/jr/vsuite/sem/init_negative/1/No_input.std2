@@ -1,6 +1,0 @@
-Exception in thread "main" edu.ucdavis.jr.jrRuntimeError: op initialized with a negative value
-	at initsem.<clinit>(initsem.java:40)
-	at java.lang.Class.forName0(Native Method)
-	at java.lang.Class.forName(Class.java:195)
-	at edu.ucdavis.jr.jrx.jrvm.startmain(jrvm.java:227)
-	at edu.ucdavis.jr.jrx.jrvm.main(jrvm.java:295)

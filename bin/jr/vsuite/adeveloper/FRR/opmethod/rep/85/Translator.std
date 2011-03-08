@@ -1,7 +1,0 @@
-Elevator.jr:10: incompatible types
-found   : A
-required: B
-	reply new A(xx);
-              ^
-Not generating jrGen/Elevator.java due to errors.
-1 error

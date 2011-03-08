@@ -1,9 +1,0 @@
-public class MyHandler2 extends MyHandler implements edu.ucdavis.jr.Handler	{
-
-	public handler void handleEx(java.io.EOFException e)
-	{
-		System.out.println("Handler 2 Servicing");
-	}
-
-}
-

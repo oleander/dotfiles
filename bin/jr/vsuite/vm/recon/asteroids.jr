@@ -1,6 +1,0 @@
-public class asteroids {
-    public static void main(String args[]) {
-        remote SpaceRegion master = 
-            new remote SpaceRegion("Asteroids",args.length,null);
-    }
-}

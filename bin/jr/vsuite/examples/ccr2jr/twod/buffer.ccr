@@ -1,4 +1,0 @@
-_resource buffer {
-   public int slot = 0;
-   public int full = 0;
-}

@@ -1,4 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-12 jrrun main >/dev/null 2>&1
-0 rm -rf jrGen core *.out

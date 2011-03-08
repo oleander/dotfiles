@@ -1,3 +1,0 @@
-csp2jr: g.csp, line 8:     char c = 'a;
-csp2jr: near: ";"
-csp2jr: unterminated char literal

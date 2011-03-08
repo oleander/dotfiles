@@ -1,6 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 run main input1
-0 run main input2
-0 run main input3
-0 rm -rf jrGen core *.out

@@ -1,5 +1,0 @@
-Main.jr:7: J is abstract; cannot be instantiated
-    J j1 = new J();  // make sure this fails
-           ^
-Not generating jrGen/Main.java due to errors.
-1 error

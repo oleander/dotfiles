@@ -1,5 +1,0 @@
-test == null? true
-test == noop? false
-in mycap
-test == null? false
-test == noop? false

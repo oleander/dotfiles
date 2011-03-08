@@ -1,7 +1,0 @@
-Main.jr:7: cannot find symbol
-symbol  : class Elevator
-location: class Main
-	remote Elevator v;
-               ^
-Not generating jrGen/Main.java due to errors.
-1 error

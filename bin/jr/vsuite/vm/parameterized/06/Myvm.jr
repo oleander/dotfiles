@@ -1,9 +1,0 @@
-public class Myvm extends vm	{
-	public int id;
-	public static int hoho = 98;
-
-	public Myvm(int id)	{
-		this.id = id;
-	}
-
-}

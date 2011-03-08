@@ -1,9 +1,0 @@
-public class A {
-    remote B myB;
-    int myint;  String mystr;
-    public A(remote B myB, int myint, String mystr) {
-      this.myB = myB;  this.myint = myint;  this.mystr = mystr;
-        call myB.Bop(myint, mystr);                        /**/
-      System.out.println("done A "+myint);
-    }
-}

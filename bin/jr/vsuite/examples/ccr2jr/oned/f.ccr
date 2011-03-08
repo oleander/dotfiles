@@ -1,5 +1,0 @@
-_resource f {
-  public int front = 0;
-  public int turn = 1;
-}
-

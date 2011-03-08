@@ -1,8 +1,0 @@
-1 ccr2jr buffer.ccr a.ccr
-#0 grep 'slot.*outside region' CCR.out >/dev/null
-0 grep "slot" CCR.out >/dev/null
-0 grep "outside region" CCR.out >/dev/null
-#0 grep 'full.*outside region' CCR.out >/dev/null
-0 grep "full" CCR.out >/dev/null
-0 grep "outside region" CCR.out >/dev/null
-0 rm -rf jrGen core *.out *.jr

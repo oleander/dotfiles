@@ -1,7 +1,0 @@
-main.jr:20: WARNING: Receive from operation with non-void (boolean) return type.
-	receive mycap2(x, y);
-        ^
-main.jr:25: WARNING: Receive from operation with non-void (boolean) return type.
-	receive A.otherCap(x, y);
-        ^
-2 warnings

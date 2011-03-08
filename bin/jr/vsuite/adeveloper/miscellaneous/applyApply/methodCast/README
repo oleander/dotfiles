@@ -1,6 +1,0 @@
-2007-09-21 bunch of bugs with generic parameters that caused
-   the translator to
-
-   generate bad code
-      (not generating cast for normal method invocation when it
-      returns Cap or Op)

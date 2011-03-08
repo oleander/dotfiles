@@ -1,4 +1,0 @@
-import edu.ucdavis.jr.JR;
-
-_resource mutex {
-   public boolean xfree = true;

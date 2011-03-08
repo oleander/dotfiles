@@ -1,9 +1,0 @@
-#! /bin/csh -f
-# see comments in delete_jr_rmic
-
-# some problem if try < $1 > $1
-# or cat $1| ...
-# or other variants
-/bin/mv $1 ztmp
-~/pkg/jr/jrv/delete_jr_rmic < ztmp > $1
-/bin/rm ztmp

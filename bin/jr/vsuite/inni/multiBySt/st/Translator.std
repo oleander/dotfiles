@@ -1,8 +1,0 @@
-b.jr:41: illegal start of expression
-         inni void q(float x) st x>0.0 by x st x>0.0 {
-                                            ^
-b.jr:46: ';' expected
-        
-^
-Not generating any jrGen files due to errors.
-2 errors

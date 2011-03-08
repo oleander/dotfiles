@@ -1,8 +1,0 @@
-0 jgot > jgot1.out 2>&1
-0 cmp jgot1.std jgot1.out
-0 jgot mm > jgot2.out 2>&1
-0 cmp jgot2.std jgot2.out
-# now just run it
-0 jgox "a b  c" Z "d  e f" > No_input.out 2>&1
-0 cmp No_input.std No_input.out
-0 rm -rf *.class core *.out

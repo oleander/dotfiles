@@ -1,7 +1,0 @@
-Elevator.jr:19: incompatible types
-found   : java.lang.String
-required: int
-	    return "abc";
-                   ^
-Not generating jrGen/Elevator.java due to errors.
-1 error

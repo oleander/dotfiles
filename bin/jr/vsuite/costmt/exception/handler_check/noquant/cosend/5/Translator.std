@@ -1,5 +1,0 @@
-main.jr:12: Exception java.io.EOFException not handled by the 'send' statement's exception handler.  The exception handler must provide a 'handler' method for each exception thrown by the operation.
-	       send GO(1) handler mh : {System.out.println("ppc1");}
-                                  ^
-Not generating jrGen/main.java due to errors.
-1 error

@@ -1,5 +1,0 @@
-main.jr:19: Invalid throws specified.  Exception MyE not specified in throws clause of matched operation op void f(int).
-	inni void f(int x) throws MyE {
-             ^
-Not generating jrGen/main.java due to errors.
-1 error

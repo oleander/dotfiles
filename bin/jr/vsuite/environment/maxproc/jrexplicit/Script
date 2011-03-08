@@ -1,4 +1,0 @@
-0 jrt
-0 jrrun -explicit good 40 > No_input.out
-0 scmp No_input.std No_input.out
-0 rm -rf jrGen core *.out

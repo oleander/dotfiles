@@ -1,4 +1,0 @@
-null == null? true
-noop == noop? true
-null != null? false
-noop != noop? false

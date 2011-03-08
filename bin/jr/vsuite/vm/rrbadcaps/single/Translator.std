@@ -1,5 +1,0 @@
-Test.jr:8: Attempt to reference single in A as an instance variable.
-         one = a.single;
-                ^
-Not generating jrGen/Test.java due to errors.
-1 error

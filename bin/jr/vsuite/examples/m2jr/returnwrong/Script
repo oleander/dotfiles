@@ -1,9 +1,0 @@
-1 m2jr -sc no_cv.m
-
-1 m2jr -sw no_cv.m
-
-1 m2jr -su no_cv.m
-
-1 m2jr -sx no_cv.m
-
-0 rm -rf jrGen core *.out no_cv.jr m_condvar.jr

@@ -1,5 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun semtest 3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3 8 4 6 2 6 4 3 3 >No_input.out 2>&1
-0 cmp No_input.std No_input.out
-0 rm -rf jrGen core *.out

@@ -1,5 +1,0 @@
-main.jr:21: Invalid throws specified.  Exception java.lang.Exception not specified in throws clause of matched operation op java.lang.String GO(int).
-	inni String GO(int x)	{
-             ^
-Not generating jrGen/main.java due to errors.
-1 error

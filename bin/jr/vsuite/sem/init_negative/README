@@ -1,9 +1,0 @@
-checks
-
-1 static sem s = -1
-
-2 auto   sem s = -1
-
-3 local  sem s = -1
-
-4 array  new sem(-1)

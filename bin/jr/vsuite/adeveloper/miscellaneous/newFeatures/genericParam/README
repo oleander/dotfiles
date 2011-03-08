@@ -1,5 +1,0 @@
-2007-09-20 bunch of bugs with generic parameters that caused
-   the translator to
-
-   generate bad code
-      (using generic E in declaring variables or cast, instead of erasure)

@@ -1,9 +1,0 @@
-public class Foo {
-
-    public Foo() {}
-
-    public op void go(int n) {
-	System.out.println("go received: " + n);
-    }
-
-}

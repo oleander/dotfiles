@@ -1,6 +1,0 @@
-# 2005-12-02
-# this test didn't get detected until javac
-# (in JR 1.000061 it was detected properly and now it is again)
-1 jrc *.jr
-0 cmp Translator.out Translator.std
-0 rm -rf jrGen *.out

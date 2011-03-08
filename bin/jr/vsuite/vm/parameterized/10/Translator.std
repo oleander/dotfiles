@@ -1,5 +1,0 @@
-Main.jr:10: Remote object class Foo must be declared public.
-	remote Foo myFoo = new remote Foo() on new MyVm("hi");
-                           ^
-Not generating jrGen/Main.java due to errors.
-1 error

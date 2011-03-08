@@ -1,7 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun Main 1000 2000 > 0.out 2>&1
-0 cmp 0.std 0.out
-0 jrrun Main 1000 200  > 1.out 2>&1
-0 cmp 1.std 1.out
-0 rm -fr jrGen core *.out*

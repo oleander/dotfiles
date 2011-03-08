@@ -1,9 +1,0 @@
-public class Worker {
-
-    public op void test();
-
-    public cap void() my_cap;
-
-    public int x;
-
-}

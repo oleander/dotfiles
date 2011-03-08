@@ -1,3 +1,0 @@
-# can't run GUI program, so just make sure it compiles
-0 jrgot > JRGOT.out 2>&1
-0 rm -rf jrGen core *.out

@@ -1,6 +1,0 @@
-the examples in all directories except for check
-are intended to demonstrate typical and legal uses of ccr2jr.
-(A few do test for errors, though.)
-
-those in check test various features of ccr2jr, such as its semantic
-checking, and are not necessarily legal ccr2jr programs.

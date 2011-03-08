@@ -1,9 +1,0 @@
-public class GenericsCapMain {
-    public static void main(String [] args) {
-        MyShape<String> sq = new MyShape<String>("square");
-	int z = 3;
-	cap String () c;
-	c = sq.get;
-	System.out.println(c());
-    }
-}

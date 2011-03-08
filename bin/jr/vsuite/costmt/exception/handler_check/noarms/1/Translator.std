@@ -1,5 +1,0 @@
-main.jr:7: A 'cocall' statement may only be invoked on an operation or operation capability.  This method expression does not correspond to either.
-	System.out.println("after co");
-        ^
-Not generating jrGen/main.java due to errors.
-1 error

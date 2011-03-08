@@ -1,8 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun Main > No_input.out 2>&1
-# make sure that get Object's output, but not details including reference
-0 grep "ucdavis" No_input.out >/dev/null
-0 grep -v "ucdavis" No_input.out > No_inputg.out
-0 cmp No_inputg.out No_input.std
-0 rm -rf jrGen *.out

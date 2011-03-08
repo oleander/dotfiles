@@ -1,6 +1,0 @@
-import edu.ucdavis.jr.JR;
-import java.io.*;
-
-public class child extends base  {
-
-}

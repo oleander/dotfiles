@@ -1,8 +1,0 @@
-Foo.jr:10: Variable id defined in class Myvm is not accessible through a virtual machine reference.
-		System.out.println("vm id is: " + ((Myvm)(vm.thisvm)).id);
-                                                  ^
-Foo.jr:11: Variable hoho defined in class Myvm is not accessible through a virtual machine reference.
-		System.out.println("hoho is: " + ((Myvm)(vm.thisvm)).hoho);
-                                                 ^
-Not generating jrGen/Foo.java due to errors.
-2 errors

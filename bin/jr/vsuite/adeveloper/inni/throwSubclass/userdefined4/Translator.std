@@ -1,5 +1,0 @@
-main.jr:22: unreported exception java.lang.Exception; must be caught or declared to be thrown
-	    if (x==4) throw new Exception(); // bad
-                      ^
-Not generating jrGen/main.java due to errors.
-1 error

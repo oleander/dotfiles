@@ -1,5 +1,0 @@
-RollerCoaster.jr:5: op boolean isOpen() is already defined in main(java.lang.String[])
-	boolean isOpen = true;
-                ^
-Not generating jrGen/RollerCoaster.java due to errors.
-1 error

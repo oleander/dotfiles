@@ -1,7 +1,0 @@
-jrvm exception: null
-java.lang.NullPointerException
-	at Bug1.main(Bug1.java:31)
-	at edu.ucdavis.jr.jrx.jrvm.startmain(jrvm.java:325)
-	at edu.ucdavis.jr.jrx.jrvm.main(jrvm.java:429)
-	at edu.ucdavis.jr.jrx.jrvm_wrap.startmain(jrvm_wrap.java:67)
-	at edu.ucdavis.jr.jrx.jrvm_wrap.main(jrvm_wrap.java:124)

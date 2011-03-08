@@ -1,8 +1,0 @@
-Main.jr:17: illegal start of type
-    inni elseafter 123 { System.out.println("in elseafter"); }
-         ^
-Main.jr:18: <identifier> expected
-  }
-  ^
-Not generating any jrGen files due to errors.
-2 errors

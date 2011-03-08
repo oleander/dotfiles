@@ -1,6 +1,0 @@
-// make this a .ccr file so Script doesn't remove it!
-public class global {
-  public static final int NN = 3; /* size of buffer */
-  public static final int ND = 4; /* number of depositers */
-  public static final int NF = 4; /* number of fetchers */
-}

@@ -1,5 +1,0 @@
-main.jr:4: class mainbad is public, should be declared in a file named "mainbad.java or mainbad.jr".
-public class mainbad {
-       ^
-Not generating jrGen/mainbad.java due to errors.
-1 error

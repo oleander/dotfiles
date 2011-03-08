@@ -1,9 +1,0 @@
-//  input from capability, single arm, local VM, no arrays
-
-public class g
-{
-   public static cap void (int) gcap;
-   static {
-	    gcap = new op void(int);
-   }
-}

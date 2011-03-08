@@ -1,7 +1,0 @@
-fun1(3) = 3
-fun1(3) = 3
-fun2(3) = 9
-fun2(3) = 9
-now via func_invoker
-fa[0](3) = 3
-fa[1](3) = 9

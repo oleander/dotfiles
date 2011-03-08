@@ -1,3 +1,0 @@
-2000-06-27 now works, but Java I/O is ugly so this should be cleaned
-up sometime; it also takes stdin, so it should be changed to read from
-a file...

@@ -1,4 +1,0 @@
-# former translator bug: just compile it
-0 jrc *.jr
-0 javac jrGen/*.java
-0 rm -rf jrGen core *.out

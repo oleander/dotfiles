@@ -1,8 +1,0 @@
-main.jr:39: unreported exception java.io.EOFException; must be caught or declared to be thrown
-	    throw new java.io.EOFException();
-            ^
-main.jr:43: unreported exception java.io.EOFException; must be caught or declared to be thrown
-	    throw new java.io.EOFException();
-            ^
-Not generating jrGen/main.java due to errors.
-2 errors

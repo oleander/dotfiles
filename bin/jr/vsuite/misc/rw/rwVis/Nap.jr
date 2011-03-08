@@ -1,9 +1,0 @@
-// class that has small implimentation for a nap function that is used 
-// to make writing a Thread.sleep try and catch block less complex.
-public class Nap {
-	public static void nap (int time) {
-		try {
-			Thread.sleep(time);
-		} catch(Exception e) { e.printStackTrace(); }
-	}
-}

@@ -1,9 +1,0 @@
-import edu.ucdavis.jr.JR;
-
-public class A {
-
-   public op void test();
-
-   public op void test(int);
-
-}

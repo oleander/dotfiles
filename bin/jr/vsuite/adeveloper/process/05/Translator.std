@@ -1,7 +1,0 @@
-main.jr:9: incompatible types
-found   : int
-required: boolean
-    static process p2 ((int i = 0; i < 2; i++; i++)) {
-                                                ^
-Not generating jrGen/main.java due to errors.
-1 error

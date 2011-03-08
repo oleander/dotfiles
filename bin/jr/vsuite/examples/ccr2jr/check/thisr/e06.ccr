@@ -1,9 +1,0 @@
-_resource c {
-}
-_resource d {
-}
-
-_region c _with t = x {
-  _region d _with u = y {
-  }
-}

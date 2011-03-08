@@ -1,8 +1,0 @@
-main.jr:10: op java.lang.String GO(int) is already defined in main
-    private static op String GO(int n);
-                             ^
-main.jr:23: Invalid throws specified.  Exception java.lang.Exception not specified in throws clause of matched operation op java.lang.String GO(int).
-	inni String GO(int x)	{
-             ^
-Not generating jrGen/main.java due to errors.
-2 errors

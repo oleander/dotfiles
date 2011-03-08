@@ -1,8 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun Main -3 > No_input.out 2>&1
-0 cmp No_input3.std No_input.out
-0 jrrun Main 12 > No_input.out 2> No_input.err
-0 cmp No_input12.std No_input.out
-0 grep "java.lang.ArrayIndexOutOfBoundsException" No_input.err
-0 rm -rf jrGen core *.out *.err

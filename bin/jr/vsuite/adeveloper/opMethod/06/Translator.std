@@ -1,5 +1,0 @@
-main.jr:11: illegal start of expression
-		x = call print(1, 'a');
-                    ^
-Not generating any jrGen files due to errors.
-1 error

@@ -1,8 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun main > No_input.out 2>&1
-# don't cmp entire output since the partial sums are non-deterministic.
-0 grep "top of loop" No_input.out > No_input.outg 2>/dev/null
-0 tail -n 1 No_input.outg > No_input.outgt 2>/dev/null
-0 cmp No_input.stdgt No_input.outgt
-0 rm -rf jrGen core *.out*

@@ -1,5 +1,0 @@
-smlin.jr:7: Incompatible type for method. Explicit cast needed to convert float to int.
-	    int chan = a("a", 3, 4.0f);
-	                         ^
-error: Not generating jrGen/smlin.java due to errors.
-2 errors

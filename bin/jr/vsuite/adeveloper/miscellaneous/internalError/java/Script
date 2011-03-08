@@ -1,3 +1,0 @@
-1 jgot > jgot.out 2>&1
-0 cmp jgot.std jgot.out
-0 rm -rf *.class core *.out

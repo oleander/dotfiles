@@ -1,7 +1,0 @@
-# check basic syntax
-# missing end of region
-1 ccr2jr e01.ccr
-1 ccr2jr e02.ccr
-1 ccr2jr e03.ccr
-1 ccr2jr e04.ccr
-0 rm -rf jrGen core *.out *.jr

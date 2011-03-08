@@ -1,9 +1,0 @@
-./baby:
-./c1:
-    expected 1, got 0 from jrc
-./c2:
-    output differs from jrrun <null
-./c3:
-    expected 0, got 255 from cmp
-./fact_2:
-./misc_invocation_count_st_by_0:

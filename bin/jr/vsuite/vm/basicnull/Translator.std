@@ -1,5 +1,0 @@
-Main.jr:17: variable vmref might not have been initialized
-	    thefun = new remote fun("-local-") on vmref; // new vm();
-                                                  ^
-Not generating jrGen/Main.java due to errors.
-1 error

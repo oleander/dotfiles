@@ -1,5 +1,0 @@
-ResourceAllocator.jr:1: variable unit might not have been initialized
-public class ResourceAllocator {
-       ^
-Not generating jrGen/ResourceAllocator.java due to errors.
-1 error

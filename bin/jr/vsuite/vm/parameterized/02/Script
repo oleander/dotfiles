@@ -1,6 +1,0 @@
-0 jrc *.jr
-0 javac jrGen/*.java
-0 jrrun Main
-# 1 jrc *.jr
-# 0 cmp No_input.std Translator.out
-0 rm -rf jrGen core *.out

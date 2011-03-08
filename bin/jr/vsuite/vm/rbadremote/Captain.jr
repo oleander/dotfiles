@@ -1,7 +1,0 @@
-public class Captain extends Soldier
-{
-  public Captain(boolean side, java.util.List s)
-  {
-  }
-
-}

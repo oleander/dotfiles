@@ -1,8 +1,0 @@
-1 jrc *.jr
-# don't
-# 0 cmp Translator.std Translator.out
-# since UNIX has ./ and Windows has .\
-# instead:
-0 grep "class goo is public, should be declared in a file named " Translator.out >/dev/null
-0 grep "goo.java or goo.jr" Translator.out >/dev/null
-0 rm -rf jrGen core *.out *.class

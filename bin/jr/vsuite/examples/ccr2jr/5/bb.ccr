@@ -1,6 +1,0 @@
-_resource bb {
-   public static final int N = 10;
-   public int count = 0, front = 0, rear = 0;
-   public int [] buf = new int [N];
-}
-

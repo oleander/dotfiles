@@ -1,6 +1,0 @@
-2005-09-14
-
-This vsuite was developed mostly by Angela Chan when re-implementing
-JR to use Java 1.5 (5.0).  It contains many simple tests of individual
-features (when possible) and might be useful for others modifying the
-language, etc.

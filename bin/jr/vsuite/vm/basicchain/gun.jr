@@ -1,9 +1,0 @@
-public class gun{
-    public gun (String mach) {
-	System.out.println("gun constructor "+mach);
-    }
-    public op double f(double x) {
-	System.out.println("gun's f "+x);
-	return x*x;
-    }
-}

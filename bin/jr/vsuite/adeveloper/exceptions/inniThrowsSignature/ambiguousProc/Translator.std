@@ -1,5 +1,0 @@
-main.jr:17: GO(int) is already defined in main
-    private static String GO(int n) {
-                          ^
-Not generating jrGen/main.java due to errors.
-1 error

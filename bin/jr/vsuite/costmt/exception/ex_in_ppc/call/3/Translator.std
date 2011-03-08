@@ -1,5 +1,0 @@
-main.jr:24: unreported exception java.io.EOFException; must be caught or declared to be thrown
-	run();
-           ^
-Not generating jrGen/main.java due to errors.
-1 error

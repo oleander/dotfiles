@@ -1,5 +1,0 @@
-main.jr:10: ';' expected
-	    call GO(1) handler mh : ;
-                       ^
-Not generating any jrGen files due to errors.
-1 error

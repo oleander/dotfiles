@@ -1,6 +1,0 @@
-public class good {
-    public static void main(String [] args) {
-	final int n = Integer.parseInt(args[0]);
-	new plenty(n);
-    }
-}

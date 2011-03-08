@@ -1,7 +1,0 @@
-ResourceAllocatorM.jr:8: cannot find symbol
-symbol  : class Foo
-location: class ResourceAllocatorM<E>
-    inni Foo<E> allocate() {
-         ^
-Not generating jrGen/ResourceAllocatorM.java due to errors.
-1 error

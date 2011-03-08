@@ -1,2 +1,0 @@
-Exception in thread "main" java.lang.ClassCastException: java.lang.Object cannot be cast to java.lang.Integer
-	at ResourceAllocatorA.main(ResourceAllocatorA.java:11)

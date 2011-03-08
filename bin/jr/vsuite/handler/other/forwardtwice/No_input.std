@@ -1,6 +1,0 @@
-Caught java.io.EOFException through Handler object: java.io.EOFException: from method p
-Caught java.io.EOFException through Handler2 object: java.io.EOFException: from method p
-Caught java.io.EOFException through Handler3 object: java.io.EOFException: from method p2
-Caught java.io.EOFException through Handler3 object: java.io.EOFException: from method p2
-Caught java.io.EOFException through Handler2 object: java.io.EOFException: from method p
-Caught through call to p2 with try/catch: java.io.EOFException: from method p

@@ -1,3 +1,0 @@
-public class NoOfflineMsgException extends java.lang.Exception	{
-}
-

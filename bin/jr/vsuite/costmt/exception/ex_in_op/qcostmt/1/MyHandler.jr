@@ -1,9 +1,0 @@
-public class MyHandler implements edu.ucdavis.jr.Handler	{
-
-	public handler void handleEx(java.io.EOFException e)
-	{
-		System.out.println("Exception encountered");
-	}
-
-}
-
