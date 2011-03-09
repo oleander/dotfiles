@@ -22,4 +22,4 @@
 
 # Errors will not be printed
 
-puts "[#{`rvm-prompt v`.gsub(/\n/, '')}] " unless `find . -type f -iname "*.rb" -maxdepth 2 2> /dev/null | head -n 1`.empty?
+puts "[#{`rvm-prompt v`.gsub(/\n/, '')}] " unless `shopt -s nullglob dotglob; files=( *.rb */*.rb); if ((${#files[@]})); then echo "OK"; fi; shopt -u nullglob dotglob`.empty?
