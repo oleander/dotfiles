@@ -1,13 +1,14 @@
-#!ruby
+#!/usr/bin/env ruby -w
 
 # Make gems available
 require 'rubygems'
-
+missing_gems = []
 # http://drnicutilities.rubyforge.org/map_by_method/
 begin
  require 'map_by_method'
 rescue LoadError
- puts "map_by_method is not installed. To enable, run: gem install map_by_method"
+ puts "map_by_method is not installed."
+ missing_gems << "map_by_method"
 end
 
 # Dr Nic's gem inspired by
@@ -15,7 +16,8 @@ end
 begin
  require 'what_methods'
 rescue LoadError
- puts "what_methods is not installed. To enable, run: gem install what_methods"
+ puts "what_methods is not installed."
+ missing_gems << "what_methods"
 end
 
 # Pretty Print method
@@ -25,14 +27,16 @@ require 'pp'
 begin
  require 'ap'
 rescue LoadError
- puts "ap is not installed. To enable, run: gem install awesome_print"
+ puts "ap is not installed."
+ missing_gems << "awesome_print"
 end
 
 # Print information about any HTTP requests being made
 begin
  require 'net-http-spy'
 rescue LoadError
- puts "net-http-spy is not installed. To enable, run: gem install net-http-spy"
+ puts "net-http-spy is not installed."
+ missing_gems << "net-http-spy"
 end
 
 # Draw ASCII tables
@@ -42,14 +46,16 @@ begin
  Hirb.enable
  extend Hirb::Console
 rescue LoadError
- puts "hirb is not installed. To enable, run: gem install hirb"
+ puts "hirb is not installed."
+ missing_gems << "hirb"
 end
 
 begin
  # 'lp' to show method lookup path
- require 'looksee/shortcuts'
+ require 'looksee'
 rescue LoadError
- puts "looksee is not installed. To enable, run: gem install looksee"
+ puts "looksee is not installed."
+ missing_gems << "looksee"
 end
 
 # Load the readline module.
@@ -82,7 +88,8 @@ begin
  # Enable colored output
  Wirble.colorize
 rescue LoadError
- puts "wirble is not installed. To enable, run: gem install wirble"
+ puts "wirble is not installed."
+ missing_gems << "wirble"
 end
 
 # Clear the screen
@@ -166,7 +173,8 @@ begin
  require 'sketches'
  Sketches.config :editor => 'mvim'
 rescue LoadError
- puts "sketches is not installed. To enable, run: gem install sketches"
+ puts "sketches is not installed."
+ missing_gems << "sketches"
 end
 
 # Easily print methods local to an object's class
@@ -190,7 +198,7 @@ IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 
-%w[rubygems looksee/shortcuts wirble].each do |gem|
+%w[rubygems looksee wirble].each do |gem|
   begin
     require gem
   rescue LoadError
@@ -235,3 +243,9 @@ def paste
 end
 
 load File.dirname(__FILE__) + '/.railsrc' if ($0 == 'irb' && ENV['RAILS_ENV']) || ($0 == 'script/rails' && Rails.env)
+
+if missing_gems.any?
+  puts "Installing and requiring missing gems, hold on!"
+  `gem install #{missing_gems.join(" ")}`
+  puts "Done, #{missing_gems.count} gems installed, Please restart your irb session"
+end
