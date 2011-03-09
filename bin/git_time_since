@@ -1,10 +1,15 @@
 #!/usr/bin/env ruby -w
 
-# Ruby Version Nice, version 0.1, 2011-03-08
+# Git Time Since, version 0.2, 2011-03-08
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
 # Prints time since last commit and the amount of untracked files. 
+
+# Example output: [UT 5 : AH 1 : 12 min]
+# UT 5 => 5 untracked files.
+# AH 1 => 1 commit that hasn't been pushed to origin.
+# 12 min => 12 minutes since last commit.
 
 # The ago_in_words method is brought to you by:
 # => https://github.com/krainboltgreene/time-ago-in-words
