@@ -14,16 +14,13 @@ alias pull='git pull origin master'
 # Ruby related stuff
 alias v='ruby -v'                
 alias b='bundle'
-alias deploy='rake deploy:origin'
-alias l='heroku logs | tail -n 100 | mate'
+alias deploy='rake deploy:heroku'
 alias start='rvmsudo passenger start -p 80 --user=linus'
 
 # Other
 alias k='kill -9'
-alias ee='mvim'
-alias cs='nohup coffee -wco public/javascripts/ app/coffeescripts/*.coffee | noty > /dev/null & echo $! > tmp/pids/coffee.pid'
-alias kcs='kill -9 `cat tmp/pids/coffee.pid` && echo "CoffeeScript pid `cat tmp/pids/coffee.pid` dödad"'
 alias flush='dscacheutil -flushcache'
+alias p='ps aux | grep'
 
 # Reloads the all settings
 alias s='source ~/.bash_profile'
