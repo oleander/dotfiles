@@ -36,7 +36,7 @@ def ago_in_words(time)
     count = time_between / a_hour
     "#{count} h"
   elsif time_between <= a_week
-    count = time_between / a_between
+    count = time_between / a_day
     unit = "day#{'s' unless count == 1}"
     "#{count} #{unit}"
   elsif time_between <= a_month
