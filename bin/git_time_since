@@ -47,5 +47,5 @@ def ago_in_words(time)
     "#{count} month"
   end
 end
-
-puts "[UT " + `git status --porcelain`.split("\n").length.to_s + " : AH " + (`git status --ignore-submodules -s -b`.match(/ahead (\d+)/).to_a[1] || 0).to_s + " : " + ago_in_words(Time.parse(`git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`)) + "]" if not `find . -d -name ".git" -maxdepth 1 2> /dev/null`.empty?
+time = `git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`
+puts "[UT " + `git status --porcelain`.split("\n").length.to_s + " : AH " + (`git status --ignore-submodules -s -b`.match(/ahead (\d+)/).to_a[1] || 0).to_s + " : " + (time.empty? ? "N" : ago_in_words(Time.parse(time))) + "]" if not `find . -d -name ".git" -maxdepth 1 2> /dev/null`.empty?
