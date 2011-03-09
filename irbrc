@@ -33,12 +33,12 @@ rescue LoadError
 end
 
 # Print information about any HTTP requests being made
-begin
- # require 'net-http-spy'
-rescue LoadError
- puts "net-http-spy is not installed."
- missing_gems << "net-http-spy"
-end
+# begin
+#  require 'net-http-spy'
+# rescue LoadError
+#  puts "net-http-spy is not installed."
+#  missing_gems << "net-http-spy"
+# end
 
 # Draw ASCII tables
 begin
@@ -69,29 +69,34 @@ IRB.conf[:PROMPT_MODE]  = :SIMPLE
 require 'irb/completion'
 
 # Automatic Indentation
-IRB.conf[:AUTO_INDENT]=true
+IRB.conf[:AUTO_INDENT] = true
 
 # Save History between irb sessions
 begin
-require 'irb/ext/save-history'
-IRB.conf[:SAVE_HISTORY] = 100
-IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
+  require 'irb/ext/save-history'
+  IRB.conf[:SAVE_HISTORY] = 100
+  IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
 rescue LoadError
-puts "Something when wrong with save-history"
+  puts "Something when wrong with save-history"
 end
+
 # Wirble is a set of enhancements for irb
 # http://pablotron.org/software/wirble/README
 # Implies require 'pp', 'irb/completion', and 'rubygems'
-begin
- require 'wirble'
- Wirble.init
-
- # Enable colored output
- Wirble.colorize
-rescue LoadError
- puts "wirble is not installed."
- missing_gems << "wirble"
-end
+# begin
+#   require 'wirble'
+#   Wirble.init(:colors => {
+#     :open_hash => :white,
+#     :close_hash => :white,
+#     :string => :green
+#   })
+# 
+#  # Enable colored output
+#  Wirble.colorize
+# rescue LoadError
+#  puts "wirble is not installed."
+#  missing_gems << "wirble"
+# end
 
 # Clear the screen
 def clear
@@ -172,7 +177,7 @@ end
 # http://sketches.rubyforge.org/
 begin
  require 'sketches'
- Sketches.config :editor => 'mvim'
+ Sketches.config :editor => 'mate'
 rescue LoadError
  puts "sketches is not installed."
  missing_gems << "sketches"
