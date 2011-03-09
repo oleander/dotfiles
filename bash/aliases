@@ -1,7 +1,7 @@
 . ~/.zsh/aliases
 
 # Git related stuff
-alias gp='git push'
+alias gp='git_push_origin'
 alias gph='git push heroku master'
 alias gs='git status --ignore-submodules -s -b'
 alias gph='git push heroku master'
