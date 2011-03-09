@@ -5,7 +5,6 @@
 # Released under the MIT licens
 
 # Prints time since last commit and the amount of untracked files. 
-# Only if the project contains untracked files.
 
 # The ago_in_words method is brought to you by:
 # => https://github.com/krainboltgreene/time-ago-in-words
@@ -73,7 +72,7 @@ def git?
   ! `shopt -s nullglob dotglob; files=(*.git); if ((${#files[@]})); then echo "OK"; fi; shopt -u nullglob dotglob`.empty?
 end
 
-# Data to with with
+# Data to work with
 # Will not print any errors
 # Example output (linux-2.6)
 ## master
