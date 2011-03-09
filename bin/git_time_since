@@ -48,5 +48,50 @@ def ago_in_words(time)
     "#{count} month"
   end
 end
-time = `git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`
-puts "[UT " + `git status --ignore-submodules --porcelain`.split("\n").length.to_s + " : AH " + (`git status --ignore-submodules -s -b`.match(/ahead (\d+)/).to_a[1] || 0).to_s + " : " + (time.empty? ? "N" : ago_in_words(Time.parse(time))) + "]" if not `find . -d -name ".git" -maxdepth 1 2> /dev/null`.empty?
+
+# Returns the amount of untracked files
+def ua
+  (data.split("\n").length - 1).to_s
+end
+
+# Returns the amount of commits before origin
+# So if you for example did 3 commits localy, without doing a push to origin
+# Then this will return 3
+def ah
+  (data.match(/ahead (\d+)/).to_a[1] || 0).to_s
+end
+
+# Returns the time ago in words since last commit
+# Will not print any errors
+def time
+  time = `git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`
+  (time.empty? ? "N" : ago_in_words(Time.parse(time)))
+end
+
+# Is the current directory a git repo?
+def git?
+  ! `shopt -s nullglob dotglob; files=(*.git); if ((${#files[@]})); then echo "OK"; fi; shopt -u nullglob dotglob`.empty?
+end
+
+# Data to with with
+# Will not print any errors
+# Example output (linux-2.6)
+## master
+#   M include/linux/netfilter/xt_CONNMARK.h
+#   M include/linux/netfilter/xt_DSCP.h
+#   M include/linux/netfilter/xt_MARK.h
+#   M include/linux/netfilter/xt_RATEEST.h
+#   M include/linux/netfilter/xt_TCPMSS.h
+#   M include/linux/netfilter_ipv4/ipt_ECN.h
+#   M include/linux/netfilter_ipv4/ipt_TTL.h
+#   M include/linux/netfilter_ipv6/ip6t_HL.h
+#   M net/ipv4/netfilter/ipt_ECN.c
+#   M net/netfilter/xt_DSCP.c
+#   M net/netfilter/xt_HL.c
+#   M net/netfilter/xt_RATEEST.c
+#   M net/netfilter/xt_TCPMSS.c
+def data
+  @data ||= `git status --ignore-submodules -s -b 2> /dev/null`
+end
+
+puts "[UT " + ua + " : AH " + ah + " : " + time + "]" if git?
