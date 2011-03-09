@@ -3,6 +3,7 @@
 # Make gems available
 require 'rubygems'
 missing_gems = []
+
 # http://drnicutilities.rubyforge.org/map_by_method/
 begin
  require 'map_by_method'
@@ -33,7 +34,7 @@ end
 
 # Print information about any HTTP requests being made
 begin
- require 'net-http-spy'
+ # require 'net-http-spy'
 rescue LoadError
  puts "net-http-spy is not installed."
  missing_gems << "net-http-spy"
