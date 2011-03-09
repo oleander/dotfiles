@@ -1,9 +1,11 @@
-#!ruby
+#!/usr/bin/env ruby -w
 
 begin
-  require 'hirb' # sudo gem install cldwalker-hirb --source http://gems.github.com
+  require "hirb"
   Hirb.enable
 rescue LoadError
+  puts "The hirb gem isn't installed."
+  puts "Run 'gem install cldwalker-hirb' to install it"
 end
 
 def change_log(stream)
