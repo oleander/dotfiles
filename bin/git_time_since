@@ -24,6 +24,7 @@ def ago_in_words(time)
   a_week       = a_day     * 7
   a_fortnight  = a_day     * 14
   a_month      = a_week    * 4
+  a_year       = a_week    * 52
   
   if time_between <= a_minute
     count = time_between

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby -w
+
+# Git Push Origin, version 0.1, 2011-03-09
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
+# Pushes to current origin branch
+
+`git push origin #{$1}` if `git branch` =~ /\* ([^\s]+)/
