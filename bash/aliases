@@ -35,11 +35,6 @@ alias cr='cd /Users/linus/Documents/Projekt/'
 alias r='cr && cd Rubyfy'
 alias m='cr && cd Movify'
 
-# SSH logins
-# Should be moved to a .ssh/config file
-alias chalmers="ssh -Y oleander@remote1.student.chalmers.se"
-alias macmini="ssh linus@banan.olf.sgsnet.se"
-
 # Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
 
