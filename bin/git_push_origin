@@ -4,6 +4,6 @@
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
-# Pushes to current origin branch
+# Pushes to origin {current} branch
 
 `git push origin #{$1}` if `git branch` =~ /\* ([^\s]+)/
