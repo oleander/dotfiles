@@ -2,6 +2,7 @@
 
 # Git related stuff
 alias gp='git_push_origin'
+alias gpp='git_pull_origin'
 alias gph='git push heroku master'
 alias gs='git status --ignore-submodules -s -b'
 alias gph='git push heroku master'
@@ -9,7 +10,6 @@ alias gc='git checkout'
 alias gcp='git cherry-pick'
 alias gd='git diff --stat'
 alias gb='git branch'
-alias pull='git pull origin master'
 
 # Ruby related stuff
 alias v='ruby -v'                
