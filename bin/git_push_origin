@@ -6,4 +6,4 @@
 
 # Pushes to origin {current} branch
 
-`git push origin #{$1}` if `git branch` =~ /\* ([^\s]+)/
+`git push -u origin #{$1} --tags` if `git branch` =~ /\* ([^\s]+)/
