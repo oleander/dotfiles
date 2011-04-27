@@ -32,6 +32,23 @@ rescue LoadError
  missing_gems << "awesome_print"
 end
 
+def r(this)
+  require this
+  puts "#{this} is now loaded."
+rescue LoadError
+  puts "The gem '#{this}' is missing."
+  puts "Should I install it? [y/n]"
+  if gets =~ /yes|y/i
+    puts "Installing #{this}, hold on."
+    if `gem install #{this}` =~ /Successfully/i
+      puts "Done, reloading irb."
+      exec "irb -r #{this}"
+    end
+  else
+    puts "Okey, goodbye."
+  end
+end
+
 # Print information about any HTTP requests being made
 # begin
 #  require 'net-http-spy'
@@ -249,9 +266,3 @@ def paste
 end
 
 load File.dirname(__FILE__) + '/.railsrc' if ($0 == 'irb' && ENV['RAILS_ENV']) || ($0 == 'script/rails' && Rails.env)
-
-if missing_gems.any?
-  puts "Installing and requiring missing gems, hold on!"
-  `gem install #{missing_gems.join(" ")}`
-  puts "Done, #{missing_gems.count} gems installed, Please restart your irb session"
-end
