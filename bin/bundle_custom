@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby -w
+
+# Bundle Custom, version 0.1, 2011-04-27
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
+# Makes it possible to run:
+# => bundle install && 
+# git add Gemfile Gemfile.lock &&
+# git commit -m "Message"
+# using command `b`.
+
+require "optparse"
+
+options = {}
+
+optparse = OptionParser.new do |opts|
+  options[:hard] = false
+  opts.on( '-h', '--hard', 'Removing Gemfile.lock') do
+    options[:hard] = true
+  end
+end
+
+optparse.parse!
+
+system "rm Gemfile.lock" if options[:hard]
+
+if system "bundle install"
+  puts "Enter a commit message."
+  message = gets
+  unless message =~ /[a-z]/i
+    message = "New Gemfile.lock"
+  end
+  
+  system %q{
+    git add Gemfile Gemfile.lock && 
+    git commit -m '#{message.gsub(/\n/, "")}'
+  }
+end

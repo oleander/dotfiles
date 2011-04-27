@@ -14,7 +14,7 @@ alias gl='git log --format="%h by %C(red)%an%Creset, %ar%n%C(green)%s%n" -n 5'
 
 # Ruby related stuff
 alias v='ruby -v'                
-alias b='bundle'
+alias b='bundle_custom'
 alias deploy='rake deploy:heroku'
 alias start='rvmsudo passenger start -p 80 --user=linus'
 
