@@ -40,9 +40,10 @@ rescue LoadError
   puts "Should I install it? [y/n]"
   if gets =~ /yes|y/i
     puts "Installing #{this}, hold on."
-    if `gem install #{this}` =~ /Successfully/i
-      puts "Done, reloading irb."
-      exec "irb -r #{this}"
+    if `gem install #{this}` =~ /Successfully/
+      Gem.clear_paths
+      require this
+      puts "Done, gem loaded."
     end
   else
     puts "Okey, goodbye."
