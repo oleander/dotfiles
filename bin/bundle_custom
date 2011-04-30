@@ -32,8 +32,5 @@ if system "bundle install"
     message = "New Gemfile.lock"
   end
   
-  system %q{
-    git add Gemfile Gemfile.lock && 
-    git commit -m '#{message.gsub(/\n/, "")}'
-  }
+  system "git add Gemfile Gemfile.lock && git commit -m '#{message.gsub(/\n/, "")}'"
 end
