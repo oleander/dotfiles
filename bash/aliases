@@ -23,6 +23,7 @@ alias start='rvmsudo passenger start -p 80 --user=linus'
 alias k='kill -9'
 alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
+alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
 
 # Reloads the all settings
 alias s='source ~/.bash_profile'
