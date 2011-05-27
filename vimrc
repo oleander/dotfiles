@@ -231,3 +231,4 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/share/dict/words"
 
+syntax on
