@@ -25,6 +25,7 @@ alias T='RAILS_ENV=test'
 alias k='kill -9'
 alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
+alias bb='bundle exec'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
 
 # Reloads the all settings
