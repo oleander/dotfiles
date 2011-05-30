@@ -50,6 +50,8 @@ def ago_in_words(time)
   elsif time_between <= a_year
     count = time_between / a_month
     "#{count} month"
+  else
+    "N"
   end
 end
 
