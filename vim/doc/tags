@@ -56,8 +56,6 @@ Tabular.txt	Tabular.txt	/*Tabular.txt*
 ]y	unimpaired.txt	/*]y*
 ]yy	unimpaired.txt	/*]yy*
 abc	fuf.txt	/*abc*
-cs	surround.txt	/*cs*
-ds	surround.txt	/*ds*
 fuf	fuf.txt	/*fuf*
 fuf-abbreviation	fuf.txt	/*fuf-abbreviation*
 fuf-about	fuf.txt	/*fuf-about*
@@ -179,16 +177,6 @@ g:fuf_taggedfile_prompt	fuf.txt	/*g:fuf_taggedfile_prompt*
 g:fuf_taggedfile_switchOrder	fuf.txt	/*g:fuf_taggedfile_switchOrder*
 g:fuf_timeFormat	fuf.txt	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.txt	/*g:fuf_useMigemo*
-i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
-i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
-surround	surround.txt	/*surround*
-surround-author	surround.txt	/*surround-author*
-surround-customizing	surround.txt	/*surround-customizing*
-surround-issues	surround.txt	/*surround-issues*
-surround-mappings	surround.txt	/*surround-mappings*
-surround-replacements	surround.txt	/*surround-replacements*
-surround-targets	surround.txt	/*surround-targets*
-surround.txt	surround.txt	/*surround.txt*
 tabular	Tabular.txt	/*tabular*
 tabular-intro	Tabular.txt	/*tabular-intro*
 tabular-scripting	Tabular.txt	/*tabular-scripting*
@@ -210,8 +198,3 @@ v_]e	unimpaired.txt	/*v_]e*
 v_]u	unimpaired.txt	/*v_]u*
 v_]x	unimpaired.txt	/*v_]x*
 v_]y	unimpaired.txt	/*v_]y*
-vs	surround.txt	/*vs*
-yS	surround.txt	/*yS*
-ySS	surround.txt	/*ySS*
-ys	surround.txt	/*ys*
-yss	surround.txt	/*yss*

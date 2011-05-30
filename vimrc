@@ -233,3 +233,8 @@ endfunction
 
 filetype indent on
 syntax on
+
+" Cache files should be saved to tmp
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
