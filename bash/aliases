@@ -21,7 +21,9 @@ alias start='rvmsudo passenger start -p 80 --user=linus'
 alias P='RAILS_ENV=production'
 alias D='RAILS_ENV=development'
 alias T='RAILS_ENV=test'
+
 # Other
+alias dd='cd ~/Desktop'
 alias k='kill -9'
 alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
