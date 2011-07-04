@@ -22,6 +22,7 @@ alias rs='rspec --drb'
 alias P='RAILS_ENV=production'
 alias D='RAILS_ENV=development'
 alias T='RAILS_ENV=test'
+alias rr='start_rails_session'
 
 # Other
 alias dd='cd ~/Desktop'
@@ -94,17 +95,4 @@ function tt(){
     rvm use 1.9.2 >> /dev/null;
     echo "==> 1.9.2";
   fi
-}
-
-# Opens a new tab using iTerm
-function tab() {
-  osascript -e "
-  tell application \"iTerm\"
-   tell the first terminal
-    launch session \"Default Session\"
-    tell the last session
-     write text \"cd $(pwd)\"
-    end tell
-   end tell
-  end tell"
 }

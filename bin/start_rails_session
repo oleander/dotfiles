@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby -w
+
+#!/usr/bin/env ruby -w
+
+# Start Rails Session, version 0.1, 2011-07-04
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
+# Opens 3 new tabs
+# Tabs.
+# 1. specs
+# 2. spork
+# 3. command
+# 4. server
+
+# Requirements
+# * colorize
+# * iTerm
+# * name command (see my alias file)
+# * tab command (see my alias file)
+
+require "colorize"
+
+puts "Are you sure?".green
+unless gets =~ /y/
+  abort "Script ends".red
+end
+
+path = Dir.pwd
+name = path.split("/").last
+name.gsub!(/^[a-z]{1}/) { |var| var.upcase }
+
+Script = Struct.new(:name, :command)
+
+script = []
+script << Script.new("Spork", "spork")
+script << Script.new("Command", "rails c")
+script << Script.new("Server", "rails s --debugger")
+
+script.each do |s|
+  runner = "'cd #{path}' 'name #{name} - #{s.name}' 'clear' 'echo Running #{s.command}' '#{s.command}'"
+  system "source ~/.bash_profile && custom_tab #{runner}"
+end
+
+system "source ~/.bash_profile && name '#{name} - Free' && clear && echo This one is free"
