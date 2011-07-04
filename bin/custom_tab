@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby -w
+
+# Custom Tab, version 0.1, 2011-07-04
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
+# Opens a new iTerm tab
+# Any argument will be runned as a script in the new tab
+# Example:
+# => custom_tab ls
+# The example above will list all files in the new tab
+# If no arguments is being passed, the current dir 
+# will be opened in the new tab
+
+# Requirements
+# * iTerm
+
+run = %q{osascript -e "
+tell application \"iTerm\"
+ tell the first terminal
+  launch session \"Default Session\"
+  tell the last session
+   write text \"?\"
+  end tell
+ end tell
+end tell"}
+
+if ARGV.empty?
+ cmd = "cd $(pwd)"
+else
+  cmd = ARGV.join(" && ")
+end
+
+system run.gsub("?", cmd)
