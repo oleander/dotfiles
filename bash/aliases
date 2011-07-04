@@ -73,6 +73,12 @@ function not(){
   growlnotify -m "$*"
 }
 
+# Names the current tab
+# Any argument will be used as name for the current tab
+function name(){
+  echo -ne "\033]0;"$@"\007"
+}
+
 # http://stackoverflow.com/questions/520650/how-do-you-make-an-existing-git-branch-track-a-remote-branch
 function gu(){
   git branch --set-upstream $1 origin/$1
