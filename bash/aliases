@@ -31,6 +31,7 @@ alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
 alias bb='bundle exec'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
+alias tab='custom_tab'
 
 # Reloads the all settings
 alias s='source ~/.bash_profile'
