@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby -w
 
-#!/usr/bin/env ruby -w
-
 # Start Rails Session, version 0.1, 2011-07-04
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
@@ -20,6 +18,21 @@
 # * tab command (see my alias file)
 
 require "colorize"
+require "optparse"
+
+options = {}
+
+optparse = OptionParser.new do |opts|
+  opts.on("-s", "--solr", "Start Solr, both in test and development mode") do
+    options[:solr] = true
+  end
+  
+  opts.on("-h", "--help", "Display this screen") do
+    puts opts; exit
+  end
+end
+
+optparse.parse!
 
 puts "Are you sure?".green
 unless gets =~ /y/
@@ -30,14 +43,17 @@ path = Dir.pwd
 name = path.split("/").last
 name.gsub!(/^[a-z]{1}/) { |var| var.upcase }
 
-Script = Struct.new(:name, :command)
+Script = Struct.new(:name, :command, :run)
 
 script = []
-script << Script.new("Spork", "bundle exec spork")
-script << Script.new("Command", "rails c")
-script << Script.new("Server", "rails s --debugger")
+script << Script.new("Command", "rails c", true)
+script << Script.new("Server", "rails s --debugger", true)
+script << Script.new("Sunspot - Development", "RAILS_ENV=development bundle exec rake sunspot:solr:run", options[:solr])
+script << Script.new("Sunspot - Testing", "RAILS_ENV=test bundle exec rake sunspot:solr:run", options[:solr])
+script << Script.new("Spork", "bundle exec spork", true)
 
 script.each do |s|
+  next unless s.run
   runner = "'cd #{path}' 'name #{name} - #{s.name}' 'clear' 'echo Running #{s.command}' '#{s.command}'"
   system "source ~/.bash_profile && custom_tab #{runner}"
 end
