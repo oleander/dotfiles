@@ -33,7 +33,7 @@ name.gsub!(/^[a-z]{1}/) { |var| var.upcase }
 Script = Struct.new(:name, :command)
 
 script = []
-script << Script.new("Spork", "spork")
+script << Script.new("Spork", "bundle exec spork")
 script << Script.new("Command", "rails c")
 script << Script.new("Server", "rails s --debugger")
 
