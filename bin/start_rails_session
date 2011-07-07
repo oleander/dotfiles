@@ -27,6 +27,10 @@ optparse = OptionParser.new do |opts|
     options[:solr] = true
   end
   
+  opts.on("-c", "--cucumber", "Start spork in Cucumber mode") do
+    options[:cucumber] = true
+  end
+
   opts.on("-h", "--help", "Display this screen") do
     puts opts; exit
   end
@@ -51,6 +55,7 @@ script << Script.new("Server", "rails s --debugger", true)
 script << Script.new("Sunspot - Development", "RAILS_ENV=development bundle exec rake sunspot:solr:run", options[:solr])
 script << Script.new("Sunspot - Testing", "RAILS_ENV=test bundle exec rake sunspot:solr:run", options[:solr])
 script << Script.new("Spork", "bundle exec spork", true)
+script << Script.new("Spork - Cucumber", "bundle exec spork cuc", options[:cucumber])
 
 script.each do |s|
   next unless s.run
