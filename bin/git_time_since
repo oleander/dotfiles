@@ -68,10 +68,16 @@ def ah
 end
 
 # Returns the time ago in words since last commit
-# Will not print any errors
+# Does not print any errors
 def time
   time = `git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`
-  (time.empty? ? "N" : ago_in_words(Time.parse(time)))
+  
+  if time.empty?
+    "N"
+  else
+    sec = ((Time.now.to_i - Time.parse(time).to_i) / 60.to_f).round
+    sec > 500 ? ago_in_words(Time.parse(time)) : "#{sec} min" 
+  end
 end
 
 # Is the current directory a git repo?
