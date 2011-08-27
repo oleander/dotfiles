@@ -1,0 +1,118 @@
+#!/usr/bin/env ruby -w
+
+require "rubygems"
+require "rest-client"
+require "nokogiri"
+require "prowl"
+require "colorize"
+require "ruby-growl"
+require "yaml"
+require "rtransmission"
+
+class TvTorrents
+  def initialize
+    @digest   = ENV["DIGEST"]
+    @hash     = ENV["HASH"]
+    @base_url = "http://torrent.tvtorrents.com"
+  end
+  
+  def parse!
+    @_list ||= dom.css("td:nth-child(3)").map do |content|
+      if content.at_css("a")        
+        href = content.at_css("a").attr("href")
+        hash = href.match(/info_hash=(.+)/)[1]
+        options = {
+          title: content.to_s.match(/>(.+?)<br>/)[1].strip, 
+          details: @base_url + href,
+          id: hash,
+          href: downloadable(hash),
+          episode: content.to_s.match(/(\d+x\d+)/).to_a[1],
+          raw: content.to_s 
+        }
+        
+        create_torrent(options)
+      end
+    end.reject do |item|
+      item.nil? or item.episode.nil? or item.raw.match(/[0-9]{3}p/)
+    end
+  end
+  
+  private
+    def create_torrent(o)
+      Struct.new(:title, :details, :id, :href, :episode, :raw).
+        new(o[:title], o[:details], o[:id], o[:href  ], o[:episode], o[:raw])
+    end
+    
+    def downloadable(info_hash)
+      @base_url + "/FetchTorrentServlet?info_hash=" + info_hash + "&digest=" + @digest + "&hash=" + @hash
+    end
+    
+    def dom
+      @_dom ||= Nokogiri::HTML(content)
+    end
+    
+    def content
+      @_content ||= RestClient.get("http://tvtorrents.com/loggedin/my/new_fav_tag_torrents.do", cookies: {
+        cookie_login: @digest,
+      }, timeout: 10)
+    rescue RestClient::Exception
+      @_content ||= ""
+    end
+end
+
+class TvSeeker
+  def initialize
+    @prowl_api_key = ENV["PROWL"]
+    @application   = "TvSeeker"
+    @torrents      = TvTorrents.new.parse! 
+    @config        = YAML.load(File.read("episodes.yml")) || {}
+    @g             = Growl.new "localhost", "ruby-growl", [@application]
+  end
+  
+  def prepare 
+    RTransmission::Client.session(user: "admin", password: "admin") do |session|
+      session.speed_limit_down_enabled = false
+      @torrents.each do |torrent|
+        if not @config[torrent.title] or not compare_episodes(@config[torrent.title], torrent.episode)
+          @config[torrent.title] = torrent.episode
+          send("Download started", "#{torrent.title} - #{torrent.episode}")
+          RTransmission::Torrent.add(session, url: torrent.href)
+        end
+      end
+    end
+    
+    save_config
+  end
+  
+  private
+    def compare_episodes(first, last)
+      return true if first == last
+      
+      first_season = first.match(/(\d+)x/)[1].to_i
+      last_season = last.match(/(\d+)x/)[1].to_i
+      
+      return true if first_season > last_season
+      
+      first_episode = first.match(/x(\d+)/)[1].to_i
+      last_episode = last.match(/x(\d+)/)[1].to_i
+      
+      first_episode > last_episode
+    end
+    
+    def save_config
+      File.open("episodes.yml", "w").write(YAML.dump(@config))
+    end
+    
+    def send(title, message)
+      Prowl.add({
+        apikey: @prowl_api_key,
+        application: "#{@application} ",
+        event: " #{title}",
+        description: message
+      })
+
+      @g.notify(@application, title, message)
+    end
+end
+
+TvSeeker.new.prepare
