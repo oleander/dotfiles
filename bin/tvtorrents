@@ -64,8 +64,9 @@ class TvSeeker
   def initialize
     @prowl_api_key = ENV["PROWL"]
     @application   = "TvSeeker"
-    @torrents      = TvTorrents.new.parse! 
-    @config        = YAML.load(File.read("episodes.yml")) || {}
+    @torrents      = TvTorrents.new.parse!
+    @config_file   = "~/.episodes.yml"
+    @config        = YAML.load(File.read(@config_file)) || {}
     @g             = Growl.new "localhost", "ruby-growl", [@application]
   end
   
@@ -100,7 +101,7 @@ class TvSeeker
     end
     
     def save_config
-      File.open("episodes.yml", "w").write(YAML.dump(@config))
+      File.open(@config_file, "w").write(YAML.dump(@config))
     end
     
     def send(title, message)
