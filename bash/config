@@ -1,4 +1,4 @@
-export EDITOR="mate"
+export EDITOR="vim"
 
 # Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # misc
