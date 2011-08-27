@@ -1,4 +1,4 @@
-export EDITOR="mate_wait"
+export EDITOR="mate"
 
 # Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # misc
