@@ -32,13 +32,14 @@ alias p='ps aux | grep'
 alias bb='bundle exec'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
 alias tab='custom_tab'
+alias e='mvim . &'
 
 # Reloads the all settings
 alias s='source ~/.bash_profile'
 
 # Edit specific files
 alias ei='mate .gitignore'
-alias e='mate ~/.dotfiles'
+alias ee='mate ~/.dotfiles'
 
 # Jumping to a dir
 alias dot='cd ~/.dotfiles'
