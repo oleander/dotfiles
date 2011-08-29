@@ -11,3 +11,9 @@ au InsertLeave * hi Cursor guibg=#9B1D0D
 au InsertEnter * hi Cursor guibg=#BAF57C
 
 set guioptions-=r
+
+
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> <Plug>PeepOpen
+end
