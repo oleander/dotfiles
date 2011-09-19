@@ -23,6 +23,8 @@ alias P='RAILS_ENV=production'
 alias D='RAILS_ENV=development'
 alias T='RAILS_ENV=test'
 alias rr='start_rails_session'
+alias ld='tail -f -n 40 log/development.log'
+alias lp='tail -f -n 40 log/production.log'
 
 # Other
 alias dd='cd ~/Desktop'
