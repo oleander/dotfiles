@@ -25,6 +25,7 @@ alias T='RAILS_ENV=test'
 alias rr='start_rails_session'
 alias ld='tail -f -n 40 log/development.log'
 alias lp='tail -f -n 40 log/production.log'
+alias f='foreman start'
 
 # Other
 alias dd='cd ~/Desktop'
