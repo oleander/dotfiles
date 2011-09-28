@@ -60,7 +60,7 @@ function gg() {
 }
 
 # Manual git commit
-function gc() {
+function gcc() {
   git commit -v -m "$*"
 }
 
