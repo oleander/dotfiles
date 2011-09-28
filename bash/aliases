@@ -26,6 +26,7 @@ alias rr='start_rails_session'
 alias ld='tail -f -n 40 log/development.log'
 alias lp='tail -f -n 40 log/production.log'
 alias f='foreman start'
+alias ga='git add'
 
 # Other
 alias dd='cd ~/Desktop'
@@ -53,45 +54,51 @@ alias m='cr && cd Movify'
 # Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
 
+# Git add and git commit
 function gg() {
   git add . && git commit -v -a -m "$*"
 }
 
-function burn(){
+# Manual git commit
+function gc() {
+  git commit -v -m "$*"
+}
+
+function burn() {
   avrdude -p m88 -c stk500 -P /dev/cu.PL2303-00004006 -e -U flash:w:main.rom
 }
 
-function compile(){
+function compile() {
   avr-gcc -O1 main.c -mmcu=atmega88 -o main.rom -I /usr/local/CrossPack-AVR/include/simulavr/
 }
 
 # Skapar en mapp, hoppar sedan vidare till den
-function take(){
+function take() {
   mkdir $1
   cd $1
 }
 
-function cb(){
+function cb() {
   compile && burn
 }
 
-function not(){
+function not() {
   growlnotify -m "$*"
 }
 
 # Names the current tab
 # Any argument will be used as name for the current tab
-function name(){
+function name() {
   echo -ne "\033]0;"$@"\007"
 }
 
 # http://stackoverflow.com/questions/520650/how-do-you-make-an-existing-git-branch-track-a-remote-branch
-function gu(){
+function gu() {
   git branch --set-upstream $1 origin/$1
 }
 
 # Togglar mellan de olika ruby-versionerna
-function tt(){
+function tt() {
   if [[ `ruby -v` == *1.9.2* ]]
   then
     rvm use 1.8.7 >> /dev/null
