@@ -73,6 +73,12 @@ function compile() {
   avr-gcc -O1 main.c -mmcu=atmega88 -o main.rom -I /usr/local/CrossPack-AVR/include/simulavr/
 }
 
+# Top 10 most used unix commands on the system
+# Source; http://superuser.com/questions/250227/how-do-i-see-what-my-most-used-linux-command-are
+function most() {
+  history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
+}
+
 # Skapar en mapp, hoppar sedan vidare till den
 function take() {
   mkdir $1
