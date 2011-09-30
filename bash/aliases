@@ -11,6 +11,8 @@ alias gcp='git cherry-pick'
 alias gd='git diff --stat'
 alias gb='git branch'
 alias gl='git log --format="%h by %C(red)%an%Creset, %ar%n%C(green)%s%n" -n 5'
+alias ga='git add'
+alias gdd='git diff'
 
 # Ruby related stuff
 alias v='ruby -v'                
@@ -26,7 +28,6 @@ alias rr='start_rails_session'
 alias ld='tail -f -n 40 log/development.log'
 alias lp='tail -f -n 40 log/production.log'
 alias f='foreman start'
-alias ga='git add'
 
 # Other
 alias dd='cd ~/Desktop'
