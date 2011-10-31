@@ -60,6 +60,10 @@ function gg() {
   git add . && git commit -v -a -m "$*"
 }
 
+function ga() {
+  git commit --amend -m "$*"
+}
+
 # Manual git commit
 function gcc() {
   git commit -v -m "$*"
