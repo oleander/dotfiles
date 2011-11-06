@@ -20,6 +20,8 @@
 :FufTag	fuf.txt	/*:FufTag*
 :FufTagWithCursorWord	fuf.txt	/*:FufTagWithCursorWord*
 :FufTaggedFile	fuf.txt	/*:FufTaggedFile*
+:Gist	gist-vim.txt	/*:Gist*
+Gist.vim	gist-vim.txt	/*Gist.vim*
 Tabular.txt	Tabular.txt	/*Tabular.txt*
 [<Space>	unimpaired.txt	/*[<Space>*
 [A	unimpaired.txt	/*[A*
@@ -177,6 +179,12 @@ g:fuf_taggedfile_prompt	fuf.txt	/*g:fuf_taggedfile_prompt*
 g:fuf_taggedfile_switchOrder	fuf.txt	/*g:fuf_taggedfile_switchOrder*
 g:fuf_timeFormat	fuf.txt	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.txt	/*g:fuf_useMigemo*
+gist-vim-install	gist-vim.txt	/*gist-vim-install*
+gist-vim-license	gist-vim.txt	/*gist-vim-license*
+gist-vim-requirements	gist-vim.txt	/*gist-vim-requirements*
+gist-vim-thanks	gist-vim.txt	/*gist-vim-thanks*
+gist-vim-tips	gist-vim.txt	/*gist-vim-tips*
+gist-vim-usage	gist-vim.txt	/*gist-vim-usage*
 tabular	Tabular.txt	/*tabular*
 tabular-intro	Tabular.txt	/*tabular-intro*
 tabular-scripting	Tabular.txt	/*tabular-scripting*
