@@ -111,7 +111,7 @@ map <Leader>su :RSunittest
 map <Leader>sf :RSfunctionaltest 
 
 " Hide search highlighting
-map <Leader>h :set invhls <CR>
+
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -254,3 +254,8 @@ vmap <A-Tab> >gv
 " Jump to the end and start of a line
 nmap <S-Right> $
 nmap <S-Left> ^
+
+" Gist the current file
+let g:gist_clip_command = "pbcopy"
+nnoremap <Leader>g :Gist -p <Enter>
+vnoremap <Leader>g :Gist -p <Enter>
