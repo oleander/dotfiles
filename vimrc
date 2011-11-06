@@ -250,3 +250,7 @@ nmap <S-A-Tab> <<
 nmap <A-Tab> >>
 vmap <S-A-Tab> <gv
 vmap <A-Tab> >gv
+
+" Jump to the end and start of a line
+nmap <S-Right> $
+nmap <S-Left> ^
