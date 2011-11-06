@@ -238,3 +238,6 @@ syntax on
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" Make new lines and tabs visible
+set list
+set listchars=tab:▸\ ,eol:¬
