@@ -205,16 +205,16 @@ function! OpenURL()
 endfunction
 map <Leader>w :call OpenURL()<CR>
 
-" Pathogen
-" Needed on some linux distros.
-" see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-filetype off 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+      " Pathogen
+      " Needed on some linux distros.
+      " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
+      filetype off 
+      call pathogen#helptags()
+      call pathogen#runtime_append_all_bundles()
 
 
-"Use TAB to complete when typing words, else inserts TABs as usual.
-"Uses dictionary and source files to find matching words to complete.
+      "Use TAB to complete when typing words, else inserts TABs as usual.
+      "Uses dictionary and source files to find matching words to complete.
 
 "See help completion for source,
 "Note: usual completion is on <C-n> but more trouble to press all the time.
@@ -241,3 +241,12 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " Make new lines and tabs visible
 set list
 set listchars=tab:▸\ ,eol:¬
+
+" Using , as leader key
+let mapleader = ","
+
+" Map tab in and out to Textmate's key combos
+nmap <S-A-Tab> <<
+nmap <A-Tab> >>
+vmap <S-A-Tab> <gv
+vmap <A-Tab> >gv
