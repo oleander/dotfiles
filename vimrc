@@ -259,3 +259,6 @@ nmap <S-Left> ^
 let g:gist_clip_command = "pbcopy"
 nnoremap <Leader>g :Gist -p <Enter>
 vnoremap <Leader>g :Gist -p <Enter>
+
+" Removes current word
+nnoremap <A-BS> bdw
