@@ -32,3 +32,6 @@
 	path = vim/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
  
+[submodule "vim/bundle/indexed-search"]
+	path = vim/bundle/indexed-search
+	url = git://github.com/henrik/vim-indexed-search.git
