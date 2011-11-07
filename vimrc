@@ -214,7 +214,6 @@ call pathogen#runtime_append_all_bundles()
 
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
-
 "See help completion for source,
 "Note: usual completion is on <C-n> but more trouble to press all the time.
 "Never type the same word twice and maybe learn a new spellings!
