@@ -274,3 +274,9 @@ endif
 " Enter + CMD creates a new line and jumps to insert mode
 nnoremap <D-Cr> o
 inoremap <D-Cr> <ESC>o
+
+" Spell checking
+nmap <silent> <leader>s :set spell!<CR>
+set spelllang=sv
+nnoremap <leader>sv :set spelllang=sv<Cr>
+nnoremap <leader>en :set spelllang=en_us<Cr>
