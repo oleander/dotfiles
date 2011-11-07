@@ -1,6 +1,3 @@
-[submodule "vim/bundle/vividchalk"]
-	path = vim/bundle/vividchalk
-	url = git://github.com/tpope/vim-vividchalk.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = git://github.com/tpope/vim-surround.git
@@ -35,3 +32,6 @@
 [submodule "vim/bundle/indexed-search"]
 	path = vim/bundle/indexed-search
 	url = git://github.com/henrik/vim-indexed-search.git
+[submodule "vim/bundle/sunburst"]
+	path = vim/bundle/sunburst
+	url = git://github.com/tangphillip/SunburstVIM.git
