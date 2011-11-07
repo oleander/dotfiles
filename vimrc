@@ -266,6 +266,11 @@ nnoremap <A-BS> bdw
 " Moving down a line
 vmap <Leader>z <Leader>c<Space>gv
 
+" It should be possible to use Shift down arrow to select text
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
 endif
+
+" Enter + CMD creates a new line and jumps to insert mode
+nnoremap <D-Cr> o
+inoremap <D-Cr> <ESC>o
