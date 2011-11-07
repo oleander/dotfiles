@@ -205,16 +205,15 @@ function! OpenURL()
 endfunction
 map <Leader>w :call OpenURL()<CR>
 
-      " Pathogen
-      " Needed on some linux distros.
-      " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-      filetype off 
-      call pathogen#helptags()
-      call pathogen#runtime_append_all_bundles()
+" Pathogen
+" Needed on some linux distros.
+" see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
+filetype off 
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
-
-      "Use TAB to complete when typing words, else inserts TABs as usual.
-      "Uses dictionary and source files to find matching words to complete.
+"Use TAB to complete when typing words, else inserts TABs as usual.
+"Uses dictionary and source files to find matching words to complete.
 
 "See help completion for source,
 "Note: usual completion is on <C-n> but more trouble to press all the time.
@@ -280,4 +279,4 @@ nmap <D-6> g^
 nmap <D-0> g^
 
 " Moving down a line
-vmap <Leader>z <Leader>c<Space>
+vmap <Leader>z <Leader>c<Space>gv
