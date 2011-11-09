@@ -87,7 +87,7 @@ set expandtab
 " Always display the status line
 set laststatus=2
 
-" \ is the leader character
+" , is the leader character
 let mapleader = ","
 
 " Edit the README_FOR_APP (makes :R commands work)
@@ -240,9 +240,6 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set list
 set listchars=tab:▸\ ,eol:¬
 
-" Using , as leader key
-let mapleader = ","
-
 " Map tab in and out to Textmate's key combos
 nmap <S-A-Tab> <<
 nmap <A-Tab> >>
@@ -259,11 +256,10 @@ nnoremap <Leader>g :Gist -p <Enter>
 vnoremap <Leader>g :Gist -p <Enter>
 
 " Removes current word
-nnoremap <A-BS> bdw
+nnoremap <C-BS> bdw
 
 " Moving down a line
 vmap <Leader>z <Leader>c<Space>gv
-
 " It should be possible to use Shift down arrow to select text
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
@@ -278,3 +274,6 @@ nmap <silent> <leader>s :set spell!<CR>
 set spelllang=sv
 nnoremap <leader>sv :set spelllang=sv<Cr>
 nnoremap <leader>en :set spelllang=en_us<Cr>
+
+" Peepopen
+imap <D-t> <Esc><D-t>i
