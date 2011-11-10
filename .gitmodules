@@ -44,3 +44,6 @@
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/latex"]
+	path = vim/bundle/latex
+	url = git://github.com/jcf/vim-latex.git
