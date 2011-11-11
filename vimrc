@@ -83,8 +83,11 @@ endif " has("autocmd")
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-" Always display the status line
+set cindent
+set smartindent
+set autoindent
+set shiftwidth=2
+set cinkeys=0{,0},:,0#,!,!^F" Always display the status line
 set laststatus=2
 
 " , is the leader character
