@@ -32,9 +32,6 @@
 [submodule "vim/bundle/indexed-search"]
 	path = vim/bundle/indexed-search
 	url = git://github.com/henrik/vim-indexed-search.git
-[submodule "vim/bundle/sunburst"]
-	path = vim/bundle/sunburst
-	url = git://github.com/tangphillip/SunburstVIM.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
