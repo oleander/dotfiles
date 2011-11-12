@@ -301,3 +301,6 @@ if exists(":Tabularize")
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+" Autocompleted words should not be shown in a list
+set completeopt-=menu
