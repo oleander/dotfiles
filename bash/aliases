@@ -38,6 +38,7 @@ alias bb='bundle exec'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
 alias tab='custom_tab'
 alias e='mvim . &'
+alias gt='generate_tags'
 
 # Reloads the all settings
 alias s='source ~/.bash_profile'

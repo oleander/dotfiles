@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby -w
+
+# Tag generator, version 0.1, 2011-11-15
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+#
+# Generate tags for the current directory
+
+require "colorize"
+require "time-ago-in-words"
+
+file = ".tags"
+
+if File.exist?(file)
+  size = (File.new(file).size / (1025 * 1000)).round(2)
+  puts "A #{file} file of size #{size} MB was created #{File.atime(file).ago_in_words}, override?".yellow
+else
+  puts "You're about to create a #{file} file in the current directory, ok?".yellow
+end
+
+if gets =~ /y/
+  `ctags -f .tags -R --exclude=.git --totals=yes --exclude=log *`
+end
