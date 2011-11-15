@@ -15,7 +15,7 @@ if File.exist?(file)
   size = (File.new(file).size / (1025 * 1000)).round(2)
   puts "A #{file} file of size #{size} MB was created #{File.atime(file).ago_in_words}, override?".yellow
 else
-  puts "You're about to create a #{file} file in the current directory, ok?".yellow
+  puts "You're about to create a #{file} file for the current directory, ok?".yellow
 end
 
 if gets =~ /y/
