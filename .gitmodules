@@ -47,3 +47,6 @@
 [submodule "vim/bundle/sunburst"]
 	path = vim/bundle/sunburst
 	url = git://github.com/tangphillip/SunburstVIM.git
+[submodule "vim/bundle/javascript"]
+	path = vim/bundle/javascript
+	url = git://github.com/serverhorror/javascript.vim.git
