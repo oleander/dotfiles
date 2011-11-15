@@ -304,3 +304,6 @@ endif
 
 " Autocompleted words should not be shown in a list
 set completeopt-=menu
+
+" There should be a file called .tags in the current directory
+set tags=./tags;
