@@ -307,3 +307,7 @@ set completeopt-=menu
 
 " There should be a file called .tags in the current directory
 set tags=./tags;
+
+" Jump to method def using ctags
+map <Cr-a> <C-]>
+set cscopetag
