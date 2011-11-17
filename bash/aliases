@@ -12,6 +12,7 @@ alias gd='git diff --stat'
 alias gb='git branch'
 alias gl='git log --format="%h by %C(red)%an%Creset, %ar%n%C(green)%s%n" -n 5'
 alias ga='git add'
+alias gaa='git-manual-add'
 alias gdd='git diff'
 
 # Ruby related stuff
