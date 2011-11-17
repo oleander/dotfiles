@@ -14,7 +14,7 @@ if files.empty?
   abort("Nothing where found".green)
 end
 
-puts "### #{files.count} files found ###\n".green
+puts "### #{files.count} file(s) found ###\n".green
 matches = {}
 index   = 0
 
@@ -28,8 +28,13 @@ end
 
 files = gets.split("").map do |letter|
   if file = matches[letter]
-    puts ("Adding: %s".yellow % "#{file} - #{letter}".black); file
+    puts "Adding: %s".yellow % "#{file}".black
+    file
   end
-end
+end.reject(&:nil?)
 
-system "git add #{files.join(" ")}"
+if files.any?
+  system "git add #{files.join(" ")}"
+else
+  puts "No files where added".red
+end
