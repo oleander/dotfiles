@@ -1,9 +1,16 @@
-# Colors 
-. ~/.dotfiles/zsh/aliases
-
+# Colors
 autoload -U colors
 colors
 setopt prompt_subst
+
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
   
@@ -11,11 +18,7 @@ local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_colo
 
 PROMPT='
 %~ %{$fg[yellow]%}$(vcprompt)%{$fg[green]%}$(ruby-version)%{$fg[red]%}$(git-time-since)
-${smiley}%{$reset_color%} '
-
-export EDITOR='subl'
-export PATH="$HOME/bin:$HOME/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+${smiley}%{$reset_color%}  '
 
 fpath=(~/.dotfiles/zsh/functions/ $fpath)
 
