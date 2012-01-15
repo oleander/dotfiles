@@ -11,15 +11,15 @@ local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_colo
 
 PROMPT='
 %~ %{$fg[yellow]%}$(vcprompt)%{$fg[green]%}$(ruby-version)%{$fg[red]%}$(git-time-since)
-${smiley} %{$reset_color%} '
+${smiley}%{$reset_color%} '
 
 export EDITOR='subl'
 export PATH="$HOME/bin:$HOME/.bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
-fpath=(~/.zsh/functions $fpath)
+fpath=(~/.dotfiles/zsh/functions/ $fpath)
 
-autoload -U ~/.zsh/functions/*(:t)
+autoload -U ~/.dotfiles/zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
