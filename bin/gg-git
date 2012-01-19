@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby -w
-files = `git status --porcelain`.split("\n").map{|raw| raw.split(" ").last }.select {|file| (File.new(file).size / (10**6).to_f) > 0.2}
+
+# GG git, version 0.1, 2012-01-19
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
+max_file_size = 0.2 # MB
+
+files = `git status --porcelain`.
+  split("\n").
+  map{|raw| raw.split(" ").last }.
+  select {|file| (File.new(file).size / (10**6).to_f) > max_file_size}
 
 if files.any?
-  puts "#{files.count} large file(s) found."
+  puts "#{files.count} large file(s) found.".red
   puts files.join(", ")
   puts "Continue?"
   con = true if STDIN.gets =~ /y/
