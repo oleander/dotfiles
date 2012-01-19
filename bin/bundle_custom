@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby -w
 
-# Bundle Custom, version 0.1, 2011-04-27
+# Bundle Custom, version 1.0, 2012-01-19
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
@@ -8,10 +8,23 @@
 # => bundle install && 
 # git add Gemfile Gemfile.lock &&
 # git commit -m "Message"
-# using command `b`.
 
+require "colorize"
 require "optparse"
 
+unless File.exist?("Gemfile")
+  puts "No Gemfile found".red
+end
+
+def prepare_gemfile(raw)
+  raw.split("\n").map{|line| line.match(/gem ["|'](.+?)["|']/).to_a[1]}.reject(&:nil?)
+end
+
+def read_gemfile
+  prepare_gemfile(File.read("Gemfile"))
+end
+
+current_gems = read_gemfile
 options = {}
 
 optparse = OptionParser.new do |opts|
@@ -28,9 +41,27 @@ system "rm Gemfile.lock" if options[:hard]
 if system "bundle install"
   puts "Enter a commit message."
   message = gets
-  unless message =~ /[a-z]/i
-    message = "New Gemfile.lock"
+  unless message =~ /.+/i
+    changed_gems = prepare_gemfile(`git show :Gemfile`)
+    
+    message = []
+    
+    diff = current_gems - changed_gems
+    if diff.any?
+      message << "Adding #{diff.join(", ")}"
+    end
+    
+    diff = changed_gems-  current_gems
+    if diff.any?
+      message << "Removing #{diff.join(", ")}"
+    end
+
+    if message.any?
+      message = message.join(", ")
+    else
+      message = "Running bundle install"
+    end
   end
   
-  system "git add Gemfile Gemfile.lock && git commit -m '#{message.gsub(/\n/, "")}'"
+  system "git add Gemfile Gemfile.lock && git commit -m '#{message.gsub(/\n/, "")}' -- Gemfile Gemfile.lock"
 end
