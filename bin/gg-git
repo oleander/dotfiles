@@ -8,7 +8,7 @@ max_file_size = 0.2 # MB
 
 files = `git status --porcelain`.
   split("\n").
-  map{|raw| raw.split(" ").last }.
+  map{|raw| raw.split(" ").last}.
   select {|file| (File.new(file).size / (10**6).to_f) > max_file_size}
 
 if files.any?
