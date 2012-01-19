@@ -11,7 +11,7 @@ files = `git status --porcelain`.
   map{|raw| raw.split(" ").last}.
   select {|file| (File.new(file).size / (10**6).to_f) > max_file_size}
 
-if files.any? or 1 == 1
+if files.any?
   puts "#{files.count} large file(s) found."
   puts files.join(", ")
   puts "Continue?"
