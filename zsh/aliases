@@ -12,6 +12,7 @@ alias gl='git log --format="%h by %C(red)%an%Creset, %ar%n%C(green)%s%n" -n 7'
 alias ga='git add'
 alias gaa='git-manual-add'
 alias gdd='git diff'
+alias gg='gg-git'
 
 # Ruby related stuff
 alias v='ruby -v'
@@ -53,11 +54,6 @@ alias m='cr && cd Movify'
 
 # Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
-
-# Git add and git commit
-function gg() {
-  git add . && git commit -v -a -m "$*"
-}
 
 function ga() {
   git commit --amend -m "$*"
