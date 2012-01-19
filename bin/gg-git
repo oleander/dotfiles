@@ -11,15 +11,11 @@ files = `git status --porcelain`.
   map{|raw| raw.split(" ").last}.
   select {|file| (File.new(file).size / (10**6).to_f) > max_file_size}
 
-if files.any?
+if files.any? and 1 == 2
   puts "#{files.count} large file(s) found.".red
   puts files.join(", ")
   puts "Continue?"
-  con = true if STDIN.gets =~ /y/
-else
-  con = true
+  return unless STDIN.gets =~ /y/
 end
 
-if con
-  `git add . && git commit -v -a -m "#{ARGV.first}"`
-end
+`git add . && git commit -v -a -m "#{ARGV.first}"`
