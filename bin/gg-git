@@ -18,4 +18,4 @@ if files.any?
   abort("Abort") unless STDIN.gets =~ /y/
 end
 
-`git add . && git commit -v -a -m "#{ARGV.first}"`
+puts `git add . && git commit -v -a -m "#{ARGV.first}"`
