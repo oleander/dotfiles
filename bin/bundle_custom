@@ -38,30 +38,30 @@ optparse.parse!
 
 system "rm Gemfile.lock" if options[:hard]
 
-if system "bundle install"
-  puts "Enter a commit message."
-  message = gets
-  unless message =~ /.+/i
-    changed_gems = prepare_gemfile(`git show :Gemfile`)
-    
-    message = []
-    
-    diff = current_gems - changed_gems
-    if diff.any?
-      message << "Adding #{diff.join(", ")}"
-    end
-    
-    diff = changed_gems-  current_gems
-    if diff.any?
-      message << "Removing #{diff.join(", ")}"
-    end
+abort unless system "bundle install"
 
-    if message.any?
-      message = message.join(", ")
-    else
-      message = "Running bundle install"
-    end
-  end
-  
-  system "git add Gemfile Gemfile.lock && git commit -m '#{message.gsub(/\n/, "")}' -- Gemfile Gemfile.lock"
+changed_gems = prepare_gemfile(`git show :Gemfile`)
+
+message = []
+diff = current_gems - changed_gems
+if diff.any?
+  message << "Adding #{diff.join(", ")}"
 end
+
+diff = changed_gems - current_gems
+if diff.any?
+  message << "Removing #{diff.join(", ")}"
+end
+
+if message.any?
+  message = message.join(", ")
+else
+  message = "Running bundle install"
+end
+
+puts "Enter a commit message [#{message}]"
+unless (m = gets).empty?
+  message = m
+end
+
+system "git add Gemfile Gemfile.lock && git commit -m '#{message.gsub(/\n/, "")}' -- Gemfile Gemfile.lock"
