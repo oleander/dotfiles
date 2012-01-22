@@ -4,8 +4,7 @@
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
-# Useage
-# kk-kill {process}
+# Usage: kk-kill {process}
 # The process will be killed using kill -p pid
 
 require "colorize"
