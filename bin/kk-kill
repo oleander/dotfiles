@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby -w
+
+# KK Kill, version 0.1, 2012-01-22
+# Copyright (c) 2011, Linus Oleander
+# Released under the MIT licens
+
+# Useage
+# kk-kill {process}
+# The process will be killed using kill -p pid
+
+require "colorize"
+
+abort("Nothing to kill".red) if ARGV.first.nil?
+
+processors = `ps a | grep #{ARGV.first}`.split("\n").each do |p|
+  pid = p.split(" ").first.to_i
+  process = p.split(" ")[4..-1].join(" ")
+  next if pid == $$ or process.match(/grep/)
+  puts "Kill '#{process}'?".green
+  if $stdin.gets =~ /y/
+    `kill -9 #{pid}`
+    puts "'#{process}' is now dead".green
+  else
+    puts "'#{process}' not dead".yellow
+  end
+end

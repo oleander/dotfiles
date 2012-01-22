@@ -31,12 +31,11 @@ alias f='foreman start'
 
 # Other
 alias dd='cd ~/Desktop'
-alias k='kill -9'
+alias k='kk-kill'
 alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
 alias tab='custom_tab'
-alias e='mvim . &'
 alias gt='generate_tags'
 
 # Reloads the all settings
