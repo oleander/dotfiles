@@ -40,7 +40,7 @@ alias e='mvim . &'
 alias gt='generate_tags'
 
 # Reloads the all settings
-alias s='source ~/.bash_profile'
+alias s='source ~/.zshrc'
 
 # Edit specific files
 alias ei='mate .gitignore'
