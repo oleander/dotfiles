@@ -60,7 +60,7 @@ else
 end
 
 puts "Enter a commit message [#{message}]"
-unless (m = gets).empty?
+unless (m = gets).strip.empty?
   message = m
 end
 
