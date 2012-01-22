@@ -5,7 +5,7 @@
 # Released under the MIT licens
 
 # Usage: kk-kill {process}
-# The process will be killed using kill -p pid
+# The process will be killed using `kill -9 pid`
 
 require "colorize"
 
