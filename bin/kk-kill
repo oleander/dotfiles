@@ -11,7 +11,7 @@ require "colorize"
 
 abort("Nothing to kill".red) if ARGV.first.nil?
 
-processors = `ps a | grep #{ARGV.first}`.split("\n").each do |p|
+`ps a | grep #{ARGV.first}`.split("\n").each do |p|
   pid = p.split(" ").first.to_i
   process = p.split(" ")[4..-1].join(" ")
   next if pid == $$ or process.match(/grep/)
