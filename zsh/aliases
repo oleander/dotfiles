@@ -17,7 +17,7 @@ alias gg='gg-git'
 # Ruby related stuff
 alias v='ruby -v'
 alias bb='bundle exec'
-alias b='bundle_custom'
+alias b='custom-bundler'
 alias d='time cap deploy'
 alias ss='rails s --debugger'
 alias rs='rspec --drb'
