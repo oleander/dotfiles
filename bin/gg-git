@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby -w
 
-# GG git, version 0.1, 2012-01-19
+# GG git, version 0.2.0, 2012-01-25
+# Warn you if you're trying to commit large files
+# Usage: gg "A commit message"
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
