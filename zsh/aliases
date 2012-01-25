@@ -30,7 +30,7 @@ alias f='foreman start'
 
 # Other
 alias dd='cd ~/Desktop'
-alias k='kk-kill'
+alias kk='kk-kill'
 alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
