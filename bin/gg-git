@@ -4,18 +4,32 @@
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
-max_file_size = 0.2 * 10**6 # MB
+max_file_size = 0.2 # In MB
 
 files = `git status --porcelain`.
   split("\n").
-  map{|raw| raw.split(" ").last}.
-  select { |file| File.exists?(file) and File.new(file).size > max_file_size }
+  map do |raw|
+    split = raw.split(" ")
+    media = split.last
+    type = split.first
+    if type == "??" and File.directory?(media) 
+      next `find #{media} -type f`.gsub(%r{\/{2,}}, "/").split("\n")
+    end 
+    media
+  end.
+  flatten.
+  map do |file|
+    next unless File.exists?(file)
+    size = File.new(file).size.to_f / (10**6)
+    next unless size > max_file_size
+    "#{file} (#{size.round(2)} MB)"
+  end.reject(&:nil?)
   
 if files.any?
   puts "#{files.count} large file(s) found."
-  puts files.join(", ")
+  puts files.join("\n")
   puts "Continue?"
-  abort("Abort") unless STDIN.gets =~ /y/
+  abort("Aborting") unless STDIN.gets =~ /y/
 end
 
-puts `git add . && git commit -v -a -m "#{ARGV.first}"`
+puts `git add . && git commit -v -a -m "#{ARGV.join(" ")}"`
