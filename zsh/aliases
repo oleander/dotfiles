@@ -49,7 +49,7 @@ alias dot='cd ~/.dotfiles'
 alias cr='cd /Users/linus/Documents/Projekt/'
 alias r='cr && cd Rubyfy'
 alias m='cr && cd Movify'
-alias w='cr && cd water'
+alias w='cr && cd water/mainline'
 
 # Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
