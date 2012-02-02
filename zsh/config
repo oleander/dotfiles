@@ -20,6 +20,8 @@ PROMPT='
 %~ %{$fg[yellow]%}$(vcprompt)%{$fg[green]%}$(ruby-version)%{$fg[red]%}$(git-time-since)
 ${smiley}%{$reset_color%}  '
 
+RPROMPT='[%*]'
+
 fpath=(~/.dotfiles/zsh/functions/ $fpath)
 
 autoload -U ~/.dotfiles/zsh/functions/*(:t)
