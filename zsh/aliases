@@ -54,6 +54,10 @@ alias w='cr && cd water/mainline'
 # Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
 
+function copy(){
+  cat $1 | pbcopy && cat $1
+}
+
 function ga() {
   git commit --amend -m "$*"
 }
