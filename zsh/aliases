@@ -35,6 +35,7 @@ alias p='ps aux | grep'
 alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
 alias tab='custom_tab'
 alias gt='generate_tags'
+alias leet='git shortlog -se | sort -r | head -n 10'
 
 # Reloads the all settings
 alias s='source ~/.zshrc'
