@@ -14,10 +14,14 @@ alias gdd='git diff'
 alias gg='gg-git'
 
 # Ruby related stuff
+alias rake='be rake'
+alias cap='be cap'
+alias rspec='be rspec'
+alias spork='be spork'
 alias v='ruby -v'
 alias bb='bundle exec'
 alias b='custom-bundler'
-alias d='time cap deploy'
+alias d='cap deploy'
 alias ss='rails s --debugger'
 alias rs='rspec --drb'
 alias P='RAILS_ENV=production'
@@ -115,5 +119,14 @@ function tt() {
   else
     rvm use 1.9.2 >> /dev/null;
     echo "==> 1.9.2";
+  fi
+}
+
+# http://tomafro.net/2011/09/tip-automatic-bundle-exec-for-rake-and-more
+function be(){
+  if [[ -a Gemfile ]]; then
+    bundle exec $*
+  else
+    command $*
   fi
 }
