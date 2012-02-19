@@ -85,7 +85,6 @@ function most() {
   history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
 }
 
-# Skapar en mapp, hoppar sedan vidare till den
 function take() {
   mkdir $1
   cd $1
@@ -110,7 +109,7 @@ function gu() {
   git branch --set-upstream $1 origin/$1
 }
 
-# Togglar mellan de olika ruby-versionerna
+# Toggle between Ruby 1.8.7 and 1.9.2
 function tt() {
   if [[ `ruby -v` == *1.9.2* ]]
   then
