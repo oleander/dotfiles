@@ -1,0 +1,14 @@
+section: options
+end
+
+section: screens
+  linus.local:
+  linus-oleanders-mac-mini.local:
+end
+
+section: links
+  linus.local:
+    left  = linus-oleanders-mac-mini.local
+  linus-oleanders-mac-mini.local:
+    right = linus.local
+end
