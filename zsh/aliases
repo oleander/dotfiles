@@ -12,7 +12,7 @@ alias gl='git log --format="%h by %C(red)%an%Creset, %ar %C(green)%s" --graph --
 alias gaa='git-manual-add'
 alias gdd='git diff'
 alias gg='gg-git'
-alias me='ack --color "<< HEAD" --files-with-matches --count'
+alias me='ack --color "<< HEAD" --files-with-matches --count -u -G "\.gitignore"'
 
 # Ruby related stuff
 alias rake='be rake'
