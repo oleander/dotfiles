@@ -15,10 +15,6 @@ alias gg='gg-git'
 alias me='ack --color "<< HEAD" --files-with-matches --count -u -G "\.gitignore"'
 
 # Ruby related stuff
-alias rake='be rake'
-alias cap='be cap'
-alias rspec='be rspec'
-alias spork='be spork'
 alias v='ruby -v'
 alias bb='bundle exec'
 alias b='custom-bundler'
