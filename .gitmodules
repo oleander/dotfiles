@@ -53,3 +53,6 @@
 [submodule "vim/bundle/taglist"]
 	path = vim/bundle/taglist
 	url = git://github.com/vim-scripts/taglist.vim.git
+[submodule "vim/bundle/smartinput"]
+	path = vim/bundle/smartinput
+	url = git://github.com/kana/vim-smartinput.git
