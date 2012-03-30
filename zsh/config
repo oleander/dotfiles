@@ -63,4 +63,4 @@ bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
 # http://thechangelog.com/post/20060822984/noexec-run-ruby-scripts-without-bundle-exec
-RUBYOPT="-r`noexec`"
+# RUBYOPT="-r`noexec`"
