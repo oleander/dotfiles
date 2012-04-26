@@ -7,7 +7,7 @@ setopt prompt_subst
 ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_UPDATE="true"
 DISABLE_UPDATE_PROMPT="true"
-plugins=(git, rvm)
+plugins=(git, rvm, osx)
 
 source $ZSH/oh-my-zsh.sh
 
