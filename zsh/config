@@ -26,8 +26,8 @@ fpath=(~/.dotfiles/zsh/functions/ $fpath)
 autoload -U ~/.dotfiles/zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 REPORTTIME=10 # print elapsed time when more than 10 seconds
 
 setopt NO_BG_NICE # don't nice background tasks
