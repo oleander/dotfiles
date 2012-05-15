@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby -w
+
+# Github Issues, version 0.1, 2012-05-16
+# Copyright (c) 2012, Linus Oleander
+# Released under the MIT licens
+
+# Create issues from the console
+# Uses the current project and user as base
+
+require "colorize"
+
+api_key = `git config --get github.token`
+_, u, r = `git remote show -n origin`.match(%r{git\@github\.com:(\w+)/(\w+)\.git}).to_a
+
+puts "Project '#{r}' for #{u}".yellow
+print "Title: ".green
+title = $stdin.gets.strip
+
+print "Body: ".green
+body = $stdin.gets.strip
+puts "Post? [y|n]".green
+
+abort "Abort".red unless $stdin.gets =~ /y/i
+
+options = %Q{
+  -F 'login=#{u}' \
+  -F 'token=#{api_key}' \
+  -F 'title=#{title}' \
+  -F 'body=#{body}' \
+}.gsub(/\n/, " ")
+
+`curl #{options} http://github.com/api/v2/json/issues/open/#{u}/#{r}`

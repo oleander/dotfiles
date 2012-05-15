@@ -37,6 +37,7 @@ alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | r
 alias tab='custom_tab'
 alias gt='generate_tags'
 alias leet='git shortlog -se | sort -r | head -n 10'
+alias i='github-issues'
 
 # Reloads the all settings
 alias s='source ~/.zshrc'
