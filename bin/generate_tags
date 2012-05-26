@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby
 
 # Tag generator, version 0.1, 2011-11-15
 # Copyright (c) 2011, Linus Oleander

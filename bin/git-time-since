@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby
 
 # Git Time Since, version 0.2, 2011-03-08
 # Copyright (c) 2011, Linus Oleander
