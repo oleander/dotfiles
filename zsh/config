@@ -19,7 +19,7 @@ PROMPT='
 %~ %{$fg[green]%}$(ruby-version)%{$fg[yellow]%}$(vcprompt -f "[%b@%r]") %{$fg[red]%}$(git-time-since)
 ${smiley}%{$reset_color%}  '
 
-RPROMPT='[%*]'
+RPROMPT='[$(hostname)][%*]'
 
 fpath=(~/.dotfiles/zsh/functions/ $fpath)
 

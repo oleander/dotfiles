@@ -48,4 +48,4 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export DIGEST=334bf263d31abc5dad70c0cca96fc0a46a338fd2 HASH=7658f3456ecc246728b810622362b77b39fd7978 PROWL=66eb50165892dbdc9a008a9104c0f9530f401842
 
-export PS1="\n\w \[$YELLOW\]\$(vcprompt)\[$GREEN\]\$(ruby-version-nice)\[$RED\]\$(git_time_since)\[$NO_COLOR\] \n→ "
+export PS1="\n\w[\$(hostname)] \[$YELLOW\]\$(vcprompt)\[$GREEN\]\$(ruby-version-nice)\[$RED\]\$(git_time_since)\[$NO_COLOR\] \n→ "
