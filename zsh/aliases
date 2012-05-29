@@ -38,6 +38,7 @@ alias tab='custom_tab'
 alias gt='generate_tags'
 alias leet='git shortlog -se | sort -r | head -n 10'
 alias i='github-issues'
+alias oi='open-issues'
 
 # Reloads the all settings
 alias s='source ~/.zshrc'
