@@ -311,3 +311,9 @@ set tags=./tags;
 " Jump to method def using ctags
 map <Cr-a> <C-]>
 set cscopetag
+
+" vundle configuration
+set rtp+=~/.dotfiles/vim/bundle/vundle/ 
+call vundle#rc()
+Bundle "gmarik/vundle"
+Bundle "ShowMarks"

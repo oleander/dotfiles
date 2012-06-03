@@ -56,3 +56,6 @@
 [submodule "vim/bundle/smartinput"]
 	path = vim/bundle/smartinput
 	url = git://github.com/kana/vim-smartinput.git
+[submodule "vim/bundle/vundle"]
+	path = vim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
