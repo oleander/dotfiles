@@ -13,7 +13,7 @@ require "colorize"
 require "optparse"
 
 unless File.exist?("Gemfile")
-  puts "No Gemfile found".red
+  abort "No Gemfile found".red
 end
 
 def prepare_gemfile(raw)
@@ -36,7 +36,7 @@ end
 
 optparse.parse!
 
-system "rm Gemfile.lock" if options[:hard]
+system "rm -f Gemfile.lock" if options[:hard]
 
 abort unless system "bundle install"
 
@@ -45,12 +45,12 @@ changed_gems = prepare_gemfile(`git show :Gemfile`)
 message = []
 diff = current_gems - changed_gems
 if diff.any?
-  message << "Adding #{diff.join(", ")}"
+  message << "Add #{diff.join(", ")} to Gemfile"
 end
 
 diff = changed_gems - current_gems
 if diff.any?
-  message << "Removing #{diff.join(", ")}"
+  message << "Remove #{diff.join(", ")} from Gemfile"
 end
 
 if message.any?
