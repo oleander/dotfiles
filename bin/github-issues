@@ -12,4 +12,4 @@ if not u or not r
   abort "Params not found"
 end
 
-`open https://github.com/#{u}/#{r}/issues/new 2&> /dev/null`
+`open https://github.com/#{u}/#{r}/issues/new`
