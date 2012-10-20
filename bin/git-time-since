@@ -81,7 +81,7 @@ end
 
 # Is the current directory a git repo?
 def git?
-  ! `shopt -s nullglob dotglob; files=(*.git); if ((${#files[@]})); then echo "OK"; fi; shopt -u nullglob dotglob`.empty?
+  ! `ls -lha | grep .git$`.empty?
 end
 
 # Data to work with

@@ -22,4 +22,7 @@
 
 # Errors will not be printed
 
-puts "[#{`ruby -v`.match(/\d+.\d+.\d+/).to_a.first}] " unless `shopt -s nullglob dotglob; files=( *.rb */*.rb); if ((${#files[@]})); then echo "OK"; fi; shopt -u nullglob dotglob`.empty?
+if `[ -f ./Gemfile ] && echo "1" || echo "0"` == "1\n" or not 
+  `find . -type f -iname "*.rb" -maxdepth 2 | head -n 1`.empty?
+  puts "[#{`ruby -v`.match(/\d+.\d+.\d+/).to_a.first}] "
+end
