@@ -23,6 +23,6 @@
 # Errors will not be printed
 
 if `[ -f ./Gemfile ] && echo "1" || echo "0"` == "1\n" or not 
-  `find . -type f -iname "*.rb" -maxdepth 2 | head -n 1`.empty?
+  `find . -maxdepth 2 -type f -iname "*.rb" | head -n 1`.empty?
   puts "[#{`ruby -v`.match(/\d+.\d+.\d+/).to_a.first}] "
 end
