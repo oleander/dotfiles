@@ -211,9 +211,11 @@ map <Leader>w :call OpenURL()<CR>
 " Pathogen
 " Needed on some linux distros.
 " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-filetype off 
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+filetype off
+syntax on
+filetype indent on
 
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
@@ -231,9 +233,6 @@ function! Tab_Or_Complete()
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 set dictionary="/usr/share/dict/words"
-
-filetype indent on
-syntax on
 
 " Cache files should be saved to tmp
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
