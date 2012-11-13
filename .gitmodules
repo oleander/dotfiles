@@ -58,3 +58,6 @@
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "vim/bundle/showmarks"]
+	path = vim/bundle/showmarks
+	url = git://github.com/bootleq/ShowMarks.git
