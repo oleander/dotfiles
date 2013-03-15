@@ -29,6 +29,7 @@ alias lp='tail -f -n 40 log/production.log'
 alias f='foreman start'
 
 # Other
+alias mvim='open -a MacVim'
 alias dd='cd ~/Desktop'
 alias kk='kk-kill'
 alias flush='dscacheutil -flushcache'
