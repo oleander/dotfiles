@@ -1,0 +1,19 @@
+alias gp='git_push_origin'
+alias gpp='git_pull_origin'
+alias gph='git push heroku master'
+alias gs='git status --ignore-submodules -s -b'
+alias gph='git push heroku master'
+alias gc='git checkout'
+alias gcp='git cherry-pick'
+alias gd='git diff --stat'
+alias gb='git branch'
+alias gl='git log --format="%h by %C(red)%an%Creset, %ar %C(green)%s" --graph --decorate --all'
+alias gaa='git-manual-add'
+alias gdd='git diff'
+alias gg='gg-git'
+alias me='ack --color "<< HEAD" --files-with-matches --count -u -G "\.gitignore"'
+
+# http://stackoverflow.com/questions/520650/how-do-you-make-an-existing-git-branch-track-a-remote-branch
+function gu() {
+  git branch --set-upstream $1 origin/$1
+}
