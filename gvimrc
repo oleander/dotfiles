@@ -15,4 +15,6 @@ set guioptions-=r
 if has("gui_macvim")
   macmenu &File.New\ Tab key=<nop>
   map <D-t> <Plug>PeepOpen
+  :noremap <D-A-right> :tabnext<cr>
+  :noremap <D-A-left> :tabprevious<cr> 
 end

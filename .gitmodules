@@ -16,9 +16,6 @@
 [submodule "vim/bundle/peepopen"]
 	path = vim/bundle/peepopen
 	url = git://github.com/shemerey/vim-peepopen.git
-[submodule "vim/bundle/markdown"]
-	path = vim/bundle/markdown
-	url = git://github.com/tpope/vim-markdown.git
 [submodule "vim/bundle/haml"]
 	path = vim/bundle/haml
 	url = git://github.com/tpope/vim-haml.git
@@ -58,3 +55,6 @@
 [submodule "vim/bundle/showmarks"]
 	path = vim/bundle/showmarks
 	url = git://github.com/bootleq/ShowMarks.git
+[submodule "vim/bundle/markdown"]
+	path = vim/bundle/markdown
+	url = git://github.com/hallison/vim-markdown.git
