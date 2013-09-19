@@ -58,3 +58,9 @@
 [submodule "vim/bundle/markdown"]
 	path = vim/bundle/markdown
 	url = git://github.com/hallison/vim-markdown.git
+[submodule "vim/bundle/rvm_ruby"]
+	path = vim/bundle/rvm_ruby
+	url = git://github.com/jcf/rvm_ruby.vim.git
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
