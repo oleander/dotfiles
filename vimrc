@@ -198,27 +198,27 @@ set tags=./tags;
 let g:fuf_splitPathMatching=1
 
 " Open URL
-command -bar -nargs=1 OpenURL :!open <args>
-function! OpenURL()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
-  echo s:uri
-  if s:uri != ""
-    exec "!open \"" . s:uri . "\""
-  else
-    echo "No URI found in line."
-  endif
-endfunction
+"command -bar -nargs=1 OpenURL :!open <args>
+"function! OpenURL()
+  "let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;:]*')
+  "echo s:uri
+  "if s:uri != ""
+    "exec "!open \"" . s:uri . "\""
+  "else
+    ""echo "No URI found in line."
+  "endif
+"endfunction
 map <Leader>w :call OpenURL()<CR>
 
 " Pathogen
 " Needed on some linux distros.
 " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-filetype off
-syntax on
-filetype indent on
-
+" call pathogen#helptags()
+" call pathogen#runtime_append_all_bundles()
+" filetype off
+" syntax on
+" filetype indent on
+" 
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
 "See help completion for source,
@@ -279,8 +279,10 @@ set spelllang=sv
 nnoremap <leader>sv :set spelllang=sv<Cr>
 nnoremap <leader>en :set spelllang=en_us<Cr>
 
-" Peepopen
-imap <D-t> <Esc><D-t>i
+" CtrlP
+" imap <D-t> <Esc><D-t>i
+" imap <D-t> <Esc><D-t>i
+" imap <D-t> <Esc>:CtrlPMixed<CR>
 
 " Makes it possible to auto create tables
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -318,3 +320,11 @@ set rtp+=~/.dotfiles/vim/bundle/vundle/
 call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle "ShowMarks"
+
+" Reset search when done
+set nohlsearch
+
+" Only one line for commenting
+au FileType * setlocal formatoptions-=cro
+
+

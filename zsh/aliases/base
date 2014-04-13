@@ -1,5 +1,4 @@
 # Other
-alias mvim='open -a MacVim'
 alias dd='cd ~/Desktop'
 alias kk='kk-kill'
 alias flush='dscacheutil -flushcache'
@@ -10,6 +9,7 @@ alias gt='generate_tags'
 alias leet='git shortlog -se | sort -r | head -n 10'
 alias i='github-issues'
 alias oi='open-issues'
+# alias mvim='mvim -o 0'
 
 # Reloads the all settings
 alias s='source ~/.zshrc'
@@ -32,11 +32,6 @@ function copy(){
 
 function ga() {
   git commit --amend -m "$*"
-}
-
-# Manual git commit
-function gcc() {
-  git commit -v -m "$*"
 }
 
 function burn() {

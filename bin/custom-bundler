@@ -16,15 +16,6 @@ unless File.exist?("Gemfile")
   abort "No Gemfile found".red
 end
 
-def prepare_gemfile(raw)
-  raw.split("\n").map{|line| line.match(/gem ["|'](.+?)["|']/).to_a[1]}.reject(&:nil?)
-end
-
-def read_gemfile
-  prepare_gemfile(File.read("Gemfile"))
-end
-
-current_gems = read_gemfile
 options = {}
 
 optparse = OptionParser.new do |opts|
@@ -39,29 +30,3 @@ optparse.parse!
 system "rm -f Gemfile.lock" if options[:hard]
 
 abort unless system "bundle install"
-
-changed_gems = prepare_gemfile(`git show :Gemfile`)
-
-message = []
-diff = current_gems - changed_gems
-if diff.any?
-  message << "Add #{diff.join(", ")} to Gemfile"
-end
-
-diff = changed_gems - current_gems
-if diff.any?
-  message << "Remove #{diff.join(", ")} from Gemfile"
-end
-
-if message.any?
-  message = message.join(", ")
-else
-  message = "Running bundle install"
-end
-
-puts "Enter a commit message [#{message}]"
-unless (m = gets).strip.empty?
-  message = m
-end
-
-system "git add Gemfile Gemfile.lock && git commit -m '#{message.gsub(/\n/, "")}' -- Gemfile Gemfile.lock"

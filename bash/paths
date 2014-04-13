@@ -1,6 +1,10 @@
 export PATH="~/.dotfiles/bin:/opt/local/bin/:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/CrossPack-AVR/bin:~/.rvm/bin/:$PATH"
+
+export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export MANPATH="/usr/local/CrossPack-AVR/man:$MANPATH"
+
 export C_INCLUDE_PATH="/usr/local/CrossPack-AVR/include:$C_INCLUDE_PATH"
+
 export RUBYOPT="rubygems"

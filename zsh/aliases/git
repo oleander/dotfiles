@@ -12,6 +12,7 @@ alias gaa='git-manual-add'
 alias gdd='git diff'
 alias gg='gg-git'
 alias me='ack --color "<< HEAD" --files-with-matches --count -u -G "\.gitignore"'
+alias gcc='git commit -v -m'
 
 # http://stackoverflow.com/questions/520650/how-do-you-make-an-existing-git-branch-track-a-remote-branch
 function gu() {

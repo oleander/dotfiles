@@ -1,28 +1,10 @@
 #!/usr/bin/env ruby
 
-# Ruby Version Nice, version 0.1, 2011-03-08
+# Ruby Version Nice, version 0.1, 2013-09-09
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
 # Returns the current version of Ruby in a readable format
 # Example => [1.9.2]
-# Prints the current version if there is any ruby files in the current directory or one level down.
 
-# Example 1 , will be printed
-# -- ruby.rb
-
-# Example 2, will be printed
-# -- file.txt
-# -- -- ruby.rb
-
-# Example 3, will NOT be printed
-# -- file.txt
-# -- --  file.txt
-# -- -- -- ruby.rb
-
-# Errors will not be printed
-
-if `[ -f ./Gemfile ] && echo "1" || echo "0"` == "1\n" or not 
-  `find . -maxdepth 2 -type f -iname "*.rb" | head -n 1`.empty?
-  puts "[#{`ruby -v`.match(/\d+.\d+.\d+/).to_a.first}] "
-end
+puts "[%s]" % `ruby -v`.match(/(\d+\.\d+\.\d+)/).to_a.first
