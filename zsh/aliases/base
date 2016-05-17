@@ -68,3 +68,4 @@ function name() {
 }
 
 alias h='history | grep'
+alias subl='atom'
