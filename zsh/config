@@ -12,11 +12,11 @@ plugins=(git, rvm, osx)
 source $ZSH/oh-my-zsh.sh
 
 #if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-  
+
 local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
 
 PROMPT='
-%~ %{$fg[green]%}$(ruby-version) %{$fg[yellow]%}$(vcprompt -f "[%b@%r]") %{$fg[red]%}$(git-time-since)
+%~ %{$fg[yellow]%}$(vcprompt -f "[%b@%r]") %{$fg[red]%}$(git-time-since)
 ${smiley}%{$reset_color%}  '
 
 RPROMPT='[$(hostname)][%*]'
@@ -67,3 +67,6 @@ bindkey "^[[B" history-search-forward
 
 # Disable correctness
 unsetopt correct_all
+
+# Set correct java path
+export JAVA_HOME=$(/usr/libexec/java_home)

@@ -327,4 +327,6 @@ set nohlsearch
 " Only one line for commenting
 au FileType * setlocal formatoptions-=cro
 
-
+# nnoremap ,t :CtrlP<CR>
+# nnoremap <leader>t :CtrlP<CR>
+map ,t :CtrlP<CR>

@@ -66,3 +66,5 @@ function not() {
 function name() {
   echo -ne "\033]0;"$@"\007"
 }
+
+alias h='history | grep'

@@ -1,24 +1,8 @@
-alias v='ruby -v'
 alias bb='bundle exec'
-alias b='custom-bundler'
-alias d='cap deploy'
+alias b='bundle install'
 alias ss='rails s --debugger'
 alias rs='rspec'
 alias P='RAILS_ENV=production'
 alias D='RAILS_ENV=development'
 alias T='RAILS_ENV=test'
-alias ld='tail -f -n 40 log/development.log'
-alias lp='tail -f -n 40 log/production.log'
 alias f='foreman start'
-
-# Toggle between Ruby 1.8.7 and 1.9.2
-function tt() {
-  if [[ `ruby -v` == *1.9.2* ]]
-  then
-    rvm use 1.8.7 >> /dev/null
-    echo "==> 1.8.7"
-  else
-    rvm use 1.9.2 >> /dev/null;
-    echo "==> 1.9.2";
-  fi
-}
