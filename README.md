@@ -18,3 +18,5 @@ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~./oh-my-zsh
 ```
+
+Load `~/.dotfiles` into iTerm2.
