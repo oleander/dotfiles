@@ -4,7 +4,7 @@
 # Copyright (c) 2011, Linus Oleander
 # Released under the MIT licens
 
-# Prints time since last commit and the amount of untracked files. 
+# Prints time since last commit and the amount of untracked files.
 
 # Example output: [UT 5 : AH 1 : 12 min]
 # UT 5 => 5 untracked files.
@@ -14,6 +14,13 @@
 # The ago_in_words method is brought to you by:
 # => https://github.com/krainboltgreene/time-ago-in-words
 # and modified by me.
+
+# Is the current directory a git repo?
+def git?
+  system "[ -e '.git/HEAD' ]"
+end
+
+exit 0 unless git?
 
 require "time"
 
@@ -28,7 +35,7 @@ def ago_in_words(time)
   a_week       = a_day     * 7
   a_month      = a_week    * 4
   a_year       = a_week    * 52
-  
+
   if time_between <= a_minute
     count = time_between
     "#{count} sec"
@@ -70,18 +77,13 @@ end
 # Does not print any errors
 def time
   time = `git log "HEAD^..HEAD" --pretty=format:%cD 2> /dev/null`
-  
+
   if time.empty?
     "N"
   else
     sec = ((Time.now.to_i - Time.parse(time).to_i) / 60.to_f).round
-    sec > 500 ? ago_in_words(Time.parse(time)) : "#{sec} min" 
+    sec > 500 ? ago_in_words(Time.parse(time)) : "#{sec} min"
   end
-end
-
-# Is the current directory a git repo?
-def git?
-  ! `ls -lha | grep .git$`.empty?
 end
 
 # Data to work with
@@ -105,4 +107,4 @@ def data
   @data ||= `git status --ignore-submodules -s -b 2> /dev/null`
 end
 
-puts "[UT " + ua + " : AH " + ah + " : " + time + "]" if git?
+puts "[UT " + ua + " : AH " + ah + " : " + time + "]"
