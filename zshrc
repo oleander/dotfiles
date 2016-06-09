@@ -10,9 +10,6 @@
 # Navigate to project path
 if [[ -s /Users/linus/Documents/Projekt ]] ; then cr ; fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-
 export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/"
 
 # Add GHC 7.8.4 to the PATH, via http://ghcformacosx.github.io/

@@ -1,4 +1,4 @@
-export PATH=~/.rvm/bin:~/.dotfiles/bin:/opt/local/bin/:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$HOME:$PATH:/usr/local/share/npm/bin
+export PATH=~/.dotfiles/bin:/opt/local/bin/:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$HOME:$PATH:/usr/local/share/npm/bin:$HOME/.rvm/bin
 export MANPATH=/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export MANPATH=/usr/local/CrossPack-AVR/man:$MANPATH
@@ -7,3 +7,5 @@ export RUBYOPT=rubygems
 export EDITOR='subl'
 export MANPATH=/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH
 export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+
+# ~/.rvm/bin:
