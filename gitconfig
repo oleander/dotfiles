@@ -1,5 +1,5 @@
 [color]
-  ui = true
+	ui = auto
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -15,22 +15,26 @@
   summary = true
   verbosity = 1
   tool = mvimdiff
+	stat = true
 [apply]
   whitespace = nowarn
 [branch]
-  autosetupmerge = true
+	autosetupmerge = true
 [push]
-  default = current
+	default = tracking
 [core]
   autocrlf = false
   editor = vim
   excludesfile = ~/.dotfiles/gitignore
+	whitespace = trailing-space,space-before-tab
 [advice]
-  statusHints = false
+	statusHints = false
+	pushNonFastForward = false
 [diff]
-  mnemonicprefix = true
+	mnemonicprefix = true
+	renames = copies
 [rerere]
-  enabled = true
+	enabled = true
 [include]
   path = .gitconfig.user
 [github]
