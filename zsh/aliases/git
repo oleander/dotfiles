@@ -1,4 +1,4 @@
-alias gp='git push --tags'
+alias gp='git push'
 alias gpp='git_pull_origin'
 alias gs='git status --ignore-submodules -s -b'
 alias gcp='git cherry-pick'
