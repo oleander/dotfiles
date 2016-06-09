@@ -20,3 +20,7 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~./oh-my-zsh
 ```
 
 Load `~/.dotfiles` into iTerm2.
+
+## Custom configs
+
+Rename `config.example` to `config` and add your custom aliases.
