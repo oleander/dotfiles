@@ -9,7 +9,7 @@ PROMPT='
 %~ %{$fg[yellow]%}$(vcprompt -f "[%b@%r]") %{$fg[red]%}$(git-time-since)
 ${smiley}%{$reset_color%}  '
 
-RPROMPT='[$(hostname)][%*]'
+RPROMPT='[$(whoami)@$(hostname)][%*]'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=5000
