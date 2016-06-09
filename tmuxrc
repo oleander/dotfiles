@@ -4,18 +4,18 @@ setw -g mode-keys emacs
 # remap prefix to Control + a
 # set -g prefix C-b
 # unbind C-a
-# bind C-b send-prefix 
+# bind C-b send-prefix
 
-# force a reload of the config file 
-unbind r 
-bind r source-file ~/.tmux.conf 
+# force a reload of the config file
+unbind r
+bind r source-file ~/.tmuxrc
 
-# quick pane cycling with Ctrl-a 
-unbind ^A 
-bind ^A select-pane -t :.+ 
+# quick pane cycling with Ctrl-a
+unbind ^A
+bind ^A select-pane -t :.+
 
 # Sane scrolling
-set -g mode-mouse on 
+set -g mode-mouse on
 
 unbind % # Remove default binding since we’re replacing
 unbind .

@@ -1,3 +1,4 @@
+[ -f ~/.dotfiles/config ] && . ~/.dotfiles/config || echo "Config file not found"
 . ~/.dotfiles/zsh/oh-my
 . ~/.dotfiles/zsh/config
 . ~/.dotfiles/zsh/paths

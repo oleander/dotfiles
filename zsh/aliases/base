@@ -1,34 +1,8 @@
 # Jumping to a dir
 alias dot='cd ~/.dotfiles'
-alias cr='cd /Users/linus/Documents/Projekt/'
-alias r='cr && cd radiofy.fm'
-alias h='cr && cd hprovet.se'
 
 # Other
-alias dd='cd ~/Desktop'
-alias flush='dscacheutil -flushcache'
 alias p='ps aux | grep'
-alias gt='generate_tags'
-alias i='github-issues'
-alias oi='open-issues'
 alias history='fc -il 1'
 alias h='history | grep'
-alias subl='atom'
 alias reload='source ~/.zshrc'
-
-# Updating the database for the locate command
-alias update='sudo /usr/libexec/locate.updatedb'
-
-function copy(){
-  cat $1 | pbcopy && cat $1
-}
-
-function ga() {
-  git commit --amend -m "$*"
-}
-
-# Top 10 most used unix commands on the system
-# Source; http://superuser.com/questions/250227/how-do-i-see-what-my-most-used-linux-command-are
-function most() {
-  history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
-}

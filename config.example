@@ -1,0 +1,8 @@
+# Aliases
+# ...
+
+# Exports
+# ...
+
+# Oh my zsh plugins
+export plugins=()
