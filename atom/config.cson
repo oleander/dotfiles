@@ -1,0 +1,102 @@
+"*":
+  "atom-beautify":
+    _analyticsUserId: "d986561c-a175-49d1-9a1b-49840500ed06"
+  "atom-ctags":
+    buildTimeout: 100000
+    disableComplete: true
+  "atom-typescript": {}
+  "autocomplete-plus":
+    useAlternateScoring: true
+  core:
+    audioBeep: false
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".flowconfig"
+      ]
+      "source.json": [
+        ".arcconfig"
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
+    disabledPackages: [
+      "tidy-markdown"
+      "autocomplete-css"
+      "autocomplete-html"
+      "language-brainfuck"
+      "language-typescript-grammars-only"
+      "vim-mode"
+      "w3c-validation"
+      "linter-htmlhint"
+      "goto"
+      "atom-ctags"
+      "keyboard-localization"
+    ]
+    ignoredNames: [
+      ".gitkeep"
+      ".git"
+      ".DS_Store"
+      "node_modules"
+      "dist"
+      "bower_components"
+      ".tags"
+      ".tags1"
+    ]
+    packagesWithKeymapsDisabled: [
+      "emmet"
+      "bookmarks"
+    ]
+    themes: [
+      "atom-dark-ui"
+      "sunburst"
+    ]
+  editor:
+    autoIndentOnPaste: true
+    fontFamily: "Monaco"
+    fontSize: 16
+    invisibles: {}
+    normalizeIndentOnPaste: false
+    scrollPastEnd: true
+    scrollSensitivity: 20
+    showInvisibles: true
+    softWrap: true
+  emmet: {}
+  "exception-reporting":
+    userId: "d8b76690-ad7f-62c9-9819-4beb0ad2271f"
+  "file-watcher":
+    promptWhenFileHasChangedOnDisk: false
+  "fuzzy-finder":
+    useAlternateScoring: true
+  "highlight-line": {}
+  linter: {}
+  "markdown-pdf": {}
+  "markdown-preview": {}
+  nuclide:
+    "nuclide-home":
+      showHome: false
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
+  "release-notes":
+    viewedVersion: "0.94.0"
+  "sync-settings":
+    _analyticsUserId: "520216cc-b499-4ff8-9b8b-f30351160571"
+    _lastBackupHash: "5cd528f4caa4daa101964c2298e02f034dbe5718"
+    gistId: "8819a23399183bb2cc85f865f2e29b96"
+    personalAccessToken: "9fa5eebc6033b7d8919712648b953ddf199f627e"
+    quietUpdateCheck: true
+  "toggle-quotes": {}
+  "tree-ignore":
+    ignoreFileName: ".gitignore"
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
+".diff.source":
+  editor:
+    normalizeIndentOnPaste: "true"

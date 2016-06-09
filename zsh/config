@@ -58,6 +58,7 @@ export RUBYOPT=rubygems
 export EDITOR='atom'
 export SSL_CERT_FILE=/usr/local/etc/openssl/cacert.pem
 export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/"
+export ATOM_HOME=~/.dotfiles/atom
 
 # Add GHC 7.8.4 to the PATH, via http://ghcformacosx.github.io/
 export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
