@@ -7,5 +7,3 @@ export RUBYOPT=rubygems
 export EDITOR='subl'
 export MANPATH=/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH
 export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
-
-# ~/.rvm/bin:

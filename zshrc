@@ -6,9 +6,10 @@
 . ~/.dotfiles/zsh/aliases/ruby
 . ~/.dotfiles/zsh/completion
 
- export SSL_CERT_FILE=/usr/local/etc/openssl/cacert.pem
-# Navigate to project path
-if [[ -s /Users/linus/Documents/Projekt ]] ; then cr ; fi
+export SSL_CERT_FILE=/usr/local/etc/openssl/cacert.pem
+
+# # Navigate to project path
+# if [[ -s /Users/linus/Documents/Projekt ]] ; then cr ; fi
 
 export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/"
 

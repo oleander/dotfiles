@@ -1,0 +1,40 @@
+[color]
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[merge]
+  summary = true
+  verbosity = 1
+  tool = mvimdiff
+[apply]
+  whitespace = nowarn
+[branch]
+  autosetupmerge = true
+[push]
+  default = current
+[core]
+  autocrlf = false
+  editor = vim
+  excludesfile = ~/.dotfiles/gitignore
+[advice]
+  statusHints = false
+[diff]
+  mnemonicprefix = true
+[rerere]
+  enabled = true
+[include]
+  path = .gitconfig.user
+[github]
+  user = oleander
+[user]
+  name = Linus Oleander
+  email = linus@oleander.nu

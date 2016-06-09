@@ -70,3 +70,4 @@ function name() {
 alias h='history | grep'
 alias subl='atom'
 alias history='fc -il 1'
+alias reload='source ~/.zshrc'
