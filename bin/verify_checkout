@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+# Verifies the usage of `git checkout .`
+# Version 1.0, 2016-06-09
+# Copyright (c) 2016, Linus Oleander
+
+args = ARGV.join(" ").strip
+
+unless args == "."
+  exec "git checkout #{args}"
+end
+
+print "Are you sure? [Y/n]"
+
+option = $stdin.gets.strip
+if option.empty? or option.match(/y/i)
+  exec "git checkout #{args}"
+end
+
+abort "Ok, won't run command"
