@@ -15,5 +15,5 @@ if has("gui_macvim")
   imap <D-t> <Esc>:CtrlPMixed<CR>
   map <D-t> :CtrlPMixed<CR>
   :noremap <D-A-right> :tabnext<cr>
-  :noremap <D-A-left> :tabprevious<cr> 
+  :noremap <D-A-left> :tabprevious<cr>
 end

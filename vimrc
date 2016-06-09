@@ -159,11 +159,6 @@ imap <C-L> <Space>=><Space>
 command! Rroutes :e config/routes.rb
 command! Rschema :e db/schema.rb
 
-" Local config
-if filereadable(".vimrc.local")
-  source .vimrc.local
-endif
-
 " Use Ack instead of Grep when available
 if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
@@ -210,15 +205,6 @@ let g:fuf_splitPathMatching=1
 "endfunction
 map <Leader>w :call OpenURL()<CR>
 
-" Pathogen
-" Needed on some linux distros.
-" see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-" call pathogen#helptags()
-" call pathogen#runtime_append_all_bundles()
-" filetype off
-" syntax on
-" filetype indent on
-" 
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
 "See help completion for source,
@@ -315,18 +301,12 @@ set tags=./tags;
 map <Cr-a> <C-]>
 set cscopetag
 
-" vundle configuration
-set rtp+=~/.dotfiles/vim/bundle/vundle/ 
-call vundle#rc()
-Bundle "gmarik/vundle"
-Bundle "ShowMarks"
-
 " Reset search when done
 set nohlsearch
 
 " Only one line for commenting
 au FileType * setlocal formatoptions-=cro
 
-# nnoremap ,t :CtrlP<CR>
-# nnoremap <leader>t :CtrlP<CR>
+" nnoremap ,t :CtrlP<CR>
+" nnoremap <leader>t :CtrlP<CR>
 map ,t :CtrlP<CR>
