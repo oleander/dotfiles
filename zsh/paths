@@ -1,1 +1,1 @@
-# Nothing
+export PATH=~/.dotfiles/bin:/opt/local/bin/:$PATH
