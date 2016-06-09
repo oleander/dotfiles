@@ -11,8 +11,3 @@ alias gdd='git diff'
 alias gg='gg-git'
 alias gcc='git commit -v -m'
 alias gc='verify_checkout'
-
-# http://stackoverflow.com/questions/520650/how-do-you-make-an-existing-git-branch-track-a-remote-branch
-function gu() {
-  git branch --set-upstream $1 origin/$1
-}

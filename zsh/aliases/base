@@ -1,26 +1,20 @@
-# Other
-alias dd='cd ~/Desktop'
-alias flush='dscacheutil -flushcache'
-alias p='ps aux | grep'
-alias ip='echo "puts %x{ifconfig}.match(/en0:.+?inet ([^\s+]+)/m).to_a.last" | ruby'
-alias tab='custom_tab'
-alias gt='generate_tags'
-alias leet='git shortlog -se | sort -r | head -n 10'
-alias i='github-issues'
-alias oi='open-issues'
-# alias mvim='mvim -o 0'
-
-# Reloads the all settings
-alias s='source ~/.zshrc'
-
-# Edit specific files
-alias ei='mate .gitignore'
-alias ee='mate ~/.dotfiles'
-
 # Jumping to a dir
 alias dot='cd ~/.dotfiles'
 alias cr='cd /Users/linus/Documents/Projekt/'
 alias r='cr && cd radiofy.fm'
+alias h='cr && cd hprovet.se'
+
+# Other
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias p='ps aux | grep'
+alias gt='generate_tags'
+alias i='github-issues'
+alias oi='open-issues'
+alias history='fc -il 1'
+alias h='history | grep'
+alias subl='atom'
+alias reload='source ~/.zshrc'
 
 # Updating the database for the locate command
 alias update='sudo /usr/libexec/locate.updatedb'
@@ -33,40 +27,8 @@ function ga() {
   git commit --amend -m "$*"
 }
 
-function burn() {
-  avrdude -p m88 -c stk500 -P /dev/cu.PL2303-00004006 -e -U flash:w:main.rom
-}
-
-function compile() {
-  avr-gcc -O1 main.c -mmcu=atmega88 -o main.rom -I /usr/local/CrossPack-AVR/include/simulavr/
-}
-
 # Top 10 most used unix commands on the system
 # Source; http://superuser.com/questions/250227/how-do-i-see-what-my-most-used-linux-command-are
 function most() {
   history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
 }
-
-function take() {
-  mkdir $1
-  cd $1
-}
-
-function cb() {
-  compile && burn
-}
-
-function not() {
-  growlnotify -m "$*"
-}
-
-# Names the current tab
-# Any argument will be used as name for the current tab
-function name() {
-  echo -ne "\033]0;"$@"\007"
-}
-
-alias h='history | grep'
-alias subl='atom'
-alias history='fc -il 1'
-alias reload='source ~/.zshrc'
