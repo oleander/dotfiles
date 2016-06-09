@@ -5,4 +5,4 @@
 # ...
 
 # Oh my zsh plugins
-export plugins=()
+# plugins=(osx)
