@@ -15,6 +15,7 @@ ln -fs ~/.dotfiles/tmuxrc ~/.tmuxrc
 ln -fs ~/.dotfiles/vimrc ~/.vimrc
 ln -fs ~/.dotfiles/zshrc ~/.zshrc
 ln -fs ~/.dotfiles/gitconfig ~/.gitconfig
+ln -fs ~/.dotfiles/hushlogin ~/.hushlogin
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ```
