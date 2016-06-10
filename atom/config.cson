@@ -55,7 +55,7 @@
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
-    fontSize: 17
+    fontSize: 15
     invisibles: {}
     normalizeIndentOnPaste: false
     scrollPastEnd: true
