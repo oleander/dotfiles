@@ -16,5 +16,5 @@ system "git push"
 
 ["ocean", "atlantic"].each do |host|
   puts "Updating #{host} host"
-  system "ssh #{host} 'cd ~/.dotfiles && git stash && git pull && upgrade_oh_my_zsh'"
+  system "ssh #{host} 'cd ~/.dotfiles && git stash && git pull && reload && upgrade_oh_my_zsh'"
 end
