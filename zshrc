@@ -5,4 +5,3 @@
 . ~/.dotfiles/zsh/aliases/git
 . ~/.dotfiles/zsh/aliases/ruby
 . ~/.dotfiles/zsh/completion
-. "$HOME/.rvm/scripts/rvm"
