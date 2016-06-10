@@ -1,0 +1,29 @@
+# Aliases
+alias cr='cd /Users/linus/Documents/Projekt/'
+alias r='cr && cd radiofy.fm'
+alias h='cr && cd hprovet.se'
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias oi='open-issues'
+alias subl='atom'
+alias update='sudo /usr/libexec/locate.updatedb'
+
+# Exports
+export EDITOR='atom'
+export SSL_CERT_FILE=/usr/local/etc/openssl/cacert.pem
+export ATOM_HOME=~/.dotfiles/atom
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Add GHC 7.8.4 to the PATH, via http://ghcformacosx.github.io/
+export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
+if [ -d "$GHC_DOT_APP" ]; then
+  export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+fi
+
+export PATH=/usr/local/share/npm/bin:$HOME/.rvm/bin:$PATH
+export PATH=/opt/local/bin/:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/mysql/bin:/usr/local/git/bin:$HOME:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/Applications/Postgres93.app/Contents/MacOS/bin:$PATH

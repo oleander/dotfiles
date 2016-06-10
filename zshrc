@@ -1,4 +1,4 @@
-[ -f ~/.dotfiles/config ] && . ~/.dotfiles/config || echo "Config file not found"
+. "$HOME/.rvm/scripts/rvm"
 . ~/.dotfiles/zsh/oh-my
 . ~/.dotfiles/zsh/config
 . ~/.dotfiles/zsh/paths

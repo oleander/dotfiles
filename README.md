@@ -24,4 +24,4 @@ Load `~/.dotfiles` into iTerm2.
 
 ## Custom configs
 
-Rename `config.example` to `config` and add your custom aliases.
+Place the custom, host specific script in `zsh/profiles` and will be loaded automatically.

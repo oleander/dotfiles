@@ -1,0 +1,3 @@
+alias radiofy="cd /opt/www/radiofy.se/current"
+alias console="RAILS_ENV=production bundle exec rails c"
+alias log="tail -n 100 -F log/production.log"
