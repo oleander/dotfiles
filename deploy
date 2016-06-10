@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+unless system "[[ -z $(git status -s) ]]"
+  abort "Please commit your changes first"
+end
+
+puts "Push to Github"
+system "git push"
+
+["ocean", "atlantic"].each do |host|
+  puts "Updating #{host} host"
+  system "ssh #{host} 'cd ~/.dotfiles && git stash && git pull'"
+end
