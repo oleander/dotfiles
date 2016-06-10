@@ -5,7 +5,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UPDATE_PROMPT=true
 ZSH_CUSTOM=~/.dotfiles/zsh
-
+[ -z "$TERM" ] && export TERM=xterm-256color
 plugins=(colored-man-pages colorize autojump profiles)
 
 source $ZSH/oh-my-zsh.sh
