@@ -4,10 +4,17 @@ unless system "[[ -z $(git status -s) ]]"
   abort "Please commit your changes first"
 end
 
+unless system "zsh -c 'source ~/.dotfiles/zshrc'"
+  abort "Check dotfiles/zshrc, it fails"
+end
+
+puts "Update oh my zsh locally"
+system "upgrade_oh_my_zsh"
+
 puts "Push to Github"
 system "git push"
 
 ["ocean", "atlantic"].each do |host|
   puts "Updating #{host} host"
-  system "ssh #{host} 'cd ~/.dotfiles && git stash && git pull'"
+  system "ssh #{host} 'cd ~/.dotfiles && git stash && git pull && upgrade_oh_my_zsh'"
 end
