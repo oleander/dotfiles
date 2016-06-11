@@ -5,3 +5,4 @@
 . ~/.dotfiles/zsh/aliases/git
 . ~/.dotfiles/zsh/aliases/ruby
 . ~/.dotfiles/zsh/completion
+[ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm

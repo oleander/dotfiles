@@ -23,5 +23,3 @@ export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:/usr/local/mysql/bin:/usr/local/git/bin
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 export PATH=$PATH:/Applications/Postgres93.app/Contents/MacOS/bin
-
-. "$HOME/.rvm/scripts/rvm"
