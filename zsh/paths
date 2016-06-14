@@ -1,1 +1,1 @@
-export PATH=~/.dotfiles/bin:/opt/local/bin/:$PATH
+export PATH=$ROOT/bin:/opt/local/bin/:$PATH

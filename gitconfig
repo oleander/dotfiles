@@ -25,7 +25,7 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.dotfiles/gitignore
+  excludesfile = ~/.gitignore
 	whitespace = trailing-space,space-before-tab
 	pager = less -F -X
 [advice]

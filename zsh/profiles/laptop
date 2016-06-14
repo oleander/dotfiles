@@ -1,7 +1,6 @@
 # Aliases
-alias cr='cd /Users/linus/Documents/Projekt/'
+alias cr='cd /Users/linus/Documents/Projekt'
 alias r='cr && cd radiofy.fm'
-alias h='cr && cd hprovet.se'
 alias dd='cd ~/Desktop'
 alias flush='dscacheutil -flushcache'
 alias oi='open-issues'
@@ -13,8 +12,7 @@ export EDITOR="atom"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
 export SSL_CERT_FILE=/usr/local/etc/openssl/cacert.pem
-export ATOM_HOME=~/.dotfiles/atom
-
+export ATOM_HOME=~/.dotfiles/current/atom
 export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 export PATH=$HOME/.rvm/bin:/usr/local/share/npm/bin:$PATH
 export PATH=$PATH:/opt/local/bin/
