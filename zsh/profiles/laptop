@@ -1,11 +1,15 @@
 # Aliases
-alias cr='cd /Users/linus/Documents/Projekt'
+export PROJECT="/Users/linus/Documents/Projekt"
+
+alias cr='cd $PROJECT'
 alias r='cr && cd radiofy.fm'
 alias dd='cd ~/Desktop'
 alias flush='dscacheutil -flushcache'
 alias oi='open-issues'
 alias subl='atom'
 alias update='sudo /usr/libexec/locate.updatedb'
+alias dot='cd $PROJECT/dotfiles'
+alias treload='ROOT=$PROJECT/dotfiles source zshrc'
 
 # Exports
 export EDITOR="atom"
