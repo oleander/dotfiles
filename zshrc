@@ -1,4 +1,4 @@
-[ -z "$ROOT" ] export ROOT=~/.dotfiles/current
+[ -z "$ROOT" ] && export ROOT=~/.dotfiles/current
 
 . $ROOT/zsh/config
 . $ROOT/zsh/paths
