@@ -11,7 +11,7 @@ require "hirb"
 require "colorize"
 
 class MBFile
-  MAX_FILE_SIZE = 8
+  MAX_FILE_SIZE = 0.2
 
   def initialize(file)
     @name = file
