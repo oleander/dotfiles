@@ -22,11 +22,12 @@ namespace :deploy do
     end
   end
 
-  after :updated, :symlink
-end
-
-task :test do
-  fetch(:configs).each do |config|
-    sh "ln", "-fs", File.join(Dir.pwd, "symlinks", config), "/Users/linus/.#{config}"
+  task :local do
+    fetch(:configs).each do |config|
+      sh "ln", "-fs", File.join(Dir.pwd, "symlinks", config), "/Users/linus/.#{config}"
+    end
   end
+  
+  after :updated, :symlink
+  after :updated, :local
 end
