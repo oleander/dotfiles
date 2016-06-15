@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+# GG git, version 1.0.0, 2016-06-15
+# Commits and lists all files
+# Warns you about large files
+# Usage: gg-git "A commit message"
+# Copyright (c) 2011-2016, Linus Oleander
+# Released under the MIT licens
+
+require "hirb"
+require "colorize"
+
+class MBFile
+  MAX_FILE_SIZE = 8
+
+  def initialize(file)
+    @name = file
+    @file = File.new(File.join(Dir.pwd, @name))
+  end
+
+  def name
+    @name
+  end
+
+  def size
+    "#{mb_size.round(2)} MB"
+  end
+
+  def mb_size
+    real_size.to_f / (10**6)
+  end
+
+  def real_size
+    @file.size
+  end
+
+  def status
+    big? ? "X" : "O"
+  end
+
+  def big?
+    mb_size > MAX_FILE_SIZE
+  end
+end
+
+files = `git ls-files -o -m --exclude-standard --full-name`.split("\n").inject([]) do |result, file|
+  if File.exists?(file)
+    result << MBFile.new(file)
+  end
+  result
+end.sort_by do |file|
+  file.big? ? -1 * file.real_size : 1.0 / file.real_size
+end
+
+extend Hirb::Console
+
+table(files, {
+  fields: [:status, :name, :size],
+  unicode: true,
+  markdown: true
+})
+
+if files.any?(&:big?)
+  print "Project contains big files. Continue [Y/n]".red
+else
+  print "Everything okay. Continue [Y/n]".green
+end
+
+abort if $stdin.gets =~ /n/
+exec "git add . && git commit -v -a -m '#{ARGV.join(" ")}'"
