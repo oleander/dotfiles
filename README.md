@@ -1,6 +1,6 @@
 # Dotfiles
 
-![resources/printscreen.png]
+![Printscreen](resources/printscreen.png)
 
 My binaries and configuration files for iTerm2, Atom, Zsh, Vim and Git.
 
