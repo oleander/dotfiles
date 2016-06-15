@@ -1,4 +1,4 @@
-[ -z "$ROOT" ] && export ROOT=~/.dotfiles/current
+export ROOT=`pwd`
 
 . $ROOT/zsh/config
 . $ROOT/zsh/paths

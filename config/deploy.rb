@@ -1,6 +1,6 @@
 lock "3.5.0"
 
-role :server,  %w{localhost ocean atlantic}
+role :server,  %w{ocean atlantic}
 set :application, "dotfiles"
 set :repo_url, "git@github.com:oleander/dotfiles.git"
 set :deploy_to, "~/.dotfiles"

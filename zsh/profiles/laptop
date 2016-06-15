@@ -1,5 +1,6 @@
 # Aliases
 export PROJECT="/Users/linus/Documents/Projekt"
+export DOT=$PROJECT/dotfiles
 
 alias cr='cd $PROJECT'
 alias r='cr && cd radiofy.fm'
@@ -8,7 +9,7 @@ alias flush='dscacheutil -flushcache'
 alias oi='open-issues'
 alias subl='atom'
 alias update='sudo /usr/libexec/locate.updatedb'
-alias dot='cd $PROJECT/dotfiles'
+alias dot='cd $DOT'
 alias treload='cap production test && reload'
 
 # Exports

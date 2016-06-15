@@ -13,8 +13,6 @@
 	default = current
 [pull]
 	default = current
-[format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [merge]
   summary = true
   verbosity = 1
