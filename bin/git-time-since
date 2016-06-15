@@ -10,7 +10,7 @@
 # Example output: [UT 5 : AH 1 : 12 minutes]
 
 [ ! -e '.git/HEAD' ] && exit 0
-ah=`git rev-list --count origin/master...master`
+ah=`git rev-list --count origin/HEAD...HEAD`
 ago=`git log -1 --date=relative --format="%cd" | cut -d " " -f 1-2`
 ua=`git status --ignore-submodules -s | wc -l | tr -d " "`
 echo "[UT "$ua" : AH "$ah" : "$ago"]"
