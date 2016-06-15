@@ -2,32 +2,32 @@
 	ui = auto
 [color "branch"]
 	current = yellow reverse
-  local = yellow
-  remote = green
+	local = yellow
+	remote = green
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [push]
 	default = current
 [pull]
 	default = current
 [merge]
-  summary = true
-  verbosity = 1
-  tool = mvimdiff
+	summary = true
+	verbosity = 1
+	tool = mvimdiff
 	stat = true
 [apply]
-  whitespace = nowarn
+	whitespace = nowarn
 [branch]
 	autosetupmerge = true
 [push]
 	default = tracking
 [core]
-  autocrlf = false
-  editor = vim
-  excludesfile = ~/.gitignore
+	autocrlf = false
+	editor = vim
+	excludesfile = ~/.gitignore
 	whitespace = trailing-space,space-before-tab
 	pager = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|modified): '
 [advice]
@@ -39,7 +39,11 @@
 [rerere]
 	enabled = true
 [github]
-  user = oleander
+	user = oleander
 [user]
-  name = Linus Oleander
-  email = linus@oleander.nu
+	name = Linus Oleander
+	email = linus@oleander.nu
+[alias]
+	undo = git reset --soft HEAD^
+	redo = git add . && git commit --amend -m
+	again = git redo "`git log -1 --pretty=%B`"
