@@ -24,3 +24,9 @@ namespace :deploy do
 
   after :updated, :symlink
 end
+
+task :test do
+  fetch(:configs).each do |config|
+    sh "ln", "-fs", File.join(Dir.pwd, config), "/Users/linus/.#{config}"
+  end
+end

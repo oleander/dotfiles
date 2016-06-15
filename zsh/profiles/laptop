@@ -9,7 +9,7 @@ alias oi='open-issues'
 alias subl='atom'
 alias update='sudo /usr/libexec/locate.updatedb'
 alias dot='cd $PROJECT/dotfiles'
-alias treload='ROOT=$PROJECT/dotfiles source zshrc'
+alias treload='cap production test && reload'
 
 # Exports
 export EDITOR="atom"

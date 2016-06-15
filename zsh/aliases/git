@@ -1,5 +1,5 @@
 alias gp='git push'
-alias gpp='git_pull_origin'
+alias gpp='git pull'
 alias gs='git status --ignore-submodules -s -b'
 alias gcp='git cherry-pick'
 alias gd='git diff --stat'
@@ -8,4 +8,4 @@ alias gl='git log --format="%h by %C(red)%an%Creset, %ar %C(green)%s" --decorate
 alias gdd='git diff'
 alias gg='git-gg'
 alias gcc='git commit -v -m'
-alias gc='verify_checkout'
+alias gc='git-verify-checkout'
