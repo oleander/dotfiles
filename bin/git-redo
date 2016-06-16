@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Redo last commit with a new commit message
+# Version 1.0, 2016-06-17
+# Copyright (c) 2016, Linus Oleander
+
+if [[ -z "$@" ]]; then
+  echo "No argument passed"
+  exit 1
+fi
+
+git add . && git commit --amend -m "$@"

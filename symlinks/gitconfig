@@ -43,7 +43,3 @@
 [user]
 	name = Linus Oleander
 	email = linus@oleander.nu
-[alias]
-	undo = git reset --soft HEAD^
-	redo = git add . && git commit --amend -m
-	again = git redo "`git log -1 --pretty=%B`"

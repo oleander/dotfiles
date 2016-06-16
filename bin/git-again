@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Redo last commit
+# Version 1.0, 2016-06-17
+# Copyright (c) 2016, Linus Oleander
+
+message=$(git log -1 --pretty=%B)
+
+if [[ -z "$message" ]]; then
+  echo "No commit to use"
+  exit 1
+fi
+
+git redo "$message"

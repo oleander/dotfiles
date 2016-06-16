@@ -29,4 +29,7 @@ task :local do
   fetch(:configs).each do |config|
     sh "ln", "-fs", File.join(Dir.pwd, "symlinks", config), "/Users/linus/.#{config}"
   end
+
+  sh "mkdir", "-p", "/Users/linus/.dotfiles"
+  sh "ln", "-fs", Dir.pwd, "/Users/linus/.dotfiles/current"
 end
