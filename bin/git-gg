@@ -62,9 +62,7 @@ table(files, {
 
 if files.any?(&:big?)
   print "Project contains big files. Continue [Y/n]".red
-else
-  print "Everything okay. Continue [Y/n]".green
+  abort if $stdin.gets =~ /n/
 end
 
-abort if $stdin.gets =~ /n/
 exec "git add . && git commit -v -a -m '#{ARGV.join(" ")}'"
