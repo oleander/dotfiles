@@ -21,20 +21,7 @@
       "source.python": [
         "BUCK"
       ]
-    disabledPackages: [
-      "tidy-markdown"
-      "autocomplete-css"
-      "autocomplete-html"
-      "language-brainfuck"
-      "language-typescript-grammars-only"
-      "vim-mode"
-      "w3c-validation"
-      "linter-htmlhint"
-      "goto"
-      "atom-ctags"
-      "keyboard-localization"
-      "markdown-preview"
-    ]
+    disabledPackages: []
     ignoredNames: [
       ".gitkeep"
       ".git"
