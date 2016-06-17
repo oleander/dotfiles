@@ -1,0 +1,7 @@
+packages: [
+  "highlight-line"
+  "highlight-selected"
+  "language-tmux"
+  "package-sync"
+  "tree-ignore"
+]

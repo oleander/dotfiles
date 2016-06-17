@@ -1,10 +1,4 @@
 "*":
-  "atom-beautify":
-    _analyticsUserId: "d986561c-a175-49d1-9a1b-49840500ed06"
-  "atom-ctags":
-    buildTimeout: 100000
-    disableComplete: true
-  "atom-typescript": {}
   "autocomplete-plus":
     useAlternateScoring: true
   core:
@@ -36,10 +30,6 @@
       "emmet"
       "bookmarks"
     ]
-    themes: [
-      "atom-dark-ui"
-      "sunburst"
-    ]
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
@@ -57,13 +47,11 @@
     promptWhenFileHasChangedOnDisk: false
   "fuzzy-finder":
     useAlternateScoring: true
-  "highlight-line": {}
+  "highlight-line":
+    hideHighlightOnSelect: true
   linter: {}
   "markdown-pdf": {}
   "markdown-preview": {}
-  nuclide:
-    "nuclide-home":
-      showHome: false
   "package-sync":
     createOnChange: true
     forceOverwrite: true
