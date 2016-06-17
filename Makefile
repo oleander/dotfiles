@@ -36,7 +36,8 @@ symlink:
 update: update_git symlink
 update_git: update_submodule
 	@git stash
-	@git pull origin master
+	@git fetch --all
+	@git reset --hard origin/master
 update_submodule:
 	@git submodule init
 	@git submodule update zsh/oh-my
