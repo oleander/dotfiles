@@ -1,4 +1,4 @@
-export ROOT=~/.dotfiles/current
+export ROOT=$HOME/.dotfiles
 
 . $ROOT/zsh/config
 . $ROOT/zsh/paths
