@@ -24,7 +24,6 @@ install_linux_deps:
 	@apt-get install diff-so-fancy
 install_osx_deps:
 	@brew install safe-rm
-	@brew install vcprompt
 	@brew install diff-so-fancy
 
 clean_local:
