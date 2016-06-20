@@ -25,6 +25,7 @@ install_linux_deps:
 install_osx_deps:
 	@brew install safe-rm
 	@brew install diff-so-fancy
+	npm install -g how2
 
 clean_local:
 	@exec $(CLEAN_CMD)
