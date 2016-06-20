@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ ! -e ".git/HEAD" ] && exit 0
+
 branch=$(git rev-parse --abbrev-ref HEAD)
 commit=$(git log HEAD^..HEAD -1 --format="%h")
 
