@@ -14,7 +14,7 @@ git log -n 1 > /dev/null 2>&1 || exit 0
 if [ -e '.git/ORIG_HEAD' ]; then
   ahead=$(git rev-list --count ORIG_HEAD...HEAD)
 else
-  ahead = "-"
+  ahead="?"
 fi
 
 ago=$(git log -1 --date=relative --format="%cd" | cut -d " " -f 1-2)
