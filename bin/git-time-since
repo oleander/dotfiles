@@ -9,7 +9,7 @@
 #   Number of commits behind origin
 # Example output: [UT 5 : AH 1 : 12 minutes]
 
-[ ! -e '.git/HEAD' ] && exit 0
+git log -n 1 > /dev/null 2>&1 || exit 0
 
 if [ -e '.git/ORIG_HEAD' ]; then
   ahead=$(git rev-list --count ORIG_HEAD...HEAD)
