@@ -3,7 +3,7 @@ CLEAN_CMD := rm -fr $(DOTDIR)
 CLONE_CMD := git clone https://github.com/oleander/dotfiles $(DOTDIR)
 INSTALL_CMD := $(CLEAN_CMD) && $(CLONE_CMD) && cd $(DOTDIR) && make update
 
-deploy: deploy_atlantic deploy_ocean deploy_local
+deploy: git_push deploy_atlantic deploy_ocean deploy_local
 
 deploy_ocean:
 	@ssh ocean 'cd $(DOTDIR) && make update'
@@ -40,3 +40,5 @@ update_git: update_submodule
 update_submodule:
 	@git submodule init
 	@git submodule update zsh/oh-my
+git_push:
+	git push
