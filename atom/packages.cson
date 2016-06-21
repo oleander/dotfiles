@@ -3,5 +3,11 @@ packages: [
   "highlight-selected"
   "language-tmux"
   "package-sync"
+  "set-syntax"
+  "toggle-quotes"
   "tree-ignore"
+  "vim-mode"
+  "vim-mode-plus"
+  "vim-mode-visual-block"
+  "vim-surround"
 ]

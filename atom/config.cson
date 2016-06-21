@@ -15,7 +15,9 @@
       "source.python": [
         "BUCK"
       ]
-    disabledPackages: []
+    disabledPackages: [
+      "vim-mode-plus"
+    ]
     ignoredNames: [
       ".gitkeep"
       ".git"
@@ -68,6 +70,20 @@
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
+  "vim-mode":
+    useClipboardAsDefaultRegister: false
+    useSmartcaseForSearch: true
+    wrapLeftRightMotion: true
+  "vim-mode-plus":
+    clearHighlightSearchOnResetNormalMode: true
+    highlightSearch: true
+    ignoreCaseForSearch: true
+    ignoreCaseForSearchCurrentWord: true
+    incrementalSearch: true
+    startInInsertMode: true
+    stayOnYank: true
+    useSmartcaseForSearch: true
+    useSmartcaseForSearchCurrentWord: true
   welcome:
     showOnStartup: false
   whitespace:

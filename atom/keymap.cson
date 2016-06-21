@@ -24,8 +24,9 @@
   'cmd-shift-m': "bookmarks:toggle-bookmark"
   'cmd-shift-j': "bookmarks:jump-to-next-bookmark"
   'cmd-shift-r': "bookmarks:clear-bookmarks"
+  "cmd-'": "toggle-quotes:toggle"
 
 '.active.pane':
   'ctrl-space': 'autocomplete:toggle'
 'atom-text-editor[data-grammar="text html erb"]:not([mini])':
-    'tab': 'emmet:expand-abbreviation-with-tab'
+    "tab": "emmet:expand-abbreviation-with-tab"
