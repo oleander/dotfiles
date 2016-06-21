@@ -1,9 +1,6 @@
 #!/bin/bash
 
-if ! git log -n 1 > /dev/null 2>&1; then
-  echo "[git is waiting]"
-  exit 0
-fi
+git log -n 1 > /dev/null 2>&1 || exit 0
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 commit=$(git log HEAD -1 --format="%h")
