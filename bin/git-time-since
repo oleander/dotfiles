@@ -12,12 +12,11 @@
 git log -n 1 > /dev/null 2>&1 || exit 0
 
 origin=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} > /dev/null 2>&1)
-if [ -n "$origin" ]; then
+if [ $? -eq 0 ]; then
   ahead=$(git rev-list --count $origin..HEAD )
 else
   ahead="?"
 fi
-
 
 ago=$(git log -1 --date=relative --format="%cd" | cut -d " " -f 1-2)
 untracked=$(git status --ignore-submodules -s | wc -l | tr -d " ")
