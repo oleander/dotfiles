@@ -11,7 +11,7 @@
 
 git log -n 1 > /dev/null 2>&1 || exit 0
 
-origin=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} > /dev/null 2>&1)
+origin=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>&1)
 if [ $? -eq 0 ]; then
   ahead=$(git rev-list --count $origin..HEAD )
 else
