@@ -1,6 +1,8 @@
 "*":
   "autocomplete-plus":
     useAlternateScoring: true
+  "bracket-matcher":
+    autocompleteBrackets: false
   core:
     audioBeep: false
     customFileTypes:
@@ -35,6 +37,7 @@
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
+    fontSize: 15
     invisibles: {}
     normalizeIndentOnPaste: false
     scrollPastEnd: true
@@ -71,7 +74,6 @@
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
   "vim-mode":
-    useClipboardAsDefaultRegister: false
     useSmartcaseForSearch: true
     wrapLeftRightMotion: true
   "vim-mode-plus":
