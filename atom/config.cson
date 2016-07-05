@@ -1,8 +1,10 @@
 "*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "bc056b23-cdcc-44eb-a026-fd668d484157"
   "autocomplete-plus":
     useAlternateScoring: true
-  "bracket-matcher":
-    autocompleteBrackets: false
+  "bracket-matcher": {}
   core:
     audioBeep: false
     customFileTypes:
@@ -18,7 +20,10 @@
         "BUCK"
       ]
     disabledPackages: [
+      "lazy-motion"
+      "file-type-icons"
       "vim-mode-plus"
+      "vim-mode-plus-ex-mode"
     ]
     ignoredNames: [
       ".gitkeep"
@@ -30,14 +35,19 @@
       ".tags"
       ".tags1"
     ]
+    openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
       "emmet"
       "bookmarks"
     ]
+    themes: [
+      "one-dark-ui"
+      "atom-material-syntax"
+    ]
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
-    fontSize: 15
+    fontSize: 17
     invisibles: {}
     normalizeIndentOnPaste: false
     scrollPastEnd: true
@@ -56,6 +66,9 @@
   linter: {}
   "markdown-pdf": {}
   "markdown-preview": {}
+  "one-dark-ui":
+    layoutMode: "Spacious"
+    tabSizing: "Even"
   "package-sync":
     createOnChange: true
     forceOverwrite: true
@@ -72,17 +85,18 @@
     ignoreFileName: ".gitignore"
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   "vim-mode":
+    useClipboardAsDefaultRegister: false
     useSmartcaseForSearch: true
     wrapLeftRightMotion: true
   "vim-mode-plus":
     clearHighlightSearchOnResetNormalMode: true
+    clearRangeMarkerOnResetNormalMode: true
     highlightSearch: true
     ignoreCaseForSearch: true
     ignoreCaseForSearchCurrentWord: true
     incrementalSearch: true
-    startInInsertMode: true
+    stayOnTransformString: true
     stayOnYank: true
     useSmartcaseForSearch: true
     useSmartcaseForSearchCurrentWord: true
