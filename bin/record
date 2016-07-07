@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+command=$*
+
+if [[ -z $command ]]; then
+  echo "No command found"
+  exit 1
+fi
+
+read -p "Want to run: '$command'?" -n 1 -r
+if [[ -n "$REPLY" ]]; then
+  echo "Exiting"
+  exit 1
+fi
+
+eval $command > /tmp/before
+read -p "Recordning events"
+eval $command > /tmp/after
+
+colordiff /tmp/before /tmp/after
