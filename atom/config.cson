@@ -22,8 +22,10 @@
     disabledPackages: [
       "lazy-motion"
       "file-type-icons"
-      "vim-mode-plus"
       "vim-mode-plus-ex-mode"
+      "language-gfm"
+      "vim-mode"
+      "vim-mode-plus"
     ]
     ignoredNames: [
       ".gitkeep"
@@ -47,7 +49,7 @@
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
-    fontSize: 17
+    fontSize: 16
     invisibles: {}
     normalizeIndentOnPaste: false
     scrollPastEnd: true
@@ -80,6 +82,8 @@
     gistId: "8819a23399183bb2cc85f865f2e29b96"
     personalAccessToken: "9fa5eebc6033b7d8919712648b953ddf199f627e"
     quietUpdateCheck: true
+  "tidy-markdown":
+    runOnSave: false
   "toggle-quotes": {}
   "tree-ignore":
     ignoreFileName: ".gitignore"

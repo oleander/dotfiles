@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+colordiff --suppress-common-lines -d -x "*microstackshots*" -x '*crash*' -x '*log*' -x 'log*' -bur "$1/first/$2" "$1/last/$2"

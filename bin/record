@@ -2,21 +2,55 @@
 
 set -e
 
-command=$*
+first_sleep=$1
+sec_sleep=$2
+command=$3
+
+function notify(){
+  terminal-notifier -message "$1"
+}
 
 if [[ -z $command ]]; then
   echo "No command found"
   exit 1
 fi
 
-read -p "Want to run: '$command'?" -n 1 -r
-if [[ -n "$REPLY" ]]; then
-  echo "Exiting"
+if [ "$*" == "last" ]; then
+  echo "Running last diff"
+  colordiff /tmp/1 /tmp/2
+  exit 0
+fi
+
+if [[ -z $first_sleep ]]; then
+  echo "First sleep not found"
   exit 1
 fi
 
-eval $command > /tmp/before
-read -p "Recordning events"
-eval $command > /tmp/after
+if [[ -z $sec_sleep ]]; then
+  echo "Second sleep not found"
+  exit 1
+fi
 
-colordiff /tmp/before /tmp/after
+echo "Init sleep of $first_sleep. On your marks"
+sleep $first_sleep
+
+# echo "Open up your application"
+# sleep 6
+echo "Running: $command"
+eval $command > /tmp/1
+# notify "Make you change"
+# echo -e "\a"
+# terminal-notifier -message "hello"
+# read -p "Recordning events"
+echo "Waiting $sec_sleep sec"
+sleep $sec_sleep
+
+# sleep 10
+eval $command > /tmp/2
+# notify "Done!"
+# read -p "Now back again"
+# eval $command > /tmp/3
+#echo "--------------- COMMON ---------------"
+# comm -1 -2 /tmp/1 /tmp/3
+echo "--------------- DIFF ---------------"
+mdiff /tmp/1 /tmp/2

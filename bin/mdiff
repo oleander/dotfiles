@@ -1,0 +1,3 @@
+#!/bin/bash
+
+colordiff --suppress-common-lines --minimal <(sort -u $1) <(sort -u $2)
