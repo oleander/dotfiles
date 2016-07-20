@@ -26,6 +26,16 @@
       "language-gfm"
       "vim-mode"
       "vim-mode-plus"
+      "vim-surround"
+      "atom-neovim"
+      "atom-neovim"
+      "atom-neovim"
+      "atom-neovim"
+      "atom-neovim"
+      "atom-neovim"
+      "atom-neovim"
+      "atom-keyboard-macros-vim"
+      "atom-neovim"
     ]
     ignoredNames: [
       ".gitkeep"
