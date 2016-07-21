@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby --disable=gems --disable-all -r optparse
+#/ Usage: <bin> [options]... <pattern>
+
+verbose = false
+whitespace = false
+
+ARGV.options do |opts|
+  opts.on("-w", "--whitespace")              { whitespace = true }
+  opts.on("-v", "--verbose")              { verbose = true }
+  opts.parse!
+end
+
+unless pattern = ARGV.shift
+  abort "Pattern missing. I.e '$1..$2'"
+end
+
+language = pattern
+  .gsub(/\$(-?\d+)\.\.\$(-?\d+)/, "arguments(args, whitespace, \\1..\\2, line)")
+  .gsub(/\$(-?\d+)/, "arguments(args, whitespace, \\1, line)")
+
+puts "[LOG] Using: #{language.inspect}" if verbose
+
+def arguments(args, whitespace, range, line)
+  if arg = args[range] and not arg.empty?
+    return puts arg
+  end
+  unless whitespace
+    abort("[ABORT] Index #{range.inspect} not found on line #{line} (#{args.join(" ").inspect})")
+  end
+end
+
+line = 0
+while data = $stdin.gets
+  line += 1
+  args = data.split
+  begin
+    instance_eval(language)
+  rescue SyntaxError
+    abort "[ERROR] #{pattern.inspect} is not valid ruby"
+  end
+end
