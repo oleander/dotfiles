@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+
+logger=$1
+command=$2
+
+if [[ -z $command ]]; then
+  echo "No command found"
+  exit 1
+fi
+
+if [[ -z $logger ]]; then
+  echo "No logger found"
+  exit 1
+fi
+
+echo "Sudo warmup"
+sudo ls > /dev/null
+
+echo "Logger 1: $logger"
+eval $logger > /tmp/1
+
+echo "Command: $command"
+eval $command
+
+echo "Logger 2: $logger"
+eval $logger > /tmp/2
+
+echo "Diff:"
+colordiff /tmp/1 /tmp/2
