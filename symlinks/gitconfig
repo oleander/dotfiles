@@ -24,6 +24,7 @@
 	autosetupmerge = true
 [push]
 	default = tracking
+	default = current
 [core]
 	autocrlf = false
 	editor = vim
@@ -43,3 +44,5 @@
 [user]
 	name = Linus Oleander
 	email = linus@oleander.nu
+[credential]
+	helper = osxkeychain
