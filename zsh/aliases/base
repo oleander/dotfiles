@@ -2,6 +2,8 @@ alias p='ps aux | grep'
 alias history='fc -il 1'
 alias reload_source='source ~/.zshrc'
 alias plist='plutil -convert xml1 -o -'
+alias rm=trash
+alias vim=nvim
 
 function most() {
   history | awk '{CMD[$4]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c4 -s " " -t | sort -nr | nl |  head -n10
@@ -16,5 +18,5 @@ function lsr(){
     $1='.'
   fi
 
-  sudo find $1 -exec ls -dl \{\} \; 
+  sudo find $1 -exec ls -dl \{\} \;
 }
