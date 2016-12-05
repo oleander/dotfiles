@@ -1,5 +1,5 @@
 # Aliases
-export PROJECT="/Users/linus/Documents/Projekt"
+export PROJECT="/Users/oleander/Documents/Projekt"
 export DOT=$PROJECT/dotfiles
 
 alias cr='cd $PROJECT'
@@ -16,8 +16,8 @@ export EDITOR="atom"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
 export SSL_CERT_FILE=/usr/local/etc/openssl/cacert.pem
-export ATOM_HOME=$PROJECT/dotfiles/atom
-export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+
+export PATH="${PATH}:${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin"
 export PATH=$HOME/.rvm/bin:/usr/local/share/npm/bin:$PATH
 export PATH=$PATH:/opt/local/bin/
 export PATH=$PATH:/usr/local/bin:/usr/local/sbin
@@ -25,4 +25,4 @@ export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:/usr/local/mysql/bin:/usr/local/git/bin
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 export PATH=$PATH:/Applications/Postgres93.app/Contents/MacOS/bin
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
