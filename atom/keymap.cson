@@ -1,48 +1,37 @@
-# Your keymap
-#
-# Atom keymaps work similarly to stylesheets. Just as stylesheets use selectors
-# to apply styles to elements, Atom keymaps use selectors to associate
-# keystrokes with events in specific contexts.
-#
-# You can create a new keybinding in this file by typing "key" and then hitting
-# tab.
-#
-# Here's an example taken from Atom's built-in keymap:
-#
-# '.editor':
-#   'enter': 'editor:newline'
-#
-# 'body':
-#   'ctrl-P': 'core:move-up'
-#   'ctrl-p': 'core:move-down'
-#
-'.editor':
+"body":
+  "cmd-left": "!unset"
+  "cmd-right": "!unset"
+  # "cmd-alt-left": "!unset"
+  # "cmd-alt-right": "!unset"
+  "cmd-alt-right": "custom:cycle-right"
+  "cmd-alt-left": "custom:cycle-left"
+'atom-text-editor':
   'ctrl-shift-right': 'editor:select-to-end-of-word'
   'ctrl-shift-left': 'editor:select-to-beginning-of-word'
   'ctrl-k': "editor:delete-to-end-of-line"
   'cmd-shift-m': "bookmarks:toggle-bookmark"
   'cmd-shift-j': "bookmarks:jump-to-next-bookmark"
-  'cmd-shift-r': "bookmarks:clear-bookmarks"
+  'cmd-shift-c': "bookmarks:clear-bookmarks"
   "cmd-'": "toggle-quotes:toggle"
-
-'.active.pane':
+  "cmd-ä": "linter-eslint:fix-file"
+  "ctrl-j": "symbols-view:go-to-declaration"
+  "cmd-å": "custom:close-notification"
+  'cmd-right': "move-tab-or-split:right"
+  'cmd-left': "move-tab-or-split:left"
+'.platform-darwin atom-workspace atom-text-editor':
+  'alt-left': 'editor:move-to-previous-word-boundary'
+  'alt-right': 'editor:move-to-next-word-boundary'
+  'alt-shift-left': 'editor:select-to-previous-word-boundary'
+  'alt-shift-right': 'editor:select-to-next-word-boundary'
+  'alt-backspace': 'editor:delete-to-previous-word-boundary'
+  'alt-delete': 'editor:delete-to-next-word-boundary'
+'atom-workspace':
+  'alt-n': 'cursor-history:prev'
+  'alt-g': 'cursor-history:next'
+  'cmd-ö': "custom:flow-tag"
+  'cmd-ctrl-right': "window:focus-pane-on-right"
+  'cmd-ctrl-left': "window:focus-pane-on-left"
+'.active.atom-pane':
   'ctrl-space': 'autocomplete:toggle'
 'atom-text-editor[data-grammar="text html erb"]:not([mini])':
     "tab": "emmet:expand-abbreviation-with-tab"
-
-# 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
-#     'q': 'atom-keyboard-macros-vim:toggle_record_macro_vi
-#     '@': 'atom-keyboard-macros-vim:execute_macro_vim'
-#     'Q': 'atom-keyboard-macros:call_last_kbd_macro'
-
-# 'atom-text-editor.vim-mode:not(.insert-mode)':
-    # 'q': 'atom-keyboard-macros-vim:toggle_record_macro_vim'
-    # '@': 'atom-keyboard-macros-vim:execute_macro_vim'
-    # 'Q': 'atom-keyboard-macros:call_last_kbd_macro'
-    # 'g 0': 'vim-mode:move-to-last-character-of-line'
-    # 'g 9': 'vim-mode:move-to-first-character-of-line'
-    # 'g i': 'goto-last-edit:back'
-
-# 'atom-text-editor.vim-mode-plus.normal-mode':
-#   ':': 'vim-mode-plus-ex-mode:open'
-#   '!': 'vim-mode-plus-ex-mode:toggle-setting'

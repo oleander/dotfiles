@@ -1,0 +1,25 @@
+{
+  "extends": [ "oleander"],
+  "plugins": ["jasmine", "dependencies", "promise" ],
+  "ecmaVersion": 6,
+  "rules": {
+    "comma-dangle": [ "error", "never" ],
+    "dependencies/no-cycles": 1,
+    "flowtype/type-id-match": 0,
+    "flowtype/define-flow-type": 1,
+    "promise/no-return-wrap": 2,
+    "promise/param-names": 2,
+    "promise/no-native": 0,
+    "no-unused-expressions": ["warn"],
+    "no-unused-vars": ["warn"],
+    "semi": ["error", "always"]
+  },
+  "env": {
+    "atomtest": true,
+    "jasmine": true,
+    "mocha": true
+  },
+  "globals": {
+    "atom": true
+  }
+}

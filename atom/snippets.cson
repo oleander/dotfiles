@@ -13,3 +13,47 @@
 #     'prefix': 'log'
 #     'body': 'console.log $1'
 #
+
+# Overrides: https://github.com/hharnisc/atom-es6-javascript/tree/master/snippets
+".source.js":
+  "anonymous function":
+    prefix: "f"
+    body: """
+    function(${1:arguments}) {
+      ${0}
+    }
+    """
+  "console.log":
+    prefix: 'con'
+    body: 'console.log("${1:title}", ${2})'
+  "console.log.no":
+    prefix: 'co'
+    body: 'console.log(${1})'
+  "Promise":
+    prefix: "p",
+    body: """
+    new Promise(function(resolve, reject) {
+    \t${0}
+    });
+    """
+  "Return Promise":
+    prefix: "rp",
+    body: """
+    return new Promise(function(resolve, reject) {
+    \t${0}
+    });
+    """
+  "Promise.then":
+    prefix: ".t"
+    body: """
+    .then(function(${1:value}) {
+    \t${0}
+    });
+    """
+  "Promise.catch":
+    prefix: ".c"
+    body: """
+    .catch(function(error) {
+    \t${1:console.info(error);}
+    });
+    """

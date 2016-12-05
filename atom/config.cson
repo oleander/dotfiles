@@ -2,8 +2,26 @@
   "atom-beautify":
     general:
       _analyticsUserId: "bc056b23-cdcc-44eb-a026-fd668d484157"
+    js: {}
+    markdown:
+      beautify_on_save: true
+    ruby:
+      beautify_on_save: true
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+    buildTimeout: 1000000
+    cmdArgs: "--exclude=node_modules"
+    extraTagFiles: "fiklmszt"
+  "atom-ignore": {}
   "autocomplete-plus":
-    useAlternateScoring: true
+    autoActivationDelay: 150
+    backspaceTriggersAutocomplete: true
+    defaultProvider: "Fuzzy"
+    enableAutoConfirmSingleSuggestion: false
+    maxVisibleSuggestions: 5
+    minimumWordLength: 2
+    useAlternateScoring: false
+    useLocalityBonus: false
   "bracket-matcher": {}
   core:
     audioBeep: false
@@ -11,10 +29,13 @@
       "source.ini": [
         ".buckconfig"
         ".flowconfig"
+        ".hgrc"
       ]
       "source.json": [
         ".arcconfig"
         "BUCK.autodeps"
+        ".eslintrc"
+        ".babelrc"
       ]
       "source.python": [
         "BUCK"
@@ -24,18 +45,72 @@
       "file-type-icons"
       "vim-mode-plus-ex-mode"
       "language-gfm"
-      "vim-mode"
       "vim-mode-plus"
+      "dev"
+      "ctags-status"
+      "atom-ctags"
+      "docs-snippets"
+      "goto-last-edit"
+      "language-ini"
+      "language-ocaml"
+      "language-swift"
+      "language-thrift"
+      "language-tmux"
+      "merge-conflicts"
+      "neovim"
+      "package-sync"
+      "plist-converter"
+      "sort-lines"
+      "tidy-markdown"
+      "toggle-quotes"
+      "neovim"
+      "vim-mode-visual-block"
+      "archive-view"
+      "autocomplete-snippets"
+      "autosave"
+      "image-view"
+      "language-clojure"
+      "language-csharp"
+      "language-go"
+      "language-java"
+      "language-less"
+      "language-mustache"
+      "language-objective-c"
+      "language-perl"
+      "language-php"
+      "language-property-list"
+      "language-sass"
+      "language-toml"
+      "language-xml"
+      "language-yaml"
+      "link"
+      "smart-tab-name"
+      "foldername-tabs"
+      "git-diff"
+      "neovim"
+      "neovim"
+      "js-autoimport"
+      "atom-typescript"
+      "project-plus"
+      "tidy-tabs"
+      "todo-show"
+      "tree-view-open-files"
       "vim-surround"
-      "atom-neovim"
-      "atom-neovim"
-      "atom-neovim"
-      "atom-neovim"
-      "atom-neovim"
-      "atom-neovim"
-      "atom-neovim"
-      "atom-keyboard-macros-vim"
-      "atom-neovim"
+      "tree-ignore"
+      "atom-ignore"
+      "autoflow"
+      "markdown-preview"
+      "terminal-plus"
+      "term"
+      "autocomplete-modules"
+      "autocomplete-atom-api"
+      "atom-npm"
+      "atom-beautify"
+      "linter"
+      "flow-er"
+      "tool-bar"
+      "tree-view"
+      "js-hyperclick"
     ]
     ignoredNames: [
       ".gitkeep"
@@ -46,59 +121,210 @@
       "bower_components"
       ".tags"
       ".tags1"
+      "yarn-error.log"
+      "yarn.lock"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
       "emmet"
       "bookmarks"
+      "spell-check"
+      "highlight-selected"
     ]
+    telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
       "atom-material-syntax"
     ]
+    useCustomTitleBar: true
+  "cursor-history":
+    excludeClosedBuffer: true
+    rowDeltaToRemember: 8
+    searchAllPanes: false
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
     fontSize: 16
     invisibles: {}
-    normalizeIndentOnPaste: false
+    normalizeIndentOnPaste: true
+    preferredLineLength: 100
     scrollPastEnd: true
-    scrollSensitivity: 20
     showInvisibles: true
     softWrap: true
+    softWrapAtPreferredLineLength: true
+    tabType: "soft"
   emmet: {}
   "exception-reporting":
     userId: "d8b76690-ad7f-62c9-9819-4beb0ad2271f"
   "file-watcher":
     promptWhenFileHasChangedOnDisk: false
+  "flow-ide": {}
   "fuzzy-finder":
-    useAlternateScoring: true
+    ignoredNames: [
+      "nodemon.json"
+    ]
+    useAlternateScoring: false
+  "git-diff":
+    showIconsInEditorGutter: true
   "highlight-line":
+    enableBackgroundColor: false
     hideHighlightOnSelect: true
-  linter: {}
+  "js-autoimport":
+    trailingSemicolon: true
+  jslint:
+    hideOnNoErrors: true
+    jslintVersion: "es6"
+    useFoldModeAsDefault: true
+    validateOnChange: true
+  "language-babel":
+    babelTranspilePath: "build"
+    createTargetDirectories: false
+    suppressSourcePathMessages: false
+    suppressTranspileOnSaveMessages: false
+  linter:
+    errorPanelHeight: 45
+  "linter-eslint": {}
+  "linter-flow":
+    enableAll: false
+    executablePath: "/usr/local/bin/flow"
+  "linter-shellcheck":
+    enableNotice: true
   "markdown-pdf": {}
   "markdown-preview": {}
+  nuclide:
+    installRecommendedPackages: true
+    "nuclide-adb-logcat": {}
+    "nuclide-arcanist": {}
+    "nuclide-buck":
+      compileErrorDiagnostics: false
+    "nuclide-clang-atom": {}
+    "nuclide-code-format": {}
+    "nuclide-console": {}
+    "nuclide-ctags":
+      disableWithHack: false
+    "nuclide-datatip": {}
+    "nuclide-debugger-hhvm": {}
+    "nuclide-debugger-lldb-client": {}
+    "nuclide-debugger-node": {}
+    "nuclide-definition-preview": {}
+    "nuclide-diagnostics-store":
+      legacyLintOnTheFly: false
+    "nuclide-diagnostics-ui":
+      showDiagnosticTraces: true
+    "nuclide-diff-view": {}
+    "nuclide-distraction-free-mode":
+      hideFindAndReplace: true
+      hideStatusBar: true
+      hideToolBar: true
+    "nuclide-file-tree":
+      revealFileOnSwitch: true
+      showOpenFiles: false
+      showUncommittedChanges: false
+    "nuclide-flow":
+      canUseFlowBin: true
+      enableStructuredTypeHints: true
+      flowAutocompleteResultsFirst: false
+    "nuclide-format-js":
+      reprint: true
+      requiresAddMissingTypes: true
+    "nuclide-hack": {}
+    "nuclide-health":
+      toolbarJewel: "CPU"
+    "nuclide-home":
+      showHome: false
+    "nuclide-ios-simulator-logs": {}
+    "nuclide-notifications":
+      whenFocused: true
+    "nuclide-ocaml": {}
+    "nuclide-python": {}
+    "nuclide-react-native": {}
+    "nuclide-related-files": {}
+    "nuclide-remote-projects": {}
+    "nuclide-source-control-side-bar":
+      createStacked: true
+    "nuclide-swift": {}
+    "nuclide-type-coverage": {}
+    "nuclide-vcs-log":
+      showDifferentialRevision: false
+    "nuclide-working-sets": {}
+    use:
+      "nuclide-blame": false
+      "nuclide-blame-provider-hg": false
+      "nuclide-buck": false
+      "nuclide-clang": false
+      "nuclide-clipboard-path": false
+      "nuclide-debugger-iwdp": false
+      "nuclide-debugger-php": false
+      "nuclide-diff-view": false
+      "nuclide-hack": false
+      "nuclide-hg-conflict-resolver": false
+      "nuclide-hg-repository": false
+      "nuclide-hhvm": false
+      "nuclide-home": false
+      "nuclide-language-hack": false
+      "nuclide-language-reason": false
+      "nuclide-objc": false
+      "nuclide-ocaml": false
+      "nuclide-open-filenames-provider": false
+      "nuclide-python": false
+      "nuclide-quick-open": false
+      "nuclide-react-inspector": false
+      "nuclide-react-native": false
+      "nuclide-remote-atom": false
+      "nuclide-remote-projects": false
+      "nuclide-source-control-side-bar": false
+      "nuclide-swift": false
+  "nuclide-format-js":
+    aliases: [
+      "_"
+      "lodash"
+    ]
+    builtIns: [
+      "atom"
+    ]
   "one-dark-ui":
     layoutMode: "Spacious"
     tabSizing: "Even"
+  "one-light-ui": {}
   "package-sync":
     createOnChange: true
     forceOverwrite: true
   "release-notes":
     viewedVersion: "0.94.0"
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain.null-grammar"
+      "text.markdown"
+    ]
+  "symbol-gen": {}
   "sync-settings":
     _analyticsUserId: "520216cc-b499-4ff8-9b8b-f30351160571"
     _lastBackupHash: "5cd528f4caa4daa101964c2298e02f034dbe5718"
     gistId: "8819a23399183bb2cc85f865f2e29b96"
     personalAccessToken: "9fa5eebc6033b7d8919712648b953ddf199f627e"
     quietUpdateCheck: true
+  tabs:
+    alwaysShowTabBar: false
+    enableVcsColoring: true
+  "terminal-plus":
+    core:
+      workingDirectory: "Active File"
   "tidy-markdown":
     runOnSave: false
   "toggle-quotes": {}
+  "tool-bar":
+    position: "Right"
   "tree-ignore":
-    ignoreFileName: ".gitignore"
+    ignoreFileName: ".gitignore, resouces, generators, flow-typed"
   "tree-view":
+    alwaysOpenExisting: true
+    focusOnReveal: false
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
   "vim-mode":
     useClipboardAsDefaultRegister: false
     useSmartcaseForSearch: true
@@ -114,10 +340,67 @@
     stayOnYank: true
     useSmartcaseForSearch: true
     useSmartcaseForSearchCurrentWord: true
+  "vim-surround": {}
+  wakatime:
+    apikey: "Saved in your ~/.wakatime.cfg file"
+  "wakatime-hidden":
+    lastInit: 1480962508
   welcome:
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
+".attribute-values.js.jsx.source":
+  editor:
+    normalizeIndentOnPaste: "false"
+    preferredLineLength: 100
+".babel.regexp.source":
+  editor:
+    normalizeIndentOnPaste: "false"
+    preferredLineLength: 100
 ".diff.source":
   editor:
     normalizeIndentOnPaste: "true"
+".js.jsx.react.source":
+  editor:
+    normalizeIndentOnPaste: "false"
+    preferredLineLength: 100
+".js.jsx.source":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".js.regexp.replacement.source":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".js.regexp.source":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".js.source":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".js.source.subtlegradient":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".languagebabel.ttlextension":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".md.text":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".plain.text":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".source.ts":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".source.tsx":
+  editor:
+    normalizeIndentOnPaste: "true"
+    preferredLineLength: 100

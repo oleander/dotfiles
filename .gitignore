@@ -1,4 +1,5 @@
 atom/packages
+atom/dev/packages
 atom/storage
 atom/compile-cache
 atom/blob-store

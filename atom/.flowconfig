@@ -1,0 +1,16 @@
+[ignore]
+.*/\..*
+.*/blob-store/.*
+.*/compile-cache/.*
+.*/dev/.*
+.*/packages/.*
+.*/recovery/.*
+.*/storage/.*
+/Users/oleander/Documents/Projekt/flow-er/.*
+/Users/oleander/Documents/Projekt/linter-eslint/.*
+
+[include]
+./init.js
+[libs]
+
+[options]
