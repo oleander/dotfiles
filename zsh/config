@@ -3,6 +3,8 @@ ZSH=$ROOT/zsh/oh-my
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
+# Removes spacing to the right
+# ZLE_RPROMPT_INDENT=1
 DISABLE_UPDATE_PROMPT=true
 ZSH_CUSTOM=$ROOT/zsh
 [ -z "$TERM" ] && export TERM=xterm-256color
@@ -17,8 +19,8 @@ setopt prompt_subst
 local smiley="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}>%{$reset_color%})"
 
 PROMPT='
- %{$fg[yellow]%}$(whoami)%{$reset_color%} on %{$fg[blue]%}$(hostname)%{$reset_color%} in %~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%} 
- ${smiley}%{$reset_color%} '
+%{$fg[yellow]%}$(whoami)%{$reset_color%} on %{$fg[blue]%}$(hostname)%{$reset_color%} in %~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%} 
+${smiley}%{$reset_color%} '
 
 RPROMPT='[%*]'
 
