@@ -1,8 +1,6 @@
 alias p='ps aux | grep'
 alias history='fc -il 1'
-alias reload_source='source ~/.zshrc'
 alias plist='plutil -convert xml1 -o -'
-alias rm=trash
 alias vim=nvim
 
 function most() {
