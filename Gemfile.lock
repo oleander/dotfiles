@@ -1,6 +1,6 @@
 GEM
   specs:
-    colorize (0.7.7)
+    colorize (0.8.1)
     hirb (0.7.3)
 
 PLATFORMS
@@ -11,4 +11,4 @@ DEPENDENCIES
   hirb
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
