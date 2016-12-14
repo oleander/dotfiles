@@ -43,7 +43,6 @@
     disabledPackages: [
       "lazy-motion"
       "file-type-icons"
-      "vim-mode-plus-ex-mode"
       "language-gfm"
       "vim-mode-plus"
       "dev"
@@ -90,7 +89,6 @@
       "neovim"
       "neovim"
       "js-autoimport"
-      "atom-typescript"
       "project-plus"
       "tidy-tabs"
       "todo-show"
@@ -106,11 +104,12 @@
       "autocomplete-atom-api"
       "atom-npm"
       "atom-beautify"
-      "linter"
       "flow-er"
       "tool-bar"
-      "tree-view"
       "js-hyperclick"
+      "linter"
+      "tree-view"
+      "flow-ide"
     ]
     ignoredNames: [
       ".gitkeep"
@@ -182,7 +181,7 @@
     suppressSourcePathMessages: false
     suppressTranspileOnSaveMessages: false
   linter:
-    errorPanelHeight: 45
+    errorPanelHeight: 24
   "linter-eslint": {}
   "linter-flow":
     enableAll: false
@@ -344,7 +343,7 @@
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"
   "wakatime-hidden":
-    lastInit: 1480962508
+    lastInit: 1481685526
   welcome:
     showOnStartup: false
   whitespace:
