@@ -14,13 +14,13 @@ autoload -U colors
 colors
 setopt prompt_subst
 
-local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☃%{$reset_color%})"
+local smiley="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}>%{$reset_color%})"
 
 PROMPT='
-%~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)
-${smiley}%{$reset_color%}  '
+ %{$fg[yellow]%}$(whoami)%{$reset_color%} on %{$fg[blue]%}$(hostname)%{$reset_color%} in %~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%} 
+ ${smiley}%{$reset_color%} '
 
-RPROMPT='[$(whoami)@$(hostname)][%*]'
+RPROMPT='[%*]'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=5000
