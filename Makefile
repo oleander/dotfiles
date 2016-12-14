@@ -34,7 +34,7 @@ clean_local:
 symlink_dotfiles_local:
 	@ln -fs $(THIS) $(DOTDIR)
 symlink:
-	ln -fs $(THIS) $(DOTDIR)
+	ln -fsT $(THIS) $(DOTDIR)
 	$(foreach file, $(shell ls $(THIS)/symlinks), ln -fs $(THIS)/symlinks/$(file) $(HOME)/.$(file);)
 	ln -fs $(THIS)/atom $(HOME)/.atom
 
