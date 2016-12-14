@@ -117,7 +117,6 @@ map <Leader>sf :RSfunctionaltest
 
 " Hide search highlighting
 
-
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -165,7 +164,6 @@ if executable("ack")
 endif
 
 " Color scheme
-" colorscheme sunburst
 " highlight NonText guibg=#060606
 " highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -310,3 +308,12 @@ au FileType * setlocal formatoptions-=cro
 " nnoremap ,t :CtrlP<CR>
 " nnoremap <leader>t :CtrlP<CR>
 map ,t :CtrlP<CR>
+
+" call plug#begin('~/.local/share/nvim/plugged')
+
+" Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
+
+" call plug#end()
+
+" set background=dark
+" colorscheme solarized
