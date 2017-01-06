@@ -6,7 +6,7 @@
     markdown:
       beautify_on_save: true
     ruby:
-      beautify_on_save: true
+      indent_size: 2
   "atom-ctags":
     autoBuildTagsWhenActive: true
     buildTimeout: 1000000
@@ -52,7 +52,6 @@
       "goto-last-edit"
       "language-ini"
       "language-ocaml"
-      "language-swift"
       "language-thrift"
       "language-tmux"
       "merge-conflicts"
@@ -74,7 +73,6 @@
       "language-java"
       "language-less"
       "language-mustache"
-      "language-objective-c"
       "language-perl"
       "language-php"
       "language-property-list"
@@ -103,13 +101,12 @@
       "autocomplete-modules"
       "autocomplete-atom-api"
       "atom-npm"
-      "atom-beautify"
       "flow-er"
       "tool-bar"
-      "js-hyperclick"
-      "linter"
-      "tree-view"
-      "flow-ide"
+      "nuclide-format-js"
+      "autocomplete-swift"
+      "linter-swiftc"
+      "language-swift3"
     ]
     ignoredNames: [
       ".gitkeep"
@@ -143,7 +140,7 @@
   editor:
     autoIndentOnPaste: true
     fontFamily: "Monaco"
-    fontSize: 16
+    fontSize: 20
     invisibles: {}
     normalizeIndentOnPaste: true
     preferredLineLength: 100
@@ -181,13 +178,16 @@
     suppressSourcePathMessages: false
     suppressTranspileOnSaveMessages: false
   linter:
-    errorPanelHeight: 24
+    errorPanelHeight: 110
+  "linter-clang":
+    clangSuppressWarnings: true
   "linter-eslint": {}
   "linter-flow":
     enableAll: false
     executablePath: "/usr/local/bin/flow"
   "linter-shellcheck":
     enableNotice: true
+  "linter-swiftlint": {}
   "markdown-pdf": {}
   "markdown-preview": {}
   nuclide:
@@ -343,7 +343,7 @@
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"
   "wakatime-hidden":
-    lastInit: 1481685526
+    lastInit: 1483607704
   welcome:
     showOnStartup: false
   whitespace:
