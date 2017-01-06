@@ -3,6 +3,7 @@ alias history='fc -il 1'
 alias plist='plutil -convert xml1 -o -'
 alias vim=nvim
 alias sudo='sudo '
+alias h='history | grep -i'
 
 function most() {
   history | awk '{CMD[$4]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c4 -s " " -t | sort -nr | nl |  head -n10
