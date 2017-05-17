@@ -14,17 +14,29 @@
     extraTagFiles: "fiklmszt"
   "atom-ignore": {}
   "autocomplete-plus":
-    autoActivationDelay: 150
+    autoActivationDelay: 100
     backspaceTriggersAutocomplete: true
-    defaultProvider: "Fuzzy"
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
+    consumeSuffix: false
     enableAutoConfirmSingleSuggestion: false
     maxVisibleSuggestions: 5
     minimumWordLength: 2
-    useAlternateScoring: false
-    useLocalityBonus: false
-  "bracket-matcher": {}
+    strictMatching: true
+    suggestionListFollows: "Cursor"
+  "bracket-matcher":
+    autocompleteCharacters: [
+      "[]"
+      "{}"
+      "``"
+      "“”"
+      "‘’"
+      "«»"
+      "‹›"
+    ]
   core:
     audioBeep: false
+    automaticallyUpdate: false
+    closeDeletedFileTabs: true
     customFileTypes:
       "source.ini": [
         ".buckconfig"
@@ -40,13 +52,16 @@
       "source.python": [
         "BUCK"
       ]
+      "source.ruby": [
+        "Fastfile"
+        "Gymfile"
+        "Scanfile"
+        "Pluginfile"
+      ]
     disabledPackages: [
-      "lazy-motion"
       "file-type-icons"
       "language-gfm"
-      "vim-mode-plus"
       "dev"
-      "ctags-status"
       "atom-ctags"
       "docs-snippets"
       "goto-last-edit"
@@ -54,15 +69,12 @@
       "language-ocaml"
       "language-thrift"
       "language-tmux"
-      "merge-conflicts"
       "neovim"
       "package-sync"
       "plist-converter"
       "sort-lines"
-      "tidy-markdown"
       "toggle-quotes"
       "neovim"
-      "vim-mode-visual-block"
       "archive-view"
       "autocomplete-snippets"
       "autosave"
@@ -71,7 +83,6 @@
       "language-csharp"
       "language-go"
       "language-java"
-      "language-less"
       "language-mustache"
       "language-perl"
       "language-php"
@@ -79,7 +90,6 @@
       "language-sass"
       "language-toml"
       "language-xml"
-      "language-yaml"
       "link"
       "smart-tab-name"
       "foldername-tabs"
@@ -89,7 +99,6 @@
       "js-autoimport"
       "project-plus"
       "tidy-tabs"
-      "todo-show"
       "tree-view-open-files"
       "vim-surround"
       "tree-ignore"
@@ -99,14 +108,20 @@
       "terminal-plus"
       "term"
       "autocomplete-modules"
-      "autocomplete-atom-api"
       "atom-npm"
       "flow-er"
       "tool-bar"
       "nuclide-format-js"
-      "autocomplete-swift"
-      "linter-swiftc"
       "language-swift3"
+      "swift-autocomplete-snippets"
+      "autocomplete-swift"
+      "swiftkit"
+      "firacode"
+      "move-tab-or-split"
+      "travis-ci-status"
+      "vim-mode-plus-ex-mode"
+      "linter-swiftlint"
+      "linter-ui-default"
     ]
     ignoredNames: [
       ".gitkeep"
@@ -126,21 +141,22 @@
       "bookmarks"
       "spell-check"
       "highlight-selected"
+      "autocomplete-plus"
     ]
-    telemetryConsent: "limited"
+    telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "atom-material-syntax"
     ]
-    useCustomTitleBar: true
+    titleBar: "hidden"
   "cursor-history":
     excludeClosedBuffer: true
     rowDeltaToRemember: 8
     searchAllPanes: false
   editor:
     autoIndentOnPaste: true
-    fontFamily: "Monaco"
-    fontSize: 20
+    fontFamily: "FiraCode-Regular"
+    fontSize: 17
     invisibles: {}
     normalizeIndentOnPaste: true
     preferredLineLength: 100
@@ -149,22 +165,37 @@
     softWrap: true
     softWrapAtPreferredLineLength: true
     tabType: "soft"
+    undoGroupingInterval: 100
   emmet: {}
+  "ex-mode":
+    splitright: true
   "exception-reporting":
     userId: "d8b76690-ad7f-62c9-9819-4beb0ad2271f"
   "file-watcher":
     promptWhenFileHasChangedOnDisk: false
+  "find-and-replace":
+    closeFindPanelAfterSearch: true
+    focusEditorAfterSearch: true
+  firacode:
+    enabledScopes: [
+      "source.haskell"
+      "source.purescript"
+      "source.elm"
+      "source.swift"
+    ]
+    firacodeWeight: "medium"
   "flow-ide": {}
   "fuzzy-finder":
     ignoredNames: [
       "nodemon.json"
     ]
+    preserveLastSearch: true
+    searchAllPanes: true
     useAlternateScoring: false
   "git-diff":
     showIconsInEditorGutter: true
   "highlight-line":
     enableBackgroundColor: false
-    hideHighlightOnSelect: true
   "js-autoimport":
     trailingSemicolon: true
   jslint:
@@ -177,8 +208,7 @@
     createTargetDirectories: false
     suppressSourcePathMessages: false
     suppressTranspileOnSaveMessages: false
-  linter:
-    errorPanelHeight: 110
+  linter: {}
   "linter-clang":
     clangSuppressWarnings: true
   "linter-eslint": {}
@@ -188,6 +218,8 @@
   "linter-shellcheck":
     enableNotice: true
   "linter-swiftlint": {}
+  "linter-ui-default":
+    showPanel: true
   "markdown-pdf": {}
   "markdown-preview": {}
   nuclide:
@@ -282,7 +314,6 @@
       "atom"
     ]
   "one-dark-ui":
-    layoutMode: "Spacious"
     tabSizing: "Even"
   "one-light-ui": {}
   "package-sync":
@@ -316,6 +347,8 @@
   "toggle-quotes": {}
   "tool-bar":
     position: "Right"
+  "travis-ci-status":
+    personalAccessToken: "edb8ceac776e696dd57c09d34fcb82fd616ccd15"
   "tree-ignore":
     ignoreFileName: ".gitignore, resouces, generators, flow-typed"
   "tree-view":
@@ -330,20 +363,32 @@
     wrapLeftRightMotion: true
   "vim-mode-plus":
     clearHighlightSearchOnResetNormalMode: true
+    clearMultipleCursorsOnEscapeInsertMode: true
     clearRangeMarkerOnResetNormalMode: true
+    dontUpdateRegisterOnChangeOrSubstitute: true
+    groupChangesWhenLeavingInsertMode: false
     highlightSearch: true
     ignoreCaseForSearch: true
     ignoreCaseForSearchCurrentWord: true
     incrementalSearch: true
+    keymapCCToChangeInnerSmartWord: true
+    keymapPToPutWithAutoIndent: true
+    keymapSemicolonToInnerAnyPairInOperatorPendingMode: true
+    keymapSemicolonToInnerAnyPairInVisualMode: true
+    moveToFirstCharacterOnVerticalMotion: false
+    statusBarModeStringStyle: "long"
+    stayOnDelete: true
     stayOnTransformString: true
     stayOnYank: true
+    useClipboardAsDefaultRegister: false
     useSmartcaseForSearch: true
     useSmartcaseForSearchCurrentWord: true
+    wrapLeftRightMotion: true
   "vim-surround": {}
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"
   "wakatime-hidden":
-    lastInit: 1483607704
+    lastInit: 1492906835
   welcome:
     showOnStartup: false
   whitespace:

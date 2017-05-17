@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby --disable=did_you_mean,gems,rubyopt
 
 # Verifies the usage of `git checkout .`
 # Version 1.0, 2016-06-09

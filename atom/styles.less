@@ -1,4 +1,4 @@
-.atom-editor, atom-text-editor::shadow {
+.atom-editor, atom-text-editor {
   // Use proper colors on invisible chars
   .invisible-character {
     color: #333333;
@@ -15,7 +15,7 @@
   }
 }
 
-atom-text-editor::shadow {
+atom-text-editor {
   // The cursor line important to use rgba for opacity, also requires !important
   // to override any theme.
   .line.highlight-line {
@@ -34,4 +34,13 @@ atom-text-editor::shadow {
   .line.highlight-line-multi-line-solid-top {
     border-top-color: red;
   }
+}
+
+atom-text-editor {
+  text-rendering: optimizeLegibility;
+}
+
+atom-text-editor .syntax--string.syntax--quoted,
+atom-text-editor .syntax---string.syntax--regexp {
+  -webkit-font-feature-settings: "liga" off, "calt" off;
 }

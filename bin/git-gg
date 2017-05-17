@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby --disable=did_you_mean,rubyopt
 
 # GG git, version 1.0.0, 2016-06-15
 # Commits and lists all files
