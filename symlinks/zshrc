@@ -7,9 +7,9 @@ export ROOT=$HOME/.dotfiles
 . $ROOT/zsh/aliases/ruby
 . $ROOT/zsh/completion
 
-[ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
 
 # added by travis gem
 [ -f /Users/oleander/.travis/travis.sh ] && source /Users/oleander/.travis/travis.sh
+[ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
