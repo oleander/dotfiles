@@ -1,398 +1,92 @@
 "*":
-  "atom-beautify":
-    general:
-      _analyticsUserId: "bc056b23-cdcc-44eb-a026-fd668d484157"
-    js: {}
-    markdown:
-      beautify_on_save: true
-    ruby:
-      indent_size: 2
-  "atom-ctags":
-    autoBuildTagsWhenActive: true
-    buildTimeout: 1000000
-    cmdArgs: "--exclude=node_modules"
-    extraTagFiles: "fiklmszt"
-  "atom-ignore": {}
   "autocomplete-plus":
-    autoActivationDelay: 100
-    backspaceTriggersAutocomplete: true
-    confirmCompletion: "tab always, enter when suggestion explicitly selected"
-    consumeSuffix: false
-    enableAutoConfirmSingleSuggestion: false
     maxVisibleSuggestions: 5
     minimumWordLength: 2
-    strictMatching: true
-    suggestionListFollows: "Cursor"
-  "bracket-matcher":
-    autocompleteCharacters: [
-      "[]"
-      "{}"
-      "``"
-      "“”"
-      "‘’"
-      "«»"
-      "‹›"
-    ]
   core:
     audioBeep: false
-    automaticallyUpdate: false
     closeDeletedFileTabs: true
-    customFileTypes:
-      "source.ini": [
-        ".buckconfig"
-        ".flowconfig"
-        ".hgrc"
-      ]
-      "source.json": [
-        ".arcconfig"
-        "BUCK.autodeps"
-        ".eslintrc"
-        ".babelrc"
-      ]
-      "source.python": [
-        "BUCK"
-      ]
-      "source.ruby": [
-        "Fastfile"
-        "Gymfile"
-        "Scanfile"
-        "Pluginfile"
-      ]
     disabledPackages: [
-      "file-type-icons"
-      "language-gfm"
-      "dev"
+      "symbols-view"
+      "ask-stack"
       "atom-ctags"
-      "docs-snippets"
-      "goto-last-edit"
-      "language-ini"
-      "language-ocaml"
-      "language-thrift"
-      "language-tmux"
-      "neovim"
+      "atom-npm"
+      "autocomplete-swift"
+      "busy-signal"
+      "dev"
+      "intentions"
+      "linter"
+      "npm-install"
       "package-sync"
-      "plist-converter"
-      "sort-lines"
-      "toggle-quotes"
-      "neovim"
-      "archive-view"
-      "autocomplete-snippets"
-      "autosave"
-      "image-view"
-      "language-clojure"
-      "language-csharp"
-      "language-go"
-      "language-java"
-      "language-mustache"
-      "language-perl"
-      "language-php"
-      "language-property-list"
-      "language-sass"
-      "language-toml"
-      "language-xml"
-      "link"
-      "smart-tab-name"
-      "foldername-tabs"
-      "git-diff"
-      "neovim"
-      "neovim"
-      "js-autoimport"
       "project-plus"
-      "tidy-tabs"
-      "tree-view-open-files"
-      "vim-surround"
-      "tree-ignore"
-      "atom-ignore"
-      "autoflow"
-      "markdown-preview"
+      "swiftkit"
+      "swift-autocomplete-snippets"
+      "symbol-gen"
+      "symbols-tree-view"
       "terminal-plus"
       "term"
-      "autocomplete-modules"
-      "atom-npm"
-      "flow-er"
-      "tool-bar"
-      "nuclide-format-js"
-      "language-swift3"
-      "swift-autocomplete-snippets"
-      "autocomplete-swift"
-      "swiftkit"
-      "firacode"
-      "move-tab-or-split"
       "travis-ci-status"
-      "vim-mode-plus-ex-mode"
-      "linter-swiftlint"
-      "linter-ui-default"
+      "language-gfm"
+      "vim-surround"
+      "autocomplete-modules"
+      "tree-view-open-files"
+      "foldername-tabs"
+      "move-tab-or-split"
+      "smart-tab-name"
+      "file-watcher"
+      "js-autoimport"
+      "atom-ignore"
     ]
     ignoredNames: [
-      ".gitkeep"
       ".git"
+      ".hg"
+      ".svn"
       ".DS_Store"
-      "node_modules"
-      "dist"
-      "bower_components"
-      ".tags"
-      ".tags1"
-      "yarn-error.log"
-      "yarn.lock"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      ".build"
+      ".DS_Store"
     ]
     openEmptyEditorOnStart: false
-    packagesWithKeymapsDisabled: [
-      "emmet"
-      "bookmarks"
-      "spell-check"
-      "highlight-selected"
-      "autocomplete-plus"
-    ]
+    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "atom-material-syntax"
     ]
     titleBar: "hidden"
-  "cursor-history":
-    excludeClosedBuffer: true
-    rowDeltaToRemember: 8
-    searchAllPanes: false
   editor:
-    autoIndentOnPaste: true
-    fontFamily: "FiraCode-Regular"
     fontSize: 17
-    invisibles: {}
-    normalizeIndentOnPaste: true
-    preferredLineLength: 100
+    preferredLineLength: 120
     scrollPastEnd: true
-    showInvisibles: true
     softWrap: true
     softWrapAtPreferredLineLength: true
-    tabType: "soft"
-    undoGroupingInterval: 100
-  emmet: {}
-  "ex-mode":
-    splitright: true
   "exception-reporting":
-    userId: "d8b76690-ad7f-62c9-9819-4beb0ad2271f"
-  "file-watcher":
-    promptWhenFileHasChangedOnDisk: false
-  "find-and-replace":
-    closeFindPanelAfterSearch: true
-    focusEditorAfterSearch: true
-  firacode:
-    enabledScopes: [
-      "source.haskell"
-      "source.purescript"
-      "source.elm"
-      "source.swift"
-    ]
-    firacodeWeight: "medium"
-  "flow-ide": {}
-  "fuzzy-finder":
-    ignoredNames: [
-      "nodemon.json"
-    ]
-    preserveLastSearch: true
-    searchAllPanes: true
-    useAlternateScoring: false
-  "git-diff":
-    showIconsInEditorGutter: true
+    userId: "c2ba2814-cdf6-4971-9292-97b8cfa1f469"
+  "file-icons":
+    revealTreeView: false
   "highlight-line":
     enableBackgroundColor: false
-  "js-autoimport":
-    trailingSemicolon: true
-  jslint:
-    hideOnNoErrors: true
-    jslintVersion: "es6"
-    useFoldModeAsDefault: true
-    validateOnChange: true
-  "language-babel":
-    babelTranspilePath: "build"
-    createTargetDirectories: false
-    suppressSourcePathMessages: false
-    suppressTranspileOnSaveMessages: false
-  linter: {}
-  "linter-clang":
-    clangSuppressWarnings: true
-  "linter-eslint": {}
-  "linter-flow":
-    enableAll: false
-    executablePath: "/usr/local/bin/flow"
-  "linter-shellcheck":
-    enableNotice: true
-  "linter-swiftlint": {}
+    hideHighlightOnSelect: true
   "linter-ui-default":
-    showPanel: true
-  "markdown-pdf": {}
-  "markdown-preview": {}
-  nuclide:
-    installRecommendedPackages: true
-    "nuclide-adb-logcat": {}
-    "nuclide-arcanist": {}
-    "nuclide-buck":
-      compileErrorDiagnostics: false
-    "nuclide-clang-atom": {}
-    "nuclide-code-format": {}
-    "nuclide-console": {}
-    "nuclide-ctags":
-      disableWithHack: false
-    "nuclide-datatip": {}
-    "nuclide-debugger-hhvm": {}
-    "nuclide-debugger-lldb-client": {}
-    "nuclide-debugger-node": {}
-    "nuclide-definition-preview": {}
-    "nuclide-diagnostics-store":
-      legacyLintOnTheFly: false
-    "nuclide-diagnostics-ui":
-      showDiagnosticTraces: true
-    "nuclide-diff-view": {}
-    "nuclide-distraction-free-mode":
-      hideFindAndReplace: true
-      hideStatusBar: true
-      hideToolBar: true
-    "nuclide-file-tree":
-      revealFileOnSwitch: true
-      showOpenFiles: false
-      showUncommittedChanges: false
-    "nuclide-flow":
-      canUseFlowBin: true
-      enableStructuredTypeHints: true
-      flowAutocompleteResultsFirst: false
-    "nuclide-format-js":
-      reprint: true
-      requiresAddMissingTypes: true
-    "nuclide-hack": {}
-    "nuclide-health":
-      toolbarJewel: "CPU"
-    "nuclide-home":
-      showHome: false
-    "nuclide-ios-simulator-logs": {}
-    "nuclide-notifications":
-      whenFocused: true
-    "nuclide-ocaml": {}
-    "nuclide-python": {}
-    "nuclide-react-native": {}
-    "nuclide-related-files": {}
-    "nuclide-remote-projects": {}
-    "nuclide-source-control-side-bar":
-      createStacked: true
-    "nuclide-swift": {}
-    "nuclide-type-coverage": {}
-    "nuclide-vcs-log":
-      showDifferentialRevision: false
-    "nuclide-working-sets": {}
-    use:
-      "nuclide-blame": false
-      "nuclide-blame-provider-hg": false
-      "nuclide-buck": false
-      "nuclide-clang": false
-      "nuclide-clipboard-path": false
-      "nuclide-debugger-iwdp": false
-      "nuclide-debugger-php": false
-      "nuclide-diff-view": false
-      "nuclide-hack": false
-      "nuclide-hg-conflict-resolver": false
-      "nuclide-hg-repository": false
-      "nuclide-hhvm": false
-      "nuclide-home": false
-      "nuclide-language-hack": false
-      "nuclide-language-reason": false
-      "nuclide-objc": false
-      "nuclide-ocaml": false
-      "nuclide-open-filenames-provider": false
-      "nuclide-python": false
-      "nuclide-quick-open": false
-      "nuclide-react-inspector": false
-      "nuclide-react-native": false
-      "nuclide-remote-atom": false
-      "nuclide-remote-projects": false
-      "nuclide-source-control-side-bar": false
-      "nuclide-swift": false
-  "nuclide-format-js":
-    aliases: [
-      "_"
-      "lodash"
-    ]
-    builtIns: [
-      "atom"
-    ]
-  "one-dark-ui":
-    tabSizing: "Even"
-  "one-light-ui": {}
-  "package-sync":
-    createOnChange: true
-    forceOverwrite: true
-  "release-notes":
-    viewedVersion: "0.94.0"
-  "spell-check":
-    grammars: [
-      "source.asciidoc"
-      "source.gfm"
-      "text.git-commit"
-      "text.plain.null-grammar"
-      "text.markdown"
-    ]
-  "symbol-gen": {}
-  "sync-settings":
-    _analyticsUserId: "520216cc-b499-4ff8-9b8b-f30351160571"
-    _lastBackupHash: "5cd528f4caa4daa101964c2298e02f034dbe5718"
-    gistId: "8819a23399183bb2cc85f865f2e29b96"
-    personalAccessToken: "9fa5eebc6033b7d8919712648b953ddf199f627e"
-    quietUpdateCheck: true
-  tabs:
-    alwaysShowTabBar: false
-    enableVcsColoring: true
-  "terminal-plus":
-    core:
-      workingDirectory: "Active File"
-  "tidy-markdown":
-    runOnSave: false
-  "toggle-quotes": {}
-  "tool-bar":
-    position: "Right"
-  "travis-ci-status":
-    personalAccessToken: "edb8ceac776e696dd57c09d34fcb82fd616ccd15"
-  "tree-ignore":
-    ignoreFileName: ".gitignore, resouces, generators, flow-typed"
+    panelHeight: 69
   "tree-view":
-    alwaysOpenExisting: true
-    focusOnReveal: false
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
-  "vim-mode":
-    useClipboardAsDefaultRegister: false
-    useSmartcaseForSearch: true
-    wrapLeftRightMotion: true
   "vim-mode-plus":
-    clearHighlightSearchOnResetNormalMode: true
+    blackholeRegisteredOperators: [
+      "change*"
+      "substitute*"
+    ]
     clearMultipleCursorsOnEscapeInsertMode: true
-    clearRangeMarkerOnResetNormalMode: true
-    dontUpdateRegisterOnChangeOrSubstitute: true
-    groupChangesWhenLeavingInsertMode: false
-    highlightSearch: true
-    ignoreCaseForSearch: true
-    ignoreCaseForSearchCurrentWord: true
-    incrementalSearch: true
+    keymapBackslashToInnerCommentOrParagraphWhenToggleLineCommentsIsPending: true
     keymapCCToChangeInnerSmartWord: true
-    keymapPToPutWithAutoIndent: true
     keymapSemicolonToInnerAnyPairInOperatorPendingMode: true
     keymapSemicolonToInnerAnyPairInVisualMode: true
-    moveToFirstCharacterOnVerticalMotion: false
-    statusBarModeStringStyle: "long"
-    stayOnDelete: true
-    stayOnTransformString: true
-    stayOnYank: true
-    useClipboardAsDefaultRegister: false
-    useSmartcaseForSearch: true
-    useSmartcaseForSearchCurrentWord: true
-    wrapLeftRightMotion: true
-  "vim-surround": {}
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"
-  "wakatime-hidden":
-    lastInit: 1492906835
   welcome:
     showOnStartup: false
-  whitespace:
-    ensureSingleTrailingNewline: false
 ".attribute-values.js.jsx.source":
   editor:
     normalizeIndentOnPaste: "false"
