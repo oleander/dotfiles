@@ -57,3 +57,40 @@
     \t${1:console.info(error);}
     });
     """
+"*":
+  "frac":
+    prefix: 'frac'
+    body: '\\\\frac{${1}}{${2}}${3}'
+  "sqrt":
+    prefix: 'sqrt'
+    body: '\\\\sqrt{${1}}${2}'
+  "latex":
+    prefix: 'lx'
+    body: '$${1}$${2}'
+  "dot":
+    prefix: '.'
+    body: ' \\\\cdot ${1}'
+  "text":
+    prefix: 'text'
+    body: '\\\\text{${1}}${2}'
+  "pow":
+    prefix: '^'
+    body: '^{${1}}${2}'
+  "bold":
+    prefix: 'bold'
+    body: '**${1}** ${2}'
+  "kvant":
+    prefix: 'kvant'
+    body: """
+    *Kvantitet I:* ${1}
+
+    *Kvantitet II:* ${2}
+    """
+  "new":
+    prefix: '-'
+    body: """
+
+    --
+
+
+    """
