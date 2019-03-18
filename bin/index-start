@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Start com.apple.photoanalysisd"
+sudo launchctl load -w /System/Library/LaunchAgents/com.apple.photoanalysisd.plist
+
+echo "Start com.apple.metadata.mds.plist"
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist

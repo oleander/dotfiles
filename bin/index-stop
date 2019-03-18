@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Stop com.apple.photoanalysisd"
+sudo launchctl remove com.apple.photoanalysisd
+
+echo "Stop com.apple.metadata.mds.plist"
+sudo launchctl remove com.apple.metadata.mds.plist
