@@ -1,4 +1,6 @@
 "*":
+  "atom-package-deps":
+    ignored: []
   "autocomplete-plus":
     maxVisibleSuggestions: 5
     minimumWordLength: 2
@@ -6,37 +8,18 @@
     audioBeep: false
     automaticallyUpdate: false
     closeDeletedFileTabs: true
+    customFileTypes:
+      "source.ruby": [
+        "eye"
+      ]
     disabledPackages: [
       "symbols-view"
-      "ask-stack"
-      "atom-ctags"
-      "atom-npm"
-      "autocomplete-swift"
-      "busy-signal"
-      "dev"
-      "intentions"
-      "linter"
-      "npm-install"
-      "package-sync"
-      "project-plus"
-      "swiftkit"
-      "swift-autocomplete-snippets"
-      "symbol-gen"
-      "symbols-tree-view"
-      "terminal-plus"
       "term"
-      "travis-ci-status"
       "language-gfm"
+      "dev-live-reload"
       "vim-surround"
-      "autocomplete-modules"
-      "tree-view-open-files"
-      "foldername-tabs"
-      "move-tab-or-split"
-      "smart-tab-name"
-      "file-watcher"
-      "js-autoimport"
-      "atom-ignore"
-      "latex-completions"
+      "linter-swiftlint"
+      "linter-eslint"
     ]
     ignoredNames: [
       ".git"
@@ -58,7 +41,7 @@
     ]
     titleBar: "hidden"
   editor:
-    fontSize: 19
+    fontSize: 18
     preferredLineLength: 120
     scrollPastEnd: true
     softWrap: true
@@ -67,23 +50,35 @@
     userId: "c2ba2814-cdf6-4971-9292-97b8cfa1f469"
   "file-icons":
     revealTreeView: false
+  "fuzzy-finder": {}
   "highlight-line":
     enableBackgroundColor: false
   "linter-ui-default":
     panelHeight: 69
+  "tab-smart-sort":
+    placeSpecialTabsOnRight: true
+  tabs:
+    displayMruTabList: false
+    enableMruTabSwitching: false
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vim-mode-plus":
+    autoDisableInputMethodWhenLeavingInsertMode: true
     blackholeRegisteredOperators: [
       "change*"
       "substitute*"
     ]
     clearMultipleCursorsOnEscapeInsertMode: true
+    hideCommandsFromCommandPalette: true
+    ignoreCaseForFind: true
     keymapBackslashToInnerCommentOrParagraphWhenToggleLineCommentsIsPending: true
     keymapCCToChangeInnerSmartWord: true
     keymapSemicolonToInnerAnyPairInOperatorPendingMode: true
     keymapSemicolonToInnerAnyPairInVisualMode: true
+    useClipboardAsDefaultRegister: false
+    useSmartcaseForFind: true
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"
   welcome:
@@ -106,6 +101,9 @@
 ".js.jsx.source":
   editor:
     normalizeIndentOnPaste: "true"
+    preferredLineLength: 100
+".js.rails.source source.jquery.js":
+  editor:
     preferredLineLength: 100
 ".js.regexp.replacement.source":
   editor:

@@ -28,3 +28,5 @@
   'ctrl-space': 'autocomplete:toggle'
 'atom-text-editor[data-grammar="text html erb"]:not([mini])':
     "tab": "emmet:expand-abbreviation-with-tab"
+'atom-text-editor.vim-mode-plus.normal-mode':
+  'g f': 'goto-definition:go'
