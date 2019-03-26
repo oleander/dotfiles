@@ -11,3 +11,9 @@ m service start com.apple.photoanalysisd
 
 echo "==> Start com.apple.metadata.mds.plist"
 m service start com.apple.metadata.mds
+
+echo "==> Start com.apple.spindump"
+m service start com.apple.spindump
+
+echo "==> Start com.apple.metadata.mds.spindump"
+m service start com.apple.metadata.mds.spindump

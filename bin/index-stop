@@ -11,3 +11,9 @@ m service unload com.apple.photoanalysisd.plist
 
 echo "==> Unload com.apple.metadata.mds.plist"
 m service unload com.apple.metadata.mds.plist
+
+echo "==> Stop com.apple.spindump"
+m service stop com.apple.spindump
+
+echo "==> Stop com.apple.metadata.mds.spindump"
+m service stop com.apple.metadata.mds.spindump
