@@ -1,7 +1,13 @@
 #!/bin/bash
 
-echo "Start com.apple.photoanalysisd"
-sudo launchctl load -w /System/Library/LaunchAgents/com.apple.photoanalysisd.plist
+echo "==> Unload com.apple.photoanalysisd"
+m service load com.apple.photoanalysisd.plist
 
-echo "Start com.apple.metadata.mds.plist"
-sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+echo "==> Unload com.apple.metadata.mds.plist"
+m service load com.apple.metadata.mds.plist
+
+echo "==> Start com.apple.photoanalysisd"
+m service start com.apple.photoanalysisd
+
+echo "==> Start com.apple.metadata.mds.plist"
+m service start com.apple.metadata.mds
