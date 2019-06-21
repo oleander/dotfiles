@@ -1,62 +1,270 @@
-# Taps
-tap 'caskroom/cask'
-tap 'caskroom/eid'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
-tap 'homebrew/bundle'
-
-# Binaries
-brew 'coreutils'
-brew 'git'
-brew 'grep'
-brew 'mas'
-brew 'pkg-config'
-brew 'trash'
-brew 'tree'
-brew 'zsh'
-brew 'zsh-completions'
-
-brew 'node'
-brew 'redis'
-
-# Dev
-# cask "atom"
-# cask "clockify-desktop"
-# cask "postgres"
-# cask "bartender3"
-
-# Apps
-cask "spotify"
+tap "caskroom/cask"
+tap "caskroom/eid"
+tap "caskroom/fonts"
+tap "caskroom/versions"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/php"
+tap "homebrew/services"
+tap "homebrew/versions"
+tap "jakeheis/repo"
+tap "neovim/neovim"
+tap "peripheryapp/periphery"
+tap "pnbv/ffmpegvidstab"
+tap "rogual/neovim-dot-app"
+tap "simeji/jid"
+tap "vapor/tap"
+tap "varenc/ffmpeg"
+brew "gdbm"
+brew "openssl"
+brew "readline"
+brew "xz"
+brew "libxml2"
+brew "Couchsurfing"
+brew "gettext"
+brew "libffi"
+brew "fdk-aac"
+brew "flac"
+brew "giflib"
+brew "libevent"
+brew "libunistring"
+brew "nettle"
+brew "icu4c"
+brew "lame"
+brew "little-cms2"
+brew "openjpeg"
+brew "libsndfile"
+brew "libsamplerate"
+brew "libvpx"
+brew "rtmpdump"
+brew "theora"
+brew "x264"
+brew "xvid"
+brew "Ffmpeg"
+brew "a52dec"
+brew "ack"
+brew "aircrack-ng"
+brew "apktool"
+brew "aspell"
+brew "atk"
+brew "at-spi2-atk"
+brew "augeas"
+brew "autoconf"
+brew "autojump"
+brew "automake"
+brew "bat"
+brew "bdw-gc"
+brew "binutils", link: true
+brew "bison"
+brew "boost"
+brew "brightness"
+brew "c-ares"
+brew "carthage"
+brew "chrome-cli"
+brew "cloog"
+brew "cmake"
+brew "cocoapods"
+brew "colordiff"
+brew "coreutils"
+brew "cppunit"
+brew "cscope"
+brew "ctags"
+brew "curl"
+brew "dialog"
+brew "diff-so-fancy"
+brew "doxygen"
+brew "duti"
+brew "enchant"
+brew "entr"
+brew "faac"
+brew "fakeroot"
+brew "findutils"
+brew "flasm"
+brew "flow"
+brew "flvmeta"
+brew "fswatch"
+brew "mpfr"
+brew "gawk"
+brew "gcore"
+brew "gd"
+brew "gdb"
+brew "geoip"
+brew "gifsicle"
+brew "gist"
+brew "git"
+brew "github-release"
+brew "globe"
+brew "gmp@4"
+brew "gnu-getopt"
+brew "gnu-sed", args: ["with-default-names"]
+brew "gnu-tar"
+brew "libksba"
+brew "gnupg"
+brew "pango"
+brew "qt"
+brew "gnuplot"
+brew "tokyo-cabinet"
+brew "goaccess"
+brew "pkg-config"
+brew "gocr"
+brew "libtool", args: ["universal"]
+brew "graphviz"
+brew "grc"
+brew "grep", args: ["with-default-names"]
+brew "gsl"
+brew "haskell-stack"
+brew "hiredis"
+brew "ncurses"
+brew "htop"
+brew "httpie"
+brew "hub"
+brew "iftop"
+brew "imagemagick"
+brew "imgcat"
+brew "iproute2mac"
+brew "isl@0.12"
+brew "jack"
+brew "jansson"
+brew "jbig2dec"
+brew "jemalloc"
+brew "jsonpp"
+brew "libev"
+brew "libusb-compat"
+brew "libgphoto2"
+brew "libgsf"
+brew "libmpc@0.8"
+brew "libressl"
+brew "libshout"
+brew "libssh2"
+brew "libtermkey"
+brew "libvidstab"
+brew "libvo-aacenc"
+brew "libwmf"
+brew "libxslt"
+brew "libyaml"
+brew "llvm"
+brew "loudmouth"
+brew "luarocks"
+brew "lynx"
+brew "mad"
+brew "makedepend"
+brew "mas"
+brew "monit"
+brew "mp4v2"
+brew "multitail"
+brew "mupdf"
+brew "neovim"
+brew "net-snmp"
+brew "nethogs"
+brew "ninja"
+brew "nmap"
+brew "node@10"
+brew "node@4"
+brew "node@6"
+brew "ocamlbuild"
+brew "ocrad"
+brew "openssl@1.1"
+brew "openvpn"
+brew "ossp-uuid"
+brew "p7zip"
+brew "pdf2htmlex"
+brew "pdftoipe"
+brew "postgresql"
+brew "qca"
+brew "qemu"
+brew "qpdf"
+brew "ranger"
+brew "ruby-build"
+brew "rbenv"
+brew "reattach-to-user-namespace"
+brew "redis"
+brew "redsocks"
+brew "rename"
+brew "ripgrep"
+brew "rsync"
+brew "ruby-install"
+brew "ruby@2.4"
+brew "safe-rm"
+brew "sane-backends"
+brew "scons"
+brew "shellcheck"
+brew "smali"
+brew "socat"
+brew "sourcekitten"
+brew "spin"
+brew "ssh-copy-id"
+brew "swftools"
+brew "swiftformat"
+brew "swiftlint"
+brew "swiftplate"
+brew "taglib"
+brew "tailor"
+brew "tarsnap"
+brew "terminal-notifier", link: false
+brew "texi2html"
+brew "the_silver_searcher"
+brew "tidy-html5"
+brew "tmux"
+brew "trash", link: false
+brew "tree"
+brew "two-lame"
+brew "unar"
+brew "uncrustify"
+brew "unixodbc"
+brew "unrar"
+brew "utf8proc"
+brew "vcprompt"
+brew "vifm"
+brew "wakeonlan"
+brew "watch"
+brew "watchman"
+brew "websocketd"
+brew "wget"
+brew "wv"
+brew "xctool", args: ["HEAD"]
+brew "xspin"
+brew "yasm"
+brew "yuicompressor"
+brew "zsh"
+brew "zsh-completions"
+brew "jakeheis/repo/ice"
+brew "simeji/jid/jid"
+brew "vapor/tap/ctls"
+brew "vapor/tap/vapor"
+cask "aerial"
+cask "anybar"
+cask "black-screen"
+cask "caffeine"
+cask "cakebrew"
+cask "clockify"
+cask "dash"
+cask "discord"
+cask "easysimbl"
+cask "expressvpn"
+cask "fastlane"
+cask "gephi"
+cask "google-backup-and-sync"
+cask "gpsdump"
 cask "hammerspoon"
-# cask 'alfred'
-# cask 'caffeine'
-# cask 'discord'
-cask 'google-backup-and-sync'
-cask 'google-chrome'
-cask 'oni'
-cask 'keepyouawake'
-cask 'transmission'
-cask 'todoist'
-cask 'gpg-suite'
-cask 'insomnia'
-cask 'skype'
-cask 'slack'
-cask 'tripmode'
-cask 'expressvpn'
-cask 'spectacle'
-cask 'omnigraffle'
-cask 'appcleaner'
-cask 'messenger'
-cask 'vlc'
-cask 'iterm2'
-
-# Mac App Store
-mas 'Airmail', id: 918858936
-mas '1Password', id: 1333542190
-mas 'The Unarchiver', id: 425424353
-mas 'Things', id: 904280696
-mas 'WhatsApp', id: 1147396723
-mas 'WeChat', id: 836500024
-mas 'Xcode', id: 497799835
-mas 'Classic Color Meter', id: 451640037
-mas 'iStat Menus', id: 1319778037
+cask "hyper"
+cask "insomnia"
+cask "kdiff3"
+cask "launchcontrol"
+cask "macdown"
+cask "oni"
+cask "simbl"
+cask "slack"
+cask "swimat"
+cask "wireshark-chmodbpf"
+cask "peripheryapp/periphery/periphery"
+mas "Airmail 3", id: 918858936
+mas "Classic Color Meter", id: 451640037
+mas "iOrdning 6", id: 941559272
+mas "Mathpix Snipping Tool", id: 1349670778
+mas "Pages", id: 409201541
+mas "Tawk.to", id: 985584499
+mas "Textual 7", id: 1262957439
+mas "The Unarchiver", id: 425424353
+mas "Todoist", id: 585829637
+mas "WhatsApp", id: 1147396723
