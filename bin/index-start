@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "==> Unload com.apple.photoanalysisd"
+echo "==> Load com.apple.photoanalysisd"
 m service load com.apple.photoanalysisd.plist
 
-echo "==> Unload com.apple.metadata.mds.plist"
+echo "==> Load com.apple.metadata.mds.plist"
 m service load com.apple.metadata.mds.plist
 
 echo "==> Start com.apple.photoanalysisd"

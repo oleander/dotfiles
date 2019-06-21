@@ -2,14 +2,16 @@
 
 export HOMEBREW_NO_AUTO_UPDATE=0
 
+sudo ls
+
 echo "==> Upgrade 'm'"
 m --update
 
 echo "==> Set volume"
 m volume 0
 
-echo "==> Lock computer"
-m lock
+# echo "==> Lock computer"
+# m lock
 
 echo "==> Clean trash"
 m trash clean
@@ -53,7 +55,10 @@ update_rubygems
 gem update --system
 
 echo "==> Clean up old gems"
-gem cleanup
+gem cleanup -y
 
 echo "==> Upgrade pip"
 pip-review --auto --local
+
+# echo "==> Verify disk"
+# m disk verify volume /Volumes/System
