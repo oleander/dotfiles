@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+echo "Kill Atom"
+killall Atom || true
+# wait $!
+
+echo "Kill Chrome"
+killall Chrome || true
+# wait $!
+
+echo "Kill foreman"
+killall "foreman: master" || true
+# wait $!
+
+cd ~/Documents/Projekt/mailfold
+
+osascript \
+-e 'tell application "iTerm" to activate' \
+-e 'tell application "System Events" to tell process "iTerm" to keystroke "t" using command down' \
+-e 'tell application "System Events" to tell process "iTerm" to keystroke "cd ~/Documents/Projekt/mailfold && foreman start"' \
+-e 'tell application "System Events" to tell process "iTerm" to key code 52'
+
+echo "Open atom in project folder"
+atom .
+
+echo "Wait for foreman to start"
+sleep 10
+
+echo "Login in user"
+bundle exec rake mock:addresses
+
+echo "Open Clockify"
+open "/Applications/Clockify\ Desktop.app"

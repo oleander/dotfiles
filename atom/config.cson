@@ -20,7 +20,21 @@
       "vim-surround"
       "linter-swiftlint"
       "linter-eslint"
+      "linter-python"
+      "ide-python"
+      "atom-beautify"
+      "busy-signal"
+      "intentions"
+      "javascript-snippets"
+      "linter"
+      "linter-jsonlint"
+      "merge-conflicts"
+      "rails-transporter"
+      "relative-numbers"
+      "tool-bar"
+      "wakatime"
     ]
+    fileSystemWatcher: "experimental"
     ignoredNames: [
       ".git"
       ".hg"
@@ -41,7 +55,7 @@
     ]
     titleBar: "hidden"
   editor:
-    fontSize: 18
+    fontSize: 16
     preferredLineLength: 120
     scrollPastEnd: true
     softWrap: true
@@ -53,6 +67,10 @@
   "fuzzy-finder": {}
   "highlight-line":
     enableBackgroundColor: false
+  "linter-python":
+    enableDebug: true
+    executablePath: "pylint"
+    lintTrigger: "File modified"
   "linter-ui-default":
     panelHeight: 69
   "tab-smart-sort":

@@ -18,6 +18,6 @@ m service stop com.apple.spindump
 echo "==> Stop com.apple.metadata.mds.spindump"
 m service stop com.apple.metadata.mds.spindump
 
-echo "==> Stop com.apple.bird"
-m service stop com.apple.bird
-m service unload com.apple.bird
+# echo "==> Stop com.apple.bird"
+# m service stop com.apple.bird
+# m service unload com.apple.bird

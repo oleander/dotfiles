@@ -15,6 +15,23 @@
 #
 
 # Overrides: https://github.com/hharnisc/atom-es6-javascript/tree/master/snippets
+".source.swift":
+  "interpolation":
+    prefix: "#"
+    body: """
+      \\\\(${0})
+    """
+".source.python":
+  "logger":
+    prefix: "l"
+    body: """
+      log.info(${0})
+    """
+  "exit":
+    prefix: "e"
+    body: """
+      exit(0)
+    """
 ".source.js":
   "anonymous function":
     prefix: "f"
@@ -91,6 +108,6 @@
   #   body: """
   #
   #   --
-  # 
+  #
   #
   #   """

@@ -147,7 +147,7 @@ nmap <F1> <Esc>
 imap <C-F> <C-R>=expand("%")<CR>
 
 " Maps autocomplete to tab
-imap <Tab> <C-N>
+" imap <Tab> <C-N>
 
 imap <C-L> <Space>=><Space>
 
@@ -307,13 +307,41 @@ au FileType * setlocal formatoptions-=cro
 
 " nnoremap ,t :CtrlP<CR>
 " nnoremap <leader>t :CtrlP<CR>
-map ,t :CtrlP<CR>
+" map ,t :CtrlP<CR>
+"
 
-" call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
-" Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
+" Plug 'skielbasa/vim-material-monokai'
+Plug 'kaicataldo/material.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-surround'
 
-" call plug#end()
+call plug#end()
 
-" set background=dark
-" colorscheme solarized
+"call deoplete#custom#option('auto_complete_delay', 200)
+
+" Pass a dictionary to set multiple options
+"call deoplete#custom#option({
+"\ 'auto_complete_delay': 200,
+"\ 'smart_case': v:true,
+"\ })
+
+let g:ctrlp_map = '<c-t>'
+let g:ctrlp_cmd = 'CtrlP'
+
+set background=dark
+colorscheme material
+set wildignore+=*/Resources/*,*/node_modules/*
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:deoplete#enable_at_startup = 1
+
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+nmap cc ciw
+" nmap y mxy`x

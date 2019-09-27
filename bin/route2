@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require "colorize"
+
+if ARGV.count == 1
+  args = "--dest \"#{ARGV.first}\""
+elsif ARGV.count == 2
+  args = "--origin \"#{ARGV.first}\" --dest \"#{ARGV.last}\""
+elsif ARGV.count >= 3
+  args = "--origin \"#{ARGV.first}\" --dest \"#{ARGV.last}\" --waypoints \"#{ARGV[1..-2].join(",")}\""
+else
+  abort "No arguments passed"
+end
+
+args << " --private --open"
+
+puts "#{"==>".green} Create route with #{args.yellow}"
+system "strava route new #{args}"
+puts "#{"==>".green} Add POI to route"
+system "strava route poi .latest"
