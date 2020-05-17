@@ -24,8 +24,8 @@ m volume 0
 # echo "==> Lock computer"
 # m lock
 
-echo "==> Clean trash"
-m trash clean
+# echo "==> Clean trash"
+# m trash clean
 
 echo "==> Update brew"
 brew update
@@ -46,7 +46,7 @@ echo "==> Upgrade casks"
 brew cask upgrade
 
 echo "==> Upgrade NPM (1)"
-npm install -g npm
+npm install -g npm --force
 
 # echo "==> Upgrade NPM (2)"
 # npm upgrade -g

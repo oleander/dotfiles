@@ -1,6 +1,10 @@
 "*":
+  "atom-haskell":
+    hasAddedConfiguration: true
   "atom-package-deps":
-    ignored: []
+    ignored: [
+      "atom-haskell"
+    ]
   "autocomplete-plus":
     maxVisibleSuggestions: 5
     minimumWordLength: 2
@@ -55,7 +59,7 @@
     ]
     titleBar: "hidden"
   editor:
-    fontSize: 16
+    fontSize: 15
     preferredLineLength: 120
     scrollPastEnd: true
     softWrap: true
@@ -80,7 +84,6 @@
     enableMruTabSwitching: false
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vim-mode-plus":
     autoDisableInputMethodWhenLeavingInsertMode: true
