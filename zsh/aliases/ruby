@@ -6,3 +6,9 @@ alias P='RAILS_ENV=production'
 alias D='RAILS_ENV=development'
 alias T='RAILS_ENV=test'
 alias f='foreman start'
+alias rfix='/Users/oleander/Projekt/rubocop/rubo2.rb'
+
+# alias rails 'bin/rails'
+# alias rspec 'bin/rspec'
+# alias rake 'bin/rake'
+

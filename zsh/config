@@ -3,6 +3,8 @@ ZSH=$ROOT/zsh/oh-my
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
+# Disable rubygems warnings
+RUBYOPT='-W0'
 # Removes spacing to the right
 # ZLE_RPROMPT_INDENT=1
 DISABLE_UPDATE_PROMPT=true

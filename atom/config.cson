@@ -12,6 +12,7 @@
     audioBeep: false
     automaticallyUpdate: false
     closeDeletedFileTabs: true
+    closeEmptyWindows: false
     customFileTypes:
       "source.ruby": [
         "eye"
@@ -27,18 +28,28 @@
       "linter-python"
       "ide-python"
       "atom-beautify"
-      "busy-signal"
-      "intentions"
       "javascript-snippets"
-      "linter"
       "linter-jsonlint"
       "merge-conflicts"
       "rails-transporter"
       "relative-numbers"
       "tool-bar"
       "wakatime"
+      "status-bar"
+      "atom-haskell"
+      "gist-it"
+      "ide-haskell"
+      "linter-lua"
+      "linter-clang"
+      "linter-shellcheck"
+      "linter-toml"
+      "tree-ignore"
+      "rails-open"
+      "tab-smart-sort"
+      "linter-rubocop"
+      "rubocop-auto-correct"
     ]
-    fileSystemWatcher: "experimental"
+    fileSystemWatcher: "atom"
     ignoredNames: [
       ".git"
       ".hg"
@@ -49,39 +60,62 @@
       "desktop.ini"
       ".build"
       ".DS_Store"
+      "node_modules"
+      "tmp"
+      "public"
+      "app/assets"
+      "config/locales"
+      "vendor/assets"
     ]
     openEmptyEditorOnStart: false
-    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "atom-material-syntax"
     ]
     titleBar: "hidden"
+    uriHandlerRegistration: "always"
   editor:
+    autoIndent: true
     fontSize: 15
     preferredLineLength: 120
     scrollPastEnd: true
     softWrap: true
     softWrapAtPreferredLineLength: true
+    undoGroupingInterval: 200
   "exception-reporting":
     userId: "c2ba2814-cdf6-4971-9292-97b8cfa1f469"
   "file-icons":
     revealTreeView: false
-  "fuzzy-finder": {}
-  "highlight-line":
-    enableBackgroundColor: false
+  "fuzzy-finder":
+    ignoredNames: [
+      ".keep"
+      "*.yml"
+      "*.json"
+      "*.jpg"
+      ".buildpacks"
+    ]
+    searchAllPanes: true
+    useRipGrep: false
+  "highlight-line": {}
   "linter-python":
     enableDebug: true
     executablePath: "pylint"
     lintTrigger: "File modified"
+  "linter-rubocop":
+    command: "/Users/oleander/.rbenv/shims/rubocop"
   "linter-ui-default":
     panelHeight: 69
+  "rails-transporter-plus": {}
+  "rubocop-auto-correct":
+    notification: false
+    onlyFixesNotification: false
+    rubocopCommandPath: "/Users/oleander/.rbenv/shims/rubocop"
   "tab-smart-sort":
     placeSpecialTabsOnRight: true
   tabs:
-    displayMruTabList: false
-    enableMruTabSwitching: false
+    alwaysShowTabBar: false
+    enableVcsColoring: true
   "tree-view":
     hideIgnoredNames: true
     squashDirectoryNames: true

@@ -20,7 +20,6 @@
 'atom-workspace':
   'alt-n': 'cursor-history:prev'
   'alt-g': 'cursor-history:next'
-  'cmd-ö': "custom:flow-tag"
   'cmd-ctrl-right': "window:focus-pane-on-right"
   'cmd-ctrl-left': "window:focus-pane-on-left"
   'cmd-b': 'recent-files-fuzzy-finder:toggle-finder'
@@ -29,4 +28,8 @@
 'atom-text-editor[data-grammar="text html erb"]:not([mini])':
     "tab": "emmet:expand-abbreviation-with-tab"
 'atom-text-editor.vim-mode-plus.normal-mode':
-  'g f': 'goto-definition:go'
+  'g b': 'goto-last-edit:back'
+  'g f': 'goto-last-edit:forward'
+  'm m': 'rails-transporter-plus:open-model'
+  'm c': 'rails-transporter-plus:open-controller'
+  'm t': 'rails-transporter-plus:open-test'

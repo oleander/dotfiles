@@ -71,3 +71,5 @@ dwsync.xml
 .komodotools
 
 node_modules/
+.rspec-local
+.overcommit.yml

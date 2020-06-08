@@ -316,7 +316,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'kaicataldo/material.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-surround'
 
 call plug#end()
