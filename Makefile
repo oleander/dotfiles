@@ -19,6 +19,8 @@ install_ocean:
 	@ssh ocean '$(INSTALL_CMD)'
 install_local: clean_local symlink_dotfiles_local update_submodule symlink
 	@exec bin/reload
+install_office: symlink_dotfiles_local update_submodule symlink
+	@exec bin/reload
 
 install_linux_deps:
 	apt-get install safe-rm
