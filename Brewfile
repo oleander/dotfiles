@@ -280,6 +280,11 @@ cask "phantomjs"
 cask "simbl"
 cask "slack"
 cask "vimr"
+cask "Spectacle"
+cask "Atom"
+cask "Postgres"
+cask "Spotify"
+cask "RingCentral Meetings"
 mas "Bear", id: 1091189122
 mas "Classic Color Meter", id: 451640037
 mas "iOrdning 6", id: 941559272
