@@ -1,0 +1,12 @@
+alias cr='cd ~/Documents/Projekt'
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias update='sudo /usr/libexec/locate.updatedb'
+alias dot='cd ~/.dotfiles'
+alias reload_source='source ~/.zshrc'
+alias reload='reload_iterm'
+alias rm=trash
+
+export EDITOR="atom"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"

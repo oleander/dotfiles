@@ -21,7 +21,7 @@ setopt prompt_subst
 local smiley="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}>%{$reset_color%})"
 
 PROMPT='
-%{$fg[yellow]%}$(whoami)%{$reset_color%} on %{$fg[blue]%}$(hostname)%{$reset_color%} in %2~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%}
+%{$fg[yellow]%}oleander%{$reset_color%} on %{$fg[blue]%}office%{$reset_color%} in %2~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%}
 ${smiley}%{$reset_color%} '
 
 RPROMPT='[%*]'
@@ -51,17 +51,17 @@ setopt HIST_REDUCE_BLANKS
 
 zle -N newtab
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
+# bindkey '^[^[[D' backward-word
+# bindkey '^[^[[C' forward-word
+# bindkey '^[[5D' beginning-of-line
+# bindkey '^[[5C' end-of-line
+# bindkey '^[[3~' delete-char
+# bindkey '^[^N' newtab
+# bindkey '^?' backward-delete-char
 
 # Search history using up and down arrow
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
+# bindkey "^[[A" history-search-backward
+# bindkey "^[[B" history-search-forward
 
 # Disable correctness
 unsetopt correct_all
@@ -74,3 +74,13 @@ export RUBYOPT=rubygems
 prompt_dir() {
   prompt_segment blue black '%2~'
 }
+
+source $HOME/.dotfiles/zsh/antigen.zsh
+antigen bundle zsh-users/zsh-autosuggestions
+
+# https://github.com/sds/overcommit#automatically-install-overcommit-hooks
+export GIT_TEMPLATE_DIR="$(/Users/linusoleander/.rbenv/shims/overcommit --template-dir)"
+
+export LC_ALL=en_US.UTF-8
+
+source ~/.dotfiles/zsh/profiles/office

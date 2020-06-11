@@ -16,3 +16,16 @@ function lsr(){
 
   sudo find $1 -exec ls -dl \{\} \;
 }
+
+# alias heroku_bin="$(which heroku)"
+
+function heroku(){
+  local bin=/usr/local/bin/heroku
+
+  if [[ "$@" == *"--help"* ]]
+  then $bin $@
+  elif [ -z "$@" ]
+  then $bin
+  else $bin $@ --app equippostore
+  fi
+}

@@ -7,5 +7,11 @@ alias gb='git branch'
 alias gl='git log --format="%h by %C(red)%an%Creset, %ar %C(green)%s" --decorate --no-merges --graph --branches --remotes --tags | nl -nrz -w2 - | less'
 alias gdd='git diff'
 alias gg='git-gg'
-alias gm='git commit -v -m'
 alias gc='git-verify-checkout'
+
+function gm() {
+  if [ -z "$@" ]
+  then echo "[Git] No commit message"
+  else git commit -v -m "$@"
+  fi
+}
