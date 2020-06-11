@@ -48,8 +48,12 @@
       "tab-smart-sort"
       "linter-rubocop"
       "rubocop-auto-correct"
+      "busy-signal"
+      "intentions"
+      "packages-txt"
+      "ide-bash"
+      "language-unix-shell"
     ]
-    fileSystemWatcher: "atom"
     ignoredNames: [
       ".git"
       ".hg"
@@ -63,12 +67,11 @@
       "node_modules"
       "tmp"
       "public"
-      "app/assets"
       "config/locales"
       "vendor/assets"
     ]
     openEmptyEditorOnStart: false
-    telemetryConsent: "no"
+    telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
       "atom-material-syntax"
@@ -82,6 +85,7 @@
     scrollPastEnd: true
     softWrap: true
     softWrapAtPreferredLineLength: true
+    tabType: "soft"
     undoGroupingInterval: 200
   "exception-reporting":
     userId: "c2ba2814-cdf6-4971-9292-97b8cfa1f469"
@@ -90,13 +94,11 @@
   "fuzzy-finder":
     ignoredNames: [
       ".keep"
-      "*.yml"
-      "*.json"
       "*.jpg"
       ".buildpacks"
     ]
+    scoringSystem: "alternate"
     searchAllPanes: true
-    useRipGrep: false
   "highlight-line": {}
   "linter-python":
     enableDebug: true

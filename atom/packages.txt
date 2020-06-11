@@ -28,8 +28,6 @@ language-lua
 language-markdown
 language-nginx
 language-spice
-language-swift
-language-swift3
 language-tmux
 language-viml
 linter
