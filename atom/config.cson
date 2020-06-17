@@ -54,6 +54,7 @@
       "ide-bash"
       "language-unix-shell"
     ]
+    fileSystemWatcher: "experimental"
     ignoredNames: [
       ".git"
       ".hg"
@@ -99,6 +100,8 @@
     ]
     scoringSystem: "alternate"
     searchAllPanes: true
+  "goto-definition":
+    performanceMode: true
   "highlight-line": {}
   "linter-python":
     enableDebug: true
@@ -120,6 +123,7 @@
     enableVcsColoring: true
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vim-mode-plus":
     autoDisableInputMethodWhenLeavingInsertMode: true
