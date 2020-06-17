@@ -4,7 +4,6 @@ CASE_SENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 # Disable rubygems warnings
-RUBYOPT='-W0'
 # Removes spacing to the right
 # ZLE_RPROMPT_INDENT=1
 DISABLE_UPDATE_PROMPT=true
@@ -18,7 +17,7 @@ autoload -U colors
 colors
 setopt prompt_subst
 
-local smiley="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}>%{$reset_color%})"
+local smiley="%(?,%{$fg[green]%}λ%{$reset_color%},%{$fg[red]%}λ%{$reset_color%})"
 
 PROMPT='
 %{$fg[yellow]%}oleander%{$reset_color%} on %{$fg[blue]%}office%{$reset_color%} in %2~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%}
@@ -67,8 +66,7 @@ zle -N newtab
 unsetopt correct_all
 
 # Set correct java path
-export LANG=sv_SE.UTF-8
-export RUBYOPT=rubygems
+export LANG=en_US.UTF-8
 
 # Dir: current working directory
 prompt_dir() {
@@ -79,8 +77,11 @@ source $HOME/.dotfiles/zsh/antigen.zsh
 antigen bundle zsh-users/zsh-autosuggestions
 
 # https://github.com/sds/overcommit#automatically-install-overcommit-hooks
-export GIT_TEMPLATE_DIR="$(/Users/linusoleander/.rbenv/shims/overcommit --template-dir)"
+export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
 
 export LC_ALL=en_US.UTF-8
 
 source ~/.dotfiles/zsh/profiles/office
+
+# https://stackoverflow.com/a/28098594/560073
+export RUBYOPT="-W0"
