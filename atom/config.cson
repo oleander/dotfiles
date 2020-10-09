@@ -1,4 +1,13 @@
 "*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "0370d20a-c21a-4c09-88a9-c97bbcbd5f75"
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+    cmdArgs: "-R --exclude=vendor --exclude=.bundle --languages=ruby --tag-relative --sort=yes --exclude=.git --exclude=log --exclude=~/.gitignore"
+    disableComplete: true
+  "atom-github-notifications":
+    personalAccessToken: "a4e4d01fc22f102623a152c09eb746fc8d092d8e"
   "atom-haskell":
     hasAddedConfiguration: true
   "atom-package-deps":
@@ -8,6 +17,9 @@
   "autocomplete-plus":
     maxVisibleSuggestions: 5
     minimumWordLength: 2
+  "autocomplete-ruby":
+    port: 65535
+    suggestionPriority: true
   core:
     audioBeep: false
     automaticallyUpdate: false
@@ -17,6 +29,7 @@
       "source.ruby": [
         "eye"
       ]
+    debugLSP: true
     disabledPackages: [
       "symbols-view"
       "term"
@@ -27,9 +40,7 @@
       "linter-eslint"
       "linter-python"
       "ide-python"
-      "atom-beautify"
       "javascript-snippets"
-      "linter-jsonlint"
       "merge-conflicts"
       "rails-transporter"
       "relative-numbers"
@@ -46,15 +57,23 @@
       "tree-ignore"
       "rails-open"
       "tab-smart-sort"
-      "linter-rubocop"
-      "rubocop-auto-correct"
       "busy-signal"
       "intentions"
       "packages-txt"
       "ide-bash"
       "language-unix-shell"
+      "navigation-history"
+      "autocomplete-ruby"
+      "rubocop-auto-correct"
+      "github"
+      "linter"
+      "linter-yaml"
+      "atom-github-notifications"
+      "Hydrogen"
+      "zentabs"
     ]
     fileSystemWatcher: "experimental"
+    followSymlinks: false
     ignoredNames: [
       ".git"
       ".hg"
@@ -72,6 +91,7 @@
       "vendor/assets"
     ]
     openEmptyEditorOnStart: false
+    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
@@ -79,15 +99,20 @@
     ]
     titleBar: "hidden"
     uriHandlerRegistration: "always"
+  "cursor-history":
+    excludeClosedBuffer: true
+    keepSingleEntryPerBuffer: true
+    openInPendingState: true
   editor:
     autoIndent: true
-    fontSize: 15
+    fontSize: 27
+    invisibles: {}
     preferredLineLength: 120
     scrollPastEnd: true
     softWrap: true
     softWrapAtPreferredLineLength: true
     tabType: "soft"
-    undoGroupingInterval: 200
+    undoGroupingInterval: 100
   "exception-reporting":
     userId: "c2ba2814-cdf6-4971-9292-97b8cfa1f469"
   "file-icons":
@@ -100,22 +125,32 @@
     ]
     scoringSystem: "alternate"
     searchAllPanes: true
+  "git-blame":
+    columnWidth: 325
   "goto-definition":
+    contextMenuDisplayAtFirst: false
     performanceMode: true
   "highlight-line": {}
+  "ide-ruby": {}
   "linter-python":
     enableDebug: true
     executablePath: "pylint"
     lintTrigger: "File modified"
+  "linter-reek":
+    executablePath: "/Users/linusoleander/.rbenv/shims/reek"
   "linter-rubocop":
-    command: "/Users/oleander/.rbenv/shims/rubocop"
+    command: "/Users/linusoleander/.rbenv/shims/rubocop"
+    disableWhenNoConfigFile: true
+    useBundler: true
   "linter-ui-default":
-    panelHeight: 69
+    panelHeight: 196
+    showPanel: true
+  "one-dark-ui":
+    fontSize: 20
   "rails-transporter-plus": {}
   "rubocop-auto-correct":
     notification: false
-    onlyFixesNotification: false
-    rubocopCommandPath: "/Users/oleander/.rbenv/shims/rubocop"
+    rubocopCommandPath: "/Users/linusoleander/.rbenv/shims/rubocop"
   "tab-smart-sort":
     placeSpecialTabsOnRight: true
   tabs:

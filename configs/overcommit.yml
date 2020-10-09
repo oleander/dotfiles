@@ -1,33 +1,36 @@
-# https://github.com/sds/overcommit/blob/master/config/default.yml
-quiet: false
-concurrency: 6
-verify_signatures: false
-
-PreCommit:
-  ALL:
-    problem_on_unmodified_line: ignore
-  RFix:
-    enabled: true
-    command: rfix
-    flags: ['local', '--dry']
-    description: "Lint changes since last push using RuboCop"
-    install_command: ["gem", "install", "rfix"]
-    parallelize: true
-    required_executable: rfix
-    problem_on_unmodified_line: report
-  CodeSpellCheck:
-    enabled: true
-  Fasterer:
-    enabled: true
-  FileSize:
-    enabled: true
-  FixMe:
-    enabled: true
-  TravisLint:
-    enabled: true
-    flags: ['lint', '-x']
-CommitMsg:
-  HardTabs:
-    enabled: true
-  SpellCheck:
-    enabled: true
+# # https://github.com/sds/overcommit/blob/master/config/default.yml
+# quiet: false
+# concurrency: 6
+# verify_signatures: false
+#
+# PreCommit:
+#   ALL:
+#     problem_on_unmodified_line: ignore
+#   RFix:
+#     enabled: true
+#     command: [rfix, lint]
+#     install_command: [gem, install, rfix]
+#     required_executable: rfix
+#     problem_on_unmodified_line: report
+#   ForbiddenBranches:
+#     enabled: true
+#     branches: [develop, master]
+#   FileSize:
+#     enabled: true
+#   EsLint:
+#     enabled: true
+#   FixMe:
+#     enabled: true
+#   HardTabs:
+#     enabled: true
+# PrePush:
+#   ProtectedBranches:
+#     enabled: true
+#     branches: [master, develop]
+# CommitMsg:
+#   HardTabs:
+#     enabled: true
+# PreRebase:
+#   MergedCommits:
+#     enabled: true
+#     branches: [master, develop]

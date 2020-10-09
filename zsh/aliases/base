@@ -18,14 +18,18 @@ function lsr(){
 }
 
 # alias heroku_bin="$(which heroku)"
-
-function heroku(){
-  local bin=/usr/local/bin/heroku
-
-  if [[ "$@" == *"--help"* ]]
-  then $bin $@
-  elif [ -z "$@" ]
-  then $bin
-  else $bin $@ --app equippostore
-  fi
-}
+# 
+# function heroku(){
+#   local bin=/usr/local/bin/heroku
+#
+#   if [[ "$@" == *"--help"* ]]
+#   then $bin $@
+#   elif [ -z "$@" ]
+#   then $bin
+#   else $bin $@ --app equippostore
+#   fi
+# }
+#
+# equippostore
+#
+# docker tag cypress/included:4.9.0 registry.heroku.com/equippostore/cypress

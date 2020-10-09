@@ -37,7 +37,6 @@ symlink_dotfiles_local:
 	@ln -fs $(THIS) $(DOTDIR)
 symlink:
 	$(foreach file, $(shell ls $(THIS)/symlinks), ln -fs $(THIS)/symlinks/$(file) $(HOME)/.$(file);)
-	ln -fs $(THIS)/atom $(HOME)/.atom
 
 update: update_git symlink
 update_git: update_submodule

@@ -1,5 +1,5 @@
 [color]
-	ui = auto
+	ui = true
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -32,6 +32,7 @@
 	excludesfile = ~/.gitignore
 	whitespace = trailing-space,space-before-tab
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	mergeoptions = --no-edit
 [advice]
 	statusHints = false
 	pushNonFastForward = false
@@ -49,3 +50,10 @@
 	helper = osxkeychain
 [alias]
 	root = !pwd
+[rebase]
+	autoSquash = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
