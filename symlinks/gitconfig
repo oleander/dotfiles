@@ -44,7 +44,7 @@
 	user = oleander
 [user]
 	name = Linus Oleander
-	email = linus.oleander@equippo.com
+	email = linus@oleander.nu
 [credential]
 	helper = osxkeychain
 [alias]

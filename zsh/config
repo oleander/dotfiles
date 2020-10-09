@@ -76,9 +76,6 @@ prompt_dir() {
 source $HOME/.dotfiles/zsh/antigen.zsh
 antigen bundle zsh-users/zsh-autosuggestions
 
-# https://github.com/sds/overcommit#automatically-install-overcommit-hooks
-export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
-
 export LC_ALL=en_US.UTF-8
 
 source ~/.dotfiles/zsh/profiles/office

@@ -9,6 +9,8 @@ export ROOT=$HOME/.dotfiles
 . $ROOT/zsh/aliases/ruby
 . $ROOT/zsh/completion
 
+# https://github.com/sds/overcommit#automatically-install-overcommit-hooks
+export GIT_TEMPLATE_DIR="$(~/.rbenv/shims/overcommit --template-dir)"
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # [ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
