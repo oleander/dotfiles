@@ -83,3 +83,5 @@ source ~/.dotfiles/zsh/profiles/office
 
 # https://stackoverflow.com/a/28098594/560073
 export RUBYOPT="-W0"
+
+[ -f ~/.dotfiles/zsh/secret ] && source ~/.dotfiles/zsh/secret

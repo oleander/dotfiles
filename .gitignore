@@ -7,3 +7,5 @@ atom/.apm
 atom/.node-gyp
 atom/recovery/
 atom/.atom-socket-secret*
+zsh/secret
+Brewfile.lock.json

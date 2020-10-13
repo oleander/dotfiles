@@ -1,5 +1,6 @@
+cask_args appdir: "~/Applications", force: true
+
 tap "github/gh"
-tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -218,8 +219,7 @@ brew "yuicompressor"
 brew "zlib"
 brew "zsh"
 brew "zsh-completions"
-brew "github/gh/gh"
-brew "heroku/brew/heroku"
+brew "gh"
 cask "anybar"
 cask "appcleaner"
 cask "atom"

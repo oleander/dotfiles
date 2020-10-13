@@ -1,5 +1,4 @@
 atom-beautify
-atom-haskell
 atom-material-syntax
 auto-detect-indentation
 busy-signal
@@ -52,9 +51,7 @@ rubocop-auto-correct
 set-syntax
 ssh-config
 tab-smart-sort
-tidy-markdown
 tool-bar
 tree-ignore
 vim-mode-plus
 vim-surround
-wakatime
