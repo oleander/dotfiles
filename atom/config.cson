@@ -105,7 +105,7 @@
     openInPendingState: true
   editor:
     autoIndent: true
-    fontSize: 27
+    fontSize: 22
     invisibles: {}
     preferredLineLength: 120
     scrollPastEnd: true

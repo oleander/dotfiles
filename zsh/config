@@ -79,9 +79,20 @@ antigen bundle zsh-users/zsh-completions
 
 export LC_ALL=en_US.UTF-8
 
-source ~/.dotfiles/zsh/profiles/office
+source ~/.dotfiles/zsh/profiles/germany
 
 # https://stackoverflow.com/a/28098594/560073
 export RUBYOPT="-W0"
 
-[ -f ~/.dotfiles/zsh/secret ] && source ~/.dotfiles/zsh/secret
+alias cr='cd ~/Code'
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias update='sudo /usr/libexec/locate.updatedb'
+alias dot='cd ~/.dotfiles'
+alias reload_source='source ~/.zshrc'
+alias reload='reload_iterm'
+alias rm=trash
+
+export EDITOR="atom"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"

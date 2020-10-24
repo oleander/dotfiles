@@ -1,0 +1,27 @@
+export LDFLAGS="-L/usr/local/opt/mysql@5.6/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql@5.6/include"
+
+[ -f ~/.dotfiles/zsh/secret ] && source ~/.dotfiles/zsh/secret
+
+export HUR_MYSQL_HOST="127.0.0.1"
+export HUR_MYSQL_DATABASE="hur_application"
+export HUR_MYSQL_USER="root"
+export HUR_APP_DATA_DIR="~/Code/hur/resources/data"
+export HUR_APP_PDF_DIR="~/Code/hur/resources/pdf"
+# the following must be in the working directory of the rails app
+export HUR_APP_TEMPORARY_DIR="~/Code/hur"
+
+export HUR_APP_DATA_DIR="~/Projects/hur_app/data"
+# HUR_APP_PDF_DIR="/Users/parompf/Documents/Projects/hurApp/pdf_forms"
+# HUR_APP_TEMPORARY_DIR="/Users/parompf/Documents/Projects/hurApp/hur_app/tmp/hur_temp"
+export HUR_APP_REDIS_SERVER_NAME="127.0.0.1"
+export HUR_APP_REDIS_SERVER_PORT="6379"
+export HUR_APP_VERSION="development"
+export RAILS_SMTP_SERVER_ADDRESS="127.0.0.1"
+export HUR_APP_AD_TESTUSER1_NAME=testuser1
+export HUR_APP_AD_TESTUSER2_NAME=testuser2
+export HUR_APP_AD_TESTUSER3_NAME=testuser2
+export HUR_APP_AD_TESTUSER4_NAME=testuser2
+
+export HUR_APP_VAR_HVB_RSA_KEY="$(cat ~/Projects/hur_app/private/key)"
+export HUR_APP_VAR_HVB_CERTIFICATE="$(cat ~/Projects/hur_app/private/cert)"

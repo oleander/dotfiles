@@ -1,32 +1,46 @@
-#!/usr/bin/env ruby --disable=did_you_mean,gems,rubyopt
+#!/usr/bin/env ruby --disable=did_you_mean,rubyopt
 
-args = ARGV.join(" ").strip
-
-def read
-  $stdin.gets.strip
-end
-
-def ask(what)
-  puts "[Q] " + what + " [Y/n]"
-  res = read
-  return if res.empty?
-  unless res.downcase.include?("y")
-    abort "Okay, closing"
-  end
-end
+require "tty-prompt"
+require "colorize"
+require "logger"
+require "git"
 
 def close
-  abort "Usage: git squash X, where X is the number of commits to squash together"
+  abort "Usage: git squash [X]"
 end
+
+args   = ARGV.join(" ").strip
+g      = Git.open(Dir.pwd)
+prompt = TTY::Prompt.new
+INDEX  = ARGV.last.to_i
+CUSTOM = :custom
 
 close if args.empty?
 close if args.to_i == 0
 
-puts "[I] " + args + " represents the following commits"
-puts `git log --format="%h by %C(red)%an%Creset, %ar %C(green)%s" --decorate --no-merges --graph --branches --remotes --tags -n #{args}`
-ask("Do you want to merged them?")
-puts `git reset --soft "HEAD~#{args}"`
-puts "Enter a commit message"
-message = read
-puts `git commit -m "#{message}"`
-puts "Done..."
+org_messages = (0...INDEX).map do |index|
+  g.object("HEAD~#{index}")
+end.each_with_object({}) do |commit, obj|
+  obj[commit.message.lines.first.strip] = commit.sha
+end
+
+def commit(msg:)
+  `git reset --soft "HEAD~#{INDEX}"`
+  exec "git", "commit", "-m", msg
+end
+
+messages = org_messages.merge({
+  "Custom message".italic => CUSTOM
+})
+
+begin
+  sha = prompt.select("Commit message for #{INDEX} squashed commits", messages)
+
+  if sha == CUSTOM
+    commit(msg: prompt.ask("Enter a commit message", default: org_messages.keys.first))
+  else
+    commit(msg: g.object(sha).message)
+  end
+rescue TTY::Reader::InputInterrupt
+  abort
+end

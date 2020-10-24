@@ -1,0 +1,66 @@
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - 'Gemfile'
+    - 'bin/*'
+    - 'vendor/bundle/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'spec/rails_helper.rb'
+    - 'lib/tasks/*'
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+    - 'spec/**/*'
+    - 'lib/tasks/*'
+    - 'lib/capistrano/**/*'
+
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+    - 'config/**/*'
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+Style/GuardClause:
+  Enabled: false
+Style/AsciiComments:
+  Enabled: false
