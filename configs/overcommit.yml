@@ -6,6 +6,8 @@ verify_signatures: false
 PreCommit:
   ALL:
     problem_on_unmodified_line: ignore
+  Reek:
+    enabled: true
   RFix:
     enabled: true
     command: [rfix, lint]
