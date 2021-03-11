@@ -19,6 +19,7 @@ npm:
 	npm install -g trash-cli
 
 atom:
+	mkdir -p ~/.atom
 	cp --update -f --remove-destination --symbolic-link atom/* ~/.atom
 	apm install --production --packages-file atom/packages.txt
 
