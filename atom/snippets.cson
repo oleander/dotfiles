@@ -21,6 +21,22 @@
     body: """
       \\\\(${0})
     """
+
+".source.ruby":
+  "Pry bindings":
+    prefix: "p"
+    body: """
+      binding.pry
+    """
+  "Pry bindings On Object":
+    prefix: ".p"
+    body: """
+      .tap do |value|
+        binding.pry
+      end
+    """
+
+
 ".source.python":
   "logger":
     prefix: "l"

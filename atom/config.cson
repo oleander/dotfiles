@@ -39,20 +39,17 @@
       "linter-swiftlint"
       "linter-eslint"
       "linter-python"
-      "ide-python"
       "javascript-snippets"
       "merge-conflicts"
       "rails-transporter"
       "relative-numbers"
       "tool-bar"
       "wakatime"
-      "status-bar"
       "atom-haskell"
       "gist-it"
       "ide-haskell"
       "linter-lua"
       "linter-clang"
-      "linter-shellcheck"
       "linter-toml"
       "tree-ignore"
       "rails-open"
@@ -60,17 +57,21 @@
       "busy-signal"
       "intentions"
       "packages-txt"
-      "ide-bash"
       "language-unix-shell"
       "navigation-history"
       "autocomplete-ruby"
       "rubocop-auto-correct"
       "github"
-      "linter"
       "linter-yaml"
       "atom-github-notifications"
       "Hydrogen"
       "zentabs"
+      "goto-last-edit"
+      "linter-jsonlint"
+      "linter-rubocop"
+      "rails-snippets"
+      "rails-transporter-plus"
+      "language-ruby-on-rails"
     ]
     fileSystemWatcher: "experimental"
     followSymlinks: false
@@ -105,7 +106,7 @@
     openInPendingState: true
   editor:
     autoIndent: true
-    fontSize: 22
+    fontSize: 20
     invisibles: {}
     preferredLineLength: 120
     scrollPastEnd: true
@@ -142,11 +143,45 @@
     command: "/Users/linusoleander/.rbenv/shims/rubocop"
     disableWhenNoConfigFile: true
     useBundler: true
+  "linter-shellcheck": {}
   "linter-ui-default":
     panelHeight: 196
     showPanel: true
-  "one-dark-ui":
-    fontSize: 20
+  "markdown-preview":
+    useGitHubStyle: true
+  "one-dark-ui": {}
+  "platformio-ide-terminal":
+    ansiColors:
+      normal:
+        black: "#626262"
+        blue: "#d1d1fe"
+        green: "#ff90fe"
+        red: "#f3f9f6"
+        yellow: "#cbad5e"
+      zBright:
+        brightBlue: "#c2e3ff"
+        brightCyan: "#e6e6ff"
+        brightGreen: "#d6fcba"
+        brightMagenta: "#ffb2fe"
+        brightRed: "#ffc4be"
+        brightWhite: "#e6f0f0"
+        brightYellow: "#fffed5"
+    core:
+      shell: "/usr/local/bin/zsh"
+    iconColors:
+      blue: "#3c9bec"
+      cyan: "#b4fb73"
+      green: "#b4fb73"
+      magenta: "#ff90fe"
+      red: "#ff8373"
+      yellow: "#cbad5e"
+    style:
+      defaultPanelHeight: "200px"
+      fontFamily: "Monaco"
+      fontSize: "18"
+    toggles:
+      cursorBlink: false
+      selectToCopy: false
   "rails-transporter-plus": {}
   "rubocop-auto-correct":
     notification: false
@@ -156,6 +191,8 @@
   tabs:
     alwaysShowTabBar: false
     enableVcsColoring: true
+  teletype:
+    askBeforeJoiningPortalViaExternalApp: false
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true

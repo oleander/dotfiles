@@ -1,35 +1,35 @@
-'atom-text-editor':
-  "cmd-left": "!unset"
-  "cmd-right": "!unset"
-  'ctrl-shift-left': 'editor:select-to-beginning-of-word'
-  'ctrl-k': "editor:delete-to-end-of-line"
-  'cmd-shift-m': "bookmarks:toggle-bookmark"
-  'cmd-shift-j': "bookmarks:jump-to-next-bookmark"
-  'cmd-shift-c': "bookmarks:clear-bookmarks"
-  "cmd-'": "toggle-quotes:toggle"
-  "cmd-ä": "linter-eslint:fix-file"
-  "ctrl-j": "symbols-view:go-to-declaration"
-  "cmd-å": "custom:close-notification"
-'.platform-darwin atom-workspace atom-text-editor':
-  'alt-left': 'editor:move-to-previous-word-boundary'
-  'alt-right': 'editor:move-to-next-word-boundary'
-  'alt-shift-left': 'editor:select-to-previous-word-boundary'
-  'alt-shift-right': 'editor:select-to-next-word-boundary'
-  'alt-backspace': 'editor:delete-to-previous-word-boundary'
-  'alt-delete': 'editor:delete-to-next-word-boundary'
-'atom-workspace':
-  'alt-n': 'cursor-history:prev'
-  'alt-g': 'cursor-history:next'
-  'cmd-ctrl-right': "window:focus-pane-on-right"
-  'cmd-ctrl-left': "window:focus-pane-on-left"
-  'cmd-b': 'recent-files-fuzzy-finder:toggle-finder'
-'.active.atom-pane':
-  'ctrl-space': 'autocomplete:toggle'
-'atom-text-editor[data-grammar="text html erb"]:not([mini])':
-    "tab": "emmet:expand-abbreviation-with-tab"
-'atom-text-editor.vim-mode-plus.normal-mode':
-  'g b': 'cursor-history:prev'
-  'g f': 'atom-ctags:go-to-declaration'
-  'm m': 'rails-transporter-plus:open-model'
-  'm c': 'rails-transporter-plus:open-controller'
-  'm t': 'rails-transporter-plus:open-test'
+# 'atom-text-editor':
+#   'cmd-ä': 'platformio-ide-terminal:toggle'
+#   "cmd-left": "!unset"
+#   "cmd-right": "!unset"
+#   'ctrl-shift-left': 'editor:select-to-beginning-of-word'
+#   'ctrl-k': "editor:delete-to-end-of-line"
+#   'cmd-shift-m': "bookmarks:toggle-bookmark"
+#   'cmd-shift-j': "bookmarks:jump-to-next-bookmark"
+#   'cmd-shift-c': "bookmarks:clear-bookmarks"
+#   "cmd-'": "toggle-quotes:toggle"
+#   "ctrl-j": "symbols-view:go-to-declaration"
+#   "cmd-å": "custom:close-notification"
+# '.platform-darwin atom-workspace atom-text-editor':
+#   'alt-left': 'editor:move-to-previous-word-boundary'
+#   'alt-right': 'editor:move-to-next-word-boundary'
+#   'alt-shift-left': 'editor:select-to-previous-word-boundary'
+#   'alt-shift-right': 'editor:select-to-next-word-boundary'
+#   'alt-backspace': 'editor:delete-to-previous-word-boundary'
+#   'alt-delete': 'editor:delete-to-next-word-boundary'
+# 'atom-workspace':
+#   'alt-n': 'cursor-history:prev'
+#   'alt-g': 'cursor-history:next'
+#   'cmd-ctrl-right': "window:focus-pane-on-right"
+#   'cmd-ctrl-left': "window:focus-pane-on-left"
+#   'cmd-b': 'recent-files-fuzzy-finder:toggle-finder'
+# '.active.atom-pane':
+#   'ctrl-space': 'autocomplete:toggle'
+# 'atom-text-editor[data-grammar="text html erb"]:not([mini])':
+#     "tab": "emmet:expand-abbreviation-with-tab"
+# 'atom-text-editor.vim-mode-plus.normal-mode':
+#   'g b': 'cursor-history:prev'
+#   'g f': 'atom-ctags:go-to-declaration'
+#   'm m': 'rails-transporter-plus:open-model'
+#   'm c': 'rails-transporter-plus:open-controller'
+#   'm t': 'rails-transporter-plus:open-test'
