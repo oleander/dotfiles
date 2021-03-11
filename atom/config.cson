@@ -13,6 +13,7 @@
   "atom-package-deps":
     ignored: [
       "atom-haskell"
+      "linter-shellcheck"
     ]
   "autocomplete-plus":
     maxVisibleSuggestions: 5
