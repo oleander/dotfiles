@@ -1,0 +1,125 @@
+#!/usr/bin/env ruby --disable-all --enable=gems
+require_relative "shell"
+
+require "rainbow/ext/string"
+require "tty/prompt"
+require "rugged"
+require "pry"
+
+def detect(current_branch, branches, walker)
+  master = branches.detect do |branch|
+    branch.name == "master"
+  end
+
+  unless master
+    say! "No master found?!"
+    exit 1
+  end
+
+  walker.sorting(Rugged::SORT_TOPO | Rugged::SORT_REVERSE)
+  walker.push(current_branch.target.oid)
+  walker.hide(master.target.oid)
+
+  branches.each do |branch|
+    walker.push(branch.target.oid)
+  end
+
+  ids = branches.map do |branch|
+    branch.target.oid
+  end.to_set
+
+  selections = []
+
+  walker.walk do |commit|
+    if ids.include?(commit.oid)
+      selections << commit.oid
+    end
+  end
+
+  sorter = selections.each_with_index.map do |commit_id, index|
+    [commit_id, index]
+  end.to_h
+
+  branches.select do |branch|
+    selections.include?(branch.target.oid)
+  end.sort_by do |branch|
+    sorter.fetch(branch.target.oid)
+  end
+end
+
+env = { "GIT_EDITOR" => "true" }
+
+if ARGV.include?("--add")
+  system "git", "add", "."
+end
+
+if ARGV.include?("--abort")
+  say! "Abort rebase using --abort"
+  exec("git", "rebase", "--abort")
+elsif ARGV.include?("--continue")
+  say "Continue rebase using --continue"
+  unless system env, "git", "rebase", "--continue"
+    exit 1
+  end
+end
+
+prompt = TTY::Prompt.new
+repo = Rugged::Repository.new(Dir.pwd)
+walker = Rugged::Walker.new(repo)
+branches = repo.branches.reject(&:remote?)
+current_branch = branches.detect do |branch|
+  branch.name == ARGV.first
+end
+
+unless current_branch
+  say! "No branch passed!"; exit 1
+end
+
+used = detect(current_branch, branches, walker).reject do |branch|
+  branch.target.epoch_time > current_branch.target.epoch_time
+end
+
+branches_to_use = ["master"] + used.map(&:name)
+
+say "Rebase #{branches_to_use.count} branches recursively\n"
+puts branches_to_use.map { |b| b.color(:yellow) }.join(" ⮕  ")
+
+def close
+  say! "Closing ..."
+  exit 1
+end
+
+unless ARGV.include?("--continue")
+  begin
+    unless prompt.yes?("Ready to rebase?")
+      close
+    end
+  rescue Interrupt
+    close
+  end
+
+  say "Starting rebase ..."
+end
+
+sh.transact do
+  branches_to_use.each_cons(2) do |left, right|
+    say "Rebase", left.color(:yellow), "into", right.color(:yellow)
+    git("rebase", "--empty", "drop", "--rerere-autoupdate", "--root", "-Xpatience", "-Xdiff-algorithm=patience", "--no-verify", "--committer-date-is-author-date", "--onto", left, right)
+  end
+end
+
+# unless completed == (branches_to_use.count - 1)
+#   say! "Abort sequence, will restore"
+#
+#   sh.git("rebase", "--abort")
+#
+#   used.each do |branch|
+#     say! "Restoring #{branch.name}"
+#     sh.git("checkout", branch.name)
+#     sh.git("reset", "--hard", branch.target.oid)
+#   end
+#
+#   say! "Checkout original branch"
+#   sh.git("checkout", current_branch.name)
+#   say "Restore completed!"
+# end

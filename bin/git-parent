@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby --disable-all --enable=gems
+
+require "rugged"
+
+def detect(current_branch, branches, walker)
+  selected_branch = branches.map do |branch|
+    walker.reset
+
+    oid =  branch.target.oid
+    aid = current_branch.target.oid
+
+    next if aid == oid
+
+    walker.sorting(Rugged::SORT_DATE)
+    walker.push(aid)
+
+    puts current_branch.name
+    walker.walk do |c|
+      if c.oid == oid
+        break [walker.count, branch]
+      end
+    end
+  end.compact.sort_by(&:first).last&.last
+
+  return ["master"] unless selected_branch
+
+  [selected_branch] + detect(selected_branch, branches, walker)
+end
+
+repo = Rugged::Repository.new(Dir.pwd)
+walker = Rugged::Walker.new(repo)
+
+branches = repo.branches#.reject(&:remote?)
+current_branch = branches.detect(&:head?)
+
+used = detect(current_branch, branches, walker)
+
+puts used.map(&:name).join(" ")

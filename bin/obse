@@ -1,0 +1,114 @@
+#!/usr/bin/env ruby
+
+begin
+  require "shell"
+  require 'listen'
+  require "pry"
+  require "colorize"
+rescue LoadError, Interrupt => e
+  abort "Failed loading gems: #{e}"
+end
+
+module Printer
+  def error(*args)
+    puts ["==>".red, *args].join(" ")
+  end
+
+  def error!(*args)
+    error(*args); exit(1)
+  end
+
+  def warn(*args)
+    puts ["==>".yellow, *args].join(" ")
+  end
+
+  def warn!(*args)
+    warn(*args); exit!(0)
+  end
+
+  def info!(*args)
+    info(*args); exit!(0)
+  end
+
+  def info(*args)
+    puts ["==>".blue, *args].join(" ")
+  end
+
+  def debug(*args)
+    # puts ["==>".green, msg].join(" ")
+  end
+end
+
+include Printer
+
+sh = Shell.new
+
+module Extension
+  refine Shell do
+    def terminate
+      jobs.each do |job|
+        kill("KILL", job)
+      end
+    end
+
+    def has_jobs?
+      !jobs.empty?
+    end
+  end
+end
+
+using Extension
+
+define_method :run_user_cmd do |*|
+  info "Running", ENV["CMD"].yellow, "...".yellow
+
+  if sh.has_jobs?
+    info "Killing", sh.terminate.count, "jobs"
+  end
+
+  sh.transact do
+    system(sh.expand_path(__FILE__)) > STDOUT > STDERR
+  end
+end
+
+if command = ENV["CMD"]
+  begin
+    sh.system(command)
+    sh.check_point
+  rescue Shell::Error::CommandNotFound => e
+    error! e.message
+  end
+elsif ARGV.empty?
+  error "No arguments passed!"
+  error! [__FILE__, "<command>"].join(" ")
+else
+  info "Starting up", __FILE__.yellow, ", hold on ..."
+
+  # ENV["SHELL"] = '/usr/local/bin/zsh'
+  # ENV["PAGER"] = '/usr/bin/less -RXF'
+  # ENV['LISTEN_GEM_DEBUGGING'] = 'info'
+  ENV["CMD"] = ARGV.join(" ")
+
+  opts = {
+    relative: true,
+    wait_for_delay: 2,
+    logger: Logger.new('/dev/null')
+  }
+
+  listener = Listen.to(sh.pwd, opts) do |modified, added, *|
+    unless [modified, added].map(&:length).sum.zero?
+      run_user_cmd
+    end
+  end.tap(&:start)
+
+  run_user_cmd
+
+  begin
+    sleep
+  rescue Interrupt
+    info "Cleaning up, hold on ..."
+  end
+
+  listener.stop
+  sh.terminate
+end

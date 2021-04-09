@@ -28,6 +28,11 @@
     body: """
       binding.pry
     """
+  "Pry require":
+    prefix: "pp"
+    body: """
+      require "pry"
+    """
   "Pry bindings On Object":
     prefix: ".p"
     body: """

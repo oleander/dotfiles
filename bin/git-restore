@@ -1,0 +1,37 @@
+#! env ruby
+
+require_relative "shell"
+
+branches = %w[
+  KDB-1373/mappings
+  KDB-1379/europace/map2
+  KDB-1503/index-and-get-in-functions
+  KDB-1506/requirement
+  KDB-1508/remap/import
+  KDB-1534/rspec
+  KDB-1536/dummy-engine
+  KDB-1537/require-forwardable
+  KDB-1538/factory-bot
+  europace/bug-fixes
+  master
+]
+
+say "Abort rebase"
+sh.git("rebase", "--abort")
+
+say "Cleanup directory"
+sh.git("clean", "-df")
+
+current = sh.capture { git("current") }
+
+branches.each do |branch|
+  sh.transact do
+    commit = ["origin", branch].join("/")
+    say "Reset to", commit
+    git "checkout", branch
+    git "reset", "--hard", commit
+  end
+end
+
+say "Jump back to", current
+sh.git("checkout", current)

@@ -1,4 +1,4 @@
-alias gp='git push'
+alias gp='git push --set-upstream'
 alias gpp='git pull'
 alias gs='git status --ignore-submodules -s -b'
 alias gcp='git cherry-pick'

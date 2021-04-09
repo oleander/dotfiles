@@ -1,4 +1,46 @@
-Pry.commands.alias_command 'c', 'continue'
-Pry.commands.alias_command 's', 'step'
-Pry.commands.alias_command 'n', 'next'
-Pry.commands.alias_command 'e', 'exit-all'
+# require 'bundler/setup'
+#
+# gemfile install: true do
+#   gem 'pry', require: true
+#   gem 'pry-theme', require: true
+#   gem 'awesome_print', require: true
+#   gem 'pry-coolline', require: false
+#   gem 'term-ansicolor', require: 'term/ansicolor'
+# end
+
+require "awesome_print"
+require "pry-theme"
+
+# AwesomePrint.pry!
+# AwesomePrint.defaults[:indent] = -2
+# AwesomePrint.defaults[:sort_keys] = true
+
+require "pry"
+Pry.config.history.define_singleton_method(:file) do
+  '~/.pry-history'
+end
+
+Pry.config.theme = "tomorrow-night"
+
+
+# Change the color code inserted when paprens are (mis)matched.
+Pry.config.coolline_matched_paren    = "\e[42m"
+Pry.config.coolline_mismatched_paren = "\e[41m"
+
+# In case you can't remember ANSI color codes ;)
+require 'term/ansicolor'
+Pry.config.coolline_matched_paren    = Term::ANSIColor.on_green
+Pry.config.coolline_mismatched_paren = Term::ANSIColor.on_red
+
+
+# require "term/ansicolor"
+# require "pry-coolline"
+
+Pry.editor = 'vi'
+
+# Pry.config.commands.import default_command_set
+# Pry.config.commands.alias_command "e", "exit"
+# Pry.config.commands.alias_command "c", "exit"
+# Pry.config.commands.alias_command "ee", "exit!"
+
+$LOAD_PATH << File.dirname(File.realpath(__FILE__))

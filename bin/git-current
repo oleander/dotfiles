@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby --disable-all --enable=gems
+
+require_relative "shell"
+
+sh.transact do
+  git("rev-parse", "--abbrev-ref", "HEAD") > STDOUT
+end

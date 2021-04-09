@@ -82,7 +82,7 @@ export LC_ALL=en_US.UTF-8
 source ~/.dotfiles/zsh/profiles/germany
 
 # https://stackoverflow.com/a/28098594/560073
-export RUBYOPT="-W0"
+# export RUBYOPT="-W0"
 
 alias cr='cd ~/Code'
 alias dd='cd ~/Desktop'
@@ -93,6 +93,11 @@ alias reload_source='source ~/.zshrc'
 alias reload='reload_iterm'
 alias rm=trash
 
-export EDITOR="atom"
+export EDITOR="nvim"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+export PAGER="less -R"
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+export DISABLE_CODE_COVERAGE=1
+export OVERCOMMIT_DISABLE=1

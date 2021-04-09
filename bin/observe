@@ -1,0 +1,83 @@
+#!env fish
+
+set options (fish_opt -l bundle -s b)
+set options $options (fish_opt -l execute -s e)
+
+argparse -si --min-args 1 $options -- $argv &>/dev/null
+
+set -l passed $status
+set -l runner (status -f)
+set -g SHELL "fish"
+set -l binary (basename (status -f))
+set -l project "~/"(realpath --relative-to=$HOME (realpath $runner))
+
+function color
+  printf '\e[0;%sm%s\e[m%s' $argv[1] $argv[2] (string join " " $argv[3..-1])
+end
+
+function yellow
+  color "33" $argv
+end
+
+function blue
+  color "34" $argv
+end
+
+function red
+  color "31" $argv
+end
+
+function gray
+  color "37" $argv
+end
+
+function now
+  printf '[%s]' (date +%H:%M:%S)
+end
+
+function info
+  echo (blue (now) "" $argv)
+end
+
+function abort
+  echo (red (now) "" $argv)
+  exit 1
+end
+
+function marker
+  printf '\033]133;A\007'
+end
+
+function files
+  ag -lU --ruby --shell --yaml
+end
+
+if test $passed -ne 0
+  abort "Usage:" (yellow $binary) [-b] "COMMAND"
+end
+
+set cmd (echo $argv | string join " ")
+
+if set -q _flag_bundle
+  set cmd "bundle exec $cmd"
+end
+
+if set -q _flag_execute
+  marker
+  info (yellow $cmd) "in" (gray $project)
+  exec $argv
+  abort (yellow $cmd) "failed with exit status ($status)"
+end
+
+info "Executing" (yellow $cmd) "on changes in" (gray $project)
+
+while true
+  files | entr -ards -- "source $runner --execute -- $cmd"
+
+  if test $status -eq 0
+    info "Closing" (yellow $cmd) "in" (gray $project)
+    exit 0
+  else
+    info "Reload" (yellow $cmd) "in" (gray $project)
+  end
+end

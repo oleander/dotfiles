@@ -1,27 +1,36 @@
-#!/usr/bin/env ruby --disable=did_you_mean,rubyopt
+#!/usr/bin/env ruby --disable-all --enable=gems
 
 require "tty-prompt"
 require "colorize"
 require "logger"
-require "git"
+require "rugged"
 
 def close
   abort "Usage: git squash [X]"
 end
 
 args   = ARGV.join(" ").strip
-g      = Git.open(Dir.pwd)
-prompt = TTY::Prompt.new
+repo   = Rugged::Repository.discover
+prompt = TTY::Prompt.new(interrupt: :exit)
 INDEX  = ARGV.last.to_i
 CUSTOM = :custom
+
+unless branch = repo.branches.detect(&:head?)
+  abort "No HEAD"
+end
 
 close if args.empty?
 close if args.to_i == 0
 
-org_messages = (0...INDEX).map do |index|
-  g.object("HEAD~#{index}")
+messages = (0...INDEX).map do |index|
+  repo.lookup(repo.rev_parse("HEAD~#{index}").oid)
 end.each_with_object({}) do |commit, obj|
-  obj[commit.message.lines.first.strip] = commit.sha
+  obj[commit.message.lines.first.strip] = commit.oid
+end
+
+ticket = ""
+if branch.name =~ /(KDB-\d{4})/
+  ticket = $1
 end
 
 def commit(msg:)
@@ -29,18 +38,23 @@ def commit(msg:)
   exec "git", "commit", "-m", msg
 end
 
-messages = org_messages.merge({
-  "Custom message".italic => CUSTOM
-})
-
-begin
-  sha = prompt.select("Commit message for #{INDEX} squashed commits", messages)
-
-  if sha == CUSTOM
-    commit(msg: prompt.ask("Enter a commit message", default: org_messages.keys.first))
-  else
-    commit(msg: g.object(sha).message)
-  end
-rescue TTY::Reader::InputInterrupt
-  abort
+prefix = ""
+unless ticket.empty?
+  prefix = " (#{ticket})"
 end
+
+options = { per_page: INDEX + 1 }
+sha = prompt.select("Commit message for #{INDEX} squashed commits", options) do |menu|
+  menu.choice "☆ Custom message#{prefix}".italic, CUSTOM
+  messages.each do |message, value|
+    menu.choice(message, value)
+  end
+end
+
+message = if sha == CUSTOM
+  prompt.ask("Commit message", value: ticket + " ", default: CUSTOM)
+else
+  repo.lookup(sha).message
+end
+
+commit(msg: message)

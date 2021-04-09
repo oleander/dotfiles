@@ -73,9 +73,15 @@ dwsync.xml
 node_modules/
 .rspec-local
 .overcommit.yml
-resources
 .tags*
 .ctags
 tags*
 ctags
+tmp/rspec.state
 Makefile
+.ruby-version
+Guardfile
+vendor/cache/ruby/2.7.0
+/vendor/cache/ruby/2.7.0
+/vendor
+.rspec-status

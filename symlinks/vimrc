@@ -3,6 +3,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -127,7 +128,7 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " Duplicate a selection
 " Visual mode: D
@@ -185,8 +186,8 @@ set ignorecase
 set smartcase
 
 " Tags
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 set tags=./tags;
+let g:easytags_dynamic_files = 1
 
 let g:fuf_splitPathMatching=1
 
@@ -296,8 +297,8 @@ set completeopt-=menu
 set tags=./tags;
 
 " Jump to method def using ctags
-map <Cr-a> <C-]>
-set cscopetag
+" map <Cr-a> <C-]>
+" set cscopetag
 
 " Reset search when done
 set nohlsearch
@@ -305,21 +306,23 @@ set nohlsearch
 " Only one line for commenting
 au FileType * setlocal formatoptions-=cro
 
-" nnoremap ,t :CtrlP<CR>
-" nnoremap <leader>t :CtrlP<CR>
-" map ,t :CtrlP<CR>
-"
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
-call plug#begin('~/.local/share/nvim/plugged')
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Plug 'skielbasa/vim-material-monokai'
-Plug 'kaicataldo/material.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'Raimondi/delimitMate'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-surround'
+Plugin 'kaicataldo/material.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-misc'
+" Plugin 'xolox/vim-easytags'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-surround'
+" Plugin 'universal-ctags/ctags'
 
-call plug#end()
+call vundle#end()
+filetype plugin indent on    " required
+
 
 "call deoplete#custom#option('auto_complete_delay', 200)
 
@@ -329,8 +332,9 @@ call plug#end()
 "\ 'smart_case': v:true,
 "\ })
 
-let g:ctrlp_map = '<c-t>'
-let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_map = '<c-t>'
+" let g:ctrlp_cmd = 'CtrlP'
+"
 
 set background=dark
 colorscheme material
@@ -345,3 +349,8 @@ endif
 
 nmap cc ciw
 " nmap y mxy`x
+"
+
+"set tags=tags
+"
+" autocmd FileType python let b:easytags_auto_highlight = 0

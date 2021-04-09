@@ -10,7 +10,7 @@ export ROOT=$HOME/.dotfiles
 . $ROOT/zsh/completion
 
 # https://github.com/sds/overcommit#automatically-install-overcommit-hooks
-export GIT_TEMPLATE_DIR="$(~/.rbenv/shims/overcommit --template-dir)"
+# export GIT_TEMPLATE_DIR="$(~/.rbenv/shims/overcommit --template-dir)"
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # [ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
@@ -21,3 +21,9 @@ export GIT_TEMPLATE_DIR="$(~/.rbenv/shims/overcommit --template-dir)"
 
 # added by travis gem
 [ ! -s ~/.travis/travis.sh ] || source ~/.travis/travis.sh
+
+# opam configuration
+test -r /Users/loleander/.opam/opam-init/init.zsh && . /Users/loleander/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
+# export RUBYOPT='-W:no-deprecated -W:no-experimental'
+export SHOW_GLOBAL_VARIABLES=1

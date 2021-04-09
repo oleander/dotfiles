@@ -14,6 +14,7 @@
     ignored: [
       "atom-haskell"
       "linter-shellcheck"
+      "linter"
     ]
   "autocomplete-plus":
     maxVisibleSuggestions: 5
@@ -41,7 +42,6 @@
       "linter-eslint"
       "linter-python"
       "javascript-snippets"
-      "merge-conflicts"
       "rails-transporter"
       "relative-numbers"
       "tool-bar"
@@ -73,6 +73,8 @@
       "rails-snippets"
       "rails-transporter-plus"
       "language-ruby-on-rails"
+      "linter"
+      "platformio-ide-terminal"
     ]
     fileSystemWatcher: "experimental"
     followSymlinks: false

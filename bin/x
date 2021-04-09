@@ -1,0 +1,90 @@
+require "bundler/inline"
+
+gemfile install: true, quiet: true do
+  source 'https://rubygems.org'
+
+  gem 'guard-bundler', require: "guard/bundler"
+  gem 'colorize'
+  gem 'hirb'
+  gem 'guard-kjell'
+  gem 'guard-reek'
+  gem 'guard-rspec', require: "guard/rspec"
+  gem 'guard-rubocop'
+  gem 'guard-spring'
+  gem 'guard'
+  gem 'rfix'
+end
+
+require 'guard/bundler/verify'
+require "guard/rspec/dsl"
+
+ENV["RUBYOPT"] = "-W0"
+
+rspec_options = {
+  cmd: "bundle exec string rspec",
+  bundler_env: :inherit,
+  all_on_start: false
+}
+
+guard 'kjell', cmd: "rfix origin", all_on_start: true do
+  watch(%r{\.rb})
+end
+
+guard :rspec, rspec_options do
+  dsl = Guard::RSpec::Dsl.new(self)
+
+  rspec = dsl.rspec
+  watch(rspec.spec_helper) { rspec.spec_dir }
+  watch(rspec.spec_support) { rspec.spec_dir }
+  watch(rspec.spec_files)
+
+  ruby = dsl.ruby
+  dsl.watch_spec_files_for(ruby.lib_files)
+
+  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  dsl.watch_spec_files_for(rails.app_files)
+  dsl.watch_spec_files_for(rails.views)
+
+  watch(rails.controllers) do |m|
+    [
+      rspec.spec.call("routing/#{m[1]}_routing"),
+      rspec.spec.call("controllers/#{m[1]}_controller"),
+      rspec.spec.call("acceptance/#{m[1]}")
+    ]
+  end
+
+  watch(rails.spec_helper)     { rspec.spec_dir }
+  watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
+  watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
+
+  # Capybara features specs
+  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
+
+  # Turnip features and steps
+  watch(%r{^spec/acceptance/(.+)\.feature$})
+  watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
+    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+  end
+end
+
+guard 'spring', bundler: true do
+  watch('Gemfile.lock')
+  watch(%r{^config/})
+  watch(%r{^spec/(support|factories)/})
+  watch(%r{^spec/factory.rb})
+end
+
+if File.exists?("Gemfile")
+  require 'guard/bundler'
+
+  guard :bundler do
+    helper = Guard::Bundler::Verify.new
+
+    files = ['Gemfile']
+    files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
+
+    # Assume files are symlinked from somewhere
+    files.each { |file| watch(helper.real_path(file)) }
+  end
+end

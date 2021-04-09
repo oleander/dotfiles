@@ -1,0 +1,197 @@
+#!/bin/sh
+
+SUBDIRECTORY_OK=Yes
+OPTIONS_KEEPDASHDASH=
+OPTIONS_STUCKLONG=t
+OPTIONS_SPEC="\
+git rbr [options]
+git rbr --continue | --abort | --skip
+
+Rebase, recursively, this branch and all its dependents.
+
+Each branch is rebased on top of its own respective upstream.
+--
+ Available options are
+v,verbose!         print more information
+dry-run!           only simulate, don't actually rebase
+orphan!            force proceed even if some branches will be left behind
+ Actions:
+continue!          continue
+abort!             abort
+skip!              do \`git rebase --skip\` and continue
+"
+
+. git-sh-setup
+require_work_tree_exists
+cd_to_toplevel
+
+state_dir="$GIT_DIR"/rebase-recursive
+
+#
+# Parse args
+#
+
+action=
+verbose=
+dry_run=
+orphan=
+
+total_argc=$#
+while test $# != 0
+do
+	case "$1" in
+	--continue|--abort|--skip)
+		test $total_argc -eq 2 || usage
+		action=${1#--}
+		;;
+	--verbose)
+		verbose=t
+		GIT_QUIET=
+		;;
+	--dry-run)
+		dry_run=t
+		;;
+	--orphan)
+		orphan=t
+		;;
+	--)
+		shift
+		break
+		;;
+	esac
+	shift
+done
+test $# -le 0 || usage
+
+in_progress=
+if test -d "$state_dir"
+then
+	in_progress=t
+fi
+
+if test -z "$in_progress" &&
+	{ test -d "$GIT_DIR"/rebase-apply || test -d "$GIT_DIR"/rebase-merge; }
+then
+	die "\
+A non-recursive rebase ('git rebase') is already in progress,
+without a recursive rebase ('git rbr').
+
+Finish or abort that one first.
+"
+fi
+
+if test -n "$action" && test -z "$in_progress"
+then
+	coda="
+Try starting a new one?
+"
+	test "$action" = "abort" && coda=
+	die "\
+No recursive rebase ('git rbr') is in progress -- nothing to $action.
+$coda"
+fi
+
+if test -z "$action" && test -n "$in_progress"
+then
+	state_dir_shortname=.git/${state_dir##*/}/
+	die "\
+There's already a '$state_dir_shortname' directory; it looks like
+a recursive rebase ('git rbr') is already in progress.  Try
+	git rebase (--continue | --skip | --abort)
+to proceed with that or to abort it.
+
+Alternatively, you can remove the '$state_dir_shortname' directory
+to wipe the recursive-rebase state, and start 'git rbr' over.
+But if you need to do that, it's probably a bug and please report it;
+first try 'git rebase --abort' (or '--continue', etc.) instead.
+"
+fi
+
+#
+# Main work
+#
+
+get_upstream () {
+	git rev-parse --abbrev-ref "$1"@{u}
+}
+
+write_basic_state () {
+	mkdir -p "$state_dir"
+	echo "$branch" > "$state_dir"/branch
+	echo "$(get_upstream "$branch")" > "$state_dir"/upstream
+	echo "$verbose" > "$state_dir"/verbose
+	echo "$dry_run" > "$state_dir"/dry-run
+	echo "$orphan" > "$state_dir"/orphan
+}
+
+cleanup_state () {
+	rm -rf "$state_dir"
+}
+
+run_core () {
+	GIT_DIR="$GIT_DIR" git rbr-core "$1"
+	core_status=$?
+	if test "$core_status" -eq 0 ||
+		test "$core_status" -eq 2  # special "error but clean up" status
+	then
+		cleanup_state
+	fi
+	exit "$core_status"
+}
+
+#
+# Handle in-progress rebase, and abort/continue/etc
+#
+
+case "$action" in
+continue)
+	run_core continue
+	exit 0
+	;;
+skip)
+	run_core skip
+	exit 0
+	;;
+abort)
+	run_core abort
+	exit 0
+	;;
+esac
+
+#
+# Handle initial case
+#
+
+require_clean_work_tree "rebase-recursive" "$(gettext "Please commit or stash them.")"
+
+head_ref=$(git symbolic-ref -q HEAD)
+if test -z "$head_ref"
+then
+	die "\
+You are on a detached HEAD.
+Check out the branch you want to rebase."
+fi
+branch=${head_ref#refs/heads/}
+if test "$branch" = "$head_ref"
+then
+	die "\
+HEAD is not under refs/heads/: $head_ref
+
+The 'upstream' feature of Git only operates on refs/heads/.
+"
+fi
+
+write_basic_state
+
+run_core init
+
+
+# These follow the style in Git upstream.
+#
+# Local Variables:
+# sh-indentation: 8
+# sh-basic-offset: 8
+# sh-indent-for-case-label: 0
+# sh-indent-for-case-alt: +
+# indent-tabs-mode: t
+# End:

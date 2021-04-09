@@ -1,0 +1,86 @@
+#!/usr/bin/env ruby
+
+require 'listen'
+require "colorize"
+require 'open3'
+require 'cli/ui'
+require "fileutils"
+require "pry"
+
+result = ARGV.chunk do |fragment|
+  fragment == "--"
+end.reject do |sep, fragment|
+  sep
+end.map do |sep, fragment|
+  fragment
+end
+
+if result.one?
+  result.insert(0, ["."])
+end
+
+directory = result[0]
+command = result[1]
+
+puts "Listening to #{directory[0].colorize(:yellow)}"
+
+root_path = Pathname(Dir.pwd).join(*directory)
+
+CLI::UI::StdoutRouter.enable
+
+trap("SIGINT") { abort }
+
+include CLI::UI
+
+require "tty-reader"
+
+reader = TTY::Reader.new
+
+
+
+
+
+class Command < Base
+  attribute :args, 'strict.array'
+  attribute :command, 'strict.array'
+
+end
+
+# answer = reader.read_line
+
+runner = lambda do
+  Frame.open(directory[0], color: :yellow) do
+    Open3.popen2e(*command, chdir: root_path) do |_, stdout, thread|
+      spinner = CLI::UI::Spinner::Async.start(command.join(" "))
+
+      stdout.each_char.chunk do |char|
+        char == "\n"
+      end.each_with_index do |(_, chars), index|
+        if index == 0
+          spinner.stop
+          Frame.divider('Output')
+        end
+
+        print chars.join
+      end
+
+      thread.join
+    end
+  end
+end
+
+reader.on(:keypress) do |event|
+  if event.key.name == :return
+    runner.call
+  end
+end
+
+# runner.call
+
+Listen.to(root_path, only: %r{\.rb}, &runner).start
+
+  # sleep
+# end
+loop do
+  reader.read_keypress
+end

@@ -1,0 +1,216 @@
+#!/usr/bin/env ruby
+
+require "dry/types"
+require "dry/struct"
+require "socket"
+require "timeout"
+require "open3"
+require "colorize"
+require "fileutils"
+require "pathname"
+require "open3"
+require "pry"
+require "dry/core/memoizable"
+
+module Printer
+  def error(msg)
+    abort ["==>".red, msg].join(" ")
+  end
+
+  def warn(msg)
+    puts ["==>".yellow, msg].join(" ")
+  end
+
+  def warn!(msg)
+    warn(msg); exit!(0)
+  end
+
+  def info!(msg)
+    info(msg); exit!(0)
+  end
+
+  def info(msg)
+    puts ["==>".blue, msg].join(" ")
+  end
+
+  def debug(msg)
+    # puts ["==>".green, msg].join(" ")
+  end
+end
+
+module Types
+  include Dry::Types()
+
+  Port = Coercible::Integer.constrained(gteq: 1738)
+  Path = Instance(Pathname)
+  PID = Coercible::Integer.constrained(gt: 0)
+  Cmd = Array(String | Hash)
+end
+
+class Session < Dry::Struct
+  include Dry::Core::Memoizable
+  include Printer
+
+  attribute :port, Types::Port
+
+  def pid
+    Types::PID.call(`lsof -t -i:#{port}`)
+  rescue Dry::Types::CoercionError
+    Timeout.timeout(1) { pid }
+  end
+
+  def env
+    ENV.to_h.merge({ "ANYBAR_PORT" => port.to_s })
+  end
+
+  def close
+    Process.kill("KILL", pid)
+  rescue Errno::ECHILD
+    warn "#{current_pid} PID already killed"
+  end
+
+  def change(color, socket: UDPSocket.new)
+    socket.connect("localhost", port)
+    socket.wait_writable
+    socket.send(color, 0)
+  ensure
+    socket.close
+  end
+
+  memoize :pid, :close
+end
+
+class Runner < Dry::Struct
+  include Printer
+
+  attribute :cmd1, Types::Cmd
+  attribute :cmd2, Types::Cmd
+  attribute :session, Session
+
+  def self.start(**args)
+    call(**args).start
+  end
+
+  def start
+    Open3.pipeline(env + cmd1, env + cmd2).each(&:join)
+  rescue Interrupt
+    warn! "Closing runner ..."
+  else
+    start
+  ensure
+    session.close
+  end
+
+  private
+
+  def env
+    [session.env]
+  end
+end
+
+class AnyBar < Dry::Struct
+  include Dry::Core::Memoizable
+
+  attribute :port, Types::Port
+  attribute :title, Types::String
+
+  def self.open(title, port: 1738, session: UDPSocket.new)
+    session.bind("localhost", port)
+  rescue Errno::EADDRINUSE
+    open(title, port: port + 1)
+  else
+    call(port: port, title: title).open
+  ensure
+    session.close
+  end
+
+  def open
+    Session.new(port: port)
+  ensure
+    system(env, "open", "-na" "AnyBar")
+  end
+
+  memoize :open
+
+  private def env
+    {
+      ANYBAR_INIT: "yellow",
+      ANYBAR_PORT: port,
+      ANYBAR_TITLE: title
+    }.transform_keys(&:to_s).transform_values(&:to_s)
+  end
+end
+
+class Event < Dry::Struct
+  include Dry::Core::Memoizable
+  include Printer
+
+  attribute :pwd, Types::Path
+  attribute :port, Types::Port
+  attribute :cmd, Types::Cmd
+
+  def self.call(**args)
+    super.call
+  end
+
+  def call
+    info "#{printable_cmd} in #{printable_pwd}"
+
+    io, status = Open3.capture2(*cmd, out: $stdout, chdir: Pathname.pwd)
+    io.close
+
+    if status.success?
+      session.change("green")
+    else
+      session.change("red")
+    end
+  rescue Interrupt
+    warn! "Abort #{printable_cmd} ..."
+  rescue Timeout::Error
+    warn! "Timeout #{printable_cmd} ..."
+  end
+
+  private
+
+  def session
+    Session.new(port: port)
+  end
+
+  def printable_cmd
+    cmd.join(" ").yellow.italic
+  end
+
+  def printable_pwd
+    pwd.to_s.italic
+  end
+
+  memoize :session
+end
+
+binary = Pathname(__FILE__).expand_path.to_s
+home_path = Pathname("~/").expand_path
+absolute_path = Pathname.pwd
+relative_path = absolute_path.relative_path_from(home_path)
+
+if ARGV.empty?
+  error <<~ERROR
+    error: no arguments passed
+    usage: observe command [argument ...]
+    example: observe bundle exec rspec .
+  ERROR
+end
+
+if port = ENV["ANYBAR_PORT"]
+  Event.call(port: port, cmd: ARGV, pwd: relative_path)
+end
+
+extend Printer
+
+warn "Starting up ..."
+
+types = ["--shell", "--ruby", "--yaml",
+         "--rake", "--md", "--markdown", "--dot", "--sql"]
+cmd1 = ["ag", "-lU", *types, "--filename-pattern", "Gemfile"]
+cmd2 = ["entr", "-d", "--", binary, *ARGV]
+
+Runner.start(cmd1: cmd1, cmd2: cmd2, session: AnyBar.open(ARGV.join(" ")))

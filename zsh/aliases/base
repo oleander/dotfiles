@@ -17,8 +17,9 @@ function lsr(){
   sudo find $1 -exec ls -dl \{\} \;
 }
 
+alias oni2='/Users/loleander/Applications/Onivim2.app/Contents/Resources/run.sh'
 # alias heroku_bin="$(which heroku)"
-# 
+#
 # function heroku(){
 #   local bin=/usr/local/bin/heroku
 #
