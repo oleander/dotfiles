@@ -85,3 +85,4 @@ vendor/cache/ruby/2.7.0
 /vendor/cache/ruby/2.7.0
 /vendor
 .rspec-status
+.env.local

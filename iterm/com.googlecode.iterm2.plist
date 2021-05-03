@@ -206,7 +206,7 @@
 	<key>LeftOption</key>
 	<integer>2</integer>
 	<key>Mark Alert Action</key>
-	<string>Post Notification</string>
+	<string>Modal Alert</string>
 	<key>MaxVertically</key>
 	<true/>
 	<key>New Bookmarks</key>

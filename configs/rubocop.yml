@@ -1,6 +1,5 @@
 require:
   - rubocop-rspec
-  - rubocop-rake
 
 AllCops:
   TargetRubyVersion: 3.0
@@ -15,7 +14,7 @@ RSpec/NestedGroups:
 RSpec/ExampleLength:
   Exclude:
     - spec/**/*
-    
+
 RSpec/ContextWording:
   Prefixes:
     - when

@@ -109,7 +109,7 @@
     openInPendingState: true
   editor:
     autoIndent: true
-    fontSize: 20
+    fontSize: 19
     invisibles: {}
     preferredLineLength: 120
     scrollPastEnd: true
@@ -152,6 +152,8 @@
     showPanel: true
   "markdown-preview":
     useGitHubStyle: true
+  "merge-conflicts":
+    gitPath: "/usr/local/bin/git"
   "one-dark-ui": {}
   "platformio-ide-terminal":
     ansiColors:

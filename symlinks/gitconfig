@@ -45,8 +45,8 @@
 [github]
 	user = oleander
 [user]
-	name = Linus Oleander
-	email = oleander@users.noreply.github.com
+	name = John Doe
+	email = not-my@real-email.com
 [credential]
 	helper = osxkeychain
 [alias]
@@ -62,4 +62,4 @@
 	insteadOf = https://github.com/
 	insteadOf = https://github.com/
 [init]
-	defaultBranch = ""
+	defaultBranch = master

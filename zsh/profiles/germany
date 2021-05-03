@@ -29,3 +29,5 @@ export HUR_APP_AD_TESTUSER4_NAME=testuser2
 export HUR_APP_VAR_HVB_RSA_KEY="$(cat ~/Projects/hur_app/private/key)"
 export HUR_APP_VAR_HVB_CERTIFICATE="$(cat ~/Projects/hur_app/private/cert)"
 # export RUBYOPT=-W0
+
+export CHEAT_USE_FZF=true

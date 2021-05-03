@@ -27,3 +27,4 @@ test -r /Users/loleander/.opam/opam-init/init.zsh && . /Users/loleander/.opam/op
 export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
 # export RUBYOPT='-W:no-deprecated -W:no-experimental'
 export SHOW_GLOBAL_VARIABLES=1
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
