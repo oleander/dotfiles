@@ -1,6 +1,0 @@
-alias vim=nvim
-alias cr='cd ~/Documents/code'
-alias code=cr
-alias script='cd ~/scripts/'
-alias m='~/scripts/mount'
-alias reload='source ~/.zshrc'

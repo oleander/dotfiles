@@ -1,60 +1,50 @@
-#!/usr/bin/env ruby --disable=did_you_mean,rubyopt
+#!env ruby --disable-all --enable=gems
 
-# GG git, version 1.0.0, 2016-06-15
 # Commits and lists all files
 # Warns you about large files
-# Usage: gg-git "A commit message"
-# Copyright (c) 2011-2016, Linus Oleander
-# Released under the MIT licens
+# Usage: git-gg "A commit message"
+# Copyright (c) 2011-2021, Linus Oleander
 
-require "hirb"
-require "colorize"
+require_relative "shell"
 
-class MBFile
-  MAX_FILE_SIZE = 0.2
+require "rainbow/ext/string"
+require "tty-prompt"
+require "rugged"
 
-  def initialize(file)
-    @name = file
-    @file = File.new(File.join(Dir.pwd, @name))
-  end
-
-  def name
-    @name
-  end
-
-  def size
-    "#{mb_size.round(2)} MB"
-  end
-
-  def mb_size
-    real_size.to_f / (10**6)
-  end
-
-  def real_size
-    @file.size
-  end
-
-  def status
-    big? ? "X" : "O"
-  end
-
-  def big?
-    mb_size > MAX_FILE_SIZE
-  end
+trap "SIGINT" do
+  exit 1
 end
 
-files = `git ls-files -o -m --exclude-standard --full-name`.split("\n").inject([]) do |result, file|
-  if File.exists?(file)
-    result << MBFile.new(file)
-  end
-  result
-end.sort_by do |file|
-  file.big? ? -1 * file.real_size : 1.0 / file.real_size
+repo = Rugged::Repository.discover
+prompt = TTY::Prompt.new(interrupt: :exit)
+
+unless branch = repo.branches.detect(&:head?)
+  esay! "No branch found"
 end
 
-extend Hirb::Console
+if branch.name =~ /(KDB-\d{4})/
+  ticket = $1
+end
 
-if files.any?
+if ARGV.first =~ /(KDB-\d{4})/
+  ticket = nil
+end
+
+if ARGV.empty?
+  require "faker"
+  say! "Using generated commit message!"
+  exec __FILE__, "☆", Faker::Hacker.ingverb.capitalize
+end
+
+if ARGV.first =~ /^ok/i
+  say! "Do NOT use!"
+  exec __FILE__
+end
+
+unless files.empty?
+  require "hirb"
+  extend Hirb::Console
+
   table(files, {
     fields: [:status, :name, :size],
     unicode: true,
@@ -63,8 +53,11 @@ if files.any?
 end
 
 if files.any?(&:big?)
-  print "Project contains big files. Continue [Y/n]".red
-  abort if $stdin.gets =~ /n/
+  abort unless prompt.yes?("Project contains large files, continue?")
 end
 
-exec "git add . && git commit -v -a -m '#{ARGV.join(" ")}'"
+message = ARGV.insert(0, ticket).compact.join(" ")
+say message.color(:yellow)
+
+system "git", "add", "."
+exec "git", "commit", "-am", message

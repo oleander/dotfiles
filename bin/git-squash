@@ -1,32 +1,104 @@
-#!/usr/bin/env ruby --disable=did_you_mean,gems,rubyopt
+#!/usr/bin/env -- RBENV_VERSION=3.1.0 ruby --disable-all --enable=gems
 
-args = ARGV.join(" ").strip
+# require "bundler/inline"
 
-def read
-  $stdin.gets.strip
+# gemfile do
+#   source "https://rubygems.org"
+#   gem "overcommit", path: "~/Code/overcommit"
+#   gem "logger"
+#   gem "rugged"
+#   gem "tty-prompt"
+#   gem "colorize"
+#   gem "pry"
+# end
+
+require "tty-prompt"
+require "colorize"
+require "logger"
+require "rugged"
+require "pry"
+
+def choice(commit)
+  message = commit.message.lines.first.chomp.italic.italic
+  time_ago = hours_ago(commit.time).to_s.blue
+  hash = commit.oid[0..7].yellow
+
+  [STAR, hash, time_ago, message].join(" ")
 end
 
-def ask(what)
-  puts "[Q] " + what + " [Y/n]"
-  res = read
-  return if res.empty?
-  unless res.downcase.include?("y")
-    abort "Okay, closing"
+def hours_ago(time)
+  (((Time.now - time) / 3600.0).round(0).to_s + " h").ljust(8)
+end
+
+def walk(repo, start_id, count)
+  stop_id = repo.rev_parse("origin/master").oid
+
+  params = {
+    sort: Rugged::SORT_TOPO,
+    show: start_id,
+    simplify: true,
+    hide: stop_id,
+  }
+
+  array = Rugged::Walker.walk(repo, **params).lazy.reject do |commit|
+    commit.parents.count > 1
+  end
+
+  array.take(count)
+end
+
+prompt = TTY::Prompt.new(interrupt: :exit)
+STAR = prompt.symbols.fetch(:star).black
+err = ->err { prompt.error(err); exit 1 }
+repo = Rugged::Repository.discover
+head_id = repo.head.target.oid
+max_commits = 20
+
+unless ARGV.any?
+  unless branch = repo.branches.find(&:head?)
+    err.call("No branch found")
+  end
+
+  commits = walk(repo, head_id, max_commits)
+
+  selected_index = prompt.select("Choose a commit to squash on #{branch.name.yellow}", per_page: max_commits) do |menu|
+    commits.take(max_commits).each_with_index do |commit, index|
+      menu.choice(choice(commit), index + 1)
+    end
+  end
+
+  exec __FILE__, selected_index.to_s
+end
+
+begin
+  amount = Integer(ARGV.first)
+rescue ArgumentError => e
+  err.(e)
+end
+
+if amount < 0
+  err.("The amount of commits to squash must be positive #{amount}")
+end
+
+commits = walk(repo, head_id, amount)
+
+message = prompt.select("Select a commit message", per_page: max_commits) do |menu|
+  menu.choice("➜ [Enter] Custom commit message".bold.italic) do
+    if message = prompt.ask("Message:", required: true)&.chomp
+      next message
+    end
+
+    err.("Commit message is required")
+  end
+
+  commits.uniq(&:message).each do |commit|
+    menu.choice(choice(commit), commit.message.lines.first.chomp)
   end
 end
 
-def close
-  abort "Usage: git squash X, where X is the number of commits to squash together"
+if message.empty?
+  err.("No commit message selected")
 end
 
-close if args.empty?
-close if args.to_i == 0
-
-puts "[I] " + args + " represents the following commits"
-puts `git log --format="%h by %C(red)%an%Creset, %ar %C(green)%s" --decorate --no-merges --graph --branches --remotes --tags -n #{args}`
-ask("Do you want to merged them?")
-puts `git reset --soft "HEAD~#{args}"`
-puts "Enter a commit message"
-message = read
-puts `git commit -m "#{message}"`
-puts "Done..."
+system "git", "reset", "--soft", "HEAD~#{amount}"
+exec "git", "commit", "--status", "-m", message

@@ -1,3 +1,10 @@
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "/Users/loleander/.dotfiles/zsh/custom/plugins/zsh-autosuggestions"]
+	path = /Users/loleander/.dotfiles/zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "zsh/oh-my"]
 	path = zsh/oh-my
-	url = https://github.com/robbyrussell/oh-my-zsh.git
+	url = git@github.com:ohmyzsh/ohmyzsh.git

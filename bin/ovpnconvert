@@ -1,0 +1,27 @@
+#!env fish
+
+# This script will extract the certificate and key from an .ovpn file
+# into their own files, which makes it possible to use them to configure
+# the VPN using Ubuntu's network manager
+
+# Usage example:
+# >> ovpnconvert username.dev.ovpn
+
+# You can keep following these instructions here:
+# https://naveensnayak.wordpress.com/2013/03/04/ubuntu-openvpn-with-ovpn-file/
+
+# Check if argument is given in fish
+if test -z $argv[1]
+    set bin (basename (status -f))
+    echo "Usage: $bin [filename.ovpn]"
+    exit 1
+end
+
+
+set source $argv[1]
+set file (basename $source | string split -r -m1 .)[1]
+
+sed '1,/<ca>/d;/<\/ca>/,$d' $source >$file.ca.crt
+sed '1,/<cert>/d;/<\/cert>/,$d' $source >$file.client.crt
+sed '1,/<key>/d;/<\/key>/,$d' $source >$file.client.key
+sed '1,/<tls-auth>/d;/<\/tls-auth>/,$d' $source >$file.ta.key

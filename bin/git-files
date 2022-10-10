@@ -1,0 +1,5 @@
+#!env fish
+
+set branch (git rev-parse --abbrev-ref HEAD 2> /dev/null)
+
+GIT_PAGER=cat git diff --name-only $branch (git merge-base $branch master)

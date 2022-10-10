@@ -1,0 +1,8 @@
+#!env fish
+
+if not set -q argv[1]
+  echo "Usage: issue <title>"
+  exit 1
+end
+
+gh issue create --title "$argv"

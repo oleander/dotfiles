@@ -1,0 +1,487 @@
+#!/usr/bin/python
+
+from collections import defaultdict
+import json
+import os
+import os.path
+import re
+import subprocess
+import sys
+
+
+def exit_usage():
+    sys.stderr.write('bad arguments: ' + ' '.join(sys.argv) + '\n')
+    sys.exit(2)
+
+
+def cmd_output(cmd):
+    try:
+        return subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        print 'Error in command: %s' % (' '.join(cmd),)
+        sys.stdout.write(e.output)
+        sys.exit(e.returncode)
+
+
+def unchecked_output(cmd):
+    try:
+        return subprocess.check_output(cmd)
+    except subprocess.CalledProcessError as e:
+        return e.output
+
+
+def child_branches(branch):
+    # type: (str) -> List[str]
+    config_name_text = unchecked_output(
+        ['git', 'config', '--name-only',
+         '--get-regexp', r'branch\..*\.merge',
+         '^refs/heads/%s$' % (re.escape(branch),)])
+    return re.findall('^branch\.(.*)\.merge$', config_name_text, re.M)
+
+
+def is_atop(upstream, branch):
+    # type: (str) -> bool
+    '''True just if `branch` is on top of `upstream`.'''
+    return '0' == cmd_output(
+        ['git', 'rev-list', '--count', '--max-count=1',
+         upstream, '--not', branch,
+         '--']).strip()
+
+
+class Options(object):
+    state_dir = None  # type: str
+
+    verbose = False
+    dry_run = False
+    orphan = False
+
+    def __init__(self, git_dir):
+        # type: (str) -> None
+        self.state_dir = os.path.join(git_dir, 'rebase-recursive')
+
+        self.verbose = bool(self.read_state_file('verbose'))
+        self.dry_run = bool(self.read_state_file('dry-run'))
+        self.orphan = bool(self.read_state_file('orphan'))
+
+    def state_filename(self, basename):
+        # type: (str) -> str
+        return os.path.join(self.state_dir, basename)
+
+    def read_state_file(self, name):
+        # type: (str) -> str
+        with file(self.state_filename(name)) as f:
+            return f.read().strip()
+
+    def try_read_state_file(self, name):
+        # type: (str) -> Optional[str]
+        '''Read the given file, or return None if missing.'''
+        try:
+            return self.read_state_file(name)
+        except IOError:
+            return None
+
+    def v_out(self, message):
+        # type: (str) -> None
+        if self.verbose:
+            sys.stderr.write(message + '\n')
+
+
+class RebaseGraph(object):
+    opts = None  # type: Options
+
+    orig_branch = None  # type: str
+    orig_upstream = None  # type: str
+
+    def __init__(self, opts):
+        # type: Options -> None
+        self.opts = opts
+        self.orig_branch = self.opts.read_state_file('branch')
+        self.orig_upstream = self.opts.read_state_file('upstream')
+
+    def return_to_original_branch(self):
+        # type: () -> None
+        cmd_output(
+            ['git', 'checkout', '--quiet', '--force', self.orig_branch])
+
+    # TODO this function's code is a bit messy.
+    # TODO store the resulting graph so we don't have to re-look things up later.
+    def check_graph(self):
+        # type: () -> bool
+        '''True just if the check passes.'''
+        if self.opts.orphan:
+            return True
+
+        try:
+            subprocess.check_output(['git', 'for-each-ref', '--count=1',
+                                     '--contains=HEAD'])
+        except subprocess.CalledProcessError:
+            sys.stderr.write('''\
+Warning: You appear to have an ancient Git version that leaves us unable
+to check whether some branches on top of this one lack "upstream" pointers
+and will be left behind atop the old version of the commits we rewrite.
+
+Please install a recent version of Git (v2.4.3, which is from June 2015,
+or later) and retry.
+
+Alternatively, pass '--orphan' to 'git rbr' to skip this check -- perhaps
+after confirming with 'git branch -vv' that you have set all branch's
+upstreams as intended!
+''')
+            return False
+
+        orig_ref = cmd_output(
+            ['git', 'rev-parse', '--symbolic-full-name', self.orig_branch]).strip()
+
+        this_branch_commits = cmd_output(
+            ['git', 'rev-list', self.orig_branch, '--not', self.orig_upstream, '--']
+        ).strip().split('\n')
+
+        containing_refs_data = cmd_output(
+            ['git', 'for-each-ref', '--format', '%(refname) %(upstream)']
+            + ['--contains=' + commit for commit in this_branch_commits]
+        )
+
+        head_prefix = 'refs/heads/'
+        containing_refs = set()
+        non_heads = set()
+        upstreams = {}
+        children = defaultdict(list)
+        for line in containing_refs_data.rstrip('\n').split('\n'):
+            ref, upstream = line.split(' ')
+            containing_refs.add(ref)
+            if not ref.startswith(head_prefix):
+                non_heads.add(ref)
+                continue
+            if upstream:
+                upstreams[ref] = upstream
+                children[upstream].append(ref)
+
+        maybe_good_refs = containing_refs - non_heads
+
+        missing_upstream = set(
+            ref for ref in maybe_good_refs if ref not in upstreams)
+        maybe_good_refs -= missing_upstream
+
+        wild_upstream = set(ref for ref in maybe_good_refs
+                            if ref != orig_ref
+                               and upstreams[ref] not in containing_refs)
+        maybe_good_refs -= wild_upstream
+
+        cycles = set()
+        fingers = set(maybe_good_refs)
+        while fingers:
+            new_fingers = set(upstreams[ref] for ref in fingers
+                              if upstreams[ref] in maybe_good_refs)
+            if new_fingers == fingers:
+                cycles = fingers
+                break
+            fingers = new_fingers
+
+        if non_heads or missing_upstream or wild_upstream or cycles:
+            message = '''\
+Warning: Some refs based on branch '%s' are not its descendants in the
+Git "upstream" metadata!  This means that a recursive rebase won't touch them,
+and will leave them behind atop the old version of the commits we rewrite.
+
+Specifically:\
+''' % (self.orig_branch,)
+            if non_heads:
+                message += '\n  These refs are not branches:\n'
+                message += ''.join('    %s\n' % (ref,) for ref in non_heads)
+            if missing_upstream:
+                message += '\n  These branches have no upstream set:\n'
+                message += ''.join('    %s\n' % (ref[len(head_prefix):],)
+                                   for ref in missing_upstream)
+            if wild_upstream:
+                # TODO Really just follow the actual upstream-graph.
+                message += '\n  These branches have an upstream pointing outside the relevant branches:\n'
+                message += ''.join('    %s -> %s\n'
+                                   % (ref[len(head_prefix):], upstreams[ref])
+                                   for ref in wild_upstream)
+            if cycles:
+                message += '\n  These branches are in a cycle (!) of upstreams:\n'
+                message += ''.join('    %s\n' % (ref[len(head_prefix):],)
+                                   for ref in cycles)
+            message += '''
+Fix with 'git branch -u' aka '--set-upstream-to', and examine the situation
+with 'git branch -vv'.
+
+Or to proceed anyway, pass '--orphan' to 'git rbr' to skip this check.
+
+'''
+            sys.stderr.write(message)
+            return False
+
+        return True
+
+
+def munge_resolve_message(text):
+    '''If the `git rebase` how-to-resolve message appears in `text`, correct it.'''
+    return re.sub(
+        '(?<=")git rebase(?= --(?:continue|skip|abort)")',
+        'git rbr',
+        text)
+
+
+def git_rev_parse(commitish):
+    return cmd_output(['git', 'rev-parse', '--verify', commitish]).strip()
+
+
+def one_rebase(onto, upstream, branch):
+    # type: (str, str, str) -> None
+    # More complex than `cmd_output`, in order to munge the merge-conflict
+    # instructions.  Which go to stdout in a plain (`type=am`) or
+    # `type=merge` rebase, but to stderr in a `type=interactive` rebase,
+    # so cover both.
+    proc = subprocess.Popen(
+        ['git', 'rebase', '--onto', onto, upstream, branch],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = proc.communicate()
+    retcode = proc.poll()
+    if retcode:
+        sys.stdout.write(munge_resolve_message(out))
+        sys.stderr.write(munge_resolve_message(err))
+        sys.exit(retcode)
+
+
+# Logically what we're doing here is
+#
+#   def rbr_simple(onto, upstream, branch):
+#       old_id = git_rev_parse(branch)
+#       git_rebase_onto(onto, upstream, branch)
+#       for child in child_branches(branch):
+#           rbr_simple(branch, old_id, child)
+#
+#   def rbr_full(onto, upstream, branch):
+#       for child in child_branches(branch):
+#           rbr_full(branch, branch, child)
+#       if not is_atop(upstream, branch) or onto != upstream:
+#           rbr_simple(onto, upstream, branch)
+#
+# It gets more complicated than that in order to support --continue
+# and friends.  Effectively we maintain the stack of recursive calls
+# to these two logical functions, but in "$state_dir" rather than just
+# in the running shell, so that we can pick it back up smoothly after
+# a rebase hits a conflict and the user re-enters here with --continue
+# etc.
+#
+# In the logical code above, the one line where we can exit and invite
+# the user to resume is the `git rebase` call.  So the stack we need
+# to represent on disk consists of frames
+#    full_0 full_1 ... full_n simple_0 ... simple_m
+# where the innermost frame simple_m is at the rebase; the innermost
+# rbr_full frame full_n is at the rbr_simple call; and the other frames
+# are each at the recursion inside their respective loops.
+#
+# Internally, it's convenient to overload the stack data structures
+# slightly to represent two variant forms of stack:
+#   1. at the top of the `rbr_simple` loop, and
+#   2. at the top of the `rbr_full` loop.
+# These don't appear in stacks stored on disk.
+#
+class RebaseRecursiveMachine(object):
+    opts = None  # type: Options
+    graph = None  # type: RebaseGraph
+
+    # The logical stack (see above) is represented by current_rebase,
+    # stack_simple, and stack_full.  Three variants:
+    #
+    #   Variant 0: inside a rebase
+    #     current_rebase not None.
+    #     simple_m described by current_rebase, full_n omitted as a tail call.
+    #
+    #   Variant 1: top of `rbr_simple` loop.
+    #     current_rebase None, stack_simple nonempty.
+    #     simple_m included in stack_simple, full_n omitted as a tail call.
+    #
+    #   Variant 2: top of `rbr_full` loop.
+    #     current_rebase None, stack_simple empty.
+    #     full_n included in stack_full.
+
+    # For Variant 0, the inmost logical frame simple_m, consisting of
+    # onto, upstream, and branch for the current rebase; else None.
+    current_rebase = None  # type: Optional[Tuple[str, str, str]]
+
+    # The stack of logical frames simple_0 ... simple_(m-1) (or
+    # simple_m), each with branch, old_id, and a list of remaining child
+    # branches.
+    stack_simple = []  # type: List[Tuple[str, str, List[str]]]
+
+    # The stack of logical frames full_0 ... full_(n-1) (or full_n),
+    # each with onto, upstream, branch, and a list of remaining child
+    # branches.
+    stack_full = []  # type: List[Tuple[str, str, str, List[str]]]
+
+    @staticmethod
+    def create_initial(opts, graph):
+        # type: (Options, RebaseGraph) -> RebaseRecursiveMachine
+        self = RebaseRecursiveMachine()
+        self.opts = opts
+        self.graph = graph
+
+        # Stack variant 2.
+        self.current_rebase = None
+        self.stack_simple = []
+        self.stack_full = [(graph.orig_upstream,
+                            graph.orig_upstream,
+                            graph.orig_branch,
+                            child_branches(graph.orig_branch))]
+        return self
+
+    @staticmethod
+    def create_resume(opts, graph):
+        # type: (Options, RebaseGraph) -> RebaseRecursiveMachine
+        self = RebaseRecursiveMachine()
+        self.opts = opts
+        self.graph = graph
+
+        with file(self.opts.state_filename('stack')) as f:
+            stack_data = json.load(f)
+        self.current_rebase = stack_data['current_rebase']
+        self.stack_simple = stack_data['stack_simple']
+        self.stack_full = stack_data['stack_full']
+        return self
+
+    def write_stack(self):
+        # type: () -> None
+        stack_data = {
+            'stack_full': self.stack_full,
+            'stack_simple': self.stack_simple,
+            'current_rebase': self.current_rebase,
+        }
+        with file(self.opts.state_filename('stack'), 'w') as f:
+            json.dump(stack_data, f)
+
+    def write_rebase_log(self, branch):
+        # type: (str) -> None
+        ref = cmd_output(
+            ['git', 'rev-parse', '--symbolic-full-name', branch]).strip()
+        current_commit_id = cmd_output(
+            ['git', 'rev-parse', '--verify', branch]).strip()
+        with file(self.opts.state_filename('rebase-log'), 'a') as f:
+            f.write('%s %s\n' % (ref, current_commit_id))
+
+    def run(self):
+        # type: () -> None
+        while True:
+            #self.opts.v_out(repr(
+            #    (self.current_rebase, self.stack_simple, self.stack_full)))
+
+            if self.current_rebase is not None:
+                # Variant 0.  Top of an `rbr_simple` call, at the rebase.
+                onto, upstream, branch = self.current_rebase
+
+                # Attempt rebase.
+                self.opts.v_out('Rebasing: %s <- %s' % (onto, branch))
+                old_id = git_rev_parse(branch)
+                if not self.opts.dry_run:
+                    self.write_stack()
+                    self.write_rebase_log(branch)
+                    with file(self.opts.state_filename('rebase-oldid'), 'w') as f:
+                        f.write('%s\n' % (old_id,))
+                    one_rebase(onto, upstream, branch)
+
+                # If we made it here, proceed to the loop.
+                self.current_rebase = None
+                self.stack_simple.append((branch, old_id, child_branches(branch)))
+
+            elif self.stack_simple:
+                # Variant 1.  Top of the `rbr_simple` loop.
+                branch, old_id, children = self.stack_simple[-1]
+                if children:
+                    # Loop in `rbr_simple` not done yet.  Recurse.
+                    child = children.pop()
+                    self.current_rebase = (branch, old_id, child)
+                else:
+                    # Loop in `rbr_simple` done; frame returns.
+                    self.stack_simple.pop()
+
+            elif self.stack_full:
+                # Variant 2.  Top of the `rbr_full` loop.
+                onto, upstream, branch, children = self.stack_full[-1]
+                if children:
+                    # Loop not done yet.  Recurse.
+                    child = children.pop()
+                    self.stack_full.append((branch, branch, child,
+                                            child_branches(child)))
+                else:
+                    # Loop done.
+                    if not is_atop(onto, branch) or onto != upstream:
+                        # Enter an `rbr_simple` frame; Variant 0.
+                        self.stack_full.pop()
+                        self.current_rebase = (onto, upstream, branch)
+                    else:
+                        # Whole frame done.
+                        self.stack_full.pop()
+
+            else:
+                # Like Variant 2, but our whole outermost frame is done.
+                break
+
+        self.graph.return_to_original_branch()
+
+    def start(self):
+        # type: () -> None
+        self.run()
+
+    def resume(self, cmd):
+        # type: (str) -> None
+        assert cmd in ('continue', 'skip')
+
+        assert self.current_rebase  # TODO better error message
+        # Variant 0 stack.
+
+        # Resume the rebase.
+        cmd_output(['git', 'rebase', '--'+cmd])  # TODO handle errors here
+
+        # If that worked, proceed to the loop with a Variant 1 stack,
+        # just like in run().
+        onto, upstream, branch = self.current_rebase
+        old_id = self.opts.read_state_file('rebase-oldid')
+        self.current_rebase = None
+        self.stack_simple.append((branch, old_id, child_branches(branch)))
+        self.run()
+
+
+def abort(opts, graph):
+    # type: (Options, RebaseGraph) -> None
+    stack_data = opts.try_read_state_file('stack') or '{}'
+    if json.loads(stack_data).get('current_rebase'):
+        opts.v_out('git rebase --abort')
+        unchecked_output(['git', 'rebase', '--abort'])
+
+    log = opts.try_read_state_file('rebase-log')
+    for line in reversed(log.split('\n')) if log else []:
+        ref, commit_id = line.rsplit(' ', 1)
+        opts.v_out('Resetting: %s %s' % (ref, commit_id))
+        cmd_output(
+            ['git', 'update-ref', '-m', 'rebase-recursive: aborting', ref, commit_id])
+
+    graph.return_to_original_branch()
+
+
+def main():
+    if len(sys.argv) != 2:
+        exit_usage()
+    cmd = sys.argv[1]
+
+    opts = Options(os.environ['GIT_DIR'])
+
+    graph = RebaseGraph(opts)
+
+    if cmd == 'init':
+        if not graph.check_graph():
+            sys.exit(2)
+        machine = RebaseRecursiveMachine.create_initial(opts, graph)
+        machine.start()
+    elif cmd in ('continue', 'skip'):
+        machine = RebaseRecursiveMachine.create_resume(opts, graph)
+        machine.resume(cmd)
+    elif cmd == 'abort':
+        abort(opts, graph)
+    else:
+        exit_usage()
+
+
+if __name__ == '__main__':
+    main()

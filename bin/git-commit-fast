@@ -1,0 +1,4 @@
+#!env fish
+
+git add .
+git commit -am "$argv"

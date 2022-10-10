@@ -1,0 +1,34 @@
+export EDITOR="code"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/Users/loleander/Code/router/bin:$PATH"
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PAGER="less -R"
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
+export LESS_ADVANCED_PREPROCESSOR=1
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export LC_ALL=en_US.UTF-8
+export PATH=$ROOT/bin:/opt/local/bin/:$PATH
+export ZSH_CUSTOM=$ROOT/zsh/custom
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.mint/bin:$PATH
+
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_INSTALL_UPGRADE=1
+
+# function dotenv {
+#   files=(.env .env.local .env.test .env.test.local)
+#   for file in $files; do
+#     if [ -f "$file" ]; then
+#       export $(grep -v '^#' "$file" | xargs)
+#     fi
+#   done
+# }
+
+# function chpwd {
+#   # dotenv
+# }
+
+# dotenv
+export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"

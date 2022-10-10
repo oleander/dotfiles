@@ -1,16 +1,16 @@
+source ~/.dotfiles/shell/functions
+source ~/.dotfiles/shell/exports
+source ~/.dotfiles/shell/aliases
+source ~/.dotfiles/zsh/iterm.zsh
+
 # Oh my
 ZSH=$ROOT/zsh/oh-my
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-# Disable rubygems warnings
-RUBYOPT='-W0'
-# Removes spacing to the right
-# ZLE_RPROMPT_INDENT=1
-DISABLE_UPDATE_PROMPT=true
-ZSH_CUSTOM=$ROOT/zsh
+# DISABLE_UPDATE_PROMPT=true
 [ -z "$TERM" ] && export TERM=xterm-256color
-plugins=(colored-man-pages colorize autojump profiles)
+plugins=(colored-man-pages colorize autojump profiles zsh-autosuggestions env)
 source $ZSH/oh-my-zsh.sh
 
 # Colors
@@ -18,18 +18,17 @@ autoload -U colors
 colors
 setopt prompt_subst
 
-local smiley="%(?,%{$fg[green]%}>%{$reset_color%},%{$fg[red]%}>%{$reset_color%})"
+export ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX=" "
+export ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX=" "
+export ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}⁉️"
+export ZSH_THEME_GIT_PROMPT_CLEAN=""
+# export ZSH_THEME_GIT_PROMPT_CACHE=1
+export ZSH_GIT_PROMPT_SHOW_UPSTREAM=1
 
-PROMPT='
-%{$fg[yellow]%}$(whoami)%{$reset_color%} on %{$fg[blue]%}$(hostname)%{$reset_color%} in %2~ %{$fg[yellow]%}$(git-promt-status -f "[%b@%r]") %{$fg[red]%}$(git-time-since)%{$reset_color%}
-${smiley}%{$reset_color%} '
-
-RPROMPT='[%*]'
-
-HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=5000
-REPORTTIME=10 # print elapsed time when more than 10 seconds
+local STATUS="%F{8}%~%{$reset_color%}"
+NEWLINE=$'\n'
+export PROMPT="$STATUS%F{reset_color} "
+export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%F{reset_color}'
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
@@ -48,29 +47,21 @@ setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+REPORTTIME=10 # print elapsed time when more than 10 seconds
+
+autoload -U compinit
+compinit
+
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
 
 zle -N newtab
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
-
-# Search history using up and down arrow
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
-
 # Disable correctness
 unsetopt correct_all
-
-# Set correct java path
-export LANG=sv_SE.UTF-8
-export RUBYOPT=rubygems
-
-# Dir: current working directory
-prompt_dir() {
-  prompt_segment blue black '%2~'
-}

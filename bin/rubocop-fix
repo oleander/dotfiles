@@ -1,0 +1,12 @@
+#!env fish
+
+set pwd (pwd)
+set src ~/Projects/hur_app/src
+
+function files
+    git --no-pager diff --diff-filter=AM --line-prefix="$src/" --name-only origin/HEAD^ HEAD -- $pwd
+end
+
+echo "=> Linting changed files in current directory ..."
+files | xargs bundle exec --gemfile $src/Gemfile rubocop -a --only-recognized-file-types --list-target-files | tree --fromfile . -CAt
+files | xargs bundle exec --gemfile $src/Gemfile rubocop -a --only-recognized-file-types

@@ -1,0 +1,18 @@
+#!env fish
+
+if test -d $argv
+  echo "no message passed"
+  exit 1
+end
+
+if string match -q -- "*KDB-*" $argv
+  git commit -v -m "$argv"
+else
+  set ticket (git rev-parse --abbrev-ref HEAD 2> /dev/null | cut -d / -f 1)
+
+  if string match -q -- "master" $ticket
+    git commit -v -m "$argv"
+  else
+    git commit -v -m "$ticket $argv"
+  end
+end

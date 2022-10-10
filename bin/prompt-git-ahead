@@ -1,0 +1,10 @@
+#!env fish
+
+#set output of command to variable
+git_commits_ahead
+set -l ahead (exec git_commits_ahead)
+
+# if var is defined in fish, then
+if not test -z $ahead
+  echo " $ahead"
+end

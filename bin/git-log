@@ -1,0 +1,12 @@
+#!env fish
+
+
+set format "%C(yellow)%h%C(reset) %<(22) %C(red)%an%C(reset) %<(15) %ar %<(20)%C(green)%s%C(reset)"
+set branch (git rev-parse --abbrev-ref HEAD 2> /dev/null)
+set range "master.."
+
+if string match -q "master" $branch
+  set range "HEAD"
+end
+
+git --no-pager log --abbrev-commit --decorate --format=$format --no-merges --graph -n 30 $range

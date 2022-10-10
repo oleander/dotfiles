@@ -1,1 +1,0 @@
-export PATH=$ROOT/bin:/opt/local/bin/:$PATH

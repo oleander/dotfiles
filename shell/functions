@@ -1,0 +1,3 @@
+prompt_dir() {
+  prompt_segment blue black '%2~'
+}

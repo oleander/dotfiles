@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+function commit {
+  if [[ -n $(git status -s) ]]; then
+    git add . && git commit -m "$1"
+  fi
+}
+
+if [ $# -eq 0 ]; then
+  echo "error: no arguments passed"
+  echo "usage: observe command [argument ...]"
+  echo "example: observe bundle exec rspec ."
+  exit 1
+fi
+
+if [[ -v ENTR ]]; then
+  echo "\u001b[33m==>\u001b[0m $@"
+  msg=$(echo $@ | tr -d '\n')
+  eval "$@"
+
+  if [ $? -ne 0 ]; then
+    commit "🔴 [$msg]"
+  else
+    commit "🟢 [$msg]"
+  fi
+
+  exit
+else
+  echo "\u001b[33mLoading files ...\u001b[0m"
+  while true; do
+    ag -lU --ruby --dot --filename-pattern Gemfile | ENTR=1 entr -ad -- $(realpath $0) $@
+  done
+fi

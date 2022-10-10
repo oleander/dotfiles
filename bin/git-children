@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby --disable-all --enable=gems
+
+require_relative "shell"
+
+branch = Capture.new
+
+sh.transact do
+  git("rev-parse", "--abbrev-ref", "HEAD") | branch
+  git("branch", "--format", "%(refname:short)", "--contains", "HEAD") | grep("-v", branch) > STDOUT
+end

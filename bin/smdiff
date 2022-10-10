@@ -1,9 +1,0 @@
-#!/bin/bash
-
-fa="$(mktemp)"
-fb="$(mktemp)"
-
-echo "$1" > "$fa"
-echo "$2" > "$fb"
-
-mdiff "$fa" "$fb"

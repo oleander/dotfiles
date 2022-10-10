@@ -1,0 +1,5 @@
+#!/bin/sh
+
+BRANCH="KDB-1506/requirement"
+
+git branch --format='%(refname:short)' --contains $BRANCH | xargs -n 1 git rebase --committer-date-is-author-date --onto F $(BRANCH)^

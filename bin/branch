@@ -1,0 +1,24 @@
+#!/Users/loleander/.rbenv/versions/3.0.0/bin/ruby
+require 'open3'
+require 'tty-prompt'
+require 'colorize'
+
+prompt = TTY::Prompt.new(interrupt: :exit)
+
+puts ["==>".blue, "Fetching branches from Gitlab"].join(" ")
+
+stdout, stderr, status = Open3.capture3({ "NO_COLOR" => "1", "NO_PROMPT" => "1" }, "glab", "mr", "list", "--author", "loleander")
+
+choices = stdout.chomp.lines.filter_map do |line|
+  next if line.include?("Page 1")
+  next unless line =~ /(\([^)]+\))$/
+
+  branch = $1[1..-2]
+  ticket = branch.split("/").first
+  title = line.split(" ")[1..-1].join(" ")
+
+  { value: branch, name: [ticket.blue, title].join(" ") }
+end
+
+branch = prompt.select("Select a branch", choices)
+exec "git", "checkout", branch

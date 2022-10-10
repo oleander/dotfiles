@@ -1,0 +1,34 @@
+alias cr='cd ~/Code'
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias update='sudo /usr/libexec/locate.updatedb'
+alias dot='cd ~/.dotfiles'
+alias rm=trash
+alias history='fc -il 1'
+alias vim=nvim
+alias sudo='sudo '
+alias h='history | grep -m 30 -i'
+alias i='issue'
+alias c='cheat'
+
+# git
+alias gp='git-push'
+alias gpp='git pull'
+alias gs='git status --ignore-submodules -s -b'
+alias gd='git diff --stat'
+alias gb='git branch'
+alias gl='git-log'
+alias gdd='git diff'
+alias gg='gg.fish'
+alias gm='gm.fish'
+alias gc='git-verify-checkout'
+
+# ruby
+alias bb='bundle exec'
+alias b='bundle install'
+
+alias files='git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- $(pwd) | sort'
+alias fix='rubocop-fix'
+
+alias gateway-ssh='~/.dotfiles/bin/gateway/ssh'
+alias gateway-log='~/.dotfiles/bin/gateway/log'

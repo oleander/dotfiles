@@ -6,4 +6,7 @@ atom/blob-store
 atom/.apm
 atom/.node-gyp
 atom/recovery/
-atom/.atom-socket-secret-oleander-1.37.0
+atom/.atom-socket-secret*
+zsh/secret
+Brewfile.lock.json
+zsh/oh-my
