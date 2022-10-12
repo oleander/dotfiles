@@ -13,5 +13,5 @@
 
 - shell:
     - git submodule update
-    - gem install hirb colorize overcommit bundler tty-prompt
-    - brew install safe-rm diff-so-fancy zsh zsh-completions git zsh
+    - sudo gem install hirb colorize overcommit bundler tty-prompt
+    - sudo apt install safe-rm zsh git zsh
