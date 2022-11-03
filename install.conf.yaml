@@ -8,6 +8,7 @@
 - link:
     ~/.rubocop.yml: configs/rubocop.yml
     ~/.gitignore: configs/gitignore
+    ~/.hushlogin: configs/hushlogin
     ~/.gemrc: configs/gemrc
     ~/.irbrc: configs/irbrc
     ~/.vimrc: configs/vimrc
