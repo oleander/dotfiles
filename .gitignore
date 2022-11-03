@@ -9,4 +9,4 @@ atom/recovery/
 atom/.atom-socket-secret*
 zsh/secret
 Brewfile.lock.json
-zsh/oh-my
+zsh/

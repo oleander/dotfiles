@@ -8,12 +8,12 @@ export LESS_ADVANCED_PREPROCESSOR=1
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export LC_ALL=en_US.UTF-8
 export PATH=$ROOT/bin:/opt/local/bin/:$PATH
-export ZSH_CUSTOM=$ROOT/zsh/custom
+export ZSH_CUSTOM=$ROOT/zsh
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.mint/bin:$PATH
 
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
+# export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_INSTALL_UPGRADE=1
 

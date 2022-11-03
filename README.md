@@ -2,5 +2,5 @@
 
 ## Install
 
-1. `dotbot -c install.conf.yaml`
+1. `make`
 2. done
