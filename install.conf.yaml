@@ -7,7 +7,6 @@
     - '~'
 
 - link:
-    ~/.config/iterm2/com.googlecode.iterm2.plist: configs/iterm2.plist
     ~/.config/nvim/init.vim: configs/vimrc.vim
     ~/.rubocop.yml: configs/rubocop.yml
     ~/.gitignore: configs/gitignore
