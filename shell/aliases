@@ -32,3 +32,6 @@ alias fix='rubocop-fix'
 
 alias gateway-ssh='~/.dotfiles/bin/gateway/ssh'
 alias gateway-log='~/.dotfiles/bin/gateway/log'
+
+alias vim='nvim'
+alias vi='nvim'
