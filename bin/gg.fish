@@ -6,4 +6,4 @@ if not set -q argv[1]
 end
 
 git add -A
-git commit -m $argv
+git commit -m "$argv"
