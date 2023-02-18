@@ -1,16 +1,18 @@
 #!env fish
 
-# Set a variable to hold the force push option
 set force_push ""
 
-# Check if there are any arguments passed to the script
 if test (count $argv) -gt 0
-    # If the first argument is "-f", set the force_push variable to "-f" and remove the first argument
     if test $argv[1] = "-f"
-        set force_push "-f"
+        set force "-f"
         set -e argv[1]
+        echo (set_color red)"WARNING: You are about to force push [Y/n]?"(set_color normal)
+        read -l confirm
+        if test $confirm != "Y"
+            echo "Aborting"
+            exit 1
+        end
     end
 end
 
-# Call git push with the force_push option (if it was set) and the origin remote, and pass any remaining arguments as the branch to push.
-git push $force_push origin -u $argv
+git push $force origin -u $argv
