@@ -1,15 +1,9 @@
 #!env fish
 
+set -l args $argv
+set -l force (contains -f $args)
+if test $force
+  set args (string replace -f '' $args)
+end
+
 git push origin -u $args
-
-# if test $status -ne 0
-#   echo "==> Push failed, try pulling"
-#   git pull --rebase origin
-
-#   if test $status -ne 0
-#     echo "==> Pull failed, aborting"
-#     exit 1
-#   end
-
-#   git push origin -u
-# end
