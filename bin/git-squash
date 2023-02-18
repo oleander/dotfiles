@@ -1,10 +1,9 @@
-#!/usr/bin/env -- RBENV_VERSION=3.1.0 ruby --disable-all --enable=gems
+#!/usr/bin/env -- RBENV_VERSION=3.1.2 ruby --disable-all --enable=gems
 
 # require "bundler/inline"
-
 # gemfile do
 #   source "https://rubygems.org"
-#   gem "overcommit", path: "~/Code/overcommit"
+#   gem "overcommit"#, path: "~/Code/overcommit"
 #   gem "logger"
 #   gem "rugged"
 #   gem "tty-prompt"
@@ -31,7 +30,8 @@ def hours_ago(time)
 end
 
 def walk(repo, start_id, count)
-  stop_id = repo.rev_parse("origin/master").oid
+  name = repo.head.name.split("/").last
+  stop_id = repo.rev_parse("origin/#{name}").oid
 
   params = {
     sort: Rugged::SORT_TOPO,
@@ -40,12 +40,9 @@ def walk(repo, start_id, count)
     hide: stop_id,
   }
 
-  array = Rugged::Walker.walk(repo, **params).lazy.reject do |commit|
-    commit.parents.count > 1
-  end
-
-  array.take(count)
+  Rugged::Walker.walk(repo, **params).take(count)
 end
+
 
 prompt = TTY::Prompt.new(interrupt: :exit)
 STAR = prompt.symbols.fetch(:star).black
