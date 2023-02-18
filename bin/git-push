@@ -1,9 +1,16 @@
 #!env fish
 
-set -l args $argv
-set -l force (contains -f $args)
-if test $force
-  set args (string replace -f '' $args)
+# Set a variable to hold the force push option
+set force_push ""
+
+# Check if there are any arguments passed to the script
+if test (count $argv) -gt 0
+    # If the first argument is "-f", set the force_push variable to "-f" and remove the first argument
+    if test $argv[1] = "-f"
+        set force_push "-f"
+        set -e argv[1]
+    end
 end
 
-git push origin -u $args
+# Call git push with the force_push option (if it was set) and the origin remote, and pass any remaining arguments as the branch to push.
+git push $force_push origin -u $argv
