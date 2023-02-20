@@ -73,6 +73,7 @@ unsetopt correct_all
 
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+export PATH="/Users/linusoleander/.volta/bin:$PATH"
 
 # See https://gist.github.com/celso/6cefedb9fce92827ee38e8f7411b8b30
 # infocmp $TERM | sed 's/kbs=^[hH]/kbs=\177/' > $TERM.ti
@@ -80,3 +81,5 @@ export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

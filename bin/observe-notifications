@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+webhook="https://ha.oleander.io/api/webhook/-hNFMn0i6Sj-huMakebCA-CpQ"
+folder="/private/var/folders/*/*/*/com.apple.notificationcenter"
+ruby="puts Pathname.glob(ARGV.first).to_a.map(&:to_s)"
+
+if [ -z "$LOOP" ]; then
+  echo "=> Webhook: $webhook"
+  echo "=> Folder: $folder"
+  echo "=> Waiting for notifications..."
+fi
+
+ruby -r pathname -e "$ruby" "$folder" | \
+  xargs fswatch -m fsevents_monitor -1 -e "attachments" -o 2>/dev/null | \
+  curl -X POST "$webhook" || true
+
+echo "=> Notification received! $(date)"
+
+# Allows the glob pattern to get the latest folders
+LOOP=1 exec bash $0
