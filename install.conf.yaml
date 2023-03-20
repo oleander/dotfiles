@@ -14,6 +14,7 @@
     ~/.gemrc: configs/gemrc
     ~/.irbrc: configs/irbrc
     ~/.zshrc: configs/zshrc
+    ~/.gitconfig: configs/gitconfig
 
 - shell:
     - sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || echo "oh-my-zsh already installed"

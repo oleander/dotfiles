@@ -1,66 +1,11 @@
-[color]
-	ui = true
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[push]
-	default = current
-[pull]
-	default = current
-	rebase = true
-[merge]
-	summary = true
-	verbosity = 1
-	tool = mvimdiff
-	stat = true
-[apply]
-	whitespace = nowarn
-[branch]
-	autosetupmerge = true
-[push]
-	default = tracking
-	default = current
-	default = current
 [core]
-	autocrlf = false
-	editor = nvim
-	excludesfile = ~/.gitignore
-	whitespace = trailing-space,space-before-tab
-	mergeoptions = --no-edit
-	pager = less -+F
-[advice]
-	statusHints = false
-	pushNonFastForward = false
-[diff]
-	mnemonicprefix = true
-	renames = copies
-	algorithm = histogram
-[rerere]
-	enabled = 1
-[github]
-	user = oleander
+	excludesFile = ~/.gitignore
 [user]
 	name = Linus Oleander
-	email = oleander@users.noreply.github.com
-[credential]
-	helper = osxkeychain
-[alias]
-	root = !pwd
-[rebase]
-	autoSquash = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-	insteadOf = https://github.com/
+	email = linus.oleander@clark.de
+[push]
+	autoSetupRemote = true
 [init]
 	defaultBranch = main
+[pull]
+	ff = only
