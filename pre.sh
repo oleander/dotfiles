@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Check if Homebrew is installed
-if [ ! -f "`which brew`" ]; then
-  echo 'Installing homebrew'
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-else
-  echo 'Updating homebrew'
-  brew update
-  brew tap homebrew/bundle  # Install Homebrew Bundle
-fi
+# # Check if Homebrew is installed
+# if [ ! -f "`which brew`" ]; then
+#   echo 'Installing homebrew'
+#   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# else
+#   echo 'Updating homebrew'
+#   brew update
+#   brew tap homebrew/bundle  # Install Homebrew Bundle
+# fi
 
 # Check if oh-my-zsh is installed
 OMZDIR="$HOME/.oh-my-zsh"
