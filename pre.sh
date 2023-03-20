@@ -7,8 +7,8 @@ if [ ! -f "`which brew`" ]; then
 else
   echo 'Updating homebrew'
   brew update
+  brew tap homebrew/bundle  # Install Homebrew Bundle
 fi
-brew tap homebrew/bundle  # Install Homebrew Bundle
 
 # Check if oh-my-zsh is installed
 OMZDIR="$HOME/.oh-my-zsh"
