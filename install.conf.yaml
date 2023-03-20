@@ -18,6 +18,7 @@
     ~/.gitconfig: configs/gitconfig
 
 - shell:
+    - ./pre.sh
     - sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || echo "oh-my-zsh already installed"
     - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting || echo "zsh-syntax-highlighting already installed"
     - git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions || echo "zsh-autosuggestions already installed"
