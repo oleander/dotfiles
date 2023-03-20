@@ -17,14 +17,14 @@ if [ ! -d "$OMZDIR" ]; then
   /bin/sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-# Check if Mac-CLI is installed
-if [ ! -f "which mac" ]; then
-    echo 'Installing Mac-CLI'
-    /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
-else
-    echo 'Updating Mac-CLI'
-    /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/update)"
-fi
+# # Check if Mac-CLI is installed
+# if [ ! -f "which mac" ]; then
+#     echo 'Installing Mac-CLI'
+#     /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
+# else
+#     echo 'Updating Mac-CLI'
+#     /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/update)"
+# fi
 
 # Change default shell
 if [! $0 = "-zsh"]; then
