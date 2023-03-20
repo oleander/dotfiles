@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # # Check if Homebrew is installed
 # if [ ! -f "`which brew`" ]; then
@@ -26,10 +26,7 @@ fi
 #     /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/update)"
 # fi
 
-# Change default shell
-if [! $0 = "-zsh"]; then
-  echo 'Changing default shell to zsh'
-  chsh -s /bin/zsh
-else
-  echo 'Already using zsh'
-fi
+# Change default shellS
+# Check if the current shell is zsh using ps -p $$
+
+chsh -s $(which zsh)
