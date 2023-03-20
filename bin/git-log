@@ -1,12 +1,26 @@
 #!env fish
 
-
 set format "%C(yellow)%h%C(reset) %<(22) %C(red)%an%C(reset) %<(15) %ar %<(20)%C(green)%s%C(reset)"
 set branch (git rev-parse --abbrev-ref HEAD 2> /dev/null)
-set range "master.."
+
+# Get the current parent branch
+set parent (git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))
+
+# Unless parent is defined, display an error message and abort
+if test -z "$parent"
+  echo "No parent branch found"
+  exit 1
+end
+
+set range "$parent..HEAD"
 
 if string match -q "master" $branch
   set range "HEAD"
 end
 
-git --no-pager log --abbrev-commit --decorate --format=$format --no-merges --graph -n 30 $range
+if string match -q "main" $branch
+  set range "HEAD"
+end
+
+git --no-pager log --abbrev-commit --decorate --format=$format --no-merges --graph $range
+
