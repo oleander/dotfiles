@@ -1,12 +1,25 @@
-#!/bin/bash
+#!env fish
 
 # Redo last commit with a new commit message
-# Version 1.0, 2016-06-17
-# Copyright (c) 2016, Linus Oleander
+# Version 1.0, 2023-03-20
+# Copyright (c) 2023, Linus Oleander
 
-if [[ -z "$@" ]]; then
-  echo "No argument passed"
-  exit 1
-fi
+if not set -q argv[1]
+    echo "Usage: git redo <commit message>"
+    exit 1
+end
 
-git add . && git commit --amend -m "$@"
+# Move all arguments to a single string
+set message $argv
+
+# Ensure the first character is uppercase
+set message (echo $message | sed 's/^\(.\)/\u\1/')
+
+# Prefix the current name of the branch if the branch makes the following expression ABC-123
+set branch (git rev-parse --abbrev-ref HEAD)
+if echo $branch | grep -q -E '^[A-Z]+-[0-9]+$'
+    set message "$branch $message"
+end
+
+# Change the name of the last commit
+git commit --amend -m "$message"
