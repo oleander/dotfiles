@@ -11,9 +11,11 @@ export ZSH_CUSTOM=$ROOT/zsh
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.mint/bin:$PATH
 
-if [ ! -f "`which brew`" ]; then
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-fi
+# Check if `brew` bin is defined
+
+# if ! command -v brew &> /dev/null
+#   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# fi
 
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
