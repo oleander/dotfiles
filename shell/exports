@@ -5,12 +5,15 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PAGER="less -R"
 export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
 export LESS_ADVANCED_PREPROCESSOR=1
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export LC_ALL=en_US.UTF-8
 export PATH=$ROOT/bin:/opt/local/bin/:$PATH
 export ZSH_CUSTOM=$ROOT/zsh
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.mint/bin:$PATH
+
+if [ ! -f "`which brew`" ]; then
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
 
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
