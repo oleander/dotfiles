@@ -1,0 +1,9 @@
+#!env fish
+
+set -l origin (git config --get remote.origin.url)
+
+if echo $origin | grep -q -i oleander
+  exit 0
+else
+  exit 1
+end

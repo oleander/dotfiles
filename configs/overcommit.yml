@@ -1,41 +1,82 @@
 # # https://github.com/sds/overcommit/blob/master/config/default.yml
-quiet: true
-concurrency: 6
 verify_signatures: false
+parallelize: true
+concurrency: 7
+quiet: true
+on_warn: fail
+problem_on_unmodified_line: ignore
 
 PreCommit:
-  ALL:
-    quiet: true
-    problem_on_unmodified_line: ignore
   ForbiddenBranches:
     enabled: true
-    branches: [master]
+    branches: [master, main]
+    skip_if: ['/bin/zsh', '-c', 'skip-protective-branch-check']
+
   FileSize:
     enabled: true
+
+  CapitalizedSubject:
+    enabled: true
+
+  SpellCheck:
+    enabled: true
+
+  # Anoying
   FixMe:
-    enabled: true
+    enabled: false
+
+  # Anoying
   HardTabs:
+    enabled: false
+
+  YamlSyntax:
     enabled: true
+    exclude:
+      - 'chart/**/*.yaml'
 PrePush:
   ProtectedBranches:
     enabled: true
-    branches: [master]
+    branches: [master main]
+    skip_if: ['/bin/zsh', '-c', 'skip-protective-branch-check']
+
+  Reek:
+    enabled: true
+
+  Fasterer:
+    enabled: true
+
+  RailsSchemaUpToDate:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+
+  # Slow
+  Flay:
+    enabled: false
+
+  # Maybe later
+  YardCoverage:
+    enabled: false
+
+  # Can't install dependencies
+  CodeSpellCheck:
+    enabled: false
+
 CommitMsg:
   HardTabs:
     enabled: true
+
 PreRebase:
   MergedCommits:
     enabled: true
-    branches: [master]
+    branches: [master main]
+
 PrepareCommitMsg:
-  ALL:
-    quiet: true
   ReplaceBranch:
     enabled: true
-    branch_pattern: '(KDB-\d+)[^\d]*'
+    branch_pattern: '\A(\w+-\d+).*\z'
     replacement_text: '\1 '
     skipped_commit_types: ['merge', 'squash']
-    skip_if_pattern_matches_commit_message: true
-    skip_if: ['test', '!', '-d', '.git/refs/remotes/origin/demo']
-    on_warn: pass
-    on_fail: pass
+    skip_if: ['/bin/zsh', '-c', 'skip-if-branch-does-not-include-ticket']
+    quiet: true

@@ -1,0 +1,3 @@
+#!env bash
+
+git rev-parse --abbrev-ref HEAD | grep -v -q -E "^[A-Z]+-[0-9]+$"
