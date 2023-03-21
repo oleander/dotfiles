@@ -2,7 +2,7 @@ alias cr='cd ~/Code'
 alias dd='cd ~/Desktop'
 alias flush='dscacheutil -flushcache'
 alias update='sudo /usr/libexec/locate.updatedb'
-alias dot='cd ~/.dotfiles'
+alias dot='code ~/.dotfiles'
 alias rm=trash
 alias history='fc -il 1'
 alias vim=nvim
@@ -35,3 +35,6 @@ alias gateway-log='~/.dotfiles/bin/gateway/log'
 
 alias vim='nvim'
 alias vi='nvim'
+
+# Podman
+alias docker='podman'

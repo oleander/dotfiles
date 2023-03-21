@@ -1,4 +1,4 @@
-#!/usr/bin/env -- RBENV_VERSION=3.1.2 ruby --disable-all --enable=gems
+#!/usr/bin/env -- RBENV_VERSION=3.1.0 ruby --disable-all --enable=gems
 
 # require "bundler/inline"
 # gemfile do
