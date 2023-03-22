@@ -70,15 +70,15 @@ vmap <BS> x
 set nospell
 
 " Plugins here
-call plug#begin('~/.config/nvim/plugged')
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'Chiel92/vim-autoformat'
-Plug 'scrooloose/nerdtree'
-Plug 'terryma/vim-multiple-cursors'
-call plug#end()
+" call plug#begin('~/.config/nvim/plugged')
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'Chiel92/vim-autoformat'
+" Plug 'scrooloose/nerdtree'
+" Plug 'terryma/vim-multiple-cursors'
+" call plug#end()
 
 " deoplete config
 let g:deoplete#enable_at_startup = 1
@@ -135,7 +135,7 @@ set mouse=
 set list
 
 " Theme
-colorscheme tokyonight
+" colorscheme tokyonight
 highlight SignColumn guibg=#272822
 let g:rehash256 = 1
 let NERDTreeIgnore = ['_site']
