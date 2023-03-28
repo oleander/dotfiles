@@ -30,7 +30,7 @@ def hours_ago(time)
 end
 
 def walk(repo, start_id, count)
-  name = repo.head.name.split("/").last
+  name = repo.head.name.split("/").drop(2).join("/")
   stop_id = repo.rev_parse("origin/#{name}").oid
 
   params = {
