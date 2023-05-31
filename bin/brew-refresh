@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Define cleanup procedure
+cleanup() {
+    echo -e "\033[0mScript interrupted. Cleaning up..."
+    exit 130
+}
+
+# Set trap to call cleanup() when SIGINT is received
+trap cleanup SIGINT
+
+# Log refresh
+date > /tmp/brew-refresh-ran-at.log
+
+# Define function to print command
+print_command() {
+    echo -e "\033[0;32m=> $1\033[0m"
+}
+
+echo -e "\033[0;32m=> Refresh brew @ $(date)...\033[0m"
+
+# Run and print commands
+commands=("brew update" "brew upgrade" "brew cleanup" "brew doctor" "brew cleanup -s")
+for cmd in "${commands[@]}"; do
+    print_command "$cmd"
+    eval "$cmd"
+done
+
+echo -e "\033[0;32m=> Refresh complete ...\033[0m"
+
+
