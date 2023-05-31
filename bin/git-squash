@@ -33,20 +33,21 @@ def walk(repo, start_id, count)
   name = repo.head.name.split("/").drop(2).join("/")
   stop_id = repo.rev_parse("origin/#{name}").oid
 
-  params = {
-    sort: Rugged::SORT_TOPO,
-    show: start_id,
-    simplify: true,
-    hide: stop_id,
-  }
+  params = { sort: Rugged::SORT_TOPO, show: start_id, simplify: true, hide: stop_id }
+
+  Rugged::Walker.walk(repo, **params).take(count)
+rescue Rugged::ReferenceError
+  params = { sort: Rugged::SORT_TOPO, show: start_id, simplify: true }
 
   Rugged::Walker.walk(repo, **params).take(count)
 end
 
-
 prompt = TTY::Prompt.new(interrupt: :exit)
 STAR = prompt.symbols.fetch(:star).black
-err = ->err { prompt.error(err); exit 1 }
+err = -> err {
+  prompt.error(err)
+  exit 1
+}
 repo = Rugged::Repository.discover
 head_id = repo.head.target.oid
 max_commits = 20
@@ -58,7 +59,8 @@ unless ARGV.any?
 
   commits = walk(repo, head_id, max_commits)
 
-  selected_index = prompt.select("Choose a commit to squash on #{branch.name.yellow}", per_page: max_commits) do |menu|
+  selected_index = prompt.select("Choose a commit to squash on #{branch.name.yellow}",
+                                 per_page: max_commits) do |menu|
     commits.take(max_commits).each_with_index do |commit, index|
       menu.choice(choice(commit), index + 1)
     end
@@ -70,11 +72,11 @@ end
 begin
   amount = Integer(ARGV.first)
 rescue ArgumentError => e
-  err.(e)
+  err.call(e)
 end
 
 if amount < 0
-  err.("The amount of commits to squash must be positive #{amount}")
+  err.call("The amount of commits to squash must be positive #{amount}")
 end
 
 commits = walk(repo, head_id, amount)
@@ -85,7 +87,7 @@ message = prompt.select("Select a commit message", per_page: max_commits) do |me
       next message
     end
 
-    err.("Commit message is required")
+    err.call("Commit message is required")
   end
 
   commits.uniq(&:message).each do |commit|
@@ -94,7 +96,7 @@ message = prompt.select("Select a commit message", per_page: max_commits) do |me
 end
 
 if message.empty?
-  err.("No commit message selected")
+  err.call("No commit message selected")
 end
 
 system "git", "reset", "--soft", "HEAD~#{amount}"
