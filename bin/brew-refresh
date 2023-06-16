@@ -20,10 +20,10 @@ print_command() {
 echo -e "\033[0;32m=> Refresh brew @ $(date)...\033[0m"
 
 # Run and print commands
-commands=("brew update" "brew upgrade" "brew cleanup" "brew doctor" "brew cleanup -s")
+commands=("update" "upgrade" "cleanup" "doctor" "cleanup -s")
 for cmd in "${commands[@]}"; do
-    print_command "$cmd"
-    eval "$cmd"
+    print_command "brew $cmd"
+    eval "/opt/homebrew/bin/brew $cmd"
 done
 
 echo -e "\033[0;32m=> Refresh complete ...\033[0m"
