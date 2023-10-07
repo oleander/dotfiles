@@ -1,0 +1,38 @@
+#!/usr/bin/expect -f
+
+# Define some ANSI color codes
+set color_green "\033\[32m"
+set color_red "\033\[31m"
+set color_reset "\033\[0m"
+set color_blue "\033\[34m"
+
+# Set a 30-second timeout.
+set timeout 30
+
+# Check and print the files that will be added
+set files_to_add [exec git status --porcelain]
+if {$files_to_add != ""} {
+    puts "${color_green}Files to be added:${color_reset}"
+    puts $files_to_add
+} else {
+    puts "${color_blue}No changes detected.${color_reset}"
+    exit 0
+}
+
+# Run git add command and check for errors
+if {[catch {exec git add .} err]} {
+    puts "${color_red}Error adding changes to git: $err${color_reset}"
+    exit 1
+}
+
+# Start aicommits and capture the output
+puts "${color_blue}Committing changes...${color_reset}"
+log_user 0
+spawn git commit --no-edit
+
+expect eof
+
+# Get and display the latest commit message
+set commit_message [exec git log -1 --pretty=%B]
+puts "${color_green}Commit message generated:${color_reset}"
+puts $commit_message
