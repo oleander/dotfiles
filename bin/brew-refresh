@@ -26,6 +26,6 @@ for cmd in "${commands[@]}"; do
     eval "/opt/homebrew/bin/brew $cmd"
 done
 
-echo -e "\033[0;32m=> Refresh complete ...\033[0m"
+echo -e "\033[0;32m=> Refresh complete @ $(date) ...\033[0m"
 
 
