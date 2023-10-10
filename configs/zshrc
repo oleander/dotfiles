@@ -86,3 +86,47 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Podman
 export DOCKER_HOST='unix:///var/run/docker.sock'
+
+#if [ -f $HOME/export-esp.sh ]; then
+#  source $HOME/export-esp.sh
+#fi
+
+# export PATH=$PATH:$HOME/Code/xtensa-toolchain/release/xtensa-toolchain/bin
+#
+# export SCCACHE_CACHE_SIZE="3G"
+export RUSTC_WRAPPER=sccache
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+#export LIBCLANG_PATH=/opt/homebrew/opt/llvm/lib
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+zinit light zsh-users/zsh-completions
+. ~/.dotfiles/zsh/completions/espup.sh
+#export PATH=/opt/homebrew/Cellar/riscv-gnu-toolchain/main/bin/:$PATH
+#export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+

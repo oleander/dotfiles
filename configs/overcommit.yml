@@ -74,7 +74,7 @@ PreRebase:
 
 PrepareCommitMsg:
   ReplaceBranch:
-    enabled: true
+    enabled: false
     branch_pattern: '\A(\w+-\d+).*\z'
     replacement_text: '\1 '
     skipped_commit_types: ['merge', 'squash']

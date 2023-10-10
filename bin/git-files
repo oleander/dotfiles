@@ -1,5 +1,4 @@
 #!env fish
 
-set branch (git rev-parse --abbrev-ref HEAD 2> /dev/null)
+GIT_PAGER=cat git diff --name-only --diff-filter=d origin/main.. | sort -t. -k2,2 | awk 'BEGIN {FS="."} {if (last && last != $NF) print ""; print; last=$NF}'
 
-GIT_PAGER=cat git diff --name-only $branch (git merge-base $branch master)

@@ -19,9 +19,11 @@ alias gd='git diff --stat'
 alias gb='git branch'
 alias gl='git-log'
 alias gdd='git diff'
-alias gg='gg.fish'
+alias gg='commitment'
 alias gm='gm.fish'
 alias gc='git-verify-checkout'
+alias ggg='/Users/linusoleander/Code/git-ai/target/release/git-ai --all'
+alias ggm='/Users/linusoleander/Code/git-ai/target/release/git-ai'
 
 # ruby
 alias bb='bundle exec'
@@ -38,3 +40,7 @@ alias vi='nvim'
 
 # Podman
 alias docker='podman'
+
+function most() {
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n25
+}
