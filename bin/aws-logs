@@ -3,12 +3,15 @@
 set -e
 
 export AWS_PROFILE=clark-shared
+CONTEXT=census
 
 saml2aws login --profile clark-shared --verbose
-aws eks update-kubeconfig --name staging --alias clark-shared/staging
-kubectl get pods -n core-wallet
+kubectx clark-shared/staging
+kubens $CONTEXT
+# => bad // aws eks update-kubeconfig --name staging --alias clark-shared/staging
+kubectl get pods -n $CONTEXT
 
 # ask for input
 read -p "Enter the pod name: " POD_NAME
 
-kubectl -n core-wallet logs -f --tail=100 $POD_NAME
+kubectl logs -f --tail=200 $POD_NAME

@@ -90,3 +90,4 @@ outfile.png
 g.dot
 .vscode
 db/pg
+.solargraph.yml
