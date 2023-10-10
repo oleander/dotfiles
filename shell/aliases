@@ -22,8 +22,8 @@ alias gdd='git diff'
 alias gg='commitment'
 alias gm='gm.fish'
 alias gc='git-verify-checkout'
-alias ggg='/Users/linusoleander/Code/git-ai/target/release/git-ai --all'
-alias ggm='/Users/linusoleander/Code/git-ai/target/release/git-ai'
+alias ggg='~/Code/git-ai/target/release/git-ai --all'
+alias ggm='~/Code/git-ai/target/release/git-ai'
 
 # ruby
 alias bb='bundle exec'

@@ -43,7 +43,7 @@
 		<key>0xf702-0x380000-0x7b</key>
 		<dict>
 			<key>Action</key>
-			<integer>39</integer>
+			<integer>2</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
@@ -68,7 +68,7 @@
 		<key>0xf703-0x380000-0x7c</key>
 		<dict>
 			<key>Action</key>
-			<integer>32</integer>
+			<integer>0</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>

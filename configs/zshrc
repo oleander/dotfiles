@@ -124,7 +124,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 zinit light zsh-users/zsh-completions
-. ~/.dotfiles/zsh/completions/espup.sh
+#. ~/.dotfiles/zsh/completions/espup.sh
 #export PATH=/opt/homebrew/Cellar/riscv-gnu-toolchain/main/bin/:$PATH
 #export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
