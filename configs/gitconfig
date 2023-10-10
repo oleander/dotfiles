@@ -9,3 +9,5 @@
 	defaultBranch = main
 [pull]
 	ff = only
+[safe]
+	directory = /opt/homebrew
