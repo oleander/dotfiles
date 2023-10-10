@@ -5,7 +5,7 @@
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>BootstrapDaemon</key>
-	<false/>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>80C5E531-A385-447B-A7B1-0FC1A931A8B6</string>
 	<key>DoubleClickPerformsSmartSelection</key>
@@ -26,6 +26,13 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0xf702-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
 		<key>0xf702-0x320000</key>
 		<dict>
 			<key>Action</key>
@@ -36,13 +43,20 @@
 		<key>0xf702-0x380000-0x7b</key>
 		<dict>
 			<key>Action</key>
-			<integer>2</integer>
+			<integer>39</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
 			<string></string>
 			<key>Version</key>
 			<integer>0</integer>
+		</dict>
+		<key>0xf703-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>0</integer>
+			<key>Text</key>
+			<string></string>
 		</dict>
 		<key>0xf703-0x320000</key>
 		<dict>
@@ -54,7 +68,7 @@
 		<key>0xf703-0x380000-0x7c</key>
 		<dict>
 			<key>Action</key>
-			<integer>0</integer>
+			<integer>32</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
@@ -753,7 +767,7 @@
 			<key>Screen</key>
 			<integer>-2</integer>
 			<key>Scrollback Lines</key>
-			<integer>0</integer>
+			<integer>1000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -818,7 +832,7 @@
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
-			<true/>
+			<false/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -874,8 +888,6 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
-	<key>ShowFullScreenTabBar</key>
-	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>
