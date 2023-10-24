@@ -1,0 +1,3 @@
+#!env bash
+
+~/Code/git-ai/target/release/git-ai --all
