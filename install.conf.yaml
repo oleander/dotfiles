@@ -1,26 +1,13 @@
 - defaults:
     link:
-        force: true
-        relink: true
-        create: true
+      relink: true
+      create: true
+      force: true
 
-- clean:
-    - '~'
+- clean: ~/
 
 - link:
-    ~/.config/nvim/init.vim: configs/vimrc.vim
-    ~/.rubocop.yml: configs/rubocop.yml
-    ~/.gitignore: configs/gitignore
-    ~/.hushlogin: configs/hushlogin
-    ~/.gemrc: configs/gemrc
-    ~/.irbrc: configs/irbrc
-    ~/.zshrc: configs/zshrc
-    ~/.gitconfig: configs/gitconfig
-    ~/.rustfmt.toml: configs/rustfmt.toml
-
-- shell:
-    - ./pre.sh
-    - sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || echo "oh-my-zsh already installed"
-    - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting || echo "zsh-syntax-highlighting already installed"
-    - git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions || echo "zsh-autosuggestions already installed"
-    - git config --global core.excludesFile '~/.gitignore'
+  ~/:
+    path: configs/**
+    glob: true
+    prefix: "."
