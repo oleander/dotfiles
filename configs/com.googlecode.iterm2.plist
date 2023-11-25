@@ -730,6 +730,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Minimum Contrast</key>
+			<real>0.32060546875000001</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Movement Keys Scroll Outside Interactive Apps</key>
