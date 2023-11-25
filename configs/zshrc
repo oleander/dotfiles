@@ -95,9 +95,9 @@ export DOCKER_HOST='unix:///var/run/docker.sock'
 #
 # export SCCACHE_CACHE_SIZE="3G"
 export RUSTC_WRAPPER=sccache
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 #export LIBCLANG_PATH=/opt/homebrew/opt/llvm/lib
 
 
@@ -130,3 +130,4 @@ zinit light zsh-users/zsh-completions
 
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
+export PATH="/opt/homebrew/opt/riscv-openocd/bin:$PATH"
