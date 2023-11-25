@@ -75,7 +75,6 @@ node_modules/
 .overcommit.yml
 .tags*
 .ctags
-tags*
 ctags
 tmp/rspec.state
 Makefile
@@ -90,4 +89,4 @@ outfile.png
 g.dot
 .vscode
 db/pg
-.solargraph.yml
+http-cacache/
