@@ -7,7 +7,12 @@
 - clean: ~/
 
 - link:
-  ~/:
-    path: configs/**
-    glob: true
-    prefix: "."
+    ~/:
+      path: configs/**/*
+      glob: true
+      prefix: "."
+      exclude: [iterm]
+    ~/Library/Application Support/iTerm2/DynamicProfiles/:
+      path: configs/iterm.json
+      prefix: ""
+      create: true
