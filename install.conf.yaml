@@ -12,7 +12,3 @@
       glob: true
       prefix: "."
       exclude: [iterm]
-    # ~/Library/Application Support/iTerm2/DynamicProfiles/DynamicProfiles.json:
-    #   path: configs/iterm.json
-    #   prefix: ""
-    #   create: true
