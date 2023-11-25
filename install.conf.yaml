@@ -16,6 +16,7 @@
     ~/.irbrc: configs/irbrc
     ~/.zshrc: configs/zshrc
     ~/.gitconfig: configs/gitconfig
+    ~/.rustfmt.toml: configs/rustfmt.toml
 
 - shell:
     - ./pre.sh
