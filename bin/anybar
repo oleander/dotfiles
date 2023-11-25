@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo -n "$1" | nc -4u -w0 localhost 1738
