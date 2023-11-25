@@ -10,3 +10,4 @@ atom/.atom-socket-secret*
 zsh/secret
 Brewfile.lock.json
 zsh/
+Gemfile.lock
