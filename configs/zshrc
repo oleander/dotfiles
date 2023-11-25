@@ -94,7 +94,8 @@ export DOCKER_HOST='unix:///var/run/docker.sock'
 # export PATH=$PATH:$HOME/Code/xtensa-toolchain/release/xtensa-toolchain/bin
 #
 # export SCCACHE_CACHE_SIZE="3G"
-export RUSTC_WRAPPER=sccache
+# export RUSTC_WRAPPER=sccache
+# export SCCACHE_DIRECT=true
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
@@ -130,3 +131,5 @@ zinit light zsh-users/zsh-completions
 
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
+export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

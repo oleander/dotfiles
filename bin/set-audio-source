@@ -1,0 +1,24 @@
+#!env osascript
+
+#tell application "System Preferences"
+#  reveal pane id "com.apple.preference.sound"
+#end tell
+
+tell application "System Settings"
+    reveal pane id "com.apple.preference.sound"
+end tell
+
+tell application "System Events"
+  tell process "System Preferences"
+    select row 1 of table 1 of scroll area 1 of tab group 1 of window "Sound"
+    set theRows to rows of table 1 of scroll area 1 of tab group 1 of window "Sound"
+    repeat with theRow in theRows
+      if value of text field 1 of theRow as text is equal to "Bakrum" then
+        select theRow
+        exit repeat
+      end if
+    end repeat
+  end tell
+end tell
+
+# quit application "System Preferences"
