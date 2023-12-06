@@ -22,8 +22,8 @@ alias gdd='git diff'
 alias gg='commitment'
 alias gm='gm.fish'
 alias gc='git-verify-checkout'
-alias ggg='git-ai --all'
-alias ggm='git-ai'
+alias ggg='git add . && git commit --no-edit'
+alias ggm='git commit --no-edit'
 
 # ruby
 alias bb='bundle exec'
