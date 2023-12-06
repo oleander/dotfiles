@@ -5,7 +5,7 @@
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>BootstrapDaemon</key>
-	<false/>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>80C5E531-A385-447B-A7B1-0FC1A931A8B6</string>
 	<key>DoubleClickPerformsSmartSelection</key>
@@ -26,6 +26,13 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0xf702-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
 		<key>0xf702-0x320000</key>
 		<dict>
 			<key>Action</key>
@@ -43,6 +50,13 @@
 			<string></string>
 			<key>Version</key>
 			<integer>0</integer>
+		</dict>
+		<key>0xf703-0x300000</key>
+		<dict>
+			<key>Action</key>
+			<integer>0</integer>
+			<key>Text</key>
+			<string></string>
 		</dict>
 		<key>0xf703-0x320000</key>
 		<dict>
@@ -730,11 +744,7 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
-			<key>Minimum Contrast</key>
-			<real>0.32060546875000001</real>
 			<key>Mouse Reporting</key>
-			<true/>
-			<key>Movement Keys Scroll Outside Interactive Apps</key>
 			<true/>
 			<key>Name</key>
 			<string>Default</string>
@@ -757,7 +767,7 @@
 			<key>Screen</key>
 			<integer>-2</integer>
 			<key>Scrollback Lines</key>
-			<integer>0</integer>
+			<integer>1000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -791,10 +801,6 @@
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
-			<key>Send Idle Alert</key>
-			<true/>
-			<key>Send New Output Alert</key>
-			<true/>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Status Bar</key>
@@ -825,21 +831,8 @@
 			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.0</real>
-			<key>Triggers</key>
-			<array>
-				<dict>
-					<key>action</key>
-					<string>AlertTrigger</string>
-					<key>partial</key>
-					<true/>
-					<key>regex</key>
-					<string></string>
-				</dict>
-			</array>
-			<key>Triggers Use Interpolated Strings</key>
-			<false/>
 			<key>Unlimited Scrollback</key>
-			<true/>
+			<false/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -895,10 +888,6 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
-	<key>Print In Black And White</key>
-	<true/>
-	<key>ShowFullScreenTabBar</key>
-	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>

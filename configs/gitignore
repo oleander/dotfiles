@@ -77,7 +77,6 @@ node_modules/
 .ctags
 ctags
 tmp/rspec.state
-Makefile
 .ruby-version
 Guardfile
 vendor/cache/ruby/2.7.0
