@@ -30,7 +30,7 @@ export ZSH_THEME_GIT_PROMPT_CLEAN=""
 # export ZSH_THEME_GIT_PROMPT_CACHE=1
 export ZSH_GIT_PROMPT_SHOW_UPSTREAM=1
 
-local STATUS="%F{8}%~%{$reset_color%}"
+local STATUS="[mini] %F{8}%~%{$reset_color%}"
 NEWLINE=$'\n'
 export PROMPT="$STATUS%F{reset_color} "
 export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%F{reset_color}'
@@ -73,7 +73,7 @@ unsetopt correct_all
 
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
-export PATH="/Users/linusoleander/.volta/bin:$PATH"
+#export PATH="/Users/linusoleander/.volta/bin:$PATH"
 
 # See https://gist.github.com/celso/6cefedb9fce92827ee38e8f7411b8b30
 # infocmp $TERM | sed 's/kbs=^[hH]/kbs=\177/' > $TERM.ti
@@ -85,7 +85,7 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Podman
-export DOCKER_HOST='unix:///var/run/docker.sock'
+# export DOCKER_HOST='unix:///var/run/docker.sock'
 
 #if [ -f $HOME/export-esp.sh ]; then
 #  source $HOME/export-esp.sh
@@ -95,15 +95,15 @@ export DOCKER_HOST='unix:///var/run/docker.sock'
 #
 # export SCCACHE_CACHE_SIZE="3G"
 export RUSTC_WRAPPER=sccache
-# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-# export RUSTC_WRAPPER=sccache
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export RUSTC_WRAPPER=sccache
 # export SCCACHE_DIRECT=true
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-#export LIBCLANG_PATH=/opt/homebrew/opt/llvm/lib
+export LIBCLANG_PATH=/opt/homebrew/opt/llvm/lib
 
 
 ### Added by Zinit's installer
@@ -138,3 +138,10 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 # export PATH="/opt/homebrew/opt/riscv-openocd/bin:$PATH"
 # export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+#
+#export LC_ALL=en_US.UTF-8
+#export LANG=en_US.UTF-8
+#
+export LC_ALL=sv_SE.UTF-8
+export LANG=sv_SE.UTF-8
+export PYTHONUTF8=1
