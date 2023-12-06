@@ -5,7 +5,6 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PAGER="less -R"
 export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
 export LESS_ADVANCED_PREPROCESSOR=1
-export LC_ALL=en_US.UTF-8
 export PATH=$ROOT/bin:/opt/local/bin/:$PATH
 export ZSH_CUSTOM=$ROOT/zsh
 export PATH=$HOME/.cargo/bin:$PATH
@@ -24,3 +23,10 @@ export PATH=$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 
+# export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PYTHONCOERCECLOCALE=0
+
+. ~/.nrf.sh

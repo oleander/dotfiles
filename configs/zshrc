@@ -138,3 +138,10 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 # export PATH="/opt/homebrew/opt/riscv-openocd/bin:$PATH"
 # export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+# export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+source "$HOME/.cargo/env"
+
+export OVERCOMMIT_DISABLE="1"
+
+export PATH="/Users/linusoleander/Library/Python/3.9/bin:$PATH"
