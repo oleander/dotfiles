@@ -145,3 +145,8 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 export LC_ALL=sv_SE.UTF-8
 export LANG=sv_SE.UTF-8
 export PYTHONUTF8=1
+source "$HOME/.cargo/env"
+
+export OVERCOMMIT_DISABLE="1"
+
+export PATH="/Users/linusoleander/Library/Python/3.9/bin:$PATH"
