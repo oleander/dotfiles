@@ -1,8 +1,8 @@
 [core]
 	excludesFile = ~/.gitignore
 [user]
-	name = Linus Oleander
-	email = linus.oleander@clark.de
+	name = Your Name
+	email = you@example.com
 [push]
 	autoSetupRemote = true
 [init]
