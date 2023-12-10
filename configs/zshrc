@@ -159,3 +159,4 @@ export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s3-elf/esp-12.2.0_2
 export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:$PATH"
 
 
+export SCCACHE_REDIS="redis://127.0.0.1:6379/0"
