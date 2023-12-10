@@ -30,3 +30,6 @@ export LANG=en_US.UTF-8
 export PYTHONCOERCECLOCALE=0
 
 # . ~/.nrf.sh
+
+# dotenv will not ask if we want to load current .env
+export ZSH_DOTENV_PROMPT=false
