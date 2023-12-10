@@ -30,7 +30,18 @@ export ZSH_THEME_GIT_PROMPT_CLEAN=""
 # export ZSH_THEME_GIT_PROMPT_CACHE=1
 export ZSH_GIT_PROMPT_SHOW_UPSTREAM=1
 
-local STATUS="[mini] %F{8}%~%{$reset_color%}"
+# if hostname ends with local, use home, otherwise use work
+# use a method to get the hostname, so we can mock it in tests
+function chostname() {
+    if [[ $(hostname) =~ local$ ]]; then
+        echo "home"
+    else
+        echo "work"
+    fi
+}
+
+# local STATUS="[mini] %F{8}%~%{$reset_color%}"
+local STATUS="[$(chostname)] %F{8}%~%{$reset_color%}"
 NEWLINE=$'\n'
 export PROMPT="$STATUS%F{reset_color} "
 export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%F{reset_color}'
@@ -142,8 +153,8 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 #export LC_ALL=en_US.UTF-8
 #export LANG=en_US.UTF-8
 #
-export LC_ALL=sv_SE.UTF-8
-export LANG=sv_SE.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 export PYTHONUTF8=1
 source "$HOME/.cargo/env"
 
