@@ -1,7 +1,4 @@
-## General .gitignore file by Arash Rouhani (Tarrasch)
-## Inspired from whitespace bot GunioRobot
-
-# backup files
+# General backup files
 *.swp
 *.swo
 *.bak
@@ -10,82 +7,80 @@
 *.orig
 *.log
 *.rej
-*.swo
-*.swp
 *.vi
 *~
-*.sass-cache
+.nfs*
 
-# non-source files
+# Compiled source files
 *.hi
 *.o
-*.pdf
-*.com
 *.class
 *.dll
 *.exe
-*.o
 *.so
 *.pyc
 
-# yesod
-client_session_key.aes
-devel-server
-dist
-static/tmp
+# Package directories
+node_modules/
+vendor/
 
-# latex
-*.aux
-*.log
-*.out
-.nfs*
-*#*#
-.goutput*
-
-# OS X
+# OS-specific files
 .DS_Store
-
-# OS or Editor folders
-###################
-.DS_Store
-Icon?
 Thumbs.db
 ehthumbs.db
-nbproject
-.cache
-.project
-.settings
-.tmproj
-*.esproj
+
+# Editor/IDE specific files
+## Sublime Text
 *.sublime-project
 *.sublime-workspace
 
-# Dreamweaver added files
-###################
-_notes
-dwsync.xml
-
-# Komodo
-###################
+## Komodo
 *.komodoproject
 .komodotools
 
-node_modules/
+## Others
+*.tmproj
+*.esproj
+.cache
+.project
+.settings
+.nbproject
+
+# Miscellaneous files
+*.sass-cache
 .rspec-local
 .overcommit.yml
 .tags*
 .ctags
-ctags
 tmp/rspec.state
 .ruby-version
 Guardfile
-vendor/cache/ruby/2.7.0
-/vendor/cache/ruby/2.7.0
-/vendor
-.rspec-status
 .env*
 outfile.png
 g.dot
 .vscode
-db/pg
 http-cacache/
+
+# Build and log directories
+dist/
+logs/
+build/
+static/tmp
+
+# Specific project files
+client_session_key.aes
+devel-server
+.rspec-status
+
+# Latex files
+*.aux
+*.out
+*#*#
+.goutput*
+
+# Dreamweaver added files
+_notes
+dwsync.xml
+
+# Database-specific files
+db/pg
