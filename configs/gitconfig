@@ -1,11 +1,54 @@
 [core]
-	excludesFile = ~/.gitignore
+    excludesFile = ~/.gitignore
+    fileMode = false
 [user]
-	name = Your Name
-	email = you@example.com
+    email = linus@oleander.io
+    name = Linus Oleander
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
+    default = current
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [safe]
-	directory = /opt/homebrew
+    directory = /opt/homebrew
+[pull]
+    rebase = true
+[color]
+    branch = auto
+    status = auto
+    diff = auto
+    ui = auto
+[diff]
+    compactionHeuristic = true
+    mnemonicPrefix = true
+    tool = meld
+[merge]
+    tool = meld
+    commit = no
+    ff = only
+[format]
+    pretty = oneline
+[credential]
+    helper = cache --timeout=3600
+[help]
+    autocorrect = 20
+[gc]
+    auto = 256
+[rebase]
+    autoStash = true
+[branch]
+    autosetuprebase = always
+[apply]
+    whitespace = fix
+[http]
+    postBuffer = 524288000
+[lfs]
+    track = "*.psd"
+[fetch]
+    prune = true
+[checkout]
+    autoDetach = false
+[tag]
+    sort = version:refname
+[rerere]
+    enabled = true
