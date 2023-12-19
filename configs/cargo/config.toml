@@ -1,2 +1,10 @@
 [build]
 rustc-wrapper = "/opt/homebrew/bin/sccache"
+
+[alias]
+t = "tree --color always --invert"
+f = "feature"
+
+[env]
+RUSTC_WRAPPER = "/opt/homebrew/bin/sccache"
+SCCACHE_REDIS = "redis://127.0.0.1:6379/1"
