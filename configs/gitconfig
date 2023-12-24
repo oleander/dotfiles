@@ -8,7 +8,7 @@
     autoSetupRemote = true
     default = current
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [safe]
     directory = /opt/homebrew
 [pull]

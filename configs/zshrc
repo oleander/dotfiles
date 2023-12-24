@@ -169,5 +169,9 @@ export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s2-elf/esp-12.2.0_2
 export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin:$PATH"
 export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:$PATH"
 
-export SCCACHE_REDIS="redis://127.0.0.1:6379/0"
+export CACHE_DIR="/Volumes/Cache"
+# export SCCACHE_REDIS="redis://127.0.0.1:6379/0"
 export RUSTC_WRAPPER="$(which sccache)"
+export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
+export SCCACHE_CACHE_SIZE="200G"
+export SCCACHE_DIR="$CACHE_DIR/sccache"
