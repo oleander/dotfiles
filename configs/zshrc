@@ -108,13 +108,13 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export RUSTC_WRAPPER=sccache
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+#export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export RUSTC_WRAPPER=sccache
 # export SCCACHE_DIRECT=true
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-export LIBCLANG_PATH=/opt/homebrew/opt/llvm/lib
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# export LIBCLANG_PATH=/opt/homebrew/opt/llvm/lib
 
 
 ### Added by Zinit's installer
