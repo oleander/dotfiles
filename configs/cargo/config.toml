@@ -1,35 +1,35 @@
-[build]
-rustc-wrapper = "/opt/homebrew/bin/sccache"
+#[build]
+#rustc-wrapper = "/opt/homebrew/bin/sccache"
 
 [alias]
 t = "tree --color always --invert"
 f = "feature"
 
 [env]
-RUST_ANALYZER_CACHE = "/Volumes/Cache/rust-analyzer"
-SCCACHE_DIR = "/Volumes/Cache/sccache"
-SCCACHE_CACHE_SIZE = "200G"
-RUSTC_WRAPPER = "sccache"
+#RUST_ANALYZER_CACHE = "/Volumes/Cache/rust-analyzer"
+#SCCACHE_DIR = "/Volumes/Cache/sccache"
+#SCCACHE_CACHE_SIZE = "200G"
+#RUSTC_WRAPPER = "sccache"
 
-[target.esp32c3]
-rustflags = ["-C", "default-linker-libraries"]
-runner = "espflash flash -b 921600 --monitor"
-linker = "ldproxy"
+#[target.esp32c3]
+#rustflags = ["-C", "default-linker-libraries"]
+#runner = "espflash flash -b 921600 --monitor"
+#linker = "ldproxy"
 
-[target.esp32]
-rustflags = ["-C", "default-linker-libraries"]
-runner = "espflash flash -b 921600 --monitor"
-linker = "ldproxy"
+# [target.esp32]
+#rustflags = ["-C", "default-linker-libraries"]
+#runner = "espflash flash -b 921600 --monitor"
+#linker = "ldproxy"
 
-[profile.release]
-codegen-units = 1
-opt-level = 3
-lto = "fat"
+#[profile.release]
+#codegen-units = 1
+#opt-level = 3
+#lto = "fat"
 
-[profile.release.package."*"]
-codegen-units = 1
-opt-level = 3
+#[profile.release.package."*"]
+#codegen-units = 1
+#opt-level = 3
 
-[profile.dev]
-opt-level = "z"
-debug = true
+#[profile.dev]
+#opt-level = "z"
+#debug = true
