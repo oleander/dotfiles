@@ -3,8 +3,6 @@
 :bulk_threshold: 1000
 :sources:
 - https://rubygems.org
-- https://linusoleander:AP8tQFmQuRjj5K6deWNiNXHYw5o@clarkgroup.jfrog.io/artifactory/api/gems/clarkgroup-gems/
-- https://linusoleander:AP8tQFmQuRjj5K6deWNiNXHYw5o@clarkgroup.jfrog.io/artifactory/api/gems/clarkgroup-gems-remote/
 :update_sources: true
 :verbose: false
 :concurrent_downloads: 8
