@@ -84,3 +84,7 @@ dwsync.xml
 
 # Database-specific files
 db/pg
+
+spec/examples.txt
+.rspec-local.rb
+.rspec-local

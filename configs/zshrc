@@ -181,3 +181,4 @@ export SCCACHE_CACHE_SIZE="200G"
 # export SCCACHE_DIR="$CACHE_DIR/sccache"
 
 eval "$(rbenv init -)"
+export PATH="/opt/homebrew/sbin:$PATH"
