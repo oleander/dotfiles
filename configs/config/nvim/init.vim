@@ -45,7 +45,7 @@ endif
 " Search and Replace
 nmap <Leader>s :%s//g<Left><Left>
 
-" Leader key is like a command prefix. 
+" Leader key is like a command prefix.
 let mapleader='z'
 let maplocalleader='\'
 
@@ -70,15 +70,9 @@ vmap <BS> x
 set nospell
 
 " Plugins here
-" call plug#begin('~/.config/nvim/plugged')
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'Chiel92/vim-autoformat'
-" Plug 'scrooloose/nerdtree'
-" Plug 'terryma/vim-multiple-cursors'
-" call plug#end()
+call plug#begin('~/.config/nvim/plugged')
+Plug 'github/copilot.vim'
+call plug#end()
 
 " deoplete config
 let g:deoplete#enable_at_startup = 1

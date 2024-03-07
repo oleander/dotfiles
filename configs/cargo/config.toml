@@ -1,11 +1,11 @@
 #[build]
-#rustc-wrapper = "/opt/homebrew/bin/sccache"
+#target-dir = "/Volumes/Cache/rust-builds"
 
-[alias]
-t = "tree --color always --invert"
-f = "feature"
+#[alias]
+#t = "tree --color always --invert"
+##f = "feature"
 
-[env]
+#[env]
 #RUST_ANALYZER_CACHE = "/Volumes/Cache/rust-analyzer"
 #SCCACHE_DIR = "/Volumes/Cache/sccache"
 #SCCACHE_CACHE_SIZE = "200G"

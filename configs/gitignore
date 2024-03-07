@@ -88,3 +88,4 @@ db/pg
 spec/examples.txt
 .rspec-local.rb
 .rspec-local
+.idea

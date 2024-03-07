@@ -164,16 +164,15 @@ source "$HOME/.cargo/env"
 
 export OVERCOMMIT_DISABLE="1"
 
-export PATH="/Users/linusoleander/Library/Python/3.9/bin:$PATH"
+#export PATH="/Users/linusoleander/Library/Python/3.9/bin:$PATH"
 
+#export LIBCLANG_PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-16.0.0-20230516/esp-clang/lib"
+#export PATH="/Users/linus/.rustup/toolchains/esp/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin:$PATH"
+#export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin:$PATH"
+#export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin:$PATH"
+#export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:$PATH"
 
-export LIBCLANG_PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-16.0.0-20230516/esp-clang/lib"
-export PATH="/Users/linus/.rustup/toolchains/esp/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin:$PATH"
-export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin:$PATH"
-export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin:$PATH"
-export PATH="/Users/linus/.rustup/toolchains/esp/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin:$PATH"
-
-export CACHE_DIR="/Volumes/Cache"
+#€export CACHE_DIR="/Volumes/Cache"
 # export SCCACHE_REDIS="redis://127.0.0.1:6379/0"
 # export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
@@ -182,3 +181,7 @@ export SCCACHE_CACHE_SIZE="200G"
 
 eval "$(rbenv init -)"
 export PATH="/opt/homebrew/sbin:$PATH"
+#export RUSTC_WRAPPER="$(which sccache)"
+#export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
+#export SCCACHE_CACHE_SIZE="200G"
+#export SCCACHE_DIR="$CACHE_DIR/sccache"
