@@ -35,3 +35,4 @@ export PYTHONCOERCECLOCALE=0
 # dotenv will not ask if we want to load current .env
 export ZSH_DOTENV_PROMPT=false
 export RAILS_DEVELOPMENT_HOSTS="wayleadr.test"
+export GITHUB_TOKEN=$(gh auth token)
