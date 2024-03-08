@@ -1,5 +1,5 @@
 ---
-:backtrace: true
+:backtrace: false
 :bulk_threshold: 1000
 :sources:
 - https://rubygems.org
@@ -7,5 +7,5 @@
 :verbose: false
 :concurrent_downloads: 8
 :ssl_verify_mode: 0
-gem: "--no-document --http-proxy ${ALL_PROXY}"
+gem: --no-document
 benchmark: false
