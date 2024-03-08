@@ -26,10 +26,10 @@ for cmd in "${commands[@]}"; do
     eval "/opt/homebrew/bin/brew $cmd"
 done
 
-echo -e "\033[0;32m=> Update globaly installed cargo binaries...\033[0m"
-cargo install-update -a
-espup update
-rustup update
+# echo -e "\033[0;32m=> Update globaly installed cargo binaries...\033[0m"
+# cargo install-update -a
+# espup update
+# rustup update
 
 echo -e "\033[0;32m=> Refresh complete @ $(date) ...\033[0m"
 
