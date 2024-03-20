@@ -1,0 +1,20 @@
+#!env fish
+
+set model gpt-4-turbo-preview
+
+echo "==> Generating cover letter from pasteboard..."
+
+function create_cover_letter
+    fabric --pattern create_cover_letter --model $model 2>/dev/null
+end
+
+function improve_writing
+    fabric --pattern improve_writing --model $model 2>/dev/null
+end
+
+if not pbpaste | create_cover_letter | improve_writing | pbcopy
+    echo "==> Failed to generate cover letter."
+    exit 1
+end
+
+echo "==> Cover letter copied to clipboard!"
