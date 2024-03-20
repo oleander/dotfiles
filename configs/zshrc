@@ -185,3 +185,7 @@ export PATH="/opt/homebrew/sbin:$PATH"
 #export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 #export SCCACHE_CACHE_SIZE="200G"
 #export SCCACHE_DIR="$CACHE_DIR/sccache"
+
+# Created by `pipx` on 2024-03-14 14:22:56
+export PATH="$PATH:~/.local/bin"
+if [ -f "/Users/linus/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/linus/.config/fabric/fabric-bootstrap.inc"; fi

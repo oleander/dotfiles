@@ -52,3 +52,5 @@
     sort = version:refname
 [rerere]
     enabled = true
+[ai]
+	assistant-id = asst_HzvD9dUpEAqdZekGtJiBYKIv
