@@ -34,8 +34,10 @@ if not ping -c 1 8.8.8.8 -t 5 > /dev/null
   exit 1
 end
 
-defaults delete "$plist" ClipboardSharingEnabled
+if not defaults delete "$plist" ClipboardSharingEnabled > /dev/null
+  defaults write "$plist" ClipboardSharingEnabled 0
+end
+
 defaults write "$plist" ClipboardSharingEnabled 1
 
-# Use an ok emoji
 echo "✅ Clipboard sharing should be enabled now!"
