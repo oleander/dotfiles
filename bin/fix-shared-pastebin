@@ -1,0 +1,41 @@
+#!env fish
+
+echo "------------------------------------------------"
+echo "Fixing the shared pastebin between macOS and iOS"
+echo "------------------------------------------------"
+
+# Ensure WiFi is on
+if networksetup -getairportpower en1 | grep -q "Off"
+  echo "Please turn on your wifi before running this script"
+  exit 1
+end
+
+# Ensure bluetooth is on
+if system_profiler SPBluetoothDataType | grep -q "State: Off"
+  echo "Please turn on your bluetooth before running this script"
+  exit 1
+end
+
+set plist ~/Library/Preferences/com.apple.coreservices.useractivityd.plist
+if not test -f "$plist"
+  echo "The plist $plist does not exist"
+  exit 0
+end
+
+# Ensure defaults is installed and executable
+if not command -v defaults > /dev/null
+  echo "Please install the defaults command"
+  exit 1
+end
+
+# Check if there's internet with timeout
+if not ping -c 1 8.8.8.8 -t 5 > /dev/null
+  echo "Please connect to the internet before running this script"
+  exit 1
+end
+
+defaults delete "$plist" ClipboardSharingEnabled
+defaults write "$plist" ClipboardSharingEnabled 1
+
+# Use an ok emoji
+echo "✅ Clipboard sharing should be enabled now!"
