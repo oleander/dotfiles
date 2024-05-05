@@ -1,0 +1,21 @@
+#!/usr/bin/env fish
+
+set instruction (string join " " "$argv")
+if test -z "$instruction"
+  echo "Usage: help <command>"
+  exit 1
+end
+
+set -x instruction "in bash, $instruction"
+
+set ollama --remoteOllamaServer http://localhost:11434 --model codeup:latest
+
+set command (~/.local/bin/fabric -m gpt-4 -p create_command -t "$instruction" --temp 0.01 --copy)
+
+echo "$command"
+
+# osascript -e 'tell application "iTerm"
+#   tell current session of current tab of current window
+#     write text "'"$command"'"
+#   end tell
+# end tell'

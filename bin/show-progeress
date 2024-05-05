@@ -1,0 +1,28 @@
+#!/usr/bin/env fish
+
+function show_progress
+  set pid $argv[1]
+  set delay 0.1
+  set spinstr '|/-\''
+  while ps -p $pid > /dev/null
+    set temp (string sub -l (math (string length $spinstr) - 1) -- $spinstr)
+    printf " [%s]  " $spinstr[1]
+    set spinstr $temp$spinstr[1]
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  end
+  printf "    \b\b\b\b"
+end
+
+# Run command in the background
+eval $argv &
+set cmd_pid $last_pid
+
+# Show spinner
+show_progress $cmd_pid
+
+wait $cmd_pid
+set exit_code $status
+
+# Optional: Check the exit code
+echo "Command exited with status $exit_code"
