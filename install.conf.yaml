@@ -12,13 +12,3 @@
       glob: true
       prefix: "."
       exclude: [iterm]
-
-# - shell:
-  # - command: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-  #   description: 'Installing Homebrew'
-  # - command: 'cd dotbot && brew bundle'
-  #   description: 'Installing common brew packages'
-  # - command: 'rbenv install latest && rbenv init'
-  #   description: 'Setup Ruby environment'
-  # - command: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  #   description: 'Install Oh My Zsh'
