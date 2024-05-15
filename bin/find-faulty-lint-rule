@@ -1,0 +1,100 @@
+#!/usr/bin/env fish
+
+# Helps locating rules in the Rustfmt configuration file
+# that you don't agree with and want to remove.
+# The idea is as follows:
+#
+# 1. Read the Rustfmt configuration file into an array of lines.
+# 2. Iterate over each configuration line.
+# 3. Copy the configuration lines, excluding the current line.
+# 4. Write the temporary configuration to a temporary file.
+# 5. Format the file with the temporary configuration.
+# 6. Ask the user if they see any difference.
+# 7. If the user sees a difference, restore the rule.
+# 8. If the user does not see a difference, remove the rule from the main configuration.
+# 9. Restore the original file from the Git repository.
+# 10. Restore the original configuration file.
+
+# Path to your Rustfmt configuration file
+set config_file "rustfmt.toml"
+set temp_config_file "rustfmt.temp.toml"
+set file_to_format "src/install.rs"
+
+# Check that config_file exists
+if not test -f $config_file
+    echo "Configuration file not found: $config_file"
+    exit 1
+end
+
+# Check that file_to_format exists
+if not test -f $file_to_format
+    echo "File to format not found: $file_to_format"
+    exit 1
+end
+
+# Check that temp_config_file does not exist
+if test -f $temp_config_file
+    echo "Temporary configuration file already exists: $temp_config_file"
+    echo "Please remove it before running this script."
+    exit 1
+end
+
+# Make sure non of the files above are "dirty" in git
+set dirty_files (git status --porcelain $config_file $file_to_format)
+if test -n "$dirty_files"
+    echo "The following files are dirty:"
+    echo $dirty_files
+    echo "Please clean them up before running this script."
+    echo "git checkout -- $config_file $file_to_format"
+    echo "git stash"
+    exit 1
+end
+
+# Callback if the the script exists, then clean up
+function on_exit --on-event fish_exit
+    git checkout -- $config_file $file_to_format
+    rm $temp_config_file
+end
+
+# Read the configuration file into an array of lines
+set config_lines (cat $config_file | string split "\n")
+set rule_count (count $config_lines)
+
+# Iterate over each configuration line
+for i in (seq $rule_count)
+    # Copy the configuration lines, excluding the current line
+    set temp_config_lines (for j in (seq (count $config_lines))
+        if test $i -ne $j
+            echo $config_lines[$j]
+        end
+    end)
+
+    # Write the temporary configuration to the temp file, ensuring each setting is on a new line
+    printf "%s\n" $temp_config_lines >$temp_config_file
+
+    # Format the file with the temporary configuration
+    rustfmt --config-path $temp_config_file $file_to_format
+
+    # Print the removed rule
+    echo "[$i/$rule_count] Removed rule: $config_lines[$i]"
+    echo "[$i/$rule_count] Do you see any difference? (y/N)"
+    read user_input
+
+    # If the user sees a difference, restore the rule
+    if test $user_input = y
+        set config_lines[$i] $config_lines[$i]
+    else
+        # If the user does not see a difference, remove the rule from the main configuration
+        set config_lines (for j in (seq (count $config_lines))
+            if test $i -ne $j
+                echo $config_lines[$j]
+            end
+        end)
+    end
+
+    # Restore the original file from the Git repository
+    git checkout -- $file_to_format
+end
+
+# Remove the temporary configuration file
+echo "Script completed. Your configuration file has been updated."
