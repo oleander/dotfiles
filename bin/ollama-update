@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for i in $(ollama ls | tail -n 4 | cut -f 1); do ollama pull $i; done
