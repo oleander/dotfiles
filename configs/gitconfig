@@ -53,4 +53,6 @@
 [rerere]
     enabled = true
 [ai]
-	assistant-id = asst_QEZMTzsSgWTrbbtWB49MjW0t
+	assistant-id = ""
+[gpg]
+	format = ssh
