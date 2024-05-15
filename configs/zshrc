@@ -174,9 +174,10 @@ export OVERCOMMIT_DISABLE="1"
 
 #€export CACHE_DIR="/Volumes/Cache"
 # export SCCACHE_REDIS="redis://127.0.0.1:6379/0"
-# export RUSTC_WRAPPER="$(which sccache)"
+export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
+export PATH="/Users/linus/.docker/bin:$PATH"
 # export SCCACHE_DIR="$CACHE_DIR/sccache"
 
 eval "$(rbenv init -)"
@@ -191,3 +192,5 @@ export PATH="$PATH:~/.local/bin"
 if [ -f "/Users/linus/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/linus/.config/fabric/fabric-bootstrap.inc"; fi
 
 eval "$(rbenv init - zsh)"
+
+
