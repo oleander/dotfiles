@@ -1,19 +1,13 @@
 ---
 
 summary: |
-    ## structopt
-
-    ```rust
     use structopt::StructOpt;
 
     #[derive(StructOpt)]
     struct Opt { ... }
-    ```
 
-    ### Specifying argument types
-
-    ```rust
-    // <opt> --age 12 --title James
+    // Desc: Specifying argument types
+    // Usage: <opt> --age 12 --title James
     struct Opt {
       #[structopt(short = "p", long)]
       age: u32, // --age <value> OR -p <value>
@@ -24,14 +18,10 @@ summary: |
       #[structopt(skip)]
       skipped: u32, // Defaults to 0
     }
-    ```
 
-    ### Flatten (`flatten`)
-
-    > Lifts the arguments into the parent structure from one below
-
-    ```rust
-    // <main> -u Linus -g Admin
+    // Desc: lift arguments from attribute into self
+    // Usage: <main> -u Linus -g Admin
+    // Feature: flatten
     struct Main {
       #[structopt(flatten)]
       sub: Sub,
@@ -44,11 +34,6 @@ summary: |
       #[structopt(short)]
       group: String,
     }
-    ```
-
-    ### Others
-
-    1. Custom string parsers
 docs: |
     Specifying argument types
     There are three types of arguments that can be supplied to each (sub-)command:
