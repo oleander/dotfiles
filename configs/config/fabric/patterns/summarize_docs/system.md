@@ -119,7 +119,6 @@ struct Foo {
 By default, values from the environment are shown in the help output (i.e. when invoking --help):
 ```
 
-
 ### Example Output:
 
 ```rust
@@ -163,4 +162,3 @@ struct Sub {
 ```
 
 USER INPUT: {{docs}}
-
