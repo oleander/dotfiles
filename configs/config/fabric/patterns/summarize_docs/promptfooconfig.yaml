@@ -9,18 +9,37 @@ providers:
   - config:
       temperature: 0.1
     id: openai:gpt-4o
-    label: gpt-4
+    label: gpt-4o-temp:0.1
 
   - config:
-      max_tokens: 72
-      temperature: 0.7
+      temperature: 0.9
     id: openai:gpt-4o
-    label: gpt-4
+    label: gpt-4o-temp:0.9
 
+  - config:
+      temperature: 0.1
+    id: openai:gpt-4
+    label: gpt-4-temp:0.1
+
+  - config:
+      temperature: 0.9
+    id: openai:gpt-4
+    label: gpt-4-temp:0.9
+
+  - config:
+      temperature: 0.1
+    id: openai:gpt-4-turbo-preview
+    label: gpt-4-turbo-temp:0.1
+
+  - config:
+      temperature: 0.9
+    id: openai:gpt-4-turbo-preview
+    label: gpt-4-turbo-temp:0.9
 tests:
   - vars: tests.yml
   - assert:
-      - type: factuality
-        value: {{docs}}
       - type: llm-rubric
-        value: The examples in the output is as compressed as possible
+        value: The flatten example includes the feature flatten within ()
+      - type: llm-rubric
+        value: "The bottom list contains two items each of which has a short usage example and a title on the form: "<TITLE>: <USAGE EXAMPLE>"
+

@@ -167,11 +167,10 @@ struct Sub {
 }
 ```
 
-### Others
+### Renaming arguments
 
 1. Custom string parsers: `--hex 3E9` for `hex: u32`
 2. Environment variable fallback: `PIN=123` same as `--pin 123`
-
 
 USER INPUT:
 
