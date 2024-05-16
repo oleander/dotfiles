@@ -16,30 +16,35 @@ providers:
     id: openai:gpt-4o
     label: gpt-4o-temp:0.9
 
-  - config:
-      temperature: 0.1
-    id: openai:gpt-4
-    label: gpt-4-temp:0.1
+  # - config:
+  #     temperature: 0.1
+  #   id: openai:gpt-4
+  #   label: gpt-4-temp:0.1
 
-  - config:
-      temperature: 0.9
-    id: openai:gpt-4
-    label: gpt-4-temp:0.9
+  # - config:
+  #     temperature: 0.9
+  #   id: openai:gpt-4
+  #   label: gpt-4-temp:0.9
 
   - config:
       temperature: 0.1
     id: openai:gpt-4-turbo-preview
     label: gpt-4-turbo-temp:0.1
 
-  - config:
-      temperature: 0.9
-    id: openai:gpt-4-turbo-preview
-    label: gpt-4-turbo-temp:0.9
+  # - config:
+  #     temperature: 0.9
+  #   id: openai:gpt-4-turbo-preview
+  #   label: gpt-4-turbo-temp:0.9
 tests:
   - vars: tests.yml
   - assert:
-      - type: llm-rubric
+      - type: model-graded-closedqa
         value: The flatten example includes the feature flatten within ()
-      - type: llm-rubric
-        value: "The bottom list contains two items each of which has a short usage example and a title on the form: "<TITLE>: <USAGE EXAMPLE>"
+      - type: model-graded-closedqa
+        value: |
+          The bottom list contains two items each of which has a short usage example and a title on the form: "<TITLE>: <USAGE EXAMPLE>"
+      - type: model-graded-closedqa
+        value: Similar code snippets has been grouped together into a single example, assuming they fall under the same category
+      - type: factuality
+        value: "The summary contains similar examples to: {{summary}}"
 
