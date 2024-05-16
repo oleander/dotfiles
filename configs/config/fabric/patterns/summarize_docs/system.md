@@ -161,4 +161,4 @@ struct Sub {
 // 2. Environment variable fallback: `PIN=123` same as `--pin 123`
 ```
 
-USER INPUT: {{docs}}
+USER INPUT:
