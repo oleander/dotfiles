@@ -10,7 +10,7 @@ set -x instruction "in bash, $instruction"
 
 set ollama --remoteOllamaServer http://localhost:11434 --model codeup:latest
 
-set command (~/.local/bin/fabric -m gpt-4 -p create_command -t "$instruction" --temp 0.01 --copy)
+set command (~/.local/bin/fabric -m gpt-4o -p create_command -t "$instruction" --temp 0.01 --copy)
 
 echo "$command"
 

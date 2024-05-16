@@ -20,6 +20,12 @@ set config_file "rustfmt.toml"
 set temp_config_file "rustfmt.temp.toml"
 set file_to_format "src/install.rs"
 
+# Callback if the script exits, then clean up
+function on_exit --on-event fish_exit
+    git checkout -- $file_to_format
+    rm -f $temp_config_file
+end
+
 # Check that config_file exists
 if not test -f $config_file
     echo "Configuration file not found: $config_file"
@@ -39,7 +45,7 @@ if test -f $temp_config_file
     exit 1
 end
 
-# Make sure non of the files above are "dirty" in git
+# Make sure none of the files above are "dirty" in git
 set dirty_files (git status --porcelain $config_file $file_to_format)
 if test -n "$dirty_files"
     echo "The following files are dirty:"
@@ -50,18 +56,12 @@ if test -n "$dirty_files"
     exit 1
 end
 
-# Callback if the the script exists, then clean up
-function on_exit --on-event fish_exit
-    git checkout -- $config_file $file_to_format
-    rm $temp_config_file
-end
-
 # Read the configuration file into an array of lines
 set config_lines (cat $config_file | string split "\n")
 set rule_count (count $config_lines)
 
 # Iterate over each configuration line
-for i in (seq $rule_count)
+for i in (seq (count $config_lines))
     # Copy the configuration lines, excluding the current line
     set temp_config_lines (for j in (seq (count $config_lines))
         if test $i -ne $j
@@ -73,7 +73,10 @@ for i in (seq $rule_count)
     printf "%s\n" $temp_config_lines >$temp_config_file
 
     # Format the file with the temporary configuration
-    rustfmt --config-path $temp_config_file $file_to_format
+    if not rustfmt --config-path $temp_config_file $file_to_format
+        echo "Failed to format when $config_lines[$i] was removed."
+        continue
+    end
 
     # Print the removed rule
     echo "[$i/$rule_count] Removed rule: $config_lines[$i]"
@@ -82,7 +85,10 @@ for i in (seq $rule_count)
 
     # If the user sees a difference, restore the rule
     if test $user_input = y
-        set config_lines[$i] $config_lines[$i]
+        set_color green
+        echo "Broken rule found: $config_lines[$i]"
+        set_color normal
+        exit 0
     else
         # If the user does not see a difference, remove the rule from the main configuration
         set config_lines (for j in (seq (count $config_lines))
@@ -95,6 +101,9 @@ for i in (seq $rule_count)
     # Restore the original file from the Git repository
     git checkout -- $file_to_format
 end
+
+# Write result to the configuration file
+printf "%s\n" $config_lines >$config_file
 
 # Remove the temporary configuration file
 echo "Script completed. Your configuration file has been updated."
