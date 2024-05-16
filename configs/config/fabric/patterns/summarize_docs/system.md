@@ -1,33 +1,44 @@
-## Code Example Extractor for Rust Crate Documentation
 
-### Instructions:
+You will be provided with documentation extracted from a crate on docs.rs. The input has been converted from HTML into markdown and may contain non-useful data. Your task is to summarize this text into a compact format that includes only the Rust code, any necessary Cargo features, and relevant comments. The comments should provide use cases for the code snippets. The output is intended to be used as context for an AI to help developers use the crate effectively.
 
-- **Input**: Documentation copied from a web page for a Rust crate.
-- **Objective**: Extract and compress code examples while maintaining their meaning and order for later use as context when asking questions about the crate.
-- **Important**:
-  1. Do not fabricate code. Only use code from the user input.
-  2. Ensure relevant parts are not removed, making the code incomplete.
-  3. Include:
-     - Required features for a snippet to be valid.
-     - All relevant `use` statements related to the example.
-- **Exclude**:
-  1. General comments on how to install the crate, but keep those providing useful info to the user.
-  2. Non-relevant boilerplate code.
+## INSTRUCTIONS:
 
-### Output Format:
+1. Extract and include only the Rust code from the provided documentation.
+2. Specify any Cargo features required for the code.
+3. Add comments to explain the use cases of the code snippets.
+4. Ensure the output is compact and suitable for AI context usage.
+5. Exclude `use` statements and external crate imports.
 
-- **Include comments** only when explaining how it could be used, i.e., with `--params`.
-- **Do not remove whitespace or newlines** from the code examples.
-- If output size needs to be limited, append a list of snippets that were not included at the bottom.
+## EXAMPLE:
 
-### Example Input:
+For a crate like `clap`, the comments should include CLI option examples such as `--flag -f`. If a developer later asks how to define a named Unix flag CLI argument without any argument, the snippet associated with `--flag -f` would be used as context.
+
+## OUTPUT FORMAT:
+
+```rust
+use <THE CRATE> // NOTE: only 'use' in the code example
+
+#[derive(StructOpt)] // NOTE: only 'derive' in the code example
+struct Opt { ... }
+
+// Desc: Specifying argument types
+// Usage: <opt> --age 12 --title James
+// Feature: flatten
+struct Opt {
+  // NOTE: More code here
+}
+
+// ...
+```
+
+## INPUT:
 
 ```
 Specifying argument types
 There are three types of arguments that can be supplied to each (sub-)command:
-	•	short (e.g. -h),
-	•	long (e.g. --help)
-	•	and positional.
+  * short (e.g. -h),
+  * long (e.g. --help)
+  * and positional.
 Like clap, structopt defaults to creating positional arguments.
 If you want to generate a long argument you can specify either long = $NAME, or just long to get a long flag generated using the field name. The generated casing style can be modified using the rename_all attribute. See the rename_all example for more.
 For short arguments, short will use the first letter of the field name by default, but just like the long option it’s also possible to use a custom letter through short = $LETTER.
@@ -119,7 +130,7 @@ struct Foo {
 By default, values from the environment are shown in the help output (i.e. when invoking --help):
 ```
 
-### Example Output:
+## OUTPUT:
 
 ```rust
 use structopt::StructOpt;
@@ -155,10 +166,8 @@ struct Sub {
   #[structopt(short)]
   group: String,
 }
-
-// Missing:
-// 1. Custom string parsers: `--hex 3E9` for `hex: u32`
-// 2. Environment variable fallback: `PIN=123` same as `--pin 123`
 ```
 
-USER INPUT:
+## INPUT:
+
+{{docs}}
