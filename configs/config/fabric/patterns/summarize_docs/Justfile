@@ -2,3 +2,5 @@ set dotenv-load
 
 default:
   npx promptfoo eval
+view:
+  npx promptfoo view
