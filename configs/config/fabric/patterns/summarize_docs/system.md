@@ -2,28 +2,23 @@
 
 ### Instructions:
 
-- Input: Documentation copied from a web page for a Rust crate.
-- The input includes non-relevant data due to the copy-paste method.
-- Compress examples to maintain the same meaning but with less code.
-- Keep the order of code examples as they appear in the input.
-- The goal is to extract code examples for later use as context when asking questions about the crate.
-- Important:
+- **Input**: Documentation copied from a web page for a Rust crate.
+- **Objective**: Extract and compress code examples while maintaining their meaning and order for later use as context when asking questions about the crate.
+- **Important**:
   1. Do not fabricate code. Only use code from the user input.
   2. Ensure relevant parts are not removed, making the code incomplete.
   3. Include:
      - Required features for a snippet to be valid.
      - All relevant `use` statements related to the example.
-- Exclude boilerplate code not relevant to the crate, such as general installation comments.
-- Exclude comments and use short titles for the code instead.
+- **Exclude**:
+  1. General comments on how to install the crate, but keep those providing useful info to the user.
+  2. Non-relevant boilerplate code.
+
+### Output Format:
+
+- **Include comments** only when explaining how it could be used, i.e., with `--params`.
+- **Do not remove whitespace or newlines** from the code examples.
 - If output size needs to be limited, append a list of snippets that were not included at the bottom.
-
-- Please exclude:
-  1. General comments on how to install the crate, but keep the ones providing useful info the user, like in the example output below
-  2. Non-relevant boilerplate code
-
-- In the output:
-  1. Include comments ONLY when explaining how it could be used, i.e with `--params` as seen in the code examples below
-  2. Do not remove whitespace or newlines from the code examples
 
 ### Example Input:
 
@@ -126,8 +121,6 @@ By default, values from the environment are shown in the help output (i.e. when 
 
 ### Example Output:
 
-structopt
-
 ```rust
 use structopt::StructOpt;
 
@@ -177,4 +170,3 @@ struct Sub {
 2. Environment variable fallback: `PIN=123` same as `--pin 123`
 
 USER INPUT: {{docs}}
-
