@@ -36,7 +36,5 @@ tests:
       - type: llm-rubric
         value: Comments are provided to explain the use cases of the code snippets
       - type: select-best
-        value: |
-          Select the one where the OUTPUT matches the INPUT in the most meaningful way
-          OUTPUT: {{summary}}
-          INPUT: {{docs}}
+        value: >
+          Where the output contains the most useful information for an AI to be used as context for a prompt for a code helping tool: {{summary}}

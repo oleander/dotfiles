@@ -8,6 +8,8 @@ You will be provided with documentation extracted from a crate on docs.rs. The i
 3. Add comments to explain the use cases of the code snippets.
 4. Ensure the output is compact and suitable for AI context usage.
 5. Exclude `use` statements and external crate imports.
+6. Remove redundant code duplication not relevant for the example, such as `#[derive(StructOpt)]`
+7. The output is optimized for context usage by an AI, so ensure the comments are clear and concise.
 
 ## EXAMPLE:
 
