@@ -21,6 +21,10 @@
   1. General comments on how to install the crate, but keep the ones providing useful info the user, like in the example output below
   2. Non-relevant boilerplate code
 
+- In the output:
+  1. Include comments ONLY when explaining how it could be used, i.e with `--params` as seen in the code examples below
+  2. Do not remove whitespace or newlines from the code examples
+
 ### Example Input:
 
 ```
@@ -172,5 +176,5 @@ struct Sub {
 1. Custom string parsers: `--hex 3E9` for `hex: u32`
 2. Environment variable fallback: `PIN=123` same as `--pin 123`
 
-USER INPUT:
+USER INPUT: {{docs}}
 
