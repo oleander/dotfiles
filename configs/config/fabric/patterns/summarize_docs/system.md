@@ -119,6 +119,7 @@ struct Foo {
 By default, values from the environment are shown in the help output (i.e. when invoking --help):
 ```
 
+
 ### Example Output:
 
 ```rust
@@ -126,12 +127,9 @@ use structopt::StructOpt;
 
 #[derive(StructOpt)]
 struct Opt { ... }
-```
 
-### Specifying argument types
-
-```rust
-// <opt> --age 12 --title James
+// Desc: Specifying argument types
+// Usage: <opt> --age 12 --title James
 struct Opt {
   #[structopt(short = "p", long)]
   age: u32, // --age <value> OR -p <value>
@@ -142,14 +140,10 @@ struct Opt {
   #[structopt(skip)]
   skipped: u32, // Defaults to 0
 }
-```
 
-### Flatten (`flatten`)
-
-> Lifts the arguments into the parent structure from one below
-
-```rust
-// <main> -u Linus -g Admin
+// Desc: lift arguments from attribute into self
+// Usage: <main> -u Linus -g Admin
+// Feature: flatten
 struct Main {
   #[structopt(flatten)]
   sub: Sub,
@@ -162,11 +156,11 @@ struct Sub {
   #[structopt(short)]
   group: String,
 }
+
+// Missing:
+// 1. Custom string parsers: `--hex 3E9` for `hex: u32`
+// 2. Environment variable fallback: `PIN=123` same as `--pin 123`
 ```
 
-### Renaming arguments
-
-1. Custom string parsers: `--hex 3E9` for `hex: u32`
-2. Environment variable fallback: `PIN=123` same as `--pin 123`
-
 USER INPUT: {{docs}}
+

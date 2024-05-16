@@ -7,44 +7,48 @@ prompts: [system.md]
 
 providers:
   - config:
-      temperature: 0.1
+      temperature: 0.7
+      max_tokens: 1800
     id: openai:gpt-4o
-    label: gpt-4o-temp:0.1
+    label: gpt-4o-temp:0.7
 
   - config:
-      temperature: 0.9
+      temperature: 0.3
+      max_tokens: 1800
     id: openai:gpt-4o
-    label: gpt-4o-temp:0.9
-
-  # - config:
-  #     temperature: 0.1
-  #   id: openai:gpt-4
-  #   label: gpt-4-temp:0.1
-
-  # - config:
-  #     temperature: 0.9
-  #   id: openai:gpt-4
-  #   label: gpt-4-temp:0.9
+    label: gpt-4o-temp:0.3
 
   - config:
-      temperature: 0.1
-    id: openai:gpt-4-turbo-preview
-    label: gpt-4-turbo-temp:0.1
+      temperature: 0.5
+      max_tokens: 1800
+    id: openai:gpt-4o
+    label: gpt-4o-temp:0.5
 
-  # - config:
-  #     temperature: 0.9
-  #   id: openai:gpt-4-turbo-preview
-  #   label: gpt-4-turbo-temp:0.9
+  - config:
+      temperature: 1.0
+      max_tokens: 1800
+    id: openai:gpt-4o
+    label: gpt-4o-temp:1
+
+  - config:
+      temperature: 0.01
+      max_tokens: 1800
+    id: openai:gpt-4o
+    label: gpt-4o-temp:0.01
+
 tests:
   - vars: tests.yml
   - assert:
       - type: model-graded-closedqa
         value: The flatten example includes the feature flatten within ()
       - type: model-graded-closedqa
-        value: |
-          The bottom list contains two items each of which has a short usage example and a title on the form: "<TITLE>: <USAGE EXAMPLE>"
-      - type: model-graded-closedqa
         value: Similar code snippets has been grouped together into a single example, assuming they fall under the same category
+      - type: model-graded-closedqa
+        value: Repeating statements such as `#[derive(StructOpt)]` must only occur once in a code block in the top of the summary
       - type: factuality
         value: "The summary contains similar examples to: {{summary}}"
+      - type: select-best
+        value: "Pick the result in which the output can be used by an AI as context when providing help to a developer working with the crate in question."
+      - type: model-graded-closedqa
+        value: Each topic incudes the feature required for that feature as well as a short 1-2 sentence description
 
