@@ -1,175 +1,24 @@
+```markdown
+You will be provided with a piece of text written in Markdown format. Your task is to convert this Markdown text into Rust code. Follow these steps:
 
-You will be provided with documentation extracted from a crate on docs.rs. The input has been converted from HTML into markdown and may contain non-useful data. Your task is to summarize this text into a compact format that includes only the Rust code, any necessary Cargo features, and relevant comments. The comments should provide use cases for the code snippets. The output is intended to be used as context for an AI to help developers use the crate effectively.
+1. Identify the Markdown elements (e.g., headers, lists, code blocks).
+2. Translate each Markdown element into its equivalent Rust code structure.
+3. Ensure that the Rust code is syntactically correct and compiles without errors.
 
-## INSTRUCTIONS:
+Here is the Markdown text:
 
-1. Extract and include only the Rust code from the provided documentation.
-2. Specify any Cargo features required for the code.
-3. Add comments to explain the use cases of the code snippets.
-4. Ensure the output is compact and suitable for AI context usage.
-5. Exclude `use` statements and external crate imports.
-6. Remove redundant code duplication not relevant for the example, such as `#[derive(StructOpt)]`
-7. The output is optimized for context usage by an AI, so ensure the comments are clear and concise.
+"""
+# Example Header
 
-## EXAMPLE:
-
-For a crate like `clap`, the comments should include CLI option examples such as `--flag -f`. If a developer later asks how to define a named Unix flag CLI argument without any argument, the snippet associated with `--flag -f` would be used as context.
-
-## OUTPUT FORMAT:
+- Item 1
+- Item 2
 
 ```rust
-use <THE CRATE> // NOTE: only 'use' in the code example
-
-#[derive(StructOpt)] // NOTE: only 'derive' in the code example
-struct Opt { ... }
-
-// Desc: Specifying argument types
-// Usage: <opt> --age 12 --title James
-// Feature: flatten
-struct Opt {
-  // NOTE: More code here
-}
-
-// ...
-```
-
-## INPUT:
-
-```
-Specifying argument types
-There are three types of arguments that can be supplied to each (sub-)command:
-  * short (e.g. -h),
-  * long (e.g. --help)
-  * and positional.
-Like clap, structopt defaults to creating positional arguments.
-If you want to generate a long argument you can specify either long = $NAME, or just long to get a long flag generated using the field name. The generated casing style can be modified using the rename_all attribute. See the rename_all example for more.
-For short arguments, short will use the first letter of the field name by default, but just like the long option it’s also possible to use a custom letter through short = $LETTER.
-If an argument is renamed using name = $NAME any following call to short or long will use the new name.
-Attention: If these arguments are used without an explicit name the resulting flag is going to be renamed using kebab-case if the rename_all attribute was not specified previously. The same is true for subcommands with implicit naming through the related data structure.
-use structopt::StructOpt;
-
-#[derive(StructOpt)]
-#[structopt(rename_all = "kebab-case")]
-struct Opt {
-    /// This option can be specified with something like `--foo-option
-    /// value` or `--foo-option=value`
-    #[structopt(long)]
-    foo_option: String,
-
-    /// This option can be specified with something like `-b value` (but
-    /// not `--bar-option value`).
-    #[structopt(short)]
-    bar_option: String,
-
-    /// This option can be specified either `--baz value` or `-z value`.
-    #[structopt(short = "z", long = "baz")]
-    baz_option: String,
-
-    /// This option can be specified either by `--custom value` or
-    /// `-c value`.
-    #[structopt(name = "custom", long, short)]
-    custom_option: String,
-
-    /// This option is positional, meaning it is the first unadorned string
-    /// you provide (multiple others could follow).
-    my_positional: String,
-
-    /// This option is skipped and will be filled with the default value
-    /// for its type (in this case 0).
-    #[structopt(skip)]
-    skipped: u32,
-}
-
-Flattening
-It can sometimes be useful to group related arguments in a substruct, while keeping the command-line interface flat. In these cases you can mark a field as flatten and give it another type that derives StructOpt:
-#[derive(StructOpt)]
-struct Cmdline {
-    /// switch on verbosity
-    #[structopt(short)]
-    verbose: bool,
-    #[structopt(flatten)]
-    daemon_opts: DaemonOpts,
-}
-
-#[derive(StructOpt)]
-struct DaemonOpts {
-    /// daemon user
-    #[structopt(short)]
-    user: String,
-    /// daemon group
-    #[structopt(short)]
-    group: String,
-}
-In this example, the derived Cmdline parser will support the options -v, -u and -g.
-This feature also makes it possible to define a StructOpt struct in a library, parse the corresponding arguments in the main argument parser, and pass off this struct to a handler provided by that library.
-Custom string parsers
-If the field type does not have a FromStr implementation, or you would like to provide a custom parsing scheme other than FromStr, you may provide a custom string parser using parse(...) like this:
-use std::num::ParseIntError;
-use std::path::PathBuf;
-
-fn parse_hex(src: &str) -> Result<u32, ParseIntError> {
-    u32::from_str_radix(src, 16)
-}
-
-#[derive(StructOpt)]
-struct HexReader {
-    #[structopt(short, parse(try_from_str = parse_hex))]
-    number: u32,
-    #[structopt(short, parse(from_os_str))]
-    output: PathBuf,
-}
-There are five kinds of custom parsers:
-
-Environment variable fallback
-It is possible to specify an environment variable fallback option for an arguments so that its value is taken from the specified environment variable if not given through the command-line:
-
-
-#[derive(StructOpt)]
-struct Foo {
-    #[structopt(short, long, env = "PARAMETER_VALUE")]
-    parameter_value: String,
-}
-By default, values from the environment are shown in the help output (i.e. when invoking --help):
-```
-
-## OUTPUT:
-
-```rust
-use structopt::StructOpt;
-
-#[derive(StructOpt)]
-struct Opt { ... }
-
-// Desc: Specifying argument types
-// Usage: <opt> --age 12 --title James
-struct Opt {
-  #[structopt(short = "p", long)]
-  age: u32, // --age <value> OR -p <value>
-
-  #[structopt(name = "title", short)]
-  name: String, // -t value
-
-  #[structopt(skip)]
-  skipped: u32, // Defaults to 0
-}
-
-// Desc: lift arguments from attribute into self
-// Usage: <main> -u Linus -g Admin
-// Feature: flatten
-struct Main {
-  #[structopt(flatten)]
-  sub: Sub,
-}
-
-struct Sub {
-  #[structopt(short)]
-  user: String,
-
-  #[structopt(short)]
-  group: String,
+fn main() {
+    println!("Hello, world!");
 }
 ```
+"""
 
-## INPUT:
-
-{{docs}}
+Output the corresponding Rust code.
+```
