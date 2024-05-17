@@ -21,7 +21,7 @@ end
 echo "==> Downloading $url ..."
 curl -o "$html_file" "$url" --silent
 
-echo "==> Pre-processing $html_file by removing links ..."
+echo "==> Pre-processing $html_file by removing links and images ..."
 pandoc \
     -f html \
     -t html \
@@ -32,7 +32,7 @@ pandoc \
 echo "==> Converting $html_file to $md_file ..."
 pandoc --wrap=preserve \
     --lua-filter=remove-links.lua \
--o "$md_file" \
+    -o "$md_file" \
     -f html \
     -t markdown_strict-raw_html \
     --embed-resources=false \
