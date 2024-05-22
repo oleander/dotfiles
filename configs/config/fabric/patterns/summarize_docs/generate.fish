@@ -47,8 +47,15 @@ pandoc --wrap=preserve \
     -o "$md_file" \
     "$md_file"
 
-# echo "==> Summarizing $md_file ..."
-# cat "$md_file" | "$fabric" -p summarize_docs -m $model --temp $temp >"$rs_file"
+echo "==> Pre-processing $rs_file ..."
+pandoc --wrap=preserve \
+    -f markdown_strict-raw_html \
+    -t json \
+    -o "/tmp/out.json" \
+    "$md_file"
+
+echo "==> Summarizing $md_file ..."
+cat "$md_file" | "$fabric" -p summarize_docs -m $model --temp $temp >"$rs_file"
 
 set html_size (cat "$html_file" | wc -c)
 set md_size (cat "$md_file" | wc -c)

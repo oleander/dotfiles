@@ -43,3 +43,5 @@ function most() {
 }
 
 alias make='just'
+alias crate='context-extractor'
+alias help2='context-extractor'
