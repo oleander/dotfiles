@@ -1,0 +1,13 @@
+#!/usr/bin/env fish
+
+# join argv into a string
+set prompt (string join " " $argv)
+
+if test -z "$prompt"
+  echo "Usage: $argv[1] <prompt>"
+  exit 1
+end
+
+echo "Prompt: $prompt"
+
+~/.local/bin/fabric --modelm gpt-4o --text "$prompt" --pattern improve_prompt
