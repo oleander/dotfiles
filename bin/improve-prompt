@@ -31,4 +31,4 @@ echo "$prompt" > "$pattern_path/system.md"
 just --justfile /Users/linus/.dotfiles/Justfile install
 
 echo "You're now able to use the prompt with the name '$name'."
-
+echo "pbpaste | fabric --pattern $name --model gpt-4o"
