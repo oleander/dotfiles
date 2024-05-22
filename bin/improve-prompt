@@ -8,6 +8,27 @@ if test -z "$prompt"
   exit 1
 end
 
-echo "Prompt: $prompt"
+set prompt (~/.local/bin/fabric --model gpt-4o --text "$prompt" --pattern improve_prompt)
 
-~/.local/bin/fabric --modelm gpt-4o --text "$prompt" --pattern improve_prompt
+echo $prompt
+
+# check if they like if
+echo -n "Do you like it? [Y/n] "
+set answer (read)
+if test "$answer" = "n"
+  echo "Ok, I'll discard it."
+  exit 1
+end
+
+# name of the prompt
+echo -n "Name of the prompt: "
+set name (read)
+
+# save the prompt
+set pattern_path "/Users/linus/.dotfiles/configs/config/fabric/patterns/$name"
+mkdir -p "$pattern_path"
+echo "$prompt" > "$pattern_path/system.md"
+just --justfile /Users/linus/.dotfiles/Justfile install
+
+echo "You're now able to use the prompt with the name '$name'."
+
