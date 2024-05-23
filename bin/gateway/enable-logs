@@ -1,4 +1,0 @@
-#!env fish
-
-sshpass -p 11111111 ssh gateway podman start ntopng
-echo "Visit https://192.168.1.1:3001/"
