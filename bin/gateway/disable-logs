@@ -1,3 +1,0 @@
-#!env fish
-
-sshpass -p 11111111 ssh gateway podman stop ntopng

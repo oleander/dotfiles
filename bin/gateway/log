@@ -1,3 +1,0 @@
-#!env fish
-
-grc sshpass -p 11111111 ssh gateway tail -n 100 -f "/mnt/data/unifi-os/unifi-core/logs/*.log" /var/log/messages
