@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+
+git --git-dir=/Users/linus/Code/fabric/.git pull
+/Users/linus/.local/bin/fabric --update
+just --justfile /Users/linus/.dotfiles/Justfile install

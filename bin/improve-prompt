@@ -4,25 +4,21 @@
 set prompt (string join " " $argv)
 
 if test -z "$prompt"
-  echo "Usage: $argv[1] <prompt>"
-  exit 1
+    echo "Usage: $argv[1] <prompt>"
+    exit 1
 end
 
 set prompt (~/.local/bin/fabric --model gpt-4o --text "$prompt" --pattern improve_prompt)
 
 echo $prompt
 
-# check if they like if
-echo -n "Do you like it? [Y/n] "
-set answer (read)
-if test "$answer" = "n"
-  echo "Ok, I'll discard it."
-  exit 1
+set answer (read -P "Do you like it? [Y/n]: ")
+if test "$answer" = n
+    echo "Ok, I'll discard it."
+    exit 1
 end
 
-# name of the prompt
-echo -n "Name of the prompt: "
-set name (read)
+set name (read -P "Name of the prompt: ")
 
 # save the prompt
 set pattern_path "/Users/linus/.dotfiles/configs/config/fabric/patterns/$name"
