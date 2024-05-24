@@ -2,5 +2,5 @@
 
 ## Install
 
-1. `make`
+1. `just install`
 2. done
