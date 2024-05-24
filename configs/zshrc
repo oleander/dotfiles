@@ -41,11 +41,11 @@ function chostname() {
     fi
 }
 
-# local STATUS="[mini] %F{8}%~%{$reset_color%}"
-local STATUS="[$(chostname)] %F{8}%~%{$reset_color%}"
+local STATUS="[mini] %F{8}%~%{$reset_color%}"
+# local STATUS="[$(chostname)] %F{8}%~%{$reset_color%}"
 NEWLINE=$'\n'
-export PROMPT="$STATUS%F{reset_color} "
-export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%F{reset_color}'
+export PROMPT="$STATUS%{$reset_color%} "
+export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%{$reset_color%}'
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP

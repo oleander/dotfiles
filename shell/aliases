@@ -45,3 +45,8 @@ function most() {
 alias make='just'
 alias crate='context-extractor'
 alias help2='context-extractor'
+
+alias '??'='gh copilot suggest -t shell'
+alias 'git?'='gh copilot suggest -t git'
+alias 'gh?'='gh copilot suggest -t gh'
+alias 'explain'='gh copilot explain'
