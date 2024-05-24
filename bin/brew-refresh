@@ -31,8 +31,8 @@ done
 # espup update
 # rustup update
 ollama-update
-
 fabric-update
+mas upgrade
 
 echo -e "\033[0;32m=> Refresh complete @ $(date) ...\033[0m"
 
