@@ -1,0 +1,62 @@
+#!/usr/bin/env rust-script
+//! ```cargo
+//! [dependencies]
+//! dialoguer = "0.9.0"
+//! anyhow = "1.0.40"
+//! exec = "0.3.1"
+//! colored = "2.1.0"
+//! ```
+use std::env;
+use dialoguer::Confirm;
+use exec::Command;
+use anyhow::Result;
+use colored::*;
+
+fn main() -> Result<()> {
+  let args = env::args();
+  let args = args.collect::<Vec<String>>();
+  let args = args
+    .iter()
+    .skip(1)
+    .map(|s| s.as_str())
+    .collect::<Vec<&str>>();
+
+  let mut git = Command::new("git");
+  let git = git.arg("checkout");
+
+  if args.len() > 1 {
+    _ = git.args(&args[1..]).exec();
+  } else if args.len() == 1 && args[0] == "." {
+    if confirm("ALL FILES".red().bold().to_string().as_str()) {
+      _ = git.arg(".").exec();
+    } else {
+      eprintln!("Nothing was restored");
+    }
+  } else if args.len() == 1 {
+    let item = &args[0];
+    if confirm(item) {
+      _ = git.arg(item).exec();
+    } else {
+      eprintln!("Nothing was restored.");
+    }
+  } else {
+    eprintln!("Usage: gc <file> | gc . | gc <file> <file> ...");
+  }
+
+  Ok(())
+}
+
+fn confirm(item: &str) -> bool {
+  let question = "Are you sure you want to restore"
+    .green()
+    .bold()
+    .to_string();
+
+  let question = format!("{} {}?", question, item.blue().bold());
+
+  Confirm::new()
+    .with_prompt(question.as_str())
+    .default(false)
+    .interact()
+    .unwrap()
+}
