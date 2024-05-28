@@ -110,8 +110,8 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 # Load Zinit plugins
-zinit light zsh-users/zsh-completions
-zinit light "https://github.com/zsh-users/zsh-autosuggestions.git"
+# zinit light zsh-users/zsh-completions
+# zinit light "https://github.com/zsh-users/zsh-autosuggestions.git"
 zinit light "https://github.com/zsh-users/zsh-syntax-highlighting.git"
 
 # Completion path

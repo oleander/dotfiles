@@ -56,3 +56,6 @@
 	assistant-id = ""
 [gpg]
 	format = ssh
+[alias]
+	mergeno = merge --no-ff
+	merge = merge --no-ff
