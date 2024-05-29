@@ -1,93 +1,261 @@
-# Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
-
-# # Inserts a blank line between shell prompts
 # add_newline = true
 
-# # Replace the '❯' symbol in the prompt with '➜'
-# [character] # The name of the module we are configuring is 'character'
-# success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-
-# # Disable the package module, hiding it from the prompt completely
-# [package]
-# disabled = true
-
-
-# ~/.config/starship.toml
-
-# Use custom format
-right_format = "$git_status"
+# right_format = "$time"
+right_format = """$all"""
 format = """
-[mini](bold red) at [${directory}](fg:8)in [$git_branch](yellow)
-$all
+$directory$git_branch
+$character
 """
 
-# Inserts a blank line between shell prompts
-add_newline = true
-
 [character]
-success_symbol = "[➜](bold green)"
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
+vimcmd_symbol = "[<](bold green)"
 
-[git_branch]
-style = "yellow"
-format = "$branch"
+[time]
+disabled = false
+format = '[$time](dimmed blue)'
+
+[git_commit]
+# tag_symbol = ""
+
+
+format = "[$hash](dimmed green) "
+commit_hash_length = 6
+tag_disabled = true
+only_detached = false
 
 [git_status]
-conflicted = "⚔️ "
-ahead = "🏎️ 💨 ×${count} "
-behind = "🐢 ×${count} "
-diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count} "
-untracked = "🛤️  ×${count} "
-stashed = "📦 "
-modified = "📝 ×${count} "
-staged = "🗃️  ×${count} "
-renamed = "📛 ×${count} "
-deleted = "🗑️  ×${count} "
-style = "bright-white"
-format = "$all_status$ahead_behind"
+style = "dimmed red"
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
 
-# Right prompt configuration
-# [right_format]
-# format = """\
-# [${git_branch}](fg:yellow) \
-# [${git_commit_short}](fg:blue) \
-# [${git_status.ahead_count}](fg:cyan) \
-# [${git_status.behind_count}](fg:green) \
-# [${git_status.stashed_count}](fg:magenta)\
-# """
+[aws]
+symbol = "aws "
 
-# Directory configuration
-# [directory]
-# format = "[$path]($style)"
-# style = "fg:8"
+[azure]
+symbol = "az "
 
-# Git branch configuration
-# [git_branch]
-# symbol = ""
-# style = "yellow"
-# format = "$branch"
+[bun]
+symbol = "bun "
 
-# [git_status]
-# ahead = '⇡${count}'
-# diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-# behind = '⇣${count}'
+[c]
+symbol = "C "
 
-# Git commit hash configuration
-# [git_commit]
-# format = "$hash"
-# commit_hash_length = 8
+[cobol]
+symbol = "cobol "
 
-# Prompt configuration
-# local STATUS="[mini] %F{8}%~%{$reset_color%}"
-# NEWLINE=$'\n'
-# export PROMPT="$STATUS%{$reset_color%} "
-# export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%{$reset_color%}'
+[conda]
+symbol = "conda "
 
-# Git status configuration
-# format = "[$all_status]($style)"
-# style = "fg:cyan"
-# ahead_count = "⇡${count}"
-# behind_count = "⇣${count}"
-# stashed_count = "🔒${count}"
+[crystal]
+symbol = "cr "
 
-# Character configuration
+[cmake]
+symbol = "cmake "
+
+[daml]
+symbol = "daml "
+
+[dart]
+symbol = "dart "
+
+[deno]
+symbol = "deno "
+
+[dotnet]
+symbol = ".NET "
+
+[directory]
+read_only = " ro"
+fish_style_pwd_dir_length = 3
+
+[docker_context]
+symbol = ""
+disabled = true
+
+[elixir]
+symbol = "exs "
+
+[elm]
+symbol = "elm "
+
+[fennel]
+symbol = "fnl "
+
+[fossil_branch]
+symbol = "fossil "
+
+[gcloud]
+symbol = "gcp "
+
+[git_branch]
+symbol = ""
+# truncation_length = 10
+# truncation_symbol = "…"
+
+[gleam]
+symbol = "gleam "
+
+[golang]
+symbol = "go "
+
+[gradle]
+symbol = "gradle "
+
+[guix_shell]
+symbol = "guix "
+
+[hg_branch]
+symbol = "hg "
+
+[java]
+symbol = "java "
+
+[julia]
+symbol = "jl "
+
+[kotlin]
+symbol = "kt "
+
+[lua]
+symbol = "lua "
+
+[nodejs]
+symbol = "nodejs "
+disabled = true
+
+[memory_usage]
+symbol = "memory "
+
+[meson]
+symbol = "meson "
+
+[nats]
+symbol = "nats "
+
+[nim]
+symbol = "nim "
+
+[nix_shell]
+symbol = "nix "
+
+[ocaml]
+symbol = "ml "
+
+[opa]
+symbol = "opa "
+
+[os.symbols]
+AIX = "aix "
+Alpaquita = "alq "
+AlmaLinux = "alma "
+Alpine = "alp "
+Amazon = "amz "
+Android = "andr "
+Arch = "rch "
+Artix = "atx "
+CentOS = "cent "
+Debian = "deb "
+DragonFly = "dfbsd "
+Emscripten = "emsc "
+EndeavourOS = "ndev "
+Fedora = "fed "
+FreeBSD = "fbsd "
+Garuda = "garu "
+Gentoo = "gent "
+HardenedBSD = "hbsd "
+Illumos = "lum "
+Kali = "kali "
+Linux = "lnx "
+Mabox = "mbox "
+Macos = "mac "
+Manjaro = "mjo "
+Mariner = "mrn "
+MidnightBSD = "mid "
+Mint = "mint "
+NetBSD = "nbsd "
+NixOS = "nix "
+OpenBSD = "obsd "
+OpenCloudOS = "ocos "
+openEuler = "oeul "
+openSUSE = "osuse "
+OracleLinux = "orac "
+Pop = "pop "
+Raspbian = "rasp "
+Redhat = "rhl "
+RedHatEnterprise = "rhel "
+RockyLinux = "rky "
+Redox = "redox "
+Solus = "sol "
+SUSE = "suse "
+Ubuntu = "ubnt "
+Ultramarine = "ultm "
+Unknown = "unk "
+Void = "void "
+Windows = "win "
+
+[package]
+symbol = "pkg "
+
+[perl]
+symbol = "pl "
+
+[php]
+symbol = "php "
+
+[pijul_channel]
+symbol = "pijul "
+
+[pulumi]
+symbol = "pulumi "
+
+[purescript]
+symbol = "purs "
+
+[python]
+symbol = "py "
+
+[quarto]
+symbol = "quarto "
+
+[raku]
+symbol = "raku "
+
+[ruby]
+symbol = "rb "
+disabled = true
+
+[rust]
+symbol = "rs "
+
+[scala]
+symbol = "scala "
+
+[spack]
+symbol = "spack "
+
+[solidity]
+symbol = "solidity "
+
+[status]
+symbol = "[x](bold red) "
+
+[sudo]
+symbol = "sudo "
+
+[swift]
+symbol = "swift "
+
+[typst]
+symbol = "typst "
+
+[terraform]
+symbol = "terraform "
+
+[zig]
+symbol = "zig "
