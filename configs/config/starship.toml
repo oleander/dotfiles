@@ -1,7 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
-# add_newline = true
 
-# right_format = "$time"
 right_format = """$all"""
 format = """
 $directory$git_branch
@@ -18,9 +16,6 @@ disabled = false
 format = '[$time](dimmed blue)'
 
 [git_commit]
-# tag_symbol = ""
-
-
 format = "[$hash](dimmed green) "
 commit_hash_length = 6
 tag_disabled = true
