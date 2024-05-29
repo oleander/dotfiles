@@ -39,10 +39,10 @@ function chostname() {
 }
 
 # Prompt configuration
-local STATUS="[mini] %F{8}%~%{$reset_color%}"
-NEWLINE=$'\n'
-export PROMPT="$STATUS%{$reset_color%} "
-export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%{$reset_color%}'
+# local STATUS="[mini] %F{8}%~%{$reset_color%}"
+# NEWLINE=$'\n'
+# export PROMPT="$STATUS%{$reset_color%} "
+# export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%{$reset_color%}'
 
 # Zsh options
 setopt NO_BG_NICE  # don't nice background tasks
@@ -110,9 +110,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 # Load Zinit plugins
-# zinit light zsh-users/zsh-completions
-# zinit light "https://github.com/zsh-users/zsh-autosuggestions.git"
-zinit light "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
 
 # Completion path
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
@@ -126,7 +126,8 @@ source "$HOME/.cargo/env"
 # Overcommit settings
 export OVERCOMMIT_DISABLE="1"
 
-# SCCache settings
+# SCCache setting
+export CACHE_DIR="$HOME/.cache"
 export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
@@ -144,3 +145,8 @@ if [ -f "/Users/linus/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/lin
 
 # Additional SCCache settings
 export SCCACHE_DIRECT=true
+
+export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
+export STARSHIP_CACHE="/Users/linus/.starship/cache"
+eval "$(starship init zsh)"
+

@@ -1,0 +1,93 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# # Inserts a blank line between shell prompts
+# add_newline = true
+
+# # Replace the '❯' symbol in the prompt with '➜'
+# [character] # The name of the module we are configuring is 'character'
+# success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# # Disable the package module, hiding it from the prompt completely
+# [package]
+# disabled = true
+
+
+# ~/.config/starship.toml
+
+# Use custom format
+right_format = "$git_status"
+format = """
+[mini](bold red) at [${directory}](fg:8)in [$git_branch](yellow)
+$all
+"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[character]
+success_symbol = "[➜](bold green)"
+
+[git_branch]
+style = "yellow"
+format = "$branch"
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️ 💨 ×${count} "
+behind = "🐢 ×${count} "
+diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count} "
+untracked = "🛤️  ×${count} "
+stashed = "📦 "
+modified = "📝 ×${count} "
+staged = "🗃️  ×${count} "
+renamed = "📛 ×${count} "
+deleted = "🗑️  ×${count} "
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+# Right prompt configuration
+# [right_format]
+# format = """\
+# [${git_branch}](fg:yellow) \
+# [${git_commit_short}](fg:blue) \
+# [${git_status.ahead_count}](fg:cyan) \
+# [${git_status.behind_count}](fg:green) \
+# [${git_status.stashed_count}](fg:magenta)\
+# """
+
+# Directory configuration
+# [directory]
+# format = "[$path]($style)"
+# style = "fg:8"
+
+# Git branch configuration
+# [git_branch]
+# symbol = ""
+# style = "yellow"
+# format = "$branch"
+
+# [git_status]
+# ahead = '⇡${count}'
+# diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+# behind = '⇣${count}'
+
+# Git commit hash configuration
+# [git_commit]
+# format = "$hash"
+# commit_hash_length = 8
+
+# Prompt configuration
+# local STATUS="[mini] %F{8}%~%{$reset_color%}"
+# NEWLINE=$'\n'
+# export PROMPT="$STATUS%{$reset_color%} "
+# export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%{$reset_color%}'
+
+# Git status configuration
+# format = "[$all_status]($style)"
+# style = "fg:cyan"
+# ahead_count = "⇡${count}"
+# behind_count = "⇣${count}"
+# stashed_count = "🔒${count}"
+
+# Character configuration
