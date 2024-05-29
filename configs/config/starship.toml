@@ -5,6 +5,9 @@ format = """
 $directory$git_branch
 $character
 """
+[cmd_duration]
+style = "dimmed yellow"
+format = '[took $duration]($style) '
 
 [character]
 success_symbol = "[>](bold green)"
@@ -90,8 +93,6 @@ symbol = "gcp "
 
 [git_branch]
 symbol = ""
-# truncation_length = 10
-# truncation_symbol = "…"
 
 [gleam]
 symbol = "gleam "
@@ -119,6 +120,7 @@ symbol = "kt "
 
 [lua]
 symbol = "lua "
+disabled = true
 
 [nodejs]
 symbol = "nodejs "
