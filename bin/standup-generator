@@ -1,0 +1,43 @@
+#!/usr/bin/env fish
+
+# Calculate the since_date based on the day of the week
+if test (date +%u) -eq 1
+    set since_date (date -u -v-3d -v14H -v0M -v0S +"%Y-%m-%dT%H:%M:%SZ")
+else
+    set since_date (date -u -v-1d -v14H -v0M -v0S +"%Y-%m-%dT%H:%M:%SZ")
+end
+
+# For simplicity, set since_date to 1 week ago
+# set since_date (date -u -v-1w +"%Y-%m-%dT%H:%M:%SZ")
+set author oleander
+
+# Function to get PRs
+function pulls --description "Get PRs"
+    set map "{number,updatedAt,body}"
+    set jq ".[] | select(.updatedAt > \"$since_date\") | $map"
+    gh pr list --author $author --json number,updatedAt,body --jq "$jq"
+end
+
+# Function to get comments for a PR
+function comments --description "Get comments for a PR"
+    set map "{author: .author.login, body: .body, createdAt: .createdAt}"
+    set jq ".comments[] | select(.createdAt > \"$since_date\") | $map"
+    gh pr view "$argv" --json comments --jq "$jq"
+end
+
+function diff --description "Get the diff of a PR"
+    gh pr diff "$argv"
+end
+
+echo "==> Fetching PRs since $since_date for $author..."
+for pr in (pulls)
+    set pr_number (echo $pr | jq -r '.number')
+    set pr_body (echo $pr | jq -r '.body')
+    set comment (comments $pr_number)
+    set git_diff (diff $pr_number)
+    set markdown "$markdown\n## PR $pr_number: $pr_body\n\n$comment\n\n\`\`\`\n$git_diff\n\`\`\`\n"
+end
+
+echo "==> Asking OpenAI for a summary..."
+echo
+fabric -p create_standup -t "$markdown" --model gpt-4o | mdcat - --no-pager
