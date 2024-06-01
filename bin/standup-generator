@@ -8,8 +8,9 @@
 # end
 
 # For simplicity, set since_date to 1 week ago
-set since_date (date -u -v-2w +"%Y-%m-%dT%H:%M:%SZ")
+set since_date (date -u -v-1w +"%Y-%m-%dT%H:%M:%SZ")
 set author oleander
+echo "==> Fetching PRs since $since_date for $author..."
 
 # Function to get PRs
 function pulls --description "Get PRs"

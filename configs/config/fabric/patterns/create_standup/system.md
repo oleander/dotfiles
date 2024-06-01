@@ -13,3 +13,4 @@ Summarize the key points from PR comments for standup notes.
 Draft standup notes including tasks completed yesterday, today, and planned tasks.
 Provide a brief update on current work based on the provided diff and comments.
 
+The meeting mostly constsis of non-tech people so dont talk about code to much.
