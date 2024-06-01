@@ -1,44 +1,52 @@
 #!/usr/bin/env fish
 
+# Enable fish tracing
 set -x fish_trace 1
 
-function check_changes
-    git diff --exit-code Cargo.* >/dev/null
-    return $status
+# fish exit on error
+function on_exit --on-event fish_exit
+    set_color red
+    echo "Exiting script due to error"
+    echo "Will restore the Cargo.* files to their original state"
+    set_color normal
+
+    git restore Cargo.*
+    git checkout Cargo.*
 end
 
-# Check that nothing is staged for Cargo.*
-# if git diff --cached --exit-code Cargo.* >/dev/null
-#     echo "Can not run the script with staged changes in Cargo.*"
-#     echo "Please commit or unstage the changes and try again."
-#     exit 1
-# end
+# Ensure Cargo isn't changed
+if not git diff --exit-code Cargo.* >/dev/null
+    set_color red
+    echo "==> Cannot run the script with changes in Cargo.*"
+    echo "==> Please commit or stash the changes and try again."
+    set_color normal
+    exit 1
+end
 
-# Initialize loop
-set changes_detected 1
+# Initialize loop variables
 set loop_count 0
 
-while test $changes_detected -eq 1
+while true
     set_color yellow
-    echo "Running loop $loop_count"
+    echo "==> Running loop $loop_count"
     set_color normal
 
     cargo features prune
     cargo udeps --all-targets
     cargo upgrade
     cargo update
+    cargo test
+    cargo build
 
-    # Check for changes
-    if check_changes
-        set changes_detected 0
-    else
-        git add Cargo.*
+    if git diff --exit-code Cargo.* >/dev/null
+        break
     end
 
+    git add Cargo.*
     set loop_count (math $loop_count + 1)
 end
 
-# enable green color
+# Display loop completion message
 set_color green
-echo "Ran the loop $loop_count times!"
+echo "==> Ran the loop $loop_count times!"
 set_color normal
