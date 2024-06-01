@@ -1,0 +1,44 @@
+#!/usr/bin/env fish
+
+set -x fish_trace 1
+
+function check_changes
+    git diff --exit-code Cargo.* >/dev/null
+    return $status
+end
+
+# Check that nothing is staged for Cargo.*
+# if git diff --cached --exit-code Cargo.* >/dev/null
+#     echo "Can not run the script with staged changes in Cargo.*"
+#     echo "Please commit or unstage the changes and try again."
+#     exit 1
+# end
+
+# Initialize loop
+set changes_detected 1
+set loop_count 0
+
+while test $changes_detected -eq 1
+    set_color yellow
+    echo "Running loop $loop_count"
+    set_color normal
+
+    cargo features prune
+    cargo udeps --all-targets
+    cargo upgrade
+    cargo update
+
+    # Check for changes
+    if check_changes
+        set changes_detected 0
+    else
+        git add Cargo.*
+    end
+
+    set loop_count (math $loop_count + 1)
+end
+
+# enable green color
+set_color green
+echo "Ran the loop $loop_count times!"
+set_color normal
