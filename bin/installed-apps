@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+plutil -p /Library/Receipts/InstallHistory.plist | colordiff -u /dev/null -
