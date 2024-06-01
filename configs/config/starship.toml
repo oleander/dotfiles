@@ -5,7 +5,7 @@
 add_newline = true
 
 # Right prompt: !⇡12 v2.6.10 e07e72 00:05:27
-right_format = "$cmd_duration$git_status$all$git_commit$time"
+right_format = "$battery$cmd_duration$git_status$all$git_commit$time"
 
 # Left prompt: ~/.dotfiles on master
 format = "$directory$git_branch$line_break$character"
