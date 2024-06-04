@@ -4,13 +4,14 @@
 set -x fish_trace 1
 
 # fish exit on error
-function on_exit --on-event fish_exit
+# Only on exit not 0
+function on_exit --on-signal signal
     set_color red
     echo "Exiting script due to error"
     echo "Will restore the Cargo.* files to their original state"
     set_color normal
 
-    git restore Cargo.*
+    git reset Cargo.*
     git checkout Cargo.*
 end
 
@@ -50,3 +51,5 @@ end
 set_color green
 echo "==> Ran the loop $loop_count times!"
 set_color normal
+git reset Cargo.*
+exit 0
