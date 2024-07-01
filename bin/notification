@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# if no arguments are passed, display usage
+if [ $# -eq 0 ]; then
+    echo "Usage: notification <message>"
+    exit 1
+fi
+
+# Display a notification
+osascript -e "display notification \"$*\""

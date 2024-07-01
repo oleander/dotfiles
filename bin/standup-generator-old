@@ -21,15 +21,15 @@
 # The rust CLI should allow for the date to be manually set using words like 'yesterday', 'today', 'last week', etc. This will allow the user to specify the date range for the standup notes.
 
 # Calculate the since_date based on the day of the week
-# if test (date +%u) -eq 1
-#     set since_date (date -u -v-3d -v14H -v0M -v0S +"%Y-%m-%dT%H:%M:%SZ")
-# else
-#     set since_date (date -u -v-1d -v14H -v0M -v0S +"%Y-%m-%dT%H:%M:%SZ")
-# end
+if test (date +%u) -eq 1
+    set since_date (date -u -v-3d -v14H -v0M -v0S +"%Y-%m-%dT%H:%M:%SZ")
+else
+    set since_date (date -u -v-1d -v14H -v0M -v0S +"%Y-%m-%dT%H:%M:%SZ")
+end
 
 # For simplicity, set since_date to 1 week ago
 # Only for testing
-set since_date (date -u -v-1w +"%Y-%m-%dT%H:%M:%SZ")
+# set since_date (date -u -v-1w +"%Y-%m-%dT%H:%M:%SZ")
 set author oleander
 echo "==> Fetching PRs since $since_date for $author..."
 
