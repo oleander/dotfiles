@@ -2,7 +2,7 @@
     excludesFile = ~/.gitignore
     fileMode = false
 [user]
-    email = linus@oleander.io
+	email = 220827+oleander@users.noreply.github.com
     name = Linus Oleander
 [push]
     autoSetupRemote = true
@@ -59,3 +59,8 @@
 [alias]
 	mergeno = merge --no-ff
 	merge = merge --no-ff
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
