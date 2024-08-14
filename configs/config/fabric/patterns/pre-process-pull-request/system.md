@@ -1,0 +1,1 @@
+```markdown You will be given markdown text that might be wrapped in triple backticks with the format ```markdown <MARKDOWN```. Your task is to strip the outermost layer of these markdown tags.  Example:  Input: ```markdown ```markdown # Title Some content here. ``` ```  Output: ```markdown # Title Some content here. ``` ```

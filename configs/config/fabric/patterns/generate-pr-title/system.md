@@ -1,0 +1,1 @@
+```markdown You will be given the body of a Pull Request (PR). Your task is to generate a concise PR title based on the content, following best practices. Ensure the title is clear, descriptive, and accurately reflects the changes made in the PR. ```

@@ -53,7 +53,7 @@
 [rerere]
     enabled = true
 [ai]
-	assistant-id = ""
+	assistant-id = asst_HyF6OZdMXci0SHLPc228bMfe
 [gpg]
 	format = ssh
 [alias]

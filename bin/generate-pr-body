@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Hold on while generating a PR body..."
+
+git diff main.. | fabric -p write_pull-request -m gpt-4o-mini | fabric -p pre-process-pull-request -m gpt-4o-mini
