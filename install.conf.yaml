@@ -3,9 +3,14 @@
       relink: true
       create: true
       force: true
-      dirs: true
 
 - clean: ~/
+
+- create:
+    - ~/.config/fabric/patterns
+    - ~/.config/karabiner
+    - ~/.config/nvim
+    - ~/.cargo
 
 - link:
     ~/:
