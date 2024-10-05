@@ -3,6 +3,7 @@
       relink: true
       create: true
       force: true
+      dirs: true
 
 - clean: ~/
 
