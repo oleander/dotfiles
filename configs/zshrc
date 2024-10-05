@@ -150,10 +150,24 @@ export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
 
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
+#export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export PATH="/opt/homebrew/opt/ruby@3.0/bin:$PATH"
+
+eval "$(dip console)"
+
+export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
+#export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
+#export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
+export PATH="/opt/homebrew/opt/ruby@3.1/bin:$PATH"
+
+export LDFLAGS="-L/opt/homebrew/opt/ruby@3.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/ruby@3.1/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby@3.1/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
