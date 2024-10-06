@@ -18,3 +18,5 @@
       glob: true
       prefix: "."
       exclude: [iterm]
+    ~/.gitconfig:
+      path: configs/gitconfig
