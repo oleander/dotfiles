@@ -55,7 +55,7 @@
 [ai]
 	assistant-id = asst_HyF6OZdMXci0SHLPc228bMfe
 [gpg]
-	format = ssh
+    format = ssh
 [alias]
 	mergeno = merge --no-ff
 	merge = merge --no-ff
