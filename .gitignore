@@ -1,3 +1,8 @@
+configs/config/iterm2/AppSupport
+configs/config/git-ai/config.ini
+configs/ssh/id_*
+configs/config/github-copilot/apps.json
+
 atom/packages
 atom/dev/packages
 atom/storage
