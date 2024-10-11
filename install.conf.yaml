@@ -2,21 +2,25 @@
     link:
       relink: true
       create: true
-      force: true
-
-- clean: ~/
+    shell:
+      stdout: true
 
 - create:
-    - ~/.config/fabric/patterns
-    - ~/.config/karabiner
-    - ~/.config/nvim
-    - ~/.cargo
+    ~/.ssh:
+      mode: 0700
+    ~/.config:
+    ~/.cargo:
+
+- clean: [~/, ~/.cargo, ~/.config]
 
 - link:
     ~/:
-      path: configs/**/*
+      path: configs/*
       glob: true
+      create: true
+      force: true
       prefix: "."
-      exclude: [iterm]
-    ~/.gitconfig:
-      path: configs/gitconfig
+      exclude: [configs/manual]
+
+- shell:
+  - curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
