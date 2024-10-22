@@ -51,6 +51,5 @@ alias 'git?'='gh copilot suggest -t git'
 alias 'gh?'='gh copilot suggest -t gh'
 alias 'explain'='gh copilot explain'
 
-alias standup-generator='standup'
 alias v='view-github-project'
 alias f='format-new-files-since-branch'
