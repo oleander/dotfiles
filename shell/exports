@@ -16,7 +16,6 @@ export ZSH_DOTENV_PROMPT=false
 export GITHUB_TOKEN="$(gh auth token)"
 
 export PATH="$HOME/.dotfiles/bin:$PATH"
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
 RUBY_BASE="$(brew --prefix ruby@3.1)"
 export PATH="$RUBY_BASE/bin:$PATH"
