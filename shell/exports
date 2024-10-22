@@ -23,3 +23,5 @@ export PATH="$RUBY_BASE/bin:$PATH"
 export LDFLAGS="-L$RUBY_BASE/lib"
 export CPPFLAGS="-I$RUBY_BASE/include"
 export PKG_CONFIG_PATH="$RUBY_BASE/lib/pkgconfig"
+
+export GIT_MERGE_AUTOEDIT=no
