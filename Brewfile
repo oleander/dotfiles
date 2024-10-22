@@ -14,17 +14,35 @@ brew "git"
 brew "jq"
 brew "just"
 brew "curl"
-brew "mas"
 brew "starship"
 brew "rbenv"
-brew "trash-cli"
 brew "tree"
 brew "zsh"
-brew "m-cli"
 brew "neovim"
-brew "ruby@3.1"
 brew "rustup"
 brew "sccache"
+brew "ruby@3.1"
+
+if OS.mac?
+  brew "trash-cli"
+  brew "m-cli"
+  brew "mas"
+
+  cask "alfred"
+  cask "betterdisplay"
+  cask "cleanmymac"
+  cask "iterm2"
+  cask "jan"
+  cask "jiggler"
+  cask "karabiner-elements"
+
+  mas "Bear", id: 1091189122
+  mas "Dashlane", id: 517914548
+  mas "Developer", id: 640199958
+  mas "Little Snitch Mini", id: 1629008763
+  mas "Magnet", id: 441258766
+  mas "Xcode", id: 497799835
+end
 
 # Dependencies
 brew "libtool"
@@ -37,26 +55,6 @@ brew "libiconv"
 brew "lzlib"
 brew "librdkafka"
 brew "zlib"
-
-cask "alfred"
-cask "betterdisplay"
-cask "cleanmymac"
-cask "github"
-cask "iterm2"
-cask "jan"
-cask "jiggler"
-cask "karabiner-elements"
-cask "opera"
-cask "slack"
-cask "visual-studio-code"
-cask "whatsapp"
-
-mas "Bear", id: 1091189122
-mas "Dashlane", id: 517914548
-mas "Developer", id: 640199958
-mas "Little Snitch Mini", id: 1629008763
-mas "Magnet", id: 441258766
-mas "Xcode", id: 497799835
 
 vscode "1yib.rust-bundle"
 vscode "4ops.terraform"
