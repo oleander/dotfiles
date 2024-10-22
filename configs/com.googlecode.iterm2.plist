@@ -801,11 +801,11 @@
 			<key>Semantic History</key>
 			<dict>
 				<key>action</key>
-				<string>editor</string>
+				<string>command</string>
 				<key>editor</key>
-				<string>com.microsoft.VSCode</string>
+				<string>com.github.atom</string>
 				<key>text</key>
-				<string></string>
+				<string>/usr/local/bin/cursor --goto \1:\2</string>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>

@@ -16,3 +16,4 @@ zsh/secret
 Brewfile.lock.json
 zsh/
 Gemfile.lock
+configs/config/fabric/
