@@ -1,0 +1,7 @@
+#!env fish
+
+git diff --name-status master HEAD |
+  grep "^A" |
+  cut -f2 |
+  grep .rb |
+  xargs bundle exec rubocop -A

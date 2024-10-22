@@ -141,3 +141,6 @@ export SCCACHE_DIRECT=true
 export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
+
+GEMSDIR=$(gem environment gemdir)/bin
+export PATH="$GEMSDIR:$PATH"
