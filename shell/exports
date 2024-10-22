@@ -14,23 +14,10 @@ export PATH=$HOME/.mint/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_INSTALL_UPGRADE=1
-# export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
-
-# Part of M0 Sense MCUn
-export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/expat/bin:$PATH"
-export PATH=$PATH:/opt/riscv-toolchain/xuantie/bin
-export PATH=$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH
-# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
-# export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PYTHONCOERCECLOCALE=0
 
-# . ~/.nrf.sh
-
-# dotenv will not ask if we want to load current .env
 export ZSH_DOTENV_PROMPT=false
 export GITHUB_TOKEN=$(gh auth token)

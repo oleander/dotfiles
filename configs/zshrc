@@ -38,12 +38,6 @@ function chostname() {
     fi
 }
 
-# Prompt configuration
-# local STATUS="[mini] %F{8}%~%{$reset_color%}"
-# NEWLINE=$'\n'
-# export PROMPT="$STATUS%{$reset_color%} "
-# export RPROMPT='%F{yellow}$(git_current_branch)%F{blue} $(git_prompt_short_sha)%F{green}$(git_commits_behind)%F{cyan}$(git_commits_ahead) %F{magenta}$(parse_git_dirty)%{$reset_color%}'
-
 # Zsh options
 setopt NO_BG_NICE  # don't nice background tasks
 setopt NO_HUP
@@ -86,8 +80,6 @@ export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 
 # Zinit installation and plugin loading
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -149,26 +141,3 @@ export SCCACHE_DIRECT=true
 export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
-
-# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
-#export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#export PATH="/opt/homebrew/opt/ruby@3.0/bin:$PATH"
-
-
-export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
-#export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
-#export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
-#export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
-export PATH="/opt/homebrew/opt/ruby@3.1/bin:$PATH"
-
-export LDFLAGS="-L/opt/homebrew/opt/ruby@3.1/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/ruby@3.1/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby@3.1/lib/pkgconfig"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-export PATH="/opt/homebrew/Cellar/ruby@3.1/3.1.6/bin:$PATH"
-# eval "$(dip console)"
