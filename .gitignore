@@ -17,3 +17,4 @@ Brewfile.lock.json
 zsh/
 Gemfile.lock
 configs/config/fabric/
+configs/config/.DS_Store
