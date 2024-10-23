@@ -11,6 +11,15 @@
 	defaultBranch = main
 [safe]
     directory = /opt/homebrew
+	directory = /workspaces/.dotfiles/dotbot
+	directory = /workspaces/.dotfiles/dotbot
+	directory = /workspaces/.dotfiles
+	directory = /workspaces/.dotfiles
+	directory = /workspaces/.dotfiles/dotbot
+	directory = /workspaces/.dotfiles
+	directory = /workspaces/.dotfiles/dotbot
+	directory = /workspaces/.dotfiles
+	directory = /workspaces/.dotfiles/dotbot
 [pull]
     rebase = true
 [color]
@@ -29,7 +38,7 @@
 [format]
     pretty = oneline
 [credential]
-    helper = cache --timeout=3600
+	helper = "!f() { /home/vscode/.cursor-server/bin/949de58bd3d85d530972cac2dffc4feb9eee1e40/node /tmp/vscode-remote-containers-c1058926-e370-428d-bec0-90e398cd26cf.js git-credential-helper $*; }; f"
 [help]
     autocorrect = 20
 [gc]
