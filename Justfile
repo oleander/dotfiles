@@ -13,3 +13,5 @@ rvm-install:
     rbenv install latest && rbenv init
 install-oh-my-zsh:
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+brew-bundle-install:
+    brew bundle --clean --all
