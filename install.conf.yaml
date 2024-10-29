@@ -2,25 +2,28 @@
     link:
       relink: true
       create: true
-    shell:
-      stdout: true
-
-- create:
-    ~/.ssh:
-      mode: 0700
-    ~/.config:
-    ~/.cargo:
-
-- clean: [~/, ~/.cargo, ~/.config]
+      force: true
 
 - link:
-    ~/:
-      path: configs/**/*
-      glob: true
-      create: true
-      prefix: "."
-      force: true
-      exclude: [configs/manual]
-# - shell:
-  # - curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  # - defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+    ~/.config/cargo/config.toml: configs/config/cargo/config.toml
+    ~/.config/fish/config.fish: configs/config/fish/config.fish
+    ~/.config/fish/fish_variables: configs/config/fish/fish_variables
+    ~/.config/gh-copilot/config.yml: configs/config/gh-copilot/config.yml
+    ~/.config/gh/config.yml: configs/config/gh/config.yml
+    ~/.config/gh/hosts.yml: configs/config/gh/hosts.yml
+    ~/.config/github-copilot/versions.json: configs/config/github-copilot/versions.json
+    ~/.config/jgit/config: configs/config/jgit/config
+    ~/.config/karabiner/karabiner.json: configs/config/karabiner/karabiner.json
+    ~/.config/nvim/init.vim: configs/config/nvim/init.vim
+    ~/.config/starship.toml: configs/config/starship.toml
+    ~/.gemrc: configs/gemrc
+    ~/.gitconfig: configs/gitconfig
+    ~/.gitignore: configs/gitignore
+    ~/.hushlogin: configs/hushlogin
+    ~/.irbrc: configs/irbrc
+    ~/.rspec: configs/rspec
+    ~/.rubocop.yml: configs/rubocop.yml
+    ~/.rustfmt.toml: configs/rustfmt.toml
+    ~/.rustup/settings.toml: configs/rustup/settings.toml
+    ~/.ssh/known_hosts: configs/ssh/known_hosts
+    ~/.zshrc: configs/zshrc
