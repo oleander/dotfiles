@@ -4,10 +4,10 @@
 # Configuration options
 add_newline = true
 
-# Right prompt: battery, command duration, git status, git commit, time
+# Right prompt: battery, command duration, git commit, time
 right_format = "$battery$cmd_duration$git_commit$time"
 
-# Left prompt: directory and git branch
+# Left prompt: directory, git branch, git status
 format = "$directory$git_branch$git_status$line_break$character"
 
 # Command duration configuration
@@ -38,14 +38,21 @@ only_detached = false
 [git_branch]
 style = "bold blue"
 symbol = ""
+format = "on [$branch]($style)"
 
 # Git status configuration
 [git_status]
-format = '[${conflicted_count}${untracked_count}?${modified_count} ✚${staged_count} $ahead_behind]($style)'
 style = "bold red"
-ahead = '⇡${count} '
-behind = '⇣${count} '
-stashed = '📦'
+format = " [$all_status$ahead_behind]($style)"
+conflicted = "✖"
+staged = "+${count}"
+modified = "!${count}"
+untracked = "?${count}"
+stashed = ""
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕${count}"
+up_to_date = ""
 
 # Directory configuration
 [directory]
