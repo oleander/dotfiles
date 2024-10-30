@@ -4,71 +4,90 @@
 # Configuration options
 add_newline = true
 
-# Right prompt: !⇡12 v2.6.10 e07e72 00:05:27
-right_format = "$battery$cmd_duration$git_status$all$git_commit$time"
+# Right prompt: battery, command duration, git status, git commit, time
+right_format = "$battery$cmd_duration$git_status$git_commit$time"
 
-# Left prompt: ~/.dotfiles on master
+# Left prompt: directory and git branch
 format = "$directory$git_branch$line_break$character"
 
-# Command duration configuration: took 3s
+# Command duration configuration
 [cmd_duration]
 style = "dimmed purple"
 format = "[took $duration]($style) "
 
 # Character configuration
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
+success_symbol = "[➜](bold green) "
+error_symbol = "[➜](bold red) "
+vimcmd_symbol = "[λ](bold yellow) "
 
-# Time configuration: 20:01:12
+# Time configuration
 [time]
 disabled = false
 format = "[$time](dimmed blue)"
 
-# Git commit configuration: 3a4ed2
+# Git commit configuration
 [git_commit]
-format = "[$hash](dimmed green) "
+format = "[$hash]($style) "
 commit_hash_length = 6
+style = "dimmed green"
 tag_disabled = true
 only_detached = false
 
-# Git branch configuration: main
+# Git branch configuration
 [git_branch]
 style = "bold blue"
 symbol = ""
 
-# Git status configuration: !⇡10
+# Git status configuration
 [git_status]
-format = "([$all_status$ahead_behind]($style) )"
-style = "dimmed red"
+format = '[${conflicted_count} ${untracked_count} ?${modified_count} ✚${staged_count} $ahead_behind]($style)'
+style = "bold red"
 ahead = '⇡${count}'
 behind = '⇣${count}'
-stashed = ""
+stashed = '📦'
 
-# Directory configuration: ~/.dotfiles
+# Directory configuration
 [directory]
+truncation_length = 3
+truncation_symbol = "…/"
 read_only = " ro"
 style = "bold green"
-fish_style_pwd_dir_length = 5
 
-# Ruby configuration: v2.6.10
+# Ruby configuration
 [ruby]
-symbol = "rb "
-format = "[($version)]($style) "
-style = "dimmed yellow"
+symbol = "💎 "
+format = "[$symbol$version]($style) "
+style = "dimmed red"
 
-# Rust configuration: v1.80.0-nightly
+# Rust configuration
 [rust]
-format = "[($version)]($style) "
-style = "dimmed yellow"
-symbol = "rs "
+symbol = "🦀 "
+format = "[$symbol$version]($style) "
+style = "dimmed red"
 
+# Python configuration
+[python]
+symbol = "🐍 "
+format = "[$symbol$version]($style) "
+style = "dimmed blue"
+
+# Node.js configuration
 [nodejs]
+disabled = false
+symbol = "⬢ "
+format = "[$symbol$version]($style) "
+style = "dimmed green"
+
+# Disable unnecessary modules
+[package]
 disabled = true
 
 [docker_context]
 disabled = true
 
-[package]
-disabled = true
+# Status configuration
+[status]
+format = '[✖ $status]($style) '
+symbol = ''
+style = 'bold red'
