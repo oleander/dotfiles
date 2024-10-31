@@ -1,0 +1,50 @@
+name: Verify Dotfiles Setup
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-verification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl git
+
+      - name: Run install.sh script
+        run: |
+          chmod +x install.sh
+          ./install.sh
+
+      - name: Verify symbolic links
+        run: |
+          for link in $(yq e '.link | keys | .[]' install.conf.yaml); do
+            if [ ! -L "$link" ]; then
+              echo "Symbolic link $link is missing"
+              exit 1
+            fi
+          done
+
+      - name: Verify configuration files
+        run: |
+          files_to_check=(
+            "configs/config/fish/config.fish"
+            "configs/config/nvim/init.vim"
+            "configs/zshrc"
+          )
+          for file in "${files_to_check[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Configuration file $file is missing"
+              exit 1
+            fi
+          done
