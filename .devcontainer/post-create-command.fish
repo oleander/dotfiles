@@ -40,4 +40,18 @@ log "Running Dotbot..."
     log (set_color red)"Error running Dotbot. Please check your Dotbot configuration."(set_color normal)
 end
 
+# Verification steps to ensure the devcontainer configuration is correct
+log "Verifying devcontainer configuration..."
+set expected_files (
+    "/workspace/.config/fish/config.fish"
+    "/workspace/.config/nvim/init.vim"
+    "/workspace/.zshrc"
+)
+for file in $expected_files
+    if test ! -f $file
+        log (set_color red)"Expected file $file is missing"(set_color normal)
+        exit 1
+    end
+end
+
 log (set_color green)"Setup complete!"(set_color normal)
