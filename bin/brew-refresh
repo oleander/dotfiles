@@ -30,8 +30,8 @@ done
 # cargo install-update -a
 # espup update
 # rustup update
-fabric-update
 ollama-update
+fabric-update
 mas upgrade
 
 echo -e "\033[0;32m=> Refresh complete @ $(date) ...\033[0m"
