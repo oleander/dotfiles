@@ -23,12 +23,11 @@ function notify_user
 end
 
 function monitor_github_actions
-    # Get the current branch name
-    set branch_name (git rev-parse --abbrev-ref HEAD)
-
-    set last_checked_run_id ""
-
     while true
+        # Get the current branch name
+        set branch_name (git rev-parse --abbrev-ref HEAD)
+
+        set last_checked_run_id ""
         # Get the latest run ID and its status for the branch
         set run_info (gh run list --branch $branch_name --limit 1 --json databaseId,status --jq '.[0] | "\(.databaseId) \(.status)"' 2>/dev/null)
 
@@ -88,6 +87,7 @@ function monitor_github_actions
     end
 end
 
+clear
 echo "Monitoring GitHub Actions..."
 # Start monitoring GitHub Actions
 monitor_github_actions
