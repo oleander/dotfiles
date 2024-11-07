@@ -5,6 +5,8 @@
 # the user of the success or failure of the GitHub Actions run. Notifications
 # are clickable and will direct the user to the GitHub page of the run.
 
+set wait_time 3
+
 function notify_user
     set status_message $argv[1]
     set run_url $argv[2]
@@ -32,7 +34,7 @@ function monitor_github_actions
 
         if test -z "$run_info"
             # No runs found, wait silently
-            sleep 10
+            sleep $wait_time
             continue
         end
 
@@ -44,7 +46,7 @@ function monitor_github_actions
         # Check if we've already processed this run
         if test "$current_run_id" = "$last_checked_run_id"
             # No new runs, wait silently
-            sleep 10
+            sleep $wait_time
             continue
         end
 
@@ -57,7 +59,7 @@ function monitor_github_actions
             printf "Monitoring run ID %s..." $current_run_id
 
             # Run 'gh run watch' for the run ID and wait until it completes, suppressing its output
-            gh run watch --exit-status $current_run_id
+            gh run watch --exit-status $current_run_id --interval $wait_time
 
             # Capture the exit status
             set exit_status $status
@@ -78,7 +80,7 @@ function monitor_github_actions
             end
         else
             # Run is already completed, wait silently
-            sleep 10
+            sleep $wait_time
         end
     end
 end
