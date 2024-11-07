@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-# This script monitors the GitHub Actions run for the current branch using the 
+# This script monitors the GitHub Actions runs for the current branch using the 
 # command 'gh run watch --exit-status'. It sends macOS notifications to inform 
 # the user of the success or failure of the GitHub Actions run. Notifications
 # are clickable and will direct the user to the GitHub page of the run.
@@ -24,28 +24,43 @@ function monitor_github_actions
     # Get the current branch name
     set branch_name (git rev-parse --abbrev-ref HEAD)
 
-    # Get the latest run ID for the branch
-    set run_id (gh run list --branch $branch_name --limit 1 --json databaseId --jq '.[0].databaseId')
+    while true
+        # Get the latest run ID and its status for the branch
+        set run_info (gh run list --branch $branch_name --limit 1 --json databaseId,status --jq '.[0] | "\(.databaseId) \(.status)"')
 
-    if test -z "$run_id"
-        echo "No recent runs found for branch $branch_name"
-        exit 1
-    end
+        if test -z "$run_info"
+            echo "No runs found for branch $branch_name. Waiting for a new run..."
+            sleep 10
+            continue
+        end
 
-    # Run 'gh run watch' for the run ID and wait until it completes
-    gh run watch --exit-status $run_id
+        # Split run_info into run_id and status
+        set run_info_array (string split " " $run_info)
+        set current_run_id $run_info_array[1]
+        set current_status $run_info_array[2]
 
-    # Capture the exit status
-    set exit_status $status
+        # If the latest run is not completed, watch it
+        if test "$current_status" = "in_progress" -o "$current_status" = "queued" -o "$current_status" = "waiting" -o "$current_status" = "requested"
+            echo "Monitoring run ID $current_run_id..."
+            # Run 'gh run watch' for the run ID and wait until it completes
+            gh run watch --exit-status $current_run_id
 
-    # Get the URL of the run
-    set run_url (gh run view $run_id --json url --jq '.url')
+            # Capture the exit status
+            set exit_status $status
 
-    # Check the exit status and send notification
-    if test $exit_status -eq 0
-        notify_user "Success! Your GitHub Actions run has completed." $run_url
-    else
-        notify_user "Failure! Your GitHub Actions run has failed." $run_url
+            # Get the URL of the run
+            set run_url (gh run view $current_run_id --json url --jq '.url')
+
+            # Check the exit status and send notification
+            if test $exit_status -eq 0
+                notify_user "Success! Your GitHub Actions run has completed." $run_url
+            else
+                notify_user "Failure! Your GitHub Actions run has failed." $run_url
+            end
+        else
+            echo "No in-progress runs found. Waiting for a new run..."
+            sleep 10
+        end
     end
 end
 
