@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
-# This script monitors the GitHub Actions runs for the current branch using the 
-# command 'gh run watch --exit-status'. It sends macOS notifications to inform 
+# This script monitors the GitHub Actions runs for the current branch using the
+# command 'gh run watch --exit-status'. It sends macOS notifications to inform
 # the user of the success or failure of the GitHub Actions run. Notifications
 # are clickable and will direct the user to the GitHub page of the run.
 
@@ -17,7 +17,7 @@ function notify_user
     end
 
     # Display a macOS notification with a click action to open the URL
-    terminal-notifier -message "$status_message" -title "GitHub Actions Status" -open "$run_url" -sound "Submarine"
+    terminal-notifier -message "$status_message" -title "GitHub Actions Status" -open "$run_url" -sound Submarine
 end
 
 function monitor_github_actions
@@ -52,12 +52,12 @@ function monitor_github_actions
         set last_checked_run_id $current_run_id
 
         # If the latest run is not completed, watch it
-        if test "$current_status" = "in_progress" -o "$current_status" = "queued" -o "$current_status" = "waiting" -o "$current_status" = "requested"
+        if test "$current_status" = in_progress -o "$current_status" = queued -o "$current_status" = waiting -o "$current_status" = requested
             # Output a message without adding a new line
             printf "Monitoring run ID %s..." $current_run_id
 
             # Run 'gh run watch' for the run ID and wait until it completes, suppressing its output
-            gh run watch --exit-status $current_run_id > /dev/null 2>&1
+            gh run watch --exit-status $current_run_id
 
             # Capture the exit status
             set exit_status $status
@@ -85,4 +85,3 @@ end
 
 # Start monitoring GitHub Actions
 monitor_github_actions
-
