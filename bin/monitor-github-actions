@@ -1,0 +1,54 @@
+#!/usr/bin/env fish
+
+# This script monitors the GitHub Actions run for the current branch using the 
+# command 'gh run watch --exit-status'. It sends macOS notifications to inform 
+# the user of the success or failure of the GitHub Actions run. Notifications
+# are clickable and will direct the user to the GitHub page of the run.
+
+function notify_user
+    set status_message $argv[1]
+    set run_url $argv[2]
+
+    # Use terminal-notifier for clickable notifications
+    # If terminal-notifier is not installed, install it via Homebrew
+    if not type -q terminal-notifier
+        echo "Installing terminal-notifier..."
+        brew install terminal-notifier
+    end
+
+    # Display a macOS notification with a click action to open the URL
+    terminal-notifier -message "$status_message" -title "GitHub Actions Status" -open "$run_url" -sound "Submarine"
+end
+
+function monitor_github_actions
+    # Get the current branch name
+    set branch_name (git rev-parse --abbrev-ref HEAD)
+
+    # Get the latest run ID for the branch
+    set run_id (gh run list --branch $branch_name --limit 1 --json databaseId --jq '.[0].databaseId')
+
+    if test -z "$run_id"
+        echo "No recent runs found for branch $branch_name"
+        exit 1
+    end
+
+    # Run 'gh run watch' for the run ID and wait until it completes
+    gh run watch --exit-status $run_id
+
+    # Capture the exit status
+    set exit_status $status
+
+    # Get the URL of the run
+    set run_url (gh run view $run_id --json url --jq '.url')
+
+    # Check the exit status and send notification
+    if test $exit_status -eq 0
+        notify_user "Success! Your GitHub Actions run has completed." $run_url
+    else
+        notify_user "Failure! Your GitHub Actions run has failed." $run_url
+    end
+end
+
+# Start monitoring GitHub Actions
+monitor_github_actions
+
