@@ -24,12 +24,14 @@ function monitor_github_actions
     # Get the current branch name
     set branch_name (git rev-parse --abbrev-ref HEAD)
 
+    set last_checked_run_id ""
+
     while true
         # Get the latest run ID and its status for the branch
-        set run_info (gh run list --branch $branch_name --limit 1 --json databaseId,status --jq '.[0] | "\(.databaseId) \(.status)"')
+        set run_info (gh run list --branch $branch_name --limit 1 --json databaseId,status --jq '.[0] | "\(.databaseId) \(.status)"' 2>/dev/null)
 
         if test -z "$run_info"
-            echo "No runs found for branch $branch_name. Waiting for a new run..."
+            # No runs found, wait silently
             sleep 10
             continue
         end
@@ -39,26 +41,43 @@ function monitor_github_actions
         set current_run_id $run_info_array[1]
         set current_status $run_info_array[2]
 
+        # Check if we've already processed this run
+        if test "$current_run_id" = "$last_checked_run_id"
+            # No new runs, wait silently
+            sleep 10
+            continue
+        end
+
+        # Update the last checked run ID
+        set last_checked_run_id $current_run_id
+
         # If the latest run is not completed, watch it
         if test "$current_status" = "in_progress" -o "$current_status" = "queued" -o "$current_status" = "waiting" -o "$current_status" = "requested"
-            echo "Monitoring run ID $current_run_id..."
+            # Output a message without adding a new line
+            printf "Monitoring run ID %s..." $current_run_id
+
             # Run 'gh run watch' for the run ID and wait until it completes
-            gh run watch --exit-status $current_run_id
+            gh run watch --exit-status $current_run_id ^/dev/null
 
             # Capture the exit status
             set exit_status $status
 
             # Get the URL of the run
-            set run_url (gh run view $current_run_id --json url --jq '.url')
+            set run_url (gh run view $current_run_id --json url --jq '.url' 2>/dev/null)
+
+            # Clear the previous line
+            printf "\r"
 
             # Check the exit status and send notification
             if test $exit_status -eq 0
+                echo "Run ID $current_run_id completed successfully."
                 notify_user "Success! Your GitHub Actions run has completed." $run_url
             else
+                echo "Run ID $current_run_id failed."
                 notify_user "Failure! Your GitHub Actions run has failed." $run_url
             end
         else
-            echo "No in-progress runs found. Waiting for a new run..."
+            # Run is already completed, wait silently
             sleep 10
         end
     end
