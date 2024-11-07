@@ -56,8 +56,8 @@ function monitor_github_actions
             # Output a message without adding a new line
             printf "Monitoring run ID %s..." $current_run_id
 
-            # Run 'gh run watch' for the run ID and wait until it completes
-            gh run watch --exit-status $current_run_id ^/dev/null
+            # Run 'gh run watch' for the run ID and wait until it completes, suppressing its output
+            gh run watch --exit-status $current_run_id > /dev/null 2>&1
 
             # Capture the exit status
             set exit_status $status
