@@ -83,5 +83,6 @@ function monitor_github_actions
     end
 end
 
+echo "Monitoring GitHub Actions..."
 # Start monitoring GitHub Actions
 monitor_github_actions
