@@ -55,7 +55,7 @@ function monitor_github_actions
 
         # If the latest run is not completed, watch it
         if test "$current_status" = in_progress -o "$current_status" = queued -o "$current_status" = waiting -o "$current_status" = requested
-            # Clear the screen
+            # Clear the terminal
             clear
 
             # Output a message without adding a new line
