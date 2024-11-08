@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  ./scripts/linux.sh
+  ./script/linux
 fi
 
 zsh -c "source ~/.zshrc"
