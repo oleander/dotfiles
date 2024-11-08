@@ -24,3 +24,4 @@ jobs:
       - name: Run docker container
         run: |
           devcontainer build --buildkit auto --workspace-folder .
+          devcontainer exec --workspace-folder . ls
