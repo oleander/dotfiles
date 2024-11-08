@@ -6,4 +6,6 @@ WORKDIR /root/.dotfiles
 COPY . .
 RUN ./scripts/linux.sh
 
+VOLUME /root
+
 SHELL ["/bin/zsh"]

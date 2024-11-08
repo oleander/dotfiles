@@ -2,7 +2,7 @@
 
 # Install necessary packages
 sudo apt-get update
-sudo apt-get install -y zsh curl git python3-pip zsh autojump
+sudo apt-get install -y zsh curl git python3-pip zsh autojump vim
 
 # Install Python packages
 pip3 install dotbot
