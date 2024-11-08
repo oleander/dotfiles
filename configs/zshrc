@@ -1,13 +1,10 @@
-# Setting environment variables
-export ROOT=$(realpath ../)
-
 # Source custom shell scripts
-source "$ROOT/shell/functions"
-source "$ROOT/shell/exports"
-source "$ROOT/shell/aliases"
+source "./shell/functions"
+source "./shell/exports"
+source "./shell/aliases"
 
 # Zsh and Oh My Zsh configuration
-export ZSH_CUSTOM="$ROOT/zsh"
+export ZSH_CUSTOM="zsh"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Oh My Zsh settings
