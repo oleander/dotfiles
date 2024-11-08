@@ -8,3 +8,4 @@ curl -sS https://starship.rs/install.sh | sh -s -- --yes
 pip3 install dotbot
 ln -s "$(pwd)" ~/.dotfiles
 dotbot -c install.conf.yaml
+source "$HOME/.zshrc"

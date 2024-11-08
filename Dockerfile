@@ -7,5 +7,5 @@ WORKDIR /root/.dotfiles
 COPY . .
 RUN ./install.sh
 
-SHELL ["/bin/zsh", "-i", "-c"]
+# SHELL ["/bin/zsh", "-i", "-c"]
 
