@@ -38,7 +38,7 @@
 [format]
     pretty = oneline
 [credential]
-	helper = "!f() { /home/vscode/.cursor-server/bin/b1e87884330fc271d5eb589e368c35f14e76dec0/node /tmp/vscode-remote-containers-e38e1a7c-0d28-49b2-b488-084f0775d0b5.js git-credential-helper $*; }; f"
+	helper = "!f() { /home/vscode/.cursor-server/bin/b1e87884330fc271d5eb589e368c35f14e76dec0/node /tmp/vscode-remote-containers-586e092c-54d1-4c97-8c06-7ddee34cfe94.js git-credential-helper $*; }; f"
 [help]
     autocorrect = 20
 [gc]
