@@ -74,10 +74,6 @@ zle -N newtab
 # Disable correctness
 unsetopt correct_all
 
-# PATH settings
-export PATH="$(brew --prefix binutils)/bin:$PATH"
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-
 # Zinit installation and plugin loading
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"

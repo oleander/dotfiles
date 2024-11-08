@@ -15,3 +15,7 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 # Docker integration
 export PATH="/Users/linus/.docker/bin:$PATH"
+
+# PATH settings
+export PATH="$(brew --prefix binutils)/bin:$PATH"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
