@@ -1,16 +1,27 @@
 #!/bin/bash
 
-# Install necessary packages
-sudo apt-get update
-sudo apt-get install -y zsh curl git python3-pip zsh autojump vim
+# Update packages
+apt-get update
 
-# Install Python packages
-pip3 install dotbot
+# Install Zsh and set it as the default shell
+apt-get install -y zsh
+chsh -s $(which zsh)
 
-# Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Install Starship
+# Install curl and Starship prompt
+apt-get install -y curl
 curl -sS https://starship.rs/install.sh | sh -s -- --yes
 
+# Download Antigen for Zsh
+curl -L git.io/antigen >~/.antigen.zsh
+
+# Install additional packages
+apt-get install -y git autojump vim
+
+# Install dotbot
+pip3 install dotbot
+
+# Run dotbot installation
 dotbot -c install.conf.yaml
+
+# Source the Zsh configuration
+zsh -c "source ~/.zshrc"
