@@ -1,0 +1,17 @@
+# MacOS-specific configurations
+
+# Setting environment variables
+export PATH="/opt/homebrew/bin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
+# MacOS-specific commands and settings
+alias rm=trash
+alias flush='dscacheutil -flushcache'
+alias update='sudo /usr/libexec/locate.updatedb'
+
+# Initialize rbenv
+eval "$(rbenv init -)"
+export PATH="/opt/homebrew/sbin:$PATH"
+
+# Docker integration
+export PATH="/Users/linus/.docker/bin:$PATH"
