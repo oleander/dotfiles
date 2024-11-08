@@ -8,5 +8,8 @@
     ],
     "containerEnv": {
         "HISTFILE": "$HOME/.zsh_history"
+    },
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
     }
 }
