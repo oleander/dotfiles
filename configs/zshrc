@@ -1,7 +1,45 @@
 # Source custom shell scripts
-source "./shell/functions"
-source "./shell/exports"
-source "./shell/aliases"
+# source "./shell/exports"
+export VISUAL=nvim
+export EDITOR=nvim
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PAGER="less -R"
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
+export ZSH_CUSTOM=$ROOT/zsh
+export PATH=$HOME/.cargo/bin:$PATH
+
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PYTHONCOERCECLOCALE=0
+
+export ZSH_DOTENV_PROMPT=false
+
+if [[ -d "$HOME/.local/bin" ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# check if gh is installed
+if [[ -x "$(command -v gh)" ]]; then
+  export GITHUB_TOKEN="$(gh auth token)"
+fi
+
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
+# check if brew is installed
+if [[ -x "$(command -v brew)" ]]; then
+  if [[ -d "$(brew --prefix ruby@3.1)" ]]; then
+    RUBY_BASE="$(brew --prefix ruby@3.1)"
+    export PATH="$RUBY_BASE/bin:$PATH"
+    export LDFLAGS="-L$RUBY_BASE/lib"
+    export CPPFLAGS="-I$RUBY_BASE/include"
+    export PKG_CONFIG_PATH="$RUBY_BASE/lib/pkgconfig"
+  fi
+fi
+
+export GIT_MERGE_AUTOEDIT=no
+
 
 # Zsh and Oh My Zsh configuration
 export ZSH_CUSTOM="zsh"
@@ -90,16 +128,16 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+# zinit light-mode for \
+#     zdharma-continuum/zinit-annex-as-monitor \
+#     zdharma-continuum/zinit-annex-bin-gem-node \
+#     zdharma-continuum/zinit-annex-patch-dl \
+#     zdharma-continuum/zinit-annex-rust
 
-# Load Zinit plugins
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
+# # Load Zinit plugins
+# zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-syntax-highlighting
 
 # Locale settings
 export LC_ALL=en_US.UTF-8
@@ -144,3 +182,61 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     source ~/.dotfiles/configs/zshrc.linux
 fi
+
+
+alias cr='cd ~/Code'
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias update='sudo /usr/libexec/locate.updatedb'
+alias dot='code ~/.dotfiles'
+alias rm=trash
+alias history='fc -il 1'
+alias vim=nvim
+alias sudo='sudo '
+alias h='history | grep -m 30 -i'
+alias i='issue'
+alias c='cheat'
+
+# git
+alias gp='git-push'
+alias gpp='git pull'
+alias gs='git status --ignore-submodules -s -b'
+alias gd='git diff --stat'
+alias gb='git branch'
+alias gl='git-log'
+alias gdd='git diff'
+alias gg='commitment'
+alias gm='gm.fish'
+alias gc='git-verify-checkout'
+alias ggg='git add . && git commit --no-edit'
+alias ggm='git commit --no-edit'
+
+# ruby
+alias bb='bundle exec'
+alias b='bundle install'
+
+alias files='git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- $(pwd) | sort'
+alias fix='rubocop-fix'
+
+alias gateway-ssh='~/.dotfiles/bin/gateway/ssh'
+alias gateway-log='~/.dotfiles/bin/gateway/log'
+
+alias vim='nvim'
+alias vi='nvim'
+
+function most() {
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n25
+}
+
+alias make='just'
+alias crate='context-extractor'
+alias help2='context-extractor'
+
+alias '??'='gh copilot suggest -t shell'
+alias 'git?'='gh copilot suggest -t git'
+alias 'gh?'='gh copilot suggest -t gh'
+alias 'explain'='gh copilot explain'
+
+alias v='view-github-project'
+alias f='format-new-files-since-branch'
+alias code='cursor'
