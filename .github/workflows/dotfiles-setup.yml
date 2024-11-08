@@ -24,7 +24,7 @@ jobs:
       - name: Run install.sh script
         run: |
           chmod +x install.sh
-          ./install.sh
+          sudo ./install.sh
           zsh -c "source ~/.zshrc"
 
       - name: Verify symbolic links
