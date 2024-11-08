@@ -11,6 +11,8 @@ RUN chsh -s $(which zsh)
 
 RUN apt-get install -y curl
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
+# Used in both macos and linux
+RUN curl -L git.io/antigen > ~/.antigen.zsh
 
 RUN apt-get install -y git autojump vim
 
