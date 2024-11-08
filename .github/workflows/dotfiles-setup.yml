@@ -2,11 +2,7 @@ name: Verify Dotfiles Setup
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
 
 jobs:
   setup-verification:
@@ -16,12 +12,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
 
-      - name: Run docker container
-        run: |
-          docker build -t dotfiles .
-          docker run -t dotfiles ls
+      - name: Set up devcontainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Build devcontainer
+        run: devcontainer build --workspace-folder .
+
+      - name: Run devcontainer
+        run: devcontainer up --workspace-folder .
+
+      - name: Verify dotfiles setup
+        run: devcontainer exec --workspace-folder . ls

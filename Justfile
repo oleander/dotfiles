@@ -19,3 +19,6 @@ build:
     docker build -t dotfiles .
 run: build
     docker run -ti -v "$(pwd)":/root/.dotfiles -v ~/.zsh_history:/root/.zsh_history:rw dotfiles zsh
+
+devcontainer:
+    devcontainer build --buildkit auto --workspace-folder .
