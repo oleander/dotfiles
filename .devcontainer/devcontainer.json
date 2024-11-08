@@ -1,8 +1,8 @@
 {
     "name": "Oleander Dev Container",
     "image": "mcr.microsoft.com/vscode/devcontainers/python:latest",
-    "remoteUser": "vscode",
     "onCreateCommand": "./install.sh",
+    "remoteUser": "vscode",
     "mounts": [
         "source=projectname-bashhistory,target=/commandhistory,type=volume"
     ],
