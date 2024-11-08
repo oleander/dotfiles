@@ -2,4 +2,4 @@
 
 ## Install
 
-`./install.sh`
+`scripts/install`
