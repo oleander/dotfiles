@@ -2,11 +2,7 @@ name: Verify Dotfiles Setup
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
 
 jobs:
   setup-verification:
