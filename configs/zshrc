@@ -152,14 +152,14 @@ export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
 
 # Pipx path
-export PATH="/Users/linus/.local/bin:$PATH"
-if [ -f "/Users/linus/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/linus/.config/fabric/fabric-bootstrap.inc"; fi
+export PATH="$HOME/.local/bin:$PATH"
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
 # Additional SCCache settings
 export SCCACHE_DIRECT=true
 
-export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
-export STARSHIP_CACHE="/Users/linus/.starship/cache"
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+export STARSHIP_CACHE="$HOME/.starship/cache"
 eval "$(starship init zsh)"
 
 # Rebuild Zsh completion cache
