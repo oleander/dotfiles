@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/vscode/devcontainers/python:latest
+FROM mcr.microsoft.com/vscode/devcontainers/base:latest
 
 VOLUME /root
 
