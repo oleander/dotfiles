@@ -2,4 +2,4 @@
 
 ## Install
 
-`scripts/install`
+`script/install`
