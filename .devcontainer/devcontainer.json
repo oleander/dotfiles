@@ -1,15 +1,12 @@
 {
-    "name": "Ubuntu AMD64",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": "..",
-    },
-    "postCreateCommand": "echo 'source /workspaces/.dotfiles/shell/exports' >> ~/.bashrc && echo 'source /workspaces/.dotfiles/shell/aliases' >> ~/.bashrc && echo 'HISTFILE=$HOME/.bash_history' >> $HOME/.bashrc",
+    "name": "Oleander Dev Container",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:latest",
+    "postCreateCommand": "./install.sh",
     "remoteUser": "vscode",
     "mounts": [
         "source=projectname-bashhistory,target=/commandhistory,type=volume"
     ],
     "containerEnv": {
-        "HISTFILE": "$HOME/.bash_history"
+        "HISTFILE": "$HOME/.zsh_history"
     }
 }
