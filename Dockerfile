@@ -13,8 +13,8 @@ RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
 RUN apt-get install -y git autojump vim
 
 RUN pip3 install dotbot
+COPY . .
+RUN dotbot -c install.conf.yaml
 
 SHELL ["/bin/zsh"]
 
-COPY scripts/entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
