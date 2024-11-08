@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.11
 
 VOLUME /root
+ENV TERM xterm-256color
 
 WORKDIR /root/.dotfiles
 
