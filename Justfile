@@ -15,3 +15,7 @@ install-oh-my-zsh:
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 brew-bundle-install:
     brew bundle --clean --all
+build:
+    docker build -t dotfiles .
+run: build
+    docker run -ti -v "$(pwd)":/root/.dotfiles -v ~/.zsh_history:/root/.zsh_history:rw dotfiles zsh

@@ -1,13 +1,46 @@
-# Setting environment variables
-export ROOT=$HOME/.dotfiles
+export VISUAL=nvim
+export EDITOR=nvim
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PAGER="less -R"
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
+export ZSH_CUSTOM=$ROOT/zsh
+export PATH=$HOME/.cargo/bin:$PATH
 
-# Source custom shell scripts
-source ~/.dotfiles/shell/functions
-source ~/.dotfiles/shell/exports
-source ~/.dotfiles/shell/aliases
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PYTHONCOERCECLOCALE=0
+
+export ZSH_DOTENV_PROMPT=false
+
+if [[ -d "$HOME/.local/bin" ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# check if gh is installed
+if [[ -x "$(command -v gh)" ]]; then
+  export GITHUB_TOKEN="$(gh auth token)"
+fi
+
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
+# check if brew is installed
+if [[ -x "$(command -v brew)" ]]; then
+  if [[ -d "$(brew --prefix ruby@3.1)" ]]; then
+    RUBY_BASE="$(brew --prefix ruby@3.1)"
+    export PATH="$RUBY_BASE/bin:$PATH"
+    export LDFLAGS="-L$RUBY_BASE/lib"
+    export CPPFLAGS="-I$RUBY_BASE/include"
+    export PKG_CONFIG_PATH="$RUBY_BASE/lib/pkgconfig"
+  fi
+fi
+
+export GIT_MERGE_AUTOEDIT=no
+
 
 # Zsh and Oh My Zsh configuration
-export ZSH_CUSTOM="$HOME/.dotfiles/zsh"
+export ZSH_CUSTOM="zsh"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Oh My Zsh settings
@@ -16,7 +49,7 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 [ -z "$TERM" ] && export TERM=xterm-256color
 plugins=(colored-man-pages colorize autojump profiles dotenv)
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # Colors
 autoload -U colors
@@ -55,10 +88,15 @@ setopt APPEND_HISTORY  # adds history
 setopt INC_APPEND_HISTORY  # adds history incrementally and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record duplicates in history
 setopt HIST_REDUCE_BLANKS
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-REPORTTIME=10  # print elapsed time when more than 10 seconds
+unsetopt HIST_SAVE_BY_COPY
+setopt HIST_FCNTL_LOCK
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt appendhistory # Append new history lines to the history file
+setopt sharehistory # Share history across all sessions
+
+export REPORTTIME=5 # Print elapsed time when more than 5 seconds
 
 autoload -U compinit
 compinit
@@ -74,10 +112,6 @@ zle -N newtab
 # Disable correctness
 unsetopt correct_all
 
-# PATH settings
-export PATH="$(brew --prefix binutils)/bin:$PATH"
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-
 # Zinit installation and plugin loading
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -92,25 +126,21 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+# zinit light-mode for \
+#     zdharma-continuum/zinit-annex-as-monitor \
+#     zdharma-continuum/zinit-annex-bin-gem-node \
+#     zdharma-continuum/zinit-annex-patch-dl \
+#     zdharma-continuum/zinit-annex-rust
 
-# Load Zinit plugins
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
-
-# Completion path
-fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+# # Load Zinit plugins
+# zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-syntax-highlighting
 
 # Locale settings
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PYTHONUTF8=1
-source "$HOME/.cargo/env"
 
 # Overcommit settings
 export OVERCOMMIT_DISABLE="1"
@@ -120,9 +150,6 @@ export CACHE_DIR="$HOME/.cache"
 export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
-
-# Initialize rbenv
-eval "$(rbenv init -)"
 
 # Pipx path
 export PATH="/Users/linus/.local/bin:$PATH"
@@ -135,8 +162,17 @@ export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
 
-GEMSDIR=$(gem environment gemdir)/bin
-export PATH="$GEMSDIR:$PATH"
+# Rebuild Zsh completion cache
+autoload -Uz compinit && compinit
+
+if [ ! -f "$HOME/.antigen.zsh" ]; then
+    curl -L git.io/antigen > "$HOME/.antigen.zsh"
+fi
+source "$HOME/.antigen.zsh"
+antigen use oh-my-zsh
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
 
 # Source OS-specific configurations
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -144,3 +180,61 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     source ~/.dotfiles/configs/zshrc.linux
 fi
+
+
+alias cr='cd ~/Code'
+alias dd='cd ~/Desktop'
+alias flush='dscacheutil -flushcache'
+alias update='sudo /usr/libexec/locate.updatedb'
+alias dot='code ~/.dotfiles'
+alias rm=trash
+alias history='fc -il 1'
+alias vim=nvim
+alias sudo='sudo '
+alias h='history | grep -m 30 -i'
+alias i='issue'
+alias c='cheat'
+
+# git
+alias gp='git-push'
+alias gpp='git pull'
+alias gs='git status --ignore-submodules -s -b'
+alias gd='git diff --stat'
+alias gb='git branch'
+alias gl='git-log'
+alias gdd='git diff'
+alias gg='commitment'
+alias gm='gm.fish'
+alias gc='git-verify-checkout'
+alias ggg='git add . && git commit --no-edit'
+alias ggm='git commit --no-edit'
+
+# ruby
+alias bb='bundle exec'
+alias b='bundle install'
+
+alias files='git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- $(pwd) | sort'
+alias fix='rubocop-fix'
+
+alias gateway-ssh='~/.dotfiles/bin/gateway/ssh'
+alias gateway-log='~/.dotfiles/bin/gateway/log'
+
+alias vim='nvim'
+alias vi='nvim'
+
+function most() {
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n25
+}
+
+alias make='just'
+alias crate='context-extractor'
+alias help2='context-extractor'
+
+alias '??'='gh copilot suggest -t shell'
+alias 'git?'='gh copilot suggest -t git'
+alias 'gh?'='gh copilot suggest -t gh'
+alias 'explain'='gh copilot explain'
+
+alias v='view-github-project'
+alias f='format-new-files-since-branch'
+alias code='cursor'
