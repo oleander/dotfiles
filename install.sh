@@ -1,8 +1,9 @@
-# #!/bin/bash -e
+#!/bin/bash -e
 
-# if ! command -v brew &>/dev/null; then
-#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# fi
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  chmod +x scripts/linux.sh
+  ./scripts/linux.sh
+  exit 0
+fi
 
-# brew bundle install
-# dotbot -c install.conf.yaml
+dotbot -c install.conf.yaml
