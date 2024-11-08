@@ -15,4 +15,6 @@ RUN apt-get install -y git autojump vim
 RUN pip3 install dotbot
 
 SHELL ["/bin/zsh"]
-ENTRYPOINT entrypoint.sh
+
+COPY scripts/entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
