@@ -132,6 +132,9 @@ export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
 
+if [ ! -f ~/.antigen.zsh ]; then
+    curl -L git.io/antigen > ~/.antigen.zsh
+fi
 source ~/.antigen.zsh
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
