@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Update packages
 apt-get update
