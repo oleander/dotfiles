@@ -9,3 +9,4 @@ pip3 install dotbot
 ln -s "$(pwd)" ~/.dotfiles
 dotbot -c install.conf.yaml
 sudo chsh -s "$(command -v zsh)"
+
