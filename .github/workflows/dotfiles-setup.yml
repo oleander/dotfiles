@@ -23,8 +23,11 @@ jobs:
       - name: Set up devcontainer CLI
         run: npm install -g @devcontainers/cli
 
-      - name: Run docker container
-        run: |
-          devcontainer build --buildkit auto --workspace-folder .
-          devcontainer up --workspace-folder .
-          devcontainer exec --workspace-folder . ls
+      - name: Build devcontainer
+        run: devcontainer build --workspace-folder .
+
+      - name: Run devcontainer
+        run: devcontainer up --workspace-folder .
+
+      - name: Verify dotfiles setup
+        run: devcontainer exec --workspace-folder . ls
