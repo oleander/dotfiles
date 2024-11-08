@@ -17,6 +17,7 @@ RUN apt-get install -y git autojump vim
 RUN pip3 install dotbot
 COPY . .
 RUN dotbot -c install.conf.yaml
-RUN zsh -c "source ~/.zshrc"
 
+RUN zsh -c "source ~/.zshrc"
 SHELL ["/bin/zsh"]
+
