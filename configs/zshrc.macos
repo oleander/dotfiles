@@ -27,3 +27,6 @@ eval "$(rbenv init -)"
 
 GEMSDIR=$(gem environment gemdir)/bin
 export PATH="$GEMSDIR:$PATH"
+
+# Completion path
+fpath=("/opt/homebrew/share/zsh/site-functions" $fpath)
