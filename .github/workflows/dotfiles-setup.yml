@@ -24,7 +24,7 @@ jobs:
       - name: Run docker container
         run: |
           docker build -t dotfiles .
-          docker run -ti dotfiles zsh
+          docker run -ti dotfiles ls
 
       - name: Verify symbolic links
         run: |
