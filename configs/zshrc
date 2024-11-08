@@ -55,10 +55,13 @@ setopt APPEND_HISTORY  # adds history
 setopt INC_APPEND_HISTORY  # adds history incrementally and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record duplicates in history
 setopt HIST_REDUCE_BLANKS
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-REPORTTIME=10  # print elapsed time when more than 10 seconds
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt appendhistory # Append new history lines to the history file
+setopt sharehistory # Share history across all sessions
+
+export REPORTTIME=5 # Print elapsed time when more than 5 seconds
 
 autoload -U compinit
 compinit
