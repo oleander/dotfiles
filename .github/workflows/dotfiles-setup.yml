@@ -19,9 +19,8 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y docker
+          sudo apt-get install -y docker devcontainer
 
       - name: Run docker container
         run: |
-          docker build -t dotfiles .
-          docker run -t dotfiles ls
+          devcontainer build --buildkit auto --workspace-folder .
