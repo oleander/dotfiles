@@ -126,6 +126,9 @@ export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
 
+# Rebuild Zsh completion cache
+autoload -Uz compinit && compinit
+
 if [ ! -f "$HOME/.antigen.zsh" ]; then
     curl -L git.io/antigen > "$HOME/.antigen.zsh"
 fi

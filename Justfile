@@ -18,4 +18,4 @@ brew-bundle-install:
 build:
     docker build -t dotfiles .
 run: build
-    docker run -it -v "$(pwd)":/root/.dotfiles -v ~/.zsh_history:/root/.zsh_history:rw dotfiles zsh
+    docker run -t -v "$(pwd)":/root/.dotfiles -v ~/.zsh_history:/root/.zsh_history:rw dotfiles zsh
