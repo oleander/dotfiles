@@ -5,3 +5,4 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 dotbot -c install.conf.yaml
+source "$HOME/.zshrc"
