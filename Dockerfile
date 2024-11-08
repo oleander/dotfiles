@@ -22,5 +22,5 @@ COPY . .
 RUN dotbot -c install.conf.yaml
 
 RUN zsh -c "source ~/.zshrc"
-SHELL ["/bin/zsh"]
+SHELL ["/bin/zsh", "-i", "-c"]
 
