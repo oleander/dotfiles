@@ -1,3 +1,0 @@
-if [ -t 1 ] && [ -z "$ZSH_VERSION" ]; then
-    exec zsh
-fi

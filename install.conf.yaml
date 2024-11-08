@@ -27,4 +27,3 @@
     ~/.rustup/settings.toml: configs/rustup/settings.toml
     ~/.ssh/known_hosts: configs/ssh/known_hosts
     ~/.zshrc: configs/zshrc
-    ~/.bashrc: configs/bashrc
