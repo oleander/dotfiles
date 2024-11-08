@@ -132,6 +132,11 @@ export STARSHIP_CONFIG="/Users/linus/.config/starship.toml"
 export STARSHIP_CACHE="/Users/linus/.starship/cache"
 eval "$(starship init zsh)"
 
+source ~/.antigen.zsh
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
+
 # Source OS-specific configurations
 if [[ "$OSTYPE" == "darwin"* ]]; then
     source ~/.dotfiles/configs/zshrc.macos
