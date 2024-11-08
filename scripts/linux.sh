@@ -5,7 +5,7 @@ apt-get update
 
 # Install Zsh and set it as the default shell
 apt-get install -y zsh
-chsh -s $(which zsh)
+# chsh -s $(which zsh)
 
 # Install curl and Starship prompt
 apt-get install -y curl
