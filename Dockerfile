@@ -4,7 +4,7 @@ VOLUME ["/workspace"]
 WORKDIR /root/.dotfiles
 
 COPY ./scripts/linux.sh ./install.conf.yaml .
-RUN ./scripts/linux.sh
+RUN ./linux.sh
 
 VOLUME /root
 
