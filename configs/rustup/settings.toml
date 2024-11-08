@@ -3,3 +3,4 @@ profile = "default"
 version = "12"
 
 [overrides]
+"/Users/linus/Code/github_action_monitor" = "nightly-aarch64-apple-darwin"
