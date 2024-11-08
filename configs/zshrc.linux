@@ -1,0 +1,16 @@
+# Linux-specific configurations
+
+# Setting environment variables
+export PATH="/usr/local/bin:$PATH"
+
+# Linux-specific commands and settings
+alias update='sudo apt-get update && sudo apt-get upgrade'
+alias install='sudo apt-get install'
+alias remove='sudo apt-get remove'
+
+# Initialize rbenv
+eval "$(rbenv init -)"
+export PATH="/usr/local/sbin:$PATH"
+
+# Docker integration
+export PATH="/usr/bin/docker:$PATH"

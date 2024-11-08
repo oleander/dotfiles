@@ -1,6 +1,5 @@
 # Setting environment variables
 export ROOT=$HOME/.dotfiles
-export PATH="/opt/homebrew/bin:$PATH"
 
 # Source custom shell scripts
 source ~/.dotfiles/shell/functions
@@ -88,7 +87,7 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{160} The clone has failed.%f%b"
 fi
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+source "$HOME/.local/share/zinit/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -122,12 +121,8 @@ export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
 
-# Docker integration
-export PATH="/Users/linus/.docker/bin:$PATH"
-
 # Initialize rbenv
 eval "$(rbenv init -)"
-export PATH="/opt/homebrew/sbin:$PATH"
 
 # Pipx path
 export PATH="/Users/linus/.local/bin:$PATH"
@@ -142,3 +137,10 @@ eval "$(starship init zsh)"
 
 GEMSDIR=$(gem environment gemdir)/bin
 export PATH="$GEMSDIR:$PATH"
+
+# Source OS-specific configurations
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    source ~/.dotfiles/configs/zshrc.macos
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    source ~/.dotfiles/configs/zshrc.linux
+fi
