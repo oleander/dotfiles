@@ -106,7 +106,6 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PYTHONUTF8=1
-source "$HOME/.cargo/env"
 
 # Overcommit settings
 export OVERCOMMIT_DISABLE="1"
@@ -116,9 +115,6 @@ export CACHE_DIR="$HOME/.cache"
 export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
-
-# Initialize rbenv
-eval "$(rbenv init -)"
 
 # Pipx path
 export PATH="/Users/linus/.local/bin:$PATH"

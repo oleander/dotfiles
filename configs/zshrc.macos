@@ -19,3 +19,11 @@ export PATH="/Users/linus/.docker/bin:$PATH"
 # PATH settings
 export PATH="$(brew --prefix binutils)/bin:$PATH"
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
+source "$HOME/.cargo/env"
+
+# Initialize rbenv
+eval "$(rbenv init -)"
+
+GEMSDIR=$(gem environment gemdir)/bin
+export PATH="$GEMSDIR:$PATH"
