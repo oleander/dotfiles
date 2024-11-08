@@ -1,11 +1,19 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.11
 
-VOLUME ["/workspace"]
+VOLUME /root
+
 WORKDIR /root/.dotfiles
 
-COPY ./scripts/linux.sh ./install.conf.yaml .
-RUN ./linux.sh
+RUN apt-get update
 
-VOLUME /root
+RUN apt-get install -y curl zsh
+
+RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
+
+RUN apt-get install -y git autojump vim
+
+RUN pip3 install dotbot
+COPY . .
+RUN dotbot -c install.conf.yaml
 
 SHELL ["/bin/zsh"]
