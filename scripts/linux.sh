@@ -12,3 +12,5 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # Install Starship
 curl -sS https://starship.rs/install.sh | sh -s -- --yes
+
+dotbot -c install.conf.yaml
