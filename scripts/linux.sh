@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+export TERM=xterm-256color
+
 # Update packages
 apt-get update
 
