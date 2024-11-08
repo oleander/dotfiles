@@ -19,13 +19,12 @@ jobs:
       - name: Set up dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl git
+          sudo apt-get install -y curl git docker
 
-      - name: Run install.sh script
+      - name: Run docker container
         run: |
-          chmod +x install.sh
-          sudo ./install.sh
-          zsh -c "source ~/.zshrc"
+          docker build -t dotfiles .
+          docker run -ti dotfiles zsh
 
       - name: Verify symbolic links
         run: |
