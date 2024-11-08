@@ -6,8 +6,10 @@ WORKDIR /root/.dotfiles
 
 RUN apt-get update
 
-RUN apt-get install -y curl zsh
+RUN apt-get install -y zsh
+RUN chsh -s $(which zsh)
 
+RUN apt-get install -y curl
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
 
 RUN apt-get install -y git autojump vim
@@ -18,4 +20,3 @@ RUN dotbot -c install.conf.yaml
 RUN zsh -c "source ~/.zshrc"
 
 SHELL ["/bin/zsh"]
-
