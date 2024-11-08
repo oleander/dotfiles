@@ -5,3 +5,5 @@ WORKDIR /workspace
 
 COPY . .
 RUN ./scripts/linux.sh
+
+SHELL ["/bin/zsh"]
