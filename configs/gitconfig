@@ -4,6 +4,7 @@
 [user]
 	email = 220827+oleander@users.noreply.github.com
     name = Linus Oleander
+	signingkey = /Users/linus/.ssh/id_ed25519.pub
 [push]
     autoSetupRemote = true
     default = current

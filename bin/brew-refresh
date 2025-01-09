@@ -34,4 +34,7 @@ ollama-update
 fabric-update
 mas upgrade
 
+gem update --system
+gem update --user-install
+
 echo -e "\033[0;32m=> Refresh complete @ $(date) ...\033[0m"

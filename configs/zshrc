@@ -181,7 +181,6 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     source ~/.dotfiles/configs/zshrc.linux
 fi
 
-
 alias cr='cd ~/Code'
 alias dd='cd ~/Desktop'
 alias flush='dscacheutil -flushcache'
@@ -238,3 +237,11 @@ alias 'explain'='gh copilot explain'
 alias v='view-github-project'
 alias f='format-new-files-since-branch'
 alias code='cursor'
+
+# If $BUNDLE_GEMFILE is set, check if the value is an existing file
+if [ -n "$BUNDLE_GEMFILE" ]; then
+  if [ ! -f "$BUNDLE_GEMFILE" ]; then
+    echo "BUNDLE_GEMFILE is set to $BUNDLE_GEMFILE, but the file does not exist."
+    unset BUNDLE_GEMFILE
+  fi
+fi
