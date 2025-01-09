@@ -10,7 +10,6 @@ alias flush='dscacheutil -flushcache'
 alias update='sudo /usr/libexec/locate.updatedb'
 
 # Initialize rbenv
-eval "$(rbenv init -)"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 # Docker integration
@@ -23,10 +22,11 @@ export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 source "$HOME/.cargo/env"
 
 # Initialize rbenv
-eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash zsh)"
 
 GEMSDIR=$(gem environment gemdir)/bin
 export PATH="$GEMSDIR:$PATH"
 
 # Completion path
 fpath=("/opt/homebrew/share/zsh/site-functions" $fpath)
+
