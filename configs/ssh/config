@@ -1,11 +1,10 @@
 Host *
     ForwardAgent yes
     PermitLocalCommand yes
-    LocalCommand [[ -d ~/.dotfiles ]] && { cd ~/.dotfiles && echo "Updating dotfiles on %h ..." && git pull -q && ./install >/dev/null; }
+    LocalCommand ssh -o PermitLocalCommand=no %n "[[ -d ~/.dotfiles ]] && echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull -q && ./install"
 
 Host homeassistant
   HostName homeassistant.local
-  IdentityFile ~/.ssh/id_ed25519
   ServerAliveInterval 600
   ConnectTimeout 120
   User root
