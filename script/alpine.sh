@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+script -q -c "zsh -i -c 'exit'"
+
 DOTFILES_DIR=/share/.dotfiles
 
 cd "$DOTFILES_DIR"
