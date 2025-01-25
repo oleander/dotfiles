@@ -14,6 +14,6 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 cargo binstall -y --targets x86_64-unknown-linux-musl git-ai
 
 echo "Installing autojump"
-cd ./autojump
-./install.py
+cd ./autojump || echo "Failed to cd to autojump"
+./install.py || echo "Failed to install autojump"
 cd "$DOTFILES_DIR"
