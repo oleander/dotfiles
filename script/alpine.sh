@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 DOTFILES_DIR=/share/.dotfiles
 DOTBOT_CONFIG=install.conf.yaml
