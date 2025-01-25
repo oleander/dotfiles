@@ -186,7 +186,6 @@ alias dd='cd ~/Desktop'
 alias flush='dscacheutil -flushcache'
 alias update='sudo /usr/libexec/locate.updatedb'
 alias dot='code ~/.dotfiles'
-alias rm=trash
 alias history='fc -il 1'
 alias vim=nvim
 alias sudo='sudo '
@@ -245,3 +244,5 @@ if [ -n "$BUNDLE_GEMFILE" ]; then
     unset BUNDLE_GEMFILE
   fi
 fi
+
+export OPENAI_API_KEY="dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content"
