@@ -17,7 +17,7 @@ ln -fs "$DOTFILES_DIR" "$HOME/.dotfiles"
 # pip3 install --user dotbot
 # dotbot -c install.conf.yaml
 
-./install
+./install --plugin-dir path/to/dotbot-ifhostname
 
 zsh -i -c 'exit'
 

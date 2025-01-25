@@ -2,7 +2,6 @@
   path = configs/config/nvim/pack/github/start/copilot.vim
   url = https://github.com/github/copilot.vim.git
   ignore = dirty
-
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
@@ -10,4 +9,12 @@
 [submodule "autojump"]
 	path = autojump
 	url = https://github.com/wting/autojump
+	ignore = dirty
+[submodule "dotbot-ifhostname"]
+	path = dotbot-ifhostname
+	url = https://github.com/johnlettman/dotbot-ifhostname.git
+	ignore = dirty
+[submodule "dotbot-ifplatform"]
+	path = dotbot-ifplatform
+	url = https://github.com/ssbanerje/dotbot-ifplatform.git
 	ignore = dirty
