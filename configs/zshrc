@@ -204,7 +204,7 @@ alias gdd='git diff'
 alias gg='commitment'
 alias gm='gm.fish'
 alias gc='git-verify-checkout'
-alias ggg='git add . && git commit -S --no-edit'
+alias ggg='git add . && git commit --no-edit'
 alias ggm='git commit --no-edit'
 
 # ruby
