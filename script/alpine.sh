@@ -1,16 +1,15 @@
 #!/bin/bash -e
 
-FROM alpine
+unset RUSTC_WRAPPER
 
-apk add --update git make clang ruby ruby-irb ncurses-dev tar binutils build-base bash perl zlib zlib-dev jq patch
-mkdir /brew && chown nobody:users /brew
-git clone https://github.com/Homebrew/linuxbrew.git /brew
-cp -r /brew/bin/ /brew/orig_bin/
+# cargo install git-ai
 
-apk add --update --no-cache starship github-cli fish ruby cargo sccache
-RUSTC_WRAPPER="" cargo install git-ai
+cd /share/.dotfiles
+git pull
+git submodule sync
 git submodule update --init --recursive
 pip3 install dotbot --break-system-packages
-cp dotbot/tools/git-submodule/install dotbot
-./dotbot -c install.conf.yaml
-cd autojump && ./install.py || true
+dotbot -c install.conf.yaml
+zsh --login || true
+cd /share/.dotfiles/autojump
+./install.py
