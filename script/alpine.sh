@@ -1,7 +1,6 @@
 #!/bin/bash -e
 
 DOTFILES_DIR=/share/.dotfiles
-DOTBOT_CONFIG=install.conf.yaml
 
 cd "$DOTFILES_DIR"
 
