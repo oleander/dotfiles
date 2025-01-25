@@ -1,6 +1,6 @@
 Host *
     ForwardAgent yes
-    PermitLocalCommand yes
+    PermitLocalCommand no
     LocalCommand ssh -o PermitLocalCommand=no %n "[[ -d ~/.dotfiles ]] && echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull --autostash && sleep 4"
 
 Host homeassistant
