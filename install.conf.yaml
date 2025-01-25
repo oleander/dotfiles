@@ -55,4 +55,3 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [zsh -i -c 'exit', 'Setting up zsh']
