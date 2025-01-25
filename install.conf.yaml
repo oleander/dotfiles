@@ -27,8 +27,7 @@
       perm: 0644
     ~/.ssh/known_hosts:
       path: configs/ssh/known_hosts
-      force: false
-      perm: 0644
+      force: true
     ~/.config/karabiner/karabiner.json: configs/config/karabiner/karabiner.json
     ~/.zshrc:
       path: configs/zshrc
@@ -36,6 +35,10 @@
     ~/.bashrc:
       path: configs/bashrc
       force: true
+
+- create:
+    ~/.ssh:
+      perm: 0755
 
 - ifhostname:
     hostname: homeassistant.local
