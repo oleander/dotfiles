@@ -4,6 +4,11 @@
       create: true
       force: true
 
+- mkdir:
+    ~/.local:
+    ~/.cargo:
+    ~/.rustup:
+
 - link:
     ~/.config/cargo/config.toml: configs/config/cargo/config.toml
     ~/.config/fish/config.fish: configs/config/fish/config.fish
@@ -27,3 +32,6 @@
     ~/.ssh/known_hosts: configs/ssh/known_hosts
     ~/.zshrc: configs/zshrc
     ~/.bashrc: configs/bashrc
+    ~/.local: /share/ssh/local
+    ~/.cargo: /share/ssh/cargo
+    ~/.rustup: /share/ssh/rustup
