@@ -26,7 +26,7 @@ apk add --update cargo
 cargo install cargo-binstall
 cargo binstall -y git-ai
 
-echo "Installing autojump"
-cd ./autojump
-./install.py
-cd "$DOTFILES_DIR"
+# echo "Installing autojump"
+# cd ./autojump
+# ./install.py
+# cd "$DOTFILES_DIR"
