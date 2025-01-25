@@ -5,9 +5,6 @@
       force: false
 
 - create:
-    - ~/.local
-    - ~/.cargo
-    - ~/.rustup
     - /share/ssh/rustup
     - /share/ssh/local
     - /share/ssh/cargo
