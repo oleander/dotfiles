@@ -7,3 +7,7 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+[submodule "autojump"]
+	path = autojump
+	url = https://github.com/wting/autojump
+	ignore = dirty
