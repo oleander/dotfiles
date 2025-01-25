@@ -19,8 +19,6 @@ ln -fs "$DOTFILES_DIR" "$HOME/.dotfiles"
 
 ./install --plugin-dir path/to/dotbot-ifhostname
 
-zsh -i -c 'exit'
-
 echo "Installing git-ai"
 unset RUSTC_WRAPPER
 export PATH="$HOME/.cargo/bin:$PATH"
