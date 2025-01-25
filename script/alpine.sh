@@ -9,7 +9,7 @@ git submodule update --init --recursive
 
 echo "Installing dotbot"
 export PATH="$HOME/.local/bin:$PATH"
-pip3 install --user dotbot
+pip3 install --user dotbot --root-user-action
 dotbot -c install.conf.yaml
 
 echo "Installing autojump"
