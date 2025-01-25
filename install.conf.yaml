@@ -5,9 +5,12 @@
       force: true
 
 - create:
-    ~/.local:
-    ~/.cargo:
-    ~/.rustup:
+    - ~/.local
+    - ~/.cargo
+    - ~/.rustup
+    - /share/ssh/rustup
+    - /share/ssh/local
+    - /share/ssh/cargo
 
 - link:
     ~/.config/cargo/config.toml: configs/config/cargo/config.toml
@@ -35,3 +38,6 @@
     ~/.local: /share/ssh/local
     ~/.cargo: /share/ssh/cargo
     ~/.rustup: /share/ssh/rustup
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
