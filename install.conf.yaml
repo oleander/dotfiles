@@ -35,9 +35,9 @@
     hostname: homeassistant.local
     unmet:
       link:
-        ~/.ssh/known_hosts: configs/ssh/known_hosts
     met:
       link:
+        ~/.ssh/known_hosts: configs/ssh/known_hosts
         ~/.local:
           path: /share/ssh/local
           force: true
