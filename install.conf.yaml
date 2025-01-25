@@ -4,7 +4,7 @@
       create: true
       force: true
 
-- mkdir:
+- create:
     ~/.local:
     ~/.cargo:
     ~/.rustup:
