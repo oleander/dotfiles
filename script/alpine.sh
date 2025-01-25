@@ -17,5 +17,6 @@ echo "Installing autojump"
 git clone https://github.com/wting/autojump.git /tmp/autojump
 cd /tmp/autojump
 chmod +x ./install.py
-zsh -l -c ./install.py
+export SHELL=/bin/zsh
+./install.py
 cd "$DOTFILES_DIR"
