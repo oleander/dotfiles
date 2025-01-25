@@ -4,7 +4,7 @@
 [user]
 	email = 220827+oleander@users.noreply.github.com
     name = Linus Oleander
-	signingkey = /Users/linus/.ssh/id_ed25519.pub
+	signingkey = /Users/linus/.ssh/id_rsa
 [push]
     autoSetupRemote = true
     default = current
@@ -63,8 +63,6 @@
 	enabled = true
 [ai]
 	assistant-id = asst_HyF6OZdMXci0SHLPc228bMfe
-[gpg]
-    format = ssh
 [alias]
 	mergeno = merge --no-ff
 	merge = merge --no-ff
