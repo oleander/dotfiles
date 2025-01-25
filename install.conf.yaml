@@ -11,7 +11,6 @@
     ~/.config/gh-copilot/config.yml: configs/config/gh-copilot/config.yml
     ~/.config/gh/config.yml: configs/config/gh/config.yml
     ~/.config/github-copilot/versions.json: configs/config/github-copilot/versions.json
-    ~/.config/jgit/config: configs/config/jgit/config
     ~/.config/nvim/init.vim: configs/config/nvim/init.vim
     ~/.config/starship.toml: configs/config/starship.toml
     ~/.gemrc: configs/gemrc
