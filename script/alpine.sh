@@ -20,10 +20,10 @@ echo "Installing git-ai"
 unset RUSTC_WRAPPER
 export PATH="$HOME/.cargo/bin:$PATH"
 apk add --update cargo
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+cargo install cargo-binstall
 cargo binstall -y git-ai
 
 echo "Installing autojump"
 cd ./autojump
-zsh -l -c './install.py'
+./install.py
 cd "$DOTFILES_DIR"
