@@ -1,7 +1,7 @@
 Host *
     ForwardAgent yes
     PermitLocalCommand yes
-    LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull -q && ./install >/dev/null) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/oleander/dotfiles && ./dotfiles/install >/dev/null))"
+    LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull -q && ./install >/dev/null) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/oleander/dotfiles && ./.dotfiles/install >/dev/null))"
 
 Host homeassistant
   HostName homeassistant.local
