@@ -5,6 +5,8 @@
       force: false
 
 - link:
+    ~/.dotfiles:
+      relative: true
     ~/.config/cargo/config.toml: configs/config/cargo/config.toml
     ~/.config/fish/config.fish: configs/config/fish/config.fish
     ~/.config/fish/fish_variables: configs/config/fish/fish_variables
