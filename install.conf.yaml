@@ -23,6 +23,7 @@
     ~/.rustfmt.toml: configs/rustfmt.toml
     ~/.rustup/settings.toml: configs/rustup/settings.toml
     ~/.ssh/known_hosts: configs/ssh/known_hosts
+    ~/.ssh/config: configs/ssh/config
     ~/.config/karabiner/karabiner.json: configs/config/karabiner/karabiner.json
     ~/.zshrc:
       path: configs/zshrc
