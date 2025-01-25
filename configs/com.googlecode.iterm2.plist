@@ -2,42 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AI Prompt</key>
-	<string># IDENTITY and PURPOSE
-
-You are a penetration tester that is extremely good at reading and understanding command line help instructions. You are responsible for generating CLI commands for various tools that can be run to perform certain tasks based on documentation given to you.
-
-Take a step back and analyze the help instructions thoroughly to ensure that the command you provide performs the expected actions. It is crucial that you only use switches and options that are explicitly listed in the documentation passed to you. Do not attempt to guess. Instead, use the documentation passed to you as your primary source of truth. It is very important the commands you generate run properly and do not use fake or invalid options and switches.
-
-# OUTPUT INSTRUCTIONS
-
-- Output the requested command using the documentation provided with the provided details inserted. The input will include the prompt on the first line and then the tool documentation for the command will be provided on subsequent lines.
-- Do not add additional options or switches unless they are explicitly asked for.
-- Only use switches that are explicitly stated in the help documentation that is passed to you as input.
-
-# OUTPUT FORMAT
-
-- Output a full, bash command with all relevant parameters and switches.
-- Refer to the provided help documentation.
-- Only output the command. Do not output any warning or notes.
-- Do not output any Markdown or other formatting. Only output the command itself.
-
-# INPUT:
-
-INPUT:</string>
-	<key>AiMaxTokens</key>
-	<integer>128000</integer>
-	<key>AiModel</key>
-	<string>gpt-4o</string>
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>BootstrapDaemon</key>
+	<true/>
+	<key>CopySelection</key>
 	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>80C5E531-A385-447B-A7B1-0FC1A931A8B6</string>
 	<key>DoubleClickPerformsSmartSelection</key>
+	<false/>
+	<key>EnterCopyModeAutomatically</key>
 	<true/>
 	<key>GlobalKeyMap</key>
 	<dict>
@@ -154,6 +131,8 @@ INPUT:</string>
 	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>MaxHistoryLinesToRestore</key>
+	<integer>40000</integer>
 	<key>NeverWarnAboutShortLivedSessions_80C5E531-A385-447B-A7B1-0FC1A931A8B6</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_80C5E531-A385-447B-A7B1-0FC1A931A8B6_selection</key>
@@ -163,6 +142,18 @@ INPUT:</string>
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>AWDS Pane Directory</key>
+			<string></string>
+			<key>AWDS Pane Option</key>
+			<string>Recycle</string>
+			<key>AWDS Tab Directory</key>
+			<string></string>
+			<key>AWDS Tab Option</key>
+			<string>Recycle</string>
+			<key>AWDS Window Directory</key>
+			<string>/Users/linus/Code</string>
+			<key>AWDS Window Option</key>
+			<string>Yes</string>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -395,9 +386,9 @@ INPUT:</string>
 			<key>Character Encoding</key>
 			<integer>4</integer>
 			<key>Close Sessions On End</key>
-			<true/>
+			<integer>0</integer>
 			<key>Columns</key>
-			<integer>80</integer>
+			<integer>120</integer>
 			<key>Command</key>
 			<string>bash --login</string>
 			<key>Cursor Color</key>
@@ -438,7 +429,7 @@ INPUT:</string>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>Recycle</string>
+			<string>Advanced</string>
 			<key>Custom Locale</key>
 			<string>en_US.UTF-8</string>
 			<key>Custom Tab Title</key>
@@ -517,7 +508,7 @@ INPUT:</string>
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
-			<integer>25</integer>
+			<integer>120</integer>
 			<key>Screen</key>
 			<integer>-2</integer>
 			<key>Scrollback Lines</key>
@@ -551,7 +542,7 @@ INPUT:</string>
 				<key>editor</key>
 				<string>com.github.atom</string>
 				<key>text</key>
-				<string>/usr/local/bin/cursor -g \1:\2</string>
+				<string>/usr/local/bin/cursor --goto \1:\2</string>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
@@ -561,6 +552,8 @@ INPUT:</string>
 			<string></string>
 			<key>Show Status Bar</key>
 			<false/>
+			<key>Show Timestamps</key>
+			<integer>2</integer>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Selection Rules</key>
@@ -702,6 +695,10 @@ INPUT:</string>
 			<string>/Users/linusoleander</string>
 		</dict>
 	</array>
+	<key>NumberOfLinesForAccessibility</key>
+	<integer>2000</integer>
+	<key>OnlyWhenMoreTabs</key>
+	<false/>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
@@ -739,10 +736,16 @@ INPUT:</string>
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>QuitWhenAllWindowsClosed</key>
+	<true/>
+	<key>ReportHorizontalScrollEvents</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
+	<key>TmuxUsesDedicatedProfile</key>
+	<false/>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<true/>
 	<key>UseBorder</key>
@@ -753,6 +756,8 @@ INPUT:</string>
 	<false/>
 	<key>WindowNumber</key>
 	<false/>
+	<key>WordCharacters</key>
+	<string>/-+\~_.</string>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewPreferredModeKey</key>
