@@ -7,8 +7,8 @@ cd "$DOTFILES_DIR"
 
 git submodule update --init --recursive
 
+export PATH="$HOME/.local/bin:$PATH"
 pip3 install --user dotbot
-
 dotbot -c "$DOTBOT_CONFIG"
 
 cd ./autojump
