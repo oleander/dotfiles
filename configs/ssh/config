@@ -1,7 +1,7 @@
 Host *
     ForwardAgent yes
     PermitLocalCommand yes
-    LocalCommand bash -c 'which git >/dev/null && [[ -d ~/.dotfiles ]] && { cd ~/.dotfiles && git pull -q && ./install >/dev/null; }'
+    LocalCommand [[ -d ~/.dotfiles ]] && { cd ~/.dotfiles && echo "Updating dotfiles on %h ..." && git pull -q && ./install >/dev/null; }
 
 Host homeassistant
   HostName homeassistant.local
