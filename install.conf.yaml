@@ -30,11 +30,21 @@
     ~/.rustfmt.toml: configs/rustfmt.toml
     ~/.rustup/settings.toml: configs/rustup/settings.toml
     ~/.ssh/known_hosts: configs/ssh/known_hosts
-    ~/.zshrc: configs/zshrc
-    ~/.bashrc: configs/bashrc
-    ~/.local: /share/ssh/local
-    ~/.cargo: /share/ssh/cargo
-    ~/.rustup: /share/ssh/rustup
+    ~/.zshrc:
+        path: configs/zshrc
+        force: true
+    ~/.bashrc:
+        path: configs/bashrc
+        force: true
+    ~/.local:
+        path: /share/ssh/local
+        force: true
+    ~/.cargo:
+        path: /share/ssh/cargo
+        force: true
+    ~/.rustup:
+        path: /share/ssh/rustup
+        force: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
