@@ -59,3 +59,5 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - [nvim +PlugInstall! +qa, Installing plugins]
+  - [nvim -c "Copilot setup" +qa, Setting up Copilot]
