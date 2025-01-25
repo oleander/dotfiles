@@ -19,9 +19,9 @@ if [[ -d "$HOME/.local/bin" ]]; then
 fi
 
 # check if gh is installed
-if [[ -x "$(command -v gh)" ]]; then
-  export GITHUB_TOKEN="$(gh auth token)"
-fi
+# if [[ -x "$(command -v gh)" ]]; then
+#   export GITHUB_TOKEN="$(gh auth token)"
+# fi
 
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
