@@ -5,6 +5,9 @@ DOTFILES_DIR=/share/dotfiles
 cd "$DOTFILES_DIR"
 
 ln -fs "$DOTFILES_DIR" "$HOME/.dotfiles"
+rm -rf ~/.local
+rm -rf ~/.cargo
+rm -rf ~/.rustup
 
 echo "Updating submodules"
 git submodule update --init --recursive
