@@ -18,3 +18,4 @@ zsh/
 Gemfile.lock
 configs/config/fabric/
 configs/config/.DS_Store
+configs/config/gh/hosts.yml
