@@ -1,7 +1,5 @@
 #!/bin/bash -e
 
-zsh -i -c 'exit'
-
 DOTFILES_DIR=/share/.dotfiles
 
 cd "$DOTFILES_DIR"
@@ -13,6 +11,8 @@ echo "Installing dotbot"
 export PATH="$HOME/.local/bin:$PATH"
 pip3 install --user dotbot
 dotbot -c install.conf.yaml
+
+zsh -i -c 'exit'
 
 echo "Installing git-ai"
 unset RUSTC_WRAPPER
