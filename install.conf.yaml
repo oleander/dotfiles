@@ -26,30 +26,30 @@
     ~/.ssh/known_hosts: configs/ssh/known_hosts
     ~/.config/karabiner/karabiner.json: configs/config/karabiner/karabiner.json
     ~/.zshrc:
-        path: configs/zshrc
-        force: true
+      path: configs/zshrc
+      force: true
     ~/.bashrc:
-        path: configs/bashrc
-        force: true
+      path: configs/bashrc
+      force: true
 
 - ifhostname:
-  hostname: homeassistant.local
-  met:
-    - link:
+    hostname: homeassistant.local
+    unmet: {}
+    met:
+      link:
         ~/.local:
-            path: /share/ssh/local
-            force: true
+          path: /share/ssh/local
+          force: true
         ~/.cargo:
-            path: /share/ssh/cargo
-            force: true
+          path: /share/ssh/cargo
+          force: true
         ~/.rustup:
-            path: /share/ssh/rustup
-            force: true
-
-    - create:
-        - /share/ssh/rustup
-        - /share/ssh/local
-        - /share/ssh/cargo
+          path: /share/ssh/rustup
+          force: true
+        create:
+          - /share/ssh/rustup
+          - /share/ssh/local
+          - /share/ssh/cargo
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
