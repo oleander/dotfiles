@@ -250,5 +250,6 @@ export OPENAI_API_KEY="dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content"
 [[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 autoload -U compinit && compinit -u
