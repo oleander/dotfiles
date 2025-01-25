@@ -42,8 +42,7 @@
 
 - ifhostname:
     hostname: homeassistant.local
-    unmet:
-      link:
+    unmet: {}
     met:
       link:
         ~/.local:
