@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-DOTFILES_DIR=/share/.dotfiles
+DOTFILES_DIR=/share/dotfiles
 
 cd "$DOTFILES_DIR"
 
