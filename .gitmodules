@@ -1,3 +1,9 @@
 [submodule "configs/config/nvim/pack/github/start/copilot.vim"]
   path = configs/config/nvim/pack/github/start/copilot.vim
   url = https://github.com/github/copilot.vim.git
+  ignore = dirty
+
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
