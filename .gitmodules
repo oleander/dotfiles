@@ -14,3 +14,6 @@
 	path = dotbot-ifhostname
 	url = https://github.com/johnlettman/dotbot-ifhostname.git
 	ignore = dirty
+[submodule "dotbot-ifplatform"]
+	path = dotbot-ifplatform
+	url = https://github.com/ssbanerje/dotbot-ifplatform.git
