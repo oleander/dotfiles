@@ -25,6 +25,11 @@
     ~/.ssh/config:
       path: configs/ssh/config
       perm: 0644
+    ~/.ssh/known_hosts:
+      path: configs/ssh/known_hosts
+      force: true
+      delete: true
+      perm: 0644
     ~/.config/karabiner/karabiner.json: configs/config/karabiner/karabiner.json
     ~/.zshrc:
       path: configs/zshrc
