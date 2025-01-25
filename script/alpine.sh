@@ -19,7 +19,7 @@ apk add --update cargo
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 cargo binstall -y git-ai
 
-echo "Installing autojump"
-cd ./autojump
-./install.py
-cd "$DOTFILES_DIR"
+# echo "Installing autojump"
+# cd ./autojump
+# ./install.py
+# cd "$DOTFILES_DIR"
