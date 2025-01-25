@@ -4,19 +4,7 @@ DOTFILES_DIR=/share/dotfiles
 
 cd "$DOTFILES_DIR"
 
-# rm -rf ~/.local
-# rm -rf ~/.cargo
-# rm -rf ~/.rustup
-
-# echo "Updating submodules"
-# git submodule update --init --recursive
-
-# echo "Installing dotbot"
-# export PATH="$HOME/.local/bin:$PATH"
-# pip3 install --user dotbot
-# dotbot -c install.conf.yaml
-
-./install --plugin-dir path/to/dotbot-ifhostname
+./install
 
 echo "Installing git-ai"
 unset RUSTC_WRAPPER
