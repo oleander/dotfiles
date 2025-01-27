@@ -26,15 +26,15 @@ fi
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
 # check if brew is installed
-if [[ -x "$(command -v brew)" ]]; then
-  if [[ -d "$(brew --prefix ruby@3.1)" ]]; then
-    RUBY_BASE="$(brew --prefix ruby@3.1)"
-    export PATH="$RUBY_BASE/bin:$PATH"
-    export LDFLAGS="-L$RUBY_BASE/lib"
-    export CPPFLAGS="-I$RUBY_BASE/include"
-    export PKG_CONFIG_PATH="$RUBY_BASE/lib/pkgconfig"
-  fi
-fi
+# if [[ -x "$(command -v brew)" ]]; then
+#   if [[ -d "$(brew --prefix ruby@3.1)" ]]; then
+#     RUBY_BASE="$(brew --prefix ruby@3.1)"
+#     export PATH="$RUBY_BASE/bin:$PATH"
+#     export LDFLAGS="-L$RUBY_BASE/lib"
+#     export CPPFLAGS="-I$RUBY_BASE/include"
+#     export PKG_CONFIG_PATH="$RUBY_BASE/lib/pkgconfig"
+#   fi
+# fi
 
 export GIT_MERGE_AUTOEDIT=no
 
@@ -212,10 +212,6 @@ alias bb='bundle exec'
 alias b='bundle install'
 
 alias files='git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- $(pwd) | sort'
-alias fix='rubocop-fix'
-
-alias gateway-ssh='~/.dotfiles/bin/gateway/ssh'
-alias gateway-log='~/.dotfiles/bin/gateway/log'
 
 alias vim='nvim'
 alias vi='nvim'
@@ -253,3 +249,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 autoload -U compinit && compinit -u
+
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
