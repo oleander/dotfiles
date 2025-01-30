@@ -44,7 +44,7 @@
 - ifhostname:
     hostname: homeassistant.local
     unmet:
-      shell:
+      - shell:
         - [curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash, Install cargo-binstall]
         - [cargo binstall -y git-ai, Install git-ai]
     met:
@@ -72,7 +72,7 @@
   - [nvim +PlugInstall! +qa, Load plugin manager into neovim]
   - [cd ./autojump && chmod +x ./install.py, Make install script executable]
   - [cd ./autojump && SHELL=/bin/zsh ./install.py, Run install script]
-  - [zsh -i -c 'exit', Preload ZSH]
   - [curl -sS https://starship.rs/install.sh | sh -s -- --yes, Install starship]
+  - [zsh -i -c 'exit', Preload ZSH]
   # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
 
