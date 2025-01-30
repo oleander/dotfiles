@@ -1,7 +1,7 @@
 {
     "name": "Oleander Dev Container",
     "image": "mcr.microsoft.com/vscode/devcontainers/python:latest",
-    "onCreateCommand": "./script/setup",
+    "onCreateCommand": "./install",
     "postCreateCommand": "bash ~/.bashrc",
     "remoteUser": "vscode",
     "mounts": [
