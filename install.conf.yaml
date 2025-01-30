@@ -45,7 +45,7 @@
     hostname: macbook.local
     met:
       - shell:
-        - [cargo binstall -y git-ai, Install git-ai]
+        - [cargo binstall -y git-ai || echo "Failed to install git-ai", Install git-ai]
     unmet: {}
 - ifhostname:
     hostname: homeassistant.local
