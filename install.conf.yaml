@@ -72,13 +72,13 @@
           - /share/ssh/cargo
 
 - shell:
-  - [git submodule sync --quiet --recursive, Sync submodules]
-  - [git submodule update --init --recursive, Install submodules]
-  - [curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Install vim-plug]
-  - [command -v nvim >/dev/null 2>&1 && nvim +PlugInstall! +qa, Load plugin manager into neovim if nvim exists]
-  - [cd ./autojump && chmod +x ./install.py, Make install script executable]
-  - [cd ./autojump && SHELL=/bin/zsh ./install.py, Run install script]
-  - [curl -sS https://starship.rs/install.sh | sh -s -- --yes, Install starship]
-  # - [zsh -i -c 'exit', Preload ZSH]
+  - [git submodule sync --quiet --recursive, Sync submodules, Sync submodules]
+  - [git submodule update --init --recursive, Install submodules, Update submodules]
+  - [curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || echo "Failed to install vim-plug", Install vim-plug]
+  - [nvim +PlugInstall! +qa || echo "Failed to load plugin manager into neovim", Load plugin manager into neovim]
+  - [cd ./autojump && chmod +x ./install.py || echo "Failed to make install script executable", Make install script executable]
+  - [cd ./autojump && SHELL=/bin/zsh ./install.py || echo "Failed to install autojump", Install autojump]
+  - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || echo "Failed to install starship", Install starship]
+  - [zsh -i -c 'exit' || echo "Failed to preload ZSH", Preload ZSH]
   # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
 
