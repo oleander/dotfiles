@@ -75,7 +75,7 @@
   - [git submodule sync --quiet --recursive, Sync submodules]
   - [git submodule update --init --recursive, Install submodules]
   - [curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Install vim-plug]
-  - [nvim +PlugInstall! +qa, Load plugin manager into neovim]
+  - [command -v nvim >/dev/null 2>&1 && nvim +PlugInstall! +qa, Load plugin manager into neovim if nvim exists]
   - [cd ./autojump && chmod +x ./install.py, Make install script executable]
   - [cd ./autojump && SHELL=/bin/zsh ./install.py, Run install script]
   - [curl -sS https://starship.rs/install.sh | sh -s -- --yes, Install starship]
