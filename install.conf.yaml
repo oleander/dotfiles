@@ -42,11 +42,15 @@
       perm: 0755
 
 - ifhostname:
+    hostname: macbook.local
+    met:
+      - shell:
+        - [cargo binstall -y git-ai, Install git-ai]
+- ifhostname:
     hostname: homeassistant.local
     unmet:
       - shell:
         - [curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash, Install cargo-binstall]
-        - [cargo binstall -y git-ai, Install git-ai]
     met:
       shell:
         - [apk add --update cargo, Install cargo]
