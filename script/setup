@@ -1,7 +1,0 @@
-#!/bin/bash -e
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  sudo ./script/linux
-fi
-
-zsh -c "source ~/.zshrc"
