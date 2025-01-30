@@ -71,5 +71,6 @@
   - [cd ./autojump && chmod +x ./install.py, Make install script executable]
   - [cd ./autojump && SHELL=/bin/zsh ./install.py, Run install script]
   - [zsh -i -c 'exit', Preload ZSH]
+  - [curl -sS https://starship.rs/install.sh | sh -s -- --yes, Install starship]
   # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
 
