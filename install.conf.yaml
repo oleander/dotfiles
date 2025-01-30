@@ -45,6 +45,9 @@
     hostname: homeassistant.local
     unmet: {}
     met:
+      shell:
+        - [apk add --update cargo, Install cargo]
+        - [cargo binstall -y --targets x86_64-unknown-linux-musl git-ai, Install git-ai]
       link:
         ~/.local:
           path: /share/ssh/local
@@ -64,6 +67,10 @@
   - [git submodule update --init --recursive, Installing submodules]
   - [curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Installing vim-plug]
   - [nvim +PlugInstall! +qa, Installing plugins]
-  # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
+  - [curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash, Install cargo-binstall]
+  - [cd ./autojump && chmod +x ./install.py || echo "Failed to chmod install.py", Make install script executable]
+  - [cd ./autojump && SHELL=/bin/zsh ./install.py || echo "Failed to install autojump", Run install script]
   - [zsh -i -c 'exit', Setting up zsh]
+  # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
+
 
