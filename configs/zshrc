@@ -247,9 +247,6 @@ export OPENAI_API_KEY="dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-
-autoload -U compinit && compinit -u
-
-
 export PATH="$HOME/.rbenv/bin:$PATH"
+
 eval "$(rbenv init -)"
