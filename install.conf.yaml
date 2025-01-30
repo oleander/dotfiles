@@ -46,6 +46,7 @@
     met:
       - shell:
         - [cargo binstall -y git-ai, Install git-ai]
+    unmet: {}
 - ifhostname:
     hostname: homeassistant.local
     unmet:
