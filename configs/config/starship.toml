@@ -5,7 +5,7 @@
 add_newline = true
 
 # Right prompt: battery, command duration, git commit, time
-right_format = "$battery$cmd_duration$git_commit$time $hostname"
+right_format = "$battery$cmd_duration$git_commit$time$hostname"
 
 # Left prompt: directory, git branch, git status
 format = "$directory$git_branch$git_status$line_break$character"
@@ -101,6 +101,6 @@ style = 'bold red'
 
 # Hostname configuration
 [hostname]
-ssh_only = false
-format = "[$hostname]($style) "
+ssh_only = true
+format = " [$hostname]($style) "
 style = "bold dimmed green"
