@@ -4,7 +4,7 @@ Host *
     LocalCommand ssh -o PermitLocalCommand=no %n "[[ -d ~/.dotfiles ]] && echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull --autostash && sleep 4"
 
 Host homeassistant
-  HostName homeassistant.local
+  HostName home-homeassistant.tail99f5.ts.net
   ServerAliveInterval 600
   ConnectTimeout 120
   User root
