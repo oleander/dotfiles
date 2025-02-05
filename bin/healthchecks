@@ -1,0 +1,84 @@
+#!/usr/bin/env fish
+
+function show_help
+    echo "Usage: $argv0 [service]"
+    echo ""
+    echo "Without a service argument, shows all services."
+    echo "With a service argument, shows only that service."
+end
+
+if test (count $argv) -gt 0
+    set arg $argv[1]
+    if test "$arg" = -h -o "$arg" = --help
+        show_help
+        exit 0
+    end
+end
+
+function inspect_service
+    set service $argv[1]
+    set output (docker inspect --format='{{json .State.Health}}' $service 2>/dev/null)
+    if test $status -ne 0
+        echo -n "$service | "
+        set_color red
+        echo "ERROR: Unable to inspect service"
+        set_color normal
+        return 1
+    end
+
+    set status_val (echo $output | jq -r '.Status // "unknown"')
+    set failing (echo $output | jq -r '.FailingStreak // 0')
+    set last_error (echo $output | jq -r '.Log | last | .Output // ""')
+
+    # Determine color based on status
+    switch $status_val
+        case healthy
+            set status_color green
+        case starting
+            set status_color yellow
+        case "*"
+            set status_color red
+    end
+
+    # Print service status
+    echo -n "$service | "
+    set_color $status_color
+    echo -n $status_val
+    set_color normal
+
+    if test "$status_val" != healthy
+        if test "$last_error" = ""
+            set last_error "No error output"
+        end
+        echo -n " | FailingStreak: $failing"
+        echo ""
+        echo "  Recent Logs:"
+        # Print logs in reverse order (most recent first)
+        set logs (echo $output | jq -r '.Log | reverse | .[] | "\(.Start) - Exit:\(.ExitCode) - \(.Output)"')
+        for log in $logs
+            echo "  $log"
+        end
+    else
+        echo ""
+    end
+end
+
+while true
+    clear
+    if test (count $argv) -eq 0
+        set services (docker-compose ps --services 2>/dev/null)
+        if test -z "$services"
+            set_color red
+            echo "ERROR: No services found in docker-compose"
+            set_color normal
+            exit 1
+        end
+        for svc in $services
+            inspect_service $svc
+        end
+    else
+        inspect_service $argv[1]
+    end
+    sleep 2
+end
+
