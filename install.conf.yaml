@@ -40,6 +40,7 @@
     ~/.bashrc:
       path: configs/bashrc
       force: true
+    ~/.local/share/zinit: ext/zinit
 
 - create:
     ~/.ssh:
@@ -88,3 +89,4 @@
   - [ -f ~/.local/share/zinit/zinit.git/zinit.zsh, "Verify zinit.zsh file exists" ]
   - [ echo 'source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"' >> ~/.zshrc, "Update .zshrc to source zinit.zsh" ]
   # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
+
