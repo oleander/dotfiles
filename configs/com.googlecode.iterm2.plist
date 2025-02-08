@@ -8,12 +8,20 @@
 	<true/>
 	<key>BootstrapDaemon</key>
 	<true/>
+	<key>ClickToSelectCommand</key>
+	<false/>
 	<key>CopySelection</key>
 	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>80C5E531-A385-447B-A7B1-0FC1A931A8B6</string>
-	<key>DoubleClickPerformsSmartSelection</key>
+	<key>DimInactiveSplitPanes</key>
 	<false/>
+	<key>DimOnlyText</key>
+	<false/>
+	<key>DisableFullscreenTransparency</key>
+	<true/>
+	<key>DoubleClickPerformsSmartSelection</key>
+	<true/>
 	<key>EnterCopyModeAutomatically</key>
 	<true/>
 	<key>GlobalKeyMap</key>
@@ -429,7 +437,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>Advanced</string>
+			<string>Recycle</string>
 			<key>Custom Locale</key>
 			<string>en_US.UTF-8</string>
 			<key>Custom Tab Title</key>
@@ -466,7 +474,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Use Transparency</key>
-			<true/>
+			<false/>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -489,6 +497,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Load Shell Integration Automatically</key>
+			<true/>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -669,6 +679,8 @@
 			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
+			<key>Thin Strokes</key>
+			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
@@ -685,12 +697,14 @@
 			<true/>
 			<key>Use Non-ASCII Font</key>
 			<false/>
+			<key>Use Selected Text Color</key>
+			<true/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>15</integer>
 			<key>Working Directory</key>
 			<string>/Users/linusoleander</string>
 		</dict>
@@ -702,6 +716,8 @@
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
+	<false/>
+	<key>PerPaneBackgroundImage</key>
 	<false/>
 	<key>PointerActions</key>
 	<dict>
@@ -739,6 +755,8 @@
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>ReportHorizontalScrollEvents</key>
+	<false/>
+	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>
 	<false/>

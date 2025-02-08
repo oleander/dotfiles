@@ -145,3 +145,23 @@ format = '[$symbol\[$name\]]($style) '
 symbol = '⬢'
 style = 'bold red dimmed'
 disabled = false
+
+# Java configuration
+[java]
+symbol = "☕ "
+style = "red dimmed"
+format = "via [$symbol($version )]($style)"
+detect_extensions = ["java", "class", "gradle", "jar", "cljs", "cljc"]
+detect_files = [
+  "pom.xml",
+  "build.gradle.kts",
+  "build.sbt",
+  ".java-version",
+  "deps.edn",
+  "project.clj",
+  "build.boot",
+  ".sdkmanrc",
+]
+detect_folders = []
+version_format = "v${raw}"
+disabled = false
