@@ -93,3 +93,5 @@ spec/examples.txt
 Gemfile.local
 Gemfile.local.lock
 .solargraph.yml
+.cursorrules
+.cursor

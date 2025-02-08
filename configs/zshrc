@@ -233,14 +233,6 @@ alias v='view-github-project'
 alias f='format-new-files-since-branch'
 alias code='cursor'
 
-# If $BUNDLE_GEMFILE is set, check if the value is an existing file
-if [ -n "$BUNDLE_GEMFILE" ]; then
-  if [ ! -f "$BUNDLE_GEMFILE" ]; then
-    echo "BUNDLE_GEMFILE is set to $BUNDLE_GEMFILE, but the file does not exist."
-    unset BUNDLE_GEMFILE
-  fi
-fi
-
 export OPENAI_API_KEY="dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content"
 
 [[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh

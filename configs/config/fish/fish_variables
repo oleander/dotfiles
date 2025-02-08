@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export OPENAI_API_KEY:sk\x2dproj\x2dVA4yFjwKCVgcAZ1mhSFvFfEYA5hCX\x2dNgrYIkPcrAj_5C31VYhdEvkUYIvz_RBmzf2lhZkXNLz2T3BlbkFJHaYLUHffcYbBXh4oB1PJHdcuAdaU9Pd0sZPLa0MMJy5xoHqA\x2dYQcHcoqEwj0REE1DbIYnGRMkA
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/Users/linus/\x2elocal/share/z/data

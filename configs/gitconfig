@@ -3,7 +3,7 @@
     fileMode = false
 [user]
 	email = 220827+oleander@users.noreply.github.com
-    name = Linus Oleander
+	name = Linus Oleander
 	signingkey = /Users/linus/.ssh/id_rsa
 [push]
     autoSetupRemote = true
