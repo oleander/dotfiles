@@ -5,7 +5,7 @@
 add_newline = true
 
 # Right prompt: battery, command duration, git commit, time
-right_format = "$battery$cmd_duration$git_commit$time$hostname"
+right_format = "$battery$cmd_duration$git_commit$docker_context$time$hostname"
 
 # Left prompt: directory, git branch, git status
 format = "$directory$git_branch$git_status$git_state$line_break$character"
@@ -103,7 +103,13 @@ style = "dimmed green"
 disabled = true
 
 [docker_context]
-disabled = true
+disabled = false
+symbol = "🐳 "
+style = "blue bold"
+format = "via [$symbol$context]($style) "
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
 
 # Status configuration
 [status]
