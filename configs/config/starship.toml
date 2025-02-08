@@ -4,8 +4,8 @@
 # Configuration options
 add_newline = true
 
-# Right prompt: battery, command duration, git commit, time
-right_format = "$battery$cmd_duration$git_commit$docker_context$time$hostname"
+# Right prompt: battery, command duration, git commit, docker context, time
+right_format = "$battery$cmd_duration$git_commit$docker_context$container$time$hostname"
 
 # Left prompt: directory, git branch, git status
 format = "$directory$git_branch$git_status$git_state$line_break$character"
@@ -123,3 +123,10 @@ style = 'bold red'
 ssh_only = true
 format = " [$hostname]($style) "
 style = "bold dimmed green"
+
+# Container configuration
+[container]
+format = '[$symbol\[$name\]]($style) '
+symbol = '⬢'
+style = 'bold red dimmed'
+disabled = false
