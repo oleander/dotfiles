@@ -68,6 +68,7 @@ am_or_rebase = "AM/REBASE"
 
 # Directory configuration
 [directory]
+fish_style_pwd_dir_length = 5
 truncation_length = 3
 truncation_symbol = "…/"
 read_only = " ro"
