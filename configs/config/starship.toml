@@ -124,6 +124,19 @@ ssh_only = true
 format = " [$hostname]($style) "
 style = "bold dimmed green"
 
+# Direnv configuration
+[direnv]
+disabled = false
+format = '[$symbol$loaded/$allowed]($style) '
+symbol = '📂 '
+style = 'bold orange'
+detect_files = ['.envrc']
+allowed_msg = 'allowed'
+not_allowed_msg = 'not allowed'
+denied_msg = 'denied'
+loaded_msg = 'loaded'
+unloaded_msg = 'not loaded'
+
 # Container configuration
 [container]
 format = '[$symbol\[$name\]]($style) '
