@@ -4,6 +4,10 @@
       create: true
       force: false
 
+- clean:
+    - ~/.local/share/zinit/zinit.git
+    - ~/.local/share/zinit
+
 - link:
     ~/.dotfiles:
       relative: true
@@ -81,5 +85,6 @@
   - [cd ./autojump && SHELL=/bin/zsh ./install.py || echo "Failed to install autojump", Install autojump]
   - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || echo "Failed to install starship", Install starship]
   - [zsh -i -c 'exit' || echo "Failed to preload ZSH", Preload ZSH]
+  - [ -f ~/.local/share/zinit/zinit.git/zinit.zsh, "Verify zinit.zsh file exists" ]
+  - [ echo 'source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"' >> ~/.zshrc, "Update .zshrc to source zinit.zsh" ]
   # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
-
