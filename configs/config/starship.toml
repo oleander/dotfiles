@@ -8,7 +8,7 @@ add_newline = true
 right_format = "$battery$cmd_duration$git_commit$time$hostname"
 
 # Left prompt: directory, git branch, git status
-format = "$directory$git_branch$git_status$line_break$character"
+format = "$directory$git_branch$git_status$git_state$line_break$character"
 
 # Command duration configuration
 [cmd_duration]
@@ -53,6 +53,18 @@ ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕${count}"
 up_to_date = ""
+
+# Git state configuration
+[git_state]
+format = ' [$state( $progress_current/$progress_total)]($style) '
+style = "bold yellow"
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
 
 # Directory configuration
 [directory]
