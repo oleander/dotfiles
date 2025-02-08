@@ -5,7 +5,7 @@
 add_newline = true
 
 # Right prompt: battery, command duration, git commit, docker context, time
-right_format = "$battery$cmd_duration$git_commit$docker_context$container$time$hostname"
+right_format = "$battery$cmd_duration$git_commit$docker_context$container$direnv$time$hostname"
 
 # Left prompt: directory, git branch, git status
 format = "$directory$git_branch$git_status$git_state$line_break$character"
@@ -43,16 +43,18 @@ format = "on [$branch]($style)"
 # Git status configuration
 [git_status]
 style = "bold red"
-format = " [$all_status$ahead_behind]($style)"
-conflicted = "✖"
-staged = "+${count}"
-modified = "!${count}"
-untracked = "?${count}"
-stashed = ""
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕${count}"
+format = " [$untracked$modified$deleted$renamed$conflicted$ahead$behind]($style)"
+conflicted = "[✖${count}](red bold)"
+ahead = "[AH${count}](green bold)"
+behind = "[BH${count}](yellow bold)"
+diverged = "[AH${ahead_count}BH${behind_count}](red bold)"
 up_to_date = ""
+untracked = "[U${count}](blue bold)"
+stashed = "[S${count}](cyan bold)"
+modified = "[C${count}](yellow bold)"
+staged = "[A${count}](green bold)"
+renamed = "[R${count}](blue bold)"
+deleted = "[D${count}](red bold)"
 
 # Git state configuration
 [git_state]
@@ -127,15 +129,15 @@ style = "bold dimmed green"
 # Direnv configuration
 [direnv]
 disabled = false
-format = '[$symbol$loaded/$allowed]($style) '
-symbol = '📂 '
-style = 'bold orange'
-detect_files = ['.envrc']
-allowed_msg = 'allowed'
-not_allowed_msg = 'not allowed'
-denied_msg = 'denied'
-loaded_msg = 'loaded'
-unloaded_msg = 'not loaded'
+format = '[$symbol$loaded]($style) '
+symbol = ''
+style = 'dimmed red'
+detect_files = ['.envrc', '.env', '.env.local']
+allowed_msg = '.env'
+not_allowed_msg = '!.env'
+denied_msg = '!.env'
+loaded_msg = '.env'
+unloaded_msg = '!.env'
 
 # Container configuration
 [container]
