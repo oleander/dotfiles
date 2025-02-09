@@ -20,6 +20,8 @@
     directory = /root/dotfiles/dotbot
     directory = /app/dotbot
 	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
 [pull]
     rebase = true
 [color]

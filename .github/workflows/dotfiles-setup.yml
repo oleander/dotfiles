@@ -43,10 +43,12 @@ jobs:
           devcontainer exec --remote-env OS=linux --workspace-folder . /bin/bash -c '
           # Run dotfiles installation
           ./install && \
-          # Run Rust installer explicitly
+          # Run Rust installer explicitly and wait for cargo env to be available
           ~/.local/bin/inst-rust && \
-          # Source cargo env in the same session
+          while [ ! -f ~/.cargo/env ]; do sleep 1; done && \
           source ~/.cargo/env && \
+          # Clear any existing cargo locks
+          rm -f ~/.cargo/.package-cache && \
           # Verify installation
           echo "Verifying installation..." && \
           ls -la ~/.local/bin && \
