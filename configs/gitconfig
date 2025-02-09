@@ -26,6 +26,11 @@
 	directory = /workspaces/dotfiles/dotbot
 	directory = /workspaces/dotfiles/dotbot
 	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
 [pull]
     rebase = true
 [color]
