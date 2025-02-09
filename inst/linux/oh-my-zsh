@@ -6,6 +6,14 @@ if [[ -d ~/.oh-my-zsh ]]; then
 fi
 
 # Install required packages for oh-my-zsh
-apk add --no-cache git curl
+if command -v apt-get &>/dev/null; then
+    sudo apt-get update
+    sudo apt-get install -y git curl
+elif command -v apk &>/dev/null; then
+    apk add --no-cache git curl
+else
+    echo "No supported package manager found (tried apt-get and apk)"
+    exit 1
+fi
 
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
