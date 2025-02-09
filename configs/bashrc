@@ -1,4 +1,10 @@
 if [ -t 1 ] && [ -z "$ZSH_VERSION" ]; then
     exec zsh
 fi
-. "$HOME/.cargo/env"
+
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
+
+if [ -f "$CARGO_HOME/env" ]; then
+    source "$CARGO_HOME/env"
+fi
