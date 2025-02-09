@@ -21,7 +21,7 @@
     ~/.ssh:
       mode: 0700
 
-- clean: ["~", "~/.local/bin/inst"]
+- clean: ["~/.local/bin/inst"]
 
 - link:
     ~/.dotfiles:
