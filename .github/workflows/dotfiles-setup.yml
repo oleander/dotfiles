@@ -37,14 +37,20 @@ jobs:
       - name: Run devcontainer
         run: devcontainer up --remote-env OS=linux --workspace-folder .
 
+      # First run the dotfiles installation
+      - name: Run dotfiles installation
+        run: |
+          devcontainer exec --remote-env OS=linux --workspace-folder . /bin/bash -c '
+          ./install
+          '
+
+      # Then verify the setup
       - name: Verify dotfiles setup
         run: |
           devcontainer exec --remote-env OS=linux --workspace-folder . /bin/bash -c '
-          # First run the installer scripts
+          ls -la ~/.local/bin && \
           ~/.local/bin/inst-rust && \
           source ~/.cargo/env && \
-          # Then verify the installation
-          ls -la ~/.local/bin && \
           which git-ai && \
           cargo --version
           '
