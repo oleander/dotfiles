@@ -35,11 +35,7 @@ jobs:
         run: devcontainer build --workspace-folder .
 
       - name: Run devcontainer
-        env:
-          OS: linux
-        run: devcontainer up --workspace-folder .
+        run: devcontainer up --remote-env OS=linux --workspace-folder .
 
       - name: Verify dotfiles setup
-        env:
-          OS: linux
-        run: devcontainer exec --workspace-folder . ls
+        run: devcontainer exec --remote-env OS=linux --workspace-folder . ls
