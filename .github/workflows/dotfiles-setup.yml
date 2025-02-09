@@ -47,9 +47,9 @@ jobs:
           ~/.local/bin/inst-rust && \
           while [ ! -f ~/.cargo/env ]; do sleep 1; done && \
           source ~/.cargo/env && \
-          # Update rust to 1.66 minimum version required by console dependency
-          rustup toolchain install 1.66 && \
-          rustup default 1.66 && \
+          # Update rust to 1.69 minimum version required by console dependency
+          rustup toolchain install 1.69 && \
+          rustup default 1.69 && \
           # Try installing git-ai with retries
           for i in {1..3}; do
             echo "Attempt $i to install git-ai..." && \
