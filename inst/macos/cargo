@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Check if cargo is already installed
+if command -v cargo &>/dev/null; then
+  echo "cargo is already installed"
+  exit 0
+fi
+
+# Check if Homebrew is installed (we'll need it for curl on macOS)
+if ! command -v brew &>/dev/null; then
+  echo "Homebrew is required. Please install it first."
+  exit 1
+fi
+
+# Install cargo using rustup (the official installer)
+echo "Installing cargo using rustup"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# Add cargo to the current shell session
+source "$HOME/.cargo/env"
+
+# Verify installation
+if command -v cargo &>/dev/null; then
+  echo "cargo installed successfully"
+else
+  echo "cargo installation failed"
+  exit 1
+fi

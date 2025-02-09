@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+if command -v zsh &>/dev/null; then
+    echo "zsh is already installed"
+    exit 0
+fi
+
+apk add --no-cache zsh

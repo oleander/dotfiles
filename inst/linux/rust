@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+if command -v cargo &>/dev/null; then
+    echo "rust/cargo is already installed"
+    exit 0
+fi
+
+apk add --no-cache rust

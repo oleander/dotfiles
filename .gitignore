@@ -19,3 +19,8 @@ Gemfile.lock
 configs/config/fabric/
 configs/config/.DS_Store
 configs/config/gh/hosts.yml
+configs/rustup/toolchains/
+configs/rustup/downloads/
+configs/rustup/tmp/
+configs/rustup/update-hashes/
+inst/link/

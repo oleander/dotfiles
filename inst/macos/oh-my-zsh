@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -d ~/.oh-my-zsh ]]; then
+    echo "oh-my-zsh is already installed"
+    exit 0
+fi
+
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh

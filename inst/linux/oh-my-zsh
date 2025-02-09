@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [[ -d ~/.oh-my-zsh ]]; then
+    echo "oh-my-zsh is already installed"
+    exit 0
+fi
+
+# Install required packages for oh-my-zsh
+apk add --no-cache git curl
+
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh

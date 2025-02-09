@@ -7,8 +7,8 @@ AllCops:
   NewCops: enable
 
 Layout/LineLength:
-   Max: 100
-   Exclude: ['**/spec/**/*.rb', 'remap.gemspec']
+  Max: 100
+  Exclude: ["**/spec/**/*.rb", "remap.gemspec"]
 
 RSpec/NestedGroups:
   Exclude:
@@ -90,7 +90,6 @@ Lint/EmptyFile:
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
-
 
 Style/ClassAndModuleChildren:
   Enabled: false

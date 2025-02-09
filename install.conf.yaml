@@ -3,83 +3,62 @@
       relink: true
       create: true
       force: false
+    shell:
+      stdout: true
+      stderr: true
+      stdin: false
+
+- create:
+    - ~/.cache
+    - ~/.local/bin
+    - ~/.config/cargo
+    - ~/.local/state
+    - ~/.local/bin/inst
+    - ~/.local/share/zinit
+    - ~/.local/share/nvim/site/autoload
+
+- create:
+    ~/.ssh:
+      mode: 0700
+
+- clean: ["~", "~/.local/bin/inst"]
 
 - link:
     ~/.dotfiles:
       relative: true
-      path: "."
-    ~/.config/cargo/config.toml: configs/config/cargo/config.toml
-    ~/.config/fish/config.fish: configs/config/fish/config.fish
-    ~/.config/fish/fish_variables: configs/config/fish/fish_variables
-    ~/.config/gh-copilot/config.yml: configs/config/gh-copilot/config.yml
-    ~/.config/gh/config.yml: configs/config/gh/config.yml
-    ~/.config/nvim/init.vim: configs/config/nvim/init.vim
-    ~/.config/starship.toml: configs/config/starship.toml
-    ~/.gemrc: configs/gemrc
-    ~/.gitconfig: configs/gitconfig
-    ~/.gitignore: configs/gitignore
-    ~/.hushlogin: configs/hushlogin
-    ~/.irbrc: configs/irbrc
-    ~/.rspec: configs/rspec
-    ~/.rubocop.yml: configs/rubocop.yml
-    ~/.rustfmt.toml: configs/rustfmt.toml
-    ~/.ssh/config:
-      path: configs/ssh/config
-      perm: 0644
-    ~/.ssh/known_hosts:
-      path: configs/ssh/known_hosts
       force: true
-    ~/.config/karabiner/karabiner.json: configs/config/karabiner/karabiner.json
-    ~/.zshrc:
-      path: configs/zshrc
+      path: .
+    ~/:
+      prefix: .
+      glob: true
+      path: configs/*
+      exclude: [configs/config]
       force: true
-    ~/.bashrc:
-      path: configs/bashrc
-      force: true
+    ~/.config:
+      glob: true
+      path: configs/config/**
 
-- create:
-    ~/.ssh:
-      perm: 0755
+- link:
+    ~/.local/bin:
+      if: test $OS = "macos"
+      path: inst/macos/*
+      glob: true
+      force: true
+      relink: true
+      prefix: inst-
 
-- ifhostname:
-    hostname: macbook.local
-    met:
-      - shell:
-        - [cargo binstall -y git-ai || echo "Failed to install git-ai", Install git-ai]
-    unmet: {}
-- ifhostname:
-    hostname: homeassistant.local
-    unmet:
-      - shell:
-        - [curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash, Install cargo-binstall]
-    met:
-      shell:
-        - [apk add --update cargo, Install cargo]
-        - [cargo binstall -y --targets x86_64-unknown-linux-musl git-ai, Install git-ai]
-      link:
-        ~/.local:
-          path: /share/ssh/local
-          force: true
-        ~/.cargo:
-          path: /share/ssh/cargo
-          force: true
-        ~/.rustup:
-          path: /share/ssh/rustup
-          force: true
-        create:
-          - /share/ssh/rustup
-          - /share/ssh/local
-          - /share/ssh/cargo
+- link:
+    ~/.local/bin:
+      if: test $OS = "linux"
+      path: inst/linux/*
+      glob: true
+      force: true
+      relink: true
+      prefix: inst-
 
 - shell:
-  - [git pull, Pull submodules]
-  - [git submodule sync --quiet --recursive, Sync submodules, Sync submodules]
-  - [git submodule update --init --recursive, Install submodules, Update submodules]
-  - [curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || echo "Failed to install vim-plug", Install vim-plug]
-  - [nvim +PlugInstall! +qa || echo "Failed to load plugin manager into neovim", Load plugin manager into neovim]
-  - [cd ./autojump && chmod +x ./install.py || echo "Failed to make install script executable", Make install script executable]
-  - [cd ./autojump && SHELL=/bin/zsh ./install.py || echo "Failed to install autojump", Install autojump]
-  - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || echo "Failed to install starship", Install starship]
-  - [zsh -i -c 'exit' || echo "Failed to preload ZSH", Preload ZSH]
-  # - [nvim -c "Copilot setup" +qa, Setting up Copilot]
-
+    - [~/.local/bin/inst-brew, Installing homebrew]
+    - [~/.local/bin/inst-zsh, Installing zsh]
+    - [~/.local/bin/inst-rust, Installing rust]
+    - [~/.local/bin/inst-oh-my-zsh, Installing oh-my-zsh]
+    - [~/.local/bin/inst-git-ai, Installing git-ai]
