@@ -18,6 +18,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Docker compose test for linux
+        run: docker compose up homeassistant --build
+
+      - name: Docker compose test for macos
+        run: docker compose up macos --build
+
       - uses: actions/setup-node@v4
         with:
           node-version: latest
