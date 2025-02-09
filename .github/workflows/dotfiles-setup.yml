@@ -34,19 +34,16 @@ jobs:
       - name: Build devcontainer
         run: devcontainer build --workspace-folder .
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          profile: minimal
-
       - name: Run devcontainer
         run: devcontainer up --remote-env OS=linux --workspace-folder .
 
       - name: Verify dotfiles setup
         run: |
           devcontainer exec --remote-env OS=linux --workspace-folder . /bin/bash -c '
+          # First run the installer scripts
+          ~/.local/bin/inst-rust && \
           source ~/.cargo/env && \
+          # Then verify the installation
           ls -la ~/.local/bin && \
           which git-ai && \
           cargo --version
