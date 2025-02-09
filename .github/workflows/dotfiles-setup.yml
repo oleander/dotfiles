@@ -37,20 +37,19 @@ jobs:
       - name: Run devcontainer
         run: devcontainer up --remote-env OS=linux --workspace-folder .
 
-      # First run the dotfiles installation
-      - name: Run dotfiles installation
+      # Modified to run installation and verification in a single bash session
+      - name: Install and verify dotfiles
         run: |
           devcontainer exec --remote-env OS=linux --workspace-folder . /bin/bash -c '
-          ./install
-          '
-
-      # Then verify the setup
-      - name: Verify dotfiles setup
-        run: |
-          devcontainer exec --remote-env OS=linux --workspace-folder . /bin/bash -c '
-          ls -la ~/.local/bin && \
+          # Run dotfiles installation
+          ./install && \
+          # Run Rust installer explicitly
           ~/.local/bin/inst-rust && \
+          # Source cargo env in the same session
           source ~/.cargo/env && \
+          # Verify installation
+          echo "Verifying installation..." && \
+          ls -la ~/.local/bin && \
           which git-ai && \
           cargo --version
           '
