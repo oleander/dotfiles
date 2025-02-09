@@ -12,15 +12,34 @@
 	defaultBranch = main
 [safe]
     directory = /opt/homebrew
-	directory = /workspaces/.dotfiles/dotbot
-	directory = /workspaces/.dotfiles/dotbot
-	directory = /workspaces/.dotfiles
-	directory = /workspaces/.dotfiles
-	directory = /workspaces/.dotfiles/dotbot
-	directory = /workspaces/.dotfiles
-	directory = /workspaces/.dotfiles/dotbot
-	directory = /workspaces/.dotfiles
-	directory = /workspaces/.dotfiles/dotbot
+    directory = /workspaces/.dotfiles
+    directory = /workspaces/.dotfiles/dotbot
+    directory = /root
+    directory = /root/dotfiles
+    directory = /root/dotfiles/bin/dotbot
+    directory = /root/dotfiles/dotbot
+    directory = /app/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
+	directory = /workspaces/dotfiles/dotbot
 [pull]
     rebase = true
 [color]
@@ -72,10 +91,10 @@
 	required = true
 	clean = git-lfs clean -- %f
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [advice]
 	diverging = false

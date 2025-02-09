@@ -163,11 +163,9 @@ export STARSHIP_CACHE="$HOME/.starship/cache"
 eval "$(starship init zsh)"
 
 # Rebuild Zsh completion cache
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+compinit
 
-if [ ! -f "$HOME/.antigen.zsh" ]; then
-    curl -L git.io/antigen > "$HOME/.antigen.zsh"
-fi
 source "$HOME/.antigen.zsh"
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-autosuggestions

@@ -18,18 +18,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: latest
+      - name: Docker compose test for linux
+        run: docker compose up homeassistant --build
 
-      - name: Set up devcontainer CLI
-        run: npm install -g @devcontainers/cli
-
-      - name: Build devcontainer
-        run: devcontainer build --workspace-folder .
-
-      - name: Run devcontainer
-        run: devcontainer up --workspace-folder .
-
-      - name: Verify dotfiles setup
-        run: devcontainer exec --workspace-folder . ls
+      - name: Docker compose test for macos
+        run: docker compose up macos --build

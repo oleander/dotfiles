@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+if command -v cargo &>/dev/null; then
+    echo "rust/cargo is already installed"
+    exit 0
+fi
+
+# Try apt-get first (Ubuntu/Debian)
+if command -v apt-get &>/dev/null; then
+    sudo apt-get update
+    sudo apt-get install -y rust-all
+# Try apk next (Alpine)
+elif command -v apk &>/dev/null; then
+    apk add --no-cache rust
+else
+    echo "No supported package manager found (tried apt-get and apk)"
+    exit 1
+fi
