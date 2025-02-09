@@ -40,6 +40,8 @@
 	directory = /workspaces/dotfiles/dotbot
 	directory = /workspaces/dotfiles/dotbot
 	directory = /workspaces/dotfiles/dotbot
+	directory = /Users/linus/Code/dotfiles/dotbot
+	directory = /Users/linus/Code/dotfiles/dotbot
 [pull]
     rebase = true
 [color]
