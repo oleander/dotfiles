@@ -25,6 +25,8 @@
 - create:
     ~/.ssh:
       mode: 0700
+      create: false
+      force: false
 
 - clean:
     ~/.local/bin/inst: true
