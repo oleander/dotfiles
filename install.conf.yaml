@@ -52,6 +52,8 @@
       glob: true
       exclude: [id_rsa*]
       force: true
+
+- link:
     ~/.local/bin:
       if: test $OS = "macos"
       path: inst/macos/*
@@ -59,6 +61,8 @@
       force: true
       relink: true
       prefix: inst-
+
+- link:
     ~/.local/bin:
       if: test $OS = "linux"
       path: inst/linux/*
