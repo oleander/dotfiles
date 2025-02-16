@@ -12,7 +12,7 @@ if command -v apt-get &>/dev/null; then
 # Try apk next (Alpine)
 elif command -v apk &>/dev/null; then
     echo "Installing rust via curl"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
 else
     echo "No supported package manager found (tried apt-get and apk)"
     exit 1
