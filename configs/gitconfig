@@ -11,19 +11,7 @@
 [init]
 	defaultBranch = main
 [safe]
-    directory = /opt/homebrew
-    directory = /workspaces/.dotfiles
-    directory = /workspaces/.dotfiles/dotbot
-    directory = /root/dotfiles
-    directory = /root/dotfiles/dotbot
-    directory = /Users/linus/Code/dotfiles/dotbot
-    directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
+	directory = *
 [pull]
     rebase = true
 [color]
