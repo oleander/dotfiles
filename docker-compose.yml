@@ -6,6 +6,7 @@ services:
     volumes: [./:/home/testuser/dotfiles]
     stop_grace_period: 0s
     working_dir: /home/testuser/dotfiles
+    entrypoint: /bin/bash -c
     environment:
       PATH: /home/testuser/.cargo/bin:$PATH
       OS: linux

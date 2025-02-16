@@ -5,8 +5,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-git config --global --add safe.directory "$(realpath .)"
-
 # Create a temporary directory for testing
 TEST_DIR=$(mktemp -d)
 TEST_SSH_DIR="$TEST_DIR/.ssh"
@@ -90,6 +88,7 @@ export HOME="$TEST_DIR"
 
 # Run the install script
 echo "🚀 Running install script..."
+git config --global --add safe.directory "$REPO_ROOT"
 (cd "$REPO_ROOT" && ./install)
 
 # Restore original HOME
