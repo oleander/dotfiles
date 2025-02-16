@@ -42,6 +42,7 @@
       path: configs/*
       exclude:
         - configs/config
+        - configs/ssh
       force: true
     ~/.config:
       glob: true
