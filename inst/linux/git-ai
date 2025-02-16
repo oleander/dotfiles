@@ -1,6 +1,21 @@
 #!/bin/bash -e
 
-test -n "$QUICK" && exit 0
+if ! command -v cargo &>/dev/null; then
+    echo "Installing rust/cargo..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+fi
+
+# Install make using the appropriate package manager
+if command -v apt-get &>/dev/null; then
+    sudo apt-get update
+    sudo apt-get install -y make
+elif command -v apk &>/dev/null; then
+    apk add --no-cache make
+else
+    echo "No supported package manager found (tried apt-get and apk)"
+    exit 1
+fi
 
 if ! command -v cargo-binstall &>/dev/null; then
     echo "cargo-binstall is not installed"
