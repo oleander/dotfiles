@@ -1,21 +1,14 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bibendi/dip/refs/heads/master/schema.json
 
-version: '7.1'
-
-environment:
-  COMPOSE_EXT: yml
+version: "8"
 
 provision:
-  - dip compose down -v
-  - dip compose up -d
+  - echo "Provisioning..."
 
 interaction:
-  test:
-    description: Run the dotfiles test suite
-    service: homeassistant
-    command: ./test/test_ssh_keys.sh
-    compose:
-      run_options: [--rm, --remove-orphans]
+  clean:
+    description: Clean up test containers and volumes
+    command: dip compose down -v
 
   install-linux:
     description: Install the dotfiles in Linux environment
@@ -31,10 +24,6 @@ interaction:
     compose:
       run_options: [--rm, --remove-orphans]
 
-  clean:
-    description: Clean up test containers and volumes
-    command: dip compose down -v
-
   shell-linux:
     description: Open a shell in the Linux environment
     service: homeassistant
@@ -46,5 +35,12 @@ interaction:
     description: Open a shell in the macOS environment
     service: macos
     command: /bin/bash
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  test:
+    description: Run the dotfiles test suite
+    service: homeassistant
+    command: ./test/test_ssh_keys.sh
     compose:
       run_options: [--rm, --remove-orphans]
