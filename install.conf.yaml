@@ -57,6 +57,7 @@
       path: configs/ssh
       glob: true
       exclude: [id_rsa*]
+      force: true
 
 - link:
     ~/.local/bin:
