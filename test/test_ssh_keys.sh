@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+git config --global --add safe.directory "$(realpath .)"
+
 # Create a temporary directory for testing
 TEST_DIR=$(mktemp -d)
 TEST_SSH_DIR="$TEST_DIR/.ssh"
