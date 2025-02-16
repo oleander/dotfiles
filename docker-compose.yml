@@ -1,12 +1,11 @@
 services:
   homeassistant:
     container_name: homeassistant-dotfiles
-    build:
-      context: .
-      dockerfile: test/Dockerfile
+    image: ghcr.io/hassio-addons/ssh/amd64:stable
+    platform: linux/amd64
     volumes: [./:/root/dotfiles]
-    working_dir: /root/dotfiles
-    command: ["./test/test_ssh_keys.sh"]
+    entrypoint: /root/dotfiles/install
+    stop_grace_period: 0s
     environment:
       PATH: /root/.cargo/bin:$PATH
       OS: linux
