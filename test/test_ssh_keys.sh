@@ -31,25 +31,43 @@ if [ ! -f "${TEST_KEY_PATH}" ] || [ ! -f "${TEST_KEY_PATH}.pub" ]; then
     exit 1
 fi
 
+# Function to get permissions in octal format, compatible with both Linux and macOS
+get_perms() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        stat -f "%Lp" "$1"
+    else
+        stat -c "%a" "$1"
+    fi
+}
+
 # Verify key permissions
-if [ "$(stat -c %a ${TEST_KEY_PATH})" != "600" ]; then
-    echo "❌ Private key has incorrect permissions: $(stat -c %a ${TEST_KEY_PATH})"
+PRIVATE_KEY_PERMS=$(get_perms "${TEST_KEY_PATH}")
+PUBLIC_KEY_PERMS=$(get_perms "${TEST_KEY_PATH}.pub")
+
+if [ "$PRIVATE_KEY_PERMS" != "600" ]; then
+    echo "❌ Private key has incorrect permissions: $PRIVATE_KEY_PERMS"
     exit 1
 fi
 
-if [ "$(stat -c %a ${TEST_KEY_PATH}.pub)" != "644" ]; then
-    echo "❌ Public key has incorrect permissions: $(stat -c %a ${TEST_KEY_PATH}.pub)"
+if [ "$PUBLIC_KEY_PERMS" != "644" ]; then
+    echo "❌ Public key has incorrect permissions: $PUBLIC_KEY_PERMS"
     exit 1
 fi
 
 echo "✅ Test SSH keys generated successfully with correct permissions"
 
 # Store key checksums and permissions before installation
-PRIVATE_KEY_SUM=$(sha256sum "$TEST_KEY_PATH" | cut -d' ' -f1)
-PUBLIC_KEY_SUM=$(sha256sum "${TEST_KEY_PATH}.pub" | cut -d' ' -f1)
-PRIVATE_KEY_PERMS=$(stat -c %a "$TEST_KEY_PATH")
-PUBLIC_KEY_PERMS=$(stat -c %a "${TEST_KEY_PATH}.pub")
-SSH_DIR_PERMS=$(stat -c %a "$TEST_SSH_DIR")
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    PRIVATE_KEY_SUM=$(shasum -a 256 "$TEST_KEY_PATH" | cut -d' ' -f1)
+    PUBLIC_KEY_SUM=$(shasum -a 256 "${TEST_KEY_PATH}.pub" | cut -d' ' -f1)
+else
+    PRIVATE_KEY_SUM=$(sha256sum "$TEST_KEY_PATH" | cut -d' ' -f1)
+    PUBLIC_KEY_SUM=$(sha256sum "${TEST_KEY_PATH}.pub" | cut -d' ' -f1)
+fi
+
+PRIVATE_KEY_PERMS=$(get_perms "$TEST_KEY_PATH")
+PUBLIC_KEY_PERMS=$(get_perms "${TEST_KEY_PATH}.pub")
+SSH_DIR_PERMS=$(get_perms "$TEST_SSH_DIR")
 
 # Run the install script
 echo "🚀 Running install script..."
@@ -65,8 +83,13 @@ if [ ! -f "$TEST_KEY_PATH" ] || [ ! -f "${TEST_KEY_PATH}.pub" ]; then
 fi
 
 # Check content integrity
-NEW_PRIVATE_KEY_SUM=$(sha256sum "$TEST_KEY_PATH" | cut -d' ' -f1)
-NEW_PUBLIC_KEY_SUM=$(sha256sum "${TEST_KEY_PATH}.pub" | cut -d' ' -f1)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    NEW_PRIVATE_KEY_SUM=$(shasum -a 256 "$TEST_KEY_PATH" | cut -d' ' -f1)
+    NEW_PUBLIC_KEY_SUM=$(shasum -a 256 "${TEST_KEY_PATH}.pub" | cut -d' ' -f1)
+else
+    NEW_PRIVATE_KEY_SUM=$(sha256sum "$TEST_KEY_PATH" | cut -d' ' -f1)
+    NEW_PUBLIC_KEY_SUM=$(sha256sum "${TEST_KEY_PATH}.pub" | cut -d' ' -f1)
+fi
 
 if [ "$PRIVATE_KEY_SUM" != "$NEW_PRIVATE_KEY_SUM" ]; then
     echo "❌ Test failed: Private key was modified during installation"
@@ -83,9 +106,9 @@ if [ "$PUBLIC_KEY_SUM" != "$NEW_PUBLIC_KEY_SUM" ]; then
 fi
 
 # Check permissions
-NEW_PRIVATE_KEY_PERMS=$(stat -c %a "$TEST_KEY_PATH")
-NEW_PUBLIC_KEY_PERMS=$(stat -c %a "${TEST_KEY_PATH}.pub")
-NEW_SSH_DIR_PERMS=$(stat -c %a "$TEST_SSH_DIR")
+NEW_PRIVATE_KEY_PERMS=$(get_perms "$TEST_KEY_PATH")
+NEW_PUBLIC_KEY_PERMS=$(get_perms "${TEST_KEY_PATH}.pub")
+NEW_SSH_DIR_PERMS=$(get_perms "$TEST_SSH_DIR")
 
 if [ "$PRIVATE_KEY_PERMS" != "$NEW_PRIVATE_KEY_PERMS" ]; then
     echo "❌ Test failed: Private key permissions changed during installation"
