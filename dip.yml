@@ -33,15 +33,3 @@ interaction:
     command: ./test/test_ssh_keys.sh
     compose:
       run_options: [--rm, --remove-orphans]
-
-  test:
-    description: Run the dotfiles test suite
-    command:
-      - dip test-linux
-      - dip test-macos
-
-  install:
-    description: Install the dotfiles
-    command:
-      - dip install-linux
-      - dip install-macos

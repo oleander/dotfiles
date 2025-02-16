@@ -54,6 +54,8 @@
 	directory = .
 	directory = .
 	directory = .
+	directory = .
+	directory = .
 [pull]
     rebase = true
 [color]

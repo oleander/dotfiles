@@ -42,7 +42,9 @@
       prefix: .
       glob: true
       path: configs/*
-      exclude: [configs/config]
+      exclude:
+        - configs/config
+        - configs/ssh
       force: true
     ~/.config:
       glob: true
