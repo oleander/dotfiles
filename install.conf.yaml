@@ -40,18 +40,11 @@
       path: configs/*
       exclude:
         - configs/config
-        - configs/ssh
       force: true
     ~/.config:
       glob: true
       path: configs/config/**
       create: true
-      force: true
-    ~/.ssh/config:
-      path: configs/ssh/config
-      force: true
-    ~/.ssh/known_hosts:
-      path: configs/ssh/known_hosts
       force: true
 
 - link:
