@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+# Get the directory where the test script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 git config --global --add safe.directory "$(realpath .)"
 
 # Create a temporary directory for testing
@@ -86,7 +90,7 @@ export HOME="$TEST_DIR"
 
 # Run the install script
 echo "🚀 Running install script..."
-(cd "$OLD_HOME" && ./install)
+(cd "$REPO_ROOT" && ./install)
 
 # Restore original HOME
 export HOME="$OLD_HOME"
