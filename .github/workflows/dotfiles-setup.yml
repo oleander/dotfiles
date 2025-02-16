@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  QUICK: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   setup-verification:
     runs-on: ubuntu-latest
@@ -23,6 +26,10 @@ jobs:
 
       - name: Docker compose test for linux
         run: dip test-linux
+        env:
+          QUICK: ${{ env.QUICK }}
 
       - name: Test install in linux
         run: dip install-linux
+        env:
+          QUICK: ${{ env.QUICK }}

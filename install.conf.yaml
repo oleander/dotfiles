@@ -21,7 +21,9 @@
     - ~/.config/fish
     - ~/.config/karabiner
     - ~/.config/jgit
-    - ~/.ssh:
+
+- create:
+    ~/.ssh:
       mode: 0700
 
 - clean:
