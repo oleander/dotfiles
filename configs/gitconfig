@@ -19,6 +19,7 @@
     directory = /Users/linus/Code/dotfiles/dotbot
     directory = .
 	directory = .
+	directory = .
 [pull]
     rebase = true
 [color]
@@ -30,6 +31,7 @@
     compactionHeuristic = true
     mnemonicPrefix = true
     tool = meld
+    submodule = log
 [merge]
     tool = meld
     commit = no
@@ -79,3 +81,8 @@
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [advice]
 	diverging = false
+[status]
+    submoduleSummary = true
+[submodule]
+    recurse = true
+    ignore = dirty

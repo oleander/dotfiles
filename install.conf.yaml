@@ -21,17 +21,11 @@
     - ~/.config/fish
     - ~/.config/karabiner
     - ~/.config/jgit
-
-- create:
-    ~/.ssh:
+    - ~/.ssh:
       mode: 0700
 
 - clean:
     ~/.local/bin/inst: true
-    ~/.ssh:
-      exclude:
-        - id_rsa
-        - id_rsa.pub
 
 - link:
     ~/.dotfiles:
@@ -51,15 +45,11 @@
       path: configs/config/**
       create: true
       force: true
-
-- link:
     ~/.ssh:
       path: configs/ssh
       glob: true
       exclude: [id_rsa*]
       force: true
-
-- link:
     ~/.local/bin:
       if: test $OS = "macos"
       path: inst/macos/*
@@ -67,8 +57,6 @@
       force: true
       relink: true
       prefix: inst-
-
-- link:
     ~/.local/bin:
       if: test $OS = "linux"
       path: inst/linux/*
