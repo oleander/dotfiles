@@ -20,7 +20,7 @@ docker run --rm \
   -v "${REPO_ROOT}:/dotfiles" \
   -w /dotfiles \
   dotfiles-test \
-  ./test/test_ssh_keys.sh
+  ./test/test_ssh_keys.sh "${REPO_ROOT}"
 
 status=$?
 
