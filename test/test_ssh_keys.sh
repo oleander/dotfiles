@@ -5,6 +5,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+echo "🔍 Debug information:"
+echo "  Script directory: $SCRIPT_DIR"
+echo "  Repository root: $REPO_ROOT"
+echo "  Current directory: $(pwd)"
+
+# Configure git to trust our repository
+git config --global --add safe.directory "$REPO_ROOT"
+
 # Create a temporary directory for testing
 TEST_DIR=$(mktemp -d)
 TEST_SSH_DIR="$TEST_DIR/.ssh"
@@ -12,6 +20,8 @@ TEST_KEY_NAME="test_dotfiles_key"
 TEST_KEY_PATH="$TEST_SSH_DIR/$TEST_KEY_NAME"
 
 echo "🔑 Setting up test environment in temporary directory..."
+echo "  Test directory: $TEST_DIR"
+echo "  Test SSH directory: $TEST_SSH_DIR"
 
 # Store original .ssh directory permissions if it exists
 ORIGINAL_SSH_PERMS=""
@@ -88,8 +98,9 @@ export HOME="$TEST_DIR"
 
 # Run the install script
 echo "🚀 Running install script..."
-git config --global --add safe.directory "$REPO_ROOT"
-(cd "$REPO_ROOT" && ./install)
+echo "  Current directory before install: $(pwd)"
+echo "  Running install from: $REPO_ROOT"
+(cd "$REPO_ROOT" && ls -la && ./install)
 
 # Restore original HOME
 export HOME="$OLD_HOME"
