@@ -77,4 +77,3 @@
     - [~/.local/bin/inst-rust, Installing rust]
     - [~/.local/bin/inst-oh-my-zsh, Installing oh-my-zsh]
     - [~/.local/bin/inst-git-ai, Installing git-ai]
-    - [git config --global --add safe.directory . || true, Trust dotfiles]
