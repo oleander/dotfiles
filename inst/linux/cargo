@@ -7,6 +7,7 @@ if command -v cargo &>/dev/null; then
 fi
 
 # Add cargo to the current shell session
+export PATH="$HOME/.cargo/bin:$PATH"
 source "$HOME/.cargo/env"
 
 # Verify installation

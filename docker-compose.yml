@@ -8,8 +8,9 @@ services:
     working_dir: /home/testuser/dotfiles
     entrypoint: /bin/bash -c
     environment:
-      PATH: /home/testuser/.cargo/bin:$PATH
+      PATH: /home/testuser/.cargo/bin:/home/testuser/.local/bin:$PATH
       OS: linux
+      HOME: /home/testuser
     restart: no
 
   macos:

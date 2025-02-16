@@ -33,3 +33,9 @@ interaction:
     command: ./test/test_ssh_keys.sh
     compose:
       run_options: [--rm, --remove-orphans]
+
+  test-script:
+    description: Test a single installation script on Linux
+    service: homeassistant
+    compose:
+      run_options: [--rm, --remove-orphans]
