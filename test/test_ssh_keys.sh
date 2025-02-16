@@ -1,23 +1,32 @@
 #!/bin/bash
 set -euo pipefail
 
-# Setup
-TEST_SSH_DIR="$HOME/.ssh"
+# Create a temporary directory for testing
+TEST_DIR=$(mktemp -d)
+TEST_SSH_DIR="$TEST_DIR/.ssh"
 TEST_KEY_NAME="test_dotfiles_key"
 TEST_KEY_PATH="$TEST_SSH_DIR/$TEST_KEY_NAME"
 
-echo "🔑 Setting up test environment..."
+echo "🔑 Setting up test environment in temporary directory..."
 
-# Ensure .ssh directory exists with correct permissions
+# Store original .ssh directory permissions if it exists
+ORIGINAL_SSH_PERMS=""
+if [ -d "$HOME/.ssh" ]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        ORIGINAL_SSH_PERMS=$(stat -f "%Lp" "$HOME/.ssh")
+    else
+        ORIGINAL_SSH_PERMS=$(stat -c "%a" "$HOME/.ssh")
+    fi
+fi
+
+# Create test .ssh directory with correct permissions
 mkdir -p "$TEST_SSH_DIR"
 chmod 700 "$TEST_SSH_DIR"
 
 # Function to cleanup on exit
 cleanup() {
     echo "🧹 Cleaning up..."
-    rm -f "$TEST_KEY_PATH" "${TEST_KEY_PATH}.pub"
-    # Restore .ssh directory permissions
-    chmod 700 "$TEST_SSH_DIR"
+    rm -rf "$TEST_DIR"
 }
 trap cleanup EXIT
 
@@ -69,9 +78,16 @@ PRIVATE_KEY_PERMS=$(get_perms "$TEST_KEY_PATH")
 PUBLIC_KEY_PERMS=$(get_perms "${TEST_KEY_PATH}.pub")
 SSH_DIR_PERMS=$(get_perms "$TEST_SSH_DIR")
 
+# Temporarily set HOME to our test directory for the install script
+OLD_HOME="$HOME"
+export HOME="$TEST_DIR"
+
 # Run the install script
 echo "🚀 Running install script..."
-./install
+(cd "$OLD_HOME" && ./install)
+
+# Restore original HOME
+export HOME="$OLD_HOME"
 
 # Verify keys still exist and haven't been modified
 echo "🔍 Verifying SSH keys survived installation..."
