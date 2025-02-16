@@ -43,6 +43,11 @@
 	directory = /Users/linus/Code/dotfiles/dotbot
 	directory = /Users/linus/Code/dotfiles/dotbot
 	directory = /Users/linus/Code/dotfiles/dotbot
+	directory = /root/dotfiles
+	directory = .
+	directory = .
+	directory = .
+	directory = .
 [pull]
     rebase = true
 [color]
