@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: test/Dockerfile
+    volumes:
+      - .:/dotfiles
+    working_dir: /dotfiles
+    command: ["./test/test_ssh_keys.sh"]

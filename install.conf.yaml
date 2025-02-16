@@ -1,13 +1,3 @@
-- defaults:
-    link:
-      relink: true
-      create: true
-      force: false
-    shell:
-      stdout: true
-      stderr: true
-      stdin: false
-
 - create:
     - ~/.cache
     - ~/.local/bin
@@ -21,7 +11,12 @@
     ~/.ssh:
       mode: 0700
 
-- clean: ["~/.local/bin/inst"]
+- clean:
+    ~/.local/bin/inst: true
+    ~/.ssh:
+      exclude:
+        - id_rsa
+        - id_rsa.pub
 
 - link:
     ~/.dotfiles:
@@ -37,6 +32,12 @@
     ~/.config:
       glob: true
       path: configs/config/**
+
+- link:
+    ~/.ssh:
+      path: configs/ssh
+      glob: true
+      exclude: [id_rsa*]
 
 - link:
     ~/.local/bin:

@@ -42,6 +42,7 @@
 	directory = /workspaces/dotfiles/dotbot
 	directory = /Users/linus/Code/dotfiles/dotbot
 	directory = /Users/linus/Code/dotfiles/dotbot
+	directory = /Users/linus/Code/dotfiles/dotbot
 [pull]
     rebase = true
 [color]
@@ -87,6 +88,8 @@
 [alias]
 	mergeno = merge --no-ff
 	merge = merge --no-ff
+	c = commit -a --no-edit
+	ca = commit --amend -a --no-edit
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
