@@ -1,6 +1,3 @@
-default_toolchain = "stable-x86_64-unknown-linux-musl"
 profile = "minimal"
 version = "12"
 
-[overrides]
-"/Users/linus/Code/github_action_monitor" = "nightly-aarch64-apple-darwin"
