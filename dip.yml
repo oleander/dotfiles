@@ -6,10 +6,6 @@ provision:
   - echo "Provisioning..."
 
 interaction:
-  clean:
-    description: Clean up test containers and volumes
-    command: dip compose down -v
-
   install-linux:
     description: Install the dotfiles in Linux environment
     service: homeassistant
@@ -24,25 +20,28 @@ interaction:
     compose:
       run_options: [--rm, --remove-orphans]
 
-  shell-linux:
-    description: Open a shell in the Linux environment
-    service: homeassistant
-    command: /bin/bash
-    compose:
-      run_options: [--rm, --remove-orphans]
-
-  shell-macos:
-    description: Open a shell in the macOS environment
-    service: macos
-    command: /bin/bash
-    compose:
-      run_options: [--rm, --remove-orphans]
-
-  test:
+  test-linux:
     description: Run the dotfiles test suite
     service: homeassistant
     command: ./test/test_ssh_keys.sh
     compose:
       run_options: [--rm, --remove-orphans]
 
+  test-macos:
+    description: Run the dotfiles test suite
+    service: macos
+    command: ./test/test_ssh_keys.sh
+    compose:
+      run_options: [--rm, --remove-orphans]
 
+  test:
+    description: Run the dotfiles test suite
+    command:
+      - dip test-linux
+      - dip test-macos
+
+  install:
+    description: Install the dotfiles
+    command:
+      - dip install-linux
+      - dip install-macos
