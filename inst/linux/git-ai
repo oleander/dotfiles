@@ -3,8 +3,18 @@
 test -n "$QUICK" && exit 0
 
 if ! command -v cargo &>/dev/null; then
-    echo "cargo is not installed"
-    exit 1
+    echo "Installing rust/cargo..."
+    if command -v apt-get &>/dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y rust-all
+    elif command -v apk &>/dev/null; then
+        apk update
+        apk upgrade musl
+        apk add --no-cache rust cargo
+    else
+        echo "No supported package manager found (tried apt-get and apk)"
+        exit 1
+    fi
 fi
 
 # Install make using the appropriate package manager
@@ -12,7 +22,7 @@ if command -v apt-get &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y make
 elif command -v apk &>/dev/null; then
-    sudo apk add --no-cache make
+    apk add --no-cache make
 else
     echo "No supported package manager found (tried apt-get and apk)"
     exit 1

@@ -10,6 +10,18 @@ echo "  Script directory: $SCRIPT_DIR"
 echo "  Repository root: $REPO_ROOT"
 echo "  Current directory: $(pwd)"
 
+# Check if install script exists and is executable
+INSTALL_SCRIPT="$REPO_ROOT/install"
+if [ ! -f "$INSTALL_SCRIPT" ]; then
+    echo "❌ Install script not found at: $INSTALL_SCRIPT"
+    exit 1
+fi
+
+if [ ! -x "$INSTALL_SCRIPT" ]; then
+    echo "🔧 Making install script executable..."
+    chmod +x "$INSTALL_SCRIPT"
+fi
+
 # Configure git to trust our repository
 git config --global --add safe.directory "$REPO_ROOT"
 
@@ -100,7 +112,9 @@ export HOME="$TEST_DIR"
 echo "🚀 Running install script..."
 echo "  Current directory before install: $(pwd)"
 echo "  Running install from: $REPO_ROOT"
-(cd "$REPO_ROOT" && ls -la && ./install)
+echo "  Install script path: $INSTALL_SCRIPT"
+echo "  Install script permissions: $(ls -l "$INSTALL_SCRIPT")"
+(cd "$REPO_ROOT" && ls -la && "$INSTALL_SCRIPT")
 
 # Restore original HOME
 export HOME="$OLD_HOME"
