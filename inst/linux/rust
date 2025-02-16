@@ -5,14 +5,21 @@ if command -v cargo &>/dev/null; then
     exit 0
 fi
 
-# Try apt-get first (Ubuntu/Debian)
-if command -v apt-get &>/dev/null; then
-    sudo apt-get update
-    sudo apt-get install -y rust-all
-# Try apk next (Alpine)
-elif command -v apk &>/dev/null; then
-    apk add --no-cache rust
-else
-    echo "No supported package manager found (tried apt-get and apk)"
-    exit 1
+if command -v rustup &>/dev/null; then
+    echo "rust/cargo is already installed"
+    exit 0
 fi
+
+# Install required dependencies
+apk add --no-cache curl gcc
+
+# Set environment variables to handle TLS warnings
+export RUSTUP_UPDATE_ROOT=https://static.rust-lang.org/rustup
+export RUSTUP_INIT_SKIP_PATH_CHECK=yes
+
+# Download and run the rustup installer with TLS settings
+curl https://sh.rustup.rs -sSf | RUSTUP_USE_CURL=1 sh -s -- -y --profile minimal --default-toolchain stable
+
+# Add cargo to PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"

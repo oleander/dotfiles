@@ -1,6 +1,5 @@
 default_toolchain = "stable-aarch64-apple-darwin"
-profile = "default"
+profile = "minimal"
 version = "12"
 
 [overrides]
-"/Users/linus/Code/github_action_monitor" = "nightly-aarch64-apple-darwin"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Check if cargo is already installed
 if command -v cargo &>/dev/null; then
@@ -6,10 +6,8 @@ if command -v cargo &>/dev/null; then
   exit 0
 fi
 
-# Install cargo using rustup (the official installer)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
 # Add cargo to the current shell session
+export PATH="$HOME/.cargo/bin:$PATH"
 source "$HOME/.cargo/env"
 
 # Verify installation

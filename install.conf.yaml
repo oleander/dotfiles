@@ -1,13 +1,3 @@
-- defaults:
-    link:
-      relink: true
-      create: true
-      force: false
-    shell:
-      stdout: true
-      stderr: true
-      stdin: false
-
 - create:
     - ~/.cache
     - ~/.local/bin
@@ -16,12 +6,30 @@
     - ~/.local/bin/inst
     - ~/.local/share/zinit
     - ~/.local/share/nvim/site/autoload
+    - ~/.config/nvim/pack/github/start/copilot.vim/autoload/copilot
+    - ~/.config/nvim/pack/github/start/copilot.vim/dist
+    - ~/.config/nvim/pack/github/start/copilot.vim/lua
+    - ~/.config/nvim/pack/github/start/copilot.vim/plugin
+    - ~/.config/nvim/pack/github/start/copilot.vim/syntax
+    - ~/.config/nvim/pack/github/start/copilot.vim/doc
+    - ~/.config/fabric/patterns
+    - ~/.config/fabric/patterns/summarize_docs
+    - ~/.config/fabric/patterns/improve-rust-diff
+    - ~/.config/gh
+    - ~/.config/gh-copilot
+    - ~/.config/github-copilot
+    - ~/.config/fish
+    - ~/.config/karabiner
+    - ~/.config/jgit
 
 - create:
     ~/.ssh:
       mode: 0700
+      create: false
+      force: false
 
-- clean: ["~/.local/bin/inst"]
+- clean:
+    ~/.local/bin/inst: true
 
 - link:
     ~/.dotfiles:
@@ -32,11 +40,15 @@
       prefix: .
       glob: true
       path: configs/*
-      exclude: [configs/config]
+      exclude:
+        - configs/config
+        - configs/ssh
       force: true
     ~/.config:
       glob: true
       path: configs/config/**
+      create: true
+      force: true
 
 - link:
     ~/.local/bin:

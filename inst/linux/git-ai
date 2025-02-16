@@ -1,18 +1,10 @@
 #!/bin/bash -e
 
+export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
+
 if ! command -v cargo &>/dev/null; then
     echo "cargo is not installed"
-    exit 1
-fi
-
-# Install make using the appropriate package manager
-if command -v apt-get &>/dev/null; then
-    sudo apt-get update
-    sudo apt-get install -y make
-elif command -v apk &>/dev/null; then
-    sudo apk add --no-cache make
-else
-    echo "No supported package manager found (tried apt-get and apk)"
     exit 1
 fi
 
@@ -21,5 +13,5 @@ if ! command -v cargo-binstall &>/dev/null; then
     curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 fi
 
-# Install git-ai
+echo "Installing git-ai (1)"
 cargo binstall -y git-ai

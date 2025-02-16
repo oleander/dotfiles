@@ -11,37 +11,20 @@
 [init]
 	defaultBranch = main
 [safe]
-    directory = /opt/homebrew
-    directory = /workspaces/.dotfiles
-    directory = /workspaces/.dotfiles/dotbot
-    directory = /root
-    directory = /root/dotfiles
-    directory = /root/dotfiles/bin/dotbot
-    directory = /root/dotfiles/dotbot
-    directory = /app/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /workspaces/dotfiles/dotbot
-	directory = /Users/linus/Code/dotfiles/dotbot
-	directory = /Users/linus/Code/dotfiles/dotbot
+	directory = *
+	directory = /home/testuser/dotfiles
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
+	directory = .
 [pull]
     rebase = true
 [color]
@@ -53,6 +36,7 @@
     compactionHeuristic = true
     mnemonicPrefix = true
     tool = meld
+    submodule = log
 [merge]
     tool = meld
     commit = no
@@ -87,6 +71,8 @@
 [alias]
 	mergeno = merge --no-ff
 	merge = merge --no-ff
+	c = commit -a --no-edit
+	ca = commit --amend -a --no-edit
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
@@ -100,3 +86,8 @@
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [advice]
 	diverging = false
+[status]
+    submoduleSummary = true
+[submodule]
+    recurse = true
+    ignore = dirty

@@ -18,8 +18,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Docker compose test for linux
-        run: docker compose up homeassistant --build
+      - name: Install dip
+        run: sudo gem install dip
 
-      - name: Docker compose test for macos
-        run: docker compose up macos --build
+      - name: Docker compose test for linux
+        run: dip test-linux
+
+      - name: Test install in linux
+        run: dip install-linux

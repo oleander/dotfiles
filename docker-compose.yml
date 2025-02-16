@@ -3,21 +3,23 @@ services:
     container_name: homeassistant-dotfiles
     image: ghcr.io/hassio-addons/ssh/amd64:stable
     platform: linux/amd64
-    volumes: [./:/root/dotfiles]
-    entrypoint: /root/dotfiles/install
+    volumes: [./:/home/testuser/dotfiles]
     stop_grace_period: 0s
+    working_dir: /home/testuser/dotfiles
+    entrypoint: /bin/bash -c
     environment:
-      PATH: /root/.cargo/bin:$PATH
+      PATH: /home/testuser/.cargo/bin:/home/testuser/.local/bin:$PATH
       OS: linux
-    user: root
+      HOME: /home/testuser
     restart: no
 
   macos:
     container_name: macos-dotfiles
     image: sickcodes/docker-osx:latest
     platform: linux/amd64
+    working_dir: /app
     volumes: [./:/app]
-    entrypoint: /bin/bash -c /app/install
+    command: /bin/bash -c /app/install
     environment:
       OS: macos
       PATH: /home/linuxbrew/.linuxbrew/bin:$PATH
