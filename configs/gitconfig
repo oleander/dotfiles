@@ -12,6 +12,7 @@
 	defaultBranch = main
 [safe]
 	directory = *
+	directory = /home/testuser/dotfiles
 [pull]
     rebase = true
 [color]
