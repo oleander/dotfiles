@@ -114,6 +114,7 @@ echo "  Current directory before install: $(pwd)"
 echo "  Running install from: $REPO_ROOT"
 echo "  Install script path: $INSTALL_SCRIPT"
 echo "  Install script permissions: $(ls -l "$INSTALL_SCRIPT")"
+git config --global --add safe.directory "$REPO_ROOT"
 (cd "$REPO_ROOT" && ls -la && "$INSTALL_SCRIPT")
 
 # Restore original HOME
