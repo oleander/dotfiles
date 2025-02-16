@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+test -n "$QUICK" && exit 0
+
 # Source common functions
 source "$(dirname "$(dirname "${BASH_SOURCE[0]}")")/common.sh"
 
