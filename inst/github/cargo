@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+# Check if cargo is already installed
+if command -v cargo &>/dev/null; then
+  echo "cargo is already installed"
+  exit 0
+fi
+
+# Add cargo to the current shell session
+export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
+
+# Verify installation
+if command -v cargo &>/dev/null; then
+  echo "cargo installed successfully"
+else
+  echo "cargo installation failed"
+  exit 1
+fi

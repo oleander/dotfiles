@@ -67,6 +67,14 @@
       force: true
       relink: true
       prefix: inst-
+- link:
+    ~/.local/bin:
+      if: test $GITHUB_USER = "oleander"
+      path: inst/github/*
+      glob: true
+      force: true
+      relink: true
+      prefix: inst-
 
 - shell:
     - [~/.local/bin/inst-brew, Installing homebrew]

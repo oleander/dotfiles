@@ -1,0 +1,25 @@
+#!/bin/bash -e
+
+if command -v cargo &>/dev/null; then
+    echo "rust/cargo is already installed"
+    exit 0
+fi
+
+if command -v rustup &>/dev/null; then
+    echo "rust/cargo is already installed"
+    exit 0
+fi
+
+# Install required dependencies
+sudo apt-get install -y curl gcc
+
+# Set environment variables to handle TLS warnings
+export RUSTUP_UPDATE_ROOT=https://static.rust-lang.org/rustup
+export RUSTUP_INIT_SKIP_PATH_CHECK=yes
+
+# Download and run the rustup installer with TLS settings
+curl https://sh.rustup.rs -sSf | RUSTUP_USE_CURL=1 sh -s -- -y --profile minimal --default-toolchain stable
+
+# Add cargo to PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
