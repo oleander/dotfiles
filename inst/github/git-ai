@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+rustup default stable
+
 export PATH="$HOME/.cargo/bin:$PATH"
 source "$HOME/.cargo/env"
 
