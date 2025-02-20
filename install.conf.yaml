@@ -52,7 +52,7 @@
 
 - link:
     ~/.local/bin:
-      if: test $OS = "macos"
+      if: sw_vers >/dev/null 2>&1
       path: inst/macos/*
       glob: true
       force: true
@@ -61,7 +61,7 @@
 
 - link:
     ~/.local/bin:
-      if: test $OS = "linux"
+      if: command -v apk >/dev/null 2>&1
       path: inst/linux/*
       glob: true
       force: true
