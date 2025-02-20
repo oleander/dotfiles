@@ -37,7 +37,7 @@
 [gc]
     auto = 256
 [rebase]
-    autoStash = true
+    autoStash = false
 [branch]
     autosetuprebase = always
 [apply]

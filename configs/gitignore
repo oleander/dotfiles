@@ -94,4 +94,4 @@ Gemfile.local
 Gemfile.local.lock
 .solargraph.yml
 .cursorrules
-.cursor
+.cursorignore
