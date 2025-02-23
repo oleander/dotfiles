@@ -1,0 +1,8 @@
+---
+description: Run all specs in this branch
+globs: spec/**/*spec.rb
+---
+
+1. `git --no-pager diff --name-only --diff-filter=d master...HEAD`
+2. Remove any files which are not actually specs
+3. `dip rspec <files remaining>`

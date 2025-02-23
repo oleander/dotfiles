@@ -1,0 +1,7 @@
+---
+description: Lint factories
+globs: spec/factories/*.rb
+---
+
+* Run `dip rubocop -A <factory>` after a change to a factory and fix any problems then run this command again
+* Run specs that might use this factory to make sure the change didn't break anything

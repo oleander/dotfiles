@@ -1,0 +1,9 @@
+---
+description: Marks current commit as passing specs
+globs: */**/*_spec.rb
+---
+
+* CONDITION: If rspec passes
+  
+1. `git add . && git commit --no-edit -a`
+2. `git commit --amend -m "$(printf '⭐ %s' "$(git log -1 --pretty=%B)")"`

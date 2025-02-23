@@ -1,0 +1,21 @@
+---
+description: Create todo.md file
+globs: 
+---
+Analyze the codebase for quality issues and generate a todo file.
+
+For each issue found, create a task that includes:
+
+- A brief description of the issue.
+- The specific file path and line number (if applicable).
+- A clear, actionable recommendation for resolution.
+
+Ensure each task is small, manageable, and testable.
+
+Output each task on a new line in this format:
+- [ ] Description (File: path/to/file, Line: X)
+
+Example:
+- [ ] Remove unused variable in src/main.rb (File: src/main.rb, Line: 42)
+
+Save the Todo list to todo.md

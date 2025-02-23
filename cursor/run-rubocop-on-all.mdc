@@ -1,0 +1,9 @@
+---
+description: Run Rubocop on all changed files in this branch
+globs: *.rb
+---
+
+1. `git --no-pager diff --name-only --diff-filter=d master...HEAD`
+2. Keep only files that can be linted by Rubocop
+3. `dip rubocop -A <found files>`
+4. Fix any problems and run step 3 again otherwise exit

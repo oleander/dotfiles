@@ -1,0 +1,9 @@
+---
+description: Improve factories & seed scriptj
+globs: spec/factories/*/*.rb,factories.md,db/seeds.rb
+---
+1. Follow best practises per @"Factory Bot" docs
+2. Lint factory using `dip rubocop -A <factor>`
+3. Run factory `dip rails runner "FactoryBot.create(:factory)"` (singular form)
+4. Fix any problems then jump to 2 otherwise continue to step 5
+ 

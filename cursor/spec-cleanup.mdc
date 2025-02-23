@@ -1,0 +1,262 @@
+---
+description: REFACTORING SPECS AND FACTORIES
+globs: */**/*_spec.rb
+---
+# IMPROVING SPECS AND FACTORIES PROMPT
+
+This prompt helps refactor test files by extracting setup into well-organized factories, ensuring specs pass, and following best practices.
+
+* Do not alter VCR cassetts paths in specs
+
+## TL;DR Workflow
+
+1. Initial state check:
+```bash
+dip rspec <spec file>
+# Document all failures
+```
+
+2. Make factory/spec changes per guidelines below
+
+3. Run auto-correct and verify:
+```bash
+dip rubocop -A <changed factory>
+dip rubocop -A <changed spec>
+# Fix any issues and re-run until clean
+```
+
+4. Test specific failures:
+```bash
+# Run only failing specs
+dip rspec -n "specific failing test" <spec file>
+# Fix any failures and return to step 3
+```
+
+5. Test all specs:
+```bash
+# When individual specs pass, verify all
+dip rspec <spec file>
+```
+
+6. If any step fails, fix and return to step 3
+
+## Analysis & Strategy 
+
+1. First analyze the spec file for:
+   - Repeated setup patterns
+   - Objects being created in before/let blocks
+   - Common variations of objects
+   - Associated objects and relationships
+   - Existing factories that could be reused/enhanced
+
+2. For each model, create/enhance factories following best practices:
+   - Base factory for common attributes
+   - Traits for variations
+   - Transient attributes for flexibility
+   - Nested associations through traits
+   - Complex setup in factory definitions
+   - Follow FactoryBot best practices
+
+3. For test data/fixtures:
+   - Abstract patterns into traits
+   - Use transient attributes
+   - Create data loading helpers
+   - Move data manipulation into factories
+   - Keep file operations in helpers
+
+4. For request/controller specs:
+   - Auth token setup in factories
+   - Auth header factories
+   - Request params in traits
+   - Shared examples for responses
+   - Proper RSpec metadata
+
+5. Clean up spec files:
+   - Factory calls over manual setup
+   - Composed traits
+   - Minimal test-specific setup
+   - Focus on expectations
+   - Follow RSpec best practices
+
+6. Maintain quality:
+   - Descriptive trait names
+   - Grouped related traits
+   - Document complex logic
+   - Consistent naming
+   - Proper formatting
+
+## Examples
+
+### Example 1: Service Spec Refactoring
+
+BEFORE:
+```ruby
+# spec/services/transport/send/in/invoice_submissions/sender_service_spec.rb
+describe Transport::Send::In::InvoiceSubmissions::SenderService do
+  it 'reprocesses existing invoice_submission' do
+    package = create :package,
+                     name: 'Supplier',
+                     user_class: Package.user_classes['combined']
+    sender_organization = create :organization,
+                                 sandbox: true
+    create :subscription,
+           organization: sender_organization,
+           package: package
+    shop = create :shop_with_legal_entity,
+                  legal_entity_organization: sender_organization
+    legal_entity = shop.legal_entities.first
+    api_user = create :user,
+                      organization: sender_organization
+    OrganizationShopAuthorization.create! organization: sender_organization, shop: shop, role: :submit_invoice
+    receiver_organization = create :organization
+    receiver_user = create :user,
+                           organization: receiver_organization
+    order = create :order,
+                   user: receiver_user,
+                   shop_relation: shop,
+                   products: [create(:product)]
+    body = File.read("#{File.dirname(__FILE__)}/json/ah_ok.json")
+    body = body.gsub(/{:legal_entity_id}/, legal_entity.id.to_s)
+    invoice_submission = create :invoice_submission,
+                                user: api_user,
+                                shop: shop,
+                                legal_entity: legal_entity,
+                                post_body: StringIO.new(body),
+                                order: order,
+                                source: InvoiceSubmission.sources[:api],
+                                guid: SecureRandom.uuid
+
+    VCR.use_cassette('services/invoice_submission_service/reprocess') do
+      invoice_submission_result = described_class.new.reprocess(invoice_submission_id: invoice_submission.id)
+      expect(invoice_submission_result.valid?).to eq true
+    end
+  end
+end
+```
+
+AFTER (Factories):
+```ruby
+# factories/invoice_submissions.rb
+FactoryBot.define do
+  factory :invoice_submission do
+    guid { SecureRandom.uuid }
+    source { :api }
+
+    transient do
+      json_template { nil }
+      shop_type { :shop_with_legal_entity }
+    end
+
+    trait :with_organization_setup do
+      association :organization, factory: :complete_organization
+      association :user, :with_organization_link
+      association :shop, factory: :shop_with_legal_entity, legal_entity_organization: organization
+      legal_entity { shop.legal_entities.first }
+    end
+
+    trait :with_json_body do
+      after(:build) do |submission, evaluator|
+        next unless evaluator.json_template
+
+        body = Rails.root.join(
+          'spec/services/send_services/in/invoice_submission_service/json',
+          evaluator.json_template
+        ).read
+        
+        body = body.gsub(/{:legal_entity_id}/, submission.legal_entity.id.to_s)
+        submission.post_body = StringIO.new(body)
+      end
+    end
+
+    trait :ah do
+      with_organization_setup
+      with_json_body
+      transient { json_template { 'ah_ok.json' } }
+    end
+
+    trait :aunz do
+      with_organization_setup
+      with_json_body
+      shop_type { :shop_with_legal_entity_au }
+      transient { json_template { 'aunz_totals_ok.json' } }
+    end
+
+    trait :flora do
+      with_organization_setup
+      with_json_body
+      shop_type { :shop_with_legal_entity_au }
+      transient { json_template { 'flora_holland_idoc.json' } }
+    end
+  end
+end
+```
+
+AFTER (Spec):
+```ruby
+# spec/services/transport/send/in/invoice_submissions/sender_service_spec.rb
+RSpec.describe Transport::Send::In::InvoiceSubmissions::SenderService do
+  subject(:service) { described_class.new }
+
+  describe '#reprocess' do
+    subject(:reprocess_result) { service.reprocess(invoice_submission_id: invoice_submission.id) }
+
+    context 'with AH invoice submission' do
+      let(:invoice_submission) { create(:invoice_submission, :ah) }
+
+      it 'successfully reprocesses', :vcr do
+        VCR.use_cassette('services/invoice_submission_service/reprocess') do
+          expect(reprocess_result).to be_valid
+        end
+      end
+    end
+
+    context 'with AUNZ invoice submission' do
+      let(:invoice_submission) { create(:invoice_submission, :aunz) }
+
+      it 'successfully reprocesses', :vcr do
+        VCR.use_cassette('services/invoice_submission_service/reprocess_aunz') do
+          expect(reprocess_result).to be_valid
+        end
+      end
+    end
+
+    context 'with Flora iDoc submission' do
+      let(:invoice_submission) { create(:invoice_submission, :flora) }
+
+      it 'fails to process' do
+        expect(reprocess_result).not_to be_valid
+      end
+    end
+  end
+end
+```
+
+## Example Refactoring Process:
+
+1. Initial state check:
+```bash
+dip rspec spec/services/transport/send/in/invoice_submissions/sender_service_spec.rb
+# Failures:
+#   1) Transport::Send::In::InvoiceSubmissions::SenderService with AH submission
+#      Failure/Error: expect(reprocess_result).to be_valid
+```
+
+2. Make factory changes:
+```bash
+# Edit factory spec/factories/invoice_submission.rb
+
+# Run Rubocop
+dip rubocop -A spec/factories/invoice_submission.rb
+# Fix any issues and re-run until clean
+```
+
+3. Test specific failure:
+```bash
+dip rspec -n "with AH submission" spec/services/transport/send/in/invoice_submissions/sender_service_spec.rb
+# Fix failure and return to step 2 if needed
+```
+
+4. Verify all tests:
+```bash
+dip rspec spec/services/transport/send/in/invoice_submissions/sender_service_spec.rb
+```

@@ -1,0 +1,6 @@
+---
+description: Lint/format Ruby code using Rubocop
+globs: */**/*.rb
+---
+* `dip rubocop -A <files>`
+* Run the relevant specs after the change
