@@ -13,6 +13,7 @@
 [safe]
 	directory = *
 	directory = /home/testuser/dotfiles
+	directory = .
 [pull]
     rebase = true
 [color]

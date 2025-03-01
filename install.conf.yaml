@@ -77,9 +77,9 @@
       prefix: inst-
 
 - shell:
-    - [curl -sS https://starship.rs/install.sh | sh -s -- --yes, Installing starship]
-    - [~/.local/bin/inst-brew, Installing homebrew]
-    - [~/.local/bin/inst-zsh, Installing zsh]
-    - [~/.local/bin/inst-rust, Installing rust]
-    - [~/.local/bin/inst-oh-my-zsh, Installing oh-my-zsh]
-    - [~/.local/bin/inst-git-ai, Installing git-ai]
+    - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || true, Installing starship]
+    - [~/.local/bin/inst-brew || true, Installing homebrew]
+    - [~/.local/bin/inst-zsh || true, Installing zsh]
+    - [~/.local/bin/inst-rust || true, Installing rust]
+    - [~/.local/bin/inst-oh-my-zsh || true, Installing oh-my-zsh]
+    - [~/.local/bin/inst-git-ai || true, Installing git-ai]
