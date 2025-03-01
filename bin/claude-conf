@@ -3,9 +3,13 @@
 set -e
 set -x
 
-# If EDITOR is not set, set it to cursor
-if [ -z "$EDITOR" ]; then
-    EDITOR="cursor"
+if [ -n "$1" ]; then
+    EDITOR="$1"
+else
+    if [ -z "$EDITOR" ]; then
+        EDITOR="cursor"
+    fi
 fi
 
+echo "Using editor: $EDITOR"
 eval "$EDITOR" "$HOME/Library/Application\ Support/Claude/claude_desktop_config.json"
