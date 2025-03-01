@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+
+gemfile(true) do
+  gem "my_gem"
+  gem "json"
+  gem "fileutils"
+  gem "diffy"
+  gem "colorize"
+end
+
+def colored_diff(old_content, new_content)
+  Diffy::Diff.new(old_content, new_content, context: 3)
+             .to_s.split("\n")
+             .map do |line|
+    if    line.start_with?('+') then line.green
+    elsif line.start_with?('-') then line.red
+    elsif line.start_with?('@') then line.yellow
+    else  line
+    end
+  end.join("\n")
+end
+
+def backup_file(original_path)
+  FileUtils.mkdir_p('tmp')
+  time_stamp  = Time.now.to_i
+  backup_path = File.join('tmp', "mcp_backup_#{File.basename(original_path)}_#{time_stamp}")
+  FileUtils.cp(original_path, backup_path)
+  backup_path
+end
+
+def restore_file_if_unchanged(original_path, backup_path)
+  return unless File.exist?(backup_path)
+  return unless File.exist?(original_path)
+
+  original_data = File.read(original_path)
+  backup_data   = File.read(backup_path)
+
+  if original_data == backup_data
+    FileUtils.cp(backup_path, original_path)
+    puts "Restored #{original_path} from backup.".yellow
+  end
+end
+
+GLOBAL_MCP_PATH       = File.expand_path("~/.dotfiles/claude/mcp.json")
+PROJECT_DIRECTORY     = ".cursor"
+PROJECT_MCP_PATH      = File.join(PROJECT_DIRECTORY, "mcp.json")
+
+trap("SIGINT") do
+  # Restore files first, if they haven't changed
+  restore_file_if_unchanged(GLOBAL_MCP_PATH,  $global_backup_path)  if defined?($global_backup_path)
+  restore_file_if_unchanged(PROJECT_MCP_PATH, $project_backup_path) if defined?($project_backup_path)
+  abort("\nAborted by user.".red)
+end
+
+abort("Global MCP file not found at #{GLOBAL_MCP_PATH}".red) unless File.file?(GLOBAL_MCP_PATH)
+
+FileUtils.mkdir_p(PROJECT_DIRECTORY)        unless Dir.exist?(PROJECT_DIRECTORY)
+File.write(PROJECT_MCP_PATH, "{}")         unless File.exist?(PROJECT_MCP_PATH)
+
+# Backup both files before any changes
+$global_backup_path  = backup_file(GLOBAL_MCP_PATH)
+$project_backup_path = backup_file(PROJECT_MCP_PATH)
+
+if File.symlink?(PROJECT_MCP_PATH)
+  puts "Already a symlink.".green
+else
+  project_data = File.read(PROJECT_MCP_PATH)
+  global_data  = File.read(GLOBAL_MCP_PATH)
+
+  puts "A non-symlink file exists at #{PROJECT_MCP_PATH}".yellow
+  puts "Diff (Project -> Global):".light_blue
+  puts colored_diff(project_data, global_data)
+
+  print "Merge project data into global MCP file? [y/N]: ".light_blue
+  user_answer = $stdin.gets.strip.downcase
+
+  if user_answer == 'y'
+    begin
+      project_json = JSON.parse(project_data) rescue {}
+      global_json  = JSON.parse(global_data)  rescue {}
+
+      merged_json = global_json.merge(project_json)
+      File.write(GLOBAL_MCP_PATH, JSON.pretty_generate(merged_json))
+
+      puts "Merged project data into global MCP file.".green
+    rescue => e
+      abort("Error merging JSON: #{e.message}".red)
+    end
+  else
+    puts "Skipping merge.".yellow
+  end
+
+  FileUtils.rm_f(PROJECT_MCP_PATH)
+  FileUtils.ln_s(GLOBAL_MCP_PATH, PROJECT_MCP_PATH, force: true)
+  puts "Symlinked #{GLOBAL_MCP_PATH} => #{PROJECT_MCP_PATH}".green
+end
+
+# Clean up backups on successful exit
+FileUtils.rm_f($global_backup_path)  if defined?($global_backup_path)  && File.exist?($global_backup_path)
+FileUtils.rm_f($project_backup_path) if defined?($project_backup_path) && File.exist?($project_backup_path)
+
