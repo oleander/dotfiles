@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -F "$HOME"/Library/Logs/Claude/*.log

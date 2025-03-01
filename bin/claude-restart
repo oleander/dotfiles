@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+set -x
+
+killall Claude &> /dev/null || true
+sleep 2
+open -a Claude
