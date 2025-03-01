@@ -1,0 +1,50 @@
+#!/bin/bash
+
+set -e
+set -x
+
+APP_ID="$(osascript -e 'id of app "Claude"')"
+if [ -z "$APP_ID" ]; then
+    echo "Claude app could not be found"
+    exit 1
+fi
+
+APP_PATH="$(mdfind "kMDItemCFBundleIdentifier == '$APP_ID'" | head -n 1)"
+if [ -z "$APP_PATH" ]; then
+    echo "Claude app with ID $APP_ID could not be found"
+    exit 1
+fi
+
+CONFIG_PATH="$APP_PATH/Contents/Resources/claude_desktop_config.json"
+if [ ! -f "$CONFIG_PATH" ]; then
+    echo "Claude app could not be found in $APP_PATH"
+    exit 1
+fi
+
+if [ -z "$CONFIG_PATH" ]; then
+    echo "Claude config file could not be found in $APP_PATH"
+    exit 1
+fi
+
+DOTFILE_CONF_PATH="$HOME/.dotfiles/claude/mcp.json"
+if [ ! -f "$DOTFILE_CONF_PATH" ]; then
+    echo ".dotfiles/claude/mcp.json does not exist"
+    echo "Will copy the existing config from the Claude app"
+    killall "Claude" &> /dev/null || true
+    sleep 1
+    mkdir -p "$(dirname "$DOTFILE_CONF_PATH")"
+    mv "$CONFIG_PATH" "$DOTFILE_CONF_PATH"
+fi
+
+if [ -f "$CONFIG_PATH" ]; then
+    echo "Claude config file exists: $CONFIG_PATH"
+    if [ ! -L "$CONFIG_PATH" ]; then
+        echo "Will not override existing Claude config file: $CONFIG_PATH"
+        exit 1
+    fi
+    echo "Removing existing symlink: $CONFIG_PATH"
+fi
+
+ln -sf "$DOTFILE_CONF_PATH" "$CONFIG_PATH"
+echo "Symlinked $DOTFILE_CONF_PATH to $CONFIG_PATH"
+
