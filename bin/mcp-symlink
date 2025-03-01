@@ -16,8 +16,8 @@
 #  - Checks that the global file (~/.dotfiles/claude/mcp.json) exists.
 #  - Backs up both the global and project files before any modification.
 #  - If the project file is not a symlink, shows a diff and asks if you'd like to merge it.
-#  - Optionally merges and overwrites the global file, then symlinks.
-#  - Restores files from backup if script is interrupted (Ctrl-C).
+#  - Optionally merges (deep merge) and overwrites the global file, then symlinks.
+#  - Restores files from backup if the script is interrupted (Ctrl-C).
 #  - Cleans up backups on successful run (unless --dry is used).
 #
 
@@ -29,9 +29,11 @@ gemfile(true) do
   gem "fileutils"
   gem "diffy"
   gem "colorize"
+  gem "deep_merge"
 end
 
 require 'pathname'
+require 'deep_merge'
 
 def colored_diff(old_content, new_content)
   Diffy::Diff.new(old_content, new_content, context: 3)
@@ -107,6 +109,7 @@ def symlink_mcp_file
   puts "Symlinked #{GLOBAL_MCP_PATH} => #{PROJECT_MCP_PATH}".green
 end
 
+# If the project file is already a symlink
 if PROJECT_MCP_PATH.symlink?
   puts "Overwriting existing symlink at #{PROJECT_MCP_PATH}".yellow
   symlink_mcp_file unless DRY_RUN
@@ -118,8 +121,9 @@ elsif !PROJECT_MCP_PATH.exist?
 end
 
 puts "A non-symlink file exists at #{PROJECT_MCP_PATH}".yellow
-puts "Attempting to merge project data into global MCP file.".yellow
+puts "Attempting to deep merge project data into global MCP file.".yellow
 
+# Parse JSON
 project_content = PROJECT_MCP_PATH.read
 begin
   project_data = JSON.parse(project_content)
@@ -134,22 +138,21 @@ rescue JSON::ParserError => e
   abort("Global file is invalid JSON: #{e.message}".red)
 end
 
-merged_data = global_data.merge(project_data)
+# Use the deep_merge gem for a true deep merge
+merged_data = global_data.deeper_merge!(project_data)
 
 puts "Diff (Global -> Merged):".light_blue
 puts colored_diff(global_content, JSON.pretty_generate(merged_data))
 
 print "Proceed with merge? [y/N]: ".light_blue
 user_answer = $stdin.gets.strip.downcase
-
-# Keep the "unless user_answer.include?('y')" style:
 unless user_answer.include?('y')
   abort("Skipping merge.".yellow)
 end
 
 unless DRY_RUN
   GLOBAL_MCP_PATH.write(JSON.pretty_generate(merged_data))
-  puts "Merged project data into global MCP file.".green
+  puts "Merged project data into global MCP file using deep_merge.".green
 end
 
 symlink_mcp_file unless DRY_RUN
