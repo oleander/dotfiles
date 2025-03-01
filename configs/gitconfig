@@ -28,7 +28,7 @@
 [merge]
     tool = meld
     commit = no
-    ff = only
+	ff = false
 [format]
     pretty = oneline
 [credential]

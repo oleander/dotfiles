@@ -258,4 +258,14 @@ fi
 fpath=(/Users/linus/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
-# End of Docker CLI completions
+
+# Used by @modelcontextprotocol/server-github in VSCode
+export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+# bun completions
+[ -s "/Users/linus/.bun/_bun" ] && source "/Users/linus/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

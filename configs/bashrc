@@ -9,3 +9,5 @@ if [ -f "$CARGO_HOME/env" ]; then
     source "$CARGO_HOME/env"
 fi
 . "$HOME/.cargo/env"
+
+export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
