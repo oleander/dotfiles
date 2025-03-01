@@ -22,6 +22,7 @@
 #
 
 require 'bundler/inline'
+require 'pathname'
 
 gemfile(true) do
   source "https://rubygems.org"
@@ -29,11 +30,8 @@ gemfile(true) do
   gem "fileutils"
   gem "diffy"
   gem "colorize"
-  gem "deep_merge"
+  gem "activesupport", require: "active_support/core_ext/hash/deep_merge"
 end
-
-require 'pathname'
-require 'deep_merge'
 
 def colored_diff(old_content, new_content)
   Diffy::Diff.new(old_content, new_content, context: 3)
@@ -88,7 +86,9 @@ GLOBAL_MCP_PATH    = Pathname.new(File.expand_path("~/.dotfiles/claude/mcp.json"
 PROJECT_DIRECTORY  = Pathname.new(".cursor")
 PROJECT_MCP_PATH   = PROJECT_DIRECTORY.join("mcp.json")
 
-abort("Global MCP file not found at #{GLOBAL_MCP_PATH}".red) unless GLOBAL_MCP_PATH.file?
+unless GLOBAL_MCP_PATH.file?
+  abort("Global MCP file not found at #{GLOBAL_MCP_PATH}".red)
+end
 
 PROJECT_DIRECTORY.mkdir unless PROJECT_DIRECTORY.exist?
 PROJECT_MCP_PATH.write("{}") unless PROJECT_MCP_PATH.exist?
@@ -138,15 +138,13 @@ rescue JSON::ParserError => e
   abort("Global file is invalid JSON: #{e.message}".red)
 end
 
-# Use the deep_merge gem for a true deep merge
-merged_data = global_data.deeper_merge!(project_data)
+merged_data = global_data.deep_merge(project_data)
 
 puts "Diff (Global -> Merged):".light_blue
 puts colored_diff(global_content, JSON.pretty_generate(merged_data))
 
 print "Proceed with merge? [y/N]: ".light_blue
-user_answer = $stdin.gets.strip.downcase
-unless user_answer.include?('y')
+unless $stdin.gets.strip.downcase.include?('y')
   abort("Skipping merge.".yellow)
 end
 
