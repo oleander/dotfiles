@@ -21,11 +21,6 @@ if [ ! -f "$CONFIG_PATH" ]; then
     exit 1
 fi
 
-if [ -z "$CONFIG_PATH" ]; then
-    echo "Claude config file could not be found in $APP_PATH"
-    exit 1
-fi
-
 DOTFILE_CONF_PATH="$HOME/.dotfiles/claude/mcp.json"
 if [ ! -f "$DOTFILE_CONF_PATH" ]; then
     echo ".dotfiles/claude/mcp.json does not exist"
