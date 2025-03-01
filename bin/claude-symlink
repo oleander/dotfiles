@@ -15,13 +15,15 @@ if [ -z "$APP_PATH" ]; then
     exit 1
 fi
 
-CONFIG_PATH="$APP_PATH/Contents/Resources/claude_desktop_config.json"
+CONFIG_PATH="$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+echo "Claude config file: $CONFIG_PATH"
 if [ ! -f "$CONFIG_PATH" ]; then
-    echo "Claude app could not be found in $APP_PATH"
+    echo "Claude config file could not be found in $CONFIG_PATH"
     exit 1
 fi
 
 DOTFILE_CONF_PATH="$HOME/.dotfiles/claude/mcp.json"
+echo "Dotfiles config file: $DOTFILE_CONF_PATH"
 if [ ! -f "$DOTFILE_CONF_PATH" ]; then
     echo ".dotfiles/claude/mcp.json does not exist"
     echo "Will copy the existing config from the Claude app"
@@ -37,7 +39,7 @@ if [ -f "$CONFIG_PATH" ]; then
         echo "Will not override existing Claude config file: $CONFIG_PATH"
         exit 1
     fi
-    echo "Removing existing symlink: $CONFIG_PATH"
+    echo "Overriding existing symlink: $CONFIG_PATH"
 fi
 
 ln -sf "$DOTFILE_CONF_PATH" "$CONFIG_PATH"
