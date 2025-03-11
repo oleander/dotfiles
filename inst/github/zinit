@@ -11,6 +11,3 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
 else
     echo "Zinit is already installed"
 fi
-
-# Make the file executable
-chmod +x "$0"
