@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+j dot # autojump
+git ai --help # git ai
+starship help # starship

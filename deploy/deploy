@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+# First argument is the branch to deploy
+BRANCH=$1
+if [ -z "$BRANCH" ]; then
+  echo "Usage: $0 <branch>"
+  exit 1
+fi
+
+cd ~/.dotfiles
+git stash --include-untracked
+git pull origin "$BRANCH"
+git checkout "$BRANCH"
+./install
