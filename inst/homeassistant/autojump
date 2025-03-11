@@ -9,7 +9,5 @@ rm -rf autojump
 git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
-
-echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
-echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
+echo "source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
 
