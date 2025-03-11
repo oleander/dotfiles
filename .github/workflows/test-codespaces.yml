@@ -8,10 +8,38 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-codespaces:
+  test-with-dip:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install dip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby ruby-dev build-essential
+          sudo gem install dip
+      
+      - name: Make scripts executable
+        run: |
+          chmod +x ./install
+          chmod +x ./test/verify-codespaces.sh
+          chmod +x ./inst/github/*
+      
+      - name: Run installation in Codespaces container
+        run: dip install-codespaces
+      
+      - name: Verify installation in Codespaces container
+        run: dip verify-codespaces
+      
+      - name: Test all binaries in inst/github
+        run: dip test-codespaces-bins
+
+  # Additional test directly in GitHub Actions container
+  test-in-container:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/vscode/devcontainers/universal:latest
+      image: mcr.microsoft.com/devcontainers/base:0-jammy
     env:
       CODESPACES: true
       GITHUB_USER: oleander
@@ -28,17 +56,12 @@ jobs:
           chmod +x ./test/verify-codespaces.sh
           chmod +x ./inst/github/*
       
-      - name: Run verification script
+      - name: Run installation
+        run: |
+          cd ~/.dotfiles
+          ./install -c install-github.conf.yaml
+      
+      - name: Verify installation
         run: |
           cd ~/.dotfiles
           ./test/verify-codespaces.sh
-      
-      - name: Verify each inst/github binary individually
-        run: |
-          cd ~/.dotfiles
-          for script in inst/github/*; do
-            echo "Testing $script..."
-            chmod +x "$script"
-            ~/.local/bin/inst-$(basename "$script") || true
-            echo "----------------"
-          done

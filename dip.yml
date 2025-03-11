@@ -20,6 +20,34 @@ interaction:
     compose:
       run_options: [--rm, --remove-orphans]
 
+  install-codespaces:
+    description: Install the dotfiles in GitHub Codespaces environment
+    service: codespaces
+    command: ./install -c install-github.conf.yaml
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  verify-codespaces:
+    description: Verify the dotfiles installation in GitHub Codespaces environment
+    service: codespaces
+    command: ./test/verify-codespaces.sh
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  test-codespaces-bins:
+    description: Test all inst/github binaries in Codespaces environment
+    service: codespaces
+    command: "for script in inst/github/*; do echo \"Testing $script...\"; chmod +x \"$script\"; ~/.local/bin/inst-$(basename \"$script\") || true; echo \"----------------\"; done"
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  codespaces-shell:
+    description: Start a shell in the Codespaces container
+    service: codespaces
+    command: /bin/bash
+    compose:
+      run_options: [--rm, --remove-orphans, -it]
+
   test-linux:
     description: Run the dotfiles test suite
     service: homeassistant
