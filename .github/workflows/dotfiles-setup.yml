@@ -26,3 +26,6 @@ jobs:
 
       - name: Test install in linux
         run: dip install-linux
+
+      - name: Github Codespaces test
+        run: dip install-github
