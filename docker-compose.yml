@@ -28,7 +28,7 @@ services:
 
   github:
     container_name: github-dotfiles
-    image: mcr.microsoft.com/devcontainers/base:latest
+    image: mcr.microsoft.com/devcontainers/python:latest
     volumes: [./:/home/codespace/dotfiles]
     working_dir: /home/codespace/dotfiles
     environment:
