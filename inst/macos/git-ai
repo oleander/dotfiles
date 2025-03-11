@@ -5,4 +5,4 @@ set -x
 
 brew install rustup
 brew install cargo-binstall
-cargo binstall -y --force git-ai
+# cargo binstall -y --force git-ai
