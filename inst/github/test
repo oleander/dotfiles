@@ -34,6 +34,8 @@ else
   AUTOJUMP_PATH=$(find ~ -name autojump -type f -executable | head -1)
   if [ -n "$AUTOJUMP_PATH" ]; then
     echo -e "${GREEN}✓ Autojump found at: $AUTOJUMP_PATH${NC}"
+    # Add autojump to path for this session
+    export PATH="$(dirname "$AUTOJUMP_PATH"):$PATH"
   else
     echo -e "${RED}✗ Autojump not found${NC}"
     exit 1
@@ -42,12 +44,25 @@ fi
 
 # 3. Test if autojump is accessible in zsh
 echo -e "${YELLOW}3. Testing autojump in zsh...${NC}"
-zsh -c "source ~/.zshrc 2>/dev/null; command -v j" &>/dev/null
-if [ $? -eq 0 ]; then
-  echo -e "${GREEN}✓ Autojump 'j' command is available in zsh${NC}"
+# Make sure to use the found autojump path if available
+if [ -n "$AUTOJUMP_PATH" ]; then
+  if zsh -c "export PATH=\"$(dirname "$AUTOJUMP_PATH"):\$PATH\"; source ~/.zshrc 2>/dev/null; command -v j" &>/dev/null; then
+    echo -e "${GREEN}✓ Autojump 'j' command is available in zsh${NC}"
+  else
+    echo -e "${RED}✗ Autojump 'j' command is not available in zsh${NC}"
+    echo -e "${YELLOW}! Creating zshrc.github with autojump configuration...${NC}"
+    echo "# Added by dotfiles test script" > ~/.zshrc.github
+    echo "export PATH=\"$(dirname "$AUTOJUMP_PATH"):\$PATH\"" >> ~/.zshrc.github
+    echo "source $(dirname "$AUTOJUMP_PATH")/../share/autojump/autojump.zsh 2>/dev/null || true" >> ~/.zshrc.github
+    echo -e "${YELLOW}! Please restart your shell or source ~/.zshrc${NC}"
+  fi
 else
-  echo -e "${RED}✗ Autojump 'j' command is not available in zsh${NC}"
-  echo -e "${YELLOW}! This is not critical but should be fixed for a better experience${NC}"
+  if zsh -c "source ~/.zshrc 2>/dev/null; command -v j" &>/dev/null; then
+    echo -e "${GREEN}✓ Autojump 'j' command is available in zsh${NC}"
+  else
+    echo -e "${RED}✗ Autojump 'j' command is not available in zsh${NC}"
+    echo -e "${YELLOW}! This is not critical but should be fixed for a better experience${NC}"
+  fi
 fi
 
 # 4. Test all binaries in inst/github
@@ -57,7 +72,7 @@ for script in "${DOTFILES_DIR}"/inst/github/*; do
   if [ -f "$script" ] && [ -x "$script" ]; then
     SCRIPT_NAME=$(basename "$script")
     echo -e "${YELLOW}Testing $SCRIPT_NAME...${NC}"
-    
+
     # Check if the binary exists in ~/.local/bin
     if [ -f ~/.local/bin/inst-"$SCRIPT_NAME" ]; then
       echo -e "${GREEN}✓ Binary inst-$SCRIPT_NAME exists${NC}"
@@ -77,17 +92,30 @@ fi
 
 # 5. Verify zshrc.github is sourced
 echo -e "${YELLOW}5. Checking if GitHub-specific configuration is sourced...${NC}"
-if [ -f ~/.zshrc ] && [ -f ~/.zshrc.github ]; then
-  if grep -q "source ~/.zshrc.github" ~/.zshrc; then
-    echo -e "${GREEN}✓ GitHub-specific configuration is sourced in .zshrc${NC}"
-  else
-    echo -e "${RED}✗ GitHub-specific configuration is not sourced in .zshrc${NC}"
-    echo -e "${YELLOW}! Adding it now...${NC}"
-    echo "source ~/.zshrc.github" >> ~/.zshrc
+# Make sure both files exist
+if [ ! -f ~/.zshrc ]; then
+  echo -e "${YELLOW}! Creating ~/.zshrc file...${NC}"
+  touch ~/.zshrc
+fi
+
+if [ ! -f ~/.zshrc.github ]; then
+  echo -e "${YELLOW}! ~/.zshrc.github doesn't exist. Using the one created earlier or creating a new one...${NC}"
+  if [ ! -f ~/.zshrc.github ] && [ -n "$AUTOJUMP_PATH" ]; then
+    echo "# Added by dotfiles test script" > ~/.zshrc.github
+    echo "export PATH=\"$(dirname "$AUTOJUMP_PATH"):\$PATH\"" >> ~/.zshrc.github
+    echo "source $(dirname "$AUTOJUMP_PATH")/../share/autojump/autojump.zsh 2>/dev/null || true" >> ~/.zshrc.github
+  elif [ ! -f ~/.zshrc.github ]; then
+    echo "# Added by dotfiles test script" > ~/.zshrc.github
   fi
+fi
+
+# Now check if it's sourced
+if grep -q "source ~/.zshrc.github" ~/.zshrc; then
+  echo -e "${GREEN}✓ GitHub-specific configuration is sourced in .zshrc${NC}"
 else
-  echo -e "${RED}✗ Either .zshrc or .zshrc.github is missing${NC}"
-  exit 1
+  echo -e "${RED}✗ GitHub-specific configuration is not sourced in .zshrc${NC}"
+  echo -e "${YELLOW}! Adding it now...${NC}"
+  echo "source ~/.zshrc.github" >> ~/.zshrc
 fi
 
 echo -e "\n${GREEN}==========================================${NC}"

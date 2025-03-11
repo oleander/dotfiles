@@ -83,3 +83,5 @@
     - [~/.local/bin/inst-rust || true, Installing rust]
     - [~/.local/bin/inst-oh-my-zsh || true, Installing oh-my-zsh]
     - [~/.local/bin/inst-git-ai || true, Installing git-ai]
+    - [~/.local/bin/inst-autojump || true, Installing autojump]
+    - [~/.local/bin/inst-test || true, Installing test]

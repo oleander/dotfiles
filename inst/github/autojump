@@ -3,29 +3,7 @@ set -e
 
 echo "Installing autojump..."
 
-# Clone autojump repository
-git clone https://github.com/wting/autojump.git /tmp/autojump
-
-# Install autojump
-cd /tmp/autojump
-./install.py --destdir="${HOME}/.autojump" || ./install.py
-
-# Create the autojump directory structure if they don't exist
-mkdir -p ~/.autojump/bin
-mkdir -p ~/.autojump/functions
-mkdir -p ~/.local/share/autojump
-
-# Copy autojump files if needed
-if [ ! -f ~/.autojump/bin/autojump ]; then
-  cp -f /tmp/autojump/bin/autojump ~/.autojump/bin/
-  cp -f /tmp/autojump/bin/{autojump,j,jc,jo,jco}.bash ~/.autojump/bin/ 2>/dev/null || true
-  cp -f /tmp/autojump/bin/{autojump,j,jc,jo,jco}.zsh ~/.autojump/bin/ 2>/dev/null || true
-fi
-
-# Set proper permissions
-chmod +x ~/.autojump/bin/* 2>/dev/null || true
-
-# Clean up
-rm -rf /tmp/autojump
+sudo apt-get update
+sudo apt-get install -y autojump
 
 echo "Autojump installation completed"

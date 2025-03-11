@@ -25,19 +25,14 @@ services:
       PATH: /home/linuxbrew/.linuxbrew/bin:$PATH
     stop_grace_period: 0s
     restart: no
-    
-  codespaces:
-    container_name: codespaces-dotfiles
-    image: mcr.microsoft.com/devcontainers/base:0-jammy
-    platform: linux/amd64
+
+  github:
+    container_name: github-dotfiles
+    image: mcr.microsoft.com/devcontainers/base:latest
     volumes: [./:/home/codespace/dotfiles]
     working_dir: /home/codespace/dotfiles
     environment:
-      CODESPACES: "true"
       GITHUB_USER: oleander
-      HOME: /home/codespace
-      USER: codespace
-      PATH: /home/codespace/.local/bin:/home/codespace/.cargo/bin:$PATH
     stop_grace_period: 0s
     restart: no
     entrypoint: /bin/bash -c
