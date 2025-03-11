@@ -43,9 +43,7 @@ export GIT_MERGE_AUTOEDIT=no
 export ZSH_CUSTOM="zsh"
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_DISABLE_COMPFIX="true"
-autoload -Uz compinit
-compinit -u
+
 
 # Oh My Zsh settings
 CASE_SENSITIVE="true"
@@ -102,13 +100,6 @@ setopt sharehistory # Share history across all sessions
 
 export REPORTTIME=5 # Print elapsed time when more than 5 seconds
 
-# Only load compinit if not in GitHub Codespaces
-if [[ "${CODESPACES}" != "true" ]]; then
-  autoload -U compinit
-  compinit
-fi
-
-# Case-insensitive matching for completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Pasting with tabs doesn't perform completion
@@ -169,25 +160,15 @@ export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 export STARSHIP_CACHE="$HOME/.starship/cache"
 eval "$(starship init zsh)"
 
-# Rebuild Zsh completion cache
-autoload -Uz compinit
-compinit
-
-# Load antigen and plugins (except in GitHub Codespaces)
-if [[ "${CODESPACES}" != "true" ]]; then
-  source "$HOME/.antigen.zsh"
-  antigen use oh-my-zsh
-  antigen bundle zsh-users/zsh-autosuggestions
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen apply
+if [[ ! -f "$HOME/.antigen.zsh" ]]; then
+  curl -L git.io/antigen > antigen.zsh
 fi
 
-# Source OS-specific configurations
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    source ~/.dotfiles/configs/zshrc.macos
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    source ~/.dotfiles/configs/zshrc.linux
-fi
+source "$HOME/.antigen.zsh"
+antigen use oh-my-zsh
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
 
 alias cr='cd ~/Code'
 alias dd='cd ~/Desktop'
@@ -266,8 +247,6 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/linus/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
 
 # Used by @modelcontextprotocol/server-github in VSCode
 export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
@@ -279,3 +258,7 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+ZSH_DISABLE_COMPFIX="true"
+autoload -Uz compinit
+compinit -u
