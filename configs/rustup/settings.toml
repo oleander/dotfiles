@@ -1,5 +1,0 @@
-version = "12"
-default_toolchain = "stable-aarch64-unknown-linux-gnu"
-profile = "minimal"
-
-[overrides]
