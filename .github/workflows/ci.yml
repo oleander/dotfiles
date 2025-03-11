@@ -40,7 +40,7 @@ jobs:
         run: sudo gem install dip
 
       - name: Github Codespaces test
-        run: dip install-github
+        run: dip install-homeassistant
 
   macos-verification:
     name: macOS Verification
