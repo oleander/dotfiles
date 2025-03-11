@@ -11,7 +11,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  setup-verification:
+  containers:
+    name: Containers Verification
     runs-on: ubuntu-latest
 
     steps:
@@ -21,14 +22,41 @@ jobs:
       - name: Install dip
         run: sudo gem install dip
 
-      - name: Docker compose test for linux
-        run: dip test-linux
 
       - name: Test install in linux
         run: dip install-linux
+
+      - name: Docker compose test for linux
+        run: dip test-linux
 
       - name: Github Codespaces test
         run: dip install-github
 
       - name: MacOS test
         run: dip install-macos
+
+  macos-verification:
+    name: macOS Verification
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dip
+        run: sudo gem install dip
+
+      - name: Test install in macOS
+        run: ./install
+
+  github-verification:
+    name: GitHub Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Test install in github
+        run: ./install
+
