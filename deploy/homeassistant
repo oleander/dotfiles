@@ -8,5 +8,15 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 git commit --no-edit -a || true
 git push origin "$CURRENT_BRANCH"
 
-ssh homeassistant ./deploy "$CURRENT_BRANCH"
-ssh homeassistant ./verify
+ssh homeassistant <<EOF
+  cd ~/.dotfiles
+  git stash --include-untracked
+  git pull origin "$CURRENT_BRANCH"
+  git checkout "$CURRENT_BRANCH"
+  ./install
+EOF
+
+ssh homeassistant <<EOF
+  cd ~/.dotfiles
+  ./deploy/verify
+EOF
