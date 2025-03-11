@@ -26,3 +26,5 @@ configs/rustup/update-hashes/
 inst/link/
 claude/mcp.json
 configs/rustup/settings.toml
+configs/config/nvim/plugged/
+configs/config/nvim/pack/

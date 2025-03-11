@@ -22,7 +22,6 @@ jobs:
       - name: Install dip
         run: sudo gem install dip
 
-
       - name: Test install in homeassistant
         run: dip install-homeassistant
 
