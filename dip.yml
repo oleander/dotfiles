@@ -6,8 +6,8 @@ provision:
   - echo "Provisioning..."
 
 interaction:
-  install-linux:
-    description: Install the dotfiles in Linux environment
+  install-homeassistant:
+    description: Install the dotfiles in Home Assistant environment
     service: homeassistant
     command: ./install
     compose:
@@ -20,7 +20,14 @@ interaction:
     compose:
       run_options: [--rm, --remove-orphans]
 
-  test-linux:
+  install-github:
+    description: Install the dotfiles in GitHub Codespaces environment
+    service: github
+    command: ./install
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  test-homeassistant:
     description: Run the dotfiles test suite
     service: homeassistant
     command: ./test/test_ssh_keys.sh
@@ -31,6 +38,18 @@ interaction:
     description: Run the dotfiles test suite
     service: macos
     command: ./test/test_ssh_keys.sh
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  run-homeassistant:
+    description: Run the dotfiles test suite
+    service: homeassistant
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  run-github:
+    description: Run the dotfiles test suite
+    service: github
     compose:
       run_options: [--rm, --remove-orphans]
 

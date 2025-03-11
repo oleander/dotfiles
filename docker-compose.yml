@@ -9,7 +9,7 @@ services:
     entrypoint: /bin/bash -c
     environment:
       PATH: /home/testuser/.cargo/bin:/home/testuser/.local/bin:$PATH
-      OS: linux
+      OS: homeassistant
       HOME: /home/testuser
     restart: no
 
@@ -25,3 +25,15 @@ services:
       PATH: /home/linuxbrew/.linuxbrew/bin:$PATH
     stop_grace_period: 0s
     restart: no
+
+  github:
+    container_name: github-dotfiles
+    image: mcr.microsoft.com/devcontainers/python:latest
+    volumes: [./:/home/codespace/dotfiles]
+    working_dir: /home/codespace/dotfiles
+    environment:
+      GITHUB_USER: oleander
+      OS: github
+    stop_grace_period: 0s
+    restart: no
+    entrypoint: /bin/bash -c

@@ -6,12 +6,6 @@
     - ~/.local/bin/inst
     - ~/.local/share/zinit
     - ~/.local/share/nvim/site/autoload
-    - ~/.config/nvim/pack/github/start/copilot.vim/autoload/copilot
-    - ~/.config/nvim/pack/github/start/copilot.vim/dist
-    - ~/.config/nvim/pack/github/start/copilot.vim/lua
-    - ~/.config/nvim/pack/github/start/copilot.vim/plugin
-    - ~/.config/nvim/pack/github/start/copilot.vim/syntax
-    - ~/.config/nvim/pack/github/start/copilot.vim/doc
     - ~/.config/fabric/patterns
     - ~/.config/fabric/patterns/summarize_docs
     - ~/.config/fabric/patterns/improve-rust-diff
@@ -52,7 +46,7 @@
 
 - link:
     ~/.local/bin:
-      if: sw_vers >/dev/null 2>&1
+      if: sw_vers >/dev/null 2>&1 || test $OS = "macos"
       path: inst/macos/*
       glob: true
       force: true
@@ -61,15 +55,16 @@
 
 - link:
     ~/.local/bin:
-      if: command -v apk >/dev/null 2>&1
-      path: inst/linux/*
+      if: command -v apk >/dev/null 2>&1 || test $OS = "homeassistant"
+      path: inst/homeassistant/*
       glob: true
       force: true
       relink: true
       prefix: inst-
+
 - link:
     ~/.local/bin:
-      if: test $GITHUB_USER = "oleander"
+      if: test $GITHUB_USER || test $OS = "github"
       path: inst/github/*
       glob: true
       force: true
@@ -77,9 +72,12 @@
       prefix: inst-
 
 - shell:
-    - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || true, Installing starship]
-    - [~/.local/bin/inst-brew || true, Installing homebrew]
-    - [~/.local/bin/inst-zsh || true, Installing zsh]
-    - [~/.local/bin/inst-rust || true, Installing rust]
-    - [~/.local/bin/inst-oh-my-zsh || true, Installing oh-my-zsh]
-    - [~/.local/bin/inst-git-ai || true, Installing git-ai]
+    - [
+        curl -sS https://starship.rs/install.sh | sh -s -- --yes,
+        Installing starship,
+      ]
+    - [~/.local/bin/inst-zsh, Installing zsh]
+    - [~/.local/bin/inst-oh-my-zsh, Installing oh-my-zsh]
+    - [~/.local/bin/inst-git-ai, Installing git-ai]
+    - [~/.local/bin/inst-zinit, Installing zinit]
+    - [~/.local/bin/inst-autojump, Installing autojump]

@@ -2,12 +2,13 @@ if [ -t 1 ] && [ -z "$ZSH_VERSION" ]; then
     exec zsh
 fi
 
-export CARGO_HOME="$HOME/.cargo"
+export CARGO_HOME="~/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 
 if [ -f "$CARGO_HOME/env" ]; then
     source "$CARGO_HOME/env"
 fi
-. "$HOME/.cargo/env"
+. "~/.cargo/env"
 
 export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
+. "$HOME/.cargo/env"

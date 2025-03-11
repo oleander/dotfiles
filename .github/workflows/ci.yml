@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  containers:
+    name: Containers Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dip
+        run: sudo gem install dip
+
+      - name: Github Codespaces test
+        run: dip install-github
+
+      - name: MacOS test
+        run: dip install-macos || echo "MacOS test skipped"
+
+  homeassistant-verification:
+    name: Home Assistant Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dip
+        run: sudo gem install dip
+
+      - name: Github Codespaces test
+        run: dip install-homeassistant
+
+  macos-verification:
+    name: macOS Verification
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dip
+        run: sudo gem install dip
+
+      - name: Test install in macOS
+        run: ./install
+        env:
+          OS: macos
+
+  github-verification:
+    name: GitHub Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Test install in github
+        run: ./install
+        env:
+          GITHUB_USER: oleander

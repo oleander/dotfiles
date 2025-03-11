@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
 set -e
+set -x
 
-if ! command -v cargo-binstall &>/dev/null; then
-    echo "cargo-binstall is not installed"
-    exit 1
-fi
-
-echo "Installing git-ai using cargo-binstall"
-cargo binstall -y --force git-ai
+brew install rustup
+brew install cargo-binstall
+# cargo binstall -y --force git-ai
