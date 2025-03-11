@@ -23,11 +23,8 @@ jobs:
         run: sudo gem install dip
 
 
-      - name: Test install in linux
-        run: dip install-linux
-
-      - name: Docker compose test for linux
-        run: dip test-linux
+      - name: Test install in homeassistant
+        run: dip install-homeassistant
 
       - name: Github Codespaces test
         run: dip install-github

@@ -79,9 +79,8 @@
 
 - shell:
     - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || true, Installing starship]
-    - [~/.local/bin/inst-brew || true, Installing homebrew]
-    - [~/.local/bin/inst-zsh || true, Installing zsh]
-    - [~/.local/bin/inst-oh-my-zsh || true, Installing oh-my-zsh]
-    - [~/.local/bin/inst-git-ai || true, Installing git-ai]
-    - [~/.local/bin/inst-zinit || true, Installing zinit]
-    - [~/.local/bin/inst-autojump || true, Installing autojump]
+    - [~/.local/bin/inst-zsh, Installing zsh]
+    - [~/.local/bin/inst-oh-my-zsh, Installing oh-my-zsh]
+    - [~/.local/bin/inst-git-ai, Installing git-ai]
+    - [~/.local/bin/inst-zinit, Installing zinit]
+    - [~/.local/bin/inst-autojump, Installing autojump]

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
+
 set -e
+set -x
 
-echo "Installing autojump..."
-
-apk add --no-cache autojump
-
-echo "Autojump installation completed"
+git clone https://github.com/wting/autojump.git
+cd autojump
+./install.py
