@@ -141,7 +141,7 @@ end
 merged_data = global_data.deep_merge(project_data)
 
 puts "Diff (Global -> Merged):".light_blue
-puts colored_diff(global_content, JSON.pretty_generate(merged_data))
+puts colored_diff(JSON.pretty_generate(project_data), JSON.pretty_generate(merged_data))
 
 print "Proceed with merge? [y/N]: ".light_blue
 unless $stdin.gets.strip.downcase.include?('y')

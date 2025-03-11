@@ -1,0 +1,44 @@
+name: Test GitHub Codespaces Setup
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-codespaces:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/vscode/devcontainers/universal:latest
+    env:
+      CODESPACES: true
+      GITHUB_USER: oleander
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: ~/.dotfiles
+      
+      - name: Make scripts executable
+        run: |
+          cd ~/.dotfiles
+          chmod +x ./install
+          chmod +x ./test/verify-codespaces.sh
+          chmod +x ./inst/github/*
+      
+      - name: Run verification script
+        run: |
+          cd ~/.dotfiles
+          ./test/verify-codespaces.sh
+      
+      - name: Verify each inst/github binary individually
+        run: |
+          cd ~/.dotfiles
+          for script in inst/github/*; do
+            echo "Testing $script..."
+            chmod +x "$script"
+            ~/.local/bin/inst-$(basename "$script") || true
+            echo "----------------"
+          done

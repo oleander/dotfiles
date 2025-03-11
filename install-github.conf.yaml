@@ -1,0 +1,79 @@
+- create:
+    - ~/.cache
+    - ~/.local/bin
+    - ~/.config/cargo
+    - ~/.local/state
+    - ~/.local/bin/inst
+    - ~/.local/share/zinit
+    - ~/.autojump/bin
+    - ~/.autojump/functions
+    - ~/.local/share/autojump
+    - ~/.local/share/nvim/site/autoload
+    - ~/.config/nvim/pack/github/start/copilot.vim/autoload/copilot
+    - ~/.config/nvim/pack/github/start/copilot.vim/dist
+    - ~/.config/nvim/pack/github/start/copilot.vim/lua
+    - ~/.config/nvim/pack/github/start/copilot.vim/plugin
+    - ~/.config/nvim/pack/github/start/copilot.vim/syntax
+    - ~/.config/nvim/pack/github/start/copilot.vim/doc
+    - ~/.config/fabric/patterns
+    - ~/.config/fabric/patterns/summarize_docs
+    - ~/.config/fabric/patterns/improve-rust-diff
+    - ~/.config/gh
+    - ~/.config/gh-copilot
+    - ~/.config/github-copilot
+    - ~/.config/fish
+    - ~/.config/karabiner
+    - ~/.config/jgit
+
+- create:
+    ~/.ssh:
+      mode: 0700
+      create: false
+      force: false
+
+- clean:
+    ~/.local/bin/inst: true
+
+- link:
+    ~/.dotfiles:
+      relative: true
+      force: true
+      path: .
+    ~/:
+      prefix: .
+      glob: true
+      path: configs/*
+      exclude:
+        - configs/config
+        - configs/ssh
+        - configs/zshrc.github
+      force: true
+    ~/.config:
+      glob: true
+      path: configs/config/**
+      create: true
+      force: true
+    ~/.zshrc.github:
+      path: configs/zshrc.github
+      force: true
+
+- link:
+    ~/.local/bin:
+      if: test "$GITHUB_USER" = "oleander" || test "$CODESPACES" = "true"
+      path: inst/github/*
+      glob: true
+      force: true
+      relink: true
+      prefix: inst-
+
+- shell:
+    - [ZSH_DISABLE_COMPFIX=true autoload -Uz compinit && compinit -u, Setting up compinit with security checks disabled]
+    - [curl -sS https://starship.rs/install.sh | sh -s -- --yes || true, Installing starship]
+    - [chmod +x ~/.local/bin/inst-* || true, Setting executable permissions]
+    - [~/.local/bin/inst-brew || true, Installing homebrew]
+    - [~/.local/bin/inst-autojump || true, Installing autojump]
+    - [~/.local/bin/inst-zsh || true, Installing zsh]
+    - [~/.local/bin/inst-rust || true, Installing rust]
+    - [~/.local/bin/inst-oh-my-zsh || true, Installing oh-my-zsh]
+    - [~/.local/bin/inst-git-ai || true, Installing git-ai]
+    - [echo 'source ~/.zshrc.github' >> ~/.zshrc, Adding GitHub-specific configurations]
