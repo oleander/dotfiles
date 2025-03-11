@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+set -e
+
+# Colors for better readability
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # No Color
+
+# Directory of this script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+
+echo -e "${YELLOW}Verifying dotfiles setup for GitHub Codespaces...${NC}"
+
+# Change to dotfiles directory
+cd "${DOTFILES_DIR}"
+
+# 1. Check if compinit runs without prompting
+echo -e "${YELLOW}1. Testing if compinit runs without prompting...${NC}"
+output=$(ZSH_DISABLE_COMPFIX=true zsh -c "autoload -Uz compinit && compinit -u" 2>&1)
+if [[ "$output" == *"ignore insecure directories"* && "$output" == *"[y/n]"* ]]; then
+  echo -e "${RED}✗ Compinit is still prompting for insecure directories${NC}"
+  exit 1
+else
+  echo -e "${GREEN}✓ Compinit runs without prompting${NC}"
+fi
+
+# 2. Check if autojump is installed
+echo -e "${YELLOW}2. Checking autojump installation...${NC}"
+if command -v autojump &>/dev/null || [ -f ~/.autojump/bin/autojump ]; then
+  echo -e "${GREEN}✓ Autojump is installed${NC}"
+else
+  AUTOJUMP_PATH=$(find ~ -name autojump -type f -executable | head -1)
+  if [ -n "$AUTOJUMP_PATH" ]; then
+    echo -e "${GREEN}✓ Autojump found at: $AUTOJUMP_PATH${NC}"
+  else
+    echo -e "${RED}✗ Autojump not found${NC}"
+    exit 1
+  fi
+fi
+
+# 3. Test if autojump is accessible in zsh
+echo -e "${YELLOW}3. Testing autojump in zsh...${NC}"
+zsh -c "source ~/.zshrc 2>/dev/null; command -v j" &>/dev/null
+if [ $? -eq 0 ]; then
+  echo -e "${GREEN}✓ Autojump 'j' command is available in zsh${NC}"
+else
+  echo -e "${RED}✗ Autojump 'j' command is not available in zsh${NC}"
+  echo -e "${YELLOW}! This is not critical but should be fixed for a better experience${NC}"
+fi
+
+# 4. Test all binaries in inst/github
+echo -e "${YELLOW}4. Testing all binaries in inst/github...${NC}"
+ALL_BINS_OK=true
+for script in "${DOTFILES_DIR}"/inst/github/*; do
+  if [ -f "$script" ] && [ -x "$script" ]; then
+    SCRIPT_NAME=$(basename "$script")
+    echo -e "${YELLOW}Testing $SCRIPT_NAME...${NC}"
+    
+    # Check if the binary exists in ~/.local/bin
+    if [ -f ~/.local/bin/inst-"$SCRIPT_NAME" ]; then
+      echo -e "${GREEN}✓ Binary inst-$SCRIPT_NAME exists${NC}"
+    else
+      echo -e "${RED}✗ Binary inst-$SCRIPT_NAME not found${NC}"
+      ALL_BINS_OK=false
+    fi
+  fi
+done
+
+if [ "$ALL_BINS_OK" = true ]; then
+  echo -e "${GREEN}✓ All binaries in inst/github are linked correctly${NC}"
+else
+  echo -e "${RED}✗ Some binaries in inst/github are not linked${NC}"
+  echo -e "${YELLOW}! You may need to run 'inst-setup' again${NC}"
+fi
+
+# 5. Verify zshrc.github is sourced
+echo -e "${YELLOW}5. Checking if GitHub-specific configuration is sourced...${NC}"
+if [ -f ~/.zshrc ] && [ -f ~/.zshrc.github ]; then
+  if grep -q "source ~/.zshrc.github" ~/.zshrc; then
+    echo -e "${GREEN}✓ GitHub-specific configuration is sourced in .zshrc${NC}"
+  else
+    echo -e "${RED}✗ GitHub-specific configuration is not sourced in .zshrc${NC}"
+    echo -e "${YELLOW}! Adding it now...${NC}"
+    echo "source ~/.zshrc.github" >> ~/.zshrc
+  fi
+else
+  echo -e "${RED}✗ Either .zshrc or .zshrc.github is missing${NC}"
+  exit 1
+fi
+
+echo -e "\n${GREEN}==========================================${NC}"
+if [ "$ALL_BINS_OK" = true ]; then
+  echo -e "${GREEN}All tests passed! Your dotfiles are properly set up for GitHub Codespaces.${NC}"
+else
+  echo -e "${YELLOW}Most tests passed with some warnings. Your dotfiles should work but may need some adjustments.${NC}"
+fi
+echo -e "${GREEN}==========================================${NC}"

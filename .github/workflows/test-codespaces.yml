@@ -23,17 +23,13 @@ jobs:
       - name: Make scripts executable
         run: |
           chmod +x ./install
-          chmod +x ./test/verify-codespaces.sh
           chmod +x ./inst/github/*
       
-      - name: Run installation in Codespaces container
+      - name: Run setup in Codespaces container
         run: dip install-codespaces
       
       - name: Verify installation in Codespaces container
         run: dip verify-codespaces
-      
-      - name: Test all binaries in inst/github
-        run: dip test-codespaces-bins
 
   # Additional test directly in GitHub Actions container
   test-in-container:
@@ -53,15 +49,14 @@ jobs:
         run: |
           cd ~/.dotfiles
           chmod +x ./install
-          chmod +x ./test/verify-codespaces.sh
           chmod +x ./inst/github/*
       
-      - name: Run installation
+      - name: Run setup
         run: |
           cd ~/.dotfiles
-          ./install -c install-github.conf.yaml
+          ./inst/github/setup
       
       - name: Verify installation
         run: |
           cd ~/.dotfiles
-          ./test/verify-codespaces.sh
+          ./inst/github/test

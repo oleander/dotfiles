@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -e
+
+# Colors for better readability
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # No Color
+
+echo -e "${YELLOW}Setting up dotfiles for GitHub Codespaces environment...${NC}"
+
+# Directory of this script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+
+# Change to dotfiles directory
+cd "${DOTFILES_DIR}"
+
+# Make sure everything is executable
+chmod +x ./install
+chmod +x ./test/verify-codespaces.sh
+if [ -d ./inst/github ]; then
+  chmod +x ./inst/github/*
+fi
+
+# Run installation with GitHub-specific configuration
+echo -e "${YELLOW}Running installation with GitHub-specific configuration...${NC}"
+./install -c install-github.conf.yaml
+
+# Fix permissions for scripts
+if [ -d ~/.local/bin ]; then
+  chmod +x ~/.local/bin/inst-* 2>/dev/null || true
+fi
+
+# Make sure the GitHub-specific zshrc configuration is sourced
+if [ -f ~/.zshrc ] && [ -f ~/.zshrc.github ]; then
+  if ! grep -q "source ~/.zshrc.github" ~/.zshrc; then
+    echo "source ~/.zshrc.github" >> ~/.zshrc
+    echo -e "${GREEN}Added GitHub-specific configuration to .zshrc${NC}"
+  fi
+fi
+
+# Disable compinit security check permanently
+if [ -f ~/.zshrc ]; then
+  if ! grep -q "ZSH_DISABLE_COMPFIX=true" ~/.zshrc; then
+    sed -i '1s/^/ZSH_DISABLE_COMPFIX=true\n/' ~/.zshrc
+    echo -e "${GREEN}Disabled compinit security check in .zshrc${NC}"
+  fi
+fi
+
+# Fix autojump in GitHub Codespaces
+if [ -d ~/.autojump ]; then
+  # Create the autojump error log directory if it doesn't exist
+  mkdir -p ~/.local/share/autojump
+  
+  # Make sure autojump is executable
+  if [ -d ~/.autojump/bin ]; then
+    chmod +x ~/.autojump/bin/* 2>/dev/null || true
+  fi
+fi
+
+echo -e "${GREEN}Setup completed successfully!${NC}"
+echo -e "${YELLOW}Run 'inst-test' to verify the installation.${NC}"
