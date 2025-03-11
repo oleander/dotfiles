@@ -25,3 +25,4 @@ configs/rustup/tmp/
 configs/rustup/update-hashes/
 inst/link/
 claude/mcp.json
+configs/rustup/settings.toml
