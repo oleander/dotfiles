@@ -3,6 +3,8 @@
 set -e
 set -x
 
+export SHELL=/bin/bash
+
 git clone https://github.com/wting/autojump.git
 cd autojump
 ./install.py
