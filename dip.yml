@@ -41,9 +41,15 @@ interaction:
     compose:
       run_options: [--rm, --remove-orphans]
 
-  run-linux:
+  run-homeassistant:
     description: Run the dotfiles test suite
     service: homeassistant
+    compose:
+      run_options: [--rm, --remove-orphans]
+
+  run-github:
+    description: Run the dotfiles test suite
+    service: github
     compose:
       run_options: [--rm, --remove-orphans]
 
