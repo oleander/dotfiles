@@ -56,4 +56,6 @@ jobs:
 
       - name: Test install in github
         run: ./install
+        env:
+          GITHUB_USER: oleander
 
