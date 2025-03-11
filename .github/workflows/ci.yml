@@ -69,4 +69,3 @@ jobs:
         run: ./install
         env:
           GITHUB_USER: oleander
-
