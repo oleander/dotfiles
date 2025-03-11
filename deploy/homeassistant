@@ -3,15 +3,10 @@
 set -e
 set -x
 
-export CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 git commit --no-edit -a || true
-git push origin $CURRENT_BRANCH
+git push origin "$CURRENT_BRANCH"
 
-ssh homeassistant <<EOF
-  cd /share/dotfiles
-  git stash --include-untracked
-  git pull origin $CURRENT_BRANCH
-  git checkout $CURRENT_BRANCH
-  ./install
-EOF
+ssh homeassistant ./deploy/deploy "$CURRENT_BRANCH"
+ssh homeassistant ./deploy/verify
