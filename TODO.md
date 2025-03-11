@@ -1,1 +1,2 @@
 - [ ] Rename `linux` to `homeassistant`
+- [ ] Add git statuses to the PROMPT LEFT
