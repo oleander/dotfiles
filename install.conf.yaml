@@ -52,7 +52,7 @@
 
 - link:
     ~/.local/bin:
-      if: sw_vers >/dev/null 2>&1
+      if: sw_vers >/dev/null 2>&1 || test $OS = "macos"
       path: inst/macos/*
       glob: true
       force: true
