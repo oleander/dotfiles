@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 set -e
-set -x
+# set -x
 
 source ~/.zshrc
 j dot # autojump
