@@ -61,7 +61,7 @@
 
 - link:
     ~/.local/bin:
-      if: command -v apk >/dev/null 2>&1
+      if: command -v apk >/dev/null 2>&1 || test $OS = "homeassistant"
       path: inst/homeassistant/*
       glob: true
       force: true
@@ -70,7 +70,7 @@
 
 - link:
     ~/.local/bin:
-      if: test $GITHUB_USER = "oleander"
+      if: test $GITHUB_USER || test $OS = "github"
       path: inst/github/*
       glob: true
       force: true
