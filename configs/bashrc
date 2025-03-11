@@ -11,3 +11,4 @@ fi
 . "~/.cargo/env"
 
 export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
+. "$HOME/.cargo/env"

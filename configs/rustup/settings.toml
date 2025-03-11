@@ -1,5 +1,5 @@
-default_toolchain = "nightly-aarch64-apple-darwin"
-profile = "minimal"
 version = "12"
+default_toolchain = "stable-x86_64-unknown-linux-gnu"
+profile = "minimal"
 
 [overrides]
