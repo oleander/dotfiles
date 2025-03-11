@@ -57,7 +57,7 @@ end
 def restore_file_if_unchanged(original_path, backup_path)
   return unless backup_path.exist?
   return unless original_path.exist?
-  if original_path.read == backup_path.read
+  if original_path.read != backup_path.read
     FileUtils.cp(backup_path.to_s, original_path.to_s)
     puts "Restored #{original_path} from backup.".yellow
   end
