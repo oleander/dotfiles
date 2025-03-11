@@ -8,5 +8,5 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 git commit --no-edit -a || true
 git push origin "$CURRENT_BRANCH"
 
-ssh homeassistant ./deploy/deploy "$CURRENT_BRANCH"
-ssh homeassistant ./deploy/verify
+ssh homeassistant ./deploy "$CURRENT_BRANCH"
+ssh homeassistant ./verify
