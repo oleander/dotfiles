@@ -1,8 +1,9 @@
-#!/usr/bin/env zsh -l
+#!/usr/bin/env zsh
 
 set -e
 set -x
 
+source ~/.zshrc
 j dot # autojump
 git ai --help # git ai
 starship help # starship
