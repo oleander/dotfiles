@@ -22,14 +22,25 @@ jobs:
       - name: Install dip
         run: sudo gem install dip
 
-      - name: Test install in homeassistant
-        run: dip install-homeassistant
-
       - name: Github Codespaces test
         run: dip install-github
 
       - name: MacOS test
         run: dip install-macos
+
+  homeassistant-verification:
+    name: Home Assistant Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dip
+        run: sudo gem install dip
+
+      - name: Github Codespaces test
+        run: dip install-github
 
   macos-verification:
     name: macOS Verification
