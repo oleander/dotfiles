@@ -3,7 +3,7 @@
 ## Build/Test Commands
 - Install dotfiles: `dotbot -c install.conf.yaml`
 - Brew commands: `brew bundle install`, `brew bundle dump --cleanup --all`
-- Run tests: `dip test-linux` or `dip test-macos`
+- Run tests: `dip test-homeassistant`
 - Test single script: `dip test-script <script-name>`
 - Run Ruby specs: `dip rspec <file-path>`
 - Run specific specs from branch: `git diff --name-only --diff-filter=d master...HEAD | grep '_spec.rb$' | dip rspec`
