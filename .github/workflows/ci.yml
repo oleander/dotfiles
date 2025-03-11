@@ -1,4 +1,4 @@
-name: Verify Dotfiles Setup
+name: CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   containers:
