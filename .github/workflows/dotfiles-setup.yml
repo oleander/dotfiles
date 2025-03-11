@@ -29,3 +29,6 @@ jobs:
 
       - name: Github Codespaces test
         run: dip install-github
+
+      - name: MacOS test
+        run: dip install-macos
