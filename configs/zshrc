@@ -1,8 +1,17 @@
-# Early detection for non-interactive or non-TTY environments
-# Skip zinit and complex initialization in these environments
-if [[ ! -o interactive ]] || [[ ! -t 1 ]]; then
-  # Minimal environment for non-interactive or non-TTY shells
-  # Skip compinit entirely in non-interactive/non-TTY mode - don't even try
+# CRITICAL: Super early detection for problematic environments
+# Check for SSH command execution or any non-interactive/non-TTY situation
+if [[ -n "$SSH_ORIGINAL_COMMAND" ]] || [[ "$-" != *i* ]] || [[ ! -t 0 ]] || [[ ! -t 1 ]] || [[ ! -t 2 ]]; then
+  # This is either:
+  # 1. An SSH command execution (non-login shell)
+  # 2. A non-interactive shell
+  # 3. Any of stdin/stdout/stderr is not a TTY
+
+  # Set up minimal environment and exit immediately
+  export PATH="$HOME/.local/bin:$PATH"
+  export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH="$HOME/.dotfiles/bin:$PATH"
+
+  # Don't even attempt to load compinit or plugins
   return 0
 fi
 
