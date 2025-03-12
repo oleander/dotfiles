@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh --login
 
 set -e
-set -x
+# set -x
 
 if command -v zsh >/dev/null 2>&1; then
     echo "zsh already installed"
