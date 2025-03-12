@@ -160,10 +160,7 @@ export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 export STARSHIP_CACHE="$HOME/.starship/cache"
 eval "$(starship init zsh)"
 
-if [[ ! -f "$HOME/.antigen.zsh" ]]; then
-  curl -L git.io/antigen > antigen.zsh
-fi
-
+test -f antigen.zsh || curl -L git.io/antigen > antigen.zsh
 source antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-autosuggestions
