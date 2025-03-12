@@ -1,3 +1,6 @@
+- clean:
+    - ~/.gitconfig
+
 - create:
     - ~/.cache
     - ~/.local/bin
