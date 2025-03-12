@@ -14,4 +14,4 @@ git submodule update --init --recursive
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" --exit-on-failure -vv -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" --force-color --exit-on-failure -vv -d "${BASEDIR}" -c "${CONFIG}" "${@}"
