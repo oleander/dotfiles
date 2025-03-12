@@ -11,31 +11,6 @@ commit-and-push:
     git commit --no-edit -a || true
     git push origin $(git rev-parse --abbrev-ref HEAD)
 
-# Update an existing GitHub Gist with ssh-dotfiles-update.sh
-update-dotfiles-gist GIST_ID:
-    @echo "Updating Gist {{GIST_ID}} with ssh-dotfiles-update.sh..."
-    gh gist edit {{GIST_ID}} scripts/ssh-dotfiles-update.sh
-
-# Create a new GitHub Gist with ssh-dotfiles-update.sh
-create-dotfiles-gist:
-    @echo "Creating new GitHub Gist from ssh-dotfiles-update.sh..."
-    gh gist create --desc "SSH Dotfiles Update Script" scripts/ssh-dotfiles-update.sh
-
-# Ensure a GitHub Gist exists (create if not exists, update if exists)
-ensure-dotfiles-gist GIST_ID="i2f6dc25201634a59189d78e457fcae55":
-    #!/bin/bash
-    if [ -z "{{GIST_ID}}" ]; then
-        echo "No Gist ID provided, creating new Gist..."
-        gh gist create --desc "SSH Dotfiles Update Script" scripts/ssh-dotfiles-update.sh
-    else
-        echo "Checking if Gist {{GIST_ID}} exists..."
-        if gh gist view {{GIST_ID}} >/dev/null 2>&1; then
-            echo "Updating existing Gist {{GIST_ID}}..."
-            gh gist edit {{GIST_ID}} scripts/ssh-dotfiles-update.sh
-        else
-            echo "Gist {{GIST_ID}} not found, creating new Gist..."
-            gh gist create --desc "SSH Dotfiles Update Script" scripts/ssh-dotfiles-update.sh
-        fi
-    fi
-test-ssh-dotfiles-update: ensure-dotfiles-gist
+test-ssh-dotfiles-update:
+    @gh gist edit https://gist.github.com/oleander/fac38e40787b4cddf1c635d062a508d5 scripts/ssh-dotfiles-update.sh
     ssh mini
