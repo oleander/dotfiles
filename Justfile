@@ -10,7 +10,8 @@ ssh-addon-logs:
 commit-and-push:
     git commit --no-edit -a || true
     git push origin $(git rev-parse --abbrev-ref HEAD)
-
-test-ssh-dotfiles-update:
-    @gh gist edit https://gist.github.com/oleander/fac38e40787b4cddf1c635d062a508d5 scripts/ssh-dotfiles-update.sh
+update-ssh-dotfiles-gist:
+    gh gist edit https://gist.github.com/oleander/fac38e40787b4cddf1c635d062a508d5 scripts/ssh-dotfiles-update.sh
+test-ssh-dotfiles-update: update-ssh-dotfiles-gist
     ssh mini
+    ssh homeassistant
