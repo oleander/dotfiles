@@ -14,7 +14,7 @@ export PYTHONCOERCECLOCALE=0
 
 export ZSH_DOTENV_PROMPT=false
 
-export ZSH_DISABLE_COMPFIX="true"
+# export ZSH_DISABLE_COMPFIX="true"
 autoload -Uz compinit
 compinit -u
 
