@@ -1,4 +1,4 @@
-#!/bin/env zsh
+#!/usr/bin/env zsh
 
 # ZSH is already installed on Home Assistant
 compaudit | xargs chmod g-w,o-w
