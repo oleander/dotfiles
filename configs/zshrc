@@ -214,4 +214,12 @@ zinit light zsh-users/zsh-syntax-highlighting
 
 # Initialize completions
 autoload -Uz compinit
-compinit
+
+# Only run compinit with additional checks in interactive shells
+if [[ -o interactive ]]; then
+  # Full initialization for interactive shells
+  compinit
+else
+  # Silent, quick initialization for non-interactive shells
+  compinit -C -q
+fi
