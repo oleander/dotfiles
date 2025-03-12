@@ -72,10 +72,10 @@
       prefix: inst-
 
 - shell:
-    # - [
-    #     curl -sS https://starship.rs/install.sh | sh -s -- --yes,
-    #     Installing starship,
-    #   ]
+    - [
+        curl -sS https://starship.rs/install.sh | sh -s -- --yes,
+        Installing starship,
+      ]
     - [~/.local/bin/inst-zsh, Installing zsh]
-    # - [~/.local/bin/inst-git-ai, Installing git-ai]
+    - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
