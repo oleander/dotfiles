@@ -72,8 +72,8 @@
       prefix: inst-
 
 - shell:
-    - [~/.local/bin/inst-starship, Installing starship]
+    # - [~/.local/bin/inst-starship, Installing starship]
     - [~/.local/bin/inst-zsh, Installing zsh]
-    - [~/.local/bin/inst-git-ai, Installing git-ai]
+    # - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
     - [zsh -i -c 'exit', Preload zsh]
