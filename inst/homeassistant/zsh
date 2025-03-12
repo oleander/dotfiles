@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# ZSH is already installed on the homeassistant server
+
 set -e
 set -x
 
