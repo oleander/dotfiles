@@ -203,4 +203,8 @@ zinit light zsh-users/zsh-syntax-highlighting
 # Initialize completions
 autoload -Uz compinit
 compinit -C
-source /opt/homebrew/opt/autojump/etc/autojump.sh
+
+# Load local configuration (not included in git repository)
+if [[ -f "$HOME/.zshrc.local" ]]; then
+  source "$HOME/.zshrc.local"
+fi
