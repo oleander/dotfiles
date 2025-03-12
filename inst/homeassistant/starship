@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+set -x
+
+curl -sS https://starship.rs/install.sh | sh -s -- --yes
+
