@@ -204,3 +204,4 @@ zinit light zsh-users/zsh-syntax-highlighting
 autoload -Uz compinit
 compinit -C
 
+source /opt/homebrew/opt/autojump/etc/autojump.sh
