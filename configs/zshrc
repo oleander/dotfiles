@@ -236,7 +236,7 @@ if command -v rbenv >/dev/null 2>&1; then
 fi
 
 if command -v gh >/dev/null 2>&1; then
-  export GITHUB_TOKEN=$(gh auth token)
+  export GITHUB_TOKEN=$(gh auth token > /dev/null 2>&1)
 fi
 
 if [ -d "/opt/homebrew/opt/openjdk/bin" ]; then
