@@ -14,6 +14,10 @@ export PYTHONCOERCECLOCALE=0
 
 export ZSH_DOTENV_PROMPT=false
 
+export ZSH_DISABLE_COMPFIX="true"
+autoload -Uz compinit
+compinit -u
+
 if [[ -d "$HOME/.local/bin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
@@ -256,6 +260,4 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-ZSH_DISABLE_COMPFIX="true"
-autoload -Uz compinit
-compinit -u
+
