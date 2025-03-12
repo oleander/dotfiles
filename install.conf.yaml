@@ -77,5 +77,6 @@
         Installing starship,
       ]
     - [~/.local/bin/inst-zsh, Installing zsh]
+    - zinit self-update
     - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
