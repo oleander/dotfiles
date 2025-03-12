@@ -4,6 +4,6 @@ set -x
 set -e
 
 sudo apt-get update
-sudo apt-get install -y --no-install-recommends curl cargo make gcc g++ libssl-dev pkg-config
+sudo apt-get install -y --no-install-recommends curl cargo
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 cargo binstall -y git-ai
