@@ -30,6 +30,7 @@
     ~/.local/share/zinit: true
     ~/.zshrc.local: true
     ~/.zshrc: true
+    ~/.ssh/config: true
 
 - link:
     ~/.dotfiles:
@@ -42,15 +43,15 @@
       path: configs/*
       exclude:
         - configs/config
-        - configs/ssh/known_hosts
-        - configs/ssh/id_*
-        - configs/ssh/authorized_keys
+        - configs/ssh
       force: true
     ~/.config:
       glob: true
       path: configs/config/**
       create: true
       force: true
+    ~/.ssh/config:
+      path: configs/ssh/config
 
 - link:
     ~/.local/bin:

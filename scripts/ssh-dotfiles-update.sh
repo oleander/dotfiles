@@ -115,20 +115,48 @@ fi
     fi
 
     # Stash any local changes
-    if git $GIT_OPTS diff --quiet; then
+    HAS_TRACKED_CHANGES=false
+    HAS_UNTRACKED_CHANGES=false
+
+    # Check for tracked changes
+    if ! git $GIT_OPTS diff --quiet; then
+      HAS_TRACKED_CHANGES=true
+    fi
+
+    # Check for untracked files
+    if [ -n "$(git $GIT_OPTS ls-files --others --exclude-standard)" ]; then
+      HAS_UNTRACKED_CHANGES=true
+    fi
+
+    # Process based on what we found
+    if [ "$HAS_TRACKED_CHANGES" = false ] && [ "$HAS_UNTRACKED_CHANGES" = false ]; then
       echo "📝 No local changes to stash" >&2
     else
-      echo "📝 Detected unstaged changes, stashing..." >&2
-      if ! run_with_retry "git $GIT_OPTS stash -q" "Stashing local changes"; then
-        # If stashing fails, try harder with a forced approach
-        echo "⚠️ Standard stash failed, attempting with --include-untracked" >&2
+      # Describe what we found
+      if [ "$HAS_TRACKED_CHANGES" = true ] && [ "$HAS_UNTRACKED_CHANGES" = true ]; then
+        echo "📝 Detected both modified and untracked files, stashing..." >&2
+      elif [ "$HAS_TRACKED_CHANGES" = true ]; then
+        echo "📝 Detected modified files, stashing..." >&2
+      else
+        echo "📝 Detected untracked files, stashing..." >&2
+      fi
+
+      # Try normal stash first
+      if [ "$HAS_TRACKED_CHANGES" = true ] && [ "$HAS_UNTRACKED_CHANGES" = false ]; then
+        # Only tracked changes - regular stash should work
+        if ! run_with_retry "git $GIT_OPTS stash -q" "Stashing tracked changes"; then
+          echo "⚠️ Unable to stash tracked changes" >&2
+          echo "⚠️ Skipping update to preserve your work." >&2
+          log_error "Stashing failed. Update skipped to avoid data loss."
+          exit 0
+        fi
+      else
+        # Either untracked files exist or both - need to include untracked
         if ! run_with_retry "git $GIT_OPTS stash --include-untracked -q" "Stashing all changes"; then
-          # Last resort: try to reset if the user is okay with potentially losing changes
-          echo "⚠️ Unable to stash changes, forcing reset..." >&2
-          if ! run_with_retry "git $GIT_OPTS reset --hard HEAD" "Resetting working directory"; then
-            log_error "Failed to clean working directory. Cannot proceed with update."
-            exit 1
-          fi
+          echo "⚠️ Unable to stash changes with --include-untracked" >&2
+          echo "⚠️ Skipping update to preserve your work." >&2
+          log_error "Stashing failed. Update skipped to avoid data loss."
+          exit 0
         fi
       fi
     fi

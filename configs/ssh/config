@@ -1,10 +1,10 @@
 Host *
   ForwardAgent yes
-  # ControlPath ~/.ssh/control-%h-%p-%r
-  LocalCommand ssh -o PermitLocalCommand=no %n "curl -s https://gist.githubusercontent.com/oleander/fac38e40787b4cddf1c635d062a508d5/raw/b9a0d522771d30efc9b581939efc163642ab89c7/ssh-dotfiles-update.sh | bash"
-
+  ControlPath ~/.ssh/control-%h-%p-%r
+  LocalCommand ssh -o PermitLocalCommand=no %n curl -s https://gist.githubusercontent.com/oleander/fac38e40787b4cddf1c635d062a508d5/raw/ba97af542b03197e59e37a91493fb5fbe4274c8a/ssh-dotfiles-update.sh | bash
+  # LocalCommand ssh -o PermitLocalCommand=no %n curl -s https://dotfiles.oleander.org | bash
   ServerAliveInterval 600
-  ConnectTimeout 120
+  ConnectTimeout 10
   PermitLocalCommand yes
 
 Host homeassistant
