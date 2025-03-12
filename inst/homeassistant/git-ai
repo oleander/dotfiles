@@ -6,7 +6,6 @@
 # - curl
 # - apk
 
-set -x
 set -e
 
 apk add --update cargo

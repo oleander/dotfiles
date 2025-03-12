@@ -3,8 +3,7 @@
 set -e
 set -x
 
-git submodule update --remote ext/zinit
-source ext/zinit/zinit.zsh
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+zinit self-update
+
 
