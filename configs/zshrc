@@ -119,9 +119,11 @@ if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fab
 # Additional SCCache settings
 export SCCACHE_DIRECT=true
 
-export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-export STARSHIP_CACHE="$HOME/.starship/cache"
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+  export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+  export STARSHIP_CACHE="$HOME/.starship/cache"
+  eval "$(starship init zsh)"
+fi
 
 alias cr='cd ~/Code'
 alias dd='cd ~/Desktop'
