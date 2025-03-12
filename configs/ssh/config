@@ -1,8 +1,7 @@
 Host *
   ForwardAgent yes
   # ControlPath ~/.ssh/control-%h-%p-%r
-  # LocalCommand ssh -o PermitLocalCommand=no %n "curl -s https://gist.githubusercontent.com/oleander/fac38e40787b4cddf1c635d062a508d5/raw/ba97af542b03197e59e37a91493fb5fbe4274c8a/ssh-dotfiles-update.sh | bash"
-  LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull | grep -q 'Already up to date.' && echo 'Already up to date.' || zsh ~/.dotfiles/install ) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/OmegaRogue/dotfiles .dotfiles && "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"" && rm ~/.oh-my-zsh/oh-my-zsh.sh ~/.zshrc && ./.dotfiles/install && echo "done"))"
+  LocalCommand ssh -o PermitLocalCommand=no %n "curl -s https://gist.githubusercontent.com/oleander/fac38e40787b4cddf1c635d062a508d5/raw/b9a0d522771d30efc9b581939efc163642ab89c7/ssh-dotfiles-update.sh | bash"
 
   ServerAliveInterval 600
   ConnectTimeout 120
