@@ -1,4 +1,0 @@
-#!/bin/bash -e
-
-# Homebrew is not needed on Linux/Home Assistant
-exit 0

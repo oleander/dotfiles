@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-set -e
 
-echo "Installing autojump..."
+set -e
+set -x
 
 brew install autojump
-
-echo "Autojump installation completed"

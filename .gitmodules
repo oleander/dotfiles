@@ -14,9 +14,6 @@
 	path = dotbot-ifhostname
 	url = https://github.com/johnlettman/dotbot-ifhostname.git
 	ignore = dirty
-[submodule "ext/zinit"]
-	path = ext/zinit
-	url = https://github.com/zdharma-continuum/zinit.git
 [submodule "ext/vim-plug"]
 	path = ext/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
