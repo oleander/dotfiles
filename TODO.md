@@ -2,3 +2,4 @@
 - [ ] Add git statuses to the PROMPT LEFT
 - [ ] Remove unused submodules
 - [ ] Fix incorrect loading of `github/copilot.vim` via zinit in zshrc (it's a Vim plugin, not a Zsh plugin)
+- [ ] Clean up configs/config/zshrc

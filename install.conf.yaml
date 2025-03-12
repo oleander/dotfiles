@@ -74,5 +74,6 @@
 - shell:
     - curl -sS https://starship.rs/install.sh | sh -s -- --yes
     - [~/.local/bin/inst-zsh, Installing zsh]
+    - zinit self-update
     - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]

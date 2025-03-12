@@ -8,7 +8,6 @@ export EDITOR=nvim
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PAGER="less -R"
 export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
-export ZSH_CUSTOM=$ROOT/zsh
 export PATH=$HOME/.cargo/bin:$PATH
 
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
@@ -27,24 +26,12 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 
 export GIT_MERGE_AUTOEDIT=no
 
-
-# Zsh and Oh My Zsh configuration
-export ZSH_CUSTOM="zsh"
-export ZSH="$HOME/.oh-my-zsh"
-
-# Oh My Zsh settings
-CASE_SENSITIVE="true"
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-[ -z "$TERM" ] && export TERM=xterm-256color
-plugins=(colored-man-pages colorize autojump profiles dotenv)
-source "$ZSH/oh-my-zsh.sh"
-
 # Colors
 autoload -U colors
 colors
 setopt prompt_subst
 
+# Git prompt variables
 export ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX=" "
 export ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX=" "
 export ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}⁉️%{$reset_color%}"
@@ -96,10 +83,6 @@ zle -N newtab
 
 # Disable correctness
 unsetopt correct_all
-
-# zinit light zsh-users/zsh-completions
-# zinit light zsh-users/zsh-autosuggestions
-# zinit light zsh-users/zsh-syntax-highlighting
 
 # Locale settings
 export LC_ALL=en_US.UTF-8
@@ -180,8 +163,6 @@ alias code='cursor'
 
 export OPENAI_API_KEY="dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content"
 
-[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh
-
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -229,9 +210,19 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 # End of Zinit's installer
 
+# Load Zinit plugins
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
+# Colored man pages and other utilities from Oh My Zsh
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit snippet OMZ::plugins/colorize/colorize.plugin.zsh
+zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
+zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
 zinit ice depth=1
 zinit load github/copilot.vim
+
+# Initialize completions
+autoload -Uz compinit
+compinit
