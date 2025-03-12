@@ -1,8 +1,7 @@
 Host *
   ForwardAgent yes
   ControlPath ~/.ssh/control-%h-%p-%r
-  # LocalCommand ssh -o PermitLocalCommand=no %n curl -s https://gist.github.com/oleander/2f6dc25201634a59189d78e457fcae55/raw/3b4faba5ff9b2d0c2286a0de5c0eb0d299b06248/ssh-dotfiles-update.sh | bash
-  LocalCommand ssh -o PermitLocalCommand=no %n curl -s https://dotfiles.oleander.org
+  LocalCommand ssh -o PermitLocalCommand=no %n curl -s https://gist.githubusercontent.com/oleander/fac38e40787b4cddf1c635d062a508d5/raw/ba97af542b03197e59e37a91493fb5fbe4274c8a/ssh-dotfiles-update.sh | bash
   ServerAliveInterval 600
   ConnectTimeout 120
   PermitLocalCommand yes
