@@ -9,26 +9,45 @@ DOTFILES_REPO="https://github.com/oleander/dotfiles"
 LOG_FILE="/tmp/dotfiles-update-$(date +%Y%m%d-%H%M%S).log"
 TIMEOUT=15
 MAX_RETRIES=2
+DEBUG_MODE=false # Add debug mode flag
 
-# Function to show spinner with emojis
+# Parse command line arguments
+while getopts "d" opt; do
+  case $opt in
+    d) DEBUG_MODE=true ;;
+  esac
+done
+
+# Function to log messages in debug mode only
+log_debug() {
+  if [ "$DEBUG_MODE" = true ]; then
+    echo "$1" >> "$LOG_FILE"
+  fi
+}
+
+# Function to show single spinning emoji
 show_spinner() {
   local pid=$1
   local delay=0.1
-  local spinstr='⏳ ⌛ 🔄 📦 🚀'
+  local frames='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
   while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-    local temp=${spinstr#?}
-    printf " %c " "$spinstr"
-    local spinstr=$temp${spinstr%"$temp"}
-    printf "\b\b\b"
+    local frame=${frames:0:1}
+    printf "%s" "$frame"
+    local frames=${frames:1}${frames:0:1}
+    printf "\b"
     sleep $delay
   done
-  printf "    \b\b\b\b"
+  printf " \b"
 }
 
 # Function to log errors
 log_error() {
   local message="$1"
-  echo "❌ ERROR: $message" | tee -a "$LOG_FILE" >&2
+  if [ "$DEBUG_MODE" = true ]; then
+    echo "❌ ERROR: $message" | tee -a "$LOG_FILE" >&2
+  else
+    echo "❌ ERROR: $message" >&2
+  fi
 }
 
 # Function to log success
@@ -59,7 +78,11 @@ run_with_retry() {
     echo -n "🔄 $desc " >&2
 
     # Run command in background and show spinner
-    eval "timeout $TIMEOUT $cmd" >>"$LOG_FILE" 2>&1 &
+    if [ "$DEBUG_MODE" = true ]; then
+      eval "timeout $TIMEOUT $cmd" >>"$LOG_FILE" 2>&1 &
+    else
+      eval "timeout $TIMEOUT $cmd" >/dev/null 2>&1 &
+    fi
     local cmd_pid=$!
     show_spinner $cmd_pid
     wait $cmd_pid
@@ -130,31 +153,47 @@ fi
 
     # Process based on what we found
     if [ "$HAS_TRACKED_CHANGES" = false ] && [ "$HAS_UNTRACKED_CHANGES" = false ]; then
-      echo "📝 No local changes to stash" >&2
+      log_debug "📝 No local changes to stash"
+      if [ "$DEBUG_MODE" = true ]; then
+        echo "📝 No local changes to stash" >&2
+      fi
     else
       # Describe what we found
       if [ "$HAS_TRACKED_CHANGES" = true ] && [ "$HAS_UNTRACKED_CHANGES" = true ]; then
-        echo "📝 Detected both modified and untracked files, stashing..." >&2
+        log_debug "📝 Detected both modified and untracked files, stashing..."
+        if [ "$DEBUG_MODE" = true ]; then
+          echo "📝 Detected both modified and untracked files, stashing..." >&2
+        fi
       elif [ "$HAS_TRACKED_CHANGES" = true ]; then
-        echo "📝 Detected modified files, stashing..." >&2
+        log_debug "📝 Detected modified files, stashing..."
+        if [ "$DEBUG_MODE" = true ]; then
+          echo "📝 Detected modified files, stashing..." >&2
+        fi
       else
-        echo "📝 Detected untracked files, stashing..." >&2
+        log_debug "📝 Detected untracked files, stashing..."
+        if [ "$DEBUG_MODE" = true ]; then
+          echo "📝 Detected untracked files, stashing..." >&2
+        fi
       fi
 
       # Try normal stash first
       if [ "$HAS_TRACKED_CHANGES" = true ] && [ "$HAS_UNTRACKED_CHANGES" = false ]; then
         # Only tracked changes - regular stash should work
         if ! run_with_retry "git $GIT_OPTS stash -q" "Stashing tracked changes"; then
-          echo "⚠️ Unable to stash tracked changes" >&2
-          echo "⚠️ Skipping update to preserve your work." >&2
+          if [ "$DEBUG_MODE" = true ]; then
+            echo "⚠️ Unable to stash tracked changes" >&2
+            echo "⚠️ Skipping update to preserve your work." >&2
+          fi
           log_error "Stashing failed. Update skipped to avoid data loss."
           exit 0
         fi
       else
         # Either untracked files exist or both - need to include untracked
         if ! run_with_retry "git $GIT_OPTS stash --include-untracked -q" "Stashing all changes"; then
-          echo "⚠️ Unable to stash changes with --include-untracked" >&2
-          echo "⚠️ Skipping update to preserve your work." >&2
+          if [ "$DEBUG_MODE" = true ]; then
+            echo "⚠️ Unable to stash changes with --include-untracked" >&2
+            echo "⚠️ Skipping update to preserve your work." >&2
+          fi
           log_error "Stashing failed. Update skipped to avoid data loss."
           exit 0
         fi
@@ -189,12 +228,18 @@ fi
       fi
       log_success "Dotfiles install script completed successfully"
     else
-      echo "ℹ️ No install script found at $DOTFILES_DIR/install"
+      if [ "$DEBUG_MODE" = true ]; then
+        echo "ℹ️ No install script found at $DOTFILES_DIR/install" >&2
+      fi
+      log_debug "ℹ️ No install script found at $DOTFILES_DIR/install"
     fi
 
   else
     # First-time installation
-    echo "🆕 Installing dotfiles for the first time..."
+    if [ "$DEBUG_MODE" = true ]; then
+      echo "🆕 Installing dotfiles for the first time..." >&2
+    fi
+    log_debug "🆕 Installing dotfiles for the first time..."
 
     # Create parent directory if needed
     parent_dir=$(dirname "$DOTFILES_DIR")
@@ -239,7 +284,9 @@ fi
   fi
 
   # Final success message only if everything went well
-  echo "🎉 Dotfiles operation completed successfully!"
+  if [ "$DEBUG_MODE" = true ]; then
+    echo "🎉 Dotfiles operation completed successfully!" >&2
+  fi
 
 ) # End of subshell to contain any errors
 
