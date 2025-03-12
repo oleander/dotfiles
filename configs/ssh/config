@@ -1,6 +1,6 @@
 Host *
   ForwardAgent yes
-  LocalCommand bash -c 'ssh -o PermitLocalCommand=no %n "which git >/dev/null && (if [[ -d ~/dotfiles ]]; then echo \"Updating dotfiles on %h ...\"; cd ~/dotfiles && git stash -q && git pull -q || echo \"Could not update dotfiles\"; [[ -f ./install ]] && ./install >/dev/null; else echo \"Installing dotfiles on %h ...\"; git clone -q https://github.com/oleander/dotfiles && ./dotfiles/install >/dev/null; fi)"'
+  LocalCommand bash -c 'ssh -o PermitLocalCommand=no %n "which git >/dev/null && (if [[ -d ~/dotfiles ]]; then echo \"Updating dotfiles on %h ...\"; cd ~/dotfiles && git stash -q && git pull -q && echo \"Dotfiles updated successfully!\" || echo \"Could not update dotfiles\"; [[ -f ./install ]] && ./install >/dev/null; else echo \"Installing dotfiles on %h ...\"; git clone -q https://github.com/oleander/dotfiles && ./dotfiles/install >/dev/null && echo \"Dotfiles installed successfully!\"; fi)"'
   ServerAliveInterval 600
   ConnectTimeout 120
   PermitLocalCommand yes
