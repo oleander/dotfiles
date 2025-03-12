@@ -3,6 +3,17 @@
 set -e
 set -x
 
-apk add --update cargo
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+if command -v git-ai &> /dev/null; then
+    echo "git-ai already installed"
+    exit 0
+fi
+
+if ! command -v cargo &> /dev/null; then
+    apk add --update cargo
+fi
+
+if ! command -v cargo-binstall &> /dev/null; then
+    curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+fi
+
 cargo binstall -y git-ai
