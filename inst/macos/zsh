@@ -3,4 +3,9 @@
 set -e
 set -x
 
+if command -v zsh >/dev/null 2>&1; then
+    echo "zsh already installed"
+    exit 0
+fi
+
 brew install zsh

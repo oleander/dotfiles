@@ -78,4 +78,4 @@
     - [~/.local/bin/inst-zsh, Installing zsh]
     - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
-    - [zsh -l -c 'exit', Reloading zsh]
+    - [zsh --login -c "source ~/.zshrc", Loading zsh]

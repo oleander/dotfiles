@@ -3,6 +3,17 @@
 set -e
 set -x
 
-brew install rustup
-brew install cargo-binstall
-# cargo binstall -y git-ai
+if command -v git-ai >/dev/null 2>&1; then
+    echo "git-ai already installed"
+    exit 0
+fi
+
+if ! command -v rustup >/dev/null 2>&1; then
+    brew install rustup
+fi
+
+if ! command -v cargo-binstall >/dev/null 2>&1; then
+    brew install cargo-binstall
+fi
+
+cargo binstall -y git-ai

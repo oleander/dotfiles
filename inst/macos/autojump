@@ -3,6 +3,11 @@
 set -e
 set -x
 
+if [[ -d $(brew --prefix autojump) ]]; then
+    echo "autojump already installed"
+    exit 0
+fi
+
 brew install autojump
 
 echo "source $(brew --prefix autojump)/etc/autojump.sh" >> ~/.zshrc.local
