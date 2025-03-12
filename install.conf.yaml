@@ -49,9 +49,9 @@
       path: configs/config/**
       create: true
       force: true
-    ~/.ssh/config:
-      path: configs/ssh/config
-      relink: true
+    # ~/.ssh/config:
+    #   path: configs/ssh/config
+    #   create: true
 
 - link:
     ~/.local/bin:
