@@ -215,11 +215,11 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
-# Colored man pages and other utilities from Oh My Zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zinit snippet OMZ::plugins/colorize/colorize.plugin.zsh
-zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
-zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
+# # Colored man pages and other utilities from Oh My Zsh
+# zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+# zinit snippet OMZ::plugins/colorize/colorize.plugin.zsh
+# zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
+# zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
 zinit ice depth=1
 zinit load github/copilot.vim
 
