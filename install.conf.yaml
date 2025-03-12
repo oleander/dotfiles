@@ -42,7 +42,9 @@
       path: configs/*
       exclude:
         - configs/config
-        - configs/ssh
+        - configs/ssh/known_hosts
+        - configs/ssh/id_*
+        - configs/ssh/authorized_keys
       force: true
     ~/.config:
       glob: true
