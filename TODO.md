@@ -1,3 +1,4 @@
 - [x] Rename `linux` to `homeassistant`
 - [ ] Add git statuses to the PROMPT LEFT
 - [ ] Remove unused submodules
+- [ ] Fix incorrect loading of `github/copilot.vim` via zinit in zshrc (it's a Vim plugin, not a Zsh plugin)
