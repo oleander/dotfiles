@@ -15,6 +15,7 @@
 	directory = /home/testuser/dotfiles
 	directory = .
 	directory = .
+	directory = .
 [pull]
     rebase = true
 [color]
