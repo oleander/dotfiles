@@ -19,11 +19,11 @@
     - ~/.config/karabiner
     - ~/.config/jgit
 
-- create:
-    ~/.ssh:
-      mode: 0700
-      create: false
-      force: false
+# - create:
+#     ~/.ssh:
+#       mode: 0700
+#       create: false
+#       force: false
 
 - clean:
     ~/.local/bin/inst: true
