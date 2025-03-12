@@ -13,7 +13,7 @@
 #   3) Pass -h to show this help and exit.
 #
 # Steps:
-#  - Checks that the global file (~/.dotfiles/claude/mcp.json) exists.
+#  - Checks that the global file (~/dotfiles/claude/mcp.json) exists.
 #  - Backs up both the global and project files before any modification.
 #  - If the project file is not a symlink, shows a diff and asks if you'd like to merge it.
 #  - Optionally merges (deep merge) and overwrites the global file, then symlinks.
@@ -82,7 +82,7 @@ end
 
 DRY_RUN = ARGV.include?('--dry')
 
-GLOBAL_MCP_PATH    = Pathname.new(File.expand_path("~/.dotfiles/claude/mcp.json"))
+GLOBAL_MCP_PATH    = Pathname.new(File.expand_path("~/dotfiles/claude/mcp.json"))
 PROJECT_DIRECTORY  = Pathname.new(".cursor")
 PROJECT_MCP_PATH   = PROJECT_DIRECTORY.join("mcp.json")
 
