@@ -5,3 +5,5 @@ restart-ssh-addon:
     ssh homeassistant ha addon restart $(just ssh-addon-id)
 ssh-addon-id:
     ssh homeassistant ha addons --raw-json | jq '.data.addons[] | select(.name == "Advanced SSH & Web Terminal") | .slug'
+ssh-addon-logs:
+    ssh homeassistant ha addon logs $(just ssh-addon-id)
