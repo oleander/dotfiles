@@ -1,10 +1,12 @@
 #!/usr/bin/env zsh
 
 set -e
-set -x
 
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh | bash
 source ~/.local/share/zinit/zinit.git/zinit.zsh
 zinit self-update
+echo "zinit light zsh-users/zsh-completions" >> ~/.zshrc
+echo "zinit light zsh-users/zsh-autosuggestions" >> ~/.zshrc
+echo "zinit light zsh-users/zsh-syntax-highlighting" >> ~/.zshrc
 
 
