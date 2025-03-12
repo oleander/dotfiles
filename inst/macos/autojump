@@ -5,4 +5,4 @@ set -x
 
 brew install autojump
 
-echo "source $(brew --prefix autojump)/etc/autojump.sh" >> ~/.zshrc
+echo "source $(brew --prefix autojump)/etc/autojump.sh" >> ~/.zshrc.local
