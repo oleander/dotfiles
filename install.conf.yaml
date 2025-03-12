@@ -24,8 +24,9 @@
 
 - clean:
     ~/.local/bin/inst: true
-    # ~/.local/share/zinit: true
+    ~/.local/share/zinit: true
     ~/.zshrc.local: true
+    ~/.zshrc: true
 
 - link:
     ~/.dotfiles:
