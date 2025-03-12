@@ -1,12 +1,7 @@
 #!/bin/bash
 
-# Installs git-ai using cargo-binstall
-# Prerequisites:
-# - cargo
-# - curl
-# - apk
-
 set -e
+set -x
 
 apk add --update cargo
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
