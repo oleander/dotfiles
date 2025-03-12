@@ -16,7 +16,7 @@ ssh homeassistant <<EOF
   ./install
 EOF
 
-ssh homeassistant <<EOF
-  cd ~/.dotfiles
-  ./deploy/verify
-EOF
+# ssh homeassistant <<EOF
+#   cd ~/.dotfiles
+#   ./deploy/verify
+# EOF
