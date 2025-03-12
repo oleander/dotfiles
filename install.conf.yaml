@@ -74,8 +74,6 @@
 - shell:
     - command: curl -sS https://starship.rs/install.sh | sh -s -- --yes
       stdout: false
-      stderr: true
+      stderr: false
     - [~/.local/bin/inst-zsh, Installing zsh]
     - [~/.local/bin/inst-git-ai, Installing git-ai]
-    - compaudit | xargs chmod g-w,o-w
-    # - [~/.local/bin/inst-autojump, Installing autojump]
