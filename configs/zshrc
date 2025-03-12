@@ -1,3 +1,11 @@
+# Early detection for non-interactive or non-TTY environments
+# Skip zinit and complex initialization in these environments
+if [[ ! -o interactive ]] || [[ ! -t 1 ]]; then
+  # Minimal environment for non-interactive or non-TTY shells
+  # Skip compinit entirely in non-interactive/non-TTY mode - don't even try
+  return 0
+fi
+
 export ZSH_DISABLE_COMPFIX="true"
 
 export VISUAL=nvim
@@ -193,32 +201,25 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Check if shell is interactive before loading plugins and completions
-if [[ -o interactive ]]; then
-  ### Added by Zinit's installer
-  if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-      print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-      command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-      command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-          print -P "%F{33} %F{34}Installation successful.%f%b" || \
-          print -P "%F{160} The clone has failed.%f%b"
-  fi
-
-  source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-  autoload -Uz _zinit
-  (( ${+_comps} )) && _comps[zinit]=_zinit
-  # End of Zinit's installer
-
-  # Load Zinit plugins
-  zinit light zsh-users/zsh-completions
-  zinit light zsh-users/zsh-autosuggestions
-  zinit light zsh-users/zsh-syntax-highlighting
-
-  # Initialize completions
-  autoload -Uz compinit
-  compinit
-else
-  # For non-interactive shells, skip plugin loading and complex completion setup
-  autoload -Uz compinit
-  compinit -DC
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
 fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+# End of Zinit's installer
+
+# Load Zinit plugins
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Initialize completions
+autoload -Uz compinit
+compinit
