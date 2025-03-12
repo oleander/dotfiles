@@ -115,7 +115,23 @@ fi
     fi
 
     # Stash any local changes
-    run_with_retry "git $GIT_OPTS stash -q" "Stashing local changes" || true
+    if git $GIT_OPTS diff --quiet; then
+      echo "📝 No local changes to stash" >&2
+    else
+      echo "📝 Detected unstaged changes, stashing..." >&2
+      if ! run_with_retry "git $GIT_OPTS stash -q" "Stashing local changes"; then
+        # If stashing fails, try harder with a forced approach
+        echo "⚠️ Standard stash failed, attempting with --include-untracked" >&2
+        if ! run_with_retry "git $GIT_OPTS stash --include-untracked -q" "Stashing all changes"; then
+          # Last resort: try to reset if the user is okay with potentially losing changes
+          echo "⚠️ Unable to stash changes, forcing reset..." >&2
+          if ! run_with_retry "git $GIT_OPTS reset --hard HEAD" "Resetting working directory"; then
+            log_error "Failed to clean working directory. Cannot proceed with update."
+            exit 1
+          fi
+        fi
+      fi
+    fi
 
     # Pull updates
     if ! run_with_retry "git $GIT_OPTS pull --quiet" "Pulling latest changes"; then
