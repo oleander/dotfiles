@@ -19,10 +19,11 @@
     - ~/.config/karabiner
     - ~/.config/jgit
 
+# SSH directory is linked as a whole
 # - create:
 #     ~/.ssh:
 #       mode: 0700
-#       create: false
+#       create: true
 #       force: false
 
 - clean:
@@ -30,6 +31,7 @@
     ~/.local/share/zinit: true
     ~/.zshrc.local: true
     ~/.zshrc: true
+    ~/.ssh: true
 
 - link:
     ~/.dotfiles:
@@ -49,9 +51,10 @@
       path: configs/config/**
       create: true
       force: true
-    # ~/.ssh/config:
-    #   path: configs/ssh/config
-    #   create: true
+    ~/.ssh:
+      path: configs/ssh
+      create: true
+      force: true
 
 - link:
     ~/.local/bin:
