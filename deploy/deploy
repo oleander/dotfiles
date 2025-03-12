@@ -3,15 +3,21 @@
 set -e
 set -x
 
-# First argument is the branch to deploy
-BRANCH=$1
-if [ -z "$BRANCH" ]; then
-  echo "Usage: $0 <branch>"
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+git commit --no-edit -a || true
+git push origin "$BRANCH"
+
+HOST=$1
+if [ -z "$HOST" ]; then
+  echo "Usage: $0 <host>"
   exit 1
 fi
 
-cd ~/.dotfiles
-git stash --include-untracked
-git pull origin "$BRANCH"
-git checkout "$BRANCH"
-./install
+ssh "$HOST" <<EOF
+  cd ~/.dotfiles
+  git stash --include-untracked
+  git pull origin "$BRANCH"
+  git checkout "$BRANCH"
+  ./install
+EOF
