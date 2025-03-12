@@ -1,7 +1,7 @@
 # Add these lines at the top to handle non-interactive shells
 [[ $- != *i* ]] && return
 
-ZSH_DISABLE_COMPFIX="true"
+export ZSH_DISABLE_COMPFIX="true"
 
 export VISUAL=nvim
 export EDITOR=nvim
