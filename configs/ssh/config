@@ -3,7 +3,7 @@ Host *
 
 Host homeassistant
     # ProxyCommand sh -c 'tailscale up && exec nc %h %p'
-  HostName home-homeassistant
+  HostName homeassistant.local
   ServerAliveInterval 600
   ConnectTimeout 120
   User root
