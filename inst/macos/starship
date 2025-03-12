@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env zsh --login
 
 if command -v starship >/dev/null 2>&1; then
     echo "starship already installed"
