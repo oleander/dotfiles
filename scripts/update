@@ -5,6 +5,7 @@ function halt() {
     exit 1
 }
 
+git stash --include-untracked || halt "Git stash failed"
 git -c pull.timeout=10 -C ~/.dotfiles pull || halt "Git pull timed out"
 timeout 60s ~/.dotfiles/install || halt "Install failed"
 exec nc "$1" "$2"
