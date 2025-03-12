@@ -38,4 +38,4 @@ ensure-dotfiles-gist GIST_ID="i2f6dc25201634a59189d78e457fcae55":
         fi
     fi
 test-ssh-dotfiles-update: ensure-dotfiles-gist
-    ssh homeassistant
+    ssh mini
