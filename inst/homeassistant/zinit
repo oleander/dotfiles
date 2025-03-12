@@ -4,6 +4,7 @@ set -e
 set -x
 
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+source ~/.local/share/zinit/zinit.git/zinit.zsh
 zinit self-update
 
 
