@@ -69,11 +69,6 @@ vmap <BS> x
 " set spellfile=~/.config/nvim/spellfile.add
 set nospell
 
-" Plugins here
-call plug#begin('~/.config/nvim/plugged')
-Plug 'github/copilot.vim'
-call plug#end()
-
 " deoplete config
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 1

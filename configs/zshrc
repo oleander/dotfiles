@@ -1,47 +1,22 @@
 export ZSH_DISABLE_COMPFIX="true"
-
 export VISUAL=nvim
 export EDITOR=nvim
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PAGER="less -R"
 export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
 export PATH=$HOME/.cargo/bin:$PATH
-
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PYTHONCOERCECLOCALE=0
-
 export ZSH_DOTENV_PROMPT=false
-
-if [[ -d "$HOME/.local/bin" ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
-
 export PATH="$HOME/.dotfiles/bin:$PATH"
-
 export GIT_MERGE_AUTOEDIT=no
 
 # Colors
 autoload -U colors
 colors
 setopt prompt_subst
-
-# Git prompt variables
-export ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX=" "
-export ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX=" "
-export ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}⁉️%{$reset_color%}"
-export ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-# Determine hostname
-function chostname() {
-    if [[ $(hostname) =~ local$ ]]; then
-        echo "home"
-    else
-        echo "work"
-    fi
-}
 
 # Zsh options
 setopt NO_BG_NICE  # don't nice background tasks
@@ -81,6 +56,9 @@ zle -N newtab
 # Disable correctness
 unsetopt correct_all
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/linus/.docker/completions $fpath)
+
 # Locale settings
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -94,17 +72,35 @@ export CACHE_DIR="$HOME/.cache"
 export RUSTC_WRAPPER="$(which sccache)"
 export RUST_ANALYZER_CACHE="$CACHE_DIR/rust-analyzer"
 export SCCACHE_CACHE_SIZE="200G"
+export SCCACHE_DIRECT=true
 
 # Pipx path
 export PATH="$HOME/.local/bin:$PATH"
 if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
-# Additional SCCache settings
-export SCCACHE_DIRECT=true
 
-export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-export STARSHIP_CACHE="$HOME/.starship/cache"
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+  export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+  export STARSHIP_CACHE="$HOME/.starship/cache"
+  eval "$(starship init zsh)"
+fi
+
+if [[ -d "$HOME/.local/bin" ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+function most() {
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n25
+}
+
+# Determine hostname
+function chostname() {
+    if [[ $(hostname) =~ local$ ]]; then
+        echo "home"
+    else
+        echo "work"
+    fi
+}
 
 alias cr='cd ~/Code'
 alias dd='cd ~/Desktop'
@@ -141,10 +137,6 @@ alias files='git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD 
 alias vim='nvim'
 alias vi='nvim'
 
-function most() {
-  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n25
-}
-
 alias make='just'
 alias crate='context-extractor'
 alias help2='context-extractor'
@@ -170,24 +162,20 @@ fi
 
 if command -v gh >/dev/null 2>&1; then
   export GITHUB_TOKEN=$(gh auth token)
-fi
-
-if [ -d "/opt/homebrew/opt/openjdk/bin" ]; then
-  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+  export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
 fi
 
 if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/linus/.docker/completions $fpath)
 
 # Used by @modelcontextprotocol/server-github in VSCode
-export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 
 # bun completions
-[ -s "/Users/linus/.bun/_bun" ] && source "/Users/linus/.bun/_bun"
+if [ -s "$HOME/.bun/_bun" ]; then
+  source "$HOME/.bun/_bun"
+fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -212,14 +200,7 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
-# # Colored man pages and other utilities from Oh My Zsh
-# zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-# zinit snippet OMZ::plugins/colorize/colorize.plugin.zsh
-# zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
-# zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
-zinit ice depth=1
-zinit load github/copilot.vim
-
 # Initialize completions
 autoload -Uz compinit
-compinit
+compinit -C
+

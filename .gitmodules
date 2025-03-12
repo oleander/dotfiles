@@ -6,14 +6,3 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "autojump"]
-	path = autojump
-	url = https://github.com/wting/autojump
-	ignore = dirty
-[submodule "dotbot-ifhostname"]
-	path = dotbot-ifhostname
-	url = https://github.com/johnlettman/dotbot-ifhostname.git
-	ignore = dirty
-[submodule "ext/vim-plug"]
-	path = ext/vim-plug
-	url = https://github.com/junegunn/vim-plug.git

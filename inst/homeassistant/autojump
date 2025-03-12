@@ -2,6 +2,11 @@
 
 set -e
 
+if [[ -d ~/.autojump ]]; then
+    echo "autojump already installed"
+    exit 0
+fi
+
 export SHELL=/bin/bash
 
 rm -rf autojump
