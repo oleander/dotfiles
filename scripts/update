@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+timeout 60s git -C ~/.dotfiles pull || { echo "Git pull timed out"; exit 1; }
+(cd ~/.dotfiles && ./install) || { echo "Install failed"; exit 1; }
+exec nc "$1" "$2"

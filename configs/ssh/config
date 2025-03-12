@@ -2,7 +2,7 @@ Host *
   ForwardAgent yes
 
 Host homeassistant
-    # ProxyCommand sh -c 'tailscale up && exec nc %h %p'
+  ProxyCommand scripts/update %h %p
   HostName homeassistant.local
   ServerAliveInterval 600
   ConnectTimeout 120
