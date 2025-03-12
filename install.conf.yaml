@@ -30,7 +30,6 @@
     ~/.local/share/zinit: true
     ~/.zshrc.local: true
     ~/.zshrc: true
-    ~/.ssh/config: true
 
 - link:
     ~/.dotfiles:
@@ -52,6 +51,7 @@
       force: true
     ~/.ssh/config:
       path: configs/ssh/config
+      relink: true
 
 - link:
     ~/.local/bin:
