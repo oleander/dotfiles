@@ -231,4 +231,4 @@ zinit light zsh-users/zsh-syntax-highlighting
 
 # Initialize completions
 autoload -Uz compinit
-compinit
+compinit -C
