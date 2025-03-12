@@ -187,9 +187,13 @@ ZINIT_HOME="${HOME}/.local/share/zinit"
 if [[ ! -f "${ZINIT_HOME}/zinit.git/zinit.zsh" ]]; then
     command mkdir -p "${ZINIT_HOME}"
     command git clone https://github.com/zdharma-continuum/zinit "${ZINIT_HOME}/zinit.git"
+
+    # Set appropriate permissions only during installation
+    # This ensures the directory is secure without affecting all files recursively
+    command chmod go-w "${ZINIT_HOME}"
+    command chmod go-w "${ZINIT_HOME}/zinit.git"
 fi
 
-command chmod -R go-w "${ZINIT_HOME}"
 source "${ZINIT_HOME}/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
