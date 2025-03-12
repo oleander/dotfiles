@@ -117,8 +117,6 @@ fi
     # Stash any local changes
     run_with_retry "git $GIT_OPTS stash -q" "Stashing local changes" || true
 
-    git "$GIT_OPTS" stash --include-untracked
-
     # Pull updates
     if ! run_with_retry "git $GIT_OPTS pull --quiet" "Pulling latest changes"; then
       # If pull fails, try harder with a reset
