@@ -56,6 +56,9 @@ zle -N newtab
 # Disable correctness
 unsetopt correct_all
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/linus/.docker/completions $fpath)
+
 # Locale settings
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -134,7 +137,6 @@ alias files='git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD 
 alias vim='nvim'
 alias vi='nvim'
 
-
 alias make='just'
 alias crate='context-extractor'
 alias help2='context-extractor'
@@ -166,8 +168,6 @@ fi
 if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/linus/.docker/completions $fpath)
 
 # Used by @modelcontextprotocol/server-github in VSCode
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
