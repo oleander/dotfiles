@@ -191,7 +191,7 @@ if command -v rbenv >/dev/null 2>&1; then
 fi
 
 if command -v gh >/dev/null 2>&1; then
-  export GITHUB_TOKEN=$(gh auth token > /dev/null 2>&1)
+  export GITHUB_TOKEN=$(gh auth token)
 fi
 
 if [ -d "/opt/homebrew/opt/openjdk/bin" ]; then
@@ -215,8 +215,6 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -234,3 +232,6 @@ autoload -Uz _zinit
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice depth=1
+zinit load github/copilot.vim
