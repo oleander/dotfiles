@@ -204,11 +204,11 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
-# Initialize completions
-autoload -Uz compinit
-compinit -C
-
 # Load local configuration (not included in git repository)
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+
+# Initialize completions
+autoload -Uz compinit
+compinit -C
