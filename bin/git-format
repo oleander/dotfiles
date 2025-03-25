@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set RUBY_FILES (git ls | grep -E '\.rb$|Gemfile$')
+set RUBY_FILES (git ls | grep -E '\.rb$|Gemfile$' | grep -v "db/schema.rb")
 
 if test (count $RUBY_FILES) -eq 0
     echo "No Ruby files or Gemfiles changed. Skipping RuboCop."
@@ -25,4 +25,8 @@ for file in $EXISTING_FILES
 end
 echo ""
 
-exec dip rubocop $EXISTING_FILES $argv
+if test (count $argv) -eq 0
+    exec dip rubocop $EXISTING_FILES -a
+else
+    exec dip rubocop $EXISTING_FILES $argv
+end
