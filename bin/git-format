@@ -1,0 +1,28 @@
+#!/usr/bin/env fish
+
+set RUBY_FILES (git ls | grep -E '\.rb$|Gemfile$')
+
+if test (count $RUBY_FILES) -eq 0
+    echo "No Ruby files or Gemfiles changed. Skipping RuboCop."
+    exit 0
+end
+
+set EXISTING_FILES
+for file in $RUBY_FILES
+    if test -f "$file"
+        set -a EXISTING_FILES "$file"
+    end
+end
+
+if test (count $EXISTING_FILES) -eq 0
+    echo "No existing Ruby files or Gemfiles changed. Skipping RuboCop."
+    exit 0
+end
+
+echo "Linting the following files:"
+for file in $EXISTING_FILES
+    echo "  - $file"
+end
+echo ""
+
+exec dip rubocop $EXISTING_FILES $argv
