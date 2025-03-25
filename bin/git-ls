@@ -1,0 +1,17 @@
+#!/usr/bin/env fish
+
+# Check if current directory is a git repository
+if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+  echo "Error: Not a git repository" >&2
+  exit 1
+end
+
+# Check if origin/master exists
+if git rev-parse --verify origin/master 2>/dev/null >/dev/null
+  exec git diff --name-only origin/master...HEAD
+else if git rev-parse --verify origin/main 2>/dev/null >/dev/null
+  exec git diff --name-only origin/main...HEAD
+else
+  echo "Error: Neither origin/master nor origin/main branch exists" >&2
+  exit 1
+end

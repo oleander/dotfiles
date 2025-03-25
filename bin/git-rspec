@@ -1,0 +1,30 @@
+#!/usr/bin/env fish
+
+# Run rspec on changed spec files
+
+set SPEC_FILES (git ls | grep "spec/.*_spec\.rb")
+
+if test (count $SPEC_FILES) -eq 0
+    echo "No spec files changed. Skipping RSpec."
+    exit 0
+end
+
+set EXISTING_FILES
+for file in $SPEC_FILES
+    if test -f "$file"
+        set -a EXISTING_FILES "$file"
+    end
+end
+
+if test (count $EXISTING_FILES) -eq 0
+    echo "No existing spec files changed. Skipping RSpec."
+    exit 0
+end
+
+echo "Running tests on the following files:"
+for file in $EXISTING_FILES
+    echo "  - $file"
+end
+echo ""
+
+exec dip rspec $EXISTING_FILES $argv
