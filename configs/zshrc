@@ -12,6 +12,7 @@ export PYTHONCOERCECLOCALE=0
 export ZSH_DOTENV_PROMPT=false
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export GIT_MERGE_AUTOEDIT=no
+# export BUILDX_BUILDER="desktop-linux"
 
 # Colors
 autoload -U colors
@@ -212,3 +213,5 @@ fi
 # Initialize completions
 autoload -Uz compinit
 compinit -C
+eval "$(gh copilot alias -- zsh)"
+export PATH="/opt/homebrew/opt/mariadb-connector-c/bin:$PATH"
