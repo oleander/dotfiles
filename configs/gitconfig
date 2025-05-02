@@ -70,6 +70,8 @@
     sort = version:refname
 [rerere]
 	enabled = true
+	autoupdate = true
+	trainer = true
 [ai]
 	assistant-id = asst_HyF6OZdMXci0SHLPc228bMfe
 [alias]
