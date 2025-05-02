@@ -12,7 +12,15 @@ prefer_editor_prompt: disabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-  co: pr checkout
+    co: pr checkout
+    fails: |-
+        pr checks --json name,conclusion,url \
+           --jq "map(select(.conclusion==\"failure\"))"
+    tlogs: |-
+        !f(){ url=$(gh pr checks --json name,link \
+                   --jq '.[]|select(.name=="Travis CI - Pull Request")|.link'); \
+                 id=${url##*/}; \
+                 travis logs $id --pro; }; f
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

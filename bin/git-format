@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set RUBY_FILES (git ls | grep -E '\.rb$|Gemfile$' | grep -v "db/schema.rb")
+set RUBY_FILES (git ls | grep -E '\.rb$|^Gemfile$|\.rake$' | grep -v "db/schema.rb" | grep -v "Gemfile.lock")
 
 if test (count $RUBY_FILES) -eq 0
     echo "No Ruby files or Gemfiles changed. Skipping RuboCop."

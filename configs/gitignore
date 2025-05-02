@@ -96,3 +96,5 @@ Gemfile.local.lock
 .cursorrules
 .cursorignore
 .cursor/rules
+rules.json
+.cursor

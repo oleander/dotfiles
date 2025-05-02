@@ -6,12 +6,21 @@ if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
   exit 1
 end
 
-# Check if origin/master exists
-if git rev-parse --verify origin/master 2>/dev/null >/dev/null
-  exec git diff --name-only origin/master...HEAD
-else if git rev-parse --verify origin/main 2>/dev/null >/dev/null
-  exec git diff --name-only origin/main...HEAD
+# Determine base branch
+set base_branch ""
+if git rev-parse --verify origin/master >/dev/null 2>&1
+  set base_branch origin/master
+else if git rev-parse --verify origin/main >/dev/null 2>&1
+  set base_branch origin/main
 else
   echo "Error: Neither origin/master nor origin/main branch exists" >&2
   exit 1
 end
+
+# Get file lists
+set committed (git diff --name-only $base_branch...HEAD)
+set staged (git diff --name-only --cached)
+
+# Combine and deduplicate
+printf "%s\n" (printf "%s\n" $committed $staged | sort -u)
+
