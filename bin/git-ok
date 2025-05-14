@@ -68,7 +68,8 @@ function commit_message
     if test -z "$msg"
         die "Could not read message for the next commit"
     end
-    echo $msg
+
+    echo $msg | string replace -r '\s*\(#\d+\)$' ''
 end
 
 # if there's nothing to commit, warn and exit
