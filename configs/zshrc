@@ -128,6 +128,7 @@ alias gm='gm.fish'
 alias gc='git-verify-checkout'
 alias ggg='git --no-pager add . && git commit --no-edit'
 alias ggm='git --no-pager commit --no-edit'
+alias ok='git-ok'
 
 # ruby
 alias bb='bundle exec'
