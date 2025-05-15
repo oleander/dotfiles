@@ -31,3 +31,5 @@ configs/config/nvim/pack/
 antigen.zsh
 .cursor/
 configs/ssh/known_hosts.old
+
+**/.claude/settings.local.json

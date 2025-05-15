@@ -31,6 +31,7 @@
     ~/.local/share/zinit: true
     ~/.zshrc.local: true
     ~/.zshrc: true
+    ~/.config/fish/config.local.fish: true
     ~/.ssh: true
 
 - link:
@@ -85,7 +86,7 @@
 
 - shell:
     - [~/.local/bin/inst-starship, Installing starship]
-    - [~/.local/bin/inst-zsh, Installing zsh]
+    - [~/.local/bin/inst-fish, Installing fish]
     - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
-    - [zsh --login -c "exit 0", Loading zsh]
+    - [fish -c "exit 0", Loading fish]

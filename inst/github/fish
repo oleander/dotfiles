@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -e
+# set -x
+
+if command -v fish >/dev/null 2>&1; then
+    echo "fish already installed"
+    exit 0
+fi
+
+# Install fish in GitHub Codespaces
+apt-get update
+apt-get install -y fish
+
+# Create fish config directory if it doesn't exist
+mkdir -p ~/.config/fish/functions
+mkdir -p ~/.config/fish/completions
+
+# Install Fisher plugin manager if needed
+if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
+    echo "Installing Fisher plugin manager"
+    fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+    
+    # Install plugins from fish_plugins file if it exists
+    if [ -f ~/.config/fish/fish_plugins ]; then
+        echo "Installing fish plugins..."
+        fish -c "fisher update"
+    fi
+fi
+
+# Set fish as default shell if it's not already
+if [ "$SHELL" != "/usr/bin/fish" ]; then
+    echo "Setting fish as default shell"
+    command -v fish | sudo tee -a /etc/shells
+    chsh -s $(command -v fish)
+fi
+
+echo "Fish shell installation complete!"
