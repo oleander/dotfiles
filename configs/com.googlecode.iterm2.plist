@@ -419,7 +419,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Columns</key>
 			<integer>120</integer>
 			<key>Command</key>
-			<string>bash --login</string>
+			<string>/opt/homebrew/bin/fish --login</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -456,7 +456,7 @@ The script should do this: \(ai.prompt)</string>
 				<real>0.027450980392156862</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Custom Locale</key>
@@ -504,22 +504,7 @@ The script should do this: \(ai.prompt)</string>
 				<string>telnet</string>
 			</array>
 			<key>Keyboard Map</key>
-			<dict>
-				<key>0x9-0x0-0x30</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Apply Mode</key>
-					<integer>1</integer>
-					<key>Escaping</key>
-					<integer>2</integer>
-					<key>Text</key>
-					<string>0x09
-</string>
-					<key>Version</key>
-					<integer>2</integer>
-				</dict>
-			</dict>
+			<dict/>
 			<key>Link Color</key>
 			<dict>
 				<key>Alpha Component</key>

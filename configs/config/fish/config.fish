@@ -223,5 +223,8 @@ end
 # zsh-users/zsh-autosuggestions -> fish has this built-in
 # zsh-users/zsh-syntax-highlighting -> fish has this built-in
 
-echo "Fish configuration loaded. Consider installing oh-my-fish and plugins."
 starship init fish | source
+
+set -g fish_greeting
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
