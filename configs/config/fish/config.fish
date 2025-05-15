@@ -22,6 +22,17 @@ set -gx GIT_MERGE_AUTOEDIT no
 # Locale settings (already set above, PYTHONUTF8 is Python-specific, set if running Python scripts directly)
 set -gx PYTHONUTF8 1
 
+# --- PATH -------------------------------------------------------------------
+# Consolidate all custom paths here to avoid duplication.
+# fish_add_path silently ignores paths that are already present or nonexistent.
+fish_add_path \
+    "$HOME/.dotfiles/bin" \
+    "$HOME/.cargo/bin" \
+    "$HOME/.local/bin" \
+    "$HOME/.rbenv/bin" \
+    "/opt/homebrew/opt/coreutils/libexec/gnubin" \
+    "/opt/homebrew/opt/node@22/bin"
+
 # Overcommit settings
 set -gx OVERCOMMIT_DISABLE 1
 
@@ -101,13 +112,6 @@ alias code cursor
 
 set -gx OPENAI_API_KEY "dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content" # Ensure this is how you want to handle API keys
 
-# PATH additions (some might be redundant due to earlier fish_add_path)
-fish_add_path "$HOME/.cargo/bin"
-fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/.rbenv/bin"
-fish_add_path /opt/homebrew/opt/coreutils/libexec/gnubin
-fish_add_path "/opt/homebrew/opt/node@22/bin" # Used by @modelcontextprotocol/server-github in VSCode
-
 # rbenv
 if command -v rbenv >/dev/null 2>&1
     rbenv init - | source
@@ -124,25 +128,36 @@ if command -v direnv >/dev/null 2>&1
     direnv hook fish | source
 end
 
-# bun
+# bun ------------------------------------------------------------------------
+# Adds Bun to PATH and generates Fish completions once if missing.
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path "$BUN_INSTALL/bin"
-# Bun completions are typically handled by oh-my-fish plugins or fisher.
-# `source "$HOME/.bun/_bun"` is zsh/bash specific.
-# For Fish, generate completions once and keep them under ~/.config/fish/completions.
-# This is lightweight (a few KB) and only happens if the file is missing.
+
 if type -q bun
-    set -l __bun_comp_file "$HOME/.config/fish/completions/bun.fish"
+    set -l __bun_comp_dir "$HOME/.config/fish/completions"
+    set -l __bun_comp_file "$__bun_comp_dir/bun.fish"
     if not test -f $__bun_comp_file
-        bun completions fish > $__bun_comp_file
+        mkdir -p $__bun_comp_dir
+        # Redirect stderr to keep the shell quiet if the sub-command is unavailable.
+        bun completions fish > $__bun_comp_file 2>/dev/null
     end
 end
 
-# QLTY
+# QLTY -----------------------------------------------------------------------
+# Adds QLTY to PATH and generates Fish completions once if the CLI supports it.
 set -gx QLTY_INSTALL "$HOME/.qlty"
 fish_add_path "$QLTY_INSTALL/bin"
-# QLTY completions: `[ -s "/opt/homebrew/share/zsh/site-functions/_qlty" ] && source "/opt/homebrew/share/zsh/site-functions/_qlty"`
-# Fish completions for qlty would typically be in ~/.config/fish/completions/qlty.fish or installed via a plugin.
+
+if type -q qlty
+    set -l __qlty_comp_dir "$HOME/.config/fish/completions"
+    set -l __qlty_comp_file "$__qlty_comp_dir/qlty.fish"
+    if not test -f $__qlty_comp_file
+        mkdir -p $__qlty_comp_dir
+        # Try the two common sub-commands quietly; ignore errors.
+        qlty completion fish > $__qlty_comp_file 2>/dev/null ; or \
+        qlty completions fish > $__qlty_comp_file 2>/dev/null
+    end
+end
 
 # Functions from zshrc
 
