@@ -1,8 +1,14 @@
 # Environment Variables
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+# Sets core environment variables for the shell and other tools.
+eval "$(/opt/homebrew/bin/brew shellenv)" # Initialize Homebrew environment
 
+# Autojump integration
+if test -f "/opt/homebrew/share/autojump/autojump.fish"
+    source "/opt/homebrew/share/autojump/autojump.fish"
+end
+
+# Preferred editors
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 set -gx MANPATH "/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -13,13 +19,8 @@ set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications"
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
 set -gx PYTHONCOERCECLOCALE 0
-# ZSH_DOTENV_PROMPT is not directly applicable; prompt is handled by Starship or themes
 fish_add_path "$HOME/.dotfiles/bin"
 set -gx GIT_MERGE_AUTOEDIT no
-# BUILDX_BUILDER can be set if needed:
-# set -gx BUILDX_BUILDER "desktop-linux"
-
-# Locale settings (already set above, PYTHONUTF8 is Python-specific, set if running Python scripts directly)
 set -gx PYTHONUTF8 1
 
 # --- PATH -------------------------------------------------------------------
@@ -38,93 +39,56 @@ set -gx OVERCOMMIT_DISABLE 1
 
 # SCCache setting
 set -gx CACHE_DIR "$HOME/.cache"
-set -gx RUSTC_WRAPPER (which sccache)
+if type -q sccache
+    set -gx RUSTC_WRAPPER (which sccache)
+end
 set -gx RUST_ANALYZER_CACHE "$CACHE_DIR/rust-analyzer"
 set -gx SCCACHE_CACHE_SIZE 200G
 set -gx SCCACHE_DIRECT true
 
-# Pipx path
-fish_add_path "$HOME/.local/bin"
+# Pipx executables live in ~/.local/bin, already included in the consolidated PATH above.
 
-# Fabric bootstrap
+# --- Fabric Bootstrap -------------------------------------------------------
+# Loads Fabric AI framework configuration if present.
 if test -f "$HOME/.config/fabric/fabric-bootstrap.inc"
-    source "$HOME/.config/fabric/fabric-bootstrap.inc" # This might need to be fish compatible or removed if zsh specific
+    source "$HOME/.config/fabric/fabric-bootstrap.inc" # Source if Fish-compatible; review if Zsh-specific and causing issues.
 end
 
-# Starship
-if command -v starship >/dev/null 2>&1
+# --- Starship Prompt --------------------------------------------------------
+# Initializes the Starship cross-shell prompt if installed.
+if type -q starship
     set -gx STARSHIP_CONFIG "$HOME/.config/starship.toml"
     set -gx STARSHIP_CACHE "$HOME/.starship/cache"
     starship init fish | source
 end
 
-# Ensure .local/bin is in PATH (already added by fish_add_path if it was the first instance)
-# fish_add_path "$HOME/.local/bin" # Redundant if already covered
+# --- OpenAI API Key ---------------------------------------------------------
+# API key for OpenAI services, used by various CLI tools.
+# Consider security implications if committing this file to a public repository.
+set -gx OPENAI_API_KEY "dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content"
 
-# Aliases
-alias cr 'cd ~/Code'
-alias dd 'cd ~/Desktop'
-alias flush 'dscacheutil -flushcache'
-alias update 'sudo /usr/libexec/locate.updatedb'
-alias dot 'code ~/.dotfiles'
-alias history history # Fish's built-in history command
-alias vim nvim
-alias sudo 'sudo '
-alias h 'history | grep -m 30 -i' # Fish history search is different, consider fzf
-alias i issue # Assuming 'issue' is a script/alias defined elsewhere or a command
-alias c cheat # Assuming 'cheat' is a script/alias defined elsewhere or a command
-
-# git aliases
-alias gp git-push
-alias gpp 'git --no-pager pull'
-alias gs 'git --no-pager status --ignore-submodules -s -b'
-alias gd 'git --no-pager diff --stat'
-alias gb 'git --no-pager branch'
-alias gl git-log # Assuming git-log is a custom script or alias
-alias gdd 'git --no-pager diff'
-alias gg commitment # Assuming 'commitment' is a script/alias
-alias gm 'gm.fish' # Ensure gm.fish is in PATH and executable, or define as function
-alias gc git-verify-checkout # Assuming git-verify-checkout is a script/alias
-alias ggg 'git --no-pager add . && git commit --no-edit'
-alias ggm 'git --no-pager commit --no-edit'
-alias ok git-ok # Assuming git-ok is a script or alias
-
-# ruby aliases
-alias bb 'bundle exec'
-alias b 'bundle install'
-
-alias files 'git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- (pwd) | sort' # (pwd) is fish syntax
-
-alias vi nvim
-
-alias make just
-alias crate context-extractor # Assuming context-extractor is a script/alias
-alias help2 context-extractor
-
-alias '??' 'gh copilot suggest -t shell'
-alias 'git?' 'gh copilot suggest -t git'
-alias 'gh?' 'gh copilot suggest -t gh'
-alias explain 'gh copilot explain'
-
-alias v view-github-project # Assuming view-github-project is a script/alias
-alias f format-new-files-since-branch # Assuming this is a script/alias
-alias code cursor
-
-set -gx OPENAI_API_KEY "dl://BA747198-1EEF-4C43-8A64-6E083A1A43C7/content" # Ensure this is how you want to handle API keys
-
-# rbenv
-if command -v rbenv >/dev/null 2>&1
+# --- rbenv (Ruby Version Management) ----------------------------------------
+# Initializes rbenv if installed.
+if type -q rbenv
     rbenv init - | source
 end
 
-# gh token
-if command -v gh >/dev/null 2>&1
-    set -gx GITHUB_TOKEN (gh auth token)
-    set -gx GITHUB_PERSONAL_ACCESS_TOKEN (gh auth token)
+# --- gh (GitHub CLI) Token --------------------------------------------------
+# Exports GitHub token for use by gh CLI and other tools.
+if type -q gh
+    set -l gh_token (gh auth token 2>/dev/null)
+    if test -n "$gh_token"
+        set -gx GITHUB_TOKEN "$gh_token"
+        set -gx GITHUB_PERSONAL_ACCESS_TOKEN "$gh_token"
+    else
+        # Optional: print a warning if gh is installed but token is not found
+        # echo "Warning: \`gh\` is installed but no auth token found." >&2
+    end
 end
 
-# direnv
-if command -v direnv >/dev/null 2>&1
+# --- direnv (Directory Environment Management) ------------------------------
+# Initializes direnv if installed, for per-directory environment variables.
+if type -q direnv
     direnv hook fish | source
 end
 
@@ -159,16 +123,18 @@ if type -q qlty
     end
 end
 
-# Functions from zshrc
+# Helper functions
 
-# `most` command - fc is zsh specific. Fish history is just `history`.
-# For a similar functionality, you might need a more complex script or a dedicated tool.
-# A simplified version focusing on Fish's history:
+# --- `most` command (Top Command Usage) -------------------------------------
+# Displays the most frequently used commands, excluding common/trivial ones.
+# Ported from a similar Zsh function; `fc` is Zsh-specific, so this uses `history`.
 function most
     history | awk '{CMD[$1]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -vE "^(\./|cd|ls|cat|echo|grep|git|vim|nvim|sudo|exa|code|just|command|alias)" | column -c3 -s " " -t | sort -nr | nl | head -n25
 end
 
-# Determine hostname
+# --- `chostname` (Hostname type) ---------------------------------------------
+# Determines if the current hostname indicates a "home" or "work" environment
+# based on whether the hostname ends with 'local'.
 function chostname
     set -l H (hostname)
     if string match -r 'local$' -- "$H"
@@ -178,7 +144,9 @@ function chostname
     end
 end
 
-# Emulate Bash/Zsh Command Substitution (!! and !$)
+# --- Bash/Zsh Command Substitution Emulation (!! and !$) --------------------
+# Provides `!!` (last command) and `!$` (last argument of last command)
+# functionality, common in Bash and Zsh but not native to Fish.
 # From https://travisbrady.github.io/posts/moving-to-fish-shell/
 # which references fish wiki and StackOverflow.
 
@@ -204,6 +172,10 @@ function bind_dollar
     end
 end
 
+# --- Custom Key Bindings -----------------------------------------------------
+# Defines custom key bindings for the Fish shell.
+# This function is called by Fish to set up user-defined bindings.
+# It can be defined multiple times with `--append` to add bindings incrementally.
 function fish_user_key_bindings
     bind ! bind_bang
     bind \$ bind_dollar
@@ -217,57 +189,43 @@ if test -f "$HOME/.config/fish/config.local.fish"
     source "$HOME/.config/fish/config.local.fish"
 end
 
-# gh copilot alias
-if command -v gh >/dev/null
-    # gh copilot alias -- fish | source # This was the old way
-    # The new way might be to use the gh copilot CLI to generate suggestions
-    # and rely on the aliases already set up:
-    # alias '??' 'gh copilot suggest -t shell'
-    # alias 'git?' 'gh copilot suggest -t git'
-    # alias 'gh?' 'gh copilot suggest -t gh'
-    # The blog post about fzf.fish suggests it comes with Ctrl-r, so we'll focus on that
-end
+# --- Fish Path Information -------------------------------------------------
+# Fish automatically loads completions and functions from specific paths.
+# For reference, these typically include:
+#   ~/.config/fish/completions
+#   ~/.config/fish/functions
+#   Data directories (e.g., /usr/share/fish/completions)
+#   And directories in $fish_complete_path / $fish_function_path.
 
-# Fish automatically loads completions from:
-# ~/.config/fish/completions
-# $__fish_data_dir/completions
-# $__fish_config_dir/completions
-# And directories in $fish_complete_path
+# --- Informational Notes (formerly Zsh-specific comments) ------------------
+# Notes on Shell Feature Equivalents
+# * REPORTTIME: Starship can display command duration, or use `time command`.
+# * Docker completions: If Docker Desktop is installed, it may provide completions.
+#   Alternatively, Fisher can install a docker-completion plugin.
+# * Zsh-specific plugins (zsh-completions, zsh-autosuggestions, zsh-syntax-highlighting)
+#   are not needed; Fish provides these features natively or via Fisher plugins.
 
-# REPORTTIME equivalent: Fish doesn't have a direct equivalent for REPORTTIME.
-# For command timing, you can use `time command` or enable it in some prompts (like Starship).
-# Starship can show command duration.
-
-# Docker completions:
-# If Docker Desktop is installed, it might provide Fish completions.
-# Otherwise, a plugin like `docker-completion` for oh-my-fish or fisher can be used.
-
-# Zinit plugins are Zsh specific. We will use OMF and Fisher for Fish plugins.
-# zsh-users/zsh-completions -> handled by fish native completions + plugins
-# zsh-users/zsh-autosuggestions -> fish has this built-in
-# zsh-users/zsh-syntax-highlighting -> fish has this built-in
-
-# starship init fish | source
-
+# --- Shell Behavior --------------------------------------------------------
+# Clear the default greeting message
 set -g fish_greeting
 
+# Auto-accept suggestions with Tab (in insert mode)
 bind -M insert \t accept-autosuggestion
 
-# === Command duration reporting (replacement for zsh $REPORTTIME) ===
-# In zsh, setting REPORTTIME prints the runtime of any command that
-# exceeds the configured threshold. Fish doesn't have an exact built-in
-# equivalent, but we can emulate it using the fish_preexec / fish_postexec
-# events. The logic below prints a yellow, right-aligned duration marker
-# whenever the last command ran for more than 5 seconds.
+# === Command Duration Reporting (Emulates Zsh \$REPORTTIME) ------------------
+# Prints the runtime of any command that exceeds a configured threshold.
+# Uses fish_preexec and fish_postexec events.
 #
-# Feel free to adjust the threshold by changing __reporttime_threshold_ms.
-set -g __reporttime_threshold_ms 5000  # 5 seconds
+# Adjustable threshold:
+set -g __reporttime_threshold_ms 5000  # Default: 5 seconds
 
+# Event handler: Called before a command is executed.
 function __reporttime_start --on-event fish_preexec
     # Save the millisecond timestamp when the command starts.
     set -g __reporttime_start_ms (date +%s%3N)
 end
 
+# Event handler: Called after a command has finished.
 function __reporttime_stop --on-event fish_postexec
     # Compute elapsed time (in ms) and, if above the threshold, print it.
     if set -q __reporttime_start_ms
@@ -281,25 +239,22 @@ function __reporttime_stop --on-event fish_postexec
     end
 end
 
-# --- Docker CLI completions --------------------------------------------------
-# Docker Desktop ships its own completions in ~/.docker/completions.
-# Tell fish to look there as well (if the directory exists).
+# --- Docker CLI Completions Path --------------------------------------------
+# Adds Docker Desktop's completions directory to $fish_complete_path if present.
+# Docker Desktop for Mac/Windows often ships its own Fish completions here.
 if test -d "$HOME/.docker/completions"
-    if contains -- $HOME/.docker/completions $fish_complete_path
-        # already present, nothing to do
-    else
-        set -g fish_complete_path $HOME/.docker/completions $fish_complete_path
+    if not contains -- "$HOME/.docker/completions" $fish_complete_path
+        set -g fish_complete_path "$HOME/.docker/completions" $fish_complete_path
     end
 end
 
-# FZF-powered history search ---------------------------------------------------
-# Provides an interactive Ctrl-R history search similar to bash/zsh, but powered
-# by `fzf`. Only activated if fzf is installed.
+# --- FZF-Powered History Search (Ctrl-R) ------------------------------------
+# Provides an interactive Ctrl-R history search, powered by `fzf`.
+# Activated only if fzf is installed.
 if type -q fzf
     function fzf_history_search
-        # The --tac flag shows most-recent entries at the top. We also deduplicate
-        # via `awk` because fish history can contain repeated commands within the
-        # session when deduping hasn't happened yet.
+        # Uses `awk` to deduplicate session history (which might not yet be merged/deduplicated by Fish itself).
+        # `fzf` options: --tac (reverse order), --height, --reverse (layout), --border, --prompt, --query (initial query from commandline).
         set -l selected (history | awk '!seen[$0]++' | fzf --tac --height 40% --reverse --border --prompt='History> ' --query (commandline -t))
         if test -n "$selected"
             commandline --replace "$selected"
@@ -314,10 +269,10 @@ if type -q fzf
     end
 end
 
-# -----------------------------------------------------------------------------
-# Fisher plugin manager bootstrap & essential plugins
-# Only in interactive shells to avoid loops in non-interactive batch runs.
-# -----------------------------------------------------------------------------
+# --- Fisher Plugin Manager & Essential Plugins ------------------------------
+# Bootstraps Fisher (Fish plugin manager) and installs essential plugins.
+# This block only runs in interactive shells to prevent issues in scripts.
+# Fisher itself is installed if not found.
 if status --is-interactive
     if not functions -q fisher
         set -l fisher_path "$HOME/.config/fish/functions/fisher.fish"
