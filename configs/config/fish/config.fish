@@ -295,3 +295,64 @@ if status --is-interactive
         end
     end
 end
+
+# Git Aliases
+alias gp git-push
+alias gc git-verify-checkout # Assumes 'git-verify-checkout' is a custom script or alias
+alias ggg 'git --no-pager add . && git commit --no-edit'
+alias ggm 'git --no-pager commit --no-edit'
+alias ok git-ok # Assumes 'git-ok' is an available script or command
+
+# Ruby Aliases
+
+# --- Appended Aliases from Zsh config ---
+
+# General Aliases
+alias cr 'cd ~/Code'
+alias dd 'cd ~/Desktop'
+alias flush 'dscacheutil -flushcache'
+alias update 'sudo /usr/libexec/locate.updatedb'
+alias dot 'code ~/.dotfiles' # Will use 'cursor' due to the 'code' alias below
+alias histall 'history --show-time' # Equivalent for zsh fc -il 1
+alias vim nvim
+alias vi nvim
+alias sudo 'sudo ' # Trailing space is important for alias expansion
+alias i issue      # Assuming 'issue' is a command/script
+alias c cheat      # Assuming 'cheat' is a command/script
+alias code cursor  # Specific alias for 'code' to 'cursor'
+alias make just
+
+# Function to search history (from zsh alias h='history | grep -m 30 -i')
+function h --description "Search history with grep, show top 30 results. Shows recent 30 if no arg."
+    if test -n "$argv"
+        history | command grep -i $argv | command head -n 30
+    else
+        history | command head -n 30 # Show recent history if no argument
+    end
+end
+
+# Additional Git Aliases (original 'Git Aliases' section is above)
+# Note: gp, gc, ggg, ggm, ok are already defined in the original file.
+alias gpp 'git --no-pager pull'
+alias gs 'git --no-pager status --ignore-submodules -s -b'
+alias gd 'git --no-pager diff --stat'
+alias gb 'git --no-pager branch'
+alias gl git-log # Assuming 'git-log' is a custom script or alias
+alias gdd 'git --no-pager diff'
+alias gg commitment # Assuming 'commitment' is a custom script or alias
+alias gm gm.fish   # Assuming 'gm.fish' is a script in PATH
+
+# Ruby Aliases (continued from above)
+alias bb 'bundle exec'
+alias b 'bundle install'
+
+# Miscellaneous & Tool Specific Aliases
+alias files 'git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- (pwd) | sort'
+alias crate context-extractor
+alias help2 context-extractor
+alias ?? 'gh copilot suggest -t shell'
+alias git? 'gh copilot suggest -t git'
+alias gh? 'gh copilot suggest -t gh'
+alias explain 'gh copilot explain'
+alias v view-github-project # Assuming 'view-github-project' is a command/script
+alias f format-new-files-since-branch # Assuming 'format-new-files-since-branch' is a command/script
