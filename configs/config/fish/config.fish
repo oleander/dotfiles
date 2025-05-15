@@ -1,4 +1,9 @@
 # Environment Variables
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+  [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+
+
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 set -gx MANPATH "/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -227,4 +232,3 @@ starship init fish | source
 
 set -g fish_greeting
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
