@@ -30,6 +30,7 @@ function commit_message
         --pretty=%s \
         --no-merges \
         --remove-empty \
+        --regexp-ignore-case \
         --invert-grep \
         --grep='🤖' \
         --grep='^revert\b' \
