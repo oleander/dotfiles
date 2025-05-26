@@ -31,8 +31,9 @@ fish_add_path \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.rbenv/bin" \
-    "/opt/homebrew/opt/coreutils/libexec/gnubin" \
-    "/opt/homebrew/opt/node@22/bin"
+    /opt/homebrew/bin \
+    /opt/homebrew/opt/coreutils/libexec/gnubin \
+    /opt/homebrew/opt/node@22/bin
 
 # Overcommit settings
 set -gx OVERCOMMIT_DISABLE 1
@@ -103,7 +104,7 @@ if type -q bun
     if not test -f $__bun_comp_file
         mkdir -p $__bun_comp_dir
         # Redirect stderr to keep the shell quiet if the sub-command is unavailable.
-        bun completions fish > $__bun_comp_file 2>/dev/null
+        bun completions fish >$__bun_comp_file 2>/dev/null
     end
 end
 
@@ -118,8 +119,7 @@ if type -q qlty
     if not test -f $__qlty_comp_file
         mkdir -p $__qlty_comp_dir
         # Try the two common sub-commands quietly; ignore errors.
-        qlty completion fish > $__qlty_comp_file 2>/dev/null ; or \
-        qlty completions fish > $__qlty_comp_file 2>/dev/null
+        qlty completion fish >$__qlty_comp_file 2>/dev/null; or qlty completions fish >$__qlty_comp_file 2>/dev/null
     end
 end
 
@@ -217,7 +217,7 @@ bind -M insert \t accept-autosuggestion
 # Uses fish_preexec and fish_postexec events.
 #
 # Adjustable threshold:
-set -g __reporttime_threshold_ms 5000  # Default: 5 seconds
+set -g __reporttime_threshold_ms 5000 # Default: 5 seconds
 
 # Event handler: Called before a command is executed.
 function __reporttime_start --on-event fish_preexec
@@ -265,7 +265,7 @@ if type -q fzf
     function fish_user_key_bindings --append
         # Preserve any existing bindings (fish_user_key_bindings may have been
         # defined earlier). `bind -M insert` applies inside the insert mode.
-        bind \cr 'fzf_history_search'
+        bind \cr fzf_history_search
     end
 end
 
@@ -289,7 +289,9 @@ if status --is-interactive
             PatrickF1/fzf.fish \
             jorgebucaran/autopair.fish
         for p in $__plugins
-            if not begin; fisher list | string match -iq $p; end
+            if not begin
+                    fisher list | string match -iq $p
+                end
                 fisher install $p
             end
         end
@@ -317,9 +319,9 @@ alias histall 'history --show-time' # Equivalent for zsh fc -il 1
 alias vim nvim
 alias vi nvim
 alias sudo 'sudo ' # Trailing space is important for alias expansion
-alias i issue      # Assuming 'issue' is a command/script
-alias c cheat      # Assuming 'cheat' is a command/script
-alias code cursor  # Specific alias for 'code' to 'cursor'
+alias i issue # Assuming 'issue' is a command/script
+alias c cheat # Assuming 'cheat' is a command/script
+alias code cursor # Specific alias for 'code' to 'cursor'
 alias make just
 
 # Function to search history (from zsh alias h='history | grep -m 30 -i')
@@ -340,7 +342,7 @@ alias gb 'git --no-pager branch'
 alias gl git-log # Assuming 'git-log' is a custom script or alias
 alias gdd 'git --no-pager diff'
 alias gg commitment # Assuming 'commitment' is a custom script or alias
-alias gm gm.fish   # Assuming 'gm.fish' is a script in PATH
+alias gm gm.fish # Assuming 'gm.fish' is a script in PATH
 
 # Ruby Aliases (continued from above)
 alias bb 'bundle exec'

@@ -1,3 +1,3 @@
-#!env fish
+#!/opt/homebrew/opt/coreutils/libexec/gnubin/env fish
 
 gh pr view --web || gh repo view --web

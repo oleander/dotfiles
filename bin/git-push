@@ -1,4 +1,4 @@
-#!env fish
+#!/opt/homebrew/bin/fish
 
 set force_push ""
 
