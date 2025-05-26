@@ -24,8 +24,10 @@ end
 # skipping any bot-tagged ("🤖") commits
 function commit_message
     git log \
+        --all \
+        --not HEAD \
         --author="$email" \
-        --format="%s" \
+        --pretty=%s \
         --no-merges \
         --remove-empty \
         --invert-grep --grep='🤖' | shuf -n 1 | string trim
