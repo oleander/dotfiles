@@ -20,68 +20,21 @@ function author_email
     echo $email
 end
 
-# find the very first commit by this author
-function oldest_hash
-    set -l email (author_email)
-    set -l hash (git log --author="$email" --format="%h" --no-merges --remove-empty  \
-        | shuf -n 1 | string trim)
-    if test -z "$hash"
-        die "No commits found by author '$email'"
-    end
-    echo $hash
-end
-
-# load the last-seen hash from config, or default to the oldest one;
-# if the stored hash isn't a valid commit, fall back to the oldest
-function current_hash
-    set -l default_hash (oldest_hash)
-    set -l hash (git config --local --default "$default_hash" \
-        "git-ok.commit-hash")
-    if not git rev-parse --verify --quiet $hash >/dev/null 2>&1
-        set hash $default_hash
-    end
-    echo $hash
-end
-
 # pick the very next commit on first-parent ancestry by this author,
 # skipping any bot-tagged ("🤖") commits
-function next_hash
-    set -l email (author_email)
-    set -l current (current_hash)
-    set -l candidate (git rev-list \
-        --no-merges \
-        --invert-grep --grep='🤖' \
-        --author="$email" \
-        --reverse \
-        "$current..HEAD" \
-        | head -n1 | string trim)
-    if test -z "$candidate"
-        die "No new commit found for author '$email' since '$current'"
-    end
-    echo $candidate
-end
-
-# grab that commit's subject line, or fail if it's empty
 function commit_message
-    set -l hash (next_hash)
-    set -l msg (git log -1 --format='%s' "$hash" | string trim)
-    if test -z "$msg"
-        die "Could not read message for the next commit"
-    end
-
-    echo $msg | string replace -r '\s*\(#\d+\)$' ''
+    git log \
+        --author="$email" \
+        --format="%s" \
+        --no-merges \
+        --remove-empty \
+        --invert-grep --grep='🤖' | shuf -n 1 | string trim
 end
 
 # if there's nothing to commit, warn and exit
 if test -z "$(git status --porcelain)"
     echo (set_color yellow)"Warning:"(set_color normal)" No changes to commit" >&2
     exit 0
-end
-
-# record the next hash so we don't pick it again
-set -l nexthash (next_hash)
-if not git config --local "git-ok.commit-hash" "$nexthash"
-    die "Could not write the next commit hash to config"
 end
 
 # finally, stage and commit
