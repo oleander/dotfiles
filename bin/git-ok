@@ -30,7 +30,15 @@ function commit_message
         --pretty=%s \
         --no-merges \
         --remove-empty \
-        --invert-grep --grep='🤖' | shuf -n 1 | string trim
+        --invert-grep \
+        --grep='🤖' \
+        --grep='^revert\b' \
+        --grep='^fixup!' \
+        --grep='^squash!' \
+        --grep='^wip' \
+        | grep -v '^[[:space:]]*$' \
+        | shuf -n 1 \
+        | string trim
 end
 
 # if there's nothing to commit, warn and exit
