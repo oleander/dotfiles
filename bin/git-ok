@@ -23,7 +23,7 @@ end
 # find the very first commit by this author
 function oldest_hash
     set -l email (author_email)
-    set -l hash (git log --author="$email" --format="%h" --reverse \
+    set -l hash (git log --author="$email" --format="%h" --no-merges --remove-empty  \
         | shuf -n 1 | string trim)
     if test -z "$hash"
         die "No commits found by author '$email'"
