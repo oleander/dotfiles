@@ -24,8 +24,8 @@ end
 # skipping any bot-tagged ("🤖") commits
 function commit_message
     git log \
-        --all \
-        --not HEAD \
+        # --all \
+        # --not HEAD \
         --author="$email" \
         --pretty=%s \
         --no-merges \

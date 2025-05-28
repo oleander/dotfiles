@@ -5,11 +5,11 @@
 #t = "tree --color always --invert"
 ##f = "feature"
 
-#[env]
-#RUST_ANALYZER_CACHE = "/Volumes/Cache/rust-analyzer"
-#SCCACHE_DIR = "/Volumes/Cache/sccache"
-#SCCACHE_CACHE_SIZE = "200G"
-#RUSTC_WRAPPER = "sccache"
+[env]
+# RUST_ANALYZER_CACHE = "/Volumes/Cache/rust-analyzer"
+# SCCACHE_DIR = "/opt/homebrew/bin/sccache"
+SCCACHE_CACHE_SIZE = "20G"
+RUSTC_WRAPPER = "/opt/homebrew/bin/sccache"
 
 #[target.esp32c3]
 #rustflags = ["-C", "default-linker-libraries"]

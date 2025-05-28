@@ -304,6 +304,7 @@ alias gc git-verify-checkout # Assumes 'git-verify-checkout' is a custom script 
 alias ggg 'git --no-pager add . && git commit --no-edit'
 alias ggm 'git --no-pager commit --no-edit'
 alias ok git-ok # Assumes 'git-ok' is an available script or command
+alias okok 'ggg'
 
 # Ruby Aliases
 
@@ -358,3 +359,4 @@ alias gh? 'gh copilot suggest -t gh'
 alias explain 'gh copilot explain'
 alias v view-github-project # Assuming 'view-github-project' is a command/script
 alias f format-new-files-since-branch # Assuming 'format-new-files-since-branch' is a command/script
+alias format-cursor 'npx prettier --parser markdown --write ".cursor/rules/*.mdc"'

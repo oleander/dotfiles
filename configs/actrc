@@ -1,0 +1,5 @@
+--container-architecture linux/amd64
+--bind
+-s GITHUB_TOKEN=$(gh auth token)
+-P ghcr.io/catthehacker/ubuntu:act-20.04
+
