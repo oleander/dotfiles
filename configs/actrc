@@ -1,5 +1,18 @@
+--platform macos-latest=catthehacker/ubuntu:act-latest
+--platform ubuntu-latest=catthehacker/ubuntu:act-latest
+--artifact-server-path ./tmp/artifacts
+--cache-server-path ./tmp/cache
 --container-architecture linux/amd64
---bind
--s GITHUB_TOKEN=$(gh auth token)
--P ghcr.io/catthehacker/ubuntu:act-20.04
-
+--container-daemon-socket -
+--action-offline-mode
+--use-new-action-cache
+--detect-event
+--no-skip-checkout
+--network=host
+--reuse
+--rm
+--insecure-secrets
+--privileged
+--defaultbranch main
+--env ACT=true
+# --bind
