@@ -26,11 +26,10 @@
 	defaultBranch = main
 
 [pull]
-    rebase = tru
-    ff = only
+    rebase = true
 
 [branch]
-    autosetuprebase = never
+    autosetuprebase = always
 
 [color]
     branch = auto
