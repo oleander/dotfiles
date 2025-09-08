@@ -1,7 +1,14 @@
 [core]
+    fsmonitor = true
     excludesFile = ~/.gitignore
     autocrlf = false
     fileMode = false
+
+[gc]
+    writeCommitGraph = true
+
+[feature]
+    manyFiles = true
 
 [user]
     email = 220827+oleander@users.noreply.github.com
@@ -19,6 +26,10 @@
 
 [pull]
     rebase = false
+    ff = only
+
+[branch]
+    autosetuprebase = never
 
 [color]
     branch = auto
@@ -38,20 +49,16 @@
 [rebase]
     autoStash = false
 
-[branch]
-    # Track upstream w/ rebase default
-    autosetuprebase = always
-
 [apply]
     whitespace = fix
 
 [fetch]
     # Remove remote-tracking refs deleted upstream
     prune = true
+    pruneTags = true
 
 [checkout]
-    # Avoid detached HEAD on checkout
-    autoDetach = false
+    autoDetach = true
 
 [tag]
     sort = version:refname
@@ -67,3 +74,11 @@
 [submodule]
     recurse = true
     ignore = dirty
+
+[diff]
+    mnemonicPrefix = true
+    compactionHeuristic = true
+    submodule = log
+
+[status]
+    submoduleSummary = true
