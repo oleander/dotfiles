@@ -3,6 +3,38 @@
 set -e
 set -x
 
-sudo apt-get update
-sudo apt-get install -y --no-install-recommends autojump
-echo "source /usr/share/autojump/autojump.zsh" >> ~/.zshrc.local
+# Check if autojump is already installed
+if command -v autojump &> /dev/null || [ -f /usr/share/autojump/autojump.fish ]; then
+    echo "autojump is already installed"
+else
+    # Check if we're in a Codespaces environment
+    if [ -n "$CODESPACES" ]; then
+        echo "Running in GitHub Codespaces environment"
+        # In Codespaces, we might not have sudo access or it might not be needed
+        if command -v sudo &> /dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends autojump
+        else
+            echo "Cannot install autojump without sudo access"
+            exit 1
+        fi
+    else
+        # Non-Codespaces environment
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends autojump
+    fi
+fi
+
+# Add autojump to fish config if not already there
+if [ -f /usr/share/autojump/autojump.fish ]; then
+    # Create fish config directory if it doesn't exist
+    mkdir -p ~/.config/fish
+
+    # Add to config.local.fish instead of main config.fish
+    if ! grep -q "autojump.fish" ~/.config/fish/config.local.fish 2>/dev/null; then
+        echo "# Autojump integration" >> ~/.config/fish/config.local.fish
+        echo "if test -f /usr/share/autojump/autojump.fish" >> ~/.config/fish/config.local.fish
+        echo "    source /usr/share/autojump/autojump.fish" >> ~/.config/fish/config.local.fish
+        echo "end" >> ~/.config/fish/config.local.fish
+    fi
+fi

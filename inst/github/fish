@@ -1,16 +1,37 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
+set -x
 set -e
-# set -x
 
-if command -v fish >/dev/null 2>&1; then
-    echo "fish already installed"
+# Check if fish is already installed
+if command -v fish &> /dev/null; then
+    echo "fish is already installed"
     exit 0
 fi
 
-# Install fish in GitHub Codespaces
-apt-get update
-apt-get install -y fish
+# Check if we're in a Codespaces environment
+if [ -n "$CODESPACES" ]; then
+    echo "Running in GitHub Codespaces environment"
+    # In Codespaces, we might not have sudo access or it might not be needed
+    if command -v sudo &> /dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends fish
+    else
+        echo "Cannot install fish without sudo access"
+        exit 1
+    fi
+else
+    # Non-Codespaces environment
+    sudo apt-get update
+    sudo apt-get install -y --no-install-recommends fish
+fi
+
+# Add fish to /etc/shells if not already there
+if ! grep -q "$(which fish)" /etc/shells; then
+    if command -v sudo &> /dev/null; then
+        echo "$(which fish)" | sudo tee -a /etc/shells
+    fi
+fi
 
 # Create fish config directory if it doesn't exist
 mkdir -p ~/.config/fish/functions
@@ -20,7 +41,7 @@ mkdir -p ~/.config/fish/completions
 if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
     echo "Installing Fisher plugin manager"
     fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-    
+
     # Install plugins from fish_plugins file if it exists
     if [ -f ~/.config/fish/fish_plugins ]; then
         echo "Installing fish plugins..."

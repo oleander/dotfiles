@@ -9,10 +9,14 @@ if test -f "/opt/homebrew/share/autojump/autojump.fish"
 end
 
 # Preferred editors
+set -gx RBENV_VERSION 3.4.1
+set -gx GIT_MERGE_AUTOEDIT "no"
+set -gx GIT_SEQUENCE_EDITOR "true"
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 set -gx MANPATH "/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 set -gx PAGER "less -R"
+set -gx GH_PAGER ""
 set -gx LESSOPEN "|/usr/local/bin/lesspipe.sh %s"
 fish_add_path $HOME/.cargo/bin
 set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications"

@@ -3,4 +3,11 @@
 set -e
 set -x
 
+# Check if starship is already installed
+if command -v starship &> /dev/null; then
+    echo "starship is already installed"
+    exit 0
+fi
+
+# Install starship
 curl -sS https://starship.rs/install.sh | sh -s -- --yes

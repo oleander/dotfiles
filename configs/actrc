@@ -3,16 +3,16 @@
 --artifact-server-path ./tmp/artifacts
 --cache-server-path ./tmp/cache
 --container-architecture linux/amd64
---container-daemon-socket -
 --action-offline-mode
 --use-new-action-cache
 --detect-event
---no-skip-checkout
---network=host
 --reuse
---rm
+--bind
 --insecure-secrets
---privileged
---defaultbranch main
 --env ACT=true
-# --bind
+--defaultbranch master
+--rm
+
+
+# --container-options --privileged
+# --network=host

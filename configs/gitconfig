@@ -1,99 +1,69 @@
 [core]
     excludesFile = ~/.gitignore
+    autocrlf = false
     fileMode = false
+
 [user]
-	email = 220827+oleander@users.noreply.github.com
-	name = Linus Oleander
-	signingkey = /Users/linus/.ssh/id_rsa
+    email = 220827+oleander@users.noreply.github.com
+    name = Linus Oleander
+
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
 [push]
     autoSetupRemote = true
     default = current
+
 [init]
 	defaultBranch = main
-[safe]
-	directory = *
-	directory = /home/testuser/dotfiles
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
-	directory = .
+
 [pull]
-    rebase = true
+    rebase = false
+
 [color]
     branch = auto
     status = auto
     diff = auto
     ui = auto
-[diff]
-    compactionHeuristic = true
-    mnemonicPrefix = true
-    tool = meld
-    submodule = log
+
+[sequence]
+    # Avoids the prompt to edit the commit message
+    editor = true
+
 [merge]
-    tool = meld
-    commit = no
-	ff = false
-[format]
-    pretty = oneline
-[credential]
-[help]
-    autocorrect = 20
-[gc]
-    auto = 256
+    # Auto commit the merge
+    commit = true
+	ff = true
+
 [rebase]
     autoStash = false
+
 [branch]
+    # Track upstream w/ rebase default
     autosetuprebase = always
+
 [apply]
     whitespace = fix
-[http]
-    postBuffer = 524288000
-[lfs]
-    track = "*.psd"
+
 [fetch]
+    # Remove remote-tracking refs deleted upstream
     prune = true
+
 [checkout]
+    # Avoid detached HEAD on checkout
     autoDetach = false
+
 [tag]
     sort = version:refname
+
 [rerere]
 	enabled = true
 	autoupdate = true
 	trainer = true
-[ai]
-	assistant-id = asst_HyF6OZdMXci0SHLPc228bMfe
-[alias]
-	mergeno = merge --no-ff
-	merge = merge --no-ff
-	c = commit -a --no-edit
-	ca = commit --amend -a --no-edit
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-[credential "https://github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+
 [advice]
 	diverging = false
-[status]
-    submoduleSummary = true
+
 [submodule]
     recurse = true
     ignore = dirty

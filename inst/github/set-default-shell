@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+set -x
+
+# Check if fish is installed
+if ! command -v fish &> /dev/null; then
+    echo "Fish shell is not installed. Please install fish first."
+    exit 1
+fi
+
+# Get the path to fish
+FISH_PATH=$(which fish)
+
+# Check if we're in a Codespaces environment
+if [ -n "$CODESPACES" ]; then
+    echo "Running in GitHub Codespaces environment"
+
+    # In Codespaces, we can't use chsh, but we can update the shell in other ways
+    # Update the VS Code integrated terminal default shell
+    if [ -f ~/.vscode-server/data/Machine/settings.json ]; then
+        # This would need jq or similar to properly update JSON
+        echo "Note: To use fish in VS Code terminal, update your VS Code settings"
+    fi
+
+    # Create or update .bashrc to exec fish
+    if ! grep -q "exec fish" ~/.bashrc 2>/dev/null; then
+        echo "" >> ~/.bashrc
+        echo "# Auto-switch to fish shell" >> ~/.bashrc
+        echo "if [[ \$(ps --no-header --pid=\$PPID --format=comm) != \"fish\" && -z \${BASH_EXECUTION_STRING} ]]" >> ~/.bashrc
+        echo "then" >> ~/.bashrc
+        echo "    exec fish" >> ~/.bashrc
+        echo "fi" >> ~/.bashrc
+    fi
+
+    echo "Fish will be used as the default shell in new terminals"
+else
+    # Non-Codespaces environment - use chsh
+    if grep -q "$FISH_PATH" /etc/shells; then
+        echo "Setting fish as default shell..."
+        chsh -s "$FISH_PATH"
+    else
+        echo "Fish is not in /etc/shells. Please add it first with:"
+        echo "echo '$FISH_PATH' | sudo tee -a /etc/shells"
+        exit 1
+    fi
+fi

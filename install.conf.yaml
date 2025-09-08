@@ -7,7 +7,6 @@
     - ~/.config/cargo
     - ~/.local/state
     - ~/.local/bin/inst
-    - ~/.local/share/zinit
     - ~/.local/share/nvim/site/autoload
     - ~/.config/fabric/patterns
     - ~/.config/fabric/patterns/summarize_docs
@@ -16,6 +15,8 @@
     - ~/.config/gh-copilot
     - ~/.config/github-copilot
     - ~/.config/fish
+    - ~/.config/fish/completions
+    - ~/.config/fish/functions
     - ~/.config/karabiner
     - ~/.config/jgit
 
@@ -28,7 +29,6 @@
 
 - clean:
     ~/.local/bin/inst: true
-    ~/.local/share/zinit: true
     ~/.zshrc.local: true
     ~/.zshrc: true
     ~/.config/fish/config.local.fish: true
@@ -89,4 +89,5 @@
     - [~/.local/bin/inst-fish, Installing fish]
     - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
+    - [~/.local/bin/inst-set-default-shell, Setting fish as default shell]
     - [fish -c "exit 0", Loading fish]
