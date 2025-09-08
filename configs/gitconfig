@@ -3,6 +3,7 @@
     excludesFile = ~/.gitignore
     autocrlf = false
     fileMode = false
+    pager = cat
 
 [gc]
     writeCommitGraph = true
@@ -25,7 +26,7 @@
 	defaultBranch = main
 
 [pull]
-    rebase = false
+    rebase = tru
     ff = only
 
 [branch]
@@ -42,12 +43,13 @@
     editor = true
 
 [merge]
-    # Auto commit the merge
-    commit = true
+    conflictStyle = zdiff3
 	ff = true
 
 [rebase]
-    autoStash = false
+    autoStash = true
+    updateRefs = true
+    autosquash = true
 
 [apply]
     whitespace = fix
@@ -56,6 +58,7 @@
     # Remove remote-tracking refs deleted upstream
     prune = true
     pruneTags = true
+    negotiationAlgorithm = skipping
 
 [checkout]
     autoDetach = true
@@ -70,6 +73,9 @@
 
 [advice]
 	diverging = false
+    statusHints = false
+    detachedHead = false
+    skippedCherryPicks = false
 
 [submodule]
     recurse = true
@@ -82,3 +88,6 @@
 
 [status]
     submoduleSummary = true
+
+[safe]
+    directory = '*'
