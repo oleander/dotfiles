@@ -8,24 +8,30 @@ if test -f "/opt/homebrew/share/autojump/autojump.fish"
     source "/opt/homebrew/share/autojump/autojump.fish"
 end
 
+if test -f $HOME/export-esp.sh
+    . $HOME/export-esp.sh
+end
+
 # Preferred editors
 set -gx RBENV_VERSION 3.4.1
-set -gx GIT_MERGE_AUTOEDIT "no"
-set -gx GIT_SEQUENCE_EDITOR "true"
+set -gx GIT_MERGE_AUTOEDIT no
+set -gx GIT_SEQUENCE_EDITOR true
 set -gx VISUAL nvim
 set -gx EDITOR nvim
 set -gx MANPATH "/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 set -gx PAGER "less -R"
 set -gx GH_PAGER ""
 set -gx LESSOPEN "|/usr/local/bin/lesspipe.sh %s"
-fish_add_path $HOME/.cargo/bin
 set -gx HOMEBREW_CASK_OPTS "--appdir=~/Applications"
 set -gx LC_ALL en_US.UTF-8
 set -gx LANG en_US.UTF-8
 set -gx PYTHONCOERCECLOCALE 0
-fish_add_path "$HOME/.dotfiles/bin"
 set -gx GIT_MERGE_AUTOEDIT no
 set -gx PYTHONUTF8 1
+
+fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/bin
+fish_add_path "$HOME/.dotfiles/bin"
 
 # --- PATH -------------------------------------------------------------------
 # Consolidate all custom paths here to avoid duplication.
@@ -308,7 +314,16 @@ alias gc git-verify-checkout # Assumes 'git-verify-checkout' is a custom script 
 alias ggg 'git --no-pager add . && git commit --no-edit'
 alias ggm 'git --no-pager commit --no-edit'
 alias ok git-ok # Assumes 'git-ok' is an available script or command
-alias okok 'ggg'
+alias okok ggg
+
+# brew install bat
+alias cat='bat --no-pager'
+
+# brew install eza
+alias ls='eza'
+
+# brew install trash
+alias rm='trash'
 
 # Ruby Aliases
 
@@ -364,3 +379,5 @@ alias explain 'gh copilot explain'
 alias v view-github-project # Assuming 'view-github-project' is a command/script
 alias f format-new-files-since-branch # Assuming 'format-new-files-since-branch' is a command/script
 alias format-cursor 'npx prettier --parser markdown --write ".cursor/rules/*.mdc"'
+
+string match -q "$TERM_PROGRAM" kiro and . (kiro --locate-shell-integration-path fish)
