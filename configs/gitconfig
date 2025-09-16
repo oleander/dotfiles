@@ -15,8 +15,11 @@
     email = 220827+oleander@users.noreply.github.com
     name = Linus Oleander
 
+[alias]
+    ai = commit -a --no-edit
+
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 
 [push]
@@ -92,5 +95,5 @@
 [safe]
     directory = '*'
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential

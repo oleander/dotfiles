@@ -313,7 +313,9 @@ alias gp git-push
 alias gc git-verify-checkout # Assumes 'git-verify-checkout' is a custom script or alias
 alias ggg 'git --no-pager add . && git commit --no-edit'
 alias ggm 'git --no-pager commit --no-edit'
-alias ok git-ok # Assumes 'git-ok' is an available script or command
+# alias ok git-ok # Assumes 'git-ok' is an available script or command
+alias ok 'git add . && git commit -a --no-edit'
+alias ai-install 'oco hook set'
 alias okok ggg
 
 # brew install bat
@@ -381,3 +383,5 @@ alias f format-new-files-since-branch # Assuming 'format-new-files-since-branch'
 alias format-cursor 'npx prettier --parser markdown --write ".cursor/rules/*.mdc"'
 
 string match -q "$TERM_PROGRAM" kiro and . (kiro --locate-shell-integration-path fish)
+
+gh completion -s fish | source
