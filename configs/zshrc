@@ -1,7 +1,2 @@
-export GITHUB_USERNAME=oleander
-
-# qlty completions
-[ -s "/opt/homebrew/share/zsh/site-functions/_qlty" ] && source "/opt/homebrew/share/zsh/site-functions/_qlty"
-export PATH="/Users/linus/bin:$PATH"
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+eval "$(rbenv init --no-rehash - zsh)"
+eval "$(starship init zsh)"

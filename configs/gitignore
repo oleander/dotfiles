@@ -95,5 +95,6 @@ Gemfile.local.lock
 .solargraph.yml
 .runner
 .qlty/
-.kiro/
 .claude/
+.mcp.json
+mcp.jso

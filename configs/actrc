@@ -1,17 +1,18 @@
---platform macos-latest=catthehacker/ubuntu:act-latest
---platform ubuntu-latest=catthehacker/ubuntu:act-latest
---artifact-server-path ./tmp/artifacts
---cache-server-path ./tmp/cache
---container-architecture linux/amd64
---action-offline-mode
---use-new-action-cache
---detect-event
---reuse
---bind
---insecure-secrets
---env ACT=true
---defaultbranch master
+# --platform macos-latest=catthehacker/ubuntu:act-latest
+# --platform ubuntu-latest=catthehacker/ubuntu:act-latest
+# --artifact-server-path ./tmp/artifacts
+# --cache-server-path ./tmp/cache
+# --container-architecture linux/amd64
+# --action-offline-mode
+# --use-new-action-cache
+# --detect-event
+# --reuse
+# --bind
+# --insecure-secrets
+# --env ACT=true
+# --defaultbranch master
 --rm
+--network bridge
 
 
 # --container-options --privileged

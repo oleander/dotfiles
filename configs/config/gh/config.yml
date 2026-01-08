@@ -21,6 +21,7 @@ aliases:
                    --jq '.[]|select(.name=="Travis CI - Pull Request")|.link'); \
                  id=${url##*/}; \
                  travis logs $id --pro; }; f
+    add-missing-labels: '!desired=''$desired''; existing=$(gh api -X GET repos/:owner/:repo/labels --paginate --jq ''.[].name'' | jq -R . | jq -s .); echo "$desired" | jq --argjson existing "$existing" -c ''[.[] | select(.name as $n | ($existing | index($n)) | not)][]'' | while read -r lbl; do gh api -X POST repos/:owner/:repo/labels -f name="$(jq -r .name <<<"$lbl")" -f color="$(jq -r .color <<<"$lbl")" -f description="$(jq -r .description <<<"$lbl")"; done'
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

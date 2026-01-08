@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+require 'bundler/inline'
+gemfile { source 'https://rubygems.org'; gem 'json' }
+
+workflows = Dir.glob('.github/workflows/*.yml').map { |f| File.basename(f) }
+
+if ARGV.empty?
+  puts "Available workflows:"
+  workflows.each { |w| puts "  #{w}" }
+  exit
+end
+
+query = ARGV[0].gsub(%r{^\.github/workflows/|\.yml$}, '')
+scored = workflows.map do |w|
+  name = w.sub('.yml', '')
+  score = w == "#{query}.yml" ? 100 : name == query ? 50 : name.include?(query) ? 30 : 0
+  [w, score]
+end.select { |_, s| s > 0 }.max_by { |_, s| s }
+
+unless scored
+  puts "Error: No workflow matching '#{ARGV[0]}'\n\nAvailable:"
+  workflows.each { |w| puts "  #{w}" }
+  exit 1
+end
+
+workflow = scored[0]
+branch = `git branch --show-current`.strip
+runs = JSON.parse(`gh run list --limit 1 -w #{workflow} -b #{branch} --json databaseId`)
+
+if runs.empty?
+  puts "No runs found for #{workflow} on branch #{branch}"
+  exit 1
+end
+
+exec "gh run view #{runs[0]['databaseId']} -w"

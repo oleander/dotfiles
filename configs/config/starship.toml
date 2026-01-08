@@ -1,6 +1,8 @@
 # Set the schema for the configuration
 "$schema" = "https://starship.rs/config-schema.json"
 
+command_timeout = 1000
+
 # Configuration options
 add_newline = true
 

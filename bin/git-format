@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env fish -i
 
 set RUBY_FILES (git ls | grep -E '\.rb$|^Gemfile$|\.rake$' | grep -v "db/schema.rb" | grep -v "Gemfile.lock")
 
@@ -26,7 +26,7 @@ end
 echo ""
 
 if test (count $argv) -eq 0
-    exec dip rubocop $EXISTING_FILES -a
+    /Users/linus/.rbenv/shims/dip rubocop $EXISTING_FILES -a
 else
-    exec dip rubocop $EXISTING_FILES $argv
+    /Users/linus/.rbenv/shims/dip rubocop $EXISTING_FILES $argv
 end

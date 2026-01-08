@@ -327,7 +327,7 @@ alias ls='eza'
 # brew install trash
 alias rm='trash'
 
-# Ruby Aliases
+alias a 'open-github-workflow'
 
 # --- Appended Aliases from Zsh config ---
 
@@ -384,4 +384,5 @@ alias format-cursor 'npx prettier --parser markdown --write ".cursor/rules/*.mdc
 
 string match -q "$TERM_PROGRAM" kiro and . (kiro --locate-shell-integration-path fish)
 
-gh completion -s fish | source
+source (CARGO_COMPLETE=fish cargo +nightly | psub)
+# gh completion -s fish | source
