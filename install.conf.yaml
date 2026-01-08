@@ -89,5 +89,4 @@
     - [~/.local/bin/inst-fish, Installing fish]
     - [~/.local/bin/inst-git-ai, Installing git-ai]
     - [~/.local/bin/inst-autojump, Installing autojump]
-    - [~/.local/bin/inst-set-default-shell, Setting fish as default shell]
     - [fish -c "exit 0", Loading fish]
