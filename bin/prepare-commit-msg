@@ -1,0 +1,51 @@
+#!/usr/bin/env fish
+set -l msg_file $argv[1]
+set -l commit_type $argv[2]
+if test "$commit_type" = "message"
+    exit 0
+end
+if test -f "$msg_file"
+    set -l existing (cat "$msg_file" 2>/dev/null | string trim)
+    if test -n "$existing" -a "$existing" != "#"
+        exit 0
+    end
+end
+set -l diff (git diff --cached 2>/dev/null; or git diff HEAD 2>/dev/null)
+if test -z "$diff"
+    exit 0
+end
+set -l prompt "You are a commit message generator. Based on the following git diff, generate a concise commit message under 90 characters that matches this style:
+
+Examples:
+- Add qlty config
+- Fix header formatting in onboarding instructions
+- Add onboarding instructions for Storecove/datajust
+- Move brakeman into ci
+- Use predefined private keys during testing
+- Playwright requires shakapacker
+- Prevent playwright compiling assets on run
+- Update to Ruby 3.1.7
+- Fix Docker permissions for Linux
+- Add fine-tuning rake tasks
+
+Rules:
+- Start with a verb in imperative mood (Add, Fix, Update, Remove, etc.)
+- Keep under 90 characters
+- Be concise and descriptive
+- No issue numbers or merge text
+- No prefixes like \"fix:\" or \"feat:\"
+
+Git diff:
+$diff
+
+Generate only the commit message, nothing else. No quotes, no markdown, just the message."
+if not type -q gh
+    exit 0
+end
+set -l msg (gh models run openai/gpt-4.1 "$prompt" 2>&1 | string trim)
+if test -n "$msg" -a "$msg" != "Error" -a (string match -v "*Error*" "$msg")
+    if test (string length "$msg") -gt 90
+        set msg (string sub -l 90 "$msg")
+    end
+    echo "$msg" > "$msg_file"
+end

@@ -361,10 +361,55 @@ alias gpp 'git --no-pager pull'
 alias gs 'git --no-pager status --ignore-submodules -s -b'
 alias gd 'git --no-pager diff --stat'
 alias gb 'git --no-pager branch'
-alias gl git-log # Assuming 'git-log' is a custom script or alias
+alias gl git-log
 alias gdd 'git --no-pager diff'
-alias gg commitment # Assuming 'commitment' is a custom script or alias
-alias gm gm.fish # Assuming 'gm.fish' is a script in PATH
+function gg --description "Generate commit message using AI and commit"
+    if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        echo "Not a git repository" >&2
+        return 1
+    end
+    set -l diff (git diff --cached 2>/dev/null; or git diff 2>/dev/null)
+    if test -z "$diff"
+        echo "No changes to commit" >&2
+        return 1
+    end
+    set -l prompt "You are a commit message generator. Based on the following git diff, generate a concise commit message under 90 characters that matches this style:
+
+Examples:
+- Add qlty config
+- Fix header formatting in onboarding instructions
+- Add onboarding instructions for Storecove/datajust
+- Move brakeman into ci
+- Use predefined private keys during testing
+- Playwright requires shakapacker
+- Prevent playwright compiling assets on run
+- Update to Ruby 3.1.7
+- Fix Docker permissions for Linux
+- Add fine-tuning rake tasks
+
+Rules:
+- Start with a verb in imperative mood (Add, Fix, Update, Remove, etc.)
+- Keep under 90 characters
+- Be concise and descriptive
+- No issue numbers or merge text
+- No prefixes like \"fix:\" or \"feat:\"
+
+Git diff:
+$diff
+
+Generate only the commit message, nothing else. No quotes, no markdown, just the message."
+    set -l msg (gh models run openai/gpt-4.1 "$prompt" 2>&1 | string trim)
+    if test -z "$msg" -o "$msg" = "Error"
+        echo "Failed to generate commit message" >&2
+        return 1
+    end
+    if test (string length "$msg") -gt 90
+        set msg (string sub -l 90 "$msg")
+    end
+    git add . 2>/dev/null
+    git commit -m "$msg"
+end
+alias gm gm.fish
 
 # Ruby Aliases (continued from above)
 alias bb 'bundle exec'
