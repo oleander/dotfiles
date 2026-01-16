@@ -12,12 +12,38 @@ trap cleanup SIGINT
 # Log refresh
 date >/tmp/brew-refresh-ran-at.log
 
+# Color codes
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+RESET='\033[0m'
+
 # Define function to print command
 print_command() {
-    echo -e "\033[0;32m=> $1\033[0m"
+    echo -e "${GREEN}=> $1${RESET}"
 }
 
-echo -e "\033[0;32m=> Refresh brew @ $(date)...\033[0m"
+# Define function to print warning
+print_warning() {
+    echo -e "${YELLOW}⚠ $1${RESET}"
+}
+
+# Define function to print error
+print_error() {
+    echo -e "${RED}✗ $1${RESET}"
+}
+
+# Run command with error handling (non-fatal)
+run_command() {
+    local cmd="$1"
+    local description="${2:-$cmd}"
+    print_command "$description"
+    if ! eval "$cmd"; then
+        print_warning "$description failed, continuing..."
+    fi
+}
+
+echo -e "${GREEN}=> Refresh brew @ $(date)...${RESET}"
 
 # Run and print commands
 commands=("update" "upgrade" "cleanup" "doctor" "cleanup -s")
@@ -26,15 +52,33 @@ for cmd in "${commands[@]}"; do
     eval "/opt/homebrew/bin/brew $cmd"
 done
 
-# echo -e "\033[0;32m=> Update globaly installed cargo binaries...\033[0m"
+# echo -e "${GREEN}=> Update globaly installed cargo binaries...${RESET}"
 # cargo install-update -a
 # espup update
 # rustup update
-ollama-update
-fabric-update
-mas upgrade
+run_command "ollama-update" "ollama-update"
+run_command "fabric-update" "fabric-update"
+run_command "mas upgrade" "mas upgrade"
 
-gem update --system
-gem update --user-install
+# Add gem user bin directory to PATH to prevent "not in PATH" warnings
+GEM_USER_BIN="$(ruby -e 'puts "#{Gem.user_dir}/bin"' 2>/dev/null)"
+if [ -n "$GEM_USER_BIN" ]; then
+    export PATH="$GEM_USER_BIN:$PATH"
+fi
 
-echo -e "\033[0;32m=> Refresh complete @ $(date) ...\033[0m"
+# Filter benign RubyGems warnings about ambiguous specs (common with default gems)
+# These warnings occur when both default and updated gem versions exist
+filter_gem_warnings() {
+    grep -vE "^WARN: (Unresolved or ambiguous specs|Clearing out unresolved specs)|Please report a bug if this causes problems|Available/installed versions of this gem:|^      - [0-9]|^      [a-z]+ \(>="
+}
+
+print_command "gem update --system"
+gem update --system 2>&1 | filter_gem_warnings
+
+print_command "gem update --user-install"
+gem update --user-install 2>&1 | filter_gem_warnings
+
+print_command "gem cleanup"
+gem cleanup 2>&1 | filter_gem_warnings
+
+echo -e "${GREEN}=> Refresh complete @ $(date) ...${RESET}"

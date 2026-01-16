@@ -374,10 +374,51 @@ alias b 'bundle install'
 alias files 'git --no-pager diff --diff-filter=AM --name-only origin/HEAD^ HEAD -- (pwd) | sort'
 alias crate context-extractor
 alias help2 context-extractor
-alias ?? 'gh copilot suggest -t shell'
-alias git? 'gh copilot suggest -t git'
-alias gh? 'gh copilot suggest -t gh'
-alias explain 'gh copilot explain'
+# GitHub Models CLI functions (migrated from deprecated 'gh copilot' commands)
+# These replicate the old suggest/explain functionality using gh models
+# Based on: https://github.com/github/copilot-cli/issues/53
+# Usage: ?? "what you need"
+function ?? --description "Suggest shell commands using GitHub Models CLI"
+    if test (count $argv) -gt 0
+        set -l cmd (gh models run openai/gpt-4.1 "Suggest a shell command for: $argv. Output ONLY the command itself, nothing else, no explanations, no code blocks, no markdown formatting, just the raw command ready to execute." 2>&1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        echo -n $cmd | pbcopy
+        echo $cmd
+    else
+        echo "Example: ?? \"list all folders using tree 5 levels\""
+        return 1
+    end
+end
+
+function git? --description "Suggest git commands using GitHub Models CLI"
+    if test (count $argv) -gt 0
+        set -l cmd (gh models run openai/gpt-4.1 "Suggest a git command for: $argv. Output ONLY the command itself, nothing else, no explanations, no code blocks, no markdown formatting, just the raw command ready to execute." 2>&1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        echo -n $cmd | pbcopy
+        echo $cmd
+    else
+        echo "Example: git? \"undo last commit\""
+        return 1
+    end
+end
+
+function gh? --description "Suggest gh CLI commands using GitHub Models CLI"
+    if test (count $argv) -gt 0
+        set -l cmd (gh models run openai/gpt-4.1 "Suggest a gh CLI command for: $argv. Output ONLY the command itself, nothing else, no explanations, no code blocks, no markdown formatting, just the raw command ready to execute." 2>&1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        echo -n $cmd | pbcopy
+        echo $cmd
+    else
+        echo "Example: gh? \"list my repositories\""
+        return 1
+    end
+end
+
+function explain --description "Explain commands using GitHub Models CLI"
+    if test (count $argv) -gt 0
+        gh models run openai/gpt-4.1 "Explain this command: $argv" 2>&1
+    else
+        echo "Example: explain \"ls -la\""
+        return 1
+    end
+end
 alias v view-github-project # Assuming 'view-github-project' is a command/script
 alias f format-new-files-since-branch # Assuming 'format-new-files-since-branch' is a command/script
 alias format-cursor 'npx prettier --parser markdown --write ".cursor/rules/*.mdc"'
