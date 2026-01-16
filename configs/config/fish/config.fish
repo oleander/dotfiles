@@ -368,7 +368,8 @@ function gg --description "Generate commit message using AI and commit"
         echo "Not a git repository" >&2
         return 1
     end
-    set -l diff (git diff --cached 2>/dev/null; or git diff 2>/dev/null)
+    git add . 2>/dev/null
+    set -l diff (git diff --cached 2>/dev/null)
     if test -z "$diff"
         echo "No changes to commit" >&2
         return 1
@@ -406,7 +407,6 @@ Generate only the commit message, nothing else. No quotes, no markdown, just the
     if test (string length "$msg") -gt 90
         set msg (string sub -l 90 "$msg")
     end
-    git add . 2>/dev/null
     git commit -m "$msg"
 end
 alias gm gm.fish
