@@ -30,7 +30,7 @@ show_spinner() {
   local pid=$1
   local delay=0.1
   local frames='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
-  while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+  while [ "$(ps a | awk '{print $1}' | grep "$pid")" ]; do
     local frame=${frames:0:1}
     printf "%s" "$frame"
     local frames=${frames:1}${frames:0:1}
@@ -142,12 +142,12 @@ fi
     HAS_UNTRACKED_CHANGES=false
 
     # Check for tracked changes
-    if ! git $GIT_OPTS diff --quiet; then
+    if ! git "$GIT_OPTS" diff --quiet; then
       HAS_TRACKED_CHANGES=true
     fi
 
     # Check for untracked files
-    if [ -n "$(git $GIT_OPTS ls-files --others --exclude-standard)" ]; then
+    if [ -n "$(git "$GIT_OPTS" ls-files --others --exclude-standard)" ]; then
       HAS_UNTRACKED_CHANGES=true
     fi
 
